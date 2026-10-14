@@ -7,7 +7,7 @@ RV=ROOT/'mods/RealisticVision'
 STAGE=MOD/'build/generated/rv-production'
 BASE='0735491'
 
-def change(source):
+def paint_region(source):
     source=paint_bounds(source)
     if 'var scenePixelBounds:Rectangle' in source: return source
     start=source.index('      private function applyVision(')
@@ -40,6 +40,30 @@ def change(source):
             this.fogVis.scrollRect = null;
             this.fogVis.x = this.fogVis.y = 0;
          }
+'''+anchor)
+    return source
+
+def change(source):
+    source=paint_region(source)
+    # Remove the measured mask-bounds experiment; it did not improve frame time.
+    if 'function sceneClipGeometry' in source:
+        start=source.index('      private var sceneClipKey:')
+        end=source.index('      private function refreshWallField(',start)
+        source=source[:start]+source[end:]
+        source=source.replace('         this.sceneClipGeometry(loc,fresh || rebuild);\n','')
+    if '// Large scenes snapshot sight only when a visible unit needs it.' in source: return source
+    source=source.replace('v0.30.3-scene','v0.30.4-scene')
+    snapshot='this.currentSightData = this.currentSight.getVector(this.currentSight.rect);'
+    assert source.count(snapshot)==2
+    source=source.replace(snapshot,'this.currentSightData = sceneLarge ? null : this.currentSight.getVector(this.currentSight.rect);')
+    anchor='         if(this.cfgMode == "current" && this.currentSightData != null)'
+    assert source.count(anchor)==1
+    source=source.replace(anchor,'''         // Large scenes snapshot sight only when a visible unit needs it.
+         // Invalidation still happens on every fog/wall change; all units in a
+         // frame share one exact snapshot. Empty and fully hidden areas allocate none.
+         if(this.cfgMode == "current" && this.currentSightData == null && this.currentSight != null
+            && (this.spaceX > 48 || this.spaceY > 25))
+            this.currentSightData = this.currentSight.getVector(this.currentSight.rect);
 '''+anchor)
     return source
 

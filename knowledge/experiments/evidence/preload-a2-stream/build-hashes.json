@@ -1,0 +1,22 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "6A3F0FDF81C3EF310CEBBA5141887DA6F0D2C0D506DA5ADF6A5224DDAB843DC9",
+    "Path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\pfe.swf"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "D8988C9600F8305A736F9CE55DAEE7EB4775A82FA1C2C5E750FEB04A1448A702",
+    "Path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\mods\\ContinuousScene\\release\\ContinuousSceneMod.swf"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "4CE4BC885A48AD07E0BCFCF264981DF71604FD5A31530D9428ABCF5C1E69A67B",
+    "Path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\mods\\ContinuousSceneProbe\\release\\ContinuousSceneProbe.swf"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "8BF1794609AAA3C776566835F87EDFEA8E929BF509A44E797F8B6289E70E59B9",
+    "Path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\scene.xml"
+  }
+]

@@ -1,0 +1,56 @@
+[RVision] room motion-corner 24x18 lDist2=2500 mode=current
+
+PASS standalone RV publishes optional API without RConnect
+
+PASS fixture target hidden behind wall
+
+PASS malformed payload rejected atomically
+
+PASS valid subcell history accepted
+
+PASS merge never writes local FOV or personal exploration
+
+PASS current shared subcell uses configured memory brightness
+
+PASS adjacent unseen subcell stays black
+
+PASS shared memory does not expand current sight
+
+PASS remote wall light accepted as display input
+
+PASS shared wall light does not grant unit visibility
+
+PASS native interaction values unchanged
+
+PASS API exports only locally explored subcells
+
+PASS memory brightness setting still controls shared area
+
+[RVision] room motion-corner 24x18 lDist2=2500 mode=classic
+
+PASS classic uses separate shared exploration
+
+PASS classic uses configured shared memory shade
+
+[RVision] room motion-corner 24x18 lDist2=2500 mode=vanilla
+
+PASS vanilla mode advertises native fallback
+
+[RVision] room motion-corner 24x18 lDist2=2500 mode=current
+
+PASS shared partial history survives mode switches
+
+PASS disabled RV advertises native fallback
+
+[RVision] room motion-corner 24x18 lDist2=2500 mode=current
+
+PASS same-id new room does not inherit shared history
+
+[RVision] room motion-corner 24x18 lDist2=2500 mode=current
+
+PASS returning to existing room retains shared history
+
+PASS world reset releases shared map
+
+SHARED COMPLETE failures=0
+

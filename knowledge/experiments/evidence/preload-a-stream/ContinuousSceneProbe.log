@@ -1,0 +1,28 @@
+[ContinuousScene] v0.2.0 init manual=false
+10723 PHASE 1
+13194 PASS native-loader-ModLoaderMod null
+13194 PASS native-loader-SandevistanMod null
+13195 PASS native-loader-RConnectMod null
+13197 PASS native-loader-RealisticVisionMod null
+13197 PASS native-loader-MoreSkillsWeaponsMod null
+13199 PASS native-loader-TDFCMod null
+13199 PASS native-loader-RandomRoomsMod null
+13201 PASS native-loader-LootEditorMod null
+13201 PASS native-loader-WallBlendMod null
+13201 PASS native-loader-ContinuousSceneMod null
+13202 PASS native-loader-ContinuousSceneProbe null
+13235 PASS native-travel-button-visible null
+14052 PHASE 2
+21352 PASS scene-size {"y":2400,"x":7680}
+21353 PASS single-location null
+21354 PHASE 3
+22193 SAMPLE {"alive":1,"animOff":false,"originY":0,"memMB":310.91015625,"pose":"trot","drawMs":17,"cameraX":0,"hp":100,"originX":0,"redraws":21,"tick":120,"x":394.20000000000005,"resident":20,"y":2160,"cameraY":-1639,"misses":0}
+23794 SAMPLE {"alive":1,"animOff":false,"originY":0,"memMB":318.34375,"pose":"trot","drawMs":17,"cameraX":0,"hp":100,"originX":0,"redraws":21,"tick":137,"x":513.2,"resident":20,"y":2160,"cameraY":-1639,"misses":0}
+26879 SAMPLE {"alive":1,"animOff":false,"originY":0,"memMB":307.53515625,"pose":"trot","drawMs":28,"cameraX":-182,"hp":100,"originX":0,"redraws":25,"tick":180,"x":814.2,"resident":24,"y":2160,"cameraY":-1639,"misses":0}
+31098 SAMPLE {"alive":1,"animOff":false,"originY":0,"memMB":329.28125,"pose":"trot","drawMs":20,"cameraX":-602,"hp":100,"originX":0,"redraws":29,"tick":240,"x":1234.2,"resident":28,"y":2160,"cameraY":-1639,"misses":0}
+35571 HEARTBEAT phase=3 allStat=1 ng=0 exit=0 land=continuous_scene requested=continuous_scene
+35572 SAMPLE {"alive":1,"animOff":false,"originY":0,"memMB":312.2890625,"pose":"trot","drawMs":23,"cameraX":-1022,"hp":100,"originX":0,"redraws":37,"tick":300,"x":1654.2,"resident":28,"y":2160,"cameraY":-1639,"misses":0}
+40025 SAMPLE {"alive":1,"animOff":false,"originY":0,"memMB":329.25,"pose":"trot","drawMs":26,"cameraX":-1442,"hp":100,"originX":0,"redraws":41,"tick":360,"x":2074.2,"resident":28,"y":2160,"cameraY":-1639,"misses":0}
+44504 SAMPLE {"alive":1,"animOff":false,"originY":0,"memMB":316.37109375,"pose":"trot","drawMs":27,"cameraX":-1862,"hp":100,"originX":0,"redraws":45,"tick":420,"x":2494.2,"resident":28,"y":2160,"cameraY":-1639,"misses":0}
+47899 SAMPLE {"alive":1,"animOff":false,"originY":0,"memMB":331.890625,"pose":"trot","drawMs":35,"cameraX":-2191,"hp":100,"originX":0,"redraws":49,"tick":467,"x":2823.2,"resident":28,"y":2160,"cameraY":-1639,"misses":0}
+48373 RESULT PASS

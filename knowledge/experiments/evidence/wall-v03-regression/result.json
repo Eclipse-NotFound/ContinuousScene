@@ -1,0 +1,717 @@
+{
+  "durationMs": 46845,
+  "message": "cases complete",
+  "appId": "wallblend-test-20261014230839-db8f3c",
+  "status": {
+    "sceneUpdates": 0,
+    "mode": "current",
+    "toneStrength": 0.65,
+    "halfWidth": 8,
+    "version": "0.4.2",
+    "noiseDepth": 0.24,
+    "render": {
+      "maxUpdateMs": 1773,
+      "partialRebuilds": 1,
+      "totalUpdateMs": 12744,
+      "rebuilds": 19,
+      "pixels": 2769,
+      "rebuildMs": 467,
+      "changedPixels": 532,
+      "updates": 230,
+      "patches": 10
+    },
+    "toneWidth": 13,
+    "enabled": true,
+    "preferenceError": "",
+    "sceneChunks": 0,
+    "style": "materialWeathered",
+    "failed": false,
+    "noiseScale": 0.4,
+    "background": {
+      "maxUpdateMs": 377,
+      "totalUpdateMs": 1401,
+      "materials": 26,
+      "pixels": 2373,
+      "rebuildMs": 377,
+      "updates": 228,
+      "rebuilds": 17,
+      "patches": 13
+    },
+    "settingsRegistered": false
+  },
+  "assertions": [
+    {
+      "details": {
+        "sceneUpdates": 0,
+        "mode": "current",
+        "toneStrength": 0.65,
+        "halfWidth": 8,
+        "failed": false,
+        "noiseDepth": 0.24,
+        "render": {
+          "maxUpdateMs": 1773,
+          "rebuildMs": 1772,
+          "totalUpdateMs": 1773,
+          "updates": 1,
+          "pixels": 147200,
+          "partialRebuilds": 0,
+          "changedPixels": 0,
+          "rebuilds": 1,
+          "patches": 226
+        },
+        "toneWidth": 13,
+        "enabled": true,
+        "settingsRegistered": false,
+        "sceneChunks": 0,
+        "style": "materialWeathered",
+        "version": "0.4.2",
+        "noiseScale": 0.4,
+        "background": {
+          "maxUpdateMs": 70,
+          "totalUpdateMs": 70,
+          "materials": 26,
+          "pixels": 0,
+          "rebuildMs": 70,
+          "updates": 1,
+          "rebuilds": 1,
+          "patches": 0
+        },
+        "preferenceError": ""
+      },
+      "name": "weathered_config_loaded",
+      "passed": true
+    },
+    {
+      "details": {
+        "sceneUpdates": 0,
+        "mode": "current",
+        "toneStrength": 0.65,
+        "halfWidth": 8,
+        "failed": false,
+        "noiseDepth": 0.24,
+        "render": {
+          "maxUpdateMs": 1773,
+          "rebuildMs": 1772,
+          "totalUpdateMs": 1773,
+          "updates": 1,
+          "pixels": 147200,
+          "partialRebuilds": 0,
+          "changedPixels": 0,
+          "rebuilds": 1,
+          "patches": 226
+        },
+        "toneWidth": 13,
+        "enabled": true,
+        "settingsRegistered": false,
+        "sceneChunks": 0,
+        "style": "materialWeathered",
+        "version": "0.4.2",
+        "noiseScale": 0.4,
+        "background": {
+          "maxUpdateMs": 70,
+          "totalUpdateMs": 70,
+          "materials": 26,
+          "pixels": 0,
+          "rebuildMs": 70,
+          "updates": 1,
+          "rebuilds": 1,
+          "patches": 0
+        },
+        "preferenceError": ""
+      },
+      "name": "native_room_alpha_preserved",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "native_room_source_retained",
+      "passed": true
+    },
+    {
+      "details": {
+        "sceneUpdates": 0,
+        "mode": "second",
+        "toneStrength": 0.65,
+        "halfWidth": 8,
+        "failed": false,
+        "noiseDepth": 0.24,
+        "render": {
+          "maxUpdateMs": 1773,
+          "rebuildMs": 320,
+          "totalUpdateMs": 7975,
+          "updates": 12,
+          "pixels": 62022,
+          "partialRebuilds": 0,
+          "changedPixels": 0,
+          "rebuilds": 12,
+          "patches": 114
+        },
+        "toneWidth": 16,
+        "enabled": true,
+        "settingsRegistered": false,
+        "sceneChunks": 0,
+        "style": "material",
+        "version": "0.4.2",
+        "noiseScale": 0.4,
+        "background": {
+          "maxUpdateMs": 93,
+          "totalUpdateMs": 482,
+          "materials": 26,
+          "pixels": 22,
+          "rebuildMs": 42,
+          "updates": 10,
+          "rebuilds": 10,
+          "patches": 3
+        },
+        "preferenceError": ""
+      },
+      "name": "second_mode_matches_installed_pixels",
+      "passed": true
+    },
+    {
+      "details": {
+        "sceneUpdates": 0,
+        "mode": "current",
+        "toneStrength": 0.65,
+        "halfWidth": 8,
+        "failed": false,
+        "noiseDepth": 0.24,
+        "render": {
+          "maxUpdateMs": 1773,
+          "rebuildMs": 536,
+          "totalUpdateMs": 8512,
+          "updates": 13,
+          "pixels": 62022,
+          "partialRebuilds": 0,
+          "changedPixels": 0,
+          "rebuilds": 13,
+          "patches": 114
+        },
+        "toneWidth": 13,
+        "enabled": true,
+        "settingsRegistered": false,
+        "sceneChunks": 0,
+        "style": "materialWeathered",
+        "version": "0.4.2",
+        "noiseScale": 0.4,
+        "background": {
+          "maxUpdateMs": 93,
+          "totalUpdateMs": 516,
+          "materials": 26,
+          "pixels": 22,
+          "rebuildMs": 34,
+          "updates": 11,
+          "rebuilds": 11,
+          "patches": 3
+        },
+        "preferenceError": ""
+      },
+      "name": "current_mode_matches_selected_preview_pixels",
+      "passed": true
+    },
+    {
+      "details": {
+        "sceneUpdates": 0,
+        "mode": "current",
+        "toneStrength": 0.65,
+        "halfWidth": 8,
+        "failed": false,
+        "noiseDepth": 0.24,
+        "render": {
+          "maxUpdateMs": 1773,
+          "rebuildMs": 536,
+          "totalUpdateMs": 8512,
+          "updates": 13,
+          "pixels": 62022,
+          "partialRebuilds": 0,
+          "changedPixels": 0,
+          "rebuilds": 13,
+          "patches": 114
+        },
+        "toneWidth": 13,
+        "enabled": true,
+        "settingsRegistered": false,
+        "sceneChunks": 0,
+        "style": "materialWeathered",
+        "version": "0.4.2",
+        "noiseScale": 0.4,
+        "background": {
+          "maxUpdateMs": 93,
+          "totalUpdateMs": 516,
+          "materials": 26,
+          "pixels": 22,
+          "rebuildMs": 34,
+          "updates": 11,
+          "rebuilds": 11,
+          "patches": 3
+        },
+        "preferenceError": ""
+      },
+      "name": "mode_switch_keeps_one_overlay_and_saves",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "invalid_mode_ignored",
+      "passed": true
+    },
+    {
+      "details": {
+        "full": {
+          "maxChannelShift": 28,
+          "samples": 14592,
+          "outsideContact": 121,
+          "affectedPixels": 13150,
+          "perSideRadius": 13,
+          "totalChannelShift": 126622
+        },
+        "current": {
+          "maxChannelShift": 28,
+          "samples": 14592,
+          "outsideContact": 2,
+          "affectedPixels": 11482,
+          "perSideRadius": 13,
+          "totalChannelShift": 106558
+        }
+      },
+      "name": "tone_range_is_only_moderately_reduced",
+      "passed": true
+    },
+    {
+      "details": {
+        "previous": {
+          "totalRows": 320,
+          "rowsWithLoss": 51,
+          "addedBrickPixels": 1014,
+          "missingBrickPixels": 287
+        },
+        "extra": {
+          "totalRows": 320,
+          "rowsWithLoss": 90,
+          "addedBrickPixels": 0,
+          "missingBrickPixels": 387
+        },
+        "current": {
+          "totalRows": 320,
+          "rowsWithLoss": 97,
+          "addedBrickPixels": 821,
+          "missingBrickPixels": 481
+        }
+      },
+      "name": "brick_adds_moderate_chips_to_previous_layout",
+      "passed": true
+    },
+    {
+      "details": {
+        "previous": {
+          "panels": [
+            {
+              "longerRows": 71,
+              "maxReachChange": 13,
+              "shorterRows": 18,
+              "minReachChange": -13,
+              "unchangedRows": 71,
+              "panel": 0
+            },
+            {
+              "longerRows": 64,
+              "maxReachChange": 15,
+              "shorterRows": 33,
+              "minReachChange": -11,
+              "unchangedRows": 63,
+              "panel": 3
+            }
+          ],
+          "longerRows": 135,
+          "unchangedRows": 134,
+          "distinctReachChanges": 27,
+          "shorterRows": 51
+        },
+        "current": {
+          "panels": [
+            {
+              "longerRows": 60,
+              "maxReachChange": 13,
+              "shorterRows": 45,
+              "minReachChange": -14,
+              "unchangedRows": 55,
+              "panel": 0
+            },
+            {
+              "longerRows": 59,
+              "maxReachChange": 15,
+              "shorterRows": 48,
+              "minReachChange": -13,
+              "unchangedRows": 53,
+              "panel": 3
+            }
+          ],
+          "longerRows": 119,
+          "unchangedRows": 108,
+          "distinctReachChanges": 29,
+          "shorterRows": 93
+        }
+      },
+      "name": "brick_ends_have_long_short_and_unchanged_runs",
+      "passed": true
+    },
+    {
+      "details": {
+        "current": {
+          "panels": [
+            {
+              "lateralTravel": 53.8,
+              "reversals": 28,
+              "span": 12.8,
+              "panel": 1,
+              "perimeter": 323
+            },
+            {
+              "lateralTravel": 63.60000000000001,
+              "reversals": 30,
+              "span": 15.4,
+              "panel": 4,
+              "perimeter": 361
+            }
+          ],
+          "reversals": 58,
+          "lateralTravel": 117.4,
+          "spanSum": 28.2,
+          "perimeter": 684
+        },
+        "baseline": {
+          "panels": [
+            {
+              "lateralTravel": 52.800000000000054,
+              "reversals": 32,
+              "span": 12.8,
+              "panel": 1,
+              "perimeter": 513
+            },
+            {
+              "lateralTravel": 55.2,
+              "reversals": 35,
+              "span": 15.2,
+              "panel": 4,
+              "perimeter": 582
+            }
+          ],
+          "reversals": 67,
+          "lateralTravel": 108.00000000000006,
+          "spanSum": 28,
+          "perimeter": 1095
+        },
+        "grain": {
+          "panels": [
+            {
+              "smallAfter": 0,
+              "changedPixels": 80,
+              "smallBefore": 18,
+              "max16RowDrift": 0.75,
+              "thinAfter": 6,
+              "panel": 1,
+              "thinBefore": 60
+            },
+            {
+              "smallAfter": 0,
+              "changedPixels": 87,
+              "smallBefore": 26,
+              "max16RowDrift": 0.5,
+              "thinAfter": 3,
+              "panel": 4,
+              "thinBefore": 57
+            }
+          ],
+          "changedPixels": 167,
+          "ownershipRetention": 0.98369140625,
+          "smallBefore": 44,
+          "totalPixels": 10240,
+          "smallAfter": 0,
+          "max16RowDrift": 0.75,
+          "thinAfter": 9,
+          "thinBefore": 117
+        }
+      },
+      "name": "rock_specks_reduced_without_replacing_large_contour",
+      "passed": true
+    },
+    {
+      "details": {
+        "maskChanges": 1469,
+        "changesBeyondFourPixels": -1,
+        "quantizationColorChanges": 0,
+        "changedPixels": 5048,
+        "connectedEdgeChanges": 1292,
+        "newTinyIslands": 0,
+        "panels": [
+          {
+            "changedLines": 105,
+            "maskChanges": 607,
+            "newTiny": 0,
+            "tinyBefore": 4,
+            "connectedEdgeChanges": 540,
+            "panel": 0,
+            "tinyAfter": 0
+          },
+          {
+            "changedLines": 59,
+            "maskChanges": 80,
+            "newTiny": 0,
+            "tinyBefore": 17,
+            "connectedEdgeChanges": 45,
+            "panel": 1,
+            "tinyAfter": 0
+          },
+          {
+            "changedLines": 108,
+            "maskChanges": 695,
+            "newTiny": 0,
+            "tinyBefore": 5,
+            "connectedEdgeChanges": 676,
+            "panel": 3,
+            "tinyAfter": 0
+          },
+          {
+            "changedLines": 63,
+            "maskChanges": 87,
+            "newTiny": 0,
+            "tinyBefore": 25,
+            "connectedEdgeChanges": 31,
+            "panel": 4,
+            "tinyAfter": 0
+          }
+        ],
+        "totalLines": 640,
+        "localRadius": 8,
+        "changedLines": 335,
+        "tinyBefore": 51,
+        "unrelatedColorChanges": 0,
+        "changesBeyondRadius": 46,
+        "tinyAfter": 0
+      },
+      "name": "weathered_geometry_adds_no_tiny_islands",
+      "passed": true
+    },
+    {
+      "details": {
+        "preserved": 3419,
+        "samples": 3493,
+        "meanError": 0.6807901517320355
+      },
+      "name": "weathered_tone_preserves_texture_edges",
+      "passed": true
+    },
+    {
+      "details": {
+        "textureIntrusions": 2408,
+        "foreignPixels": 1938,
+        "wideRows": 399,
+        "totalPixels": 24320
+      },
+      "name": "weathered_join_keeps_80_percent_full_texels",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "metal_identical_to_previous_preview",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "metal_identical_to_installed",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "weathered_style_is_deterministic",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "weathered_style_stable_across_idle_frames",
+      "passed": true
+    },
+    {
+      "details": {
+        "status": {
+          "sceneUpdates": 0,
+          "mode": "current",
+          "toneStrength": 0.65,
+          "halfWidth": 8,
+          "failed": false,
+          "noiseDepth": 0.24,
+          "render": {
+            "maxUpdateMs": 1773,
+            "rebuildMs": 730,
+            "totalUpdateMs": 9270,
+            "updates": 22,
+            "pixels": 62022,
+            "partialRebuilds": 0,
+            "changedPixels": 0,
+            "rebuilds": 14,
+            "patches": 114
+          },
+          "toneWidth": 13,
+          "enabled": true,
+          "settingsRegistered": false,
+          "sceneChunks": 0,
+          "style": "materialWeathered",
+          "version": "0.4.2",
+          "noiseScale": 0.4,
+          "background": {
+            "maxUpdateMs": 93,
+            "totalUpdateMs": 554,
+            "materials": 26,
+            "pixels": 22,
+            "rebuildMs": 32,
+            "updates": 20,
+            "rebuilds": 12,
+            "patches": 3
+          },
+          "preferenceError": ""
+        },
+        "firstCandidateSceneRebuildMs": 1146
+      },
+      "name": "candidate_loaded",
+      "passed": true
+    },
+    {
+      "details": {
+        "pixels": 38855
+      },
+      "name": "foreground_changes",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "native_bitmap_untouched",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "physics_untouched",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "alpha_silhouette_identical",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "tile_centers_identical",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "outside_join_band_untouched",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "one_overlay_after_double_init",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "disable_restores_native",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "impact_color_preserved",
+      "passed": true
+    },
+    {
+      "details": {
+        "pixels": 532
+      },
+      "name": "native_damage_was_drawn",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "all_damage_pixels_preserved",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "mode_second_preserves_damage",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "mode_current_preserves_damage",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "destruction_alpha_preserved",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "impact_survives_topology_rebuild",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "all_damage_survives_topology_rebuild",
+      "passed": true
+    },
+    {
+      "details": {
+        "maxUpdateMs": 1773,
+        "rebuildMs": 22,
+        "totalUpdateMs": 10285,
+        "updates": 26,
+        "pixels": 59484,
+        "partialRebuilds": 1,
+        "changedPixels": 532,
+        "rebuilds": 17,
+        "patches": 112
+      },
+      "name": "destruction_uses_local_refresh",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "same_location_redraw_rebuilt",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "one_overlay_after_redraw",
+      "passed": true
+    },
+    {
+      "details": "",
+      "name": "no_native_error",
+      "passed": true
+    },
+    {
+      "details": {
+        "frames": 120,
+        "meanMs": 4.191666666666666
+      },
+      "name": "steady_update_mean_below_8ms",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "native_travel_rebuilds_new_location",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "one_overlay_after_travel",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "new_location_alpha_preserved",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

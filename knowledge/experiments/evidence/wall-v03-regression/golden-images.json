@@ -1,0 +1,17 @@
+{
+  "materials-current.png": {
+    "current": "a484b2725061ddf00e5128b78b725b9a358256a00c19f42e6e7342fef79aaa1c",
+    "previous": "a484b2725061ddf00e5128b78b725b9a358256a00c19f42e6e7342fef79aaa1c",
+    "equal": true
+  },
+  "materials-installed.png": {
+    "current": "c9b3ae5a27bf426c80e808f7906aa9dcb48acbe953c45b1107918b42f96568b4",
+    "previous": "c9b3ae5a27bf426c80e808f7906aa9dcb48acbe953c45b1107918b42f96568b4",
+    "equal": true
+  },
+  "materials-base-ungraded.png": {
+    "current": "63b921170b6c6aacb25e549ca395b03caac5ad2ff8e37e40cdce9edcad8a9d0c",
+    "previous": "63b921170b6c6aacb25e549ca395b03caac5ad2ff8e37e40cdce9edcad8a9d0c",
+    "equal": true
+  }
+}

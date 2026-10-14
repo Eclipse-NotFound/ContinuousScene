@@ -1,6 +1,7 @@
+param([string]$Receipt='install-receipt.json',[string]$SceneVersion='0.2.0',[string]$VisionVersion='v0.30.3-scene',[string]$WallVersion='0.4.1')
 $ErrorActionPreference='Stop'
 $sceneRoot=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../../..')).Path
-$sceneReceipt=Get-Content -LiteralPath (Join-Path $PSScriptRoot 'install-receipt.json') -Raw | ConvertFrom-Json
+$sceneReceipt=Get-Content -LiteralPath (Join-Path $PSScriptRoot $Receipt) -Raw | ConvertFrom-Json
 if((Get-FileHash -LiteralPath (Join-Path $sceneRoot 'pfe.swf')).Hash -ne $sceneReceipt.hostHash) {throw 'Installed host differs from receipt'}
 $sceneId='pfe-modsettings-continuous-installed-'+(Get-Date -Format 'yyyyMMddHHmmss')
 $sceneDescriptor=Join-Path $PSScriptRoot 'generated/installed-smoke.xml'
@@ -33,9 +34,9 @@ try {
     $sceneLog=Get-Content -LiteralPath (Join-Path $sceneStore 'ContinuousScene.log') -Raw
     $sceneRvLog=Get-Content -LiteralPath (Join-Path $sceneStore 'RVision.log') -Raw
     $sceneWallLog=Get-Content -LiteralPath (Join-Path $sceneStore 'WallBlend.log') -Raw
-    $sceneChecks += [pscustomobject]@{name='scene-registered-native-host';passed=$sceneLog.Contains('v0.2.0 loaded') -and $sceneLog.Contains('registered 192x60 native land') -and $sceneLog.Contains('heartbeat') -and -not $sceneLog.Contains('ERROR')}
-    $sceneChecks += [pscustomobject]@{name='vision-version';passed=$sceneRvLog.Contains('init ok v0.30.3-scene') -and $sceneRvLog.Contains('tick 181')}
-    $sceneChecks += [pscustomobject]@{name='wall-version';passed=$sceneWallLog.Contains('v0.4.1 loaded') -and -not $sceneWallLog.Contains('"failed":true')}
+    $sceneChecks += [pscustomobject]@{name='scene-registered-native-host';passed=$sceneLog.Contains('v'+$SceneVersion+' loaded') -and $sceneLog.Contains('registered 192x60 native land') -and $sceneLog.Contains('heartbeat') -and -not $sceneLog.Contains('ERROR')}
+    $sceneChecks += [pscustomobject]@{name='vision-version';passed=$sceneRvLog.Contains('init ok '+$VisionVersion) -and $sceneRvLog.Contains('tick 181')}
+    $sceneChecks += [pscustomobject]@{name='wall-version';passed=$sceneWallLog.Contains('v'+$WallVersion+' loaded') -and -not $sceneWallLog.Contains('"failed":true')}
     $sceneOutput=[string](Get-Content -LiteralPath (Join-Path $sceneEvidence 'stdout.log') -Raw)
     $sceneChecks += [pscustomobject]@{name='no-uncaught-error';passed=$sceneOutput -notmatch '(TypeError|ReferenceError|VerifyError): Error #'}
     $sceneResult=[pscustomobject]@{passed=@($sceneChecks | Where-Object {-not $_.passed}).Count -eq 0;appId=$sceneId;checks=$sceneChecks;scope='Native startup using installed bytes; button/travel covered by same-hash full isolated test';runtimeRoot=$sceneRoot}

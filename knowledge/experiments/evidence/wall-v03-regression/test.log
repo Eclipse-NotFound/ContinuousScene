@@ -1,0 +1,50 @@
+WallBlend isolated harness start
+newGame issued
+heartbeat new game 10968
+PASS weathered_config_loaded {"sceneUpdates":0,"mode":"current","toneStrength":0.65,"halfWidth":8,"version":"0.4.2","noiseDepth":0.24,"render":{"maxUpdateMs":1773,"partialRebuilds":0,"totalUpdateMs":1773,"rebuilds":1,"pixels":147200,"rebuildMs":1772,"changedPixels":0,"updates":1,"patches":226},"toneWidth":13,"enabled":true,"preferenceError":"","sceneChunks":0,"style":"materialWeathered","failed":false,"noiseScale":0.4,"background":{"maxUpdateMs":70,"totalUpdateMs":70,"materials":26,"pixels":0,"rebuildMs":70,"updates":1,"rebuilds":1,"patches":0},"settingsRegistered":false}
+PASS native_room_alpha_preserved {"sceneUpdates":0,"mode":"current","toneStrength":0.65,"halfWidth":8,"version":"0.4.2","noiseDepth":0.24,"render":{"maxUpdateMs":1773,"partialRebuilds":0,"totalUpdateMs":1773,"rebuilds":1,"pixels":147200,"rebuildMs":1772,"changedPixels":0,"updates":1,"patches":226},"toneWidth":13,"enabled":true,"preferenceError":"","sceneChunks":0,"style":"materialWeathered","failed":false,"noiseScale":0.4,"background":{"maxUpdateMs":70,"totalUpdateMs":70,"materials":26,"pixels":0,"rebuildMs":70,"updates":1,"rebuilds":1,"patches":0},"settingsRegistered":false}
+PASS native_room_source_retained null
+PASS second_mode_matches_installed_pixels {"sceneUpdates":0,"mode":"second","toneStrength":0.65,"halfWidth":8,"version":"0.4.2","noiseDepth":0.24,"render":{"maxUpdateMs":1773,"partialRebuilds":0,"totalUpdateMs":7975,"rebuilds":12,"pixels":62022,"rebuildMs":320,"changedPixels":0,"updates":12,"patches":114},"toneWidth":16,"enabled":true,"preferenceError":"","sceneChunks":0,"style":"material","failed":false,"noiseScale":0.4,"background":{"maxUpdateMs":93,"totalUpdateMs":482,"materials":26,"pixels":22,"rebuildMs":42,"updates":10,"rebuilds":10,"patches":3},"settingsRegistered":false}
+PASS current_mode_matches_selected_preview_pixels {"sceneUpdates":0,"mode":"current","toneStrength":0.65,"halfWidth":8,"version":"0.4.2","noiseDepth":0.24,"render":{"maxUpdateMs":1773,"partialRebuilds":0,"totalUpdateMs":8512,"rebuilds":13,"pixels":62022,"rebuildMs":536,"changedPixels":0,"updates":13,"patches":114},"toneWidth":13,"enabled":true,"preferenceError":"","sceneChunks":0,"style":"materialWeathered","failed":false,"noiseScale":0.4,"background":{"maxUpdateMs":93,"totalUpdateMs":516,"materials":26,"pixels":22,"rebuildMs":34,"updates":11,"rebuilds":11,"patches":3},"settingsRegistered":false}
+PASS mode_switch_keeps_one_overlay_and_saves {"sceneUpdates":0,"mode":"current","toneStrength":0.65,"halfWidth":8,"version":"0.4.2","noiseDepth":0.24,"render":{"maxUpdateMs":1773,"partialRebuilds":0,"totalUpdateMs":8512,"rebuilds":13,"pixels":62022,"rebuildMs":536,"changedPixels":0,"updates":13,"patches":114},"toneWidth":13,"enabled":true,"preferenceError":"","sceneChunks":0,"style":"materialWeathered","failed":false,"noiseScale":0.4,"background":{"maxUpdateMs":93,"totalUpdateMs":516,"materials":26,"pixels":22,"rebuildMs":34,"updates":11,"rebuilds":11,"patches":3},"settingsRegistered":false}
+PASS invalid_mode_ignored null
+PASS tone_range_is_only_moderately_reduced {"full":{"maxChannelShift":28,"samples":14592,"outsideContact":121,"affectedPixels":13150,"perSideRadius":13,"totalChannelShift":126622},"current":{"maxChannelShift":28,"samples":14592,"outsideContact":2,"affectedPixels":11482,"perSideRadius":13,"totalChannelShift":106558}}
+PASS brick_adds_moderate_chips_to_previous_layout {"previous":{"totalRows":320,"missingBrickPixels":287,"addedBrickPixels":1014,"rowsWithLoss":51},"extra":{"totalRows":320,"missingBrickPixels":387,"addedBrickPixels":0,"rowsWithLoss":90},"current":{"totalRows":320,"missingBrickPixels":481,"addedBrickPixels":821,"rowsWithLoss":97}}
+PASS brick_ends_have_long_short_and_unchanged_runs {"previous":{"panels":[{"longerRows":71,"maxReachChange":13,"shorterRows":18,"minReachChange":-13,"unchangedRows":71,"panel":0},{"longerRows":64,"maxReachChange":15,"shorterRows":33,"minReachChange":-11,"unchangedRows":63,"panel":3}],"longerRows":135,"unchangedRows":134,"distinctReachChanges":27,"shorterRows":51},"current":{"panels":[{"longerRows":60,"maxReachChange":13,"shorterRows":45,"minReachChange":-14,"unchangedRows":55,"panel":0},{"longerRows":59,"maxReachChange":15,"shorterRows":48,"minReachChange":-13,"unchangedRows":53,"panel":3}],"longerRows":119,"unchangedRows":108,"distinctReachChanges":29,"shorterRows":93}}
+PASS rock_specks_reduced_without_replacing_large_contour {"current":{"panels":[{"lateralTravel":53.8,"reversals":28,"span":12.8,"panel":1,"perimeter":323},{"lateralTravel":63.60000000000001,"reversals":30,"span":15.399999999999999,"panel":4,"perimeter":361}],"reversals":58,"lateralTravel":117.4,"spanSum":28.2,"perimeter":684},"baseline":{"panels":[{"lateralTravel":52.800000000000054,"reversals":32,"span":12.8,"panel":1,"perimeter":513},{"lateralTravel":55.2,"reversals":35,"span":15.2,"panel":4,"perimeter":582}],"reversals":67,"lateralTravel":108.00000000000006,"spanSum":28,"perimeter":1095},"grain":{"panels":[{"smallAfter":0,"thinAfter":6,"smallBefore":18,"max16RowDrift":0.75,"changedPixels":80,"panel":1,"thinBefore":60},{"smallAfter":0,"thinAfter":3,"smallBefore":26,"max16RowDrift":0.5,"changedPixels":87,"panel":4,"thinBefore":57}],"thinAfter":9,"ownershipRetention":0.98369140625,"smallBefore":44,"totalPixels":10240,"smallAfter":0,"max16RowDrift":0.75,"changedPixels":167,"thinBefore":117}}
+PASS weathered_geometry_adds_no_tiny_islands {"maskChanges":1469,"changesBeyondFourPixels":-1,"quantizationColorChanges":0,"changedPixels":5048,"connectedEdgeChanges":1292,"newTinyIslands":0,"panels":[{"changedLines":105,"maskChanges":607,"newTiny":0,"tinyBefore":4,"connectedEdgeChanges":540,"panel":0,"tinyAfter":0},{"changedLines":59,"maskChanges":80,"newTiny":0,"tinyBefore":17,"connectedEdgeChanges":45,"panel":1,"tinyAfter":0},{"changedLines":108,"maskChanges":695,"newTiny":0,"tinyBefore":5,"connectedEdgeChanges":676,"panel":3,"tinyAfter":0},{"changedLines":63,"maskChanges":87,"newTiny":0,"tinyBefore":25,"connectedEdgeChanges":31,"panel":4,"tinyAfter":0}],"totalLines":640,"localRadius":8,"changedLines":335,"tinyBefore":51,"unrelatedColorChanges":0,"changesBeyondRadius":46,"tinyAfter":0}
+PASS weathered_tone_preserves_texture_edges {"preserved":3419,"samples":3493,"meanError":0.6807901517320355}
+PASS weathered_join_keeps_80_percent_full_texels {"textureIntrusions":2408,"foreignPixels":1938,"wideRows":399,"totalPixels":24320}
+PASS metal_identical_to_previous_preview null
+PASS metal_identical_to_installed null
+PASS weathered_style_is_deterministic null
+PASS weathered_style_stable_across_idle_frames null
+PASS candidate_loaded {"status":{"sceneUpdates":0,"mode":"current","toneStrength":0.65,"halfWidth":8,"version":"0.4.2","noiseDepth":0.24,"render":{"maxUpdateMs":1773,"partialRebuilds":0,"totalUpdateMs":9270,"rebuilds":14,"pixels":62022,"rebuildMs":730,"changedPixels":0,"updates":22,"patches":114},"toneWidth":13,"enabled":true,"preferenceError":"","sceneChunks":0,"style":"materialWeathered","failed":false,"noiseScale":0.4,"background":{"maxUpdateMs":93,"totalUpdateMs":554,"materials":26,"pixels":22,"rebuildMs":32,"updates":20,"rebuilds":12,"patches":3},"settingsRegistered":false},"firstCandidateSceneRebuildMs":1146}
+PASS foreground_changes {"pixels":38855}
+PASS native_bitmap_untouched null
+PASS physics_untouched null
+PASS alpha_silhouette_identical null
+PASS tile_centers_identical null
+PASS outside_join_band_untouched null
+PASS one_overlay_after_double_init null
+PASS disable_restores_native null
+PASS impact_color_preserved null
+PASS native_damage_was_drawn {"pixels":532}
+PASS all_damage_pixels_preserved null
+PASS mode_second_preserves_damage null
+PASS mode_current_preserves_damage null
+PASS destruction_alpha_preserved null
+PASS impact_survives_topology_rebuild null
+PASS all_damage_survives_topology_rebuild null
+PASS destruction_uses_local_refresh {"maxUpdateMs":1773,"partialRebuilds":1,"totalUpdateMs":10285,"rebuilds":17,"pixels":59484,"rebuildMs":22,"changedPixels":532,"updates":26,"patches":112}
+PASS same_location_redraw_rebuilt null
+PASS one_overlay_after_redraw null
+PASS no_native_error ""
+cases done {"sceneUpdates":0,"mode":"current","toneStrength":0.65,"halfWidth":8,"version":"0.4.2","noiseDepth":0.24,"render":{"maxUpdateMs":1773,"partialRebuilds":1,"totalUpdateMs":11763,"rebuilds":18,"pixels":60064,"rebuildMs":1477,"changedPixels":532,"updates":27,"patches":112},"toneWidth":13,"enabled":true,"preferenceError":"","sceneChunks":0,"style":"materialWeathered","failed":false,"noiseScale":0.4,"background":{"maxUpdateMs":93,"totalUpdateMs":713,"materials":26,"pixels":21,"rebuildMs":30,"updates":25,"rebuilds":16,"patches":3},"settingsRegistered":false}
+heartbeat steady frame benchmark 40150
+PASS steady_update_mean_below_8ms {"frames":120,"meanMs":4.191666666666666}
+heartbeat native travel 50191
+PASS native_travel_rebuilds_new_location null
+PASS one_overlay_after_travel null
+PASS new_location_alpha_preserved null
+FINISH true cases complete

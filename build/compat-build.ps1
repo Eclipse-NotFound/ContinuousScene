@@ -1,4 +1,4 @@
-param([switch]$VisionOnly)
+param([switch]$VisionOnly,[switch]$Profile)
 $ErrorActionPreference='Stop'
 $sceneRoot=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../../..')).Path
 $sceneTools=Join-Path $sceneRoot 'mods/Sandevistan/build/tools'
@@ -6,6 +6,10 @@ $sceneJava='D:/Program Files/Adobe Animate 2024/jre/bin/java.exe'
 $scenePython='C:/Users/hello/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe'
 & $scenePython (Join-Path $PSScriptRoot 'compat_prepare.py')
 if($LASTEXITCODE -ne 0) {throw 'Compatibility source preparation failed'}
+if($Profile) {
+    & $scenePython (Join-Path $PSScriptRoot 'profile-vision.py')
+    if($LASTEXITCODE -ne 0) {throw 'Isolated timing instrumentation failed'}
+}
 $sceneConfig=Join-Path $PSScriptRoot 'generated/compat-compiler.xml'
 $sceneStubs=Join-Path $sceneRoot 'mods/RealisticVision/build/GameStubs.swc'
 $sceneAir=Join-Path $sceneTools 'airsdk/frameworks/libs/air/airglobal.swc'

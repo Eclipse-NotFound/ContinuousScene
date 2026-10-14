@@ -1,0 +1,12 @@
+PASS hidden enemy does not copy whole sight map
+
+PASS visible enemy gets exact current subcell snapshot
+
+PASS same-frame units reuse snapshot
+
+PASS changed subcell invalidates whole-visible classification
+
+PASS dark subcells hide enemy even with lit coarse centers
+
+SCENE SIGHT COMPLETE failures=0
+

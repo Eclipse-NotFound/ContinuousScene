@@ -19,11 +19,12 @@ config.write_text('<flex-config><compiler><external-library-path><path-element>'
     '</path-element></external-library-path><debug>true</debug><optimize>false</optimize><theme/></compiler>'+
     '<target-player>32.0</target-player><swf-version>32</swf-version></flex-config>',encoding='utf-8')
 results=[]
-for harness in ('SoftHarness','SharedExplorationHarness'):
+for harness in ('SoftHarness','SharedExplorationHarness','SceneSightHarness'):
+    harness_source=(MOD/'src/tests' if harness=='SceneSightHarness' else RV/'build/motion-tests')/(harness+'.as')
     cmd=[str(JAVA),'-Xmx384m','-jar',str(SDK/'lib/mxmlc.jar'),'+flexlib='+str(SDK/'frameworks'),
          '-load-config='+str(config),'-omit-trace-statements=false','-static-link-runtime-shared-libraries=true',
          '-source-path='+','.join(map(str,[OUT,RV/'build/motion-tests',RV/'build/stubs',MOD/'build/generated/rv-production'])),
-         '-output='+str(OUT/(harness+'.swf')),str(RV/'build/motion-tests'/(harness+'.as'))]
+         '-output='+str(OUT/(harness+'.swf')),str(harness_source)]
     subprocess.run(cmd,check=True)
     descriptor=OUT/(harness+'.xml')
     descriptor.write_text('<application xmlns="http://ns.adobe.com/air/application/30.0"><id>pfe-modsettings-cs-vision-'+uuid.uuid4().hex+

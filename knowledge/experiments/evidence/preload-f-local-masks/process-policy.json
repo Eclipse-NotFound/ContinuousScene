@@ -1,0 +1,16 @@
+{
+  "peakWorkingSetMB": 1793,
+  "original": {
+    "Version": 1,
+    "ControlMask": 0,
+    "StateMask": 0
+  },
+  "pid": 25728,
+  "peakPrivateMB": 1865,
+  "highQoS": true,
+  "applied": {
+    "Version": 1,
+    "ControlMask": 1,
+    "StateMask": 0
+  }
+}

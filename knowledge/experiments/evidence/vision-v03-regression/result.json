@@ -1,0 +1,17 @@
+[
+  {
+    "name": "SoftHarness",
+    "passed": true,
+    "checks": 16
+  },
+  {
+    "name": "SharedExplorationHarness",
+    "passed": true,
+    "checks": 21
+  },
+  {
+    "name": "SceneSightHarness",
+    "passed": true,
+    "checks": 5
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "version": "0.3.0",
+  "installed": "2026-10-14T23:10:26.4933216+08:00",
+  "evidence": "release-v03-final",
+  "hostHash": "838D8F02E844C19D7985B99C27907C93811140866B34B79144B7934F09B4943D",
+  "manifestHash": "573ED371037EB7B37E619BD63E364044EFE10E6CD77B22C1D57D4E12058D4EBE",
+  "files": [
+    {
+      "before": "8737D543B1F0256335766422705A54D0B345CA543C36918071E3B397155CECC9",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\pfe.swf",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\pfe_before_ContinuousScene_v03_20261014-231026.swf",
+      "relative": "pfe.swf",
+      "after": "838D8F02E844C19D7985B99C27907C93811140866B34B79144B7934F09B4943D",
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\pfe.swf"
+    },
+    {
+      "before": "C8815042E2D8F2A14FFD8CC273604CD8B77CE6036F7875A2A04A705B0696C2E9",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\mods\\ContinuousScene\\release\\ContinuousSceneMod.swf",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\upgrade-v03-20261014-231026\\ContinuousSceneMod.swf",
+      "relative": "mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "after": "CE279FE569A671594C934B408CEB50B2E9D9B17B0D58532638674FD891F07824",
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\release\\ContinuousSceneMod.swf"
+    },
+    {
+      "before": "ED76EC15666FD8CD50ACF0149F7EC32F2602D2E68D753580A0EC5814B95A2E99",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\mods\\RealisticVision\\release\\RealisticVisionMod.swf",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\upgrade-v03-20261014-231026\\RealisticVisionMod.swf",
+      "relative": "mods/RealisticVision/release/RealisticVisionMod.swf",
+      "after": "89B391BCE114534D6F2C0147BD4B136602168EE4362AA36F6F0C37ECD47173B5",
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\RealisticVision\\release\\RealisticVisionMod.swf"
+    },
+    {
+      "before": "44EFA2DBA4925260F3485EEDE9DAC1BDA81BE239485CBEADA670F61FD9C43ADA",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\mods\\WallBlend\\release\\WallBlendMod.swf",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\upgrade-v03-20261014-231026\\WallBlendMod.swf",
+      "relative": "mods/WallBlend/release/WallBlendMod.swf",
+      "after": "0595077B2CFB0C065DB3470EAC9F6C1D51C53048117D0C9AF847CBF76A2B132B",
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\WallBlend\\release\\WallBlendMod.swf"
+    }
+  ],
+  "wallEvidence": "D:/Program Files/Steam/steamapps/common/Remains/mods/WallBlend/build/results/wallblend-test-20261014230839-db8f3c/result.json",
+  "installedSmoke": "knowledge/experiments/evidence/pfe-modsettings-continuous-installed-20261014231050/InstalledSmoke.json",
+  "verified": true
+}

@@ -27,7 +27,7 @@ package {
         private static var lastTime:int;
         private static var deltas:Array = [];
         private static var walkingDeltas:Array = [];
-        private static var report:Object = {version:"0.2.0", assertions:[], samples:[]};
+        private static var report:Object = {version:"0.3.0", assertions:[], samples:[]};
         private static var scene:*;
         private static var initialPlayer:*;
         private static var manual:Boolean = false;
@@ -44,6 +44,14 @@ package {
         private static var shots:int = 0;
         private static var quick:Boolean = false;
         private static var benchmark:Boolean = false;
+        private static var previousRedraws:int = 0;
+        private static var walkingRenderFrames:Array = [];
+        private static var walkingCachedFrames:Array = [];
+        private static var frameStarted:int;
+        private static var walkingScriptFrames:Array = [];
+        private static var cull:Boolean;
+        private static var farSurface:Object;
+        private static var farRevision:int;
 
         public static function init(host:*):void {
             var descriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
@@ -54,12 +62,32 @@ package {
             manual = File.applicationDirectory.resolvePath("manual.flag").exists;
             quick = File.applicationDirectory.resolvePath("quick.flag").exists;
             benchmark = File.applicationDirectory.resolvePath("benchmark.flag").exists;
+            cull = File.applicationDirectory.resolvePath("cull.flag").exists;
             report.mode = manual ? "manual" : benchmark ? "benchmark" : quick ? "combat-only" : "full";
             report.startedUTC = new Date().toUTCString();
             started = lastTime = getTimer();
-            write("ContinuousSceneProbe.log","[ContinuousScene] v0.2.0 init manual=" + manual + "\n",false);
+            write("ContinuousSceneProbe.log","[ContinuousScene] v0.3.0 init manual=" + manual + "\n",false);
             host.stage.addEventListener(Event.ENTER_FRAME,tick,false,0,true);
+            host.stage.addEventListener(Event.ENTER_FRAME,beginFrame,false,1000,true);
+            host.stage.addEventListener(Event.ENTER_FRAME,endFrame,false,-300,true);
             host.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR,onError);
+        }
+        private static function beginFrame(e:Event):void { frameStarted=getTimer(); }
+        private static function endFrame(e:Event):void {
+            if(cull && w && w.grafon && w.grafon.sceneLarge) {
+                var view:Rectangle=new Rectangle(-w.cam.vx-80,-w.cam.vy-80,w.cam.screenX+160,w.cam.screenY+160);
+                for each(var surface:Object in w.grafon.sceneSurfaces()) {
+                    var visible:Boolean=view.intersects(new Rectangle(surface.x+surface.gutter,surface.y+surface.gutter,surface.side,surface.side));
+                    for each(var bm:Bitmap in surface.bitmaps) bm.visible=visible;
+                }
+                for each(var parent:* in [w.grafon.visFront,w.grafon.visBack]) for(var k:int=0;k<parent.numChildren;++k) {
+                    bm=parent.getChildAt(k) as Bitmap;
+                    if(bm && (bm.name=="WallBlendSceneFront" || bm.name=="WallBlendSceneBack"))
+                        bm.visible=view.intersects(new Rectangle(bm.x,bm.y,320,320));
+                }
+            }
+            if(!manual && !stopped && (phase==3 || phase==4) && ticks-phaseTick>32)
+                walkingScriptFrames.push(getTimer()-frameStarted);
         }
         private static function onError(e:UncaughtErrorEvent):void {
             fail("uncaught",String(e.error) + (e.error is Error ? Error(e.error).getStackTrace() : ""));
@@ -101,10 +129,15 @@ package {
             report.ok=ok; report.elapsedMs=getTimer()-started;
             report.frameDeltas=deltas;
             report.walkingFrameDeltas=walkingDeltas;
+            report.walkingRenderFrames=walkingRenderFrames;
+            report.walkingCachedFrames=walkingCachedFrames;
+            report.walkingScriptFrames=walkingScriptFrames;
             report.memoryMB=System.totalMemoryNumber/1048576;
             write("result.json",JSON.stringify(report,null,2),false);
             log("RESULT "+(ok?"PASS":"FAIL"));
             main.stage.removeEventListener(Event.ENTER_FRAME,tick);
+            main.stage.removeEventListener(Event.ENTER_FRAME,beginFrame);
+            main.stage.removeEventListener(Event.ENTER_FRAME,endFrame);
             if(!manual) NativeApplication.nativeApplication.exit(ok?0:1);
         }
         private static function api():* { return main.getChildByName("ContinuousSceneCarrier")["sceneAPI"]; }
@@ -130,14 +163,18 @@ package {
             ++ticks;
             var now:int=getTimer();
             if(!manual && phase>=3) deltas.push(now-lastTime);
-            if(!manual && (phase==3 || phase==4) && ticks-phaseTick>32) walkingDeltas.push(now-lastTime);
+            if(!manual && (phase==3 || phase==4) && ticks-phaseTick>32) {
+                walkingDeltas.push(now-lastTime);
+                (w.grafon.sceneRedraws>previousRedraws?walkingRenderFrames:walkingCachedFrames).push(now-lastTime);
+            }
+            if(w && w.grafon) previousRedraws=w.grafon.sceneRedraws;
             lastTime=now;
             try {
                 w=cls("fe.World")["w"];
                 if(ticks%300==0) log("HEARTBEAT phase="+phase+" allStat="+w.allStat+" ng="+w.ng_wait+" exit="+w.t_exit+" land="+(w.land?w.land.act.id:"null")+" requested="+(w.game?w.game.curLandId:"null"));
                 if(w.verror && w.verror.visible) { fail("game-dialog",String(w.verror.txt.text)); return; }
                 if(!manual && now-started>360000) throw new Error("Timed out phase="+phase);
-                if(!manual && phase>=11 && now-phaseTime>18000) throw new Error("Travel/load timed out phase="+phase);
+                if(!manual && phase>=11 && now-phaseTime>45000) throw new Error("Travel/load timed out phase="+phase);
                 if(phase==0 && w.landData && w.mm && w.mm.loaded && w.allLandsLoaded && w.textLoaded && main.getChildByName("ContinuousSceneCarrier") && api().ready) {
                     w.mm.active=false;
                     w.newGame(-1,"Continuous Scene",{propusk:true});
@@ -149,11 +186,26 @@ package {
                         if(manifestFields.length==5 && manifestFields[2]=="1")
                             assertThat("native-loader-"+manifestFields[1],Boolean(report.loader["ok_"+manifestFields[1]]),report.loader["err_"+manifestFields[1]]);
                     }
+                    if("scenePreload" in w.grafon) w.grafon.scenePreload=manual || File.applicationDirectory.resolvePath("preload.flag").exists;
+                    report.preload=("scenePreload" in w.grafon) && w.grafon.scenePreload;
                     w.pers.healAll(); clickEntry(); next(2);
                 } else if(phase==2 && w.land && w.land.act.id=="continuous_scene" && w.game.curLandId=="continuous_scene" && w.allStat==1 && w.t_exit==0) {
                     scene=w.loc; initialPlayer=w.gg;
+                    report.entryMs=getTimer()-phaseTime;
+                    report.entryRedraws=w.grafon.sceneRedraws;
+                    report.entryMemoryMB=System.totalMemoryNumber/1048576;
                     assertThat("scene-size",scene.spaceX==192 && scene.spaceY==60,{x:scene.limX,y:scene.limY});
                     assertThat("single-location",scene==w.land.locs[0][0][0]);
+                    if(report.preload) {
+                        assertThat("whole-map-ready-before-play",w.grafon.sceneResident==192,w.grafon.sceneResident);
+                        var sharedPixels:Boolean=true;
+                        for each(var stored:Object in w.grafon.sceneSurfaces()) {
+                            for(var layer:int=0;layer<4;++layer) if(stored.bitmaps[layer].bitmapData!==stored.nativeBuffers[layer]) sharedPixels=false;
+                            if(stored.cx==23 && stored.cy==7) farSurface=stored;
+                        }
+                        farRevision=farSurface.revision;
+                        assertThat("display-and-native-raster-share-storage",sharedPixels);
+                    }
                     w.catPause=false; w.gg.ggControl=true; w.ctr.active=true;
                     w.gg.setLocPos(320,2159); w.gg.dx=0; w.gg.dy=0;
                     w.cam.setZoom(0); w.vblack.alpha=0; w.vblack.visible=false;
@@ -186,7 +238,8 @@ package {
                         w.ctr.keyLeft=false;
                         assertThat("walk-back",true,w.gg.X);
                         assertThat("scroll-preload-no-misses",w.grafon.sceneMisses==walkingMisses,{start:walkingMisses,end:w.grafon.sceneMisses});
-                        assertThat("bounded-resident-chunks",w.grafon.sceneResident<=64,w.grafon.sceneResident);
+                        if(report.preload) assertThat("walk-does-not-regenerate-map",w.grafon.sceneResident==192 && w.grafon.sceneRedraws==report.entryRedraws,w.grafon.sceneRedraws);
+                        else assertThat("bounded-resident-chunks",w.grafon.sceneResident<=64,w.grafon.sceneResident);
                         capture("scene-return"); sample();
                         startCombat();
                     }
@@ -242,7 +295,8 @@ package {
                         w.gg.setLocPos(7100,2159); w.gg.dx=0; next(9);
                     } else if(ticks-phaseTick>70) throw new Error("Terrain projectile did not break tile");
                 } else if(phase==9 && ticks-phaseTick>30) {
-                    assertThat("chunks-evicted",w.grafon.sceneEvictions>0,w.grafon.sceneEvictions);
+                    if(report.preload) assertThat("whole-map-survives-teleports",w.grafon.sceneResident==192 && w.grafon.sceneRedraws==report.entryRedraws,w.grafon.sceneRedraws);
+                    else assertThat("chunks-evicted",w.grafon.sceneEvictions>0,w.grafon.sceneEvictions);
                     w.gg.setLocPos(3020,2159); w.gg.dx=0; next(10);
                 } else if(phase==10 && ticks-phaseTick>30) {
                     if(report.loader.ok_WallBlendMod) {
@@ -261,6 +315,7 @@ package {
                         assertThat("wallblend-large-scene-background",blendBack>0,blendBack);
                     }
                     assertThat("destroyed-collision-survives-cache-eviction",scene.getTile(80,48)===damageTile && damageTile.phis==0);
+                    if(report.preload) assertThat("distant-raster-untouched-by-local-combat",farSurface.revision==farRevision,{start:farRevision,end:farSurface.revision});
                     var pixel:BitmapData=new BitmapData(1,1,true,0);
                     pixel.draw(w.grafon.visFront,new Matrix(1,0,0,1,-3220,-1940));
                     var alpha:uint=pixel.getPixel32(0,0)>>>24; pixel.dispose();

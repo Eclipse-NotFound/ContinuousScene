@@ -8,6 +8,8 @@
       public var sceneResident:int = 0;
       public var sceneEvictions:int = 0;
       public var sceneMisses:int = 0;
+      public var scenePreload:Boolean = false;
+      public var sceneLastDirtyCount:int = 0;
       public function sceneSurfaces() : Array
       {
          var result:Array = [];
@@ -100,7 +102,7 @@
          for each(var bitmap:Bitmap in entry.bitmaps)
          {
             if(bitmap.parent) bitmap.parent.removeChild(bitmap);
-            bitmap.bitmapData.dispose();
+            bitmap.bitmapData = null; // The native buffer owns these same pixels.
          }
          if(entry.sats)
          {
@@ -143,12 +145,14 @@
          var nativeBuffers:Array = [];
          for(var n:int = 0; n < 4; ++n)
          {
-            var data:BitmapData = new BitmapData(this.sceneSide,this.sceneSide,true,0);
-            data.copyPixels(buffers[n],new Rectangle(this.sceneGutter,this.sceneGutter,this.sceneSide,this.sceneSide),new Point());
+            // Keep one pixel store, including the neighbour gutter needed by damage
+            // and WallBlend. scrollRect crops without a second 320px bitmap copy.
+            var data:BitmapData = buffers[n].clone();
             var bitmap:Bitmap = new Bitmap(data);
+            bitmap.scrollRect = new Rectangle(this.sceneGutter,this.sceneGutter,this.sceneSide,this.sceneSide);
             bitmap.x = cx * this.sceneSide; bitmap.y = cy * this.sceneSide;
             parents[n].addChild(bitmap); bitmaps.push(bitmap);
-            nativeBuffers.push(buffers[n].clone());
+            nativeBuffers.push(data);
          }
          this.sceneChunks[key] = {cx:cx,cy:cy,bitmaps:bitmaps,sats:null,nativeBuffers:nativeBuffers,revision:0,
             x:cx * this.sceneSide - this.sceneGutter,y:cy * this.sceneSide - this.sceneGutter,side:this.sceneSide,gutter:this.sceneGutter}; ++this.sceneResident;
@@ -157,6 +161,10 @@
 
       private function sceneEnsure(left:Number, top:Number, width:Number, height:Number, initial:Boolean = false) : void
       {
+         if(this.scenePreload)
+         {
+            left = top = 0; width = this.loc.limX - 1; height = this.loc.limY - 1;
+         }
          var minX:int = Math.max(0,int(Math.floor(left / this.sceneSide)));
          var minY:int = Math.max(0,int(Math.floor(top / this.sceneSide)));
          var maxX:int = Math.min(Math.ceil(this.loc.limX / this.sceneSide) - 1,int(Math.floor((left + width) / this.sceneSide)));
@@ -202,19 +210,27 @@
          if(kind == "decal" || kind == "paint" || kind == "gwall") this.sceneMarks.push([kind,args,stamp]);
          var ox:int = this.sceneX;
          var oy:int = this.sceneY;
+         var affected:Rectangle;
+         if(kind == "decal") affected = new Rectangle(Number(args[2])-512,Number(args[3])-512,1024,1024);
+         else if(kind == "paint") affected = new Rectangle(Math.min(args[0],args[2])-50,Math.min(args[1],args[3])-50,
+            Math.abs(args[2]-args[0])+100,Math.abs(args[3]-args[1])+100);
+         else if(kind == "gwall") affected = new Rectangle(int(args[0])*40,int(args[1])*40,40,40);
+         else if(kind == "drawWater") affected = new Rectangle(args[0].X*40,args[0].Y*40,40,80);
+         this.sceneLastDirtyCount = 0;
          this.sceneRasterizing = true;
          this.sceneStamp = stamp;
          try
          {
             for each(var entry:Object in this.sceneChunks)
             {
+               // Only raster surfaces intersecting the actual operation become dirty.
+               // Logical tiles, units and projectiles remain live everywhere.
+               if(affected && !affected.intersects(new Rectangle(entry.x,entry.y,this.rectX,this.rectY))) continue;
                this.frontBmp = entry.nativeBuffers[0]; this.backBmp = entry.nativeBuffers[1];
                this.backBmp2 = entry.nativeBuffers[2]; this.vodaBmp = entry.nativeBuffers[3];
                this.sceneX = entry.x; this.sceneY = entry.y;
                var action:Function = this[kind]; action.apply(this,args);
-               for(var n:int = 0; n < 4; ++n)
-                  entry.bitmaps[n].bitmapData.copyPixels(entry.nativeBuffers[n],new Rectangle(this.sceneGutter,this.sceneGutter,this.sceneSide,this.sceneSide),new Point());
-               ++entry.revision;
+               ++entry.revision; ++this.sceneLastDirtyCount;
             }
          }
          finally

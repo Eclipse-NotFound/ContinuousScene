@@ -1,0 +1,138 @@
+startup enter main=true stage=true -> after loadConfig enabled=true
+init ok v0.30.3-scene settings=ModSettings-v1 enabled=true
+tick 1
+ModSettings settings registered
+tick 181
+tick 361
+startup enter main=true stage=true -> after loadConfig enabled=true
+init ok v0.30.3-scene settings=ModSettings-v1 enabled=true
+tick 1
+ModSettings settings registered
+tick 181
+tick 361
+tick 541
+startup enter main=true stage=true -> after loadConfig enabled=true
+init ok v0.30.3-scene settings=ModSettings-v1 enabled=true
+tick 1
+ModSettings settings registered
+tick 181
+tick 361
+tick 541
+tick 721
+tick 901
+tick 1081
+tick 1261
+tick 1441
+tick 1621
+tick 1801
+tick 1981
+tick 2161
+tick 2341
+startup enter main=true stage=true -> after loadConfig enabled=true
+init ok v0.30.3-scene settings=ModSettings-v1 enabled=true
+tick 1
+auto room id=loc0_0 48x25 base=true black=true mode=current enabled=true
+ModSettings settings registered
+auto room id=loc0_0 192x60 base=false black=true mode=current enabled=true
+tick 181
+auto st f=300 mode=current fov=195/1/1 mvThr=0 blurD=197 cls=0/0 ws=202/11 mask=0/0 e=0/0/0 mgr=0 ms=14.31/68 err=0
+tick 361
+startup enter main=true stage=true -> after loadConfig enabled=false
+init ok v0.30.3-scene settings=ModSettings-v1 enabled=false
+tick 1
+auto room id=loc0_0 48x25 base=true black=true mode=current enabled=false
+ModSettings settings registered
+auto room id=loc0_0 192x60 base=false black=true mode=current enabled=false
+tick 181
+auto st f=300 mode=current fov=0/0/0 mvThr=0 blurD=0 cls=0/0 ws=0/0 mask=0/0 e=0/0/0 mgr=0 ms=0.05/4 err=0
+tick 361
+startup enter main=true stage=true -> after loadConfig enabled=true
+init ok v0.30.3-scene settings=ModSettings-v1 enabled=true
+tick 1
+auto room id=loc0_0 48x25 base=true black=true mode=current enabled=true
+ModSettings settings registered
+auto room id=loc0_0 192x60 base=false black=true mode=current enabled=true
+tick 181
+auto st f=300 mode=current fov=195/1/1 mvThr=0 blurD=197 cls=0/0 ws=202/11 mask=0/0 e=0/0/0 mgr=0 ms=11.80/66 err=0
+tick 361
+startup enter main=true stage=true -> after loadConfig enabled=true
+init ok v0.30.3-scene settings=ModSettings-v1 enabled=true
+tick 1
+ModSettings settings registered
+tick 181
+tick 361
+tick 541
+tick 721
+tick 901
+tick 1081
+tick 1261
+tick 1441
+tick 1621
+tick 1801
+tick 1981
+tick 2161
+tick 2341
+startup enter main=true stage=true -> after loadConfig enabled=true
+init ok v0.30.3-scene settings=ModSettings-v1 enabled=true
+tick 1
+ModSettings settings registered
+tick 181
+tick 361
+startup enter main=true stage=true -> after loadConfig enabled=true
+init ok v0.30.3-scene settings=ModSettings-v1 enabled=true
+tick 1
+ModSettings settings registered
+tick 181
+tick 361
+startup enter main=true stage=true -> after loadConfig enabled=true
+init ok v0.30.3-scene settings=ModSettings-v1 enabled=true
+tick 1
+ModSettings settings registered
+tick 181
+tick 361
+startup enter main=true stage=true -> after loadConfig enabled=true
+init ok v0.30.3-scene settings=ModSettings-v1 enabled=true
+tick 1
+ModSettings settings registered
+tick 181
+tick 361
+startup enter main=true stage=true -> after loadConfig enabled=true
+init ok v0.30.3-scene settings=ModSettings-v1 enabled=true
+tick 1
+auto room id=loc0_0 48x25 base=true black=true mode=current enabled=true
+ModSettings settings registered
+auto room id=loc0_0 192x60 base=false black=true mode=current enabled=true
+tick 181
+scene profile {"refreshWallField":204,"computeFov":533,"applyVision":2720,"prepareOcclusion":476,"fillFogCache":1783,"hideEnemies":2}
+auto st f=300 mode=current fov=195/1/1 mvThr=0 blurD=197 cls=0/0 ws=202/11 mask=0/0 e=0/0/0 mgr=0 ms=12.55/61 err=0
+tick 361
+startup enter main=true stage=true -> after loadConfig enabled=true
+init ok v0.30.3-scene settings=ModSettings-v1 enabled=true
+tick 1
+auto room id=loc0_0 48x25 base=true black=true mode=current enabled=true
+ModSettings settings registered
+auto room id=loc0_0 192x60 base=false black=true mode=current enabled=true
+tick 181
+scene profile {"applyVision":2455,"refreshWallField":172,"fillFogCache":1582,"prepareOcclusion":415,"computeFov":452,"hideEnemies":1}
+auto st f=300 mode=current fov=196/1/1 mvThr=0 blurD=198 cls=0/0 ws=203/11 mask=0/0 e=0/0/0 mgr=0 ms=11.16/38 err=0
+tick 361
+startup enter main=true stage=true -> after loadConfig enabled=true
+init ok v0.30.4-scene settings=ModSettings-v1 enabled=true
+tick 1
+auto room id=loc0_0 48x25 base=true black=true mode=current enabled=true
+ModSettings settings registered
+auto room id=loc0_0 192x60 base=false black=true mode=current enabled=true
+tick 181
+scene profile {"refreshWallField":169,"fillFogCache":1545,"applyVision":2404,"prepareOcclusion":344,"hideEnemies":2,"computeFov":448}
+auto st f=300 mode=current fov=193/1/0 mvThr=0 blurD=194 cls=0/0 ws=200/12 mask=0/0 e=0/0/0 mgr=0 ms=10.73/39 err=0
+tick 361
+startup enter main=true stage=true -> after loadConfig enabled=true
+init ok v0.30.4-scene settings=ModSettings-v1 enabled=true
+tick 1
+auto room id=loc0_0 48x25 base=true black=true mode=current enabled=true
+ModSettings settings registered
+auto room id=loc0_0 192x60 base=false black=true mode=current enabled=true
+tick 181
+scene profile {"refreshWallField":151,"computeFov":412,"prepareOcclusion":296,"hideEnemies":5,"applyVision":1841,"fillFogCache":1398}
+auto st f=300 mode=current fov=193/1/0 mvThr=0 blurD=194 cls=0/0 ws=200/12 mask=0/0 e=0/0/0 mgr=0 ms=8.60/40 err=0
+tick 361
