@@ -1,0 +1,49 @@
+[ContinuousScene] v0.1.0 init manual=false
+13021 PHASE 1
+14938 scene registered, travel requested
+14939 PHASE 2
+18354 PASS scene-size {"y":2400,"x":7680}
+18354 PASS single-location null
+18355 PHASE 3
+19571 SAMPLE {"y":2160,"redraws":3,"cameraY":-1639,"drawMs":236,"originX":0,"tick":118,"x":506.20000000000005,"memMB":158.8203125,"originY":960,"cameraX":0}
+19621 SAMPLE {"y":2160,"redraws":3,"cameraY":-1639,"drawMs":236,"originX":0,"tick":120,"x":520.2,"memMB":158.02734375,"originY":960,"cameraX":0}
+21612 SAMPLE {"y":2160,"redraws":3,"cameraY":-1639,"drawMs":236,"originX":0,"tick":180,"x":940.2,"memMB":180.65625,"originY":960,"cameraX":-308}
+23613 SAMPLE {"y":2160,"redraws":3,"cameraY":-1639,"drawMs":236,"originX":0,"tick":240,"x":1360.2,"memMB":204.2421875,"originY":960,"cameraX":-728}
+26138 HEARTBEAT phase=3 allStat=1 ng=0
+26140 SAMPLE {"y":2160,"redraws":5,"cameraY":-1639,"drawMs":288,"originX":640,"tick":300,"x":1780.2,"memMB":258.9609375,"originY":960,"cameraX":-1148}
+28529 SAMPLE {"y":2160,"redraws":6,"cameraY":-1639,"drawMs":254,"originX":960,"tick":360,"x":2200.2,"memMB":161.5703125,"originY":960,"cameraX":-1568}
+30846 SAMPLE {"y":2160,"redraws":7,"cameraY":-1639,"drawMs":347,"originX":1280,"tick":420,"x":2620.2,"memMB":142.84765625,"originY":960,"cameraX":-1988}
+33079 SAMPLE {"y":2160,"redraws":8,"cameraY":-1639,"drawMs":275,"originX":1600,"tick":480,"x":3040.2,"memMB":175.37109375,"originY":960,"cameraX":-2408}
+35680 SAMPLE {"y":2160,"redraws":10,"cameraY":-1639,"drawMs":313,"originX":2240,"tick":540,"x":3460.2,"memMB":136.67578125,"originY":960,"cameraX":-2828}
+37946 HEARTBEAT phase=3 allStat=1 ng=0
+37947 SAMPLE {"y":2160,"redraws":11,"cameraY":-1639,"drawMs":297,"originX":2560,"tick":600,"x":3880.2,"memMB":134.9453125,"originY":960,"cameraX":-3248}
+40212 SAMPLE {"y":2160,"redraws":12,"cameraY":-1639,"drawMs":289,"originX":2880,"tick":660,"x":4300.2,"memMB":135.39453125,"originY":960,"cameraX":-3668}
+42713 SAMPLE {"y":2160,"redraws":14,"cameraY":-1639,"drawMs":265,"originX":3520,"tick":720,"x":4720.2,"memMB":145.578125,"originY":960,"cameraX":-4088}
+44980 SAMPLE {"y":2160,"redraws":15,"cameraY":-1639,"drawMs":307,"originX":3840,"tick":780,"x":5140.2,"memMB":147.24609375,"originY":960,"cameraX":-4508}
+47280 SAMPLE {"y":2160,"redraws":16,"cameraY":-1639,"drawMs":315,"originX":4160,"tick":840,"x":5560.2,"memMB":147.5234375,"originY":960,"cameraX":-4928}
+49913 HEARTBEAT phase=3 allStat=1 ng=0
+49914 SAMPLE {"y":2160,"redraws":18,"cameraY":-1639,"drawMs":356,"originX":4800,"tick":900,"x":5980.2,"memMB":161.4921875,"originY":960,"cameraX":-5348}
+52180 SAMPLE {"y":2160,"redraws":19,"cameraY":-1639,"drawMs":297,"originX":5120,"tick":960,"x":6400.2,"memMB":162.640625,"originY":960,"cameraX":-5768}
+52678 PASS walk-across-three-old-rooms 6505.2
+52679 PASS window-updated 19
+52835 PHASE 4
+54318 SAMPLE {"y":2160,"redraws":19,"cameraY":-1639,"drawMs":297,"originX":5120,"tick":1020,"x":6219.2,"memMB":147.76171875,"originY":960,"cameraX":-5587}
+56516 SAMPLE {"y":2160,"redraws":20,"cameraY":-1639,"drawMs":219,"originX":4480,"tick":1080,"x":5799.2,"memMB":150.26171875,"originY":960,"cameraX":-5167}
+58511 SAMPLE {"y":2160,"redraws":20,"cameraY":-1639,"drawMs":219,"originX":4480,"tick":1140,"x":5379.2,"memMB":138.55859375,"originY":960,"cameraX":-4747}
+60779 HEARTBEAT phase=4 allStat=1 ng=0
+60780 SAMPLE {"y":2160,"redraws":21,"cameraY":-1639,"drawMs":285,"originX":3840,"tick":1200,"x":4959.2,"memMB":139.3125,"originY":960,"cameraX":-4327}
+63044 SAMPLE {"y":2160,"redraws":22,"cameraY":-1639,"drawMs":298,"originX":3200,"tick":1260,"x":4539.2,"memMB":143.2578125,"originY":960,"cameraX":-3907}
+65044 SAMPLE {"y":2160,"redraws":22,"cameraY":-1639,"drawMs":298,"originX":3200,"tick":1320,"x":4119.2,"memMB":133.1953125,"originY":960,"cameraX":-3487}
+67310 SAMPLE {"y":2160,"redraws":23,"cameraY":-1639,"drawMs":284,"originX":2560,"tick":1380,"x":3699.2,"memMB":134.34765625,"originY":960,"cameraX":-3067}
+69579 SAMPLE {"y":2160,"redraws":24,"cameraY":-1639,"drawMs":314,"originX":1920,"tick":1440,"x":3279.2,"memMB":135.40625,"originY":960,"cameraX":-2647}
+71577 HEARTBEAT phase=4 allStat=1 ng=0
+71579 SAMPLE {"y":2160,"redraws":24,"cameraY":-1639,"drawMs":314,"originX":1920,"tick":1500,"x":2859.2,"memMB":154.51171875,"originY":960,"cameraX":-2227}
+73811 SAMPLE {"y":2160,"redraws":25,"cameraY":-1639,"drawMs":247,"originX":1280,"tick":1560,"x":2439.2,"memMB":155.09765625,"originY":960,"cameraX":-1807}
+76078 SAMPLE {"y":2160,"redraws":26,"cameraY":-1639,"drawMs":284,"originX":640,"tick":1620,"x":2019.1999999999998,"memMB":157,"originY":960,"cameraX":-1387}
+78078 SAMPLE {"y":2160,"redraws":26,"cameraY":-1639,"drawMs":284,"originX":640,"tick":1680,"x":1599.1999999999998,"memMB":144.515625,"originY":960,"cameraX":-967}
+80347 SAMPLE {"y":2160,"redraws":27,"cameraY":-1639,"drawMs":280,"originX":0,"tick":1740,"x":1179.1999999999998,"memMB":147.5078125,"originY":960,"cameraX":-547}
+82345 HEARTBEAT phase=4 allStat=1 ng=0
+82346 SAMPLE {"y":2160,"redraws":27,"cameraY":-1639,"drawMs":280,"originX":0,"tick":1800,"x":759.1999999999998,"memMB":137.234375,"originY":960,"cameraX":-127}
+84080 PASS walk-back 395.1999999999998
+84202 SAMPLE {"y":2160,"redraws":27,"cameraY":-1639,"drawMs":280,"originX":0,"tick":1852,"x":395.1999999999998,"memMB":153.99609375,"originY":960,"cameraX":0}
+84208 RESULT PASS

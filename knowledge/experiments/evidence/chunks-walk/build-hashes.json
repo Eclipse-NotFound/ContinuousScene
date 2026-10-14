@@ -1,0 +1,12 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "8992DC0E3B24B573300E82D7D45AC3B05E28D2089EA3F29DB078CD63AF321616",
+    "Path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\pfe.swf"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "F0CE180C1D51CA6ABB0C294173197310DD1D725A6EDF07F2F8F0EF680F40ABB1",
+    "Path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\drivers\\ContinuousSceneMod.swf"
+  }
+]

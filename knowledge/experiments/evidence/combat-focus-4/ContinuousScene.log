@@ -1,0 +1,18 @@
+[ContinuousScene] v0.1.0 init manual=false
+13998 PHASE 1
+15972 scene registered, travel requested
+15974 PHASE 2
+19352 PASS scene-size {"y":2400,"x":7680}
+19353 PASS single-location null
+19354 PHASE 3
+20560 SAMPLE {"alive":1,"misses":0,"drawMs":35,"memMB":135.91796875,"hp":100,"cameraX":0,"originY":0,"x":506.20000000000005,"redraws":16,"y":2160,"tick":118,"pose":"trot","cameraY":-1639,"resident":15,"originX":0,"animOff":false}
+20564 PASS native-enemy-created null
+20564 PHASE 5
+20823 CHASE x=1778.75 target=true
+21903 CHASE x=1937.75 target=false
+22525 FAIL enemy-chases-across-room-and-render-boundaries {"x":2051.75,"start":1780}
+22528 ERROR driver Assertion failed: enemy-chases-across-room-and-render-boundaries
+Error: Assertion failed: enemy-chases-across-room-and-render-boundaries
+	at ContinuousSceneMod$/assertThat()[D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\src\ContinuousSceneMod.as:76]
+	at ContinuousSceneMod$/tick()[D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\src\ContinuousSceneMod.as:175]
+22533 RESULT FAIL

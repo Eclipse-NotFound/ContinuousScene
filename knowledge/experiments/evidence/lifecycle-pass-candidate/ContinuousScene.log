@@ -1,0 +1,42 @@
+[ContinuousScene] v0.1.0 init manual=false
+12304 scene definition registered
+14015 PHASE 1
+16069 PHASE 2
+20045 PASS scene-size {"y":2400,"x":7680}
+20046 PASS single-location null
+20047 PHASE 3
+20480 SAMPLE {"memMB":134.3125,"alive":1,"originX":0,"cameraX":0,"drawMs":26,"x":394.20000000000005,"cameraY":-1639,"y":2160,"pose":"trot","tick":120,"hp":100,"misses":0,"redraws":16,"resident":15,"animOff":false,"originY":0}
+21292 SAMPLE {"memMB":142.0625,"alive":1,"originX":0,"cameraX":0,"drawMs":26,"x":513.2,"cameraY":-1639,"y":2160,"pose":"trot","tick":137,"hp":100,"misses":0,"redraws":16,"resident":15,"animOff":false,"originY":0}
+21296 PASS native-enemy-created null
+21297 PHASE 5
+21981 CHASE x=1757.75 target=false
+22979 CHASE x=1931.75 target=true
+23644 PASS enemy-chases-across-room-and-render-boundaries {"x":2051.75,"start":1780}
+23922 SHOT 1 targetHP=300 bounds=2172.5,2090,2227.5,2160 bulletY=2125
+23924 PHASE 6
+25543 PASS bullet-crosses-and-damages {"after":227.55644715577364,"x":2174.2857142857156,"before":300}
+25544 PASS physical-projectile-crosses {"y":2159,"x":2705.3750000000027}
+25720 PHASE 7
+28101 HEARTBEAT phase=7 allStat=1 ng=0 exit=0 land=continuous_scene requested=continuous_scene
+28783 PASS vertical-continuity-and-floor {"y":2160,"cameraY":-1639}
+28784 PASS destructible-tile-exists "C"
+28785 PASS native-destruction-threshold {"threshold":100,"hp":1000}
+28785 PHASE 8
+29711 PASS projectile-destroys-tile null
+29925 PHASE 9
+31311 PASS chunks-evicted 75
+31312 PHASE 10
+32809 PASS destroyed-collision-survives-cache-eviction null
+32813 PASS destroyed-visual-survives-cache-eviction 0
+33037 PHASE 11
+36710 PASS normal-room-renderer-restored null
+36711 PHASE 12
+40378 HEARTBEAT phase=12 allStat=1 ng=0 exit=4 land=continuous_scene requested=continuous_scene
+40510 PASS scene-reentry-preserves-location null
+40512 SAMPLE {"memMB":131.89453125,"alive":1,"originX":0,"cameraX":0,"drawMs":26,"x":321.8,"cameraY":-1639,"y":2160,"pose":"","tick":604,"hp":100,"misses":44,"redraws":128,"resident":15,"animOff":false,"originY":0}
+40521 PASS native-save-records-scene null
+40522 PHASE 13
+43311 PASS native-save-reloads-large-scene null
+43312 PASS reload-player-alive null
+43642 SAMPLE {"memMB":133.75,"alive":1,"originX":0,"cameraX":0,"drawMs":24,"x":326.00000000000006,"cameraY":-1639,"y":2160,"pose":"","tick":620,"hp":100,"misses":44,"redraws":143,"resident":15,"animOff":false,"originY":0}
+43646 RESULT PASS

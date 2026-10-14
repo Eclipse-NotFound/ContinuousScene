@@ -1,0 +1,171 @@
+"""Generate narrowly anchored AS3 patches from the verified, current SWF export.
+
+Only writes build/generated and build/runtime inside this project.
+"""
+from pathlib import Path
+import hashlib
+import json
+import re
+import shutil
+import xml.etree.ElementTree as ET
+
+MOD = Path(__file__).resolve().parents[1]
+ROOT = MOD.parents[1]
+SOURCE = MOD / 'build/cache/current-swf/scripts'
+OUT = MOD / 'build/generated/scripts'
+RUNTIME = MOD / 'build/runtime'
+BASELINE = 'c631cbf3511b6ee303f533d08d51511fe0eb702f43e5db17f5241d8576c64867'
+
+def replace(text, old, new, count=1):
+    actual = text.count(old)
+    if actual != count:
+        raise RuntimeError(f'Anchor mismatch: expected {count}, got {actual}: {old[:100]}')
+    return text.replace(old, new)
+
+def method(text, name, change):
+    start = re.search(r'\bfunction ' + re.escape(name) + r'\(', text).start()
+    next_method = re.search(r'\n      (?:public|private|internal|protected) function ', text[start+1:])
+    end = start + 1 + next_method.start() if next_method else text.rfind('   }')
+    return text[:start] + change(text[start:end]) + text[end:]
+
+def write_class(name, text):
+    path = OUT / name
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding='utf-8')
+
+def patches():
+    actual = hashlib.sha256((ROOT/'pfe.swf').read_bytes()).hexdigest()
+    if actual != BASELINE:
+        raise RuntimeError('Current game SWF changed; export/review it before building.')
+    location = (SOURCE/'fe/loc/Location.as').read_text(encoding='utf-8-sig')
+    location = replace(location, 'this.spaceY = World.cellsY;', '''this.spaceY = World.cellsY;
+         if(param2.@sceneWidth.length() || param2.@sceneHeight.length())
+         {
+            this.spaceX = int(param2.@sceneWidth);
+            this.spaceY = int(param2.@sceneHeight);
+            if(this.spaceX < 48 || this.spaceY < 25 || this.spaceX > 512 || this.spaceY > 256)
+               throw new Error("ContinuousScene dimensions out of bounds (48..512 by 25..256)");
+         }''')
+    write_class('fe/loc/Location.as', location)
+
+    grafon = (SOURCE/'fe/graph/Grafon.as').read_text(encoding='utf-8-sig')
+    extension = (MOD/'src/patches/GrafonChunks.as.inc').read_text(encoding='utf-8')
+    grafon = replace(grafon, '      public function Grafon(param1:Sprite)', extension + '      public function Grafon(param1:Sprite)')
+    def drawloc(s):
+        s = replace(s, 'var transpFon:Boolean = false;', '''if(!this.sceneRasterizing && (param1.spaceX > World.cellsX || param1.spaceY > World.cellsY))
+         {
+            this.sceneOpen(param1); return;
+         }
+         var sceneStarted:int = getTimer();
+         this.scenePrepare(param1);
+         var transpFon:Boolean = false;''')
+        s = replace(s, 'i = 0;', 'i = Math.max(0,this.sceneX / Tile.tileX - 2);')
+        s = replace(s, 'i < this.loc.spaceX', 'i < Math.min(this.loc.spaceX,(this.sceneX + this.rectX) / Tile.tileX + 2)')
+        s = replace(s, 'j = 0;', 'j = Math.max(0,this.sceneY / Tile.tileY - 2);')
+        s = replace(s, 'j < this.loc.spaceY', 'j < Math.min(this.loc.spaceY,(this.sceneY + this.rectY) / Tile.tileY + 2)')
+        s = replace(s, 'this.lightBmp.fillRect(this.lightRect,4278190080);\n            this.setLight();', '''if(!this.sceneRepaint)
+            {
+               this.lightBmp.fillRect(this.lightRect,4278190080);
+               this.setLight();
+            }''')
+        # DisplayObject sources use world coordinates; scratch BitmapData composites stay local.
+        s = re.sub(r'(this\.\w+Bmp\.draw\((?:voda|front|back|back2),)new Matrix\(\)', r'\1this.sceneMatrix()', s)
+        s = re.sub(r'(this\.\w+Bmp\.draw\(bo\.(?:vis|erase|light),)this\.m', r'\1this.sceneMatrix(this.m)', s)
+        s = replace(s, 'this.backBmp2.draw(this.getObj("back_pink_t",numbBack),this.m,', 'this.backBmp2.draw(this.getObj("back_pink_t",numbBack),this.sceneMatrix(this.m),')
+        s = replace(s, 'this.drawAllObjs();', '''this.sceneRestoreMarks();
+         if(!this.sceneRepaint) this.drawAllObjs();
+         this.sceneDrawMs = getTimer() - sceneStarted;
+         this.sceneMaxDrawMs = Math.max(this.sceneMaxDrawMs,this.sceneDrawMs);
+         ++this.sceneRedraws;''')
+        return s
+    grafon = method(grafon, 'drawLoc', drawloc)
+    def worlddraw(s):
+        return s.replace('this.m,null,null,null,false);', 'this.sceneMatrix(this.m),null,null,null,false);').replace('this.m,this.loc.cTransform,null,null,false);', 'this.sceneMatrix(this.m),this.loc.cTransform,null,null,false);')
+    grafon = method(grafon, 'drawBackWall', worlddraw)
+    def kusok(s):
+        s = worlddraw(s)
+        s = replace(s, 'var _loc14_:* = 0;', 'var _loc14_:* = Math.max(0,this.sceneX / Tile.tileX - 2);')
+        s = replace(s, '_loc14_ < this.loc.spaceX', '_loc14_ < Math.min(this.loc.spaceX,(this.sceneX + this.rectX) / Tile.tileX + 2)')
+        s = replace(s, '_loc15_ = 0;', '_loc15_ = Math.max(0,this.sceneY / Tile.tileY - 2);')
+        s = replace(s, '_loc15_ < this.loc.spaceY', '_loc15_ < Math.min(this.loc.spaceY,(this.sceneY + this.rectY) / Tile.tileY + 2)')
+        # Avoid allocating scene-sized mask caches; bitmap fill remains globally aligned.
+        s = replace(s, 'drawRect(0,0,this.kusokX * Tile.tileX,this.kusokY * Tile.tileY)', 'drawRect(Math.max(0,this.sceneX - 80),Math.max(0,this.sceneY - 80),this.rectX + 160,this.rectY + 160)', 3)
+        return s
+    grafon = method(grafon, 'drawKusok', kusok)
+    def dispatch(s, kind, args):
+        pos = s.index('{') + 1
+        return s[:pos] + '\n         if(this.sceneLarge && !this.sceneRasterizing) { this.sceneApply("'+kind+'",['+args+']); return; }\n' + s[pos:]
+    grafon = method(grafon, 'drawWater', lambda s: dispatch(replace(s, 'this.m,this.loc.cTransform', 'this.sceneMatrix(this.m),this.loc.cTransform'),'drawWater','param1,param2'))
+    grafon = method(grafon, 'drawSats', lambda s: replace(s, 'this.satsBmp.fillRect', 'if(this.sceneLarge) { this.sceneSats(); return; }\n         this.satsBmp.fillRect'))
+    grafon = method(grafon, 'gwall', lambda s: dispatch(replace(s, 'this.frontBmp.draw(_loc4_,_loc3_)', 'this.frontBmp.draw(_loc4_,this.sceneMatrix(_loc3_))'),'gwall','param1,param2'))
+    def decal(s):
+        s = dispatch(s,'decal','param1,param2,param3,param4,param5,param6,param7')
+        # A single native mark must keep the same frame across chunks and reloads.
+        s = replace(s, 'Math.random() * _loc8_.totalFrames', '(this.sceneStamp != null ? Number(this.sceneStamp[0]) : Math.random()) * _loc8_.totalFrames')
+        s = replace(s, 'Math.random() * _loc9_.totalFrames', '(this.sceneStamp != null ? Number(this.sceneStamp[1]) : Math.random()) * _loc9_.totalFrames')
+        return replace(s, 'var _loc8_:MovieClip = null;', '''param3 -= this.sceneX;
+         param4 -= this.sceneY;
+         if(this.sceneLarge && (param3 < -512 || param4 < -512 || param3 > this.rectX + 512 || param4 > this.rectY + 512)) return;
+         var _loc8_:MovieClip = null;''')
+    grafon = method(grafon, 'decal', decal)
+    def paint(s):
+        s = dispatch(s,'paint','param1,param2,param3,param4,param5')
+        return replace(s, 'var _loc6_:MovieClip = null;', '''param1 -= this.sceneX; param3 -= this.sceneX;
+         param2 -= this.sceneY; param4 -= this.sceneY;
+         if(this.sceneLarge && (Math.max(param1,param3) < -50 || Math.max(param2,param4) < -50 || Math.min(param1,param3) > this.rectX + 50 || Math.min(param2,param4) > this.rectY + 50)) return;
+         var _loc6_:MovieClip = null;''')
+    grafon = method(grafon, 'paint', paint)
+    write_class('fe/graph/Grafon.as', grafon)
+
+    camera = (SOURCE/'fe/inter/Camera.as').read_text(encoding='utf-8-sig')
+    camera = replace(camera, 'if(this.isZoom == 1)', 'if(World.w.loc && (World.w.loc.spaceX > World.cellsX || World.w.loc.spaceY > World.cellsY)) this.isZoom = 0;\n         if(this.isZoom == 1)')
+    camera = replace(camera, 'Snd.centrX = this.X;', 'this.w.grafon.sceneTick();\n         Snd.centrX = this.X;')
+    write_class('fe/inter/Camera.as', camera)
+
+    # Private host only: a distinct test loader path cannot discover production mods.
+    main = (SOURCE/'MainFE.as').read_text(encoding='utf-8-sig')
+    main = replace(main, '"app:/mods/" + dir + "/release/" + entry + ".swf"', '"app:/drivers/" + entry + ".swf"')
+    write_class('MainFE.as', main)
+    (MOD/'build/generated/baseline.json').write_text(json.dumps({'source_sha256':actual,'patched_classes':['MainFE','fe.loc.Location','fe.graph.Grafon','fe.inter.Camera']},indent=2),encoding='utf-8')
+
+def scene():
+    width,height = 192,60
+    room = ET.Element('room',name='continuous-lab',sceneWidth=str(width),sceneHeight=str(height))
+    ET.SubElement(room,'options',black='0',color='yellow',darkness='-120')
+    for y in range(height):
+        cells=[]
+        for x in range(width):
+            cell = '_Q'
+            if x in (0,width-1) or y in (0,height-1) or y >= 54: cell='A'
+            # Three suspended decks leave large traversable shafts and a continuous floor.
+            if y in (18,36) and x % 48 < 30 and x > 4: cell='J'
+            if y == 48 and 76 <= x <= 88: cell='C'
+            cells.append(cell)
+        ET.SubElement(room,'a').text='.'.join(cells)
+    ET.SubElement(room,'obj',id='player',x='7',y='53',code='cs-spawn')
+    root=ET.Element('all'); root.append(room)
+    (RUNTIME/'scene.xml').write_bytes(ET.tostring(root,encoding='utf-8',xml_declaration=True))
+
+def resources():
+    RUNTIME.mkdir(parents=True, exist_ok=True)
+    for pattern in ['texture*.swf','sprite*.swf','sound*.swf','text_*.xml','lang.xml']:
+        for src in ROOT.glob(pattern):
+            dest=RUNTIME/src.name
+            if not dest.exists() or dest.stat().st_size != src.stat().st_size: shutil.copy2(src,dest)
+    for folder in ['Rooms','Music','Texture']:
+        if (ROOT/folder).exists(): shutil.copytree(ROOT/folder,RUNTIME/folder,dirs_exist_ok=True)
+    (RUNTIME/'mods').mkdir(exist_ok=True)
+    (RUNTIME/'drivers').mkdir(exist_ok=True)
+    (RUNTIME/'mods/loader-manifest.txt').write_text('ContinuousScene|ContinuousSceneMod|1|0|0\n',encoding='utf-8')
+    descriptor='''<?xml version="1.0" encoding="utf-8"?>
+<application xmlns="http://ns.adobe.com/air/application/30.0">
+  <id>remains.continuousscene.dev</id><versionNumber>0.1.0</versionNumber>
+  <filename>ContinuousSceneLab</filename><name>Remains Continuous Scene Lab</name>
+  <initialWindow><content>pfe.swf</content><visible>false</visible><width>1280</width><height>800</height><renderMode>direct</renderMode><resizable>true</resizable></initialWindow>
+  <supportedProfiles>extendedDesktop</supportedProfiles>
+</application>'''
+    (RUNTIME/'application.xml').write_text(descriptor,encoding='utf-8')
+
+if __name__ == '__main__':
+    patches(); resources(); scene()
+    print(json.dumps({'generated':str(OUT),'runtime':str(RUNTIME)},ensure_ascii=False))

@@ -1,0 +1,43 @@
+[ContinuousScene] v0.1.0 init manual=false
+12158 scene definition registered
+13898 PHASE 1
+15938 PHASE 2
+19373 PASS scene-size {"y":2400,"x":7680}
+19374 PASS single-location null
+19375 PHASE 3
+20585 SAMPLE {"alive":1,"cameraX":0,"animOff":false,"misses":0,"x":506.20000000000005,"originY":0,"resident":15,"hp":100,"originX":0,"memMB":135.23046875,"drawMs":24,"y":2160,"tick":117,"pose":"trot","cameraY":-1639,"redraws":16}
+20589 PASS native-enemy-created null
+20592 PHASE 5
+20927 CHASE x=1783.25 target=true
+21985 CHASE x=1957.25 target=true
+22519 PASS enemy-chases-across-room-and-render-boundaries {"x":2053.25,"start":1780}
+22803 SHOT 1 targetHP=300 bounds=2172.5,2090,2227.5,2160 bulletY=2125
+22804 PHASE 6
+24431 PASS bullet-crosses-and-damages {"after":205.44556031376123,"x":2174.2857142857156,"before":300}
+24433 PASS physical-projectile-crosses {"y":2159,"x":2705.3750000000027}
+24618 PHASE 7
+27758 PASS vertical-continuity-and-floor {"y":2160,"cameraY":-1639}
+27759 PASS destructible-tile-exists "C"
+27760 PASS native-destruction-threshold {"threshold":100,"hp":1000}
+27760 PHASE 8
+28494 HEARTBEAT phase=8 allStat=1 ng=0
+28754 PASS projectile-destroys-tile null
+28956 PHASE 9
+30317 PASS chunks-evicted 75
+30319 PHASE 10
+31753 PASS destroyed-collision-survives-cache-eviction null
+31757 PASS destroyed-visual-survives-cache-eviction 0
+31958 PHASE 11
+35137 PASS normal-room-renderer-restored null
+35138 PHASE 12
+40050 HEARTBEAT phase=12 allStat=1 ng=0
+50054 HEARTBEAT phase=12 allStat=1 ng=0
+60054 HEARTBEAT phase=12 allStat=1 ng=0
+70060 HEARTBEAT phase=12 allStat=1 ng=0
+80054 HEARTBEAT phase=12 allStat=1 ng=0
+90059 HEARTBEAT phase=12 allStat=1 ng=0
+100052 HEARTBEAT phase=12 allStat=1 ng=0
+110052 HEARTBEAT phase=12 allStat=1 ng=0
+120052 HEARTBEAT phase=12 allStat=1 ng=0
+130054 HEARTBEAT phase=12 allStat=1 ng=0
+140051 HEARTBEAT phase=12 allStat=1 ng=0

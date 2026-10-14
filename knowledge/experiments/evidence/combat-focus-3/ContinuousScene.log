@@ -1,0 +1,26 @@
+[ContinuousScene] v0.1.0 init manual=false
+13251 PHASE 1
+15285 scene registered, travel requested
+15286 PHASE 2
+18687 PASS scene-size {"y":2400,"x":7680}
+18689 PASS single-location null
+18690 PHASE 3
+19917 SAMPLE {"alive":1,"pose":"trot","originY":0,"hp":100,"originX":0,"redraws":16,"cameraY":-1639,"drawMs":29,"tick":118,"x":506.20000000000005,"memMB":135.44140625,"y":2160,"resident":15,"cameraX":0,"animOff":false,"misses":0}
+19922 PASS native-enemy-created null
+19924 PHASE 5
+20167 CHASE x=1781.25 target=true
+21244 CHASE x=1951.25 target=false
+21807 PASS enemy-chases-across-room-and-render-boundaries {"x":2053.25,"start":1780}
+22051 SHOT 1 targetHP=300 bounds=2173.5,2090,2228.5,2160 bulletY=2125
+22052 PHASE 6
+23674 PASS bullet-crosses-and-damages {"after":232.30991684645414,"x":2182.857142857144,"before":300}
+23675 PASS physical-projectile-crosses {"y":2159,"x":2705.3750000000027}
+23840 PHASE 7
+27145 PASS vertical-continuity-and-floor {"cameraY":-1639,"y":2160}
+27146 PASS destructible-tile-exists "J"
+27147 PHASE 8
+27889 HEARTBEAT phase=8 allStat=1 ng=0
+29846 ERROR driver Terrain projectile did not break tile
+Error: Terrain projectile did not break tile
+	at ContinuousSceneMod$/tick()[D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\src\ContinuousSceneMod.as:220]
+29848 RESULT FAIL

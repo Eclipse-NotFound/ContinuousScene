@@ -1,0 +1,10 @@
+build/runtime/
+build/generated/
+build/cache/
+build/*.swf
+build/*.log
+build/*.json
+__pycache__/
+release/*.swf
+knowledge/experiments/evidence/*/*.png
+!knowledge/experiments/evidence/full-suite/*.png
