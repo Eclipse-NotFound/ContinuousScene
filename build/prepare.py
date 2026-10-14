@@ -7,6 +7,7 @@ import hashlib
 import json
 import re
 import shutil
+import sys
 import xml.etree.ElementTree as ET
 
 MOD = Path(__file__).resolve().parents[1]
@@ -34,7 +35,8 @@ def write_class(name, text):
     path.write_text(text, encoding='utf-8')
 
 def patches():
-    actual = hashlib.sha256((ROOT/'pfe.swf').read_bytes()).hexdigest()
+    baseline = Path(sys.argv[1]) if len(sys.argv)>1 else ROOT/'pfe.swf'
+    actual = hashlib.sha256(baseline.read_bytes()).hexdigest()
     if actual != BASELINE:
         raise RuntimeError('Current game SWF changed; export/review it before building.')
     location = (SOURCE/'fe/loc/Location.as').read_text(encoding='utf-8-sig')
@@ -46,10 +48,16 @@ def patches():
             if(this.spaceX < 48 || this.spaceY < 25 || this.spaceX > 512 || this.spaceY > 256)
                throw new Error("ContinuousScene dimensions out of bounds (48..512 by 25..256)");
          }''')
+    location = replace(location, 'this.buildLoc(param2);', 'this.buildLoc(param2);\n         World.w.grafon.sceneTrack(this,String(param2.@sceneRevision));')
     write_class('fe/loc/Location.as', location)
+
+    game = (SOURCE/'fe/loc/Game.as').read_text(encoding='utf-8-sig')
+    game = method(game, 'save', lambda s: replace(s, 'var _loc1_:Object = new Object();', 'World.w.grafon.sceneSave(this);\n         var _loc1_:Object = new Object();'))
+    write_class('fe/loc/Game.as', game)
 
     grafon = (SOURCE/'fe/graph/Grafon.as').read_text(encoding='utf-8-sig')
     extension = (MOD/'src/patches/GrafonChunks.as.inc').read_text(encoding='utf-8')
+    extension += (MOD/'src/patches/ScenePersistence.as.inc').read_text(encoding='utf-8')
     grafon = replace(grafon, '      public function Grafon(param1:Sprite)', extension + '      public function Grafon(param1:Sprite)')
     def drawloc(s):
         s = replace(s, 'var transpFon:Boolean = false;', '''if(!this.sceneRasterizing && (param1.spaceX > World.cellsX || param1.spaceY > World.cellsY))
@@ -75,7 +83,7 @@ def patches():
         s = replace(s, 'this.drawAllObjs();', '''this.sceneRestoreMarks();
          if(!this.sceneRepaint) this.drawAllObjs();
          this.sceneDrawMs = getTimer() - sceneStarted;
-         this.sceneMaxDrawMs = Math.max(this.sceneMaxDrawMs,this.sceneDrawMs);
+         if(this.sceneLarge) this.sceneMaxDrawMs = Math.max(this.sceneMaxDrawMs,this.sceneDrawMs);
          ++this.sceneRedraws;''')
         return s
     grafon = method(grafon, 'drawLoc', drawloc)
@@ -84,6 +92,8 @@ def patches():
     grafon = method(grafon, 'drawBackWall', worlddraw)
     def kusok(s):
         s = worlddraw(s)
+        for factory in ['textureMask','borderMask','floorMask']:
+            s = replace(s, 'new param1.'+factory+'()', 'this.sceneMask(param1.'+factory+')')
         s = replace(s, 'var _loc14_:* = 0;', 'var _loc14_:* = Math.max(0,this.sceneX / Tile.tileX - 2);')
         s = replace(s, '_loc14_ < this.loc.spaceX', '_loc14_ < Math.min(this.loc.spaceX,(this.sceneX + this.rectX) / Tile.tileX + 2)')
         s = replace(s, '_loc15_ = 0;', '_loc15_ = Math.max(0,this.sceneY / Tile.tileY - 2);')
@@ -122,21 +132,25 @@ def patches():
     camera = replace(camera, 'Snd.centrX = this.X;', 'this.w.grafon.sceneTick();\n         Snd.centrX = this.X;')
     write_class('fe/inter/Camera.as', camera)
 
-    # Private host only: a distinct test loader path cannot discover production mods.
-    main = (SOURCE/'MainFE.as').read_text(encoding='utf-8-sig')
-    main = replace(main, '"app:/mods/" + dir + "/release/" + entry + ".swf"', '"app:/drivers/" + entry + ".swf"')
-    write_class('MainFE.as', main)
-    (MOD/'build/generated/baseline.json').write_text(json.dumps({'source_sha256':actual,'patched_classes':['MainFE','fe.loc.Location','fe.graph.Grafon','fe.inter.Camera']},indent=2),encoding='utf-8')
+    # Keep production MainFE and its native manifest loader byte-identical.
+    old_main=OUT/'MainFE.as'
+    if old_main.exists(): old_main.unlink()
+    (MOD/'build/generated/baseline.json').write_text(json.dumps({'source_sha256':actual,'patched_classes':['fe.loc.Game','fe.loc.Location','fe.graph.Grafon','fe.inter.Camera']},indent=2),encoding='utf-8')
 
 def scene():
     width,height = 192,60
-    room = ET.Element('room',name='continuous-lab',sceneWidth=str(width),sceneHeight=str(height))
+    room = ET.Element('room',name='continuous-lab',sceneWidth=str(width),sceneHeight=str(height),sceneRevision='lab-2')
     ET.SubElement(room,'options',black='0',color='yellow',darkness='-120')
     for y in range(height):
         cells=[]
         for x in range(width):
-            cell = '_Q'
+            cell = '_R' if 80 <= x <= 88 else '_Q'
             if x in (0,width-1) or y in (0,height-1) or y >= 54: cell='A'
+            if y >= 54 and 80 <= x <= 88: cell='C'
+            if y >= 54 and 128 <= x <= 131: cell='I'
+            if y >= 54 and 132 <= x <= 135: cell='C'
+            if y >= 54 and 152 <= x <= 155: cell='G'
+            if y >= 54 and 156 <= x <= 159: cell='H'
             # Three suspended decks leave large traversable shafts and a continuous floor.
             if y in (18,36) and x % 48 < 30 and x > 4: cell='J'
             if y == 48 and 76 <= x <= 88: cell='C'
@@ -145,6 +159,9 @@ def scene():
     ET.SubElement(room,'obj',id='player',x='7',y='53',code='cs-spawn')
     root=ET.Element('all'); root.append(room)
     (RUNTIME/'scene.xml').write_bytes(ET.tostring(root,encoding='utf-8',xml_declaration=True))
+    dest=RUNTIME/'mods/ContinuousScene/release'
+    dest.mkdir(parents=True,exist_ok=True)
+    shutil.copy2(RUNTIME/'scene.xml',dest/'scene.xml')
 
 def resources():
     RUNTIME.mkdir(parents=True, exist_ok=True)
@@ -156,10 +173,10 @@ def resources():
         if (ROOT/folder).exists(): shutil.copytree(ROOT/folder,RUNTIME/folder,dirs_exist_ok=True)
     (RUNTIME/'mods').mkdir(exist_ok=True)
     (RUNTIME/'drivers').mkdir(exist_ok=True)
-    (RUNTIME/'mods/loader-manifest.txt').write_text('ContinuousScene|ContinuousSceneMod|1|0|0\n',encoding='utf-8')
+    (RUNTIME/'mods/loader-manifest.txt').write_text('ContinuousScene|ContinuousSceneMod|1|0|0\nContinuousSceneProbe|ContinuousSceneProbe|1|0|0\n',encoding='utf-8')
     descriptor='''<?xml version="1.0" encoding="utf-8"?>
 <application xmlns="http://ns.adobe.com/air/application/30.0">
-  <id>remains.continuousscene.dev</id><versionNumber>0.1.0</versionNumber>
+  <id>pfe-modsettings-continuous-scene</id><versionNumber>0.1.0</versionNumber>
   <filename>ContinuousSceneLab</filename><name>Remains Continuous Scene Lab</name>
   <initialWindow><content>pfe.swf</content><visible>false</visible><width>1280</width><height>800</height><renderMode>direct</renderMode><resizable>true</resizable></initialWindow>
   <supportedProfiles>extendedDesktop</supportedProfiles>

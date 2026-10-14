@@ -1,0 +1,32 @@
+{
+  "version": "0.2.0",
+  "installed": "2026-10-14T18:17:02.973799+08:00",
+  "evidence": "release-v02-final",
+  "hostBackup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\pfe_before_ContinuousScene_20261014-181702.swf",
+  "manifestBackup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\install-20261014-181702\\loader-manifest.txt",
+  "hostHash": "8737D543B1F0256335766422705A54D0B345CA543C36918071E3B397155CECC9",
+  "manifestHash": "E609E944ACB107D58F485F4D79FD80730E69E0803F09E16A79AFE380AB55EC74",
+  "moduleHash": "C8815042E2D8F2A14FFD8CC273604CD8B77CE6036F7875A2A04A705B0696C2E9",
+  "sceneHash": "8BF1794609AAA3C776566835F87EDFEA8E929BF509A44E797F8B6289E70E59B9",
+  "compatibility": [
+    {
+      "baseline": "D5E0468EE17C55F2B9FD14A10B2B8849F023ADE242A54D46028ADA60CFB450EE",
+      "entry": "RealisticVisionMod",
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\RealisticVision\\release\\RealisticVisionMod.swf",
+      "installedHash": "ED76EC15666FD8CD50ACF0149F7EC32F2602D2E68D753580A0EC5814B95A2E99",
+      "dir": "RealisticVision",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\install-20261014-181702\\RealisticVisionMod.swf"
+    },
+    {
+      "baseline": "1BB9B65AF80A946F6758824A72EED941173D0AE40B8C09C084ECF12B92458820",
+      "entry": "WallBlendMod",
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\WallBlend\\release\\WallBlendMod.swf",
+      "installedHash": "44EFA2DBA4925260F3485EEDE9DAC1BDA81BE239485CBEADA670F61FD9C43ADA",
+      "dir": "WallBlend",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\install-20261014-181702\\WallBlendMod.swf"
+    }
+  ],
+  "wallEvidence": "D:/Program Files/Steam/steamapps/common/Remains/mods/WallBlend/build/results/wallblend-test-20261014174512-b731db/result.json",
+  "verified": true,
+  "installedSmoke": "knowledge/experiments/evidence/pfe-modsettings-continuous-installed-20261014181857/InstalledSmoke.json"
+}

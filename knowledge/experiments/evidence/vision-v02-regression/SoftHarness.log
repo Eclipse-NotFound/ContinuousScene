@@ -1,0 +1,52 @@
+[RVision] room motion-corner 24x18 lDist2=2500 mode=current
+
+PASS stationary startup fade reaches display: 9
+
+[RVision] room motion-corner 24x18 lDist2=2500 mode=current
+
+PASS blur width leaves raw field and enemy eligibility identical
+
+PASS blur width leaves exploration identical
+
+PASS no false seen subcells behind wall: 0
+
+PASS intentional soft band has bounded support: pixels=1421 distant=0
+
+PASS cached/live rays match in 1000 door/water/out-of-bounds cases
+
+[RVision] room motion-corner 24x18 lDist2=700 mode=current
+
+PASS short view-distance falloff matches independent formula: 0
+
+PASS stationary partial-door change refreshes immediately
+
+PASS stationary water opacity refreshes immediately
+
+PASS broken wall updates geometry immediately
+
+[RVision] room motion-corner 24x18 lDist2=2500 mode=current
+
+PASS enemy mask fades inward without hidden-sample leakage: 0 fades=484
+
+PASS all-lit tile centers still respect partial subcell occlusion
+
+PASS mask cleanup leaves no white shape
+
+[RVision] room other 24x18 lDist2=2500 mode=current
+
+PASS same-size room replaces occlusion snapshot
+
+[RVision] room other 24x18 lDist2=2500 mode=classic
+
+[RVision] room other 24x18 lDist2=2500 mode=current
+
+PASS classic/current switch rebuilds and displays same frame
+
+[RVision] room other 18x24 lDist2=2500 mode=current
+
+PASS equal-area different dimensions rebuild all buffers
+
+MOTION GREEN soft assertions failures=0
+
+MOTION COMPLETE
+

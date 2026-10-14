@@ -1,0 +1,1 @@
+package { import flash.display.Sprite; public class ContinuousSceneProbeDoc extends Sprite { private var keep:Class=ContinuousSceneProbe; } }

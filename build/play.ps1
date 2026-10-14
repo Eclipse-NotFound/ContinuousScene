@@ -2,11 +2,11 @@ $ErrorActionPreference='Stop'
 $sceneRoot=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../../..')).Path
 $sceneRuntime=Join-Path $PSScriptRoot 'runtime'
 $sceneDescriptor=Join-Path $sceneRuntime 'application.xml'
-if(-not(Test-Path -LiteralPath (Join-Path $sceneRuntime 'drivers/ContinuousSceneMod.swf'))) {
+if(-not(Test-Path -LiteralPath (Join-Path $sceneRuntime 'mods/ContinuousSceneProbe/release/ContinuousSceneProbe.swf'))) {
     throw 'Build the isolated scene first with build/build.ps1.'
 }
 [xml]$sceneManifest=Get-Content -LiteralPath $sceneDescriptor -Raw
-if($sceneManifest.application.id -ne 'remains.continuousscene.dev') {throw 'Refusing a non-isolated AIR id'}
+if($sceneManifest.application.id -ne 'pfe-modsettings-continuous-scene') {throw 'Refusing a non-isolated AIR id'}
 $sceneLock=[IO.File]::Open((Join-Path $sceneRuntime 'session.lock'),[IO.FileMode]::OpenOrCreate,[IO.FileAccess]::ReadWrite,[IO.FileShare]::None)
 $sceneFlag=Join-Path $sceneRuntime 'manual.flag'
 try {

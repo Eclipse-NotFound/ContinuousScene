@@ -10,7 +10,7 @@ import xml.etree.ElementTree as ET
 
 HERE=Path(__file__).resolve().parent
 GEN=HERE/'generated'
-TARGETS=[('fe.loc.Location','Location'),('fe.inter.Camera','calc'),('fe.inter.Camera','setZoom'),('MainFE','onManifestLoaded')]
+TARGETS=[('fe.loc.Location','Location'),('fe.inter.Camera','calc'),('fe.inter.Camera','setZoom'),('fe.loc.Game','save')]
 
 def abc_methods(path):
     tree=ET.parse(path)
@@ -80,7 +80,7 @@ def plan():
 
 def audit():
     before=abc_methods(GEN/'original.xml'); after=abc_methods(GEN/'final.xml')
-    allowed={'fe.loc.Location::<init>','fe.inter.Camera::0:1:calc','fe.inter.Camera::0:1:setZoom','MainFE::0:1:onManifestLoaded'}
+    allowed={'fe.loc.Location::<init>','fe.inter.Camera::0:1:calc','fe.inter.Camera::0:1:setZoom','fe.loc.Game::0:1:save'}
     preserved=0
     for key in allowed:
         if key not in after or before[key][1].attrib.get('codeBytes') == after[key][1].attrib.get('codeBytes'):

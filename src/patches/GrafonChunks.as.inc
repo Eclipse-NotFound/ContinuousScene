@@ -8,6 +8,12 @@
       public var sceneResident:int = 0;
       public var sceneEvictions:int = 0;
       public var sceneMisses:int = 0;
+      public function sceneSurfaces() : Array
+      {
+         var result:Array = [];
+         for each(var entry:Object in this.sceneChunks) result.push(entry);
+         return result;
+      }
       private var sceneRepaint:Boolean = false;
       private var sceneRasterizing:Boolean = false;
       private var sceneHistory:Dictionary = new Dictionary(true);
@@ -15,8 +21,23 @@
       private var sceneStamp:Array;
       private var sceneChunks:Object = {};
       private var sceneScratch:Array;
-      private var sceneSide:int = 400;
+      private var sceneSide:int = 320;
       private var sceneGutter:int = 40;
+      private var sceneMaskPool:Dictionary = new Dictionary();
+      private var sceneMaskCursor:Dictionary = new Dictionary();
+
+      private function sceneMask(factory:Class) : MovieClip
+      {
+         if(!this.sceneLarge) return new factory();
+         var list:Array = this.sceneMaskPool[factory];
+         if(list == null) this.sceneMaskPool[factory] = list = [];
+         var index:int = int(this.sceneMaskCursor[factory]);
+         this.sceneMaskCursor[factory] = index + 1;
+         if(index == list.length) list.push(new factory());
+         var result:MovieClip = list[index];
+         result.scaleX = result.scaleY = 1;
+         return result;
+      }
 
       private function sceneMatrix(value:Matrix = null) : Matrix
       {
@@ -70,10 +91,12 @@
       {
          for each(var entry:Object in this.sceneChunks) this.sceneDrop(entry);
          this.sceneChunks = {}; this.sceneResident = 0;
+         this.sceneMaskPool = new Dictionary(); this.sceneMaskCursor = new Dictionary();
       }
 
       private function sceneDrop(entry:Object) : void
       {
+         for each(var nativeBuffer:BitmapData in entry.nativeBuffers) nativeBuffer.dispose();
          for each(var bitmap:Bitmap in entry.bitmaps)
          {
             if(bitmap.parent) bitmap.parent.removeChild(bitmap);
@@ -111,11 +134,13 @@
          this.sceneX = cx * this.sceneSide - this.sceneGutter;
          this.sceneY = cy * this.sceneSide - this.sceneGutter;
          this.sceneRasterizing = true; this.sceneRepaint = true;
+         this.sceneMaskCursor = new Dictionary();
          try { this.drawLoc(this.loc); }
          finally { this.sceneRepaint = false; this.sceneRasterizing = false; }
          var parents:Array = [this.visFront,this.visBack,this.visBack2,this.visVoda];
          var buffers:Array = [this.frontBmp,this.backBmp,this.backBmp2,this.vodaBmp];
          var bitmaps:Array = [];
+         var nativeBuffers:Array = [];
          for(var n:int = 0; n < 4; ++n)
          {
             var data:BitmapData = new BitmapData(this.sceneSide,this.sceneSide,true,0);
@@ -123,8 +148,10 @@
             var bitmap:Bitmap = new Bitmap(data);
             bitmap.x = cx * this.sceneSide; bitmap.y = cy * this.sceneSide;
             parents[n].addChild(bitmap); bitmaps.push(bitmap);
+            nativeBuffers.push(buffers[n].clone());
          }
-         this.sceneChunks[key] = {cx:cx,cy:cy,bitmaps:bitmaps,sats:null}; ++this.sceneResident;
+         this.sceneChunks[key] = {cx:cx,cy:cy,bitmaps:bitmaps,sats:null,nativeBuffers:nativeBuffers,revision:0,
+            x:cx * this.sceneSide - this.sceneGutter,y:cy * this.sceneSide - this.sceneGutter,side:this.sceneSide,gutter:this.sceneGutter}; ++this.sceneResident;
          this.sceneX = this.sceneY = 0;
       }
 
@@ -181,10 +208,13 @@
          {
             for each(var entry:Object in this.sceneChunks)
             {
-               this.frontBmp = entry.bitmaps[0].bitmapData; this.backBmp = entry.bitmaps[1].bitmapData;
-               this.backBmp2 = entry.bitmaps[2].bitmapData; this.vodaBmp = entry.bitmaps[3].bitmapData;
-               this.sceneX = entry.cx * this.sceneSide; this.sceneY = entry.cy * this.sceneSide;
+               this.frontBmp = entry.nativeBuffers[0]; this.backBmp = entry.nativeBuffers[1];
+               this.backBmp2 = entry.nativeBuffers[2]; this.vodaBmp = entry.nativeBuffers[3];
+               this.sceneX = entry.x; this.sceneY = entry.y;
                var action:Function = this[kind]; action.apply(this,args);
+               for(var n:int = 0; n < 4; ++n)
+                  entry.bitmaps[n].bitmapData.copyPixels(entry.nativeBuffers[n],new Rectangle(this.sceneGutter,this.sceneGutter,this.sceneSide,this.sceneSide),new Point());
+               ++entry.revision;
             }
          }
          finally
