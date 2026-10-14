@@ -1,4 +1,4 @@
-# ContinuousScene：连续大场景 0.3.0
+# ContinuousScene：连续大场景 0.3.1
 
 当前阶段只做大场景运行，地图编辑暂缓。样片使用原版素材与战斗系统，测试地图为 **192×60 格，即 7680×2400 像素**。场景内没有换房线，玩家、敌人和弹体共用同一个坐标空间。
 
@@ -7,6 +7,8 @@
 本版已安装到根目录 1.02 游戏。保存并正常重启游戏后，打开哔哔小马的 **信息页**，点击顶部的 **大场景 · 连续探索**；进入后同一按钮变成 **大场景 · 返回基地**。入口沿用原版旅行限制，受伤、负重或剧情条件不允许旅行时不会强制传送。
 
 正式场景沿用当前角色，不自动创建游戏、拉怪或改写测试存档。它是运行测试地图，还不是完整关卡。RealisticVision 与 WallBlend 的显示效果已适配，配置与玩家已有选择保持。
+
+0.3.1 修复信息页打开后按钮无响应：菜单暂停现在允许旅行，开场对话等禁止操作状态仍会被拦住。已补菜单稳定后点击的验证，详见 [按钮修复记录](knowledge/experiments/entry-v031-20261015.md)。替换入口模组后需要正常重启游戏。
 
 ## 独立试玩
 
@@ -52,8 +54,10 @@ RV 兼容构建固定从已安装版本对应的 `0735491` 源码取源，再应
 
 ## 安装与回退
 
-当前回执为 `state/deployment-v03.json`（执行副本 `build/upgrade-receipt.json`）。宿主备份 `pfe_before_ContinuousScene_v03_20261014-231026.swf`，三个模组备份位于 `build/backups/upgrade-v03-20261014-231026/`。从游戏根运行 `& './mods/ContinuousScene/build/rollback-v03.ps1'` 可核对指纹后恢复 0.2 整套文件，再正常重启；共享清单、配置和存档保持。不要用旧 `rollback.ps1` 回退当前版。
+0.3.1 仅替换入口模组。当前回执为 `state/deployment-v031.json`（执行副本 `build/hotfix-v031-receipt.json`），备份 `build/backups/ContinuousSceneMod-before-v031-20261015-012647.swf`。从游戏根运行 `& './mods/ContinuousScene/build/hotfix-v031.ps1' -Action Rollback` 可核对指纹后恢复 0.3.0 入口，再正常重启。
 
-未来部署须重新通过完整候选、原版墙面、视野和安装后原生启动检查。`build/upgrade-v03.ps1` 只接受已知 0.2 指纹；旧 `build/install.ps1` 仅用于最初安装，不能重复覆盖。0.3 保留所有既有清单行，包括本轮新增的 FirearmAttachments。
+0.3 整图预绘回执仍为 `state/deployment-v03.json`（执行副本 `build/upgrade-receipt.json`）。宿主备份 `pfe_before_ContinuousScene_v03_20261014-231026.swf`，三个模组备份位于 `build/backups/upgrade-v03-20261014-231026/`。如需回退到 0.2，先回退 0.3.1 入口，再运行 `& './mods/ContinuousScene/build/rollback-v03.ps1'`；共享清单、配置和存档保持。不要用旧 `rollback.ps1` 回退当前版。
+
+涉及宿主或绘图兼容的部署须通过完整候选、原版墙面、视野和安装后原生启动检查。0.3.1 只改入口，使用同字节宿主和既有模组完成 63 项短程生命周期回归及安装后原生启动；没有重跑长走路性能对照。`build/hotfix-v031.ps1` 固定 0.3.0 入口指纹，核对证据后只替换该模组；`build/upgrade-v03.ps1` 只接受已知 0.2 指纹；旧 `build/install.ps1` 仅用于最初安装，不能重复覆盖。共享清单保留。
 
 当前工具位于 `mods/Sandevistan/build/tools/`，仅作为共享只读工具链使用；Java 与 Python 路径可通过构建脚本参数覆盖。构建输出和游戏资源副本不入 Git。当前版本仅匹配 2026-10-14 核对的 1.02 宿主，Steam 更新后须重新调查和适配。

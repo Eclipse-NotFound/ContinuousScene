@@ -1,0 +1,31 @@
+[ContinuousScene] v0.3.1 init manual=false
+11258 PHASE 1
+13691 PASS native-loader-ModLoaderMod null
+13692 PASS native-loader-SandevistanMod null
+13693 PASS native-loader-RConnectMod null
+13693 PASS native-loader-RealisticVisionMod null
+13695 PASS native-loader-MoreSkillsWeaponsMod null
+13695 PASS native-loader-TDFCMod null
+13696 PASS native-loader-RandomRoomsMod null
+13697 PASS native-loader-LootEditorMod null
+13698 PASS native-loader-FirearmAttachmentsMod null
+13698 PASS native-loader-WallBlendMod null
+13700 PASS native-loader-ContinuousSceneMod null
+13701 PASS native-loader-ContinuousSceneProbe null
+13733 PHASE 2
+15348 PASS native-travel-button-visible null
+15349 PASS menu-settled-before-click {"allStat":2,"frames":12}
+15350 TRAVEL STATE {"noreturn":0,"canTravel":true,"sats":false,"exit":0,"weight":0,"noAct":true,"control":false,"catPause":false,"stand":false,"rat":0,"guiPause":false,"healthy":true}
+15351 PASS button-hit-area null
+15354 PASS travel-respects-noAct null
+15356 PASS travel-respects-other-pause null
+15357 PASS travel-respects-story null
+15360 PASS travel-respects-injury null
+15362 PASS travel-respects-weight null
+16100 FAIL settled-menu-travel-requested {"expected":"continuous_scene","actual":"rbl"}
+16101 ERROR driver Assertion failed: settled-menu-travel-requested
+Error: Assertion failed: settled-menu-travel-requested
+	at ContinuousSceneProbe$/assertThat()
+	at ContinuousSceneProbe$/clickSettledEntry()
+	at ContinuousSceneProbe$/tick()
+16105 RESULT FAIL

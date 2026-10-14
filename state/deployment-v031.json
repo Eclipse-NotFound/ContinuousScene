@@ -1,0 +1,16 @@
+{
+  "version": "0.3.1",
+  "installed": "2026-10-15T01:26:47.9682175+08:00",
+  "evidence": "entry-v031-final",
+  "hostHash": "838D8F02E844C19D7985B99C27907C93811140866B34B79144B7934F09B4943D",
+  "manifestHash": "24C6092099EAFDD86FE3B53484E38B728E84502D5DF358575677FB4DFAC15CAE",
+  "before": "CE279FE569A671594C934B408CEB50B2E9D9B17B0D58532638674FD891F07824",
+  "after": "76877E2E50CD0163674868A133699EF2734D00B911873461530D0BE6846A3B6C",
+  "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\ContinuousSceneMod-before-v031-20261015-012647.swf",
+  "nativeSmoke": {
+    "passed": true,
+    "checks": 15,
+    "evidence": "knowledge/experiments/evidence/pfe-modsettings-continuous-installed-20261015012703"
+  },
+  "runtimeChecks": 63
+}

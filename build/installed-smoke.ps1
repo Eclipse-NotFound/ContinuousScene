@@ -39,7 +39,7 @@ try {
     $sceneChecks += [pscustomobject]@{name='wall-version';passed=$sceneWallLog.Contains('v'+$WallVersion+' loaded') -and -not $sceneWallLog.Contains('"failed":true')}
     $sceneOutput=[string](Get-Content -LiteralPath (Join-Path $sceneEvidence 'stdout.log') -Raw)
     $sceneChecks += [pscustomobject]@{name='no-uncaught-error';passed=$sceneOutput -notmatch '(TypeError|ReferenceError|VerifyError): Error #'}
-    $sceneResult=[pscustomobject]@{passed=@($sceneChecks | Where-Object {-not $_.passed}).Count -eq 0;appId=$sceneId;checks=$sceneChecks;scope='Native startup using installed bytes; button/travel covered by same-hash full isolated test';runtimeRoot=$sceneRoot}
+    $sceneResult=[pscustomobject]@{passed=@($sceneChecks | Where-Object {-not $_.passed}).Count -eq 0;appId=$sceneId;checks=$sceneChecks;scope='Native startup using installed bytes; button/travel coverage belongs to the referenced same-hash isolated regression';runtimeRoot=$sceneRoot}
     $sceneResult | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $sceneEvidence 'InstalledSmoke.json')
     $sceneResult | ConvertTo-Json -Depth 5
     Get-FileHash -LiteralPath (Join-Path $sceneRoot 'pfe.swf'),(Join-Path $sceneRoot 'mods/loader-manifest.txt'),(Join-Path $sceneRoot 'mods/ContinuousScene/release/ContinuousSceneMod.swf'),(Join-Path $sceneRoot 'mods/RealisticVision/release/RealisticVisionMod.swf'),(Join-Path $sceneRoot 'mods/WallBlend/release/WallBlendMod.swf') | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $sceneEvidence 'installed-hashes.json')

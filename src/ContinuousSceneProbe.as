@@ -10,6 +10,7 @@ package {
     import flash.filesystem.FileStream;
     import flash.geom.Rectangle;
     import flash.geom.Matrix;
+    import flash.geom.Point;
     import flash.net.SharedObject;
     import flash.system.System;
     import flash.utils.ByteArray;
@@ -27,7 +28,7 @@ package {
         private static var lastTime:int;
         private static var deltas:Array = [];
         private static var walkingDeltas:Array = [];
-        private static var report:Object = {version:"0.3.0", assertions:[], samples:[]};
+        private static var report:Object = {version:"0.3.1", assertions:[], samples:[]};
         private static var scene:*;
         private static var initialPlayer:*;
         private static var manual:Boolean = false;
@@ -52,6 +53,8 @@ package {
         private static var cull:Boolean;
         private static var farSurface:Object;
         private static var farRevision:int;
+        private static var pendingEntry:Object;
+        private static var readyFrames:int=0;
 
         public static function init(host:*):void {
             var descriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
@@ -66,7 +69,7 @@ package {
             report.mode = manual ? "manual" : benchmark ? "benchmark" : quick ? "combat-only" : "full";
             report.startedUTC = new Date().toUTCString();
             started = lastTime = getTimer();
-            write("ContinuousSceneProbe.log","[ContinuousScene] v0.3.0 init manual=" + manual + "\n",false);
+            write("ContinuousSceneProbe.log","[ContinuousScene] v0.3.1 init manual=" + manual + "\n",false);
             host.stage.addEventListener(Event.ENTER_FRAME,tick,false,0,true);
             host.stage.addEventListener(Event.ENTER_FRAME,beginFrame,false,1000,true);
             host.stage.addEventListener(Event.ENTER_FRAME,endFrame,false,-300,true);
@@ -145,10 +148,59 @@ package {
             w.pip.onoff(3);
             w.pip.setPage(0);
             api().refresh();
+            // A real player clicks after World.step has paused the open menu.
+            pendingEntry={tick:ticks,phase:phase,target:w.game.curLandId=="continuous_scene"?w.game.baseId:"continuous_scene"};
+        }
+        private static function clickSettledEntry():void {
+            if(ticks-pendingEntry.tick<12) return;
             var button:*=w.vpip.getChildByName("ContinuousSceneTravel");
             assertThat("native-travel-button-visible",button!=null && button.visible);
-            capture("entry-"+phase);
+            assertThat("menu-settled-before-click",w.pip.active && w.allStat==2,{allStat:w.allStat,frames:ticks-pendingEntry.tick});
+            log("TRAVEL STATE "+JSON.stringify({noAct:w.pip.noAct,control:w.gg.ggControl,catPause:w.catPause,rat:w.gg.rat,sats:w.sats.active,stand:w.stand.active,guiPause:w.gui.guiPause,noreturn:w.game.triggers["noreturn"],canTravel:w.game.checkTravel(pendingEntry.target),healthy:w.pers.dopusk(),weight:w.pers.speedShtr,exit:w.t_exit}));
+            var center:Point=button.localToGlobal(new Point(85,13));
+            assertThat("button-hit-area",button.hitTestPoint(center.x,center.y,true) && button.mouseEnabled && !button.mouseChildren);
+            if(pendingEntry.phase==1) checkTravelRestrictions(button);
+            capture("entry-"+pendingEntry.phase);
             button.dispatchEvent(new flash.events.MouseEvent(flash.events.MouseEvent.CLICK,true));
+            assertThat("settled-menu-travel-requested",w.game.curLandId==pendingEntry.target,{expected:pendingEntry.target,actual:w.game.curLandId});
+            assertThat("travel-closes-menu",!w.pip.active);
+            var exitCountdown:int=w.t_exit;
+            button.dispatchEvent(new flash.events.MouseEvent(flash.events.MouseEvent.CLICK,true));
+            assertThat("duplicate-click-keeps-travel",w.game.curLandId==pendingEntry.target && w.t_exit==exitCountdown);
+            pendingEntry=null;
+        }
+        private static function checkTravelRestrictions(button:*):void {
+            var land:String=w.game.curLandId;
+            var oldNoAct:Boolean=w.pip.noAct;
+            var oldPause:Boolean=w.gui.guiPause;
+            var oldNoReturn:*=w.game.triggers["noreturn"];
+            var oldHeadHP:Number=w.pers.headHP;
+            var oldSpeedShtr:Number=w.pers.speedShtr;
+            try {
+                w.pip.noAct=true;
+                button.dispatchEvent(new flash.events.MouseEvent(flash.events.MouseEvent.CLICK,true));
+                assertThat("travel-respects-noAct",w.game.curLandId==land && w.pip.active && w.t_exit==0);
+                w.pip.noAct=false;
+                w.gui.guiPause=true;
+                button.dispatchEvent(new flash.events.MouseEvent(flash.events.MouseEvent.CLICK,true));
+                assertThat("travel-respects-other-pause",w.game.curLandId==land && w.pip.active && w.t_exit==0);
+                w.gui.guiPause=false;
+                w.game.triggers["noreturn"]=1;
+                button.dispatchEvent(new flash.events.MouseEvent(flash.events.MouseEvent.CLICK,true));
+                assertThat("travel-respects-story",w.game.curLandId==land && w.pip.active && w.t_exit==0);
+                w.game.triggers["noreturn"]=oldNoReturn;
+                w.pers.headHP=1;
+                button.dispatchEvent(new flash.events.MouseEvent(flash.events.MouseEvent.CLICK,true));
+                assertThat("travel-respects-injury",w.game.curLandId==land && w.pip.active && w.t_exit==0);
+                w.pers.headHP=oldHeadHP;
+                w.pers.speedShtr=3;
+                button.dispatchEvent(new flash.events.MouseEvent(flash.events.MouseEvent.CLICK,true));
+                assertThat("travel-respects-weight",w.game.curLandId==land && w.pip.active && w.t_exit==0);
+            } finally {
+                w.pip.noAct=oldNoAct; w.gui.guiPause=oldPause;
+                w.game.triggers["noreturn"]=oldNoReturn;
+                w.pers.headHP=oldHeadHP; w.pers.speedShtr=oldSpeedShtr;
+            }
         }
         private static function sample():void {
             var row:Object={tick:ticks,x:w.gg.X,y:w.gg.Y,cameraX:w.cam.vx,cameraY:w.cam.vy,
@@ -174,12 +226,18 @@ package {
                 if(ticks%300==0) log("HEARTBEAT phase="+phase+" allStat="+w.allStat+" ng="+w.ng_wait+" exit="+w.t_exit+" land="+(w.land?w.land.act.id:"null")+" requested="+(w.game?w.game.curLandId:"null"));
                 if(w.verror && w.verror.visible) { fail("game-dialog",String(w.verror.txt.text)); return; }
                 if(!manual && now-started>360000) throw new Error("Timed out phase="+phase);
-                if(!manual && phase>=11 && now-phaseTime>45000) throw new Error("Travel/load timed out phase="+phase);
+                if(!manual && (phase==1 || phase>=11) && now-phaseTime>45000) throw new Error("Travel/load timed out phase="+phase);
+                if(pendingEntry) { clickSettledEntry(); return; }
                 if(phase==0 && w.landData && w.mm && w.mm.loaded && w.allLandsLoaded && w.textLoaded && main.getChildByName("ContinuousSceneCarrier") && api().ready) {
                     w.mm.active=false;
                     w.newGame(-1,"Continuous Scene",{propusk:true});
                     next(1);
                 } else if(phase==1 && w.ng_wait==0 && w.allStat==1 && w.gg && w.loc) {
+                    // Finish the new-game dialogue through native controls before opening travel.
+                    if(!w.gg.ggControl || w.pip.noAct) {
+                        readyFrames=0; w.ctr.keyPressed=w.ctr.keyPressed2=true; return;
+                    }
+                    if(++readyFrames<30) return;
                     report.loader=SharedObject.getLocal("ModLoader","/").data;
                     for each(var manifestLine:String in read("mods/loader-manifest.txt").split("\n")) {
                         var manifestFields:Array=manifestLine.replace(/\r/g,"").split("|");

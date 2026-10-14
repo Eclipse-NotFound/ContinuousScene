@@ -1,0 +1,129 @@
+5299 [ContinuousScene] v0.2.0 loaded
+16077 [ContinuousScene] registered 192x60 native land
+16081 [ContinuousScene] heartbeat land=menu
+25588 [ContinuousScene] travel requested continuous_scene
+49524 [ContinuousScene] heartbeat land=continuous_scene
+80946 [ContinuousScene] heartbeat land=continuous_scene
+111190 [ContinuousScene] heartbeat land=continuous_scene
+141576 [ContinuousScene] heartbeat land=continuous_scene
+5767 [ContinuousScene] v0.2.0 loaded
+16000 [ContinuousScene] registered 192x60 native land
+16001 [ContinuousScene] heartbeat land=menu
+25231 [ContinuousScene] travel requested continuous_scene
+46047 [ContinuousScene] heartbeat land=continuous_scene
+71269 [ContinuousScene] travel requested rbl
+77112 [ContinuousScene] heartbeat land=rbl
+79068 [ContinuousScene] travel requested continuous_scene
+108117 [ContinuousScene] heartbeat land=continuous_scene
+6328 [ContinuousScene] v0.2.0 loaded
+17438 [ContinuousScene] registered 192x60 native land
+17439 [ContinuousScene] heartbeat land=menu
+25944 [ContinuousScene] travel requested continuous_scene
+47456 [ContinuousScene] heartbeat land=continuous_scene
+77520 [ContinuousScene] heartbeat land=continuous_scene
+107593 [ContinuousScene] heartbeat land=continuous_scene
+137651 [ContinuousScene] heartbeat land=continuous_scene
+167661 [ContinuousScene] heartbeat land=continuous_scene
+197733 [ContinuousScene] heartbeat land=continuous_scene
+227939 [ContinuousScene] heartbeat land=continuous_scene
+233445 [ContinuousScene] travel requested rbl
+241437 [ContinuousScene] travel requested continuous_scene
+259146 [ContinuousScene] heartbeat land=continuous_scene
+3993 [ContinuousScene] v0.2.0 loaded
+8213 [ContinuousScene] registered 192x60 native land
+8215 [ContinuousScene] heartbeat land=menu
+13435 [ContinuousScene] travel requested continuous_scene
+38248 [ContinuousScene] heartbeat land=continuous_scene
+3660 [ContinuousScene] v0.2.0 loaded
+8315 [ContinuousScene] registered 192x60 native land
+8317 [ContinuousScene] heartbeat land=menu
+14640 [ContinuousScene] travel requested continuous_scene
+3790 [ContinuousScene] v0.2.0 loaded
+7550 [ContinuousScene] registered 192x60 native land
+7552 [ContinuousScene] heartbeat land=menu
+12727 [ContinuousScene] travel requested continuous_scene
+37622 [ContinuousScene] heartbeat land=continuous_scene
+3785 [ContinuousScene] v0.2.0 loaded
+8956 [ContinuousScene] registered 192x60 native land
+8957 [ContinuousScene] heartbeat land=menu
+15156 [ContinuousScene] travel requested continuous_scene
+39013 [ContinuousScene] heartbeat land=continuous_scene
+69037 [ContinuousScene] heartbeat land=continuous_scene
+99040 [ContinuousScene] heartbeat land=continuous_scene
+129084 [ContinuousScene] heartbeat land=continuous_scene
+141792 [ContinuousScene] travel requested rbl
+146486 [ContinuousScene] travel requested continuous_scene
+159370 [ContinuousScene] heartbeat land=continuous_scene
+4596 [ContinuousScene] v0.2.0 loaded
+8716 [ContinuousScene] registered 192x60 native land
+8717 [ContinuousScene] heartbeat land=menu
+14052 [ContinuousScene] travel requested continuous_scene
+38775 [ContinuousScene] heartbeat land=continuous_scene
+4405 [ContinuousScene] v0.2.0 loaded
+8723 [ContinuousScene] registered 192x60 native land
+8724 [ContinuousScene] heartbeat land=menu
+13709 [ContinuousScene] travel requested continuous_scene
+38789 [ContinuousScene] heartbeat land=continuous_scene
+4246 [ContinuousScene] v0.2.0 loaded
+8512 [ContinuousScene] registered 192x60 native land
+8513 [ContinuousScene] heartbeat land=menu
+13436 [ContinuousScene] travel requested continuous_scene
+38533 [ContinuousScene] heartbeat land=continuous_scene
+4819 [ContinuousScene] v0.3.0 loaded
+8851 [ContinuousScene] registered 192x60 native land
+8851 [ContinuousScene] heartbeat land=menu
+14000 [ContinuousScene] travel requested continuous_scene
+38864 [ContinuousScene] heartbeat land=continuous_scene
+4530 [ContinuousScene] v0.3.0 loaded
+8631 [ContinuousScene] registered 192x60 native land
+8632 [ContinuousScene] heartbeat land=menu
+13403 [ContinuousScene] travel requested continuous_scene
+38673 [ContinuousScene] heartbeat land=continuous_scene
+4487 [ContinuousScene] v0.3.0 loaded
+8955 [ContinuousScene] registered 192x60 native land
+8957 [ContinuousScene] heartbeat land=menu
+13988 [ContinuousScene] travel requested continuous_scene
+38993 [ContinuousScene] heartbeat land=continuous_scene
+4540 [ContinuousScene] v0.3.0 loaded
+9064 [ContinuousScene] registered 192x60 native land
+9065 [ContinuousScene] heartbeat land=menu
+13825 [ContinuousScene] travel requested continuous_scene
+39076 [ContinuousScene] heartbeat land=continuous_scene
+4722 [ContinuousScene] v0.3.0 loaded
+9089 [ContinuousScene] registered 192x60 native land
+9090 [ContinuousScene] heartbeat land=menu
+13787 [ContinuousScene] travel requested continuous_scene
+39137 [ContinuousScene] heartbeat land=continuous_scene
+4332 [ContinuousScene] v0.3.0 loaded
+9710 [ContinuousScene] registered 192x60 native land
+9711 [ContinuousScene] heartbeat land=menu
+15849 [ContinuousScene] travel requested continuous_scene
+39720 [ContinuousScene] heartbeat land=continuous_scene
+69750 [ContinuousScene] heartbeat land=continuous_scene
+99792 [ContinuousScene] heartbeat land=continuous_scene
+129827 [ContinuousScene] heartbeat land=continuous_scene
+148490 [ContinuousScene] travel requested rbl
+153824 [ContinuousScene] travel requested continuous_scene
+168198 [ContinuousScene] heartbeat land=continuous_scene
+205099 [ContinuousScene] heartbeat land=continuous_scene
+3982 [ContinuousScene] v0.3.0 loaded
+8818 [ContinuousScene] registered 192x60 native land
+8819 [ContinuousScene] heartbeat land=menu
+3740 [ContinuousScene] v0.3.1 loaded
+8727 [ContinuousScene] registered 192x60 native land
+8728 [ContinuousScene] heartbeat land=menu
+4021 [ContinuousScene] v0.3.1 loaded
+9009 [ContinuousScene] registered 192x60 native land
+9010 [ContinuousScene] heartbeat land=menu
+4431 [ContinuousScene] v0.3.1 loaded
+9253 [ContinuousScene] registered 192x60 native land
+9255 [ContinuousScene] heartbeat land=menu
+4018 [ContinuousScene] v0.3.1 loaded
+9758 [ContinuousScene] registered 192x60 native land
+9759 [ContinuousScene] heartbeat land=menu
+18707 [ContinuousScene] travel requested continuous_scene
+39832 [ContinuousScene] heartbeat land=continuous_scene
+53379 [ContinuousScene] travel requested rbl
+59574 [ContinuousScene] travel requested continuous_scene
+70799 [ContinuousScene] heartbeat land=continuous_scene
+110160 [ContinuousScene] heartbeat land=continuous_scene

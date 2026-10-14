@@ -14,7 +14,7 @@ package {
 
     /** Production entry only: no new game, test enemies, movement or save-slot writes. */
     public class ContinuousSceneMod {
-        public static const VERSION:String="0.3.0";
+        public static const VERSION:String="0.3.1";
         private static const LAND:String="continuous_scene";
         private static var main:*, w:*, worldClass:Class, gameData:Class;
         private static var pool:XML, definition:XML;
@@ -102,7 +102,13 @@ package {
         }
         private static function onClick(event:MouseEvent):void { event.stopPropagation(); travel(); }
         public static function travel():void {
-            if(!ready || failed || !w.game || !w.gg || !w.land || w.allStat!=1 || w.t_exit!=0 || w.game.curLandId!=w.land.act.id) return;
+            if(!ready || failed || !w || !w.game || !w.gg || !w.land || w.t_exit!=0 || w.game.curLandId!=w.land.act.id) return;
+            // World.step sets allStat=2 while PipBuck is open: that is the normal button state.
+            var infoMenu:Boolean=w.pip && w.pip.active && getQualifiedClassName(w.pip.currentPage)=="fe.inter::PipPageInfo";
+            if((w.allStat!=1 && !(w.allStat==2 && infoMenu)) || w.sats.active || w.stand.active || w.gui.guiPause) {
+                w.gui.messText("","请先结束当前操作，再使用大场景旅行"); return;
+            }
+            if(w.pip.noAct) { w.gui.infoText("noAct"); return; }
             var leaving:Boolean=w.game.curLandId==LAND;
             var target:String=leaving?w.game.baseId:LAND;
             if(!w.game.lands[target] || !w.game.checkTravel(target) || (!leaving && w.game.triggers["noreturn"]>0)) {

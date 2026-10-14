@@ -1,0 +1,24 @@
+[ContinuousScene] v0.3.0 init manual=false
+11423 PHASE 1
+13910 PASS native-loader-ModLoaderMod null
+13911 PASS native-loader-SandevistanMod null
+13912 PASS native-loader-RConnectMod null
+13913 PASS native-loader-RealisticVisionMod null
+13914 PASS native-loader-MoreSkillsWeaponsMod null
+13915 PASS native-loader-TDFCMod null
+13915 PASS native-loader-RandomRoomsMod null
+13916 PASS native-loader-LootEditorMod null
+13916 PASS native-loader-FirearmAttachmentsMod null
+13917 PASS native-loader-WallBlendMod null
+13918 PASS native-loader-ContinuousSceneMod null
+13919 PASS native-loader-ContinuousSceneProbe null
+13951 PHASE 2
+15532 PASS native-travel-button-visible null
+15534 PASS menu-settled-before-click {"frames":12,"allStat":2}
+16262 FAIL settled-menu-travel-requested {"expected":"continuous_scene","actual":"rbl"}
+16264 ERROR driver Assertion failed: settled-menu-travel-requested
+Error: Assertion failed: settled-menu-travel-requested
+	at ContinuousSceneProbe$/assertThat()
+	at ContinuousSceneProbe$/clickSettledEntry()
+	at ContinuousSceneProbe$/tick()
+16268 RESULT FAIL
