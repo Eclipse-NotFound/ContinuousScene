@@ -29,8 +29,14 @@ package tests {
                 var large:Boolean=loc.spaceX>cellX || loc.spaceY>cellY;
                 var raster:BitmapData=land.drawMap();
                 if(large) {
-                    // The continuous fixture is one native Location at grid (0,0).
-                    add(results,"map-large-single-location",land.maxLocX-land.minLocX==1 && land.maxLocY-land.minLocY==1);
+                    // Native-map mode aliases its original main-floor grid to
+                    // one continuous Location; the authored fixture has one cell.
+                    var sameLocation:Boolean=true,mainCells:int=0;
+                    for(var lx:int=land.minLocX;lx<land.maxLocX;++lx) for(var ly:int=land.minLocY;ly<land.maxLocY;++ly) {
+                        var entry:*=land.locs[lx][ly][0];
+                        if(entry) {++mainCells;sameLocation=sameLocation && entry===loc;}
+                    }
+                    add(results,"map-large-single-location",sameLocation && mainCells>0,{mainCells:mainCells});
                     add(results,"map-full-scene-dimensions",raster.width==loc.spaceX && raster.height==loc.spaceY,
                         {actual:[raster.width,raster.height],expected:[loc.spaceX,loc.spaceY]});
                     oldDrawAll=w.drawAllMap;haveDrawAll=true;

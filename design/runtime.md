@@ -1,6 +1,18 @@
-# 连续场景运行：0.5.0
+# 连续场景运行：0.6.0
 
-**0.5.0已部署，安装后原生启动验证15/15通过，无未捕获错误。最终Experience、Factory、完整Lab与两轮独占无插桩Perf已通过，发布前Check 632/632。** 详细过程、失败与证据见[调查记录](../knowledge/experiments/experience-v05-20261015.md)，本设计不承诺达到普通房间稳定流畅度，也不承诺完整原版剧情、电路或任意容量已经兼容。
+0.6的实现与最新验收/部署状态见[本轮记录](../knowledge/experiments/native-v06-20261015.md)。下文保留历史设计推导，0.5的测试数字仅对应历史组合；本设计不承诺普通房间的稳定流畅度，也不承诺完整原版剧情、电路或任意容量已经兼容。
+
+## 0.6 原版地图与预绘更新
+
+设置nativeEnabled默认false并写入独立偏好文件。Game.enterToCurLand在原版Land构造后调用NativeSceneAdapter.prepare，只合并多个标准48×25主层房间；基地、后室和挑战保留原路径。原网格主层位置都别名到同一Location；对象链表、Tile物理边界、数组、出生点和交互坐标转换到全局。后室出入做局部/全局换算，gotoProb前更新所在区域坐标。Location.step在玩家/各对象执行前选择对应环境，结束恢复玩家所在区。
+
+普通gotoLand复用Land，beginMission的新生成清除该地区地形历史和LAD灯具状态；随机任务读档回基地沿用原Game构造，不改为恢复原随机实例。静态Land按房间布局修订标记登记地形保存。当前实例不会因设置变动中途切换模式。
+
+全覆盖区域图以每区域一次绘制分发到既有400×400底层像素（320核心+40边缘），工厂12pass；有洞地图回退3×3批量。游玩中增量更新仍用原320块。完成drawKusok后解除复用遮罩对临时Sprite/cacheAsBitmap的引用，避免原生缓存滞留。
+
+sceneClear同步发出continuousSceneBeforeRasterClear供WB先释放旧借用覆盖层；新位置设置后、首次绘图前发出continuousSceneBeforeRaster供LAD转换灯具原图。sceneSynchronousRedraw能力允许LAD跳过旧延迟补绘，旧宿主仍走旧路径。continuousSceneResetGeneration携带地区ID，仅删除该地区灯具存档。
+
+sceneCullRender默认true，每帧只隐藏视口外的原生/WB位图，不释放像素和逻辑；LAD同样只隐藏视口外灯具显示。SATS捕获临时显示全部块再恢复。光照图换bitmapData后重置smoothing=true。RV最终产物不变，WB仅加入等价透明邻域前缀计数和背景保护缓存。
 
 用户已决定先做运行层，编辑器暂缓。目标是大的、无内部玩法边界的场景；原版房间仅作为测试资料。
 
@@ -60,8 +72,8 @@ RV冻结源commit为0735491e49d0d286ea8847017ae2fb64067a3c71，WB为f32e4a99643c
 
 源码锚点基于C631CBF3…C64867原备份；最终合并输入固定为已发布RConnect Map1宿主BEBEEA8B…4011F，来源mods/RConnect/build/m52/a22-map-only-03/native/pfe.swf。Land取其after源码仅叠加createMap，保留rconnectSeedSource、rconnectLayoutSeed和种子构造逻辑。Map1准确冻结源基线为1a4b683a0be646fc8e53aa4496e016fb6f1be0f8；不能用旧宿主覆盖或重复套旧Land补丁。
 
-Grafon整类重编译，其余移植十个指定方法的P-code：Location构造、Camera.calc/setZoom、Game.save、Land.createMap、Unit.setVisPos、Box.addVisual/runVis、UnitPlayer.actions/crackAction。MainFE保持原生清单加载器字节。官方FFDec CLI写入SWF，Python仅准备源码/指令和读取审计；私有命名空间必须映射到宿主类/文件身份，不能照搬donor索引。
+Grafon整类重编译，其余移植17个指定方法的P-code：Location构造/step、Camera.calc/setZoom、Game.save/enterToCurLand、Land.createMap/gotoLoc/gotoProb/setGGToSpawnPoint、Area.damTiles/setLift、Unit.setVisPos、Box.addVisual/runVis、UnitPlayer.actions/crackAction。MainFE保持原生清单加载器字节。官方FFDec CLI写入SWF，Python仅准备源码/指令和读取审计；私有命名空间必须映射到宿主类/文件身份，不能照搬donor索引。
 
-当前构建核对4659个其他具名方法/初始化保持，十个必需方法存在且符合目标，另检查Map1 Land类布局。原已等同目标的方法可列unchangedRequired，缺方法不能算通过。该检查不代替玩法验证，不代表所有匿名函数、资源与玩法全面审计。最终组合保留同期RC/MSW等独立发布；0.5实际只替换宿主、CS入口、RV和WB四项，其余正式模块字节保持。
+0.6构建核对4652个其他具名方法/初始化保持，17个必需方法存在且符合目标，另检查Map1 Land类布局。原已等同目标的方法可列unchangedRequired，缺方法不能算通过。该检查不代替玩法验证，不代表所有匿名函数、资源与玩法全面审计。最终组合保留同期RC/MSW等独立发布；0.6写集为宿主、CS、WB和LAD四项，RV不变。0.5十方法/4659的审计和测试仅留作历史。
 
 尺寸限制48..512 × 25..256格仅防异常输入，不是已测容量承诺；实际夹具为192×60走廊和192×75工厂。RV三项42断言、WB三组43/54/373断言与4120材质组合的局部回归已经完成，边界不同，不能加总成整游戏认证。最终Experience 111/111、Factory 34/34及内容/像素审计10/10、Lab full/preload=true的68/68与两轮独占无插桩Perf通过，发布Check 632/632。安装后原生启动15/15通过，使用正式路径的已安装字节和独立AIR应用身份，只覆盖启动加载链；进图、按钮与玩法由同字节隔离回归覆盖。更大地图、长时压力、完整联机、剧情电路和编辑器不在已验证承诺内。

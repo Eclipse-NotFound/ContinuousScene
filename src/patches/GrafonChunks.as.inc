@@ -9,6 +9,8 @@
       public var sceneEvictions:int = 0;
       public var sceneMisses:int = 0;
       public var scenePreload:Boolean = false;
+      // Old overlays release synchronously before their borrowed pixels vanish.
+      public const sceneSynchronousRedraw:Boolean = true;
       public var sceneLastDirtyCount:int = 0;
       public function sceneSurfaces() : Array
       {
@@ -86,6 +88,9 @@
             this.lightRect = new Rectangle(0,0,this.lightX,this.lightY);
             this.lightBmp = new BitmapData(this.lightX,this.lightY,true,4278190080);
             this.lightBitmap.bitmapData = this.lightBmp;
+            // Assigning bitmapData resets Bitmap.smoothing. Restore the native
+            // bilinear enlargement; otherwise every light cell is a hard block.
+            this.lightBitmap.smoothing = true;
          }
       }
 
@@ -93,6 +98,7 @@
       {
          for each(var entry:Object in this.sceneChunks) this.sceneDrop(entry);
          this.sceneChunks = {}; this.sceneResident = 0;
+         this.sceneCullKey = "";
          this.sceneMaskPool = new Dictionary(); this.sceneMaskCursor = new Dictionary();
       }
 
@@ -205,6 +211,31 @@
          if(!this.sceneLarge || this.loc == null) return;
          this.sceneEnsure(-World.w.cam.vx,-World.w.cam.vy,World.w.cam.screenX,World.w.cam.screenY);
          World.w.cam.setZoom(0);
+         this.sceneCullSurfaces();
+      }
+
+      public var sceneCullRender:Boolean = true;
+      private var sceneCullKey:String = "";
+      public function sceneViewport() : Rectangle
+      {
+         if(!this.sceneCullRender) return null;
+         var scale:Number = World.w.cam.scaleV > 0 ? World.w.cam.scaleV : 1;
+         return new Rectangle(-World.w.cam.vx / scale - 80,-World.w.cam.vy / scale - 80,
+            World.w.cam.screenX / scale + 160,World.w.cam.screenY / scale + 160);
+      }
+      private function sceneCullSurfaces() : void
+      {
+         var view:Rectangle = this.sceneViewport();
+         var key:String = view == null ? "all" : int(Math.floor(view.left / this.sceneSide)) + ":" + int(Math.floor(view.top / this.sceneSide)) + ":" + int(Math.ceil(view.right / this.sceneSide)) + ":" + int(Math.ceil(view.bottom / this.sceneSide));
+         key += ":" + this.sceneResident;
+         if(key == this.sceneCullKey) return;
+         this.sceneCullKey = key;
+         for each(var surface:Object in this.sceneChunks)
+         {
+            var visible:Boolean = view == null || view.intersects(new Rectangle(surface.cx * this.sceneSide,surface.cy * this.sceneSide,this.sceneSide,this.sceneSide));
+            for each(var bitmap:Bitmap in surface.bitmaps)
+               if(bitmap.visible != visible) bitmap.visible = visible;
+         }
       }
 
       private function sceneApply(kind:String, args:Array) : void

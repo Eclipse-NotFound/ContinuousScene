@@ -4,6 +4,7 @@ import hashlib
 import json
 import shutil
 import subprocess
+import argparse
 from xml.sax.saxutils import escape
 
 HERE = Path(__file__).resolve().parent
@@ -11,8 +12,13 @@ CS = HERE.parents[1]
 ROOT = CS.parents[1]
 WB = ROOT / "mods/WallBlend"
 BASE = "f32e4a99643ccc901dc4f8e8caac29a6cde441b4"
-HOST_SHA = "2032451D3987BAD8ACAE38776DF1D510C5BABBEBE0AFB505236BB5590EB025A4"
-MOD_SHA = "8EAC7B08BABF2631A1897C988C36416BA8B6CF204788256B46F436CACB319BB3"
+parser=argparse.ArgumentParser()
+parser.add_argument('--host-sha',required=True)
+parser.add_argument('--mod-sha',required=True)
+args=parser.parse_args()
+HOST_SHA=args.host_sha.upper()
+MOD_SHA=args.mod_sha.upper()
+assert all(len(s)==64 and all(c in '0123456789ABCDEF' for c in s) for s in [HOST_SHA,MOD_SHA])
 APP = HERE / "app"
 TESTS = HERE / "tests"
 OUTPUT = HERE / "candidate"
@@ -41,7 +47,7 @@ for relative in files:
         # public version is the explicitly reviewed compatibility suffix.
         anchor = b'entry["status"].version=="0.5.3"'
         assert original.count(anchor) == 1
-        adapted = original.replace(anchor, b'entry["status"].version=="0.5.3-scene"')
+        adapted = original.replace(anchor, b'entry["status"].version=="0.5.4-scene"')
     target = TESTS / Path(relative).relative_to("tests")
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_bytes(adapted)
@@ -83,6 +89,6 @@ for kind in ("Harness", "Coverage", "Destruction"):
 
 manifest = {"publishedTestCommit": BASE, "hostSHA256": HOST_SHA, "modSHA256": MOD_SHA,
             "configSHA256": hashlib.sha256(config).hexdigest().upper(), "files": records,
-            "adaptation": "Only Harness exact version expectation: 0.5.3 -> 0.5.3-scene; all behavioral assertions unchanged."}
+            "adaptation": "Only Harness exact version expectation: 0.5.3 -> 0.5.4-scene; all behavioral assertions unchanged."}
 (HERE / "source-provenance.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
 print(json.dumps({"prepared": str(APP), "harnesses": 3, "testSources": len(records), "hostSHA256": digest(APP / "pfe.swf"), "modSHA256": digest(APP / "WallBlendMod.swf")}))

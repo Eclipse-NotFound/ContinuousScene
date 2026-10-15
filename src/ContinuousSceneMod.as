@@ -14,7 +14,7 @@ package {
 
     /** Production entry only: no new game, test enemies, movement or save-slot writes. */
     public class ContinuousSceneMod {
-        public static const VERSION:String="0.5.0";
+        public static const VERSION:String="0.6.0";
         private static const LAND:String="continuous_scene";
         private static var main:*, w:*, worldClass:Class, gameData:Class;
         private static var pool:XML, definition:XML;
@@ -22,13 +22,19 @@ package {
         private static var button:Sprite, label:TextField, carrier:MovieClip;
         private static var nextLog:int=0;
         private static var centeredMap:*;
+        public static var nativeEnabled:Boolean=false;
+        private static var settingsAPI:*;
+        private static var nextSettings:int=0;
         public static function init(host:*):void {
             if(main) return;
             main=host;
+            readPreference();
             worldClass=getDefinitionByName("fe.World") as Class;
             gameData=getDefinitionByName("fe.GameData") as Class;
             carrier=new MovieClip(); carrier.name="ContinuousSceneCarrier";
             carrier["sceneAPI"]={version:VERSION,ready:false,refresh:refresh,travel:travel};
+            carrier["nativeAPI"]={prepare:NativeSceneAdapter.prepare,spawn:NativeSceneAdapter.spawn,
+                coordinates:NativeSceneAdapter.coordinates,door:NativeSceneAdapter.door,state:NativeSceneAdapter.state};
             main.addChild(carrier); log("v"+VERSION+" loaded");
             main.stage.addEventListener(Event.ENTER_FRAME,onFrame,false,-200,true);
         }
@@ -67,6 +73,8 @@ package {
                 if(!w || !w.grafon || !w.landData || !w.allLandsLoaded || !w.textLoaded) return;
                 if(!ready) register();
                 if(!ready) return;
+                NativeSceneAdapter.attach(w);
+                connectSettings();
                 if(w.game && !w.game.lands[LAND]) {
                     var LandAct:Class=getDefinitionByName("fe.loc.LandAct") as Class;
                     var act:*=new LandAct(definition);
@@ -98,14 +106,14 @@ package {
                 label.defaultTextFormat=new TextFormat("Microsoft YaHei",13,0xd5ebbc,false,null,null,null,null,"center");
                 button.addChild(label); button.addEventListener(MouseEvent.CLICK,onClick);
             }
-            label.text=w.game.curLandId==LAND?"大场景 · 返回基地":"大场景 · 工厂";
+            label.text=w.game.curLandId==LAND?"大场景 · 返回基地":"大场景 · 工厂测试";
             button.x=540; button.y=30;
             if(!button.parent) w.vpip.addChild(button);
             // The native page carries its previous pan between lands. Center a
             // newly opened large map once; subsequent manual pan/zoom stays free.
             var page:*=w.pip.currentPage;
             var map:*=page.map;
-            if(w.game.curLandId==LAND && map && map.parent && map.parent.parent.visible) {
+            if(w.grafon.sceneLarge && map && map.parent && map.parent.parent.visible) {
                 if(centeredMap!==map) {
                     page.funCenter(null);
                     // If an axis fits, show its whole extent. Centering only
@@ -133,8 +141,36 @@ package {
             if(!w.game.lands[target] || !w.game.checkTravel(target) || (!leaving && w.game.triggers["noreturn"]>0)) {
                 w.gui.messText("","当前剧情暂不能旅行"); return;
             }
-            w.game.gotoLand(target);
+            if(leaving) w.game.gotoLand(target); else w.game.beginMission(target);
             if(w.game.curLandId==target) { w.pip.onoff(-1); log("travel requested "+target); }
+        }
+        private static function readPreference():void {
+            var file:File=File.applicationStorageDirectory.resolvePath("ContinuousScene.preferences.json");
+            if(!file.exists)return;
+            var fs:FileStream=new FileStream();
+            try {fs.open(file,FileMode.READ);var data:Object=JSON.parse(fs.readUTFBytes(fs.bytesAvailable));nativeEnabled=data.nativeEnabled===true;}
+            catch(error:Error) {nativeEnabled=false;}
+            finally {try {fs.close();}catch(ignore:Error) {}}
+        }
+        public static function setNativeEnabled(value:Boolean):void {
+            nativeEnabled=value;
+            var fs:FileStream=new FileStream();
+            var temp:File=File.applicationStorageDirectory.resolvePath("ContinuousScene.preferences.tmp");
+            try {fs.open(temp,FileMode.WRITE);fs.writeUTFBytes(JSON.stringify({nativeEnabled:value}));fs.close();
+                temp.moveTo(File.applicationStorageDirectory.resolvePath("ContinuousScene.preferences.json"),true);}
+            finally {try {fs.close();}catch(ignore:Error) {}}
+        }
+        private static function connectSettings():void {
+            if(getTimer()<nextSettings)return;nextSettings=getTimer()+1000;
+            var holder:*=main.getChildByName("ModSettingsCarrier");
+            if(!holder || !holder["modAPI"] || settingsAPI===holder["modAPI"])return;
+            var api:*=holder["modAPI"];
+            api.registerPage("continuousscene","连续大场景",[{
+                key:"nativeEnabled",label:"以连续大场景载入原版地图",kind:"check",def:false,
+                hint:"开启后，原版任务生成的主地图合并为连续场景，镜头、敌人和子弹可以跨房。\n在下次生成地图或读取存档时生效；基地、门后的独立房间和挑战区域保留原版入口。地图刷新遵循原版任务规则。",
+                get:function():* {return nativeEnabled;},set:function(value:*):void {setNativeEnabled(Boolean(value));}
+            }],null,"连续大场景 · 当前地图保持原有模式；设置自动保存。");
+            settingsAPI=api;log("settings registered continuousscene");
         }
     }
 }

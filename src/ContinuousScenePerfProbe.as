@@ -1,5 +1,7 @@
 package {
     import flash.desktop.NativeApplication;
+    import flash.display.Bitmap;
+    import flash.geom.Rectangle;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
     import flash.events.UncaughtErrorEvent;
@@ -15,7 +17,7 @@ package {
         private static var main:*,w:*,phase:int=0,ticks:int=0,at:int=0,ready:int=0;
         private static var started:int,last:int,frameStart:int,travelAt:int;
         private static var worldIndex:int=0,caseIndex:int=0,row:Object,done:Boolean=false;
-        private static var cases:Array=["idle","fire","idle-after","no-wall-fire","no-wall-no-rv-fire"];
+        private static var cases:Array=["idle","fire","idle-after","culled-fire","no-lad-fire","no-lad-wall-fire","no-lad-wall-rv-fire"];
         private static var report:Object={version:"0.5-probe",mode:"performance",preload:true,assertions:[],samples:[]};
         public static function init(host:*):void {
             main=host;started=getTimer();last=started;
@@ -32,7 +34,7 @@ package {
         private static function log(s:String):void {write("ContinuousScenePerfProbe.log",getTimer()+" "+s+"\n");}
         private static function finish(ok:Boolean,error:String=null):void {
             if(done)return;done=true;report.ok=ok;report.error=error;report.elapsedMs=getTimer()-started;
-            try {if(w && w.gg) {setting("wallblend","enabled",true);setting("realisticvision","enabled",true);}} catch(ignore:Error) {}
+            try {if(w && w.gg) {setting("light-and-darkness","enabled",true);setting("wallblend","enabled",true);setting("realisticvision","enabled",true);}} catch(ignore:Error) {}
             report.memoryMB=System.totalMemoryNumber/1048576;write("result.json",JSON.stringify(report,null,2),false);
             log("RESULT "+ok+" "+error);NativeApplication.nativeApplication.exit(ok?0:1);
         }
@@ -45,6 +47,7 @@ package {
             var Act:Class=cls("fe.loc.LandAct");var act:*=new Act(def);act.allroom=pool;act.loaded=true;w.game.lands.scene_perf_native=act;
         }
         private static function travel():void {
+            if("sceneCullRender" in w.grafon) w.grafon.sceneCullRender=File.applicationDirectory.resolvePath("cull.flag").exists;
             w.ctr.clearAll();w.pers.healAll();travelAt=getTimer();
             w.game.gotoLand(worldIndex==0?"scene_perf_native":"continuous_scene");phase=2;log("TRAVEL "+worldIndex);
         }
@@ -57,16 +60,21 @@ package {
             throw new Error("Setting unavailable: "+mod+"."+key);
         }
         private static function startCase():void {
-            if(caseIndex==3) setting("wallblend","enabled",false);
-            if(caseIndex==4) setting("realisticvision","enabled",false);
+            if("sceneCullRender" in w.grafon) w.grafon.sceneCullRender=File.applicationDirectory.resolvePath("cull.flag").exists || (worldIndex==1 && caseIndex>=3);
+            if(caseIndex==4) setting("light-and-darkness","enabled",false);
+            if(caseIndex==5) setting("wallblend","enabled",false);
+            if(caseIndex==6) setting("realisticvision","enabled",false);
             row={world:worldIndex==0?"native":"large",name:cases[caseIndex],frames:[],script:[],shots:0,
-                units:w.loc.units.length,scale:w.cam.scaleV,redrawsStart:w.grafon.sceneRedraws,dirtyMax:0};
+                units:w.loc.units.length,scale:w.cam.scaleV,redrawsStart:w.grafon.sceneRedraws,dirtyMax:0,
+                stageFps:main.stage.frameRate,renderBounds:w.visual.getBounds(w.visual).toString(),
+                renderFilters:w.visual.filters.length,renderCache:w.visual.cacheAsBitmap};
             at=ticks;last=getTimer();phase=3;log("CASE "+row.world+" "+row.name);
         }
         private static function tick(e:Event):void {
             if(done)return;++ticks;
             try {
                 w=cls("fe.World")["w"];
+                if(worldIndex==1 && caseIndex>=3 && w && w.grafon && w.grafon.sceneLarge && !("sceneCullRender" in w.grafon)) cullSurfaces();
                 if(w && w.verror && w.verror.visible) throw new Error(w.verror.txt.text);
                 if(getTimer()-started>580000) throw new Error("Timeout phase "+phase);
                 if(w && w.gg) {w.godMode=true;w.gg.invulner=true;}
@@ -106,6 +114,21 @@ package {
                     }
                 }
             } catch(error:Error) {finish(false,error.message+"\n"+error.getStackTrace());}
+        }
+        private static function cullSurfaces():void {
+            var scale:Number=w.cam.scaleV>0?w.cam.scaleV:1;
+            var view:Rectangle=new Rectangle(-w.cam.vx/scale-80,-w.cam.vy/scale-80,
+                w.cam.screenX/scale+160,w.cam.screenY/scale+160);
+            for each(var surface:Object in w.grafon.sceneSurfaces()) {
+                var show:Boolean=view.intersects(new Rectangle(surface.x+surface.gutter,surface.y+surface.gutter,surface.side,surface.side));
+                for each(var bitmap:Bitmap in surface.bitmaps) bitmap.visible=show;
+            }
+            for each(var parent:* in [w.grafon.visFront,w.grafon.visBack])
+                for(var k:int=0;k<parent.numChildren;++k) {
+                    bitmap=parent.getChildAt(k) as Bitmap;
+                    if(bitmap && (bitmap.name=="WallBlendSceneFront" || bitmap.name=="WallBlendSceneBack"))
+                        bitmap.visible=view.intersects(new Rectangle(bitmap.x,bitmap.y,320,320));
+                }
         }
     }
 }

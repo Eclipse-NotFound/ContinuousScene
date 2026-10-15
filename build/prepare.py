@@ -16,6 +16,8 @@ import backdrop_patch
 import region_patch
 import entity_color_patch
 import interaction_patch
+import load_patch
+import native_map_patch
 
 MOD = Path(__file__).resolve().parents[1]
 ROOT = MOD.parents[1]
@@ -64,16 +66,18 @@ def patches():
                throw new Error("ContinuousScene dimensions out of bounds (48..512 by 25..256)");
          }''')
     location = replace(location, 'this.buildLoc(param2);', 'this.buildLoc(param2);\n         World.w.grafon.sceneTrack(this,String(param2.@sceneRevision));')
-    write_class('fe/loc/Location.as', region_patch.apply_location(location))
+    write_class('fe/loc/Location.as', native_map_patch.location(region_patch.apply_location(location), method))
 
     game = (SOURCE/'fe/loc/Game.as').read_text(encoding='utf-8-sig')
     game = method(game, 'save', lambda s: replace(s, 'var _loc1_:Object = new Object();', 'World.w.grafon.sceneSave(this);\n         var _loc1_:Object = new Object();'))
-    write_class('fe/loc/Game.as', game)
+    write_class('fe/loc/Game.as', native_map_patch.game(game))
 
     # Preserve the deployed seed callback, seed field, and constructor; only
     # our createMap body is selected for the final method-level replacement.
     land = land_path.read_text(encoding='utf-8-sig')
-    write_class('fe/loc/Land.as', map_patch.apply_land(land))
+    write_class('fe/loc/Land.as', native_map_patch.land(map_patch.apply_land(land)))
+    area = (SOURCE/'fe/loc/Area.as').read_text(encoding='utf-8-sig')
+    write_class('fe/loc/Area.as', native_map_patch.area(area))
     unit = (SOURCE/'fe/unit/Unit.as').read_text(encoding='utf-8-sig')
     write_class('fe/unit/Unit.as', entity_color_patch.apply_unit(unit))
     box = (SOURCE/'fe/loc/Box.as').read_text(encoding='utf-8-sig')
@@ -160,6 +164,8 @@ def patches():
     grafon = backdrop_patch.apply_grafon(grafon)
     grafon = region_patch.apply_grafon(grafon)
     grafon = entity_color_patch.apply_grafon(grafon)
+    grafon = load_patch.apply_grafon(grafon)
+    grafon = native_map_patch.grafon(grafon)
     write_class('fe/graph/Grafon.as', grafon)
 
     camera = (SOURCE/'fe/inter/Camera.as').read_text(encoding='utf-8-sig')

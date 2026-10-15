@@ -12,6 +12,7 @@ import xml.etree.ElementTree as ET
 HERE=Path(__file__).resolve().parent
 GEN=HERE/'generated'
 TARGETS=[('fe.loc.Location','Location'),('fe.inter.Camera','calc'),('fe.inter.Camera','setZoom'),('fe.loc.Game','save'),('fe.loc.Land','createMap'),('fe.unit.Unit','setVisPos'),('fe.loc.Box','addVisual'),('fe.loc.Box','runVis'),('fe.unit.UnitPlayer','actions'),('fe.unit.UnitPlayer','crackAction')]
+TARGETS += [('fe.loc.Game','enterToCurLand'),('fe.loc.Land','setGGToSpawnPoint'),('fe.loc.Land','gotoLoc'),('fe.loc.Land','gotoProb'),('fe.loc.Location','step'),('fe.loc.Area','setLift'),('fe.loc.Area','damTiles')]
 
 def abc_methods(path):
     tree=ET.parse(path)
@@ -63,13 +64,14 @@ def plan():
             # Retain that exact name and the original class-private identity;
             # never authorize arbitrary private access from a new donor.
             approved={('fe.unit.UnitPlayer','actions'):{'changeWeaponNow'},
-                      ('fe.unit.UnitPlayer','crackAction'):{'actionReady'}}
+                      ('fe.unit.UnitPlayer','crackAction'):{'actionReady'},
+                      ('fe.loc.Location','step'):{'getDist','showSign','recalcWater','rebuild'}}
             names=set(re.findall(r'QName\(PrivateNamespace\([^)]*\),"([^"]+)"\)',code))
             os=original.index('function '+method+'(')
             oe=original.index('end ; method',os)
             prior=set(re.findall(r'QName\(PrivateNamespace\([^)]*\),"([^"]+)"\)',original[os:oe]))
             if names != approved.get((classname,method)) or names != prior:
-                raise RuntimeError('Unreviewed direct private member access')
+                raise RuntimeError(f'Unreviewed direct private member access: {classname}.{method}: donor={names}, native={prior}')
             # crackAction contains only a class-private call; it has no generic
             # lookup namespace set and therefore no file-private namespace.
             # Match the namespace from the same native private member, rather

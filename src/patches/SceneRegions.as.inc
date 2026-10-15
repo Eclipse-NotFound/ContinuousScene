@@ -25,7 +25,13 @@
             if(!isFinite(darkness)) throw new Error("ContinuousScene region darkness is invalid");
             var style:Object = {bounds:bounds,
                backwall:node.@backwall.length() ? String(node.@backwall) : value.backwall,
-               color:color,cTransform:value.colorFilter(color),darkness:int(darkness)};
+               color:color,cTransform:value.colorFilter(color),darkness:int(darkness),
+               backform:node.@backform.length() ? int(node.@backform) : value.backform,
+               transpFon:node.@transpFon.length() ? String(node.@transpFon) == "true" : value.transpFon,
+               tipWater:node.@tipWater.length() ? int(node.@tipWater) : value.tipWater,
+               gas:node.@gas.length() ? int(node.@gas) : value.gas,
+               homeStable:node.@homeStable.length() ? String(node.@homeStable) == "true" : value.homeStable,
+               nativeRegion:String(node.@nativeRegion) == "true"};
             style.key = this.sceneRegionStyleKey(style);
             regions.push(style);
          }
@@ -77,7 +83,9 @@
 
       private function sceneRegionStyleKey(style:Object) : String
       {
-         return style.backwall + ":" + style.darkness + ":" + this.sceneRegionColorKey(style.cTransform);
+         return style.backwall + ":" + style.darkness + ":" + this.sceneRegionColorKey(style.cTransform)
+            + ":" + style.backform + ":" + style.transpFon + ":" + style.tipWater + ":" + style.gas + ":" + style.homeStable
+            + (style.nativeRegion && (style.backform != 0 || style.gas > 0) ? ":" + style.bounds.x + ":" + style.bounds.y : "");
       }
 
       private function sceneRegionColorKey(ct:ColorTransform) : String
@@ -102,12 +110,15 @@
          this.loc.color = style.color;
          this.loc.cTransform = style.cTransform;
          this.loc.darkness = style.darkness;
+         this.loc.backform = style.backform; this.loc.transpFon = style.transpFon;
+         this.loc.tipWater = style.tipWater; this.loc.gas = style.gas; this.loc.homeStable = style.homeStable;
+         this.sceneRasterRegion = style.nativeRegion ? style : null;
          this.sceneMaskCursor = new Dictionary();
          ++this.sceneRegionPasses;
          var prior:Boolean = this.sceneRegionPassActive;
          this.sceneRegionPassActive = true;
          try { this.drawLoc(this.loc); }
-         finally { this.sceneRegionPassActive = prior; }
+         finally { this.sceneRegionPassActive = prior; this.sceneRasterRegion = null; }
       }
 
       private function sceneRegionEnsureScratch() : void
@@ -211,7 +222,8 @@
          }
          var started:int = getTimer();
          var original:Object = {backwall:this.loc.backwall,color:this.loc.color,
-            cTransform:this.loc.cTransform,darkness:this.loc.darkness};
+            cTransform:this.loc.cTransform,darkness:this.loc.darkness,
+            backform:this.loc.backform,transpFon:this.loc.transpFon,tipWater:this.loc.tipWater,gas:this.loc.gas,homeStable:this.loc.homeStable};
          var originalKey:String = this.sceneRegionStyleKey(original);
          var viewport:Rectangle = new Rectangle(this.sceneX,this.sceneY,this.rectX,this.rectY);
          var inWorld:Rectangle = viewport.intersection(new Rectangle(0,0,
@@ -274,6 +286,8 @@
             this.loc.color = original.color;
             this.loc.cTransform = original.cTransform;
             this.loc.darkness = original.darkness;
+            this.loc.backform = original.backform; this.loc.transpFon = original.transpFon;
+            this.loc.tipWater = original.tipWater; this.loc.gas = original.gas; this.loc.homeStable = original.homeStable;
             this.sceneDrawMs = getTimer() - started;
             this.sceneMaxDrawMs = Math.max(this.sceneMaxDrawMs,this.sceneDrawMs);
          }

@@ -10,6 +10,7 @@ import hashlib
 import json
 import subprocess
 from xml.sax.saxutils import escape
+import wallblend_perf
 
 MOD = Path(__file__).resolve().parents[1]
 ROOT = MOD.parents[1]
@@ -17,7 +18,7 @@ WB = ROOT / "mods/WallBlend"
 STAGE = MOD / "build/generated/wb-production"
 BASE = "f32e4a99643ccc901dc4f8e8caac29a6cde441b4"
 RELEASE_VERSION = "0.5.3"
-VERSION = RELEASE_VERSION + "-scene"
+VERSION = "0.5.4-scene"
 # Published provenance, not a requirement on the mutable installed binary.
 # 0.5.2 partial/fake wall support and 0.5.3 relief sampling all live in
 # BlendLayer.as. Its only compatibility edit excludes another region's tint
@@ -91,6 +92,7 @@ _CACHE = r'''package wallblend {
             var alive:Dictionary=new Dictionary();
             var settings:String=[width,style,tone,spacing,depth,toneWidth].join(":");
             var surfaces:Array=g.sceneSurfaces();
+            var viewport:Rectangle="sceneViewport" in g?g.sceneViewport():null;
             for each(var surface:Object in surfaces) alive[surface]=true;
             // Full native redraws replace every surface. Release old overlays
             // before allocating their replacements instead of doubling peak memory.
@@ -109,7 +111,9 @@ _CACHE = r'''package wallblend {
                     }
                 }
                 for(i=0;i<2;i++) {
-                    bitmap=state.overlays[i];bitmap.visible=enabled;
+                    bitmap=state.overlays[i];
+                    var show:Boolean=enabled && (viewport==null || viewport.intersects(new Rectangle(surface.x+surface.gutter,surface.y+surface.gutter,surface.side,surface.side)));
+                    if(bitmap.visible!=show) bitmap.visible=show;
                     var parent:Sprite=i==0?g.visFront:g.visBack;
                     if(bitmap.parent!==parent) parent.addChild(bitmap);
                     var native:Bitmap=surface.bitmaps?surface.bitmaps[i]:null;
@@ -213,7 +217,8 @@ _CACHE = r'''package wallblend {
 
         private function refreshView(g:*,s:Object,view:Object,region:Object):void {
             var native:*=g.loc,loc:Object=view.loc;
-            loc.homeStable=native.homeStable;loc.lightOn=native.lightOn;loc.transpFon=native.transpFon;
+            loc.homeStable=region?region.homeStable:native.homeStable;loc.lightOn=native.lightOn;
+            loc.transpFon=region?region.transpFon:native.transpFon;
             loc.cTransform=region?region.cTransform:native.cTransform;
             loc.color=region?region.color:native.color;loc.darkness=region?region.darkness:native.darkness;
             loc.backwall=region?region.backwall:native.backwall;
@@ -284,6 +289,13 @@ def candidate_source(relative: str, content: bytes) -> bytes:
         return source.encode("utf-8")
     if relative == "src/WallBlendMod.as":
         source = content.decode("utf-8-sig")
+        source = _once(source, '                host.stage.addEventListener(Event.ENTER_FRAME, onFrame, false, -100, true);',
+                       '                host.stage.addEventListener(Event.ENTER_FRAME, onFrame, false, -100, true);\n'
+                       '                host.addEventListener("continuousSceneBeforeRasterClear",onSceneClear,false,0,true);')
+        source = _once(source, '        public static function setEnabled(value:Boolean):void {',
+                       '        private static function onSceneClear(event:Event):void {\n'
+                       '            if(sceneCache.count) sceneCache.clear();\n'
+                       '        }\n\n        public static function setEnabled(value:Boolean):void {')
         source = _once(source, f'public static const VERSION:String = "{RELEASE_VERSION}";',
                        f'public static const VERSION:String = "{VERSION}";')
         source = _once(source, 'sceneVisible:sceneCache.visibleCount,display:displayStatus()};',
@@ -307,7 +319,7 @@ def prepare():
     records = []
     for relative in files:
         original = subprocess.check_output(["git", "-C", str(WB), "show", BASE + ":" + relative])
-        candidate = candidate_source(relative, original)
+        candidate = wallblend_perf.apply(relative, candidate_source(relative, original).decode('utf-8-sig')).encode('utf-8')
         target = STAGE / Path(relative).relative_to("src")
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(candidate)

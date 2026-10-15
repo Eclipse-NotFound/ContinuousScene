@@ -193,7 +193,7 @@ package {
                 } else if(phase==5 && ticks-at>=20) openTravel();
                 else if(phase==7 && landed()) {check("factory-return-base",!w.grafon.sceneLarge);openTravel();}
                 else if(phase==9 && landed()) {
-                    check("factory-reentry",w.loc===scene); w.saveGame(1);w.comLoad=1;next(10);
+                    check("factory-new-mission-refreshes",w.loc!==scene && w.loc.backobjs.length==603); scene=w.loc;w.saveGame(1);w.comLoad=1;next(10);
                 } else if(phase==10 && ticks-at>20 && w.comLoad==-1 && w.t_exit==0 && w.allStat==1 && w.loc!==scene) {
                     check("factory-native-save-load",w.game.curLandId=="continuous_scene" && w.loc.backobjs.length==603 && w.loc.spaceY==75);
                     capture("factory-reloaded"); finish(true);

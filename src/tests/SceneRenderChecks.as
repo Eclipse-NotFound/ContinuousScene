@@ -203,6 +203,7 @@ package tests {
             var x:int=loc.spaceX-3,y:int=loc.spaceY-3,tile:*=loc.getTile(x,y);
             var oldVisi:Number=tile.visi,oldTarget:Number=tile.t_visi;
             var saved:BitmapData=g.lightBmp.clone();
+            var gradient:BitmapData;
             try {
                 add(rows,"render-light-field-full-scene",g.lightBmp.width==loc.spaceX+1 && g.lightBmp.height==loc.spaceY+3,
                     {width:g.lightBmp.width,height:g.lightBmp.height});
@@ -211,9 +212,21 @@ package tests {
                     {x:x,y:y,pixel:g.lightBmp.getPixel32(x,y+1)});
                 add(rows,"render-native-light-transform",g.visLight.scaleX==40 && g.visLight.scaleY==40 &&
                     g.visLight.x==-20 && g.visLight.y==-60);
+                add(rows,"render-native-light-bilinear",g.visLight.getChildAt(0).smoothing===true);
+                g.lightBmp.fillRect(g.lightBmp.rect,0);
+                g.lightBmp.fillRect(new Rectangle(2,0,1,5),0xFF000000);
+                gradient=new BitmapData(80,40,true,0);
+                gradient.draw(g.visLight,new Matrix(40,0,0,40,-80,-80));
+                var shades:Object={},intermediate:int=0;
+                for(var gx:int=0;gx<80;++gx) {
+                    var alpha:uint=gradient.getPixel32(gx,20)>>>24;
+                    if(alpha>0 && alpha<255 && !shades[alpha]) {shades[alpha]=true;++intermediate;}
+                }
+                add(rows,"render-native-light-drawn-gradient",intermediate>=15,{intermediateAlphaLevels:intermediate});
             } finally {
                 tile.visi=oldVisi;tile.t_visi=oldTarget;
                 g.lightBmp.copyPixels(saved,saved.rect,new Point());saved.dispose();
+                if(gradient)gradient.dispose();
             }
         }
         private static function sameColor(a:ColorTransform,b:ColorTransform):Boolean {

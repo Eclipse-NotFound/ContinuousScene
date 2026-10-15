@@ -60,6 +60,8 @@ package {
             var descriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
             var ns:Namespace = descriptor.namespace();
             if(String(descriptor.ns::id) != "pfe-modsettings-continuous-scene") return;
+            if(File.applicationDirectory.resolvePath("native.flag").exists) {ContinuousSceneNativeProbe.init(host);return;}
+            if(File.applicationDirectory.resolvePath("loading.flag").exists) {ContinuousSceneLoadProbe.init(host);return;}
             if(File.applicationDirectory.resolvePath("experience.flag").exists) {ContinuousSceneExperienceProbe.init(host);return;}
             if(File.applicationDirectory.resolvePath("perf.flag").exists) {ContinuousScenePerfProbe.init(host);return;}
             if(File.applicationDirectory.resolvePath("factory.flag").exists) {ContinuousSceneFactoryProbe.init(host);return;}
@@ -385,7 +387,9 @@ package {
                     w.pers.healAll(); clickEntry(); next(11);
                 } else if(phase==11 && w.land.act.id=="rbl" && w.game.curLandId=="rbl" && w.allStat==1 && w.t_exit==0) {
                     assertThat("normal-room-renderer-restored",!w.grafon.sceneLarge && w.grafon.frontBmp.width==1920);
-                    w.pers.healAll(); clickEntry(); next(12);
+                    // Test ordinary travel retention; the factory button now
+                    // deliberately starts a fresh native mission generation.
+                    w.pers.healAll(); w.game.gotoLand("continuous_scene"); next(12);
                 } else if(phase==12 && w.land.act.id=="continuous_scene" && w.game.curLandId=="continuous_scene" && w.allStat==1 && w.t_exit==0) {
                     assertThat("scene-reentry-preserves-location",w.loc===scene && scene.getTile(80,48).phis==0);
                     report.maxChunkDrawMs=w.grafon.sceneMaxDrawMs;

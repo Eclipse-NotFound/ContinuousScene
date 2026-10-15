@@ -24,6 +24,9 @@ if($AllMods) {
             $scenePath=Join-Path $sceneSource $sceneFolder
             if(Test-Path -LiteralPath $scenePath) {Copy-Item -LiteralPath $scenePath -Destination $sceneTarget -Recurse -Force}
         }
+        if($sceneFields[0] -eq 'LightAndDarkness' -and (-not $Prepared -or $sceneFields[0] -in $RefreshModules)) {
+            Copy-Item -LiteralPath (Join-Path $sceneSource 'atmosphere.json') -Destination (Join-Path $sceneTarget 'atmosphere.json') -Force
+        }
         $sceneLines=@($sceneLine)+$sceneLines
     }
     # Match native ordering exactly, then append the new production module and probe.

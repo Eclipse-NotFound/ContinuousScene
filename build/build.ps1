@@ -18,7 +18,7 @@ if (-not $DriverOnly -and -not $ProbeOnly) {
     # already-installed RConnect Map1 Land traits and seed constructor.
     $sceneMergeHost=(Resolve-Path -LiteralPath (Join-Path $sceneRoot 'mods/RConnect/build/m52/a22-map-only-03/native/pfe.swf')).Path
     if((Get-FileHash -LiteralPath $sceneMergeHost).Hash -ne 'BEBEEA8B3F40A7DB3E7B1BE6F3530D5AF9EA7A3299DECB164BF0DAE107D4011F') {throw 'Published RConnect Map1 host changed; review the merge baseline'}
-    & $Java '-Xmx1400m' '-jar' (Join-Path $sceneTools 'ffdec/ffdec-cli.jar') '-selectclass' 'MainFE,fe.loc.Game,fe.loc.Land,fe.loc.Location,fe.graph.Grafon,fe.inter.Camera,fe.unit.Unit,fe.loc.Box,fe.unit.UnitPlayer' `
+    & $Java '-Xmx1400m' '-jar' (Join-Path $sceneTools 'ffdec/ffdec-cli.jar') '-selectclass' 'MainFE,fe.loc.Game,fe.loc.Land,fe.loc.Location,fe.loc.Area,fe.graph.Grafon,fe.inter.Camera,fe.unit.Unit,fe.loc.Box,fe.unit.UnitPlayer' `
         '-export' 'script' (Join-Path $PSScriptRoot 'cache/current-swf') $BaseHost
     if ($LASTEXITCODE -ne 0) { throw 'Current host source export failed' }
     & $Python (Join-Path $PSScriptRoot 'prepare.py') $BaseHost
@@ -35,7 +35,7 @@ if (-not $DriverOnly -and -not $ProbeOnly) {
     $sceneFfdec = Join-Path $sceneTools 'ffdec/ffdec-cli.jar'
     foreach($sceneSourceSwf in @('original','donor')) {
         $sceneInput=if($sceneSourceSwf -eq 'original') {$sceneMergeHost} else {Join-Path $PSScriptRoot 'generated/donor.swf'}
-        & $Java '-Xmx1400m' '-jar' $sceneFfdec '-format' 'script:pcode' '-selectclass' 'fe.loc.Location,fe.inter.Camera,fe.loc.Game,fe.loc.Land,fe.unit.Unit,fe.loc.Box,fe.unit.UnitPlayer' `
+        & $Java '-Xmx1400m' '-jar' $sceneFfdec '-format' 'script:pcode' '-selectclass' 'fe.loc.Location,fe.loc.Area,fe.inter.Camera,fe.loc.Game,fe.loc.Land,fe.unit.Unit,fe.loc.Box,fe.unit.UnitPlayer' `
             '-export' 'script' (Join-Path $PSScriptRoot ('generated/'+$sceneSourceSwf+'-pcode')) $sceneInput
         if($LASTEXITCODE -ne 0) {throw 'P-code export failed'}
     }

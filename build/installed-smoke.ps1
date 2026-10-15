@@ -1,4 +1,4 @@
-param([string]$Receipt='install-receipt.json',[string]$SceneVersion='0.2.0',[string]$VisionVersion='v0.30.3-scene',[string]$WallVersion='0.4.1',[string]$SceneRegistration='registered 192x60 native land')
+param([string]$Receipt='install-receipt.json',[string]$SceneVersion='0.2.0',[string]$VisionVersion='v0.30.3-scene',[string]$WallVersion='0.4.1',[string]$SceneRegistration='registered 192x60 native land',[string]$LightVersion='')
 $ErrorActionPreference='Stop'
 $sceneRoot=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../../..')).Path
 $sceneReceipt=Get-Content -LiteralPath (Join-Path $PSScriptRoot $Receipt) -Raw | ConvertFrom-Json
@@ -37,12 +37,19 @@ try {
     $sceneChecks += [pscustomobject]@{name='scene-registered-native-host';passed=$sceneLog.Contains('v'+$SceneVersion+' loaded') -and $sceneLog.Contains($SceneRegistration) -and $sceneLog.Contains('heartbeat') -and -not $sceneLog.Contains('ERROR')}
     $sceneChecks += [pscustomobject]@{name='vision-version';passed=$sceneRvLog.Contains('init ok '+$VisionVersion) -and $sceneRvLog.Contains('tick 181')}
     $sceneChecks += [pscustomobject]@{name='wall-version';passed=$sceneWallLog.Contains('v'+$WallVersion+' loaded') -and -not $sceneWallLog.Contains('"failed":true')}
+    if($LightVersion) {
+        $sceneLightLog=Get-Content -LiteralPath (Join-Path $sceneStore 'LightAndDarkness.log') -Raw
+        # LAD only emits gameplay heartbeats after entering a location; this
+        # launch-only check stays at the menu. Its own warm/cold suites play.
+        $sceneChecks += [pscustomobject]@{name='light-version';passed=$sceneLightLog.Contains('v'+$LightVersion+' loaded') -and $sceneLightLog -notmatch '(FRAME_ERROR|PREPARE_FAILED)'}
+    }
     $sceneOutput=[string](Get-Content -LiteralPath (Join-Path $sceneEvidence 'stdout.log') -Raw)
     $sceneChecks += [pscustomobject]@{name='no-uncaught-error';passed=$sceneOutput -notmatch '(TypeError|ReferenceError|VerifyError): Error #'}
     $sceneResult=[pscustomobject]@{passed=@($sceneChecks | Where-Object {-not $_.passed}).Count -eq 0;appId=$sceneId;checks=$sceneChecks;scope='Native startup using installed bytes; button/travel coverage belongs to the referenced same-hash isolated regression';runtimeRoot=$sceneRoot}
     $sceneResult | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $sceneEvidence 'InstalledSmoke.json')
     $sceneResult | ConvertTo-Json -Depth 5
     Get-FileHash -LiteralPath (Join-Path $sceneRoot 'pfe.swf'),(Join-Path $sceneRoot 'mods/loader-manifest.txt'),(Join-Path $sceneRoot 'mods/ContinuousScene/release/ContinuousSceneMod.swf'),(Join-Path $sceneRoot 'mods/RealisticVision/release/RealisticVisionMod.swf'),(Join-Path $sceneRoot 'mods/WallBlend/release/WallBlendMod.swf') | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $sceneEvidence 'installed-hashes.json')
+    if($LightVersion) {Get-FileHash -LiteralPath (Join-Path $sceneRoot 'mods/LightAndDarkness/release/LightAndDarknessMod.swf'),(Join-Path $sceneRoot 'mods/LightAndDarkness/atmosphere.json') | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $sceneEvidence 'light-hashes.json')}
     if(-not $sceneResult.passed) {throw 'Native installed smoke failed'}
     Write-Output $sceneEvidence
 } finally {

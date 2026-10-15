@@ -1,10 +1,15 @@
-param([int]$TimeoutSeconds=200,[string]$EvidenceName='latest',[switch]$Quick,[switch]$Benchmark,[switch]$Preload,[switch]$HighQoS,[switch]$Cull,[switch]$Streaming,[switch]$Factory,[switch]$Perf,[switch]$Experience,[switch]$DecalOnly)
+param([int]$TimeoutSeconds=200,[string]$EvidenceName='latest',[switch]$Quick,[switch]$Benchmark,[switch]$Preload,[switch]$HighQoS,[switch]$Cull,[switch]$Streaming,[switch]$Factory,[switch]$Perf,[switch]$Experience,[switch]$DecalOnly,[switch]$Loading,[switch]$NativeMap)
 $ErrorActionPreference='Stop'
+if($Perf -and @(Get-Process -Name adl64 -ErrorAction SilentlyContinue).Count) {
+    throw 'Performance sampling requires no other AIR instances; existing processes were left untouched'
+}
 $sceneRoot=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../../..')).Path
 $sceneDescriptor=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot 'runtime/application.xml')).Path
 [xml]$sceneManifest=Get-Content -LiteralPath $sceneDescriptor -Raw
 if($sceneManifest.application.id -ne 'pfe-modsettings-continuous-scene') { throw 'Refusing a non-isolated AIR id' }
 if($DecalOnly -and (-not $Experience -or -not $Factory)) {throw 'DecalOnly requires the isolated factory Experience probe'}
+if($Loading -and (-not $Factory -or $Experience -or $Perf -or $Streaming)) {throw 'Loading requires the fully preloaded factory and cannot combine with another probe mode'}
+if($NativeMap -and ($Loading -or $Experience -or $Perf -or $Streaming)) {throw 'NativeMap requires its own fully preloaded probe'}
 $sceneLock=[IO.File]::Open((Join-Path $PSScriptRoot 'runtime/session.lock'),[IO.FileMode]::OpenOrCreate,[IO.FileAccess]::ReadWrite,[IO.FileShare]::None)
 $sceneProcess=$null
 $sceneTimedOut=$false
@@ -26,6 +31,10 @@ $sceneFactoryFlag=Join-Path $PSScriptRoot 'runtime/factory.flag'
 $scenePerfFlag=Join-Path $PSScriptRoot 'runtime/perf.flag'
 $sceneExperienceFlag=Join-Path $PSScriptRoot 'runtime/experience.flag'
 $sceneDecalFlag=Join-Path $PSScriptRoot 'runtime/decal-only.flag'
+$sceneLoadingFlag=Join-Path $PSScriptRoot 'runtime/loading.flag'
+$sceneNativeFlag=Join-Path $PSScriptRoot 'runtime/native.flag'
+if($NativeMap) {[IO.File]::WriteAllText($sceneNativeFlag,'native-map-mode-regression')} else {Remove-Item -LiteralPath $sceneNativeFlag -ErrorAction SilentlyContinue}
+if($Loading) {[IO.File]::WriteAllText($sceneLoadingFlag,'isolated-loading-measurement')} else {Remove-Item -LiteralPath $sceneLoadingFlag -ErrorAction SilentlyContinue}
 if($DecalOnly) {[IO.File]::WriteAllText($sceneDecalFlag,'terminal-pixel-diagnostic')} else {Remove-Item -LiteralPath $sceneDecalFlag -ErrorAction SilentlyContinue}
 if($Experience) {[IO.File]::WriteAllText($sceneExperienceFlag,'native-gameplay-regression')} else {Remove-Item -LiteralPath $sceneExperienceFlag -ErrorAction SilentlyContinue}
 if($Perf) {[IO.File]::WriteAllText($scenePerfFlag,'actual-frame-benchmark')} else {Remove-Item -LiteralPath $scenePerfFlag -ErrorAction SilentlyContinue}
@@ -42,6 +51,7 @@ $sceneProcess=Start-Process -FilePath (Join-Path $sceneRoot 'adl64.exe') `
     -RedirectStandardError (Join-Path $PSScriptRoot 'runtime/adl-error.log')
 Write-Output ('Isolated AIR PID '+$sceneProcess.Id)
 $scenePolicy=@{highQoS=[bool]$HighQoS;pid=$sceneProcess.Id;peakWorkingSetMB=0;peakPrivateMB=0}
+if($Perf) {$scenePolicy.otherAirProcessIds=@()}
 if($HighQoS) {
     $sceneOriginalPolicy=[ContinuousSceneTest.Power]::Read($sceneProcess)
     $scenePolicy.original=$sceneOriginalPolicy
@@ -51,6 +61,10 @@ while(-not $sceneProcess.WaitForExit(1000) -and ((Get-Date)-$sceneStart).TotalSe
     $sceneProcess.Refresh()
     $scenePolicy.peakWorkingSetMB=[Math]::Max($scenePolicy.peakWorkingSetMB,$sceneProcess.WorkingSet64/1MB)
     $scenePolicy.peakPrivateMB=[Math]::Max($scenePolicy.peakPrivateMB,$sceneProcess.PrivateMemorySize64/1MB)
+    if($Perf) {
+        $others=@(Get-Process -Name adl64 -ErrorAction SilentlyContinue | Where-Object {$_.Id -ne $sceneProcess.Id} | ForEach-Object {$_.Id})
+        $scenePolicy.otherAirProcessIds=@(@($scenePolicy.otherAirProcessIds)+$others | Select-Object -Unique)
+    }
 }
 $scenePolicy | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath (Join-Path $sceneEvidence 'process-policy.json')
 if(-not $sceneProcess.HasExited) {
@@ -78,6 +92,7 @@ if(-not(Test-Path -LiteralPath $sceneResultPath) -or (Get-Item -LiteralPath $sce
 $sceneResult=Get-Content -LiteralPath $sceneResultPath -Raw | ConvertFrom-Json
 $sceneResult | Select-Object ok,elapsedMs,memoryMB,error | ConvertTo-Json -Depth 6
 if(-not $sceneResult.ok) { throw 'Runtime assertions failed; inspect evidence' }
+if($Perf -and $scenePolicy.otherAirProcessIds.Count) {throw 'Performance evidence overlapped other AIR instances; preserve this run and resample when quiet'}
 }
 finally {
     if($sceneProcess -and -not $sceneProcess.HasExited) {$sceneProcess.Kill()}
@@ -89,5 +104,7 @@ finally {
     if($scenePerfFlag) {Remove-Item -LiteralPath $scenePerfFlag -ErrorAction SilentlyContinue}
     if($sceneExperienceFlag) {Remove-Item -LiteralPath $sceneExperienceFlag -ErrorAction SilentlyContinue}
     if($sceneDecalFlag) {Remove-Item -LiteralPath $sceneDecalFlag -ErrorAction SilentlyContinue}
+    if($sceneLoadingFlag) {Remove-Item -LiteralPath $sceneLoadingFlag -ErrorAction SilentlyContinue}
+    if($sceneNativeFlag) {Remove-Item -LiteralPath $sceneNativeFlag -ErrorAction SilentlyContinue}
     $sceneLock.Dispose()
 }

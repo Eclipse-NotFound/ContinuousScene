@@ -3,6 +3,7 @@ $ErrorActionPreference='Stop'
 $csRoot=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../..')).Path
 $gameRoot=(Resolve-Path -LiteralPath (Join-Path $csRoot '../..')).Path
 $app=Join-Path $PSScriptRoot 'app'
+. (Join-Path $PSScriptRoot '../test-process.ps1')
 $entry='WallBlend'+$Kind
 $provenance=Get-Content -LiteralPath (Join-Path $PSScriptRoot 'source-provenance.json') -Raw | ConvertFrom-Json
 if((Get-FileHash -LiteralPath (Join-Path $app 'pfe.swf')).Hash -ne $provenance.hostSHA256){throw 'Frozen host mismatch'}
@@ -28,6 +29,7 @@ $process=$null
 try {
     $arguments=@('-runtime',('"'+(Join-Path $gameRoot 'runtimes/air/win64')+'"'),('"'+$descriptor+'"'))
     $process=Start-Process -FilePath (Join-Path $gameRoot 'adl64.exe') -ArgumentList $arguments -WorkingDirectory $app -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $resultDir 'stdout.log') -RedirectStandardError (Join-Path $resultDir 'stderr.log')
+    [ContinuousSceneTest.Power]::Responsive($process) | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $resultDir 'process-policy.json')
     [pscustomobject]@{Event='started';Kind=$Kind;TestId=$id;PID=$process.Id;Utc=[DateTime]::UtcNow.ToString('o');Results=$resultDir} | ConvertTo-Json -Compress
     $deadline=[DateTime]::UtcNow.AddSeconds($TimeoutSeconds)
     while(-not $process.HasExited -and [DateTime]::UtcNow -lt $deadline){Start-Sleep -Seconds 1;$process.Refresh()}
