@@ -260,5 +260,19 @@
         "dirtyMax": 2
       }
     ]
-  }
+  },
+  "postDeploymentUpdates": [
+    {
+      "module": "LightAndDarkness",
+      "version": "0.3.0",
+      "installedAt": "2026-10-16T02:20:29.0242017+08:00",
+      "sha256": "3BA6A9C93F20C6515648097E621556DC6DC8AB191780D83250CFAF27BB23BB9C",
+      "previousSha256": "488BDC73A0BD843138FB9CABF6AC0B81159493838E3DAD4B2916688CE4C597F1",
+      "sourceReceipt": "mods/LightAndDarkness/state/projectile-deployment-2026-10-15.json",
+      "verifiedEvidence": "remains-lad-projectile-20261016022047545",
+      "passedChecks": 131,
+      "failedChecks": 0,
+      "note": "Read-only verified subsequent independent release. Preserve it; original four-file rollback must refuse the changed LAD target. Original performance evidence measured LAD 0.2.2, not 0.3.0."
+    }
+  ]
 }
