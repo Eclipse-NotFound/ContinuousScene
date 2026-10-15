@@ -10,3 +10,11 @@ release/*.swf
 knowledge/experiments/evidence/*/*.png
 !knowledge/experiments/evidence/full-suite/*.png
 knowledge/experiments/evidence/*/
+build/rv-validation/*
+!build/rv-validation/run.py
+build/wb-validation/*
+!build/wb-validation/prepare.py
+!build/wb-validation/run.ps1
+build/copychannel-lab/*
+!build/copychannel-lab/CopyChannelProbe.as
+!build/copychannel-lab/run.py

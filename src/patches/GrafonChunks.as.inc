@@ -161,6 +161,9 @@
 
       private function sceneEnsure(left:Number, top:Number, width:Number, height:Number, initial:Boolean = false) : void
       {
+         // Preloaded surfaces remain live until sceneClear; no per-frame lookup
+         // sweep is needed once the complete resident grid exists.
+         if(this.scenePreload && this.sceneResident == Math.ceil(this.loc.limX / this.sceneSide) * Math.ceil(this.loc.limY / this.sceneSide)) return;
          if(this.scenePreload)
          {
             left = top = 0; width = this.loc.limX - 1; height = this.loc.limY - 1;

@@ -1,10 +1,16 @@
-param([switch]$AllMods,[switch]$Prepared)
+param([switch]$AllMods,[switch]$Prepared,[string[]]$RefreshModules=@())
 $ErrorActionPreference='Stop'
 $sceneRoot=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../../..')).Path
 $sceneRuntime=Join-Path $PSScriptRoot 'runtime'
 $sceneLines=@('ContinuousScene|ContinuousSceneMod|1|0|0','ContinuousSceneProbe|ContinuousSceneProbe|1|0|0')
 if($AllMods) {
     $sceneExisting=Get-Content -LiteralPath (Join-Path $sceneRoot 'mods/loader-manifest.txt') -Encoding UTF8
+    foreach($sceneRefresh in $RefreshModules) {
+        if($sceneRefresh -notmatch '^[A-Za-z0-9_&-]+$' -or $sceneRefresh -eq 'ContinuousScene' -or
+           -not @($sceneExisting | Where-Object {$_ -match ('^'+[regex]::Escape($sceneRefresh)+'\|[^|]+\|1\|')}).Count) {
+            throw 'RefreshModules must name an existing enabled dependency'
+        }
+    }
     foreach($sceneLine in $sceneExisting) {
         if($sceneLine.StartsWith('#') -or -not $sceneLine.Trim()) {continue}
         $sceneFields=$sceneLine.Split('|')
@@ -14,7 +20,7 @@ if($AllMods) {
         $sceneTarget=Join-Path $sceneRuntime ('mods/'+$sceneFields[0])
         New-Item -ItemType Directory -Force -Path $sceneTarget | Out-Null
         foreach($sceneFolder in @('release','config')) {
-            if($Prepared) {continue}
+            if($Prepared -and $sceneFields[0] -notin $RefreshModules) {continue}
             $scenePath=Join-Path $sceneSource $sceneFolder
             if(Test-Path -LiteralPath $scenePath) {Copy-Item -LiteralPath $scenePath -Destination $sceneTarget -Recurse -Force}
         }

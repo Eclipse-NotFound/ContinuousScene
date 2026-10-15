@@ -9,6 +9,13 @@ import re
 import shutil
 import sys
 import xml.etree.ElementTree as ET
+import render_camera_patch
+import decal_patch
+import map_patch
+import backdrop_patch
+import region_patch
+import entity_color_patch
+import interaction_patch
 
 MOD = Path(__file__).resolve().parents[1]
 ROOT = MOD.parents[1]
@@ -16,6 +23,9 @@ SOURCE = MOD / 'build/cache/current-swf/scripts'
 OUT = MOD / 'build/generated/scripts'
 RUNTIME = MOD / 'build/runtime'
 BASELINE = 'c631cbf3511b6ee303f533d08d51511fe0eb702f43e5db17f5241d8576c64867'
+MERGE_SOURCE = ROOT / 'mods/RConnect/build/m52/a22-map-only-03/native'
+MERGE_BASELINE = 'bebeea8b3f40a7db3e7b1be6f3530d5af9ea7a3299decb164bf0dae107d4011f'
+LAND_BASELINE = 'b1727e83fbec9863a267b07b5428853cb734c442572d747d592922e8b1ebc060'
 
 def replace(text, old, new, count=1):
     actual = text.count(old)
@@ -39,6 +49,11 @@ def patches():
     actual = hashlib.sha256(baseline.read_bytes()).hexdigest()
     if actual != BASELINE:
         raise RuntimeError('Current game SWF changed; export/review it before building.')
+    if hashlib.sha256((MERGE_SOURCE/'pfe.swf').read_bytes()).hexdigest() != MERGE_BASELINE:
+        raise RuntimeError('Published RConnect Map1 merge host changed; review it before building.')
+    land_path = MERGE_SOURCE/'after/scripts/fe/loc/Land.as'
+    if hashlib.sha256(land_path.read_bytes()).hexdigest() != LAND_BASELINE:
+        raise RuntimeError('Published RConnect Map1 Land source changed; review it before building.')
     location = (SOURCE/'fe/loc/Location.as').read_text(encoding='utf-8-sig')
     location = replace(location, 'this.spaceY = World.cellsY;', '''this.spaceY = World.cellsY;
          if(param2.@sceneWidth.length() || param2.@sceneHeight.length())
@@ -49,11 +64,22 @@ def patches():
                throw new Error("ContinuousScene dimensions out of bounds (48..512 by 25..256)");
          }''')
     location = replace(location, 'this.buildLoc(param2);', 'this.buildLoc(param2);\n         World.w.grafon.sceneTrack(this,String(param2.@sceneRevision));')
-    write_class('fe/loc/Location.as', location)
+    write_class('fe/loc/Location.as', region_patch.apply_location(location))
 
     game = (SOURCE/'fe/loc/Game.as').read_text(encoding='utf-8-sig')
     game = method(game, 'save', lambda s: replace(s, 'var _loc1_:Object = new Object();', 'World.w.grafon.sceneSave(this);\n         var _loc1_:Object = new Object();'))
     write_class('fe/loc/Game.as', game)
+
+    # Preserve the deployed seed callback, seed field, and constructor; only
+    # our createMap body is selected for the final method-level replacement.
+    land = land_path.read_text(encoding='utf-8-sig')
+    write_class('fe/loc/Land.as', map_patch.apply_land(land))
+    unit = (SOURCE/'fe/unit/Unit.as').read_text(encoding='utf-8-sig')
+    write_class('fe/unit/Unit.as', entity_color_patch.apply_unit(unit))
+    box = (SOURCE/'fe/loc/Box.as').read_text(encoding='utf-8-sig')
+    write_class('fe/loc/Box.as', entity_color_patch.apply_box(box))
+    player = (SOURCE/'fe/unit/UnitPlayer.as').read_text(encoding='utf-8-sig')
+    write_class('fe/unit/UnitPlayer.as', interaction_patch.apply_unit_player(player))
 
     grafon = (SOURCE/'fe/graph/Grafon.as').read_text(encoding='utf-8-sig')
     extension = (MOD/'src/patches/GrafonChunks.as.inc').read_text(encoding='utf-8')
@@ -129,17 +155,22 @@ def patches():
          if(this.sceneLarge && (Math.max(param1,param3) < -50 || Math.max(param2,param4) < -50 || Math.min(param1,param3) > this.rectX + 50 || Math.min(param2,param4) > this.rectY + 50)) return;
          var _loc6_:MovieClip = null;''')
     grafon = method(grafon, 'paint', paint)
+    grafon = decal_patch.apply_grafon(grafon)
+    grafon = render_camera_patch.apply_grafon(grafon)
+    grafon = backdrop_patch.apply_grafon(grafon)
+    grafon = region_patch.apply_grafon(grafon)
+    grafon = entity_color_patch.apply_grafon(grafon)
     write_class('fe/graph/Grafon.as', grafon)
 
     camera = (SOURCE/'fe/inter/Camera.as').read_text(encoding='utf-8-sig')
     camera = replace(camera, 'if(this.isZoom == 1)', 'if(World.w.loc && (World.w.loc.spaceX > World.cellsX || World.w.loc.spaceY > World.cellsY)) this.isZoom = 0;\n         if(this.isZoom == 1)')
     camera = replace(camera, 'Snd.centrX = this.X;', 'this.w.grafon.sceneTick();\n         Snd.centrX = this.X;')
-    write_class('fe/inter/Camera.as', camera)
+    write_class('fe/inter/Camera.as', render_camera_patch.apply_camera(camera))
 
     # Keep production MainFE and its native manifest loader byte-identical.
     old_main=OUT/'MainFE.as'
     if old_main.exists(): old_main.unlink()
-    (MOD/'build/generated/baseline.json').write_text(json.dumps({'source_sha256':actual,'patched_classes':['fe.loc.Game','fe.loc.Location','fe.graph.Grafon','fe.inter.Camera']},indent=2),encoding='utf-8')
+    (MOD/'build/generated/baseline.json').write_text(json.dumps({'source_sha256':actual,'merge_source_sha256':MERGE_BASELINE,'merge_source':str(MERGE_SOURCE/'pfe.swf'),'land_source_sha256':LAND_BASELINE,'patched_classes':['fe.loc.Game','fe.loc.Land','fe.loc.Location','fe.graph.Grafon','fe.inter.Camera','fe.unit.Unit','fe.loc.Box','fe.unit.UnitPlayer']},indent=2),encoding='utf-8')
 
 def scene():
     width,height = 192,60

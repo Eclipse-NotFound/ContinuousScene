@@ -14,24 +14,28 @@ if(-not $BaseHost) {$BaseHost=Join-Path $sceneRoot 'pfe.swf'}
 $BaseHost=(Resolve-Path -LiteralPath $BaseHost).Path
 if (-not $DriverOnly -and -not $ProbeOnly) {
     if((Get-FileHash -LiteralPath $BaseHost).Hash -ne 'C631CBF3511B6EE303F533D08D51511FE0EB702F43E5DB17F5241D8576C64867') {throw 'Choose the verified original host backup with -BaseHost'}
-    & $Java '-Xmx1400m' '-jar' (Join-Path $sceneTools 'ffdec/ffdec-cli.jar') '-selectclass' 'MainFE,fe.loc.Game,fe.loc.Location,fe.graph.Grafon,fe.inter.Camera' `
+    # Native source anchors remain C631. The final host must also retain the
+    # already-installed RConnect Map1 Land traits and seed constructor.
+    $sceneMergeHost=(Resolve-Path -LiteralPath (Join-Path $sceneRoot 'mods/RConnect/build/m52/a22-map-only-03/native/pfe.swf')).Path
+    if((Get-FileHash -LiteralPath $sceneMergeHost).Hash -ne 'BEBEEA8B3F40A7DB3E7B1BE6F3530D5AF9EA7A3299DECB164BF0DAE107D4011F') {throw 'Published RConnect Map1 host changed; review the merge baseline'}
+    & $Java '-Xmx1400m' '-jar' (Join-Path $sceneTools 'ffdec/ffdec-cli.jar') '-selectclass' 'MainFE,fe.loc.Game,fe.loc.Land,fe.loc.Location,fe.graph.Grafon,fe.inter.Camera,fe.unit.Unit,fe.loc.Box,fe.unit.UnitPlayer' `
         '-export' 'script' (Join-Path $PSScriptRoot 'cache/current-swf') $BaseHost
     if ($LASTEXITCODE -ne 0) { throw 'Current host source export failed' }
     & $Python (Join-Path $PSScriptRoot 'prepare.py') $BaseHost
     if ($LASTEXITCODE -ne 0) { throw 'Source preparation failed' }
     & $Java '-Xmx1400m' '-jar' (Join-Path $sceneTools 'ffdec/ffdec-cli.jar') '-importScript' `
-        $BaseHost (Join-Path $PSScriptRoot 'generated/donor.swf') (Join-Path $PSScriptRoot 'generated/scripts')
+        $sceneMergeHost (Join-Path $PSScriptRoot 'generated/donor.swf') (Join-Path $PSScriptRoot 'generated/scripts')
     if ($LASTEXITCODE -ne 0) { throw 'Isolated host patch failed' }
     $sceneGrafonDir = Join-Path $PSScriptRoot 'generated/grafon-only/fe/graph'
     New-Item -ItemType Directory -Force -Path $sceneGrafonDir | Out-Null
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'generated/scripts/fe/graph/Grafon.as') -Destination (Join-Path $sceneGrafonDir 'Grafon.as')
     & $Java '-Xmx1400m' '-jar' (Join-Path $sceneTools 'ffdec/ffdec-cli.jar') '-importScript' `
-        $BaseHost (Join-Path $PSScriptRoot 'generated/grafon-host.swf') (Join-Path $PSScriptRoot 'generated/grafon-only')
+        $sceneMergeHost (Join-Path $PSScriptRoot 'generated/grafon-host.swf') (Join-Path $PSScriptRoot 'generated/grafon-only')
     if ($LASTEXITCODE -ne 0) { throw 'Renderer donor failed' }
     $sceneFfdec = Join-Path $sceneTools 'ffdec/ffdec-cli.jar'
     foreach($sceneSourceSwf in @('original','donor')) {
-        $sceneInput=if($sceneSourceSwf -eq 'original') {$BaseHost} else {Join-Path $PSScriptRoot 'generated/donor.swf'}
-        & $Java '-Xmx1400m' '-jar' $sceneFfdec '-format' 'script:pcode' '-selectclass' 'fe.loc.Location,fe.inter.Camera,fe.loc.Game' `
+        $sceneInput=if($sceneSourceSwf -eq 'original') {$sceneMergeHost} else {Join-Path $PSScriptRoot 'generated/donor.swf'}
+        & $Java '-Xmx1400m' '-jar' $sceneFfdec '-format' 'script:pcode' '-selectclass' 'fe.loc.Location,fe.inter.Camera,fe.loc.Game,fe.loc.Land,fe.unit.Unit,fe.loc.Box,fe.unit.UnitPlayer' `
             '-export' 'script' (Join-Path $PSScriptRoot ('generated/'+$sceneSourceSwf+'-pcode')) $sceneInput
         if($LASTEXITCODE -ne 0) {throw 'P-code export failed'}
     }
@@ -42,10 +46,9 @@ if (-not $DriverOnly -and -not $ProbeOnly) {
     & $Java '-Xmx1400m' '-jar' $sceneFfdec '-replace' (Join-Path $PSScriptRoot 'generated/grafon-host.swf') `
         (Join-Path $PSScriptRoot 'runtime/pfe.swf') (Join-Path $PSScriptRoot 'generated/audit/replace-args.txt')
     if($LASTEXITCODE -ne 0) {throw 'Method replacement failed'}
-    if(-not(Test-Path -LiteralPath (Join-Path $PSScriptRoot 'generated/original.xml'))) {
-        & $Java '-Xmx1400m' '-jar' $sceneFfdec '-swf2xml' $BaseHost (Join-Path $PSScriptRoot 'generated/original.xml')
-        if($LASTEXITCODE -ne 0) {throw 'Original metadata export failed'}
-    }
+    # Never reuse the old C631 metadata cache for a Map1-based build.
+    & $Java '-Xmx1400m' '-jar' $sceneFfdec '-swf2xml' $sceneMergeHost (Join-Path $PSScriptRoot 'generated/original.xml')
+    if($LASTEXITCODE -ne 0) {throw 'Merge baseline metadata export failed'}
     & $Java '-Xmx1400m' '-jar' $sceneFfdec '-swf2xml' (Join-Path $PSScriptRoot 'runtime/pfe.swf') (Join-Path $PSScriptRoot 'generated/final.xml')
     if($LASTEXITCODE -ne 0) {throw 'Final metadata export failed'}
     & $Python (Join-Path $PSScriptRoot 'pcode_plan.py') 'audit'

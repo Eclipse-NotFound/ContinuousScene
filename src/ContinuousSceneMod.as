@@ -14,13 +14,14 @@ package {
 
     /** Production entry only: no new game, test enemies, movement or save-slot writes. */
     public class ContinuousSceneMod {
-        public static const VERSION:String="0.4.0";
+        public static const VERSION:String="0.5.0";
         private static const LAND:String="continuous_scene";
         private static var main:*, w:*, worldClass:Class, gameData:Class;
         private static var pool:XML, definition:XML;
         private static var ready:Boolean=false, failed:Boolean=false;
         private static var button:Sprite, label:TextField, carrier:MovieClip;
         private static var nextLog:int=0;
+        private static var centeredMap:*;
         public static function init(host:*):void {
             if(main) return;
             main=host;
@@ -84,6 +85,7 @@ package {
         }
         public static function refresh():void {
             if(!ready || !w || !w.game || !w.pip || !w.pip.active || getQualifiedClassName(w.pip.currentPage)!="fe.inter::PipPageInfo") {
+                centeredMap=null;
                 if(button && button.parent) button.parent.removeChild(button);
                 return;
             }
@@ -99,6 +101,23 @@ package {
             label.text=w.game.curLandId==LAND?"大场景 · 返回基地":"大场景 · 工厂";
             button.x=540; button.y=30;
             if(!button.parent) w.vpip.addChild(button);
+            // The native page carries its previous pan between lands. Center a
+            // newly opened large map once; subsequent manual pan/zoom stays free.
+            var page:*=w.pip.currentPage;
+            var map:*=page.map;
+            if(w.game.curLandId==LAND && map && map.parent && map.parent.parent.visible) {
+                if(centeredMap!==map) {
+                    page.funCenter(null);
+                    // If an axis fits, show its whole extent. Centering only
+                    // the player at an edge would needlessly crop a small map.
+                    var mapFrame:*=map.parent.parent.getChildByName("fon");
+                    if(mapFrame) {
+                        if(map.width<=mapFrame.width) map.parent.x=(mapFrame.width-map.width)/2-map.x;
+                        if(map.height<=mapFrame.height) map.parent.y=(mapFrame.height-map.height)/2-map.y;
+                    }
+                    centeredMap=map;
+                }
+            } else centeredMap=null;
         }
         private static function onClick(event:MouseEvent):void { event.stopPropagation(); travel(); }
         public static function travel():void {

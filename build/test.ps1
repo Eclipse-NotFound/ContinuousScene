@@ -1,9 +1,10 @@
-param([int]$TimeoutSeconds=200,[string]$EvidenceName='latest',[switch]$Quick,[switch]$Benchmark,[switch]$Preload,[switch]$HighQoS,[switch]$Cull,[switch]$Streaming,[switch]$Factory)
+param([int]$TimeoutSeconds=200,[string]$EvidenceName='latest',[switch]$Quick,[switch]$Benchmark,[switch]$Preload,[switch]$HighQoS,[switch]$Cull,[switch]$Streaming,[switch]$Factory,[switch]$Perf,[switch]$Experience,[switch]$DecalOnly)
 $ErrorActionPreference='Stop'
 $sceneRoot=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../../..')).Path
 $sceneDescriptor=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot 'runtime/application.xml')).Path
 [xml]$sceneManifest=Get-Content -LiteralPath $sceneDescriptor -Raw
 if($sceneManifest.application.id -ne 'pfe-modsettings-continuous-scene') { throw 'Refusing a non-isolated AIR id' }
+if($DecalOnly -and (-not $Experience -or -not $Factory)) {throw 'DecalOnly requires the isolated factory Experience probe'}
 $sceneLock=[IO.File]::Open((Join-Path $PSScriptRoot 'runtime/session.lock'),[IO.FileMode]::OpenOrCreate,[IO.FileAccess]::ReadWrite,[IO.FileShare]::None)
 $sceneProcess=$null
 $sceneTimedOut=$false
@@ -22,6 +23,12 @@ $sceneBenchmarkFlag=Join-Path $PSScriptRoot 'runtime/benchmark.flag'
 $scenePreloadFlag=Join-Path $PSScriptRoot 'runtime/preload.flag'
 $sceneCullFlag=Join-Path $PSScriptRoot 'runtime/cull.flag'
 $sceneFactoryFlag=Join-Path $PSScriptRoot 'runtime/factory.flag'
+$scenePerfFlag=Join-Path $PSScriptRoot 'runtime/perf.flag'
+$sceneExperienceFlag=Join-Path $PSScriptRoot 'runtime/experience.flag'
+$sceneDecalFlag=Join-Path $PSScriptRoot 'runtime/decal-only.flag'
+if($DecalOnly) {[IO.File]::WriteAllText($sceneDecalFlag,'terminal-pixel-diagnostic')} else {Remove-Item -LiteralPath $sceneDecalFlag -ErrorAction SilentlyContinue}
+if($Experience) {[IO.File]::WriteAllText($sceneExperienceFlag,'native-gameplay-regression')} else {Remove-Item -LiteralPath $sceneExperienceFlag -ErrorAction SilentlyContinue}
+if($Perf) {[IO.File]::WriteAllText($scenePerfFlag,'actual-frame-benchmark')} else {Remove-Item -LiteralPath $scenePerfFlag -ErrorAction SilentlyContinue}
 if($Factory) {[IO.File]::WriteAllText($sceneFactoryFlag,'native-factory-regression')} else {Remove-Item -LiteralPath $sceneFactoryFlag -ErrorAction SilentlyContinue}
 if($Cull) {[IO.File]::WriteAllText($sceneCullFlag,'hide-offscreen-rasters-only')} else {Remove-Item -LiteralPath $sceneCullFlag -ErrorAction SilentlyContinue}
 if($Preload -or -not $Streaming) {[IO.File]::WriteAllText($scenePreloadFlag,'all-scene-surfaces')} else {Remove-Item -LiteralPath $scenePreloadFlag -ErrorAction SilentlyContinue}
@@ -79,5 +86,8 @@ finally {
     if($scenePreloadFlag) {Remove-Item -LiteralPath $scenePreloadFlag -ErrorAction SilentlyContinue}
     if($sceneCullFlag) {Remove-Item -LiteralPath $sceneCullFlag -ErrorAction SilentlyContinue}
     if($sceneFactoryFlag) {Remove-Item -LiteralPath $sceneFactoryFlag -ErrorAction SilentlyContinue}
+    if($scenePerfFlag) {Remove-Item -LiteralPath $scenePerfFlag -ErrorAction SilentlyContinue}
+    if($sceneExperienceFlag) {Remove-Item -LiteralPath $sceneExperienceFlag -ErrorAction SilentlyContinue}
+    if($sceneDecalFlag) {Remove-Item -LiteralPath $sceneDecalFlag -ErrorAction SilentlyContinue}
     $sceneLock.Dispose()
 }

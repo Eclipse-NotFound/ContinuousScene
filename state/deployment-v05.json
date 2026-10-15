@@ -1,0 +1,123 @@
+{
+  "version": "0.5.0",
+  "status": "installed",
+  "preparedAt": "2026-10-15T16:18:17.4463443+08:00",
+  "backupDirectory": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\upgrade-v05-20261015-161817307-8a1b6645",
+  "hostHash": "9987C696BEBBEB0626D8F73DA775CF867B2CED4FF626137FD9F161264270F938",
+  "manifestHash": "972764B4513F9FDAC130AD7F76783ABCC3F0781DA9E6EF0500A5598220BB7FDF",
+  "sceneXMLHash": "1CEA74E218A55894D432E12CDFC544952D37CFFF5FF55B256B1B970573EB7A9E",
+  "files": [
+    {
+      "relative": "pfe.swf",
+      "before": "BEBEEA8B3F40A7DB3E7B1BE6F3530D5AF9EA7A3299DECB164BF0DAE107D4011F",
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\pfe.swf",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\pfe.swf",
+      "after": "9987C696BEBBEB0626D8F73DA775CF867B2CED4FF626137FD9F161264270F938",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\upgrade-v05-20261015-161817307-8a1b6645\\pfe.swf"
+    },
+    {
+      "relative": "mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "before": "E749F44ABF189B40BBE6409A591D67260665E06411B1DE3F4A0AB075B26B7D2F",
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\release\\ContinuousSceneMod.swf",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\mods\\ContinuousScene\\release\\ContinuousSceneMod.swf",
+      "after": "E977168ED9F1B21FA27A01361E18483D83AAF0808B1A657838F06F6284A81928",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\upgrade-v05-20261015-161817307-8a1b6645\\ContinuousSceneMod.swf"
+    },
+    {
+      "relative": "mods/RealisticVision/release/RealisticVisionMod.swf",
+      "before": "89B391BCE114534D6F2C0147BD4B136602168EE4362AA36F6F0C37ECD47173B5",
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\RealisticVision\\release\\RealisticVisionMod.swf",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\mods\\RealisticVision\\release\\RealisticVisionMod.swf",
+      "after": "B7695DF82AA45FDB783C4EB88AFFCB0C34A7674E3A052D2FD128867172A83A49",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\upgrade-v05-20261015-161817307-8a1b6645\\RealisticVisionMod.swf"
+    },
+    {
+      "relative": "mods/WallBlend/release/WallBlendMod.swf",
+      "before": "A6AE7EF3CADA5D4C733A53CE72E2423C35724EF8075CA81393B26EE47F0302CA",
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\WallBlend\\release\\WallBlendMod.swf",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\mods\\WallBlend\\release\\WallBlendMod.swf",
+      "after": "8EAC7B08BABF2631A1897C988C36416BA8B6CF204788256B46F436CACB319BB3",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\upgrade-v05-20261015-161817307-8a1b6645\\WallBlendMod.swf"
+    }
+  ],
+  "unchangedModules": [
+    {
+      "relative": "mods/ModLoader/release/ModLoaderMod.swf",
+      "hash": "2D01241A89FB25D608AC5138254E14DC3E5FB46E7120319A0D5922E4CF9816FD"
+    },
+    {
+      "relative": "mods/Sandevistan/release/SandevistanMod.swf",
+      "hash": "A6E706F0AF8CC912A600D3B2262D3AAE1CCFFB7A9DD18B6B45F354FA860272E4"
+    },
+    {
+      "relative": "mods/Rconnect/release/RConnectMod.swf",
+      "hash": "07B76ED8082462C43EAE7048AF041370FE315A5B6B23CCDF4E600E02ECD443A4"
+    },
+    {
+      "relative": "mods/MoreSkills&Weapons/release/MoreSkillsWeaponsMod.swf",
+      "hash": "DDADA303CD78EF2EA46D0261055B77F48AD72EA99F722555ABCB329DCDE1F9CE"
+    },
+    {
+      "relative": "mods/TDFC/release/TDFCMod.swf",
+      "hash": "99BFBAA68229635FBAA496EF9287A94BB9EA7C65D71339CEF3FDE65F47E30275"
+    },
+    {
+      "relative": "mods/RandomRooms/release/RandomRoomsMod.swf",
+      "hash": "F21D7C04FF1CCF59779F0B8D9F52D982585145447C47727C660E9ECC7D62C0DF"
+    },
+    {
+      "relative": "mods/RModifier/release/LootEditorMod.swf",
+      "hash": "4F1D6CF19979F4EA4960F8CCD8377C1D3CAC490BED9949866885357D073C8625"
+    },
+    {
+      "relative": "mods/FirearmAttachments/release/FirearmAttachmentsMod.swf",
+      "hash": "EA9DAF3AE75FF4F13DDC331DF1EA3CD0584FFAC32F4E173CD0BC1F049CC42C3D"
+    }
+  ],
+  "evidence": [
+    {
+      "suite": "Factory",
+      "directory": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\..\\knowledge\\experiments\\evidence\\factory-v05-final",
+      "mode": "factory",
+      "resultSHA256": "AC1CBBEB6A9AF861777BF4C08935E8C6B98CF8049DA3F2348FA2EC62D6D3047F",
+      "assertions": 34,
+      "elapsedMs": 162881
+    },
+    {
+      "suite": "Lab",
+      "directory": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\..\\knowledge\\experiments\\evidence\\lab-v05-final",
+      "mode": "full",
+      "resultSHA256": "58879DD5B013871A514F4BF47E3AAFFBD7B22B85776267BA1235A7D3D8824D2E",
+      "assertions": 68,
+      "elapsedMs": 168670
+    },
+    {
+      "suite": "Experience",
+      "directory": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\..\\knowledge\\experiments\\evidence\\experience-v05-final",
+      "mode": "experience",
+      "resultSHA256": "0D56A923ED06D663BA76E968DF4F70811B78BFAA5FBC58A14279F5BD2B56503A",
+      "assertions": 111,
+      "elapsedMs": 122870
+    },
+    {
+      "suite": "Perf",
+      "directory": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\..\\knowledge\\experiments\\evidence\\perf-v05-final",
+      "mode": "performance",
+      "resultSHA256": "F78FF4CD034CC637300749DFC728F48B84F29DFE9AD97C0ABB59E2EA637F8130",
+      "assertions": 0,
+      "elapsedMs": 86966
+    }
+  ],
+  "bytecodeAuditSHA256": "E817321EEC00337183135F783D4C96B32AA1453A4AF5ABFE6CC4E8910F5803E2",
+  "installedAt": "2026-10-15T16:18:17.6359897+08:00",
+  "verification": {
+    "passed": true,
+    "verifiedAt": "2026-10-15T16:32:43.8642825+08:00",
+    "nativeSmokeDirectory": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\pfe-modsettings-continuous-installed-20261015161849",
+    "nativeSmokeSHA256": "7ECE403DA5E332B867CC7DC38FDAAFFDD333F998B14AB07CE656D4D3CD7AC556",
+    "nativeSmokeChecks": 15,
+    "performanceRepeatDirectory": "knowledge/experiments/evidence/perf-v05-repeat",
+    "performanceRepeatSHA256": "08524567A20A173102D5114074F6753E562A1EA55FDB1BB12EFB732813E15107",
+    "limitation": "Residual long frames and high memory use remain; no native-performance parity claim."
+  }
+}

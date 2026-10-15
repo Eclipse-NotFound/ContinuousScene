@@ -1,6 +1,8 @@
 """Build RV from its installed lineage, without publishing the separate authority WIP."""
 from pathlib import Path
 import subprocess
+import render_camera_patch
+import vision_perf_patch
 MOD=Path(__file__).resolve().parents[1]
 ROOT=MOD.parents[1]
 RV=ROOT/'mods/RealisticVision'
@@ -101,12 +103,12 @@ def paint_bounds(source):
     return source
 
 if __name__=='__main__':
-    own=RV/'src/RealisticVisionMod.as'
-    own.write_text(change(own.read_text(encoding='utf-8-sig')),encoding='utf-8')
     files=subprocess.check_output(['git','-C',str(RV),'ls-tree','-r','--name-only',BASE,'src'],text=True).splitlines()
     for relative in files:
         content=subprocess.check_output(['git','-C',str(RV),'show',BASE+':'+relative])
         path=STAGE/Path(relative).relative_to('src'); path.parent.mkdir(parents=True,exist_ok=True)
-        if relative.endswith('/RealisticVisionMod.as'): content=change(content.decode('utf-8-sig')).encode('utf-8')
+        if relative.endswith('/RealisticVisionMod.as'):
+            text=vision_perf_patch.apply(render_camera_patch.apply_vision(change(content.decode('utf-8-sig'))))
+            content=text.replace('v0.30.4-scene','v0.30.5-scene').encode('utf-8')
         path.write_bytes(content)
     print('RV stage based on installed source lineage '+BASE+'; authority WIP excluded')

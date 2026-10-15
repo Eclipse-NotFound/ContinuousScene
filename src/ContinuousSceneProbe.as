@@ -60,6 +60,8 @@ package {
             var descriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
             var ns:Namespace = descriptor.namespace();
             if(String(descriptor.ns::id) != "pfe-modsettings-continuous-scene") return;
+            if(File.applicationDirectory.resolvePath("experience.flag").exists) {ContinuousSceneExperienceProbe.init(host);return;}
+            if(File.applicationDirectory.resolvePath("perf.flag").exists) {ContinuousScenePerfProbe.init(host);return;}
             if(File.applicationDirectory.resolvePath("factory.flag").exists) {ContinuousSceneFactoryProbe.init(host);return;}
             main = host;
             File.applicationStorageDirectory.createDirectory();
