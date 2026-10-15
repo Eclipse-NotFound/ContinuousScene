@@ -28,7 +28,7 @@ package {
         private static var lastTime:int;
         private static var deltas:Array = [];
         private static var walkingDeltas:Array = [];
-        private static var report:Object = {version:"0.3.1", assertions:[], samples:[]};
+        private static var report:Object = {version:"0.4.0", assertions:[], samples:[]};
         private static var scene:*;
         private static var initialPlayer:*;
         private static var manual:Boolean = false;
@@ -60,6 +60,7 @@ package {
             var descriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
             var ns:Namespace = descriptor.namespace();
             if(String(descriptor.ns::id) != "pfe-modsettings-continuous-scene") return;
+            if(File.applicationDirectory.resolvePath("factory.flag").exists) {ContinuousSceneFactoryProbe.init(host);return;}
             main = host;
             File.applicationStorageDirectory.createDirectory();
             manual = File.applicationDirectory.resolvePath("manual.flag").exists;
@@ -69,7 +70,7 @@ package {
             report.mode = manual ? "manual" : benchmark ? "benchmark" : quick ? "combat-only" : "full";
             report.startedUTC = new Date().toUTCString();
             started = lastTime = getTimer();
-            write("ContinuousSceneProbe.log","[ContinuousScene] v0.3.1 init manual=" + manual + "\n",false);
+            write("ContinuousSceneProbe.log","[ContinuousScene] v0.4.0 init manual=" + manual + "\n",false);
             host.stage.addEventListener(Event.ENTER_FRAME,tick,false,0,true);
             host.stage.addEventListener(Event.ENTER_FRAME,beginFrame,false,1000,true);
             host.stage.addEventListener(Event.ENTER_FRAME,endFrame,false,-300,true);

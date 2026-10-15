@@ -1,0 +1,34 @@
+{
+  "version": "0.4.0",
+  "installed": "2026-10-15T12:03:27.4526502+08:00",
+  "factoryEvidence": "factory-v04-release",
+  "labEvidence": "factory-v04-lab-release",
+  "hostHash": "2F9FC7FBB04C5AF8D445C782023128D365DDEE20BD0DB19F23972099EBAA0701",
+  "manifestHash": "972764B4513F9FDAC130AD7F76783ABCC3F0781DA9E6EF0500A5598220BB7FDF",
+  "files": [
+    {
+      "relative": "pfe.swf",
+      "before": "838D8F02E844C19D7985B99C27907C93811140866B34B79144B7934F09B4943D",
+      "after": "2F9FC7FBB04C5AF8D445C782023128D365DDEE20BD0DB19F23972099EBAA0701",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\pfe.swf",
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\pfe.swf",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\pfe_before_ContinuousScene_v04_20261015-120327.swf"
+    },
+    {
+      "relative": "mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "before": "76877E2E50CD0163674868A133699EF2734D00B911873461530D0BE6846A3B6C",
+      "after": "E749F44ABF189B40BBE6409A591D67260665E06411B1DE3F4A0AB075B26B7D2F",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\mods\\ContinuousScene\\release\\ContinuousSceneMod.swf",
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\release\\ContinuousSceneMod.swf",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\upgrade-v04-20261015-120327\\ContinuousSceneMod.swf"
+    },
+    {
+      "relative": "mods/ContinuousScene/release/scene.xml",
+      "before": "8BF1794609AAA3C776566835F87EDFEA8E929BF509A44E797F8B6289E70E59B9",
+      "after": "1CEA74E218A55894D432E12CDFC544952D37CFFF5FF55B256B1B970573EB7A9E",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\scene-factory.xml",
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\release\\scene.xml",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\upgrade-v04-20261015-120327\\scene.xml"
+    }
+  ]
+}

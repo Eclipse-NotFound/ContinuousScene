@@ -77,8 +77,12 @@ def patches():
                this.setLight();
             }''')
         # DisplayObject sources use world coordinates; scratch BitmapData composites stay local.
-        s = re.sub(r'(this\.\w+Bmp\.draw\((?:voda|front|back|back2),)new Matrix\(\)', r'\1this.sceneMatrix()', s)
-        s = re.sub(r'(this\.\w+Bmp\.draw\(bo\.(?:vis|erase|light),)this\.m', r'\1this.sceneMatrix(this.m)', s)
+        # backBmp2 ends with a digit. The old *Bmp regex silently missed that
+        # layer, stamping its pipes/fences at the same local position in every chunk.
+        s, count = re.subn(r'(this\.(?:vodaBmp|frontBmp|backBmp2)\.draw\((?:voda|front|back|back2),)new Matrix\(\)', r'\1this.sceneMatrix()', s)
+        if count != 4: raise RuntimeError('Expected four world-space tile draws')
+        s, count = re.subn(r'(this\.(?:backBmp|backBmp2|satsBmp|colorBmp)\.draw\(bo\.(?:vis|erase|light),)this\.m', r'\1this.sceneMatrix(this.m)', s)
+        if count != 4: raise RuntimeError('Expected four world-space decoration draws')
         s = replace(s, 'this.backBmp2.draw(this.getObj("back_pink_t",numbBack),this.m,', 'this.backBmp2.draw(this.getObj("back_pink_t",numbBack),this.sceneMatrix(this.m),')
         s = replace(s, 'this.drawAllObjs();', '''this.sceneRestoreMarks();
          if(!this.sceneRepaint) this.drawAllObjs();
@@ -158,10 +162,8 @@ def scene():
         ET.SubElement(room,'a').text='.'.join(cells)
     ET.SubElement(room,'obj',id='player',x='7',y='53',code='cs-spawn')
     root=ET.Element('all'); root.append(room)
-    (RUNTIME/'scene.xml').write_bytes(ET.tostring(root,encoding='utf-8',xml_declaration=True))
-    dest=RUNTIME/'mods/ContinuousScene/release'
-    dest.mkdir(parents=True,exist_ok=True)
-    shutil.copy2(RUNTIME/'scene.xml',dest/'scene.xml')
+    # Keep the old sparse corridor solely as an isolated combat regression fixture.
+    (RUNTIME/'scene-lab.xml').write_bytes(ET.tostring(root,encoding='utf-8',xml_declaration=True))
 
 def resources():
     RUNTIME.mkdir(parents=True, exist_ok=True)
@@ -185,4 +187,6 @@ def resources():
 
 if __name__ == '__main__':
     patches(); resources(); scene()
+    from factory_scene import build as factory
+    factory()
     print(json.dumps({'generated':str(OUT),'runtime':str(RUNTIME)},ensure_ascii=False))

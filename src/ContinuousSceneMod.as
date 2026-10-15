@@ -14,7 +14,7 @@ package {
 
     /** Production entry only: no new game, test enemies, movement or save-slot writes. */
     public class ContinuousSceneMod {
-        public static const VERSION:String="0.3.1";
+        public static const VERSION:String="0.4.0";
         private static const LAND:String="continuous_scene";
         private static var main:*, w:*, worldClass:Class, gameData:Class;
         private static var pool:XML, definition:XML;
@@ -49,15 +49,15 @@ package {
                 stream.open(File.applicationDirectory.resolvePath("mods/ContinuousScene/release/scene.xml"),FileMode.READ);
                 pool=new XML(stream.readUTFBytes(stream.bytesAvailable));
             } finally { stream.close(); }
-            definition=<land id="continuous_scene" dif="0" locx="0" locy="0" stage="1" tip="test" acc="1" list="0"><options backwall="tBackWall" fon="fonWay" color="yellow" darkness="-120"/></land>;
+            definition=<land id="continuous_scene" dif="0" locx="0" locy="0" stage="1" tip="test" acc="1" list="0"><options backwall="tBackWall" fon="fonDarkClouds" music="music_plant_2"/></land>;
             var exists:Boolean=false;
             for each(var land:XML in gameData["d"].land) if(String(land.@id)==LAND) exists=true;
             if(!exists) gameData["d"].appendChild(definition);
             w.landData[LAND]={allroom:pool,loaded:true};
             var res:*=getDefinitionByName("fe.Res");
-            res["d"].appendChild(<map id="continuous_scene"><n>大场景 · 连续探索</n></map>);
+            res["d"].appendChild(<map id="continuous_scene"><n>大场景 · 工厂</n></map>);
             ready=true; carrier["sceneAPI"].ready=true;
-            log("registered 192x60 native land");
+            log("registered "+pool.room.@sceneWidth+"x"+pool.room.@sceneHeight+" native land kind="+pool.@sceneKind);
         }
         private static function onFrame(event:Event):void {
             if(failed) return;
@@ -96,7 +96,7 @@ package {
                 label.defaultTextFormat=new TextFormat("Microsoft YaHei",13,0xd5ebbc,false,null,null,null,null,"center");
                 button.addChild(label); button.addEventListener(MouseEvent.CLICK,onClick);
             }
-            label.text=w.game.curLandId==LAND?"大场景 · 返回基地":"大场景 · 连续探索";
+            label.text=w.game.curLandId==LAND?"大场景 · 返回基地":"大场景 · 工厂";
             button.x=540; button.y=30;
             if(!button.parent) w.vpip.addChild(button);
         }

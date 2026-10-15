@@ -10,6 +10,10 @@ if($sceneManifest.application.id -ne 'pfe-modsettings-continuous-scene') {throw 
 $sceneLock=[IO.File]::Open((Join-Path $sceneRuntime 'session.lock'),[IO.FileMode]::OpenOrCreate,[IO.FileAccess]::ReadWrite,[IO.FileShare]::None)
 $sceneFlag=Join-Path $sceneRuntime 'manual.flag'
 try {
+    # This legacy manual launcher intentionally exercises the sparse combat lab.
+    # The installed information-page entry uses the native factory fixture.
+    Copy-Item -LiteralPath (Join-Path $sceneRuntime 'scene-lab.xml') -Destination (Join-Path $sceneRuntime 'scene.xml') -Force
+    Copy-Item -LiteralPath (Join-Path $sceneRuntime 'scene-lab.xml') -Destination (Join-Path $sceneRuntime 'mods/ContinuousScene/release/scene.xml') -Force
     [IO.File]::WriteAllText($sceneFlag,'manual')
     Write-Output 'Loading the isolated scene (about 20 seconds). A fresh demo starts each time.'
     # This is the user-invoked interactive launcher; the driver shows its AIR window.

@@ -1,2 +1,1143 @@
 <?xml version='1.0' encoding='utf-8'?>
-<all><room name="continuous-lab" sceneWidth="192" sceneHeight="60" sceneRevision="lab-2"><options black="0" color="yellow" darkness="-120" /><a>A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J.J._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.C.C.C.C.C.C.C.C.C.C.C.C.C._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._R._R._R._R._R._R._R._R._R._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q._Q.A</a><a>A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.C.C.C.C.C.C.C.C.C.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.I.I.I.I.C.C.C.C.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.G.G.G.G.H.H.H.H.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A</a><a>A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.C.C.C.C.C.C.C.C.C.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.I.I.I.I.C.C.C.C.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.G.G.G.G.H.H.H.H.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A</a><a>A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.C.C.C.C.C.C.C.C.C.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.I.I.I.I.C.C.C.C.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.G.G.G.G.H.H.H.H.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A</a><a>A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.C.C.C.C.C.C.C.C.C.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.I.I.I.I.C.C.C.C.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.G.G.G.G.H.H.H.H.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A</a><a>A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.C.C.C.C.C.C.C.C.C.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.I.I.I.I.C.C.C.C.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.G.G.G.G.H.H.H.H.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A</a><a>A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.C.C.C.C.C.C.C.C.C.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.I.I.I.I.C.C.C.C.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.G.G.G.G.H.H.H.H.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A</a><obj id="player" x="7" y="53" code="cs-spawn" /></room></all>
+<all sceneKind="factory" source="Rooms/rooms_plant.xml">
+  <room name="continuous-factory" sceneWidth="192" sceneHeight="75" sceneRevision="factory-1">
+    <options backwall="tBackWall" music="music_plant_2" />
+    <sceneRegions>
+      <region x="0" y="0" width="48" height="25" backwall="tBackWall" color="" dark="0" source="вход1" index="12" />
+      <region x="48" y="0" width="48" height="25" backwall="tBackWall" color="" dark="0" source="вход2" index="33" />
+      <region x="96" y="0" width="48" height="25" backwall="tBackWall" color="" dark="0" source="легкость2" index="13" />
+      <region x="144" y="0" width="48" height="25" backwall="tBackWall" color="" dark="0" source="цех4" index="41" />
+      <region x="0" y="25" width="48" height="25" backwall="tBackWall" color="" dark="0" source="офисы2" index="24" />
+      <region x="48" y="25" width="48" height="25" backwall="tBackWall" color="" dark="0" source="офисы3" index="32" />
+      <region x="96" y="25" width="48" height="25" backwall="tBackWall" color="" dark="0" source="цех5" index="49" />
+      <region x="144" y="25" width="48" height="25" backwall="tBackWall" color="" dark="0" source="ячейки" index="18" />
+      <region x="0" y="50" width="48" height="25" backwall="tShtuk" color="" dark="0" source="легкость3" index="7" />
+      <region x="48" y="50" width="48" height="25" backwall="tConcreteDirt" color="red" dark="0" source="несложно" index="37" />
+      <region x="96" y="50" width="48" height="25" backwall="tLeaking" color="" dark="0" source="яма" index="52" />
+      <region x="144" y="50" width="48" height="25" backwall="tBackWall" color="blue" dark="0" source="вентиляция" index="48" />
+    </sceneRegions>
+    <a>A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A</a>
+    <a>A._D._D._D._D._D._D._D._D._D.F._._._._._._._._._.C._B._B._B._B._B._B.C._._._._._._._._._._._._._._._._._._._.C._._C._C._C._C._C._C._C._C._C._C._C._C._C._C._._._._.A.A._._._._._._._._._._._._._._._._._._._._._._._._._._._.C._B._B._B._B._B._B._B._B._B._B.C._._._._._._._._._._._._._._._._._._._._._._._._.C._D._D._D._D._D._D._D._D._D._D.C.A.C.C.C.C.C.C._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.A</a>
+    <a>A._D._D._D._D._D._D._D._D._D.F._._._._._._._._._._._B._B._B._B._B._B.C._._._._._._._._._._._._._._._._._._._.C._._C._C._C._C._C._C._C._C._C._C._C._C._C._C._._._._.A.A._._._._._._._._._._._._._._._._._._._._._._._._._._._.C._B._B._B._B._B._B._B._B._B._B.C._._._._._._._._._._._._._._._._._._._._._._._._.C._D._D._D._D._D._D._D._D._D._D.C._._._.C.C.C.C._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.A</a>
+    <a>A._D._D._D._D._D._D._D._D._D.F._._._._._._._._._._._B._B._B._B._B._B.C._._._._._._._._._._._._._._._._._._._.C._A._A._A._A._A._A._A._A._A._A._A._A._A._A.AC.A.A.A.A.A.A._._._._._._._._._._._._._._._._._._._._._._._._._._._.C._B._B._B._B._B._B._B._B._B._B.C._._._._._._._._._._._._._._._._._._._._._._._._.C._D._D._D._D._D._D._D._D._D._D.C._._._.C.C.C.C._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.A</a>
+    <a>A.C.C.C.C.C.C.C.C.C.C.C.C.C._._А.C.C.C.C.C.C.C.C.C.C.C.C._._._._._._._._._._._._._._._._._._._.C._._C-._C-._C-._C-._C._C._C._C._C._C._C._C._C.AC.G.G.G.G.A.A._._._._._._._._._._._._._._._._._._._._._._._._-._-._-._.C._B._B._B._B._B._B._B._B._B._B.C._._._._._._._._._._._._._._._._._._._._._._._._.C._D._D._D._D._D._D._D._D._D._D.C.A._._А.C.C.C.C._._._._-._-._-._-._._._._._._._-._-._-._-._._._._._._._-._-._-._-._._._._._._._-._-._-._-._Б._._.A</a>
+    <a>A._._._._._._._._._._.C._._._._А._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.C._._C._C._C._C._C._C._C._C._C._C._C._C._C.AC.G.G.G.G.A.A._._._._._._._._._._._._._._._._._._._._._._._._._._._._._B._B._B._B._B._B._B._B._B._B.C._._._._._._._._._._._._._._._._._._._._._._._._.C._D._D._D._D._D._D._D._D._D._D.C.A._._А.C.C.C.C._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._Б._._.A</a>
+    <a>A._._._._._._._._._._.C._._._._А._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.C._._C._C._C._C._C._C._C._C._C._C._C._C._C.AC.G.G.G.G.A.A._._._._._._._._._._._._._._._._._._._._._._._._._._._._._B._B._B._B._B._B._B._B._B._B._._._._._._._._._._._._._._._._._._._._._._._._._._._D._D._D._D._D._D._D._D._D._D.C.A._._А.C.C.C.C._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._Б._._.A</a>
+    <a>A._._._._._._._._._._._._._._._А._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.C._._C._C._C._C._C._C._C._C._C._C._C._C._C.AC.A.A.A.A.A.A.A.A.A.A.A._._._._._._._._._._._._._._._._._._._._._._._._B._B._B._B._B._B._B._B._B._B._._._._._._._._._._._._._._._._._._._._._._._._._._._D._D._D._D._D._D._D._D._D._D.C.A._._.C.C.C.C._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._Б._._.A</a>
+    <a>A._._._._._._._._._._._._._._._А._._._._._._._._._._._._._В._-._-._-._-._-._А-.C.C.C.C.C.C.C.C.C.C.C.C.C._._C._C._C._C._C._C._C._C._C._C._C._C._C.CC.C.C.C.C.C.C.C.C.C.C.C._._._._._._._._._._._._._._._._._._._-._-._-._._.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._E._EА.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.A._C._C._C._C._C.C._._._._._._._._._._._._._._._-._-._._._._._._._._._._._._._._._._._._._._._._-._-._-.A</a>
+    <a>A._._._._._._._._._._._._._._._А._._._._._._._._._._._._В._._._._._._._А.C.C.C._._._._._._._._._.C._._C._C._C._C._C._C._C._C._C._C._C._C._C.CC._F._F._F._F._F._F._F._F._F._F.C._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.C._E._E._E._E._E._E._E._E._E._E._E._E._E._E._EА.C._._._._._._._._._._.C._._._._._._._._._._._._C._C._C._C._C._C.C._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.A</a>
+    <a>A._._._._._._._._._._._._._._._А._._._._._._._._._._._В._._._._._._._._А.C.C.C._._._._._._._._._.C._._C._C._C._C._C._C._C._C._C._C._C._C._C._G._F._F._F._F._F._F._F._F._F._F._G._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.C._E._E._E._E._E._E._E._E._E._E._E._E._E._E._EА.C._._._._._._._._._._.C._._._._._._._._._._._._C._C._C._C._C._C._._._._._._._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._._._._._.A</a>
+    <a>A._._._._._._._._._._._._._._._А._._._._._._._._._._В._._._._._._._._._А._I._I._I._._._._._._._._._.C._._C._C._C._C._C._C._C._C._C._C._C._C._C._G._F._F._F._F._F._F._F._F._F._F._G._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.C._E._E._E._E._E._E._E._E._E._E._E._E._E._E._EА.C._._._._._._._._._._.C._._._._._._._._._._._._C._C._C._C._C._C._._._._._._._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._._._._._.A</a>
+    <a>A.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._._А.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._._А.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._._А.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._.C.C.C.C._._А.C.C.C._E._E._E._E._E._E._E._E._E._E._E._E._E._E._EА.C._-._-._-._-._._._._._._.C.C.C.E.E.E.E.C.C.C.C._.A._._.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.D.D.E.E.D.D.D.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.A</a>
+    <a>A._E._E._E._E._E._E._E._E._E._E._E._E._E._E.C._._._._А._._._._._G._G._G._G._G._G._G._G._G._G._G._G._G._G._._._._._._А._._._._._._._._._._._._._._._._G._._._._._._._._._А._._._._._._._._.C._F._F._F._F.CF._F._F._F._F._F._F._F._F._F._F._F._F.C._._._._._._._А._._.C._E._E._E._E._E._E._E._E._E._E._E._E._E._E._EА.C._._._._._._._._._._.C._._._._._._._._._._._.A._._._._._.D._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.A</a>
+    <a>A._E._E._E._E._E._E._E._E._E._E._E._E._E._E.C._._._._А._._._._._G._G._G._G._G._G._G._G._G._G._G._G._G._G._._._._._._А._._._._._._._._._._._._._._._._G._._._._._._._._._А._._._._._._._._.C._F._F._F._F.CF._F._F._F._F._F._F._F._F._F._F._F._F.C._._._._._._._А._._._._E._E._E._E._E._E._E._E._E._E._E._E._E._E._EА.C._._._._._._._._._._._._._._._._._._._._._._.A._._._._._.D._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.A</a>
+    <a>A._E._E._E._E._E._E._E._E._E._E._E._E._E._E._._._._._А._._._._._G._G._G._G._G._G._G._G._G._G._G._G._G._G._._._._._._А._._._._._._._._._._._._._._._._G._._._._._._._._._А._._._._._._._._.C._F._F._F._F._G._F._F._F._F._F._F._F._F._F._F._F._F.C._._._._._._._А._._._._E._E._E._E._E._E._E._E._E._E._E._E._E._E._EА.C._._._._._._._._._._._._._._._._._._._._._._.A._._._._._.D._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.A</a>
+    <a>A.CE.CE.CE.CE._E._E._E._E._E._E._E._E._E._E._._._._._А._._._._._G._G._G._G._G._G._G._G._G._G._G._G._G._G._.C:.C;.C,.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C,.C;.C:._._._._._._А._._._._._._._._._._F._F._F._F._G._F._F._F._F._F._F._F._F._F._F._F._F.C._.C.C.C.C._-._А-.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._Б._.C.C.C._.A.D.D.D._-._-.D._._._А._-._-._-._-._._._._._._._-._-._-._-._._._._._._._-._-._-._-._._._._._._._-._-._-._-._._._.A</a>
+    <a>A.C.C.C.C._E._E._E._E._E._E._EА.C.C.C.C.C.C.C.C.C.C.C.C.C,G.C;G.C:G._G._G._G._G._G._G._G._G.C:G.C;G.C,G.C.C.C.C.C.C.C.C.C.C.C._._._._._._._._._._.C.C.C.C.C.C,.C;.C:._._А._._._._._._._._._._F._F._F._F._G._F._F._F._F._F._F._F._F._F._F._F._F.C._._._._._._._А._._._._._._._._._._._._.C._._._._._._._._._.C._H._H._H._H._H._H._H._H._H._H._H._H._HБ._H._H._H._H._H._._._._._._._._._._А._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.A</a>
+    <a>A.C.C.C.C._E._E._E._E._E._E._EА.C._J._J._J._J._J._J.C.C.C.C.C.C.C.C.C.C.C._-._-.C.C.C.C.C.C.C._D._D._D._D._D._D._D.C.C.C._._._._._._._._._._.C.C.C.C.C.C.C.C.C.C.C.C._Б._.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._._._._._._._А._._._._._._._._._._._._._G._._._._._._._._._._G._H._H._H._H._H._H._H._H._H._H._H._H._HБ._H._H._H._H._H._._._._._._._._._._А._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.A</a>
+    <a>A.C.C.C.C._E._E._E._E._E._E._EА.C._J._J._J._J._J._J.C._._._._._._._._._._._._._._._._._.C.C._D._D._D._D._D._D._D.C.C.C._._._._._._._._._._.C._._._._._.C._._._._._._Б._.C._._._._._._._.C._._._._._._._.C._._._._._.C._._._._._._._А._._._._._._._._._._._._._G._._._._._._._._._._G._H._H._H._H._H._H._H._H._H._H._H._H._HБ._H._H._H._H._H._._._._._._.D._._._А._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.A</a>
+    <a>A.C.C.C.C._E._E._E._E._E._E._EА.C._J._J._J._J._J._J.C._._._._._._._._._._._._._._._._._.C.C.C.C.C.E.E.C.C.C.C.C._-._-._-._-._-._-._-._-._-._-.C._._._._._._._._._._._._Б._._._._._._._._._._._._._._._._._._._._._._._.C._._._._._._._А._._._._._._._._._._._.C;.C.C.C.C.C.C.C.C.C.C.C._H-._H-._HГ._H._H._H._H._H._H._H._H._H._H-._H-._H-._H-._H-._H.A._-._-.D.D.D.D._-._-._-._._._._._._._._._._._._._._._._._._._._._._-._-._._._._._._._._._._._._._._.A</a>
+    <a>A._E._E._E._E._E._E._E._E._E._E._EА.C._J._J._J._J._J._J.C._._._._._._._._._._._._._._._._._.CB._B._B._B._B._B._B._B._B._B.C.C._._._._._._._._._._._._._._._._._._._._._._._Б._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._А._._._._._._._._._.C;.C.C.C._D._D._D._D._D._D._D._D._D.E._H._H._H._HГ._H._H._H._H._H._H._H._H._H._H._H._H._H._H._._._._._._.D._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.A</a>
+    <a>A._E._E._E._E._E._E._E._E._E._E._E.C._J._J._J._J._J._J._._._._._._._._._._._._._._._._._._._B._B._B._B._B._B._B._B._B._B.C.C._._._._._._._._._._._._._._._._._._._._._._._Б._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._А._._._._._._._.C;.C.C.C.C.C._D._D._D._D._D._D._D._D._D.E._H._H._H._H._HГ._H._H._H._H._H._H._H._H._H._H._H._H._H._._._._._._._._._._._._._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._._._._._.A</a>
+    <a>A._E._E._E._E._E._E._E._E._E._E._E.C._J._J._J._J._J._J._._._._._._._._._._._._._._._._._._._B._B._B._B._B._B._B._B._B._B.C.C._._._._._._._._._._._._._._._._._._._._._._._Б._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._А._._._._._.C;.C.C.C.C.C.C.C._D._D._D._D._D._D._D._D._D.E._H._H._H._H._H._HГ._H._H._H._H._H._H._H._H._H._H._H._H._._._._._._._._._._._._._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._H._._._._._.A</a>
+    <a>A.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._-._-._-._-._-._-._-._-._-._-._Б-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._._._._._._._._._-._-._А-._-._._._._.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._H._H-._H-._H-._H-._H._H._H._H._H._H-._H-._H-._H-._H._H._H._H.A.A.A.A.A.A.A.A.A.A.A.A.A._A-._A-._A-._A-.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A._A-._A-._A-._A-.A.A.A.A</a>
+    <a>A.A.A.A._._._._.A.A.A.A.A.A.A.A.A.A.A.A.A.A._._._._.A.A.A.A.A._._._._.A.A.A.A.A._._._._.A.A.A.A.A.A.A.A.A._A._A.A.A.A.A.A.A.A._A._A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A._A._A.A.A.A.A.A.A.A._A._A.A.A.A.A.A.A.A.A.A._._._._.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A._._._._.A.A.A.A._F._F._F._F._F._F._F._F._F._F._F._F._F._F._F._F._F._F.C._._._._._Б._._._.C._._._._._._._._._._._.C._._._._._._._.A</a>
+    <a>A._C._C._C._C._C._C._C._C._C._C._C._._._._._._._._._._._._._._._._.C._._._._._._._._._._._._._._._._._._._._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._C._C._C._C._C._C._C._C._C._._D._D._D._D._D._D._D._D._D._D._D._D.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._._._._._._._._._._._F._F._F._F._F._F._F._F._F._F._F._F._F._F._F._F._F._F.C._C._C._C._C._CБ._C._C._C.C._._._._._._._._._._._.C._._._._._._._.A</a>
+    <a>A._C._C._C._C._C._C._C._C._C._C._C._._._._._._._._._._._._._._._._.C._._._._._._._._._._._._._._._._._._._._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._C._C._C._C._C._C._C._C._C._._D._D._D._D._D._D._D._D._D._D._D._D.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._._._._._._._._._._._F._F._F._F._F._F._F._F._F._F._F._F._F._F._F._F._F._F.E._C._C._C._C._CБ._C._C._C.C._._._._._._._._._._._._._._._._._._._.A</a>
+    <a>A._C._C._C._C._C._C._C._C._C._C._C._._._._._._._._._._._._._._._._.C._._._._._._._._._._._._._._._._._._._._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._C._C._C._C._C._C._C._C._C._._D._D._D._D._D._D._D._D._D._D._D._D.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._._._._._._._._._._._F._F._F._F._F._F._F._F._F._F._F._F._F._F._F._F._F._F.E._C._C._C._C._CБ._C._C._C.C._._._._._._._._._._._._._._._._._._._.A</a>
+    <a>A.C.C._-._-._-._-._-._-._-.C.C.C._-._Г._._._._._._._._._._._._._._._._._._._._._._.C:.C;.C,.C.C.C.C.C.C.C.A.A.C.C.C.C.C.C.C.C.C._._.C.C.C.C.C.C.C.C.C.C.C.C._._.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.A.A.C.C.C.C.C.C.C.C.C.C.C.C._D._D.C.C.C.C.C._D._D.C.C.C.C.C.C.C.C.C._C._C._C._C._C._C.C._C-._C-._C-._C-._C-._C-._C-._C-._C-.A.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._C._C._C._C._CБ._C._C._C.C.C.C.C.C.C.C.C._._А.C.C.C._._._._._._-._-.A</a>
+    <a>A.C.C._._._._._._._.C.C.C._._._Г._._._._._._._._._._._._._._._._._.C:.C;.C,.C.C.C.C.C.C.C.C.C.C.C.A.A.C.C.C.C.C.C.C._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J.C._._._._._._._._._.C._._._._._._._._._.A._._._._._._._._._._._._._D._D._H._H._H._H._H._D._D.C.C.C.C.C.C._I._I._I._C._C._C._C._C._C._._C._C._C._C._C._C._C._C._C._C._._._._._._._._._._._._._._._._._._.C._C._C._C._C._CБ._C._C._C.C._._._._._._._._._А._._.C._._._._._._._.A</a>
+    <a>A.C.C._._._._._._._.C.C.C.C.C.C._._.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.A.A._I._I._I._I._I._I._I._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J.C._._._._._._._._._.C._._._._._._._._._.A._._._._._._._._._._._._._D._D._H._H._H._H._H._D._D.C.C.C.C.C.C._I._I._I._C._C._C._C._C._C._._C._C._C._C._C._C._C._C._C._C._._._._._._._._._._._._._._._._._._._._C._C._C._C._CБ._C._C._C.F._._._._._._._._._А._._.C._._._._._._._.A</a>
+    <a>A.C.C.C.C.C.C.C.C.C.C.C.C._._._._._._._._.C._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J.A.A._I._I.C.C.C.C.C._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._._._._._._._._._._._._._._._._._._._._.A._._._._._._._В._-._-._-._-.C.C.C.C.C.C.C.C._._.C.C.C.C.C.C._._.C.C.C.C.C.C.C.C.C.C.C.C,C.C;C.C:C._C._C._C._C._._._._._._._._._._._._._._._._._._._._C._C._C._C._CБ._C._C._C.F._._._._._._._._._А._._.C._._._._._._._.A</a>
+    <a>A._._._._._._._._._._._.C._._._._._._._._.C._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J.A.A._I._I.C.C.C.C.C._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._._._._._._._._._._._._._._._.C.C.C.C.A.A._._._._._._В._._._._._.D._._._._._._._._._._._._._._._._._._._._._._._._.C.C.C.C.C.C.C.C.C.C.A.C.C.C._._.C.C.C.C.C.C.C.C.C.C._DБ._D.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.A</a>
+    <a>A._._._._._._._._._._._.C._._._._._._._._._._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J.A.A._I._I._I._I._I._I.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._-._-._-._-._-._-._В._-._-.C.C.C.C.C.C.C.C.C.A._._._._._._В._._._._._._.D._._._._._._._._._._._._._._._._._._._._._._._._.C.C.C.C.C.C.C.C.C.C.A._._._._._._._._._._._._._.C._D._DБ._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D.C._._._._._._._._._._._._.A</a>
+    <a>A._._._._._._._._._._._.C._._._._._._._._._._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J.A.A._I._I._I._I._I._I.C.C.C.C._B._B._B._B._B._B._B._B.C._._._._._._._._._._._._._._._В._._._.C.C.C.C.C.C.C.C.C.A._._._._._В._._._._._._._.D._._._._._._._._-._-._H-._H-._H-._H-._H-._H-._-._-._._._._._._._.C.C.C.C.C.C.C.C.C.C.A._._._._._._._._._._._._._.C._D._DБ._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._._._._._._._._._._._._._.A</a>
+    <a>A._._._._._._._._._._._.C._Б._.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.A.A._I._I.C.C._I._I.C.C.C.C._B._B._B._B._B._B._B._B.C._._._._._._._._._._._._._._В._._._._.C.C.C.C.C.C.C.C.C.A._._._._В._._._._._._._._.E._._._._._._._._._._H._H._H._H._H._H._._._._._._._._._.C.C.C.C.C.C.C.C.C.C.A._._._._._._._._._._._._._.C._D._DБ._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._._._._._._._._._._._._._.A</a>
+    <a>A._-._-._-._-._-._-._-._-._-._-._-.C._Б._._._._._._._.C._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J.A.A._I._I.C.C._I._I._I._I._I._I._B._B._B._B._B._B._B._B.C._._._._._._._._._._._._._В._._._._._.C.C.C.C.C.C.C.C.C.A.A.C.C.C,.C;.C:._._._._._._.FA._._._._._._._._._._H._H._H._H._H._H._._._._._._._._._.C.C.C.C.C.C.C.C.C.C.A._._._._._._._._._._._._._.C._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._DВ._D-._D-.C.C.C.C.C.F.F.C.C.C.C.C.C.A</a>
+    <a>A._._._._._._._._._._._.C._Б._._._._._._._.C._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._A.A._I._I.C.C.C.C.C.C.C.C._B._B._B._B._B._B._B._B.C._._._._._._._._._._._._В._._._._._._.C.C.C.C.C._D._D._D._D._A.A.C.C.C.C.C.C.C,.C;F.C:F._._.FA._._._._._._._._._._H._H._H._H._H._H._._._._._._._._._.C.C.C.C.C.C.C.C.C.C.A._._._._._._._._._._._._._.C._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._DВ._D._D._D.C._B._B._B._B._B._B._B._B._B._B._B._B.A</a>
+    <a>A._._._._._._._._._._._._G._Б._._._._._._._._._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._A._I._I._I._I._I._I.C.C.C.C.C.C.C.C.C.C.C.C.C.C._._._._._._._В._-._-.D.D.D.D.C.C.C.C.C.C.C.C.C.C._D._D._D._D._A.A.C.C.C.C.C.C.C.C.C.C.C.C._._._._._._._._._._H._H._H._H._H._H._._._._._._._._._.C.C.C.C.C.C.C.C.C.C.A._._._._._._._._._._._._._.C._D._D._D._D._D._D._D._D._D._D._D._D._D._D._D._DВ._D._D._D._D.C._B._B._B._B._B._B._B._B._B._B._B._B.A</a>
+    <a>A._._._._._._._._._._._._G._Б._._._._._._._._._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._J._A._I._I._I._I._I._I.C.C.C.C.C._._._._._._._._._._._._._._._В._._._.E.D.D.C.C.C.C.C.C.C.C.C.C.C._D._D._D._D._A.A.C._._._._._._._._._._._._._._._._._._._._._H._H._H._H._H._H._._._._._._._._._._._._._._._._.C.C.C.A._._._._M._M._M._M._M._M._M._M._._.C._D._D._D._D._D._D._D._D._D._D._D._D._D._D._DВ._D._D._D._D._D.C._B._B._B._B._B._B._B._B._B._B._B._B.A</a>
+    <a>A.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._._А.C.C.C.C.C.C.C.C.C.D.D.D.E.E._A._A.E.E.E.D.D.C.C.C.C.C.C.C.C.A.A.C.C.C._I._I.C.C.C.C.C._._._._._._._._._._._._._._В._._._._.E.E._C._C._C._C._C._G._C._C._C._C._G._C._C._CА._C-._C-.A.A.C._._._._._._._._._._._._._._._._._._._._._H._H._H._H._H._H._._._._._._._._._._._._._._._._.C.C.C.A.C.C.C.C.C.C.C.C.C.F.F.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.A</a>
+    <a>A.C.C.C.C.C.C.C.C.C.C.C.C._._._._._А._._._.C.C.C.C.C.C.C.C.D.D.E._A._A._A._A.E.E.D.C.C.C.C.C.C.C.C.A.A.C.C.C._I._I.C.C.C.C.C._._._._._._._._._._._._._В._._._._._.FA.FA._C._C._C._C._C._G._C._C._C._C._G._C._C._CА._C._C.A.A.C._._._._._._._._._._._._._._._._._._._._._H._H._H._H._H._H._._._._._._._._._._._._._._._._._I._I._I.A._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._._C._C._C._C._C._C._C._C._C._C._C.C._._._._._._._._.A</a>
+    <a>A.C.C.C.C.C.C.C.C.C.C.C.C._._._._._А._._._.C._._._._._._._._._._._._._._._._._._.C.C.C.C.C.C.C.A.A.C.C.C._I._I._I._I._I._I._I._._._._._._._._._._._._В._._._._._._.FA.EA._C._C._C._C._C._G._C._C._C._C._G._C._C._CА._C._C.A.A.C._._._._._._._._._._._._._._._._._._._._._H._H._H._H._H._H._._._._._._._._._._._._._._._._._I._I._I.A._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._._C._C._C._C._C._C._C._C._C._C._C._._._._._._._._._.A</a>
+    <a>A.C.C.C.C.C.C.C.C.C.C.C.C._._._._._А._._._._._._._._._._._._._._._._._._._._._._.C.C.C.C.C.C.C.A.A.C.C.C.C.C.C.C.C.C.C._._._._._._._В._-._-.C.C.C.C.C.D.D.C.D.D.D._HБ._H.C.C.C.C.C.C.C.C.C.C.C.C._H._HА.A.A.C._F._F._F._FВ._F-._F-.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._IБ._I.A._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._M._._C._C._C._C._C._C._C._C._C._C._C._._._._._._._._._.A</a>
+    <a>A._J._J._J._J._J._J._J._J._J._J._J.C._._._._._А._._._._._._._._._._._._._._._._._._._._._._.C.C.C.C.C.C.C.A.A._B._B._B._B._B._B._B._B._B.C._._._._._._В._._._.C._B._B._B._B._B._B._B._B._B.D._HБ._H.C.C.C.C.C.C.C.C.C.C.C.C._H._HА.A.A.C._._._В._._._._._._._.C._J._J._J._J._J._J._J._M._M._M._M._J._J._J._J._J._J._J.C.C.C.C.C.C.C.C.C.C.C.C.C.C._IБ._I.A.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._C-._C-._C-._C-._C-._C-._C-._C-._C-._C-._C-.C.C.C._._.C.C.C.C.A</a>
+    <a>A._J._J._J._J._J._J._J._J._J._J._J.C._._._._._А._S._S._S.C._._._._._._._._._._._._._._._._._._.C._._._._._._._.A._B._B._B._B._B._B._B._B._B.C._._._._._В._._._._.C._B._B._B._B._B._B._B._B._B.D._HБ._H._._._._._._._._._._._._._H._HА._A.A.C._-._-._Г._._._._._._._.C._J._J._J._J._J._J._J._M._M._M._M._J._J._J._J._J._J._J.C.C.C.C.C.C.C.C.C.C.C.C.C.C._IБ._I.A._._._._._._._._._._._._._._._._._._._._._._._._._._.C._C._C._C._C._C._C._C._C._C._C._C.C._._._._._._._._.A</a>
+    <a>A._J._J._J._J._J._J._J._J._J._J._J._._._._._._А._S._S._S._._._._._._._._._._._.E.E._._._._._._._._._._._._._._._A._B._B._B._B._B._B._B._B._B._._._._._В._._._._._._._B._B._B._B._B._B._B._B._B.C._HБ._H._._._._._._._._._._._._._H._HА._A._._._._._._Г._._._._._._._._J._J._J._J._J._J._J._M._M._M._M._J._J._J._J._J._J._J.C.C.C.C._I._I._I._I._I._I._I._I._I._I._I._I._._._._._._._._._._._._._._._._._._._._._._._._._._._._._C._C._C._C._C._C._C._C._C._C._C.C._._._._._._._._.A</a>
+    <a>A._J._J._J._J._J._J._J._J._J._J._J._._._._._._А._S._S._S._._._._._._._._._._._.E.E.E.E._._._._._._._F._F._._._._._A._B._B._B._B._B._B._B._B._B._._._._В._._._._._._._._B._B._B._B._B._B._B._B._B.D._HБ._H._._._._._._._._._._._._._H._HА._A._._._._._._В._-._-._._._._._._J._J._J._J._J._J._J._M._M._M._M._J._J._J._J._J._J._J.C.C.C.C._I._I._I._I._I._I._I._I._I._I._I._I._._._._._._._._._._._._._._._._._._._._._._._._._._._._._C._C._C._C._C._C._C._C._C._C._C.C._._._._._._._._.A</a>
+    <a>A.A.A.A._A-._A-._A-._A-.A.A.A.A.A._-._-._-._-.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A._A-._A-.A.A.A.A.A.A.A.A.A.A._A-._A-.A.A.A.A.A.A._-._-._-._-.A.A.A.A.A.A._A-._A-.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A._A-._A-._A-._A-.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A._-._-._-._-.A.A.A.A.A._-._-._-._-.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A._-._-.A.A.A.A.A._._._._._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._C-._C-._C-._C-._._._.C._._-._-._-._-._._._.A</a>
+    <a>A._._._._._._._._._._._._._._._._._._.C.C.C.C.C.C.C.C.C.C._._._._._._._._._._._._._._._._._._._._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C.A._._._._._._._._._._._._._._._._._._._._._._._._А._._._._._._._._._._._._._._._._._._._._._._.A.CJ.CJ.CJ.CJ.CJ._I._I.CJ.CJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.CJ._I._I.CJ.GJ.GJ.GJ.GJ.GJ.CJ._I._I.CJ.GJ.CJ.CJ.CJ.CJ._C._C._C._C.CJ.CJ.CJ.A</a>
+    <a>A._._._._._._._._._._._._._._._._._._.F.F._._._._._._.F.F._._._._._._._._._._._._._._._._._._._._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C.A._._._._._._._.A._._._._._._._._._._._._._._._._А._._._._._._._._._._._._._._.A._._._._._._._.A.CJ._I._I._I._I._I._I._I.CJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.CJ.CJ.CJ.CJ.CJ.CJ._I._I.CJ.CJ.CJ.CJ.CJ.CJ.CJ._I._I.CJ.GJ.CJ._C._C._C._C._C._C._C._C._C._C.A</a>
+    <a>A._._._._._._._._._._._._._._._._._._.F.F._._._._._._.F.F._._._._._._._._._._._._._._._._._._._._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C.A._._._._._._._.A._._._._._._._._._._._._._._._._А._._._._._._._._._._._._._._.A._._._._._._._.A._I._I._I._I._I._I._I._I.CJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.CJ._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I.CJ.GJ.CJ._C._C._C._C._C._C._C._C._C._C.A</a>
+    <a>A._._._._._._._._._._._._._._._._._._.F.F._._._._._._.F.F._._._._._._._._._._._._._._._._._._._._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C.A.A.A.A._-._-._-._А-.A._._._._._._-._-._._._._._._._._._А._._._._._._._._-._-._._._._._.A._-._Г._._._._._.A._I._I._I._I._I._I._I._I.CJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.CJ._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I.CJ.GJ.CJ._C._C._C._C._C._C._C._C._C._C.A</a>
+    <a>A._-._-._-._Г._._._._._._._._._._А.F.F.F.F.F.F._._._._._._.F.F.F.F.F.F._._._._._._._._._._._В._-._-._-._._C-._C-._C-._C-._C-._C-._C-._C-._C-._C-._C-._C-._C-._C-._C-._C-._CБ-._C._C._C._C._C._C._C._C._C._C._C._C._C._C._CА-._C-._C-._C-._C-._C-._C-._C-._C-._C-._C-._C-._C-._C-._C-._C-._C-.A._._._._._._._А._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._Г._._._._.A.CJ._I-._I-._I-._I-._I-._I-._I-.CJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.CJ._I._IА.CJ.CJ.CJ.CJ.CJ.CJ.CJ._I-._I-._I-.CJ.CJ.CJ.CJ.CJ.GJ.CJ._CБ._C.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.A</a>
+    <a>A._._._._._Г._._._._._._._._._А._._._._.F.F._._._._._._.F.F._._._._._._._._._._._._._._В._._._._._._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._CБ._C._C._C._C._C._C._C._C._C._C._C._C._C._C._CА._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._._._._._._._._А._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.CJ._I._I._I._I._I._I._I.CJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.CJ._I._IА.CJ.GJ.GJ.GJ.GJ.GJ.CJ._I._I._I.CJ.GJ.GJ.GJ.GJ.GJ.CJ._CБ._C.CJ._C._C._C._C._C._C._C.A</a>
+    <a>A._._._._._._Г._._._._._._._._А._._._._.F.F._._._._._._.F.F._._._._._._._._._._._._._В._._._._._._._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._CБ._C._C._C._C._C._C._C._C._C._C._C._C._C._C._CА._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._I._I._I._I._I._I._I._I.CJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.GJ.CJ._I._IА.CJ.GJ.GJ.GJ.GJ.GJ.CJ._I._I._I.CJ.GJ.GJ.GJ.GJ.GJ.CJ._CБ._C._C._C._C._C._C._C._C._C.A</a>
+    <a>A._._._._._._._Г._._._._._._._А._._._._.F.F._._._._._._.F.F._._._._._._._._._._._._В._._._._._._._._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._CБ._C._C._C._C._C._C._C._C._C._C._C._C._C._C._CА._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._I._I._I._I._I._I._I._I.CJ.GJ.GJ.GJ.GJ.CJ.CJ.CJ.CJ.CJ._I._IА.CJ.GJ.GJ.GJ.GJ.GJ.CJ._I._I._I.CJ.GJ.GJ.GJ.GJ.GJ.CJ._CБ._C._C._C._C._C._C._C._C._C.A</a>
+    <a>A._._._._._._._._-._-._-._Б._._._А._._._._.F.F._._._._._._.F.F._._._._._._._._А._-._-._-._Г._._._._._._._._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._CБ._C._C._C._C._C._C._C._C._C._C._C._C._C._C._CА._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C.A._-._-._._._._._._._._._._._._._._._._._._._._._._._-._-._._._._._._._._._._._._._._._._._._._-._-.A.CJ._I-._I-._I-._I-._I-._I-._I-.CJ.CJ.CJ.CJ.CJ.CJ._I._I._I.CJ._I._IА.CJ.CJ.CJ.CJ.CJ.CJ.CJ._I-._I-._I-.CJ.CJ.CJ.CJ.CJ.GJ.CJ._CБ-._C-.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.A</a>
+    <a>A._._._._._._._._._._._Б._._._А._._._._.F.F._._._._._._.F.F._._._._._._._._А._._._._._Г._._._._._._._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._CБ._C._C._C._C._C._C._C._C._C._C._C._C._C._C._CА._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C.A._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.A.CJ._I._I._I._I._I._I._I._I._I._I._I._I.CJ._I._I._I.CJ._I._IА.CJ.CJ._D._D._D._D._D._D._D._D._D._D._D._D.CJ.CJ.CJ._CБ._C._C._C._C._C._S._S._C._C.A</a>
+    <a>A._._._._._._._._._._._Б._._._._._._._.F.F._._._._._._.F.F._._._._._._._._А._._._._._._Г._._._._._._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._CБ._C._C._C._C._C._C._C._C._C._C._C._C._C._C._CА._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C.A._._._._._._._._._._._._-._-._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.A._I._I._I._I._I._I._I._I._I._I._I._I._I.CJ._I-._I-._I-.CJ._I._IА.CJ.CJ._D._D._D._D._D._D._D._D._D._D._D._D._C._C._C._CБ._C._C._C._C._C._S._S._C._C.A</a>
+    <a>A._._._._._._._._._._._Б._._._._._._._.F.F.F.F.F.F.F.F.F.F._._._._._._._._А._._._._._._._Г._._._._._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._CБ._C._C._C._C._C._C._C._C._C._C._C._C._C._C._CА._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C._C.A._._._._._._._._._._._._._._._._._._._._._._._._-._-._Б._._._._._._._._._._._._._В._-._._._._._._.A._I._I._I._I._I._I._I._I.CJ.CJ.CJ._I._I._I._I._I._I._I._I._IА.CJ.CJ._D._D._D._D._D._D._D._D._D._D._D._D._C._C._C._CБ._C._C._C._C._C._S._S._C._C.A</a>
+    <a>A._-._-._-._-._-._._._._._._Б._._._._._._._.F.F.F.F.F.F.F.F.F.F._._._._._._._._А._._._._._._._._-._-._-._.C.C.C.C.C._Б._.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._._А.C.C.C.C.C.C.C.C.A._._._._._._._._._._._._._._._._._._._._._._._._._._Б._._._._._._._._._._._._В._._._._._._._._.A.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ._I._I._I._I._I._I._I._I._IА.CJ.CJ.CJ._I-._IА-.CJ._IБ-._I-.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.A</a>
+    <a>A._._._._._._._._._._._Б._._._._._._._._._._._._._._._._._._._._._._._._._А._._._._._._._._._._._._._._._._._Б._._._._._._._._.E._._._._._._._._._._._._._._._._._._._._._._._._._А._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._Б._._._._._._._._._._._В._._._._._._._._._._.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ._I._IА.CJ._IБ._I.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.A</a>
+    <a>A._._._._._._._._._._._Б._._._._._._._._._._._._._._._._._._._._._._._._._А._._._._._._._._._._._._._._._._._Б._._._._._._._._.E._._._._._._._._._._._._._._._._._._._._._._._._._А._._._._._._._._._._._._._._._._._-._-._._._._._._._._._._-._-._._._._._._Б._._._._._._._._._-._-._._._._._._._._._._._._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._IА.CJ._IБ._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I.A</a>
+    <a>A._._._._._._._._._._._Б._._._._._._._._._._._._._._._._._._._._._._._._._А._._._._._._._._._._._._._._._._._Б._._._._._._._._.E._._._._._._._._._._._._._._._._._._._._._._._._._А._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._Б._._._._._._._._._._._._._._._._._._._._._._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._IА.CJ._IБ._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I._I.A</a>
+    <a>A.D.D.D.D.D.D.D.D.D.D.D.D.D.D.D.D.D.D._._.D.D.D.D.D.D.D.D.D.D.D.D.D.D.D.D.D.D.D.D.D.D.D.D.D.D.D.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._._А.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._Б._.C.C.C.C.A.A.A._Б._._._._._._._._._._._._._._._._._._._._._._._Б._._._._._._._._._._._._._._._._._._.A.A.A.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ._I._I.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ._I._I.CJ.CJ.CJ.CJ.A</a>
+    <a>A.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G._E._E.G.G.G.G.G.G.G.G.G.G.G.G._._.G.G.G.G.G.G.G.G.G.G.G.G.G._._._._._._._._._._._._._._._._._._._._._._._._._А._._._._._._._._.E._._._._._._._._._Б._._._._._.A._._._Б._._._._._._._._._._._._._._._._._._._._._._._Б._._._._._._._._._._._._._._._._._._.F._.A._B._B._B._B._B._B._B._B._B._B._B._K._G._G._G._G._G._G._G._G._G._G._G._G._G._G._G._G.CJ._C._C._C._C._C._C._C._C._C._C._C.CJ._C._C._C._C._C._C.A</a>
+    <a>A.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G._E._E.G.G.G.G.G.G.G.G.G.G.G.G._._.G.G.G.G.G.G.G.G.G.G.G.G.G._._._._._._._._._._._._._._._._._._._._._._._._._А._._._._._._._._.E._._._._._._._._._Б._._._._._.A._._._Б._._._._._._._._._._._._._._._._._._._._._._._Б._._._._._._._._._._._._._._._._._._._._.A._B._B._B._B._B._B._B._B._B._B._B._K._G._G._G._G._G._G._G._G._G._G._G._G._G._G._G._G.CJ._C._C._C._C._C._C._C._C._C._C._C.CJ._C._C._C._C._C._C.A</a>
+    <a>A.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G._E._E.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G._._._._._._._._._._._._._._._._._._._._._._._._._А._._._._._._._._.E._._._._._._._._._Б._._._._._.A._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._-._-._._._._._._._._._._._._.A._B._B._B._B._B._B._B._B._B._B._B._K._G._G._G._G._G._G._G._G._G._G._G._G._G._G._G._G._G._C._C._C._C._C._C._C._C._C._C._C.CJ._C._C._C._C._C._C.A</a>
+    <a>A.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G._E-._E-.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.C.C.C.C.C.C.C.C.C._._А.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C._._А.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.C.A._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.A.CJ._B-._B-._B-._BГ._B._B._B._B._B._B.CJ._G._G._G._G._G._G._G._G._G._G._G._G._G._G._G._G._G._C._C._C._C._C._C._C._C._C._C._C.CJ._C-._C-._C-._C-._C-._C-.A</a>
+    <a>A.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G._E._E.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G._._._._._._._._._._._А._._._._._._._._.E._._._._._._._._._._._А._._._._._._._._._._._._._._._._._.A._._._._._._._._-._-._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.A._B._B._B._B._B._BГ._B._B._B._B._B.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ.CJ._G._GА.CJ.CJ.CJ.CJ._C-._C-._C-._S-._S-._C-._CГ._C._C._C._C.CJ._C._C._C._C._C._C.A</a>
+    <a>A.G.G.G._._._._._._._._._._._._._._._._._._._._._._.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G._._._._._._._._._._._._._._._._._._А._._._._._._._._.E._._._._._._._._._._._А._._._._._._._._._._._._._._._._._.A._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.A._B._B._B._B._B._B._BГ._B._B._B._B._B._G._G._G._G._G._G._G._G._G._S._S._G._GА._G._G._G._C._C._C._C._S._S._C._C._CГ._C._C._C._C._C._C._C._C._C._C.A</a>
+    <a>A.G.G.G._._._._._._._._._._._._._._._._._._._._._._.G.G.G.G.G.G.G.G.G.G.G.G.G.G.G._._._._._._._._._._._._._._._._._._А._._._._._._._._.E._._._._._._._._._._._А._._._._._._._._._._._._._._._._._.A._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.A._B._B._B._B._B._B._B._BГ._B._B._B._B._G._G._G._G._G._G._G._G._G._S._S._G._GА._G._G._G._C._C._C._C._S._S._C._C._C._CГ._C._C._C._C._C._C._C._C._C.A</a>
+    <a>A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A.A</a>
+    <obj id="spikes" x="5" y="23" code="factory-0-0-ptkgkgVpPZps1kaH" />
+    <obj id="spikes" x="4" y="23" code="factory-0-0-EoWfYHnYq4FnvHE5" />
+    <obj id="door2" x="15" y="16" code="factory-0-0-dCXdoNtJuA9v3L9p" lock="0" />
+    <obj id="case" x="3" y="3" code="factory-0-0-wdFfbjpRNrsglEcO" />
+    <obj id="case" x="1" y="15" code="factory-0-0-nKR8JWtlh5qxpTrw" />
+    <obj id="case" x="41" y="11" code="factory-0-0-xYo9kfG5Juu11G7j" />
+    <obj id="wallsafe" x="14" y="22" code="factory-0-0-o4XYlDDyrvBvBVFV" />
+    <obj id="player" x="9" y="11" code="factory-0-0-gvhexOwSrTEnLX8a" />
+    <obj id="table" x="15" y="23" code="factory-0-0-s8QPV9ktVB3nTui2" />
+    <obj id="door1" x="19" y="23" code="factory-0-0-Q4pQGpH9sGhZHq3p" />
+    <obj id="weapbox" x="39" y="11" code="factory-0-0-nWDkXwsPtCHuA2QZ" />
+    <obj id="ammobox" x="7" y="3" code="factory-0-0-v1TvzIaiiK794e2k" />
+    <obj id="explbox" x="5" y="3" code="factory-0-0-tdsc3NrcFRrxkTsO" />
+    <obj id="medbox" x="22" y="2" code="factory-0-0-ZWxMLX95y1uRbDlT" />
+    <obj id="medbox" x="45" y="22" code="factory-0-0-cpendOTtITpmHLa1" />
+    <obj id="chest" x="40" y="19" code="factory-0-0-TWM8UvnGJFjc5beX" />
+    <obj id="ammobox" x="44" y="19" code="factory-0-0-ytDtAZDYbjnJU2Pe" />
+    <obj id="term2" x="16" y="22" code="factory-0-0-SmiPBxnC6TBo1CCg" />
+    <obj id="bigbox" x="37" y="7" code="factory-0-0-Kdj2KH6egfkJ40rD" />
+    <obj id="box" x="30" y="23" code="factory-0-0-Y7755bMoZ5eFW9nj" />
+    <obj id="woodbox" code="factory-0-0-cqQfS3RzAxCIzVgn" x="38" y="5" />
+    <obj id="woodbox" code="factory-0-0-iv6wYZxPpULm6gWa" x="42" y="7" />
+    <obj id="ammobox" x="45" y="7" code="factory-0-0-REa8qzJ7rNhFTjiX" />
+    <obj id="tarakan" code="factory-0-0-miWu5ygQF2pObDz1" x="43" y="11" />
+    <obj id="tarakan" code="factory-0-0-rueGa03RBwvUKc6D" x="39" y="23" />
+    <obj id="table" code="factory-0-0-xjPVoK0qmC1l3Jj2" x="2" y="15" />
+    <obj id="ammobox" x="2" y="23" code="factory-0-0-l8bmqr1uOZxgpUbF" />
+    <obj id="trash" code="factory-0-0-AaOp8A2k09oKYNPw" x="24" y="3" />
+    <obj id="hatch1" x="42" y="12" code="factory-0-0-nNdes4X7LpnYOsRy" lock="0" />
+    <obj id="instr1" x="44" y="11" code="factory-0-0-hY1kLkPCk3MIzFGE" />
+    <obj id="door1" x="20" y="3" code="factory-0-0-hs03rnGaTsJd4dBA" />
+    <obj id="spikes" x="11" y="23" code="factory-0-0-WLx9JK72phgAEenm" />
+    <obj id="spikes" x="10" y="23" code="factory-0-0-AoyTWh6thJEkAS0o" />
+    <obj id="spikes" x="9" y="23" code="factory-0-0-vTms2Wv8be0llTV9" />
+    <obj id="spikes" x="8" y="23" code="factory-0-0-QMG31uOpyWfhs1FZ" />
+    <obj id="spikes" x="7" y="23" code="factory-0-0-awQ1i1CPTlfzpnGk" />
+    <obj id="spikes" x="6" y="23" code="factory-0-0-K2mQ6b2iRBT3Thcw" />
+    <obj id="ammobox" x="50" y="23" code="factory-1-0-YjmWpd6HlAIq0fMN" />
+    <obj id="chest" x="55" y="19" code="factory-1-0-ff7k99hFJ7kOb3mq" />
+    <obj id="instr2" x="51" y="9" code="factory-1-0-xAbHoghFPTEwNh9X" />
+    <obj id="door1" x="77" y="17" code="factory-1-0-aaChLmLMEdgLxJEr" />
+    <obj id="raider" x="87" y="17" code="factory-1-0-Pca2ee6SiIQvzRpV" />
+    <obj id="door2" x="62" y="2" code="factory-1-0-K9s9yoNo9KR4GVb3" />
+    <obj id="safe" x="92" y="17" code="factory-1-0-OyZcoYyji6GjrTbY" />
+    <obj id="explbox" x="64" y="2" code="factory-1-0-wpSuSEBR0fXkjqAT" />
+    <obj id="chest" x="65" y="2" code="factory-1-0-lHwuCdtbZTKvhIVm" />
+    <obj id="table" x="55" y="11" code="factory-1-0-Cj7Ls9cShvFGqmqw" />
+    <obj id="bloodwing" x="70" y="1" code="factory-1-0-DDS79OVBM9mI7wbU" />
+    <obj id="case" x="93" y="7" code="factory-1-0-pdWAJCvXZU4feepc" />
+    <obj id="case" x="53" y="19" code="factory-1-0-s2zmiswvyOj8RFfv" />
+    <obj id="case" x="57" y="19" code="factory-1-0-tuTLAMpCxBrwU0l7" />
+    <obj id="case" x="55" y="18" code="factory-1-0-rxmS30NgGm1Skg49" />
+    <obj id="rat" x="76" y="23" code="factory-1-0-KdMlb3dhjvnzyZ8c" />
+    <obj id="tarakan" x="86" y="23" code="factory-1-0-o6NuF97ud7Q2U8A8" />
+    <obj id="rat" x="65" y="1" code="factory-1-0-ISZLYP5TQVx0WzFo" />
+    <obj id="weapbox" x="70" y="6" code="factory-1-0-uL99nEzNdLwycGIF" />
+    <obj id="term3" x="80" y="16" code="factory-1-0-KxYQ5BBor1yxrL6P" />
+    <obj id="ammobox" x="93" y="3" code="factory-1-0-U3lP8pIbVID6okzv" />
+    <obj id="woodbox" code="factory-1-0-K0YS99TPt4U3OObU" x="72" y="6" />
+    <obj id="woodbox" code="factory-1-0-fwdvbX970KjMgqxw" x="49" y="3" />
+    <obj id="woodbox" code="factory-1-0-Cyr5Hffbds9A86Xj" x="51" y="3" />
+    <obj id="box" code="factory-1-0-jqCqTB25CpNmxL3f" x="79" y="11" />
+    <obj id="table" x="69" y="6" code="factory-1-0-SnBPmD3xJxJbMutT" />
+    <obj id="door3" x="59" y="23" code="factory-1-0-YdDyzvJujerru2kS" />
+    <obj id="work" code="factory-1-0-kGy3zQ4O639iufMK" x="57" y="11" />
+    <obj id="term2" x="90" y="16" code="factory-1-0-U3IlvEuu7Zsz9OmH" />
+    <obj id="mine" x="52" y="23" code="factory-1-0-cKsevSktYV6wHX70" />
+    <obj id="instr1" x="51" y="11" code="factory-1-0-jTavINuiXpxqQcZ2" />
+    <obj id="explbox" x="51" y="19" code="factory-1-0-EfIMgJKbZtyc68qG" />
+    <obj id="trap" x="103" y="7" code="factory-2-0-hWrUCR9Lf4PfaSPB" />
+    <obj id="chest" x="98" y="7" code="factory-2-0-fr7WkUxZs9PkmnZi" />
+    <obj id="ammobox" x="141" y="23" code="factory-2-0-hNtU8mJdtVXc8Xv2" />
+    <obj id="tarakan" x="119" y="23" code="factory-2-0-RsecJoPC4nuhvJOh" />
+    <obj id="tarakan" x="116" y="23" code="factory-2-0-Ekp7P9zKosGSVI8G" />
+    <obj id="tarakan" x="113" y="7" code="factory-2-0-nMS5zMkoBc3qQGb4" />
+    <obj id="medbox" x="105" y="6" code="factory-2-0-zPKmq6uOTniVH0Yo" />
+    <obj id="ammobox" x="120" y="23" code="factory-2-0-pQczY8IQQqKZfwFk" />
+    <obj id="hatch1" x="138" y="16" code="factory-2-0-sIDtVQYE1JVwzij3" />
+    <obj id="door2" x="107" y="7" code="factory-2-0-xjLlP5zx7UcKs2FH" />
+    <obj id="door2" x="132" y="7" code="factory-2-0-Jv8hQVaadV1jXhkE" />
+    <obj id="raider" x="116" y="15" code="factory-2-0-TCGZVf25kPwAJ3VX" />
+    <obj id="wallsafe" x="134" y="10" code="factory-2-0-jMIiZhWnJeBUuK3d" />
+    <obj id="weapbox" x="123" y="11" code="factory-2-0-JpdLNfoCjqxiYibQ" />
+    <obj id="case" x="112" y="5" code="factory-2-0-n8pzyhhL0rdb7pIE" />
+    <obj id="case" x="141" y="4" code="factory-2-0-Ok2tTSr0wdLta69H" />
+    <obj id="case" x="141" y="11" code="factory-2-0-NeJZsoFh2JgOqO3j" />
+    <obj id="case" x="98" y="15" code="factory-2-0-tARQ4k2VbKIteHt5" />
+    <obj id="box" x="111" y="7" code="factory-2-0-eeFSIlSh4qhpL9ob" />
+    <obj id="box" x="128" y="7" code="factory-2-0-gLvI20yfw9JLCvVQ" />
+    <obj id="box" x="114" y="7" code="factory-2-0-RB8J7pnCA7eNISZI" />
+    <obj id="door1" x="105" y="15" code="factory-2-0-trrNphoECFdtIADA" />
+    <obj id="molerat" code="factory-2-0-BesSwSD3b6Y1qP7a" x="138" y="7" />
+    <obj id="couch" code="factory-2-0-GcYvtYhLiOHVRrjT" x="135" y="7" />
+    <obj id="trash" code="factory-2-0-tdLlpz6lsUDcklQc" x="122" y="23" />
+    <obj id="trash" code="factory-2-0-fXAQ6pLWMcpzto1y" x="102" y="7" />
+    <obj id="door2" x="132" y="15" code="factory-2-0-l1qtF8bGu6VDbPnG" />
+    <obj id="ammobox" x="123" y="15" code="factory-2-0-OcU3O5XTuRraOtyW" />
+    <obj id="bloat" x="136" y="19" code="factory-2-0-gXSZ6ErM2CkTtUDD" />
+    <obj id="door1" x="125" y="19" code="factory-2-0-mrN3LWIK5A6kSv7B" />
+    <obj id="table" x="117" y="23" code="factory-2-0-vAYRjoN08JSV4VA6" />
+    <obj id="ammobox" x="117" y="22" code="factory-2-0-wvVpuKGfOy4Jz9wz" />
+    <obj id="bookcase" x="140" y="7" code="factory-2-0-dfFZSofKWLkGeewl" />
+    <obj id="door1" code="factory-3-0-giJs8nBkPw91Liha" x="150" y="23" />
+    <obj id="door1" code="factory-3-0-sWRvVHERUqtDRg93" x="150" y="11" />
+    <obj id="hatch1" code="factory-3-0-VVVvL0N8dSDi2J5U" x="145" y="7" />
+    <obj id="hatch1" code="factory-3-0-iyjYOzf1PfpJ68X2" x="145" y="12" />
+    <obj id="window1" code="factory-3-0-JVMW806ZqIcIgcUP" x="150" y="18" />
+    <obj id="chest" code="factory-3-0-qmavthS3K8C9CcMX" x="185" y="15" />
+    <obj id="case" code="factory-3-0-PWtrmS1bnrDEuJTi" x="190" y="7" />
+    <obj id="ammobox" code="factory-3-0-CXc4xearK7eob8O1" x="189" y="11" />
+    <obj id="explbox" code="factory-3-0-Ku0YMMTESZoPiwl6" x="190" y="23" />
+    <obj id="explbox" code="factory-3-0-z6WshE2ap2nWqQeI" x="146" y="19" />
+    <obj id="instr1" code="factory-3-0-vLxmaQsHeyHcaZ10" x="145" y="11" />
+    <obj id="locker" code="factory-3-0-MzNPFdbHUmckVRR7" x="147" y="11" />
+    <obj id="trash" code="factory-3-0-UpzOcxR7v6MVStyI" x="149" y="19" />
+    <obj id="ammobox" code="factory-3-0-QewVULSrdQ2u6QHf" x="155" y="3" />
+    <obj id="explbox" code="factory-3-0-oPsIJx3KGBWqv3vO" x="165" y="15" />
+    <obj id="box" code="factory-3-0-M7aEtbk25Wv4jkaA" x="157" y="23" />
+    <obj id="woodbox" code="factory-3-0-dLDBxRCMEEBFkzdm" x="174" y="3" />
+    <obj id="couch" code="factory-3-0-iXeJKHpTJopzHI1Z" x="147" y="19" />
+    <obj id="work" code="factory-3-0-zVM9VjJc409Nkxjq" x="173" y="11" />
+    <obj id="ammobox" code="factory-3-0-RLPwlM3BWs0HiGyf" x="145" y="19" />
+    <obj id="enl1" code="factory-3-0-UGm2kpBZpRC1FiU4" x="153" y="11" />
+    <obj id="enl1" code="factory-3-0-zbiQctltiotyCFwL" x="145" y="15" />
+    <obj id="enl1" code="factory-3-0-E1YPeOiTG4Rche3K" x="155" y="15" />
+    <obj id="enl2" code="factory-3-0-iTCwt4z9EgkUwiLX" x="170" y="23" />
+    <obj id="woodbox" code="factory-3-0-b9KGlIQrbXDgu7xG" x="183" y="23" />
+    <obj id="woodbox" code="factory-3-0-AUjGsFglttY64Hsn" x="185" y="23" />
+    <obj id="enl2" code="factory-3-0-m8O6fyVZopekewO2" x="172" y="23" />
+    <obj id="lov" code="factory-3-0-umkzaKMxoLFFjzCp" x="166" y="11" />
+    <obj id="lov" code="factory-3-0-Tz6Pw2KdoW1VgIYB" x="175" y="11" />
+    <obj id="woodbox" code="factory-3-0-DLcIsvH6FHjmZvcp" x="151" y="11" />
+    <obj id="enc1" code="factory-3-0-x2JgbfbqpvluyqIs" x="152" y="1" />
+    <obj id="case" code="factory-3-0-MzvR4klCuUpx2K9w" x="146" y="3" />
+    <obj id="box" code="factory-3-0-MAP27Gf0u5baPGtF" x="183" y="11" />
+    <obj id="door1a" code="factory-0-1-BismxaUgPvTiH2aN" x="21" y="48" />
+    <obj id="door1a" code="factory-0-1-oYIjQIPJl0C4IamY" x="12" y="48" />
+    <obj id="door1" code="factory-0-1-NMeCLKXlWsv6CYYL" x="28" y="30" />
+    <obj id="door1" code="factory-0-1-zlnR8eeCKCDkaJ8P" x="28" y="30" />
+    <obj id="door1b" code="factory-0-1-A18hgrfbuzhgXKQF" x="40" y="48" />
+    <obj id="septum" code="factory-0-1-zri9VcgQNIco2Kwg" x="12" y="28" />
+    <obj id="window1" code="factory-0-1-cK9ZcCyQv8c4oTfH" x="21" y="45" />
+    <obj id="chest" code="factory-0-1-KGFzJ42eGXsViOgQ" x="1" y="28" />
+    <obj id="case" code="factory-0-1-Vlre7BfXHBfUemNy" x="2" y="36" />
+    <obj id="case" code="factory-0-1-DJiqbtuSenz3QGiT" x="46" y="40" />
+    <obj id="ammobox" code="factory-0-1-DSI0AduFTCgsODxn" x="2" y="48" />
+    <obj id="ammobox" code="factory-0-1-ZHMq46C6uEF0ARmX" x="45" y="28" />
+    <obj id="ammobox" code="factory-0-1-gTVSpm8g3ivYxgt9" x="8" y="31" />
+    <obj id="explbox" code="factory-0-1-Bf6ZE9xBKE8ABZ5b" x="1" y="48" />
+    <obj id="weapbox" code="factory-0-1-IB0Ok16gZlifX67F" x="45" y="48" />
+    <obj id="medbox" code="factory-0-1-iX0lf6vnsIAfRQqE" x="44" y="47" />
+    <obj id="instr1" code="factory-0-1-jfV1kHAk9SCKk0h5" x="19" y="30" />
+    <obj id="table" code="factory-0-1-no27T8YFjTx8ZVz4" x="24" y="40" />
+    <obj id="table" code="factory-0-1-Qyc8bJzHANJlny9s" x="42" y="40" />
+    <obj id="hatch1" code="factory-0-1-cLSBzRkMe7e7pefR" x="16" y="31" />
+    <obj id="trash" code="factory-0-1-HaoIW4PYZAYl0YKb" x="19" y="35" />
+    <obj id="filecab" code="factory-0-1-vGV9nVSmdLXqbaD1" x="31" y="35" />
+    <obj id="filecab" code="factory-0-1-U7xbZnkwspR6bhob" x="3" y="40" />
+    <obj id="filecab" code="factory-0-1-O1rqdDg0OSdZX4P4" x="5" y="40" />
+    <obj id="filecab" code="factory-0-1-P1gRKizntx3wGKTy" x="6" y="40" />
+    <obj id="woodbox" code="factory-0-1-HXyaO4yUNtyfmglr" x="37" y="48" />
+    <obj id="woodbox" code="factory-0-1-KYd94y2TDhiwTO63" x="28" y="48" />
+    <obj id="woodbox" code="factory-0-1-m7hkZeSB0nxWMD88" x="26" y="48" />
+    <obj id="table1" code="factory-0-1-D08uoqM6f1EaCJfJ" x="36" y="40" />
+    <obj id="table1" code="factory-0-1-TGISVy91GeyHglBk" x="37" y="35" />
+    <obj id="table1" code="factory-0-1-mA7CG0NX9srOOsJv" x="24" y="35" />
+    <obj id="ammobox" code="factory-0-1-LjwB4czpuBXSS6uh" x="1" y="36" />
+    <obj id="case" code="factory-0-1-FyPFe0sjFMO4vVEi" x="5" y="36" />
+    <obj id="table" code="factory-0-1-B37xGIBuhSjLOfSc" x="29" y="35" />
+    <obj id="bookcase" code="factory-0-1-HLHr8wbz490ZTI9b" x="45" y="35" />
+    <obj id="enl1" code="factory-0-1-asgXcpTEfby23bgi" x="17" y="30" />
+    <obj id="enl1" code="factory-0-1-lAIXKaUQC2e4JtW5" x="45" y="40" />
+    <obj id="enl2" code="factory-0-1-ql47iXGSZW2VGGdF" x="34" y="35" />
+    <obj id="enl2" code="factory-0-1-IpYV76WRjtmgXV2M" x="23" y="48" />
+    <obj id="lov" code="factory-0-1-hU8hEGEKUlImGpxO" x="6" y="31" />
+    <obj id="lov" code="factory-0-1-cdNHtQoJsmLygi1p" x="26" y="40" />
+    <obj id="enl2" code="factory-0-1-eb4N723M2J7Ve4OV" x="42" y="35" />
+    <obj id="door1" code="factory-0-1-foMRNLiLOHCLfItd" x="21" y="40" />
+    <obj id="door1" code="factory-0-1-ffoNKTl2qsZVBCG3" x="21" y="35" />
+    <obj id="door1" code="factory-1-1-QDdlYpNw3NtMLK9H" x="58" y="48" />
+    <obj id="chest" code="factory-1-1-iLwVieLh0xTVKHkt" x="93" y="40" />
+    <obj id="chest" code="factory-1-1-dHi9Y78iPIuvvUEL" x="49" y="28" />
+    <obj id="case" code="factory-1-1-QhhA4tXhSXGkivKE" x="49" y="27" />
+    <obj id="case" code="factory-1-1-r6WkVcD9qyPLcJBJ" x="92" y="48" />
+    <obj id="case" code="factory-1-1-TPGxIqwAnxKOIVDh" x="85" y="48" />
+    <obj id="case" code="factory-1-1-ZbMFUGjkI0QWmZzP" x="83" y="48" />
+    <obj id="ammobox" code="factory-1-1-eXEpQqWDIIF8WXUy" x="49" y="40" />
+    <obj id="ammobox" code="factory-1-1-HfKzGg0GGWhF6zH4" x="93" y="28" />
+    <obj id="explbox" code="factory-1-1-XwQ0WFfLwnG1lHWX" x="94" y="32" />
+    <obj id="explbox" code="factory-1-1-LNtt3tIQLPauYPDx" x="49" y="48" />
+    <obj id="bigmed" code="factory-1-1-SimAsBKtLFXeqDNz" x="65" y="38" />
+    <obj id="instr1" code="factory-1-1-P0ZysOuHJH9YPOiU" x="75" y="43" />
+    <obj id="instr2" code="factory-1-1-cqbUfhcnJ31Zwz7C" x="75" y="41" />
+    <obj id="table" code="factory-1-1-o1QxVtiMWFOMqGlm" x="72" y="33" />
+    <obj id="table" code="factory-1-1-D4v7UZGvKbgIWTXN" x="56" y="33" />
+    <obj id="table" code="factory-1-1-sdlWHdcoXptctA0J" x="64" y="33" />
+    <obj id="wallcab" code="factory-1-1-cvnVnHMq7T8XUxjy" x="55" y="47" />
+    <obj id="trash" code="factory-1-1-AYtxw46obpzkCij6" x="85" y="38" />
+    <obj id="tumba1" code="factory-1-1-a3rCcBLb2vpvsrcL" x="64" y="38" />
+    <obj id="filecab" code="factory-1-1-VmV0fzcG2zBlFUaU" x="66" y="33" />
+    <obj id="filecab" code="factory-1-1-PVeBlQhB2fI3Ptxi" x="70" y="33" />
+    <obj id="filecab" code="factory-1-1-NvYpBQzfrD5S6hJb" x="61" y="33" />
+    <obj id="woodbox" code="factory-1-1-RQGSOUh8V08qHekn" x="83" y="38" />
+    <obj id="couch" code="factory-1-1-Cg3ouViPIP2XKhNv" x="73" y="43" />
+    <obj id="hatch1" code="factory-1-1-suRMtoZpQOBKryb9" x="58" y="29" />
+    <obj id="enl2" code="factory-1-1-br2TfT6GPcOG5mBa" x="62" y="33" />
+    <obj id="enl2" code="factory-1-1-YPKKNc4VaTtcwEYc" x="81" y="43" />
+    <obj id="enl1" code="factory-1-1-VebuNeherwzPJchX" x="59" y="38" />
+    <obj id="enl1" code="factory-1-1-bsV8dXkiPnaRB9ql" x="81" y="48" />
+    <obj id="enl1" code="factory-1-1-EuwmGyxlRAOSNwFy" x="72" y="28" />
+    <obj id="enl1" code="factory-1-1-pu9JLpvcEPIxMTD9" x="81" y="38" />
+    <obj id="enl1" code="factory-1-1-QGNAH9hwDuYcxhC4" x="76" y="48" />
+    <obj id="enf1" code="factory-1-1-slVAeJCgFyHTjqQM" x="49" y="39" />
+    <obj id="enf1" code="factory-1-1-NdYG5W9IhVdFK7Jd" x="52" y="40" />
+    <obj id="lov" code="factory-1-1-xX6M7136ecTMaxHM" x="85" y="28" />
+    <obj id="case" code="factory-1-1-o14C68g6Ab5lVkmC" x="94" y="28" />
+    <obj id="hatch1" code="factory-1-1-TCl2XXHCduL0joEo" x="72" y="29" />
+    <obj id="septum" code="factory-1-1-w40yZQvE1efRbUE3" x="57" y="28" />
+    <obj id="septum" code="factory-1-1-NYM9QD8WpxLJAelo" x="74" y="28" />
+    <obj id="case" code="factory-1-1-MIXLM65ALBdkQFaN" x="73" y="48" />
+    <obj id="door1" code="factory-1-1-YtUynXi1Wdk50Egm" x="76" y="33" />
+    <obj id="couch" code="factory-1-1-xdyTHqvMqvrSI0sy" x="62" y="33" />
+    <obj id="door1" code="factory-1-1-inqIHUvvAIvYWIGm" x="86" y="33" />
+    <obj id="door1" code="factory-1-1-K642qwV8eVUqYIoC" x="68" y="48" />
+    <obj id="hatch1" code="factory-2-1-Y3lQGTav2GGddakP" x="116" y="32" />
+    <obj id="hatch1" code="factory-2-1-yYrfPTmUfGKeidBZ" x="124" y="32" />
+    <obj id="septum" code="factory-2-1-hJiAtqUmnPzDmDvv" x="105" y="28" />
+    <obj id="door1" code="factory-2-1-e00cGDHHbarakNt9" x="108" y="48" />
+    <obj id="door1" code="factory-2-1-UIv6D1chZiuw3rLy" x="133" y="31" />
+    <obj id="wallsafe" code="factory-2-1-RJxeXq9WFYKdEomq" x="117" y="47" />
+    <obj id="chest" code="factory-2-1-DhOWHmeDUv5yQdlw" x="141" y="32" />
+    <obj id="case" code="factory-2-1-S54dkwOSigp25R0W" x="142" y="48" />
+    <obj id="case" code="factory-2-1-FZOQBNfzW57R4FEb" x="99" y="48" />
+    <obj id="case" code="factory-2-1-TRdCA8ANix11MAIh" x="120" y="34" />
+    <obj id="case" code="factory-2-1-a5roKZXBQdxBTn9i" x="107" y="28" />
+    <obj id="ammobox" code="factory-2-1-uMckZb7Vxj7RrTkm" x="98" y="48" />
+    <obj id="ammobox" code="factory-2-1-IbKJyUsKJ7cQGzts" x="142" y="28" />
+    <obj id="explbox" code="factory-2-1-gVcMngjRC3Xv8m6u" x="97" y="28" />
+    <obj id="table" code="factory-2-1-v2EsTRZg69zIKPJV" x="117" y="48" />
+    <obj id="wallcab" code="factory-2-1-OUlgA2vymOmEFhrw" x="131" y="30" />
+    <obj id="locker" code="factory-2-1-MXxNE6nkhqjanoTI" x="98" y="28" />
+    <obj id="trash" code="factory-2-1-fPNVz43XkSHBKJys" x="116" y="48" />
+    <obj id="filecab" code="factory-2-1-Pr0DCokGK0DbQyrC" x="119" y="48" />
+    <obj id="locker" code="factory-2-1-b4DM3AtuDN41xLRa" x="100" y="28" />
+    <obj id="woodbox" code="factory-2-1-DX7A3182jY5jQSVW" x="110" y="43" />
+    <obj id="woodbox" code="factory-2-1-nqUqBG5PQ5VuhDoy" x="121" y="43" />
+    <obj id="couch" code="factory-2-1-gXAIdKUU9ZkX6LZ0" x="113" y="48" />
+    <obj id="couch" code="factory-2-1-qrX1XJBheRktoVHy" x="121" y="48" />
+    <obj id="term3" code="factory-2-1-FEKJoLhz3YEIXgxN" x="118" y="47" />
+    <obj id="enl2" code="factory-2-1-NKEWskxiDC3aDgml" x="116" y="43" />
+    <obj id="enl2" code="factory-2-1-olMlfr8GJEQoNLdo" x="124" y="43" />
+    <obj id="enl1" code="factory-2-1-SsijPVPAae4IYAB8" x="140" y="32" />
+    <obj id="enl1" code="factory-2-1-zNyjn3TMDjzI3xvj" x="141" y="48" />
+    <obj id="enl1" code="factory-2-1-UpmilB7t2nqSbMte" x="113" y="28" />
+    <obj id="enl1" code="factory-2-1-yiW1tOY04ZtB4lk2" x="121" y="34" />
+    <obj id="lov" code="factory-2-1-tHN2u7oHTpK46TyH" x="115" y="48" />
+    <obj id="lov" code="factory-2-1-AKziEnLiaBIMLn5y" x="124" y="48" />
+    <obj id="door1" code="factory-2-1-KOhs2YK4fv5myAHR" x="108" y="31" />
+    <obj id="case" code="factory-2-1-pcjQ6yuBjSy8plPp" x="134" y="48" />
+    <obj id="woodbox" code="factory-2-1-I4vx7Db5mYtkzNyO" x="119" y="43" />
+    <obj id="septum" code="factory-3-1-gMjGhAVrknvy30JG" x="170" y="44" />
+    <obj id="hatch1" code="factory-3-1-qN17Hcxd3IoDdU1C" x="147" y="33" />
+    <obj id="enl2" code="factory-3-1-uol8EMaYM6mkTRsn" x="167" y="40" />
+    <obj id="enl1" code="factory-3-1-HGTAfzl8RC3jdeaX" x="152" y="44" />
+    <obj id="enl1" code="factory-3-1-TN3gxZei6yyT5BDH" x="161" y="44" />
+    <obj id="enl1" code="factory-3-1-bpP6genoGSxyPiVx" x="150" y="40" />
+    <obj id="enl1" code="factory-3-1-H9UTLivfK8HyQnLr" x="186" y="36" />
+    <obj id="trap" code="factory-3-1-d7qg7JPDzlwMtn2K" x="184" y="40" />
+    <obj id="septum" code="factory-3-1-rpUHwMOna35N5FI0" x="154" y="48" />
+    <obj id="septum" code="factory-3-1-AYsm3oVrz6rrUEpl" x="153" y="32" />
+    <obj id="case" code="factory-3-1-PxFlYitKd35hZsS2" x="146" y="28" />
+    <obj id="case" code="factory-3-1-RhP6VOhcw4EAAGo7" x="146" y="44" />
+    <obj id="cup" code="factory-3-1-GLMK3Xe3KbSjpAx6" x="174" y="32" />
+    <obj id="cup" code="factory-3-1-lggdiVOQRC8sF5Tj" x="166" y="44" />
+    <obj id="couch" code="factory-3-1-iw4DHsTLdzhEmwdQ" x="176" y="32" />
+    <obj id="couch" code="factory-3-1-q2ssKRPf3s0xrA2l" x="164" y="44" />
+    <obj id="weapbox" code="factory-3-1-al3evsYDNV8qii9p" x="173" y="28" />
+    <obj id="table" code="factory-3-1-ZjJNLcqPjU9sPARz" x="160" y="40" />
+    <obj id="table" code="factory-3-1-UvI8VA8grlVmZh1h" x="188" y="44" />
+    <obj id="trash" code="factory-3-1-vFio65QbcOpHv4Rp" x="151" y="32" />
+    <obj id="trash" code="factory-3-1-oan1S8dgCn6q5UyL" x="189" y="28" />
+    <obj id="trash" code="factory-3-1-pHN3SG6KUmfFKR7Z" x="189" y="48" />
+    <obj id="ammobox" code="factory-3-1-WFKE2fZXr9WEquWc" x="162" y="40" />
+    <obj id="ammobox" code="factory-3-1-OktPU4OUdhJylRt4" x="146" y="40" />
+    <obj id="instr1" code="factory-3-1-jZON3Z6c7APdqTLc" x="175" y="28" />
+    <obj id="door1" code="factory-3-1-TUfyTtk6kms6oQ4Z" x="178" y="36" />
+    <obj id="vendor" code="factory-3-1-VhkZDojbEFT8F7c6" x="185" y="32" />
+    <obj id="medbox" code="factory-3-1-KUAYbUkvNvlLqAui" x="189" y="39" />
+    <obj id="term3" code="factory-3-1-iTWLJiBuaEORxiFy" x="154" y="27" />
+    <obj id="locker" code="factory-3-1-FqPaUYtdnvthZcNE" x="176" y="40" />
+    <obj id="enl1" code="factory-3-1-AW02KxvdaP2wwxmK" x="150" y="28" />
+    <obj id="enl1" code="factory-3-1-zHr9nk1Y9eXsCBtt" x="156" y="28" />
+    <obj id="enl1" code="factory-3-1-l7OumEtgvViBLsHr" x="174" y="28" />
+    <obj id="enl1" code="factory-3-1-i8b2S7PqtMUTYQh4" x="174" y="48" />
+    <obj id="enl1" code="factory-3-1-gUwmDGOSGpqqgyzE" x="179" y="48" />
+    <obj id="work" code="factory-3-1-xqG7onc3o31b9dlA" x="180" y="48" />
+    <obj id="door1" code="factory-3-1-rT7UYoa0jYfk5J1B" x="162" y="32" />
+    <obj id="door1" code="factory-3-1-gppSRFpSmU024IT6" x="183" y="28" />
+    <obj id="door1" code="factory-3-1-p4RMVm9e5SJiwRXu" x="182" y="44" />
+    <obj id="door2" code="factory-3-1-TRFrIFo7jWN4Mxep" x="170" y="48" />
+    <obj id="hatch1" x="19" y="66" code="factory-0-2-ZQlxstkslSN0sshg" />
+    <obj id="ammobox" x="10" y="73" code="factory-0-2-urKPMlApKSccgmIL" />
+    <obj id="ammobox" x="17" y="73" code="factory-0-2-axUgyhgpfkBlI3kI" />
+    <obj id="bloat" x="22" y="58" code="factory-0-2-dpLG6pGdjsGcXAAS" />
+    <obj id="bloat" x="25" y="55" code="factory-0-2-b6XV9tApE0RP8vg4" />
+    <obj id="bloat" x="22" y="53" code="factory-0-2-TXVcXnqJbIztV20J" />
+    <obj id="bloat" x="25" y="52" code="factory-0-2-WHyoFtlpBR9nMNby" />
+    <obj id="bloat" x="25" y="59" code="factory-0-2-wJ8M0ilJfmTHIa7M" />
+    <obj id="chest" x="33" y="68" code="factory-0-2-bYmxBSr1q2vfyxTL" />
+    <obj id="explbox" x="45" y="53" code="factory-0-2-tDON6XWkRBtsgp9L" />
+    <obj id="ammobox" x="2" y="53" code="factory-0-2-prLqC9QawWwnmBjH" />
+    <obj id="explbox" x="22" y="60" code="factory-0-2-TTJG7Qm5k1awrWrF" />
+    <obj id="ammobox" x="25" y="60" code="factory-0-2-Rm73nj6xvk7ARCdc" />
+    <obj id="trap" x="38" y="57" code="factory-0-2-jEn6koTqFQyVCpBk" />
+    <obj id="chest" x="30" y="53" code="factory-0-2-GoEQuuJUMcHjo3WV" />
+    <obj id="mine" x="24" y="60" code="factory-0-2-M0RDzzAKyby2iq3Y" />
+    <obj id="bigbox" x="13" y="65" code="factory-0-2-x1psIHQ9paJTDstr" />
+    <obj id="box" x="16" y="53" code="factory-0-2-JAbbnGsQmIFkb9W0" />
+    <obj id="mine" x="29" y="53" code="factory-0-2-XEyC9FO6mbnLwuxJ" />
+    <obj id="case" x="45" y="73" code="factory-0-2-CJyMBToW7GNEgTe0" />
+    <obj id="case" x="2" y="65" code="factory-0-2-pRglHVFQJFUueciE" />
+    <obj id="case" x="23" y="60" code="factory-0-2-Ah0KW0Wp5qwj5kGb" />
+    <obj id="enl1" code="factory-1-2-IZ1Jf2mzKH9o9JJS" x="51" y="65" />
+    <obj id="septum" code="factory-1-2-n0aLwxAzCiVNMqXi" x="85" y="73" />
+    <obj id="rat" code="factory-1-2-plKtNEhbH33LgP29" x="57" y="65" />
+    <obj id="cup" code="factory-1-2-BNhmeNonzjYCRmpA" x="65" y="65" />
+    <obj id="cup" code="factory-1-2-qgesiLTW2tpBNq9n" x="83" y="69" />
+    <obj id="ammobox" code="factory-1-2-LesAQ9vtZ0XwY8wv" x="60" y="65" />
+    <obj id="ammobox" code="factory-1-2-MAsMJZgXf0hXiwDI" x="58" y="65" />
+    <obj id="ammobox" code="factory-1-2-OORBZbm1mjeHOwc8" x="83" y="65" />
+    <obj id="couch" code="factory-1-2-U5JOkZbiFaSjXMpe" x="67" y="65" />
+    <obj id="box" code="factory-1-2-HXI4pstg5pIqox2q" x="85" y="65" />
+    <obj id="box" code="factory-1-2-aLFP2e7txrjg7iiC" x="55" y="65" />
+    <obj id="bigbox" code="factory-1-2-IDSjb8AKvY9Nhqf5" x="59" y="61" />
+    <obj id="bigbox" code="factory-1-2-OlKfNgOwqSRV5FW5" x="81" y="61" />
+    <obj id="box" code="factory-1-2-PDBZIyOl08oMF8Ql" x="91" y="61" />
+    <obj id="trash" code="factory-1-2-xPry1SOhLk5Bn63q" x="87" y="65" />
+    <obj id="trash" code="factory-1-2-jLesXS5Urf9QfMgQ" x="64" y="65" />
+    <obj id="table" code="factory-1-2-aVFJMGzoxJlBbZVT" x="74" y="69" />
+    <obj id="term3" code="factory-1-2-KzSLH7U9mv6hKXru" x="75" y="68" />
+    <obj id="medbox" code="factory-1-2-iQ80AtvPjWk9vbfB" x="64" y="68" />
+    <obj id="wallcab" code="factory-1-2-Ru7orXdjq82U1G4B" x="93" y="68" />
+    <obj id="wallcab" code="factory-1-2-z170CoQxi9l2EbNC" x="50" y="64" />
+    <obj id="instr2" code="factory-1-2-HwCA3iv0qohKZ1R0" x="50" y="72" />
+    <obj id="work" code="factory-1-2-sId3l4ZcRp97boQz" x="53" y="69" />
+    <obj id="trash" code="factory-1-2-KS2OmgMiZ3rIAp0p" x="93" y="73" />
+    <obj id="septum" code="factory-1-2-oqnleGhVVn2Ehpxi" x="81" y="65" />
+    <obj id="platform1" code="factory-1-2-yXugjFWQjw6IYnFl" x="66" y="58" />
+    <obj id="filecab" code="factory-1-2-Nwk5kPwr8axylNIx" x="69" y="65" />
+    <obj id="filecab" code="factory-1-2-EYx6P3HGhp3Vr3nr" x="76" y="69" />
+    <obj id="platform1" code="factory-1-2-acyM5Ph0UBQIcnZX" x="75" y="58" />
+    <obj id="enl1" code="factory-1-2-Rnj78F8NMUqvEzzx" x="76" y="73" />
+    <obj id="enl1" code="factory-1-2-SjFM7jYrnw8g33Hy" x="70" y="73" />
+    <obj id="enl1" code="factory-1-2-ZbXVUpeAdcLhefqW" x="82" y="73" />
+    <obj id="enl1" code="factory-1-2-LKT4YfvmifjQra9Y" x="89" y="73" />
+    <obj id="enl1" code="factory-1-2-h7lU4gtrWXuLOfHX" x="87" y="69" />
+    <obj id="enl1" code="factory-1-2-eWxHy0jAj5QWsf07" x="91" y="69" />
+    <obj id="septum" code="factory-1-2-uvp4NyXI7hKM1Ynw" x="62" y="69" />
+    <obj id="enl1" code="factory-1-2-Jhels65uIWVtFV3V" x="84" y="65" />
+    <obj id="enl1" code="factory-1-2-CX9b7iGox573yLqh" x="78" y="65" />
+    <obj id="enl1" code="factory-1-2-icyxG67X0pCmenkm" x="68" y="65" />
+    <obj id="enl1" code="factory-1-2-HItr8Fi4pz7vMDdT" x="65" y="69" />
+    <obj id="enl1" code="factory-1-2-HXRI0zCLyKOx9KQI" x="70" y="69" />
+    <obj id="enl1" code="factory-1-2-adyiAKlXzA5O682i" x="73" y="69" />
+    <obj id="enl1" code="factory-1-2-k8Dti2MCb0ulFmJC" x="57" y="61" />
+    <obj id="box" x="120" y="60" code="factory-2-2-Cufd8T6C6QgZSlwP" />
+    <obj id="box" x="135" y="60" code="factory-2-2-ytTUb6o4CQHPtmU2" />
+    <obj id="mine" x="106" y="73" code="factory-2-2-dF6k3FlaMFg9Ys63" />
+    <obj id="mine" x="126" y="73" code="factory-2-2-GRTmB4Pd07nfGPiv" />
+    <obj id="mine" x="131" y="73" code="factory-2-2-AvlSifM5DdVMXjJ9" />
+    <obj id="spikes" x="108" y="73" code="factory-2-2-Qsk1UdZlucyyOEPL" />
+    <obj id="spikes" x="104" y="73" code="factory-2-2-N9oqurSEdZvBp1AG" />
+    <obj id="spikes" x="116" y="73" code="factory-2-2-vockgJLZIh2JGWuu" />
+    <obj id="spikes" x="119" y="73" code="factory-2-2-UB1VfyoEUTKmyR8U" />
+    <obj id="spikes" x="125" y="73" code="factory-2-2-HNuCPh2VL0Ppo4UN" />
+    <obj id="spikes" x="136" y="73" code="factory-2-2-eNOhq1XTkzPkrI2R" />
+    <obj id="spikes" x="134" y="73" code="factory-2-2-R1dAV5bfICMo2cha" />
+    <obj id="spikes" x="139" y="73" code="factory-2-2-LSl6M4QlsGEpaWx7" />
+    <obj id="trap" x="128" y="73" code="factory-2-2-qdFAUPS0XGBT56Nm" />
+    <obj id="trap" x="122" y="73" code="factory-2-2-f2rlNxKLsrrK35hO" />
+    <obj id="trap" x="114" y="73" code="factory-2-2-Dux6xM0xP7lOVXZx" />
+    <obj id="trap" x="110" y="73" code="factory-2-2-dcfVJXkW8NanO1AK" />
+    <obj id="box" x="108" y="59" code="factory-2-2-gmnPMdUl7bGrzIpU" />
+    <obj id="trap" x="98" y="73" code="factory-2-2-XMLhiy1PieGzvzzg" />
+    <obj id="mine" x="140" y="73" code="factory-2-2-SSiwzkPVo2cEyUvm" />
+    <obj id="mine" x="132" y="73" code="factory-2-2-mjXIvQhmnBYdev7b" />
+    <obj id="mine" x="99" y="73" code="factory-2-2-Yt1IMxEHhssenR5X" />
+    <obj id="slime" x="123" y="73" code="factory-2-2-Ec2vZ8P2WV1jplst" />
+    <obj id="slime" x="112" y="73" code="factory-2-2-EicM3YExWTNFZvyu" />
+    <obj id="slime" x="101" y="73" code="factory-2-2-Ahc0c2dOqUruIrZ6" />
+    <obj id="slime" x="138" y="73" code="factory-2-2-CTvT7EZqU7vCDvYD" />
+    <obj id="bigbox" x="132" y="73" code="factory-2-2-aYpilqnMBHVHFBZo" />
+    <obj id="trap" x="102" y="73" code="factory-2-2-CuyYhFwdRex07Y9m" />
+    <obj id="case" x="130" y="73" code="factory-2-2-FbHu9ge9oVPmLKZp" />
+    <obj id="ammobox" x="141" y="73" code="factory-2-2-slXEXj2uUaOymPMS" />
+    <obj id="ammobox" x="107" y="73" code="factory-2-2-NwZOGfQTilRUJQUr" />
+    <obj id="case" x="115" y="73" code="factory-2-2-Afe9xfwWuPu0Sr7G" />
+    <obj id="explbox" x="100" y="73" code="factory-2-2-uvXZLBg8Tbbxtduf" />
+    <obj id="table" x="120" y="73" code="factory-2-2-FpIVKnjG5i1FRY24" />
+    <obj id="medbox" x="98" y="72" code="factory-2-2-LcI1Nxr1Zw1XB277" />
+    <obj id="door2" x="99" y="52" code="factory-2-2-PPY63XTE5Aj1BKfG" />
+    <obj id="chest" x="97" y="52" code="factory-2-2-fwv4MfYTITYDoxFN" />
+    <obj id="radbarrel" x="105" y="73" code="factory-2-2-wuayPOZ93bEdtkWE" />
+    <obj id="radbarrel" x="97" y="73" code="factory-2-2-SO0mLdaHA6GymPWJ" />
+    <obj id="turret" x="142" y="67" code="factory-2-2-AJL2EEARSSyPOags" />
+    <obj id="bloodwing" x="97" y="67" code="factory-2-2-vXQWffnwU5Vu2ewe" />
+    <obj id="bloodwing" x="134" y="51" code="factory-2-2-buF9d3lXgnHh31XY" />
+    <obj id="ammobox" x="111" y="73" code="factory-2-2-LRl4CRJIBnnjDtZs" />
+    <obj id="box" x="103" y="63" code="factory-2-2-kqmNk0w0mjrEgQWv" />
+    <obj id="ammobox" code="factory-3-2-BIfmMr13FkQBxHrB" x="189" y="69" />
+    <obj id="case" code="factory-3-2-xcRaL4FJcIjSUfo9" x="189" y="57" />
+    <obj id="enl1" code="factory-3-2-HjvhUp7d0r6glbDk" x="164" y="53" />
+    <obj id="enl2" code="factory-3-2-D9WYtvXdRyQD9lNk" x="169" y="70" />
+    <obj id="term2" code="factory-3-2-gYph6gbCEY6zQ2UO" x="157" y="69" />
+    <obj id="work" code="factory-3-2-qSA9m2Mn5Q9jn0h8" x="175" y="61" />
+    <obj id="instr2" code="factory-3-2-En5l4WmYR7hKOLuy" x="175" y="59" />
+    <obj id="ammobox" code="factory-3-2-ggQRhxeDUeO7BLaD" x="146" y="69" />
+    <obj id="enl2" code="factory-3-2-Huboh9W71Qa5URHt" x="176" y="70" />
+    <obj id="enl1" code="factory-3-2-ALNvqrBnkujGFfld" x="159" y="62" />
+    <obj id="case" code="factory-3-2-oobOA5Ogj0Iz78qA" x="166" y="61" />
+    <obj id="case" code="factory-3-2-LmMr6Sgou23P24kX" x="160" y="59" />
+    <obj id="explbox" code="factory-3-2-F16vDNAyeWW1NYei" x="188" y="69" />
+    <obj id="explbox" code="factory-3-2-sIQIak3InFRY8zfN" x="189" y="53" />
+    <obj id="chest" code="factory-3-2-OogUxXDowieLN5Uv" x="188" y="73" />
+    <obj id="table" code="factory-3-2-DQSp39Konlg80Q9b" x="157" y="70" />
+    <obj id="couch" code="factory-3-2-pWydI5UcqLG07LxO" x="160" y="70" />
+    <obj id="cup" code="factory-3-2-KkJpJixFEUR1s8Iv" x="162" y="70" />
+    <obj id="hatch2" code="factory-3-2-Gbm6VFQa4Lq42RIZ" x="167" y="66" />
+    <obj id="door2" code="factory-3-2-kJYCgsGHKYeDE8Ms" x="156" y="73" />
+    <obj id="door2" code="factory-3-2-oWx1nttZ3eRwXorx" x="172" y="70" />
+    <obj id="door1" code="factory-3-2-FyorFUDBpJzAEyHL" x="178" y="61" />
+    <obj id="enl1" code="factory-3-2-sBGmUo9yr9ArlXYv" x="172" y="61" />
+    <obj id="enl1" code="factory-3-2-MJAZsjMCrN5AXC4j" x="183" y="61" />
+    <obj id="enl2" code="factory-3-2-ymeSRZNNEdQOL9Aa" x="158" y="70" />
+    <obj id="enl2" code="factory-3-2-mtu2hwT97vQISBEP" x="161" y="73" />
+    <obj id="enl2" code="factory-3-2-kQUxLkRPL8hOqiRd" x="182" y="73" />
+    <obj id="door1a" code="factory-3-2-GZrwlfV4fCqYUp0m" x="183" y="57" />
+    <obj id="door1a" code="factory-3-2-UBRhBT7hKIP3ADuz" x="184" y="73" />
+    <obj id="hatch1" code="factory-3-2-IYCYeCGxqE1kE6nP" x="185" y="66" />
+    <obj id="door2" code="factory-3-2-QU5hl3Qnh9EbwgyZ" x="171" y="73" />
+    <obj id="wallsafe" code="factory-3-2-O905dsBm42uaC86g" x="165" y="69" />
+    <obj id="case" code="factory-3-2-fPIyVd7uPbqSrJVh" x="146" y="57" />
+    <obj id="case" code="factory-3-2-mVM7ioGR2N5yW0bQ" x="147" y="53" />
+    <obj id="hatch1" code="factory-3-2-AzYbpEBMAyu1rzn9" x="167" y="71" />
+    <back id="pipes" x="4" y="1" />
+    <back id="bwindow" x="14" y="19" />
+    <back id="unitaz" x="26" y="2" />
+    <back id="plesen" x="2" y="22" />
+    <back id="potek" x="5" y="13" />
+    <back id="konstr" x="38" y="13" />
+    <back id="konstr" x="23" y="13" />
+    <back id="rak" x="25" y="2" />
+    <back id="swindow" x="23" y="1" />
+    <back id="rak" x="43" y="22" />
+    <back id="rak" x="41" y="22" />
+    <back id="electro" x="21" y="20" />
+    <back id="electro" x="33" y="20" />
+    <back id="electro" x="27" y="20" />
+    <back id="potek" x="20" y="19" />
+    <back id="pult" x="25" y="22" />
+    <back id="pult" x="30" y="22" />
+    <back id="monitor" x="30" y="21" />
+    <back id="monitor" x="25" y="21" />
+    <back id="poster" x="12" y="8" />
+    <back id="vents" x="29" y="2" />
+    <back id="vents" x="32" y="2" />
+    <back id="vents" x="35" y="2" />
+    <back id="vents" x="38" y="2" />
+    <back id="vents" x="41" y="2" />
+    <back id="vents" x="44" y="2" />
+    <back id="chole1" x="15" y="5" />
+    <back id="chole3" x="21" y="6" />
+    <back id="light4" x="30" y="13" />
+    <back id="light4" x="34" y="13" />
+    <back id="light4" x="26" y="13" />
+    <back id="pipe4" x="27" y="5" />
+    <back id="pipe4" x="27" y="7" />
+    <back id="pipe4" x="27" y="9" />
+    <back id="pipe4" x="27" y="11" />
+    <back id="light1" x="2" y="13" />
+    <back id="biggate" x="2" y="6" />
+    <back id="light3" x="1" y="5" />
+    <back id="light3" x="8" y="5" />
+    <back id="fwindow" x="77" y="2" />
+    <back id="light4" x="84" y="1" />
+    <back id="depot" x="50" y="17" />
+    <back id="storage" x="50" y="21" />
+    <back id="depot" x="53" y="17" />
+    <back id="light2" x="54" y="2" />
+    <back id="depot" x="56" y="17" />
+    <back id="stillage" x="53" y="9" />
+    <back id="fwindow" x="85" y="2" />
+    <back id="poster" x="53" y="13" />
+    <back id="electro" x="80" y="8" />
+    <back id="light2" x="58" y="2" />
+    <back id="storage" x="54" y="21" />
+    <back id="monitor" x="84" y="14" />
+    <back id="monitor" x="85" y="16" />
+    <back id="pult" x="84" y="15" />
+    <back id="pult" x="83" y="16" />
+    <back id="pult" x="84" y="17" />
+    <back id="pult" x="86" y="17" />
+    <back id="pult" x="87" y="16" />
+    <back id="monitor" x="89" y="16" />
+    <back id="monitor" x="88" y="15" />
+    <back id="monitor" x="86" y="15" />
+    <back id="electro" x="92" y="14" />
+    <back id="light2" x="85" y="13" />
+    <back id="light2" x="91" y="13" />
+    <back id="light2" x="88" y="13" />
+    <back id="light1" x="62" y="20" />
+    <back id="light1" x="92" y="20" />
+    <back id="light1" x="69" y="20" />
+    <back id="light1" x="77" y="20" />
+    <back id="light1" x="85" y="20" />
+    <back id="konstr" x="73" y="20" />
+    <back id="konstr" x="65" y="20" />
+    <back id="konstr" x="81" y="20" />
+    <back id="konstr" x="89" y="20" />
+    <back id="bwindow" x="51" y="6" />
+    <back id="bwindow" x="56" y="6" />
+    <back id="wires1" x="91" y="14" />
+    <back id="wires1" x="91" y="16" />
+    <back id="bvent" x="78" y="13" />
+    <back id="zavod1" x="76" y="9" />
+    <back id="zavod1" x="83" y="9" />
+    <back id="hkonstr" x="83" y="1" />
+    <back id="hkonstr" x="89" y="1" />
+    <back id="hkonstr" x="77" y="1" />
+    <back id="hkonstr" x="71" y="1" />
+    <back id="vkonstr" x="69" y="1" />
+    <back id="vkonstr" x="69" y="4" />
+    <back id="light2" x="65" y="9" />
+    <back id="light2" x="69" y="9" />
+    <back id="door" x="51" y="13" />
+    <back id="gate" x="91" y="21" />
+    <back id="zavod1" x="87" y="9" />
+    <back id="fuse" x="91" y="9" />
+    <back id="draw" x="57" y="9" />
+    <back id="light4" x="140" y="1" />
+    <back id="electro" x="123" y="9" />
+    <back id="electro" x="128" y="9" />
+    <back id="books" x="135" y="2" />
+    <back id="books" x="139" y="2" />
+    <back id="swindow" x="137" y="2" />
+    <back id="swindow" x="137" y="3" />
+    <back id="stillage" x="134" y="5" />
+    <back id="light4" x="134" y="1" />
+    <back id="storage" x="123" y="13" />
+    <back id="books" x="141" y="2" />
+    <back id="storage" x="127" y="13" />
+    <back id="stillage" x="137" y="5" />
+    <back id="books" x="133" y="2" />
+    <back id="fwindow" x="109" y="1" />
+    <back id="fwindow" x="125" y="1" />
+    <back id="fwindow" x="117" y="1" />
+    <back id="books" x="117" y="21" />
+    <back id="swindow" x="98" y="3" />
+    <back id="swindow" x="104" y="3" />
+    <back id="potek" x="97" y="1" />
+    <back id="plesen" x="97" y="6" />
+    <back id="light2" x="98" y="1" />
+    <back id="light2" x="104" y="1" />
+    <back id="unitaz" x="99" y="6" />
+    <back id="unitaz" x="104" y="6" />
+    <back id="rak" x="101" y="6" />
+    <back id="vents" x="130" y="18" />
+    <back id="vents" x="133" y="18" />
+    <back id="vents" x="136" y="18" />
+    <back id="vents" x="139" y="18" />
+    <back id="stillage" x="133" y="9" />
+    <back id="stillage" x="136" y="9" />
+    <back id="vent" x="98" y="18" />
+    <back id="vent" x="100" y="18" />
+    <back id="vent" x="110" y="18" />
+    <back id="vent" x="108" y="18" />
+    <back id="light1" x="104" y="18" />
+    <back id="light2" x="117" y="17" />
+    <back id="light2" x="122" y="17" />
+    <back id="bwindow" x="108" y="11" />
+    <back id="bwindow" x="115" y="11" />
+    <back id="light4" x="109" y="9" />
+    <back id="light4" x="116" y="9" />
+    <back id="poster" x="112" y="12" />
+    <back id="hkonstr" x="108" y="0" />
+    <back id="hkonstr" x="114" y="0" />
+    <back id="hkonstr" x="120" y="0" />
+    <back id="hkonstr" x="126" y="0" />
+    <back id="minkrut" x="127" y="21" />
+    <back id="gate" x="139" y="21" />
+    <back id="door" x="98" y="21" />
+    <back id="pipe4" x="104" y="9" />
+    <back id="pipe4" x="104" y="10" />
+    <back id="depot" x="98" y="13" />
+    <back id="pipe4" x="100" y="9" />
+    <back id="pipe4" x="100" y="10" />
+    <back id="pipe4" x="97" y="9" />
+    <back id="pipe4" x="97" y="10" />
+    <back id="draw" x="119" y="21" />
+    <back id="bigbeam" x="181" y="1" />
+    <back id="fwindow" x="178" y="16" />
+    <back id="bigbeam" x="171" y="1" />
+    <back id="bigbeam" x="161" y="1" />
+    <back id="bigbeam" x="151" y="1" />
+    <back id="fwindow" x="158" y="4" />
+    <back id="fwindow" x="178" y="4" />
+    <back id="gate" x="152" y="9" />
+    <back id="bigbeam" x="181" y="13" />
+    <back id="fwindow" x="168" y="4" />
+    <back id="bigbeam" x="151" y="13" />
+    <back id="fwindow" x="158" y="16" />
+    <back id="fwindow" x="168" y="16" />
+    <back id="bigbeam" x="161" y="13" />
+    <back id="gate" x="187" y="21" />
+    <back id="zavod1" x="159" y="9" />
+    <back id="zavod1" x="169" y="9" />
+    <back id="bigbeam" x="171" y="13" />
+    <back id="zavod1" x="179" y="9" />
+    <back id="zavod1" x="169" y="21" />
+    <back id="zavod1" x="179" y="21" />
+    <back id="zavod2" x="152" y="22" />
+    <back id="zavod1" x="159" y="21" />
+    <back id="door" x="147" y="21" />
+    <back id="konstr" x="188" y="8" />
+    <back id="konstr" x="153" y="20" />
+    <back id="pipe3" x="145" y="5" />
+    <back id="light3" x="180" y="3" />
+    <back id="light3" x="170" y="3" />
+    <back id="light3" x="160" y="3" />
+    <back id="light3" x="160" y="15" />
+    <back id="light3" x="170" y="15" />
+    <back id="light3" x="180" y="15" />
+    <back id="light1" x="147" y="17" />
+    <back id="light1" x="147" y="8" />
+    <back id="fuse" x="187" y="9" />
+    <back id="vents" x="151" y="3" />
+    <back id="vents" x="189" y="3" />
+    <back id="vents" x="189" y="15" />
+    <back id="vents" x="151" y="15" />
+    <back id="poster" x="145" y="21" />
+    <back id="blood2" x="148" y="17" />
+    <back id="chole5" x="144" y="12" />
+    <back id="door" x="44" y="26" />
+    <back id="gate" x="24" y="46" />
+    <back id="pipe4" x="36" y="28" />
+    <back id="bwindow" x="37" y="33" />
+    <back id="bwindow" x="28" y="33" />
+    <back id="bwindow" x="28" y="38" />
+    <back id="bwindow" x="37" y="38" />
+    <back id="swindow" x="3" y="34" />
+    <back id="swindow" x="8" y="34" />
+    <back id="bwindow" x="4" y="46" />
+    <back id="vent" x="45" y="32" />
+    <back id="vent" x="45" y="37" />
+    <back id="vent" x="2" y="45" />
+    <back id="door" x="14" y="46" />
+    <back id="railing" x="3" y="28" />
+    <back id="railing" x="6" y="28" />
+    <back id="pipes" x="3" y="29" />
+    <back id="pipes" x="7" y="29" />
+    <back id="pipe4" x="6" y="30" />
+    <back id="pipe4" x="36" y="26" />
+    <back id="pipe4" x="6" y="29" />
+    <back id="battery" x="5" y="48" />
+    <back id="battery" x="38" y="35" />
+    <back id="battery" x="38" y="40" />
+    <back id="battery" x="29" y="40" />
+    <back id="battery" x="29" y="35" />
+    <back id="light1" x="25" y="44" />
+    <back id="light1" x="36" y="44" />
+    <back id="light1" x="6" y="34" />
+    <back id="light1" x="30" y="27" />
+    <back id="light1" x="6" y="27" />
+    <back id="light4" x="42" y="37" />
+    <back id="light4" x="36" y="37" />
+    <back id="light4" x="31" y="37" />
+    <back id="light4" x="25" y="37" />
+    <back id="light4" x="36" y="32" />
+    <back id="light4" x="42" y="32" />
+    <back id="light4" x="31" y="32" />
+    <back id="light4" x="25" y="32" />
+    <back id="light3" x="16" y="33" />
+    <back id="light3" x="16" y="38" />
+    <back id="pult" x="42" y="47" />
+    <back id="monitor" x="42" y="46" />
+    <back id="electro" x="16" y="27" />
+    <back id="electro" x="22" y="27" />
+    <back id="electro" x="19" y="27" />
+    <back id="monitor" x="16" y="26" />
+    <back id="monitor" x="18" y="26" />
+    <back id="monitor" x="23" y="26" />
+    <back id="monitor" x="21" y="26" />
+    <back id="monitor" x="19" y="26" />
+    <back id="wires1" x="23" y="32" />
+    <back id="wires1" x="23" y="34" />
+    <back id="wires1" x="23" y="37" />
+    <back id="wires1" x="23" y="39" />
+    <back id="zavod2" x="29" y="47" />
+    <back id="depot" x="9" y="38" />
+    <back id="depot" x="7" y="38" />
+    <back id="depot" x="1" y="38" />
+    <back id="books" x="9" y="46" />
+    <back id="stillage" x="33" y="33" />
+    <back id="stillage" x="24" y="33" />
+    <back id="stillage" x="42" y="33" />
+    <back id="poster" x="32" y="27" />
+    <back id="blood1" x="32" y="46" />
+    <back id="blood1" x="33" y="46" />
+    <back id="chole6" x="28" y="43" />
+    <back id="blood1" x="31" y="47" />
+    <back id="blood1" x="32" y="47" />
+    <back id="clock" x="44" y="38" />
+    <back id="zhaluzi" x="28" y="38" />
+    <back id="zhaluzi" x="37" y="38" />
+    <back id="paint" x="33" y="38" />
+    <back id="swindow" x="79" y="31" />
+    <back id="swindow" x="82" y="31" />
+    <back id="swindow" x="62" y="36" />
+    <back id="door" x="65" y="46" />
+    <back id="door" x="86" y="46" />
+    <back id="vkonstr" x="68" y="35" />
+    <back id="vkonstr" x="59" y="46" />
+    <back id="bwindow" x="58" y="31" />
+    <back id="bwindow" x="70" y="31" />
+    <back id="bwindow" x="64" y="31" />
+    <back id="swindow" x="61" y="41" />
+    <back id="swindow" x="64" y="41" />
+    <back id="swindow" x="70" y="36" />
+    <back id="swindow" x="73" y="36" />
+    <back id="door" x="59" y="36" />
+    <back id="vkonstr" x="68" y="38" />
+    <back id="vkonstr" x="68" y="41" />
+    <back id="vkonstr" x="77" y="30" />
+    <back id="vkonstr" x="77" y="33" />
+    <back id="vkonstr" x="77" y="36" />
+    <back id="vkonstr" x="59" y="43" />
+    <back id="vkonstr" x="59" y="40" />
+    <back id="pipes" x="82" y="46" />
+    <back id="pipes" x="89" y="46" />
+    <back id="pipes2" x="91" y="38" />
+    <back id="pipe2" x="48" y="26" />
+    <back id="pipe2" x="60" y="26" />
+    <back id="pipe2" x="72" y="26" />
+    <back id="pipe2" x="84" y="26" />
+    <back id="pipe3" x="79" y="45" />
+    <back id="pipe3" x="93" y="45" />
+    <back id="pipe4" x="49" y="45" />
+    <back id="pipe4" x="49" y="47" />
+    <back id="pipe4" x="77" y="45" />
+    <back id="pipe4" x="77" y="47" />
+    <back id="battery" x="59" y="33" />
+    <back id="battery" x="65" y="33" />
+    <back id="battery" x="71" y="33" />
+    <back id="unitaz" x="76" y="47" />
+    <back id="unitaz" x="50" y="47" />
+    <back id="unitaz" x="52" y="47" />
+    <back id="unitaz" x="74" y="47" />
+    <back id="unitaz" x="54" y="47" />
+    <back id="unitaz" x="72" y="47" />
+    <back id="rak" x="70" y="47" />
+    <back id="rak" x="56" y="47" />
+    <back id="light1" x="84" y="42" />
+    <back id="light1" x="89" y="42" />
+    <back id="light4" x="71" y="30" />
+    <back id="light4" x="65" y="30" />
+    <back id="light4" x="59" y="30" />
+    <back id="light4" x="62" y="35" />
+    <back id="light1" x="81" y="30" />
+    <back id="light1" x="72" y="35" />
+    <back id="light1" x="63" y="40" />
+    <back id="electro" x="88" y="30" />
+    <back id="fuse" x="91" y="30" />
+    <back id="vents" x="52" y="42" />
+    <back id="wires2" x="87" y="30" />
+    <back id="wires2" x="87" y="32" />
+    <back id="oper" x="61" y="36" />
+    <back id="depot" x="84" y="36" />
+    <back id="depot" x="85" y="41" />
+    <back id="depot" x="87" y="41" />
+    <back id="depot" x="82" y="41" />
+    <back id="depot" x="90" y="41" />
+    <back id="books" x="68" y="31" />
+    <back id="books" x="62" y="31" />
+    <back id="poster" x="56" y="31" />
+    <back id="chole3" x="68" y="37" />
+    <back id="chole5" x="79" y="34" />
+    <back id="light4" x="72" y="45" />
+    <back id="light4" x="53" y="45" />
+    <back id="clock" x="74" y="31" />
+    <back id="swindow" x="105" y="41" />
+    <back id="hkonstr" x="121" y="33" />
+    <back id="hkonstr" x="115" y="33" />
+    <back id="hkonstr" x="109" y="33" />
+    <back id="vkonstr" x="116" y="35" />
+    <back id="vkonstr" x="116" y="38" />
+    <back id="vkonstr" x="116" y="41" />
+    <back id="vkonstr" x="124" y="35" />
+    <back id="vkonstr" x="124" y="38" />
+    <back id="vkonstr" x="124" y="41" />
+    <back id="konstr" x="108" y="40" />
+    <back id="konstr" x="103" y="40" />
+    <back id="konstr" x="98" y="40" />
+    <back id="hkonstr" x="127" y="33" />
+    <back id="konstr" x="98" y="45" />
+    <back id="swindow" x="100" y="41" />
+    <back id="konstr" x="103" y="45" />
+    <back id="bwindow" x="112" y="46" />
+    <back id="bwindow" x="120" y="46" />
+    <back id="fwindow" x="110" y="35" />
+    <back id="konstr" x="133" y="40" />
+    <back id="gate" x="135" y="41" />
+    <back id="konstr" x="139" y="40" />
+    <back id="vkonstr" x="104" y="35" />
+    <back id="swindow" x="140" y="27" />
+    <back id="vent" x="141" y="30" />
+    <back id="fwindow" x="126" y="35" />
+    <back id="door" x="128" y="29" />
+    <back id="door" x="106" y="36" />
+    <back id="door" x="105" y="46" />
+    <back id="vent" x="125" y="45" />
+    <back id="swindow" x="135" y="27" />
+    <back id="pipes" x="106" y="26" />
+    <back id="pipes" x="134" y="29" />
+    <back id="pipe3" x="109" y="29" />
+    <back id="pipe3" x="116" y="29" />
+    <back id="pipe4" x="111" y="30" />
+    <back id="pipe4" x="115" y="27" />
+    <back id="pipe4" x="115" y="25" />
+    <back id="battery" x="121" y="48" />
+    <back id="battery" x="113" y="48" />
+    <back id="light1" x="138" y="27" />
+    <back id="light1" x="98" y="31" />
+    <back id="light1" x="136" y="40" />
+    <back id="light4" x="121" y="45" />
+    <back id="light4" x="113" y="45" />
+    <back id="vents" x="131" y="47" />
+    <back id="bvent" x="119" y="36" />
+    <back id="light3" x="120" y="38" />
+    <back id="zavod1" x="127" y="41" />
+    <back id="zavod1" x="111" y="41" />
+    <back id="pipe4" x="114" y="27" />
+    <back id="pipe4" x="114" y="25" />
+    <back id="pipe4" x="114" y="30" />
+    <back id="pipe4" x="112" y="30" />
+    <back id="pipe4" x="112" y="27" />
+    <back id="pipe4" x="112" y="25" />
+    <back id="depot" x="102" y="26" />
+    <back id="stillage" x="124" y="46" />
+    <back id="stillage" x="109" y="46" />
+    <back id="potek" x="108" y="26" />
+    <back id="potek" x="98" y="26" />
+    <back id="potek" x="96" y="26" />
+    <back id="potek" x="134" y="26" />
+    <back id="chole5" x="97" y="32" />
+    <back id="pipe4" x="97" y="47" />
+    <back id="vkonstr" x="104" y="32" />
+    <back id="draw" x="119" y="40" />
+    <back id="chole3" x="183" y="27" />
+    <back id="unitaz" x="180" y="39" />
+    <back id="bwindow" x="165" y="27" />
+    <back id="unitaz" x="181" y="39" />
+    <back id="rak" x="183" y="39" />
+    <back id="rak" x="187" y="39" />
+    <back id="rgraff" x="162" y="37" />
+    <back id="rgraff" x="171" y="36" />
+    <back id="battery" x="167" y="48" />
+    <back id="battery" x="157" y="48" />
+    <back id="light2" x="162" y="34" />
+    <back id="light2" x="172" y="34" />
+    <back id="wires1" x="166" y="39" />
+    <back id="wires1" x="166" y="37" />
+    <back id="wires1" x="166" y="35" />
+    <back id="wires1" x="166" y="33" />
+    <back id="pipe1" x="182" y="47" />
+    <back id="vent" x="160" y="27" />
+    <back id="vent" x="149" y="27" />
+    <back id="pult" x="152" y="27" />
+    <back id="monitor" x="155" y="27" />
+    <back id="depot" x="173" y="42" />
+    <back id="depot" x="176" y="42" />
+    <back id="depot" x="179" y="42" />
+    <back id="electro" x="175" y="25" />
+    <back id="books" x="153" y="38" />
+    <back id="books" x="153" y="36" />
+    <back id="books" x="153" y="34" />
+    <back id="books" x="151" y="34" />
+    <back id="books" x="151" y="36" />
+    <back id="books" x="151" y="38" />
+    <back id="books" x="149" y="38" />
+    <back id="books" x="147" y="38" />
+    <back id="books" x="147" y="36" />
+    <back id="books" x="149" y="36" />
+    <back id="books" x="149" y="34" />
+    <back id="books" x="147" y="34" />
+    <back id="door" x="146" y="46" />
+    <back id="door" x="164" y="30" />
+    <back id="door" x="146" y="26" />
+    <back id="monitor" x="156" y="27" />
+    <back id="clock" x="170" y="35" />
+    <back id="paint" x="164" y="42" />
+    <back id="vase" x="162" y="43" />
+    <back id="vase" x="179" y="31" />
+    <back id="draw" x="179" y="26" />
+    <back id="chole5" x="34" y="52" />
+    <back id="chole4" x="4" y="52" />
+    <back id="chole4" x="31" y="57" />
+    <back id="chole5" x="41" y="60" />
+    <back id="potek" x="4" y="72" />
+    <back id="potek" x="16" y="72" />
+    <back id="konstr" x="44" y="62" />
+    <back id="depot" x="21" y="63" />
+    <back id="depot" x="25" y="63" />
+    <back id="light1" x="2" y="52" />
+    <back id="light1" x="45" y="52" />
+    <back id="zavod1" x="32" y="63" />
+    <back id="zavod1" x="38" y="63" />
+    <back id="zavod1" x="12" y="63" />
+    <back id="gate" x="7" y="63" />
+    <back id="konstr" x="5" y="62" />
+    <back id="pipe4" x="45" y="72" />
+    <back id="pipe4" x="42" y="72" />
+    <back id="pipes" x="9" y="72" />
+    <back id="pipes" x="18" y="72" />
+    <back id="pipe4" x="24" y="72" />
+    <back id="pipe4" x="4" y="72" />
+    <back id="pipe4" x="7" y="72" />
+    <back id="potek" x="10" y="72" />
+    <back id="potek" x="41" y="72" />
+    <back id="fuse" x="1" y="63" />
+    <back id="poster" x="66" y="63" />
+    <back id="electro" x="57" y="50" />
+    <back id="rgraff" x="62" y="55" />
+    <back id="rgraff" x="70" y="58" />
+    <back id="rgraff" x="75" y="56" />
+    <back id="rgraff" x="82" y="58" />
+    <back id="poster" x="74" y="63" />
+    <back id="poster" x="92" y="63" />
+    <back id="rgraff" x="55" y="58" />
+    <back id="electro" x="84" y="50" />
+    <back id="bwindow" x="52" y="51" />
+    <back id="bwindow" x="61" y="51" />
+    <back id="bwindow" x="70" y="51" />
+    <back id="bwindow" x="79" y="51" />
+    <back id="bwindow" x="88" y="51" />
+    <back id="pipe1" x="48" y="54" />
+    <back id="pipe1" x="58" y="54" />
+    <back id="pipe1" x="68" y="54" />
+    <back id="pipe1" x="78" y="54" />
+    <back id="pipe1" x="88" y="54" />
+    <back id="pipe2" x="48" y="71" />
+    <back id="pipe2" x="60" y="71" />
+    <back id="pipe2" x="72" y="71" />
+    <back id="pipe2" x="84" y="71" />
+    <back id="light4" x="67" y="51" />
+    <back id="light4" x="75" y="51" />
+    <back id="light2" x="77" y="63" />
+    <back id="light2" x="59" y="63" />
+    <back id="light2" x="77" y="67" />
+    <back id="gate" x="90" y="59" />
+    <back id="door" x="50" y="67" />
+    <back id="clock" x="71" y="64" />
+    <back id="clock" x="85" y="68" />
+    <back id="paint" x="67" y="67" />
+    <back id="paint" x="87" y="67" />
+    <back id="fwindow" x="106" y="54" />
+    <back id="fwindow" x="128" y="54" />
+    <back id="fwindow" x="113" y="54" />
+    <back id="fwindow" x="121" y="54" />
+    <back id="vent" x="141" y="52" />
+    <back id="vent" x="139" y="52" />
+    <back id="light3" x="114" y="52" />
+    <back id="light3" x="124" y="52" />
+    <back id="light3" x="119" y="52" />
+    <back id="konstr" x="104" y="54" />
+    <back id="konstr" x="104" y="58" />
+    <back id="konstr" x="104" y="62" />
+    <back id="konstr" x="104" y="66" />
+    <back id="konstr" x="104" y="70" />
+    <back id="konstr" x="135" y="54" />
+    <back id="konstr" x="135" y="58" />
+    <back id="konstr" x="135" y="62" />
+    <back id="konstr" x="135" y="66" />
+    <back id="konstr" x="135" y="70" />
+    <back id="bwindow" x="98" y="55" />
+    <back id="bwindow" x="138" y="55" />
+    <back id="bigbeam" x="115" y="51" />
+    <back id="bigbeam" x="125" y="51" />
+    <back id="bigbeam" x="105" y="51" />
+    <back id="hkonstr" x="117" y="62" />
+    <back id="hkonstr" x="123" y="62" />
+    <back id="hkonstr" x="129" y="62" />
+    <back id="hkonstr" x="111" y="62" />
+    <back id="hkonstr" x="105" y="62" />
+    <back id="rgraff" x="108" y="69" />
+    <back id="rgraff" x="128" y="70" />
+    <back id="rgraff" x="113" y="68" />
+    <back id="rgraff" x="123" y="69" />
+    <back id="vkonstr" x="115" y="64" />
+    <back id="vkonstr" x="115" y="67" />
+    <back id="vkonstr" x="115" y="70" />
+    <back id="vkonstr" x="123" y="64" />
+    <back id="vkonstr" x="123" y="67" />
+    <back id="vkonstr" x="123" y="70" />
+    <back id="zavod1" x="114" y="71" />
+    <back id="zavod1" x="122" y="71" />
+    <back id="zavod1" x="100" y="71" />
+    <back id="door" x="97" y="63" />
+    <back id="door" x="141" y="63" />
+    <back id="plantgate" x="136" y="68" />
+    <back id="konstr" x="175" y="71" />
+    <back id="konstr" x="178" y="71" />
+    <back id="vent" x="148" y="52" />
+    <back id="konstr" x="178" y="71" />
+    <back id="battery" x="163" y="73" />
+    <back id="vent" x="173" y="64" />
+    <back id="vent" x="165" y="64" />
+    <back id="vent" x="172" y="56" />
+    <back id="door" x="176" y="68" />
+    <back id="pipes" x="184" y="59" />
+    <back id="battery" x="159" y="73" />
+    <back id="light1" x="148" y="56" />
+    <back id="light1" x="148" y="56" />
+    <back id="light1" x="172" y="60" />
+    <back id="light4" x="159" y="67" />
+    <back id="light4" x="167" y="67" />
+    <back id="light3" x="187" y="67" />
+    <back id="light4" x="149" y="67" />
+    <back id="light3" x="176" y="67" />
+    <back id="depot" x="184" y="51" />
+    <back id="depot" x="188" y="51" />
+    <back id="depot" x="186" y="51" />
+    <back id="vents" x="149" y="59" />
+    <back id="vents" x="146" y="59" />
+    <back id="wires1" x="157" y="67" />
+    <back id="potek" x="181" y="51" />
+    <back id="rgraff" x="167" y="59" />
+    <back id="poster" x="160" y="68" />
+    <back id="poster" x="186" y="71" />
+    <back id="poster" x="152" y="71" />
+    <back id="vent" x="159" y="59" />
+    <back id="vent" x="189" y="64" />
+    <back id="vent" x="146" y="64" />
+    <back id="vent" x="146" y="64" />
+    <back id="vent" x="167" y="51" />
+    <back id="vent" x="177" y="51" />
+    <back id="stillage" x="169" y="68" />
+    <back id="door" x="146" y="71" />
+    <sceneLinks>[{"axis":"x","x":48,"y":15,"size":3,"from":[0,0],"to":[1,0]},{"axis":"x","x":96,"y":7,"size":3,"from":[1,0],"to":[2,0]},{"axis":"x","x":96,"y":11,"size":3,"from":[1,0],"to":[2,0]},{"axis":"x","x":96,"y":23,"size":3,"from":[1,0],"to":[2,0]},{"axis":"y","x":61,"y":25,"size":2,"from":[1,0],"to":[1,1]},{"axis":"y","x":79,"y":25,"size":2,"from":[1,0],"to":[1,1]},{"axis":"y","x":88,"y":25,"size":2,"from":[1,0],"to":[1,1]},{"axis":"x","x":144,"y":11,"size":3,"from":[2,0],"to":[3,0]},{"axis":"x","x":144,"y":19,"size":3,"from":[2,0],"to":[3,0]},{"axis":"x","x":144,"y":23,"size":3,"from":[2,0],"to":[3,0]},{"axis":"y","x":100,"y":25,"size":4,"from":[2,0],"to":[2,1]},{"axis":"y","x":136,"y":25,"size":4,"from":[2,0],"to":[2,1]},{"axis":"y","x":157,"y":25,"size":4,"from":[3,0],"to":[3,1]},{"axis":"y","x":184,"y":25,"size":4,"from":[3,0],"to":[3,1]},{"axis":"x","x":48,"y":28,"size":3,"from":[0,1],"to":[1,1]},{"axis":"x","x":48,"y":40,"size":2,"from":[0,1],"to":[1,1]},{"axis":"x","x":48,"y":48,"size":2,"from":[0,1],"to":[1,1]},{"axis":"y","x":4,"y":50,"size":4,"from":[0,1],"to":[0,2]},{"axis":"y","x":13,"y":50,"size":4,"from":[0,1],"to":[0,2]},{"axis":"y","x":40,"y":50,"size":2,"from":[0,1],"to":[0,2]},{"axis":"x","x":96,"y":28,"size":3,"from":[1,1],"to":[2,1]},{"axis":"x","x":96,"y":48,"size":2,"from":[1,1],"to":[2,1]},{"axis":"y","x":52,"y":50,"size":2,"from":[1,1],"to":[1,2]},{"axis":"y","x":61,"y":50,"size":4,"from":[1,1],"to":[1,2]},{"axis":"y","x":70,"y":50,"size":2,"from":[1,1],"to":[1,2]},{"axis":"y","x":88,"y":50,"size":4,"from":[1,1],"to":[1,2]},{"axis":"x","x":144,"y":28,"size":3,"from":[2,1],"to":[3,1]},{"axis":"x","x":144,"y":32,"size":3,"from":[2,1],"to":[3,1]},{"axis":"x","x":144,"y":48,"size":2,"from":[2,1],"to":[3,1]},{"axis":"y","x":109,"y":50,"size":4,"from":[2,1],"to":[2,2]},{"axis":"y","x":118,"y":50,"size":4,"from":[2,1],"to":[2,2]},{"axis":"y","x":136,"y":50,"size":2,"from":[2,1],"to":[2,2]},{"axis":"y","x":148,"y":50,"size":2,"from":[3,1],"to":[3,2]},{"axis":"y","x":166,"y":50,"size":2,"from":[3,1],"to":[3,2]},{"axis":"y","x":175,"y":50,"size":2,"from":[3,1],"to":[3,2]},{"axis":"y","x":184,"y":50,"size":4,"from":[3,1],"to":[3,2]},{"axis":"x","x":48,"y":53,"size":3,"from":[0,2],"to":[1,2]},{"axis":"x","x":48,"y":57,"size":3,"from":[0,2],"to":[1,2]},{"axis":"x","x":48,"y":61,"size":3,"from":[0,2],"to":[1,2]},{"axis":"x","x":48,"y":65,"size":3,"from":[0,2],"to":[1,2]},{"axis":"x","x":48,"y":73,"size":2,"from":[0,2],"to":[1,2]},{"axis":"x","x":96,"y":57,"size":3,"from":[1,2],"to":[2,2]},{"axis":"x","x":96,"y":65,"size":3,"from":[1,2],"to":[2,2]},{"axis":"x","x":144,"y":57,"size":2,"from":[2,2],"to":[3,2]},{"axis":"x","x":144,"y":65,"size":2,"from":[2,2],"to":[3,2]}]</sceneLinks>
+  </room>
+</all>

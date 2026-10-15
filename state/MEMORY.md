@@ -7,24 +7,22 @@
 中文交流；编辑器暂缓，原版房间只作测试。2026-10-14 用户要求接入游戏入口，并明确允许 RealisticVision、WallBlend 必要兼容修改。已授权部署，不重复询问。测试独立身份，不碰正式存档，不关闭玩家游戏；未授权 Ghost 或并行委托。
 
 ## 3. 当前状态
-0.3.1入口于2026-10-15 01:26安装，修复信息页菜单暂停导致按钮点击被拒绝。宿主仍为0.3整图预绘，RV v0.30.4-scene、WB0.4.2；192×60（7680×2400），192块常驻。新增63项短程回归和15项安装原生启动通过，覆盖菜单等待12帧后的进入/返回/再进入、旅行限制、战斗破坏与多存档。共享清单及其他模组字节保持，测试驱动未安装。用户需正常重启现有游戏。
+0.4.0于2026-10-15 12:03:27安装。入口“大场景 · 工厂”读取12个原版工厂房间组成的连续测试关卡，192×75格（7680×3000），240块预绘常驻，444个物件标记和603个背景装饰。修复第二背景层坐标遗漏造成的墙边重复黑块。最终34项工厂、63项旧走廊、10项内容/像素、15项安装原生启动均通过。当前混装RV v0.30.4-scene、WB0.5.1、FA0.3.1；本轮只替换宿主、CS入口和场景XML。用户需保存并正常重启游戏。
 
 ## 4. 本轮交付与停点
-用户反馈按钮无法按动：allStat==1门槛误拦菜单暂停allStat==2。旧测试同帧开菜单点击，且跳过开场对话；已补稳定时序和原版noAct限制。测试先按键完成对话、等待连续30帧可操作，再打开菜单等12帧点击。0.3的148项历史通过不代表普通点击已覆盖。进图预生成仍有效，性能问题和编辑器不在此次按钮热修范围；AGENT_SCOPE仍未创建，不绕过保护。
+旧入口实际是自制稀疏走廊，没有加载原版工厂；现从Rooms/rooms_plant.xml只读导入固定4×3区域，在互相兼容的原版门槽打开通路。内部地形保留。黑块根因是prepare.py的Bmp结尾匹配漏掉backBmp2，世界坐标装饰反复画到各块同一位置；显式匹配并断言8处调用数量后修复。像素对照、实际通道步行、敌人/子弹跨区、基地往返与存读档通过。保留0.3.1按钮暂停修复。没有进行地图编辑或新的性能优化。
 
 ## 5. 已知问题
-最终1699行走帧中位55ms/p95 73ms/p99 87ms/max213ms，未稳定30帧。首次进入约13.5秒；短程进程峰值约1.8GB，完整读档/SATS峰值约3.1GB。测试显式HighQoS仅作用于自身测试进程；正式启动器不变，不能保证用户同帧率。再进图/读档仍重新预绘。更大尺寸、密集长时/联机/全部水门剧情未验收，SATS仅画面。编辑器继续暂缓。
+密集工厂各轮首次进图55–81秒；最终组合54.7秒，短通道31帧中位89ms/max118ms，未稳定30帧。含PNG导出、原生对照重绘、往返和读档的诊断进程Private峰值6501MB，结束AS3内存559MB，不能当成稳态内存。再进图/读档仍重新预绘。测试HighQoS只作用自身进程，正式启动器不变。工厂统一基础色调，区域原色调仅存元数据；不是完整55模板/跨层剧情/后房移植。信息页地图缩略图、编辑器、长时/联机及所有门/平台/水体未验收。
 
 ## 6. 后续与回退
-下一步按实际试玩继续定位显示合成和长时内存。0.3.1回退用build/hotfix-v031.ps1 -Action Rollback，仅恢复0.3.0入口，依据state/deployment-v031.json / build/hotfix-v031-receipt.json；备份build/backups/ContinuousSceneMod-before-v031-20261015-012647.swf。如需恢复0.2，先回退入口再运行build/rollback-v03.ps1。0.3根备份pfe_before_ContinuousScene_v03_20261014-231026.swf。清单和配置不回写；不要直接用旧rollback.ps1。
+优先继续定位工厂首次预绘成本、游戏帧耗时和长时内存；WB每块遍历全部装饰只是疑点，未证明是瓶颈，不能据此贸然改动。后续再扩大原版交互覆盖。当前回退只用build/upgrade-v04.ps1 -Action Rollback，依据state/deployment-v04.json和build/upgrade-v04-receipt.json，恢复三个文件到原0.3.1组合；根备份pfe_before_ContinuousScene_v04_20261015-120327.swf。其他模组/清单/配置不回写。不要运行旧整体回退覆盖WB的新版本。
 
 ## 7. 接续入口
-- README.md：使用、复建、回退；design/runtime.md：实现和边界。
-- knowledge/experiments/entry-v031-20261015.md；evidence/entry-v031-before为原版入口复现，entry-v031-final为63项通过。按钮测试使用真实监听器事件派发及命中区域检查，未用系统鼠标注入。
-- knowledge/experiments/preload-v03-20261014.md：本轮对照、取舍、失败过程、性能与边界。
-- evidence/release-v03-final、vision-v03-regression、wall-v03-regression、pfe-modsettings-continuous-installed-20261014231050；安装回执state/deployment-v03.json。
-- evidence/release-v02-final、vision-v02-regression、pfe-modsettings-continuous-installed-20261014181857。
-- build/build.ps1 -BaseHost <上述原版备份>；-ProbeOnly仅测试驱动；-DriverOnly生产模组+驱动。test-mods -AllMods后再compat-build，不能反序覆盖新候选。
-- RV兼容包从已安装源码0735491构建；RV HEAD另有authority接口及既有WIP，未发布。build/compat_prepare.py保存可复现变换。
-- 自动test.ps1 -HighQoS -TimeoutSeconds 420，默认整图预绘；-Quick短程，-Benchmark 360帧，-Streaming旧策略对照。AIR ID pfe-modsettings-continuous-scene。compat-build -Profile只用于隔离诊断，正式构建不能带Profile。
-- build/upgrade-v03.ps1固定0.2旧指纹和验收门禁；安装后不能重复覆盖。RV另一个任务4项既有WIP保留，不打包、不提交。旧0.2历史记录保留。
+- README.md：使用、复建、回退；design/runtime.md：实现和边界；knowledge/experiments/factory-v04-20261015.md：本轮根因、失败与验证。
+- 最终证据knowledge/experiments/evidence/factory-v04-release、factory-v04-lab-release、pfe-modsettings-continuous-installed-20261015120344；factory-v04-before保存黑块复现。按钮是原生监听器事件派发，不是系统鼠标注入。
+- 完整构建build/build.ps1 -BaseHost ./pfe_before_ContinuousScene_20261014-181702.swf；不要用已打补丁的根宿主重复构建。-ProbeOnly仅驱动；-DriverOnly入口+驱动。
+- test-mods.ps1 -AllMods复制当前安装组合；test.ps1 -Factory -HighQoS -TimeoutSeconds 650 -EvidenceName <新名>后运行build/verify_factory.py；-Quick -TimeoutSeconds 420验证旧走廊。AIR ID pfe-modsettings-continuous-scene，生产驱动不安装。
+- Start-Scene.cmd仍为旧稀疏走廊夹具；正式入口使用工厂。测试后runtime/scene.xml可能变回走廊，升级脚本固定从scene-factory.xml取生产数据。
+- RV HEAD有其他任务未发布接口；WB与FA均由其他任务独立更新。本轮测试已安装SWF，不重编它们。旧compat-build.ps1不应覆盖现行WB。
+- state/deployment-v04.json记录SHA256和备份；更早的entry-v031、preload-v03及v02证据保留作历史。AGENT_SCOPE仍因早期保护拦截而未创建，不绕过保护。

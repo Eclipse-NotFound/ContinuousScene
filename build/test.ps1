@@ -1,4 +1,4 @@
-param([int]$TimeoutSeconds=200,[string]$EvidenceName='latest',[switch]$Quick,[switch]$Benchmark,[switch]$Preload,[switch]$HighQoS,[switch]$Cull,[switch]$Streaming)
+param([int]$TimeoutSeconds=200,[string]$EvidenceName='latest',[switch]$Quick,[switch]$Benchmark,[switch]$Preload,[switch]$HighQoS,[switch]$Cull,[switch]$Streaming,[switch]$Factory)
 $ErrorActionPreference='Stop'
 $sceneRoot=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../../..')).Path
 $sceneDescriptor=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot 'runtime/application.xml')).Path
@@ -10,6 +10,10 @@ $sceneTimedOut=$false
 if($HighQoS) {. (Join-Path $PSScriptRoot 'test-process.ps1')}
 try {
 if(Test-Path -LiteralPath (Join-Path $PSScriptRoot 'runtime/manual.flag')) { throw 'Manual mode is enabled; remove manual.flag before automated tests' }
+    $sceneFixture=Join-Path $PSScriptRoot $(if($Factory) {'runtime/scene-factory.xml'} else {'runtime/scene-lab.xml'})
+    if(-not(Test-Path -LiteralPath $sceneFixture)) {throw 'Rebuild the selected scene fixture first'}
+    Copy-Item -LiteralPath $sceneFixture -Destination (Join-Path $PSScriptRoot 'runtime/scene.xml') -Force
+    Copy-Item -LiteralPath $sceneFixture -Destination (Join-Path $PSScriptRoot 'runtime/mods/ContinuousScene/release/scene.xml') -Force
 if($EvidenceName -notmatch '^[a-z0-9-]+$') { throw 'Invalid evidence directory name' }
 $sceneEvidence=Join-Path $PSScriptRoot ('../knowledge/experiments/evidence/'+$EvidenceName)
 New-Item -ItemType Directory -Force -Path $sceneEvidence | Out-Null
@@ -17,6 +21,8 @@ $sceneQuickFlag=Join-Path $PSScriptRoot 'runtime/quick.flag'
 $sceneBenchmarkFlag=Join-Path $PSScriptRoot 'runtime/benchmark.flag'
 $scenePreloadFlag=Join-Path $PSScriptRoot 'runtime/preload.flag'
 $sceneCullFlag=Join-Path $PSScriptRoot 'runtime/cull.flag'
+$sceneFactoryFlag=Join-Path $PSScriptRoot 'runtime/factory.flag'
+if($Factory) {[IO.File]::WriteAllText($sceneFactoryFlag,'native-factory-regression')} else {Remove-Item -LiteralPath $sceneFactoryFlag -ErrorAction SilentlyContinue}
 if($Cull) {[IO.File]::WriteAllText($sceneCullFlag,'hide-offscreen-rasters-only')} else {Remove-Item -LiteralPath $sceneCullFlag -ErrorAction SilentlyContinue}
 if($Preload -or -not $Streaming) {[IO.File]::WriteAllText($scenePreloadFlag,'all-scene-surfaces')} else {Remove-Item -LiteralPath $scenePreloadFlag -ErrorAction SilentlyContinue}
 if($Benchmark) {[IO.File]::WriteAllText($sceneBenchmarkFlag,'walk-360-frames')} else {Remove-Item -LiteralPath $sceneBenchmarkFlag -ErrorAction SilentlyContinue}
@@ -56,6 +62,7 @@ foreach($sceneLine in Get-Content -LiteralPath (Join-Path $PSScriptRoot 'runtime
     if($sceneFields.Length -eq 5 -and $sceneFields[2] -eq '1') {$sceneLoadedFiles+=Join-Path $PSScriptRoot ('runtime/mods/'+$sceneFields[0]+'/release/'+$sceneFields[1]+'.swf')}
 }
 Get-FileHash -LiteralPath $sceneLoadedFiles | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $sceneEvidence 'loaded-module-hashes.json')
+Copy-Item -LiteralPath $sceneFixture -Destination (Join-Path $sceneEvidence 'scene.xml')
 if($sceneTimedOut) {throw 'Isolated AIR test timed out; partial evidence preserved'}
 if(-not(Test-Path -LiteralPath $sceneResultPath) -or (Get-Item -LiteralPath $sceneResultPath).LastWriteTime -lt $sceneStart) {
     Get-Content -LiteralPath (Join-Path $PSScriptRoot 'runtime/adl-output.log') -Tail 40
@@ -71,5 +78,6 @@ finally {
     if($sceneBenchmarkFlag) {Remove-Item -LiteralPath $sceneBenchmarkFlag -ErrorAction SilentlyContinue}
     if($scenePreloadFlag) {Remove-Item -LiteralPath $scenePreloadFlag -ErrorAction SilentlyContinue}
     if($sceneCullFlag) {Remove-Item -LiteralPath $sceneCullFlag -ErrorAction SilentlyContinue}
+    if($sceneFactoryFlag) {Remove-Item -LiteralPath $sceneFactoryFlag -ErrorAction SilentlyContinue}
     $sceneLock.Dispose()
 }
