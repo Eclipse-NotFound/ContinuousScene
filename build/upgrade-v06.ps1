@@ -1,12 +1,13 @@
 param(
     [ValidateSet('Check','Install','Rollback')][string]$Action='Check',
-    [string]$FactoryEvidence='factory-v06-final',
-    [string]$LabEvidence='lab-v06-final',
-    [string]$ExperienceEvidence='experience-v06-final',
-    [string]$PerfEvidence='perf-v06-final',
-    [string]$NativeEvidence='native-v06-final',
+    [string]$FactoryEvidence='factory-v06-final6',
+    [string]$LabEvidence='lab-v06-final6',
+    [string]$ExperienceEvidence='experience-v06-final6',
+    [string]$PerfEvidence='perf-v06-rv0311-20261016020945',
+    [string]$NativeEvidence='native-v06-final6',
     [string[]]$WallEvidence=@(),
-    [string[]]$LightEvidence=@()
+    [string[]]$LightEvidence=@(),
+    [string[]]$LightKeyEvidence=@()
 )
 # Check is read-only. Install is an explicit, separate invocation after review.
 # This release replaces exactly four SWFs; neither fixture XML nor manifest is copied.
@@ -16,7 +17,7 @@ $sceneRoot=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../../..')).Path
 $sceneRuntime=Join-Path $PSScriptRoot 'runtime'
 $sceneReceiptPath=Join-Path $PSScriptRoot 'upgrade-v06-receipt.json'
 $sceneSceneHash='1CEA74E218A55894D432E12CDFC544952D37CFFF5FF55B256B1B970573EB7A9E'
-$sceneManifestHash='35A1A1764B730C6DA1899EB9B2D622916E98FCBA27BD4FB0D973C3B67109E1F2'
+$sceneManifestHash='6B669474B2F5043F859CE37ADD0906CE999E465AA2B81C33BC05F229718A8C63'
 $sceneOriginalHash='C631CBF3511B6EE303F533D08D51511FE0EB702F43E5DB17F5241D8576C64867'
 $sceneMap1Hash='BEBEEA8B3F40A7DB3E7B1BE6F3530D5AF9EA7A3299DECB164BF0DAE107D4011F'
 $sceneLandHash='B1727E83FBEC9863A267B07B5428853CB734C442572D747D592922E8B1EBC060'
@@ -24,7 +25,7 @@ $sceneFiles=@(
     [ordered]@{relative='pfe.swf';before='9987C696BEBBEB0626D8F73DA775CF867B2CED4FF626137FD9F161264270F938'},
     [ordered]@{relative='mods/ContinuousScene/release/ContinuousSceneMod.swf';before='E977168ED9F1B21FA27A01361E18483D83AAF0808B1A657838F06F6284A81928'},
     [ordered]@{relative='mods/WallBlend/release/WallBlendMod.swf';before='8EAC7B08BABF2631A1897C988C36416BA8B6CF204788256B46F436CACB319BB3'},
-    [ordered]@{relative='mods/LightAndDarkness/release/LightAndDarknessMod.swf';before='01767319A54AC88961B2BA40391F0FA79359486EE5591E6A22D90AD49F84537C'}
+    [ordered]@{relative='mods/LightAndDarkness/release/LightAndDarknessMod.swf';before='D8666B4ACD9E98BC73785402F9A9A771DA5F54CC742C4D69664824ADAD1857A3'}
 )
 $sceneReport=[ordered]@{version='0.6.0';action=$Action;checkedAt=(Get-Date).ToString('o');passed=$false;checks=@();evidence=@();files=$sceneFiles}
 
@@ -192,8 +193,15 @@ try {
         $rows=@($v05.files | Where-Object {$_.relative -eq $file.relative})
         Test-Gate ($rows.Count -eq 1 -and $rows[0].after -eq $file.before) ('Published baseline receipt: '+$file.relative)
     }
-    $lad=Read-Json (Join-Path $sceneRoot 'mods/LightAndDarkness/build/backups/atmosphere-20261015-193655-513/receipt.json')
-    Test-Gate ($lad.status -eq 'deployed-smoke-passed' -and $lad.version -eq '0.2.0' -and $lad.candidateSHA256 -eq $sceneFiles[3].before) 'Published LightAndDarkness 0.2 receipt'
+    $clients=Read-Json (Join-Path $sceneRoot 'mods/ModLoader/build/out/keybind-client-installation/deployment.json')
+    $lad=@($clients.clients | Where-Object {$_.mod -eq 'LightAndDarkness'})
+    Test-Gate ($clients.status -eq 'installed-and-verified' -and $lad.Count -eq 1 -and $lad[0].after -eq $sceneFiles[3].before) 'Published LightAndDarkness keybind receipt'
+    $addition=Read-Json (Join-Path $sceneRoot 'mods/AddictionSystem/build/proofs/install-receipt.json')
+    Test-Gate ($addition.version -eq '0.1.0' -and $addition.beforeManifestSha -eq '35A1A1764B730C6DA1899EB9B2D622916E98FCBA27BD4FB0D973C3B67109E1F2' -and $addition.afterManifestSha -eq $sceneManifestHash -and $addition.hostSha -eq $sceneFiles[0].before) 'Published additive module explains unchanged host and new manifest'
+    Require-Hash (Join-Path $sceneRoot 'mods/AddictionSystem/release/AddictionSystemMod.swf') $addition.sha 'Preserve published AddictionSystem bytes'
+    $vision=Read-Json (Join-Path $sceneRoot 'mods/RealisticVision/state/deployment-v0311/deployment-receipt.json')
+    Test-Gate ($vision.result -eq 'PASS' -and $vision.version -eq 'v0.31.1-wall-options-candidate' -and $vision.previous_sha256 -eq 'E99608088A8B00B4442BC3AEF52D8035336F0123EA5A96D55503C90B1F6E0808' -and $vision.new_sha256 -eq 'BAA48289D9CF86F64CFF53B4734032AD29C89C3AC1704DB2D89038D4B8DB4275') 'Published RV wall-options update after keybind deployment'
+    Require-Hash (Join-Path $sceneRoot 'mods/RealisticVision/release/RealisticVisionMod.swf') $vision.new_sha256 'Preserve published RV wall-options bytes'
     foreach($file in $sceneFiles) {
         Require-Hash $file.target $file.before ('Known production baseline: '+$file.relative)
         $file.after=File-Hash $file.source
@@ -229,15 +237,7 @@ try {
         if(@($sceneFiles | Where-Object {$_.relative -eq $relative}).Count) {continue}
         $hash=File-Hash (Join-Path $sceneRuntime $relative)
         $productionHash=File-Hash (Join-Path $sceneRoot $relative)
-        if($relative -eq 'mods/RealisticVision/release/RealisticVisionMod.swf' -and $productionHash -ne $hash) {
-            # The independently rebuilt frozen RV differs solely in its
-            # ProductInfo compilation date. All code/resources remain equal.
-            $proofText=& 'C:/Users/hello/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' (Join-Path $PSScriptRoot 'verify_rv_rebuild.py')
-            Test-Gate ($LASTEXITCODE -eq 0) 'RV pinned rebuild differs only in ProductInfo date'
-            $proof=$proofText | ConvertFrom-Json
-            Test-Gate ($proof.passed -and $proof.production.sha256 -eq $productionHash -and $proof.runtime.sha256 -eq $hash) 'RV timestamp equivalence bound to current bytes'
-            $sceneReport.visionRebuildProof=$proof
-        } else {Require-Hash (Join-Path $sceneRoot $relative) $hash ('Other enabled module equals tested candidate: '+$relative)}
+        Require-Hash (Join-Path $sceneRoot $relative) $hash ('Other enabled module equals tested candidate: '+$relative)
         $unchangedModules+=,[ordered]@{relative=$relative;hash=$productionHash}
     }
     $buildPaths=@((Join-Path $sceneRuntime 'pfe.swf'),(Join-Path $sceneRuntime 'mods/ContinuousScene/release/ContinuousSceneMod.swf'),(Join-Path $sceneRuntime 'mods/ContinuousSceneProbe/release/ContinuousSceneProbe.swf'),(Join-Path $sceneRuntime 'scene.xml'))
@@ -322,19 +322,37 @@ try {
         Test-Gate ($log -match '(?m)^\d+ SUITE_PASS$' -and $log -notmatch '(?m)^\d+ FAIL ') ('LAD checks passed '+$name)
         if($name -eq $LightEvidence[0]) {Test-Gate ($log.Contains('PASS fixtures prepared before first large-scene raster') -and $log.Contains('PASS resized illumination retains smooth interpolation')) 'LAD new scene preparation and smoothing covered'}
         $lightHashes=@(Read-Json (Join-Path $dir 'candidate-hashes.json'))
-        $lightRoot=Join-Path $sceneRoot 'mods/LightAndDarkness/build/runtime'
+        $lightRoot=Join-Path $sceneRoot 'mods/LightAndDarkness/build/out-scene-v022/compat-runtime'
         $lightPaths=@('pfe.swf','mods/LightAndDarkness/release/LightAndDarknessMod.swf','mods/LightAndDarkness/atmosphere.json','mods/ContinuousScene/release/ContinuousSceneMod.swf','mods/RealisticVision/release/RealisticVisionMod.swf','mods/WallBlend/release/WallBlendMod.swf','mods/ModLoader/release/ModLoaderMod.swf')
         $null=Hash-Index $lightHashes @($lightPaths | ForEach-Object {Join-Path $lightRoot $_}) ('LAD complete evidence '+$name)
         foreach($hash in $lightHashes) {
-            $path=Full-Path $hash.Path;$prefix=(Full-Path (Join-Path $sceneRoot 'mods/LightAndDarkness/build/runtime'))+[IO.Path]::DirectorySeparatorChar
+            $path=Full-Path $hash.Path;$prefix=(Full-Path $lightRoot)+[IO.Path]::DirectorySeparatorChar
             Test-Gate ($path.StartsWith($prefix,[StringComparison]::OrdinalIgnoreCase)) 'LAD evidence belongs to isolated runtime'
             $relative=$path.Substring($prefix.Length)
             Require-Hash (Join-Path $sceneRuntime $relative) $hash.Hash ('LAD same candidate '+$relative)
         }
     }
+    Test-Gate ($LightKeyEvidence.Count -eq 3 -and @($LightKeyEvidence | Select-Object -Unique).Count -eq 3 -and $LightKeyEvidence[1].StartsWith($LightKeyEvidence[0]+'-cold-')) 'LAD keybind full, cold and shared-service evidence supplied'
+    $keyRoot=Join-Path $sceneRoot 'mods/LightAndDarkness/build/keybind-runtime'
+    for($keyCase=0;$keyCase -lt 3;$keyCase++) {
+        $name=$LightKeyEvidence[$keyCase]
+        Test-Gate ($name -match '^remains-lad-keybind-[0-9]+(-cold-[0-9]+)?$') 'Safe LAD keybind evidence path'
+        $dir=Join-Path $sceneRoot ('mods/LightAndDarkness/build/evidence/'+$name)
+        $log=Get-Content -LiteralPath (Join-Path $dir 'storage/keybind-test.log') -Raw
+        Test-Gate ($log -match '(?m)^\d+ SUITE_PASS$' -and $log -notmatch '(?m)^\d+ FAIL ') ('LAD keybind checks passed '+$name)
+        $keyAssertions=@(@('remapped held repair completes once','menu changes immediately persisted outside save slots'),@('cold process loads custom headlamp binding','cold custom binding drives native runtime'),@('actual shared held-state drives repair','actual host remapped repair completes with one charge'))[$keyCase]
+        foreach($label in $keyAssertions) {Test-Gate ($log.Contains('PASS '+$label)) ('LAD keybind '+$label)}
+        $keyPaths=@('pfe.swf','mods/LightAndDarkness/release/LightAndDarknessMod.swf','mods/LightAndDarkness/release/KeybindProbe.swf')
+        if($keyCase -eq 2) {$keyPaths+='mods/ModLoader/release/ModLoaderMod.swf'}
+        $keyHashes=Hash-Index @(Read-Json (Join-Path $dir 'candidate-hashes.json')) @($keyPaths|ForEach-Object {Join-Path $keyRoot $_}) ('LAD keybind complete inputs '+$name)
+        foreach($relative in $keyPaths) {
+            $source=if($relative.EndsWith('/KeybindProbe.swf')) {Join-Path $sceneRoot 'mods/LightAndDarkness/build/out-scene-v022/KeybindProbe.swf'} else {Join-Path $sceneRuntime $relative}
+            Require-Hash $source $keyHashes[(Full-Path (Join-Path $keyRoot $relative))] ('LAD keybind tested input '+$relative)
+        }
+    }
     $atmosphereHash=File-Hash (Join-Path $sceneRuntime 'mods/LightAndDarkness/atmosphere.json')
     Require-Hash (Join-Path $sceneRoot 'mods/LightAndDarkness/atmosphere.json') $atmosphereHash 'LAD atmosphere configuration unchanged and tested'
-    $sceneReport.wallEvidence=$WallEvidence;$sceneReport.lightEvidence=$LightEvidence
+    $sceneReport.wallEvidence=$WallEvidence;$sceneReport.lightEvidence=$LightEvidence;$sceneReport.lightKeyEvidence=$LightKeyEvidence
     $sceneReport.unchangedModules=$unchangedModules
     $sceneReport.manifestHash=$sceneManifestHash;$sceneReport.sceneXMLHash=$sceneSceneHash
     foreach($file in $sceneFiles) {
@@ -366,7 +384,7 @@ try {
     Require-Hash $sceneXML $sceneSceneHash 'Recheck scene XML before install'
     foreach($module in $unchangedModules) {Require-Hash (Join-Path $sceneRoot $module.relative) $module.hash ('Recheck other module before install: '+$module.relative)}
     Require-Hash (Join-Path $sceneRoot 'mods/LightAndDarkness/atmosphere.json') $atmosphereHash 'Recheck atmosphere before install'
-    $receipt=[ordered]@{version='0.6.0';status='prepared';preparedAt=(Get-Date).ToString('o');backupDirectory=$backupDir;hostHash=$sceneFiles[0].after;manifestHash=$sceneManifestHash;sceneXMLHash=$sceneSceneHash;files=$sceneFiles;unchangedModules=$unchangedModules;evidence=$sceneReport.evidence;bytecodeAuditSHA256=$auditHash;atmosphereHash=$atmosphereHash;wallEvidence=$WallEvidence;lightEvidence=$LightEvidence;visionRebuildProof=$sceneReport['visionRebuildProof']}
+    $receipt=[ordered]@{version='0.6.0';status='prepared';preparedAt=(Get-Date).ToString('o');backupDirectory=$backupDir;hostHash=$sceneFiles[0].after;manifestHash=$sceneManifestHash;sceneXMLHash=$sceneSceneHash;files=$sceneFiles;unchangedModules=$unchangedModules;evidence=$sceneReport.evidence;bytecodeAuditSHA256=$auditHash;atmosphereHash=$atmosphereHash;wallEvidence=$WallEvidence;lightEvidence=$LightEvidence;lightKeyEvidence=$LightKeyEvidence}
     Write-Receipt $receipt $true
     try {
         foreach($file in $sceneFiles) {Replace-Checked $file.source $file.target $file.before $file.after}

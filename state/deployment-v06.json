@@ -1,0 +1,264 @@
+{
+  "version": "0.6.0",
+  "status": "installed",
+  "preparedAt": "2026-10-16T02:14:08.7605239+08:00",
+  "backupDirectory": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\upgrade-v06-20261016-021408627-3087208c",
+  "hostHash": "11BCECA88365AB00A29A99511380CBAFA35F18CE9BF4465BE66FDAD16AD1BD4F",
+  "manifestHash": "6B669474B2F5043F859CE37ADD0906CE999E465AA2B81C33BC05F229718A8C63",
+  "sceneXMLHash": "1CEA74E218A55894D432E12CDFC544952D37CFFF5FF55B256B1B970573EB7A9E",
+  "files": [
+    {
+      "relative": "pfe.swf",
+      "before": "9987C696BEBBEB0626D8F73DA775CF867B2CED4FF626137FD9F161264270F938",
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\pfe.swf",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\pfe.swf",
+      "after": "11BCECA88365AB00A29A99511380CBAFA35F18CE9BF4465BE66FDAD16AD1BD4F",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\upgrade-v06-20261016-021408627-3087208c\\pfe.swf"
+    },
+    {
+      "relative": "mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "before": "E977168ED9F1B21FA27A01361E18483D83AAF0808B1A657838F06F6284A81928",
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\release\\ContinuousSceneMod.swf",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\mods\\ContinuousScene\\release\\ContinuousSceneMod.swf",
+      "after": "F6ED93AFF2BFB76B4AE8CA2A2E01B84BBE4D24A8DD59EB4DE720847C8457D8D2",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\upgrade-v06-20261016-021408627-3087208c\\ContinuousSceneMod.swf"
+    },
+    {
+      "relative": "mods/WallBlend/release/WallBlendMod.swf",
+      "before": "8EAC7B08BABF2631A1897C988C36416BA8B6CF204788256B46F436CACB319BB3",
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\WallBlend\\release\\WallBlendMod.swf",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\mods\\WallBlend\\release\\WallBlendMod.swf",
+      "after": "3B1B40A65D7C57E4711C3861463B3470B0DFC086A8C8C01870C91A2F413DA96F",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\upgrade-v06-20261016-021408627-3087208c\\WallBlendMod.swf"
+    },
+    {
+      "relative": "mods/LightAndDarkness/release/LightAndDarknessMod.swf",
+      "before": "D8666B4ACD9E98BC73785402F9A9A771DA5F54CC742C4D69664824ADAD1857A3",
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\LightAndDarkness\\release\\LightAndDarknessMod.swf",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\mods\\LightAndDarkness\\release\\LightAndDarknessMod.swf",
+      "after": "488BDC73A0BD843138FB9CABF6AC0B81159493838E3DAD4B2916688CE4C597F1",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\upgrade-v06-20261016-021408627-3087208c\\LightAndDarknessMod.swf"
+    }
+  ],
+  "unchangedModules": [
+    {
+      "relative": "mods/ModLoader/release/ModLoaderMod.swf",
+      "hash": "BD71B6F31774B97841D4C158451DA0353B53BC46AC72F8E2A7FE2C3F3F4908B1"
+    },
+    {
+      "relative": "mods/Sandevistan/release/SandevistanMod.swf",
+      "hash": "CEC6A3061CB90380579D8A95AA1254E0328BD0DAE6E239FC4CA5205D6CCCF942"
+    },
+    {
+      "relative": "mods/Rconnect/release/RConnectMod.swf",
+      "hash": "B2ED7F3A9B1D176DFFB2B912D69DA8084982906FF71D6FBA8367BD36514E84F8"
+    },
+    {
+      "relative": "mods/RealisticVision/release/RealisticVisionMod.swf",
+      "hash": "BAA48289D9CF86F64CFF53B4734032AD29C89C3AC1704DB2D89038D4B8DB4275"
+    },
+    {
+      "relative": "mods/MoreSkills&Weapons/release/MoreSkillsWeaponsMod.swf",
+      "hash": "B7A3C811D0A073F026A5E810386699C1059F99EF066012992CFDE605FF96E402"
+    },
+    {
+      "relative": "mods/TDFC/release/TDFCMod.swf",
+      "hash": "99BFBAA68229635FBAA496EF9287A94BB9EA7C65D71339CEF3FDE65F47E30275"
+    },
+    {
+      "relative": "mods/RandomRooms/release/RandomRoomsMod.swf",
+      "hash": "3F8789C62F9B2EF8EFC082597F672A2FEA230A0D7FCE3BE90C04EFD9582E5145"
+    },
+    {
+      "relative": "mods/RModifier/release/LootEditorMod.swf",
+      "hash": "4F1D6CF19979F4EA4960F8CCD8377C1D3CAC490BED9949866885357D073C8625"
+    },
+    {
+      "relative": "mods/FirearmAttachments/release/FirearmAttachmentsMod.swf",
+      "hash": "B3304596EB7E08796F9DE2CF02E1E7CCCFF10E188D26FEDFA960AA6370D2A4B9"
+    },
+    {
+      "relative": "mods/AddictionSystem/release/AddictionSystemMod.swf",
+      "hash": "5A4D9A405777867826061BB50178DF931591987EA0737580BD0AA8A89458B9B3"
+    }
+  ],
+  "evidence": [
+    {
+      "suite": "Factory",
+      "directory": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\..\\knowledge\\experiments\\evidence\\factory-v06-final6",
+      "mode": "factory",
+      "resultSHA256": "43B670D1E82A2CEA17E06319DF774923F88E81CF29A5E7C302EF66EAA0481E3D",
+      "assertions": 34,
+      "elapsedMs": 175731
+    },
+    {
+      "suite": "Lab",
+      "directory": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\..\\knowledge\\experiments\\evidence\\lab-v06-final6",
+      "mode": "full",
+      "resultSHA256": "6ED95172553A184D3CEF22578F8E4110BD8026E9E082C45DBD5636D08644FADE",
+      "assertions": 64,
+      "elapsedMs": 237499
+    },
+    {
+      "suite": "Experience",
+      "directory": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\..\\knowledge\\experiments\\evidence\\experience-v06-final6",
+      "mode": "experience",
+      "resultSHA256": "7803BDAB36D280AF9B6BEC2B036A07B585697F96CC711E8959CA130AAFECFB01",
+      "assertions": 113,
+      "elapsedMs": 125386
+    },
+    {
+      "suite": "Perf",
+      "directory": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\..\\knowledge\\experiments\\evidence\\perf-v06-rv0311-20261016020945",
+      "mode": "performance",
+      "resultSHA256": "81E82CACC4B81ADF43F7E20D493F63C5042440C7D40BCD97370A42B297149BC5",
+      "assertions": 0,
+      "elapsedMs": 149570
+    },
+    {
+      "suite": "Native",
+      "directory": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\..\\knowledge\\experiments\\evidence\\native-v06-final6",
+      "mode": "native-map",
+      "resultSHA256": "800BEEB6891BA7A979D6B092FA59084156AC1547ACD7486B97741ADB7C95FF3A",
+      "assertions": 51,
+      "elapsedMs": 184075
+    }
+  ],
+  "bytecodeAuditSHA256": "7B0F958C819DC6BD3565132D6928837E43DF648ACDC957F6B16FFDA5F8900BF6",
+  "atmosphereHash": "2F6B4141510CCAB293A6040296909EE46971CB9F116586D2E18042D37AC765AA",
+  "wallEvidence": [
+    "wallblend-test-cs053-harness-20261015210548-a2cf31",
+    "wallblend-test-cs053-coverage-20261015210643-744b3d",
+    "wallblend-test-cs053-destruction-20261015211025-eae3f6"
+  ],
+  "lightEvidence": [
+    "remains-lad-test-20261016015214995",
+    "remains-lad-test-20261016015214995-cold-015353"
+  ],
+  "lightKeyEvidence": [
+    "remains-lad-keybind-20261015215540037",
+    "remains-lad-keybind-20261015215540037-cold-215558",
+    "remains-lad-keybind-20261015215615814"
+  ],
+  "installedAt": "2026-10-16T02:14:08.9343865+08:00",
+  "verification": {
+    "passed": true,
+    "verifiedAt": "2026-10-16T02:15:26.9065287+08:00",
+    "appId": "pfe-modsettings-continuous-installed-20261016021424",
+    "checks": 18,
+    "checkGateCount": 947,
+    "performanceEvidence": "perf-v06-rv0311-20261016020945",
+    "performance": [
+      {
+        "world": "native",
+        "case": "idle",
+        "entryMs": 7295,
+        "frames": 120,
+        "shots": 0,
+        "p50Ms": 60.0,
+        "p95Ms": 72,
+        "maxMs": 151,
+        "dirtyMax": 0
+      },
+      {
+        "world": "native",
+        "case": "fire",
+        "entryMs": 7295,
+        "frames": 120,
+        "shots": 7,
+        "p50Ms": 60.0,
+        "p95Ms": 76,
+        "maxMs": 104,
+        "dirtyMax": 0
+      },
+      {
+        "world": "native",
+        "case": "idle-after",
+        "entryMs": 7295,
+        "frames": 120,
+        "shots": 0,
+        "p50Ms": 61.0,
+        "p95Ms": 80,
+        "maxMs": 101,
+        "dirtyMax": 0
+      },
+      {
+        "world": "large",
+        "case": "idle",
+        "entryMs": 22404,
+        "frames": 120,
+        "shots": 0,
+        "p50Ms": 70.0,
+        "p95Ms": 82,
+        "maxMs": 104,
+        "dirtyMax": 0
+      },
+      {
+        "world": "large",
+        "case": "fire",
+        "entryMs": 22404,
+        "frames": 120,
+        "shots": 7,
+        "p50Ms": 72.0,
+        "p95Ms": 96,
+        "maxMs": 198,
+        "dirtyMax": 2
+      },
+      {
+        "world": "large",
+        "case": "idle-after",
+        "entryMs": 22404,
+        "frames": 120,
+        "shots": 0,
+        "p50Ms": 72.0,
+        "p95Ms": 87,
+        "maxMs": 94,
+        "dirtyMax": 2
+      },
+      {
+        "world": "large",
+        "case": "culled-fire",
+        "entryMs": 22404,
+        "frames": 120,
+        "shots": 7,
+        "p50Ms": 73.0,
+        "p95Ms": 91,
+        "maxMs": 146,
+        "dirtyMax": 2
+      },
+      {
+        "world": "large",
+        "case": "no-lad-fire",
+        "entryMs": 22404,
+        "frames": 120,
+        "shots": 7,
+        "p50Ms": 66.0,
+        "p95Ms": 96,
+        "maxMs": 128,
+        "dirtyMax": 2
+      },
+      {
+        "world": "large",
+        "case": "no-lad-wall-fire",
+        "entryMs": 22404,
+        "frames": 120,
+        "shots": 7,
+        "p50Ms": 63.0,
+        "p95Ms": 74,
+        "maxMs": 210,
+        "dirtyMax": 2
+      },
+      {
+        "world": "large",
+        "case": "no-lad-wall-rv-fire",
+        "entryMs": 22404,
+        "frames": 120,
+        "shots": 7,
+        "p50Ms": 33.0,
+        "p95Ms": 43,
+        "maxMs": 74,
+        "dirtyMax": 2
+      }
+    ]
+  }
+}

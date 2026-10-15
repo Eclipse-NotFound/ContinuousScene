@@ -64,6 +64,7 @@ while(-not $sceneProcess.WaitForExit(1000) -and ((Get-Date)-$sceneStart).TotalSe
     if($Perf) {
         $others=@(Get-Process -Name adl64 -ErrorAction SilentlyContinue | Where-Object {$_.Id -ne $sceneProcess.Id} | ForEach-Object {$_.Id})
         $scenePolicy.otherAirProcessIds=@(@($scenePolicy.otherAirProcessIds)+$others | Select-Object -Unique)
+        if($others.Count) {break} # Stop only our sample as soon as it is contaminated.
     }
 }
 $scenePolicy | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath (Join-Path $sceneEvidence 'process-policy.json')
@@ -84,6 +85,7 @@ foreach($sceneLine in Get-Content -LiteralPath (Join-Path $PSScriptRoot 'runtime
 }
 Get-FileHash -LiteralPath $sceneLoadedFiles | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $sceneEvidence 'loaded-module-hashes.json')
 Copy-Item -LiteralPath $sceneFixture -Destination (Join-Path $sceneEvidence 'scene.xml')
+if($Perf -and $scenePolicy.otherAirProcessIds.Count) {throw 'Performance evidence overlapped other AIR instances; partial evidence preserved; resample when quiet'}
 if($sceneTimedOut) {throw 'Isolated AIR test timed out; partial evidence preserved'}
 if(-not(Test-Path -LiteralPath $sceneResultPath) -or (Get-Item -LiteralPath $sceneResultPath).LastWriteTime -lt $sceneStart) {
     Get-Content -LiteralPath (Join-Path $PSScriptRoot 'runtime/adl-output.log') -Tail 40
@@ -92,7 +94,6 @@ if(-not(Test-Path -LiteralPath $sceneResultPath) -or (Get-Item -LiteralPath $sce
 $sceneResult=Get-Content -LiteralPath $sceneResultPath -Raw | ConvertFrom-Json
 $sceneResult | Select-Object ok,elapsedMs,memoryMB,error | ConvertTo-Json -Depth 6
 if(-not $sceneResult.ok) { throw 'Runtime assertions failed; inspect evidence' }
-if($Perf -and $scenePolicy.otherAirProcessIds.Count) {throw 'Performance evidence overlapped other AIR instances; preserve this run and resample when quiet'}
 }
 finally {
     if($sceneProcess -and -not $sceneProcess.HasExited) {$sceneProcess.Kill()}

@@ -1,4 +1,4 @@
-param([string]$Receipt='install-receipt.json',[string]$SceneVersion='0.2.0',[string]$VisionVersion='v0.30.3-scene',[string]$WallVersion='0.4.1',[string]$SceneRegistration='registered 192x60 native land',[string]$LightVersion='')
+param([string]$Receipt='install-receipt.json',[string]$SceneVersion='0.2.0',[string]$VisionVersion='v0.30.3-scene',[string]$WallVersion='0.4.1',[string]$SceneRegistration='registered 192x60 native land',[string]$LightVersion='',[int]$TimeoutSeconds=180)
 $ErrorActionPreference='Stop'
 $sceneRoot=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../../..')).Path
 $sceneReceipt=Get-Content -LiteralPath (Join-Path $PSScriptRoot $Receipt) -Raw | ConvertFrom-Json
@@ -17,9 +17,21 @@ try {
     # Real native initial content and application directory; no nested Loader.
     $sceneProcess=Start-Process -FilePath (Join-Path $sceneRoot 'adl64.exe') -ArgumentList @('-runtime',('"'+(Join-Path $sceneRoot 'runtimes/air/win64')+'"'),('"'+$sceneDescriptor+'"'),('"'+$sceneRoot+'"')) -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $sceneEvidence 'stdout.log') -RedirectStandardError (Join-Path $sceneEvidence 'stderr.log')
     Write-Output ('Native installed-files smoke PID '+$sceneProcess.Id)
-    $sceneProcess.WaitForExit(42000) | Out-Null
-    if($sceneProcess.HasExited) {throw 'Native game exited before the startup check'}
+    . (Join-Path $PSScriptRoot 'test-process.ps1')
+    [ContinuousSceneTest.Power]::Responsive($sceneProcess) | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $sceneEvidence 'process-policy.json')
     $sceneStore=Join-Path $env:APPDATA ($sceneId+'/Local Store')
+    $sceneDeadline=[DateTime]::UtcNow.AddSeconds($TimeoutSeconds)
+    $sceneReady=$false
+    do {
+        if($sceneProcess.WaitForExit(1000)) {throw 'Native game exited before the startup check'}
+        $sceneRequired=@('ContinuousScene.log','RVision.log','WallBlend.log')
+        if($LightVersion) {$sceneRequired+='LightAndDarkness.log'}
+        if(@($sceneRequired | Where-Object {-not (Test-Path -LiteralPath (Join-Path $sceneStore $_))}).Count) {continue}
+        $sceneBootLog=[string](Get-Content -LiteralPath (Join-Path $sceneStore 'ContinuousScene.log') -Raw)
+        $sceneBootRV=[string](Get-Content -LiteralPath (Join-Path $sceneStore 'RVision.log') -Raw)
+        $sceneReady=$sceneBootLog.Contains('heartbeat') -and $sceneBootRV.Contains('tick 181')
+    } while(-not $sceneReady -and [DateTime]::UtcNow -lt $sceneDeadline)
+    if(-not $sceneReady) {throw 'Native startup did not reach fresh scene/vision heartbeat before the deadline'}
     Get-ChildItem -LiteralPath $sceneStore -File | Where-Object {$_.Extension -in '.json','.log'} | Copy-Item -Destination $sceneEvidence
     $sceneSol=@(Get-ChildItem -LiteralPath $sceneStore -Filter 'ModLoader.sol' -Recurse -File)
     if($sceneSol.Count -ne 1) {throw 'Missing fresh native loader status'}

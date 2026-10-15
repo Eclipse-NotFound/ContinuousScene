@@ -1,9 +1,11 @@
-param([switch]$VisionOnly,[switch]$Profile)
+param([switch]$VisionOnly,[switch]$Profile,[switch]$WallOnly)
 $ErrorActionPreference='Stop'
+if($WallOnly -and ($VisionOnly -or $Profile)) {throw 'WallOnly retains the published vision module and cannot rebuild or profile it'}
 $sceneRoot=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../../..')).Path
 $sceneTools=Join-Path $sceneRoot 'mods/Sandevistan/build/tools'
 $sceneJava='D:/Program Files/Adobe Animate 2024/jre/bin/java.exe'
 $scenePython='C:/Users/hello/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe'
+if(-not $WallOnly) {
 & $scenePython (Join-Path $PSScriptRoot 'compat_prepare.py')
 if($LASTEXITCODE -ne 0) {throw 'Compatibility source preparation failed'}
 if($Profile) {
@@ -20,6 +22,7 @@ if($Profile) {$sceneSource=Join-Path $PSScriptRoot 'generated/rv-profile'}
 "@ | Set-Content -LiteralPath $sceneConfig -Encoding UTF8
 & $sceneJava '-Dfile.encoding=UTF-8' '-jar' (Join-Path $sceneTools 'flexsdk/lib/mxmlc.jar') ('+flexlib='+(Join-Path $sceneTools 'flexsdk/frameworks')) ('-load-config='+$sceneConfig) ('-output='+(Join-Path $PSScriptRoot 'runtime/mods/RealisticVision/release/RealisticVisionMod.swf')) (Join-Path $sceneSource 'RealisticVisionMod.as')
 if($LASTEXITCODE -ne 0) {throw 'Vision compilation failed'}
+}
 if(-not $VisionOnly) {
     & $scenePython (Join-Path $PSScriptRoot 'wallblend_compat.py')
     if($LASTEXITCODE -ne 0) {throw 'Wall compatibility preparation failed'}
