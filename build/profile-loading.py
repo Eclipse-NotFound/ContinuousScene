@@ -24,6 +24,26 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     native = ROOT / 'generated/scripts/fe/graph/Grafon.as'
     source = native.read_text(encoding='utf-8-sig')
+    anchor = '      public function Grafon(param1:Sprite)'
+    source=source.replace(anchor,'''      private var sceneProfileLegacyMaterials:Boolean = false;
+      public var sceneProfileWantOracle:Boolean = false;
+      public var sceneProfileRasterResult:Object;
+''' + anchor)
+    source=source.replace('if(this.sceneLarge)\n         {\n            var scenePaintRect:',
+                          'if(this.sceneLarge && !this.sceneProfileLegacyMaterials)\n         {\n            var scenePaintRect:')
+    # Separate mask construction from Flash's bitmap caching/material filters.
+    start,end=parser._body(source,'drawKusok')
+    body=source[start+1:end]
+    body=body.replace('         var _loc6_:Sprite = new Sprite();','         var materialStart:int=getTimer();\n         var _loc6_:Sprite = new Sprite();')
+    body=body.replace('         this.m.tx = 0;', '         this.sceneProfileRecord("material-mask-build",getTimer()-materialStart);\n         materialStart=getTimer();\n         this.m.tx = 0;')
+    body=body.replace('         if(this.sceneLarge)\n         {\n            _loc7_.mask = null;', '         this.sceneProfileRecord("material-raster-filters",getTimer()-materialStart);\n         materialStart=getTimer();\n         if(this.sceneLarge)\n         {\n            _loc7_.mask = null;')
+    body+='\n         this.sceneProfileRecord("material-cleanup",getTimer()-materialStart);\n'
+    source=source[:start+1]+body+source[end:]
+    anchor = '               this.sceneRegionDrawPass(style);\n               buffers = '
+    assert source.count(anchor)==1
+    source=source.replace(anchor, '               this.sceneRegionDrawPass(style);\n               this.sceneProfileComparePass(style);\n               buffers = ')
+    start,end=parser._body(source,'sceneOpen')
+    source=source[:end]+'         this.sceneProfileWantOracle = false;\n'+source[end:]
     for name in ['sceneOpen','sceneClear','sceneRender','sceneIndexBackdrops','sceneDrawRegionChunk',
                  'drawLoc','drawKusok','drawBackWall','setLight','drawAllObjs']:
         source = wrap(source,name,'Grafon.'+name,'this.sceneProfileRecord')

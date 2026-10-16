@@ -131,6 +131,9 @@ package {
                         var spawn:XML=originals.room[int(region.@index)].obj.(@id=="player")[0];
                         points.push({x:(int(region.@x)+int(spawn.@x)+0.5)*40,y:(int(region.@y)+int(spawn.@y)+1)*40-1});
                     }
+                    // Full-raster reference suite; progressive entry has its own
+                    // viewport/motion oracle and the native mission/save suite.
+                    w.grafon.scenePreload=true;
                     w.mm.active=false; w.newGame(-1,"Continuous Factory",{propusk:true}); next(1);
                 } else if(phase==1 && w.ng_wait==0 && w.allStat==1 && w.gg && w.loc) {
                     if(!w.gg.ggControl || w.pip.noAct) {ready=0;w.ctr.keyPressed=w.ctr.keyPressed2=true;return;}

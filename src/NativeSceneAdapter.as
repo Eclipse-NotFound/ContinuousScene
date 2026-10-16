@@ -34,9 +34,15 @@ package {
             var dest:*=regions[0].source;
             var state:Object={land:land,loc:dest,regions:regions,byCell:{},width:width,height:height};
             var space:Array=[],Tile:Class=getDefinitionByName("fe.loc.Tile") as Class,tile:*;
-            for(x=0;x<width;++x) {space[x]=[];for(y=0;y<height;++y) {
+            // Reuse every native tile. Allocate solid placeholders only for
+            // genuinely missing room cells, not all 14,400 cells before
+            // immediately replacing them with the generated factory tiles.
+            for(x=0;x<width;++x) space[x]=new Array(height);
+            for each(entry in regions) for(x=0;x<48;++x) for(y=0;y<25;++y)
+                space[x+entry.tx][y+entry.ty]=entry.space[x][y];
+            for(x=0;x<width;++x) for(y=0;y<height;++y) if(space[x][y]==null) {
                 tile=new Tile(x,y);tile.mainFrame("A");space[x][y]=tile;
-            }}
+            }
             dest.space=space;dest.spaceX=width;dest.spaceY=height;dest.limX=width*40;dest.limY=height*40;
             dest.landX=land.minLocX;dest.landY=land.minLocY;dest.ramka=0;
             dest.firstObj=dest.nextObj=dest.lastObj=null;

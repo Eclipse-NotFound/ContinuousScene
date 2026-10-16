@@ -18,7 +18,7 @@ WB = ROOT / "mods/WallBlend"
 STAGE = MOD / "build/generated/wb-production"
 BASE = "f32e4a99643ccc901dc4f8e8caac29a6cde441b4"
 RELEASE_VERSION = "0.5.3"
-VERSION = "0.5.4-scene"
+VERSION = "0.5.6-scene"
 # Published provenance, not a requirement on the mutable installed binary.
 # 0.5.2 partial/fake wall support and 0.5.3 relief sampling all live in
 # BlendLayer.as. Its only compatibility edit excludes another region's tint

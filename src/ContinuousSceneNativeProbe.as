@@ -56,7 +56,8 @@ package {
             check("native-generated-land",w.land.rnd && w.land.act.id=="random_plant");
             check("native-merged",s && s.loc===w.loc && s.regions.length>1);
             check("native-dimensions",w.loc.spaceX==s.width && w.loc.spaceY==s.height,{width:s.width,height:s.height,regions:s.regions.length});
-            check("native-full-preload",w.grafon.sceneResident==Math.ceil(w.loc.limX/320)*Math.ceil(w.loc.limY/320));
+            if(report.preload) check("native-full-preload",w.grafon.sceneResident==Math.ceil(w.loc.limX/320)*Math.ceil(w.loc.limY/320));
+            else check("native-visible-raster-ready",w.grafon.sceneViewReady(),{resident:w.grafon.sceneResident});
             check("native-map-canvas",w.land.map.width==s.width && w.land.map.height==s.height);
             var units:int=0,objects:int=0,backdrops:int=0,aliases:Boolean=true,coordinates:Boolean=true;
             var expected:Dictionary=new Dictionary(true);
@@ -109,6 +110,7 @@ package {
                 if(w && w.verror && w.verror.visible)throw new Error(w.verror.txt.text);
                 if(w && w.gg) {w.godMode=true;w.gg.invulner=true;}
                 if(phase==0 && w && w.mm && w.mm.loaded && w.allLandsLoaded && w.textLoaded && main.getChildByName("ContinuousSceneCarrier") && main.getChildByName("ContinuousSceneCarrier")["sceneAPI"].ready) {
+                    w.grafon.scenePreload=File.applicationDirectory.resolvePath("preload.flag").exists;report.preload=w.grafon.scenePreload;
                     setting(true);w.mm.active=false;w.newGame(-1,"Native Scene",{propusk:true});phase=1;
                 } else if(phase==1 && w.ng_wait==0 && w.allStat==1 && w.gg && w.loc) {
                     if(!w.gg.ggControl || w.pip.noAct) {ready=0;w.ctr.keyPressed=w.ctr.keyPressed2=true;return;}
@@ -149,7 +151,8 @@ package {
                     travel("random_plant",true,11);
                 } else if(phase==11 && arrived("random_plant")) {
                     var restored:Object=main.getChildByName("ContinuousSceneCarrier")["nativeAPI"].state(w.land);
-                    check("native-save-load-regenerates-large-mode",restored && restored.loc===w.loc && w.grafon.sceneLarge && w.grafon.sceneResident==240);
+                    check("native-save-load-regenerates-large-mode",restored && restored.loc===w.loc && w.grafon.sceneLarge &&
+                        (report.preload?w.grafon.sceneResident==240:w.grafon.sceneViewReady()));
                     w.pip.onoff(3,1);phase=10;ready=0;
                 } else if(phase==10 && ++ready>=5) {
                     for each(var row:Object in SceneMapChecks.run(w)) check("native-"+row.name,row.ok,row.detail);

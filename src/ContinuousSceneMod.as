@@ -14,7 +14,7 @@ package {
 
     /** Production entry only: no new game, test enemies, movement or save-slot writes. */
     public class ContinuousSceneMod {
-        public static const VERSION:String="0.6.0";
+        public static const VERSION:String="0.7.0";
         private static const LAND:String="continuous_scene";
         private static var main:*, w:*, worldClass:Class, gameData:Class;
         private static var pool:XML, definition:XML;
@@ -25,6 +25,7 @@ package {
         public static var nativeEnabled:Boolean=false;
         private static var settingsAPI:*;
         private static var nextSettings:int=0;
+        private static var fastTransition:Boolean=false;
         public static function init(host:*):void {
             if(main) return;
             main=host;
@@ -50,7 +51,7 @@ package {
             if(!("sceneTrack" in w.grafon)) {
                 failed=true; log("host patch missing: scene entry disabled"); return;
             }
-            if("scenePreload" in w.grafon) w.grafon.scenePreload=true;
+            if("scenePreload" in w.grafon) w.grafon.scenePreload=false;
             var stream:FileStream=new FileStream();
             try {
                 stream.open(File.applicationDirectory.resolvePath("mods/ContinuousScene/release/scene.xml"),FileMode.READ);
@@ -75,6 +76,7 @@ package {
                 if(!ready) return;
                 NativeSceneAdapter.attach(w);
                 connectSettings();
+                advanceSceneFade();
                 if(w.game && !w.game.lands[LAND]) {
                     var LandAct:Class=getDefinitionByName("fe.loc.LandAct") as Class;
                     var act:*=new LandAct(definition);
@@ -126,6 +128,30 @@ package {
                     centeredMap=map;
                 }
             } else centeredMap=null;
+        }
+        private static function advanceSceneFade():void {
+            if(!w.game || !w.cam || !w.vblack || !w.gg) return;
+            if(w.t_exit==0) {fastTransition=false;return;}
+            if(w.t_exit>20 && !fastTransition) {
+                var target:*=w.game.lands[w.game.curLandId];
+                fastTransition=w.grafon.sceneLarge || w.game.curLandId==LAND ||
+                    (nativeEnabled && target && target.tip!="base");
+            }
+            if(!fastTransition) return;
+            if(w.t_exit==1) {w.t_exit=0;fastTransition=false;return;} // Native HUD restoration already ran.
+            if(w.t_exit==18 && w.clickReq<=0) w.t_exit=17; // No click gate to wait at 17.
+            // Native exitStep still executes every lifecycle milestone: 20
+            // shows loading, 19 generates, 18/17 wait for required input,
+            // 16 restores control, and 1 restores the HUD. Only the decorative
+            // fade's idle ticks are shortened; no simulation/render work moves
+            // out of the measured entry or into startup.
+            if(w.t_exit>21) {
+                if(w.vblack.alpha>=1) w.t_exit=21;
+                else if(w.cam.dblack>0) w.cam.dblack=100;
+            } else if(w.t_exit<=16 && w.t_exit>2) {
+                if(w.cam.dblack<0) w.cam.dblack=-100;
+                if(!w.vblack.visible || w.vblack.alpha<=0) w.t_exit=2;
+            }
         }
         private static function onClick(event:MouseEvent):void { event.stopPropagation(); travel(); }
         public static function travel():void {

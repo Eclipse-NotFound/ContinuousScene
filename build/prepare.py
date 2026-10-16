@@ -18,6 +18,8 @@ import entity_color_patch
 import interaction_patch
 import load_patch
 import native_map_patch
+import material_bounds_patch
+import progressive_patch
 
 MOD = Path(__file__).resolve().parents[1]
 ROOT = MOD.parents[1]
@@ -166,6 +168,8 @@ def patches():
     grafon = entity_color_patch.apply_grafon(grafon)
     grafon = load_patch.apply_grafon(grafon)
     grafon = native_map_patch.grafon(grafon)
+    grafon = material_bounds_patch.apply_grafon(grafon)
+    grafon = progressive_patch.apply_grafon(grafon)
     write_class('fe/graph/Grafon.as', grafon)
 
     camera = (SOURCE/'fe/inter/Camera.as').read_text(encoding='utf-8-sig')
@@ -223,7 +227,9 @@ def resources():
     (RUNTIME/'application.xml').write_text(descriptor,encoding='utf-8')
 
 if __name__ == '__main__':
-    patches(); resources(); scene()
-    from factory_scene import build as factory
-    factory()
+    patches()
+    if '--sources-only' not in sys.argv:
+        resources(); scene()
+        from factory_scene import build as factory
+        factory()
     print(json.dumps({'generated':str(OUT),'runtime':str(RUNTIME)},ensure_ascii=False))

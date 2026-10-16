@@ -1,0 +1,1178 @@
+{
+  "version": "0.7.0",
+  "status": "verified",
+  "action": "Install",
+  "checkedAt": "2026-10-16T15:12:32.703443+08:00",
+  "passed": true,
+  "entryMs": [
+    4486,
+    4392,
+    4382
+  ],
+  "files": [
+    {
+      "after": "2A4662488BA3B690EB23ACFE4B79ACA3F0D9AE114E5E2DEE7595AF3CABFFB3EA",
+      "relative": "pfe.swf",
+      "before": "08A96759720C7A2AA489FCEEDB209C6E704500FDE7B1A4A49146BD578E99A8BC"
+    },
+    {
+      "after": "70C06879A2CFFE85901E5C8E19FC1715028D5C38934975E970569468737309D5",
+      "relative": "mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "before": "F6ED93AFF2BFB76B4AE8CA2A2E01B84BBE4D24A8DD59EB4DE720847C8457D8D2"
+    },
+    {
+      "after": "DF9AA07265E2538E115A5F048D272B85FC1C34D00EC4BC81585CD40D96648F76",
+      "relative": "mods/WallBlend/release/WallBlendMod.swf",
+      "before": "3B1B40A65D7C57E4711C3861463B3470B0DFC086A8C8C01870C91A2F413DA96F"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Installed baseline pfe.swf",
+      "passed": true
+    },
+    {
+      "name": "Frozen candidate pfe.swf",
+      "passed": true
+    },
+    {
+      "name": "Installed baseline mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "Frozen candidate mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "Installed baseline mods/WallBlend/release/WallBlendMod.swf",
+      "passed": true
+    },
+    {
+      "name": "Frozen candidate mods/WallBlend/release/WallBlendMod.swf",
+      "passed": true
+    },
+    {
+      "name": "Unrelated native code and layouts preserved",
+      "passed": true
+    },
+    {
+      "name": "Production loader manifest unchanged",
+      "passed": true
+    },
+    {
+      "name": "Tests load the exact enabled 1.02 modules plus isolated probe",
+      "passed": true
+    },
+    {
+      "name": "Factory fixture unchanged",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 passed",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 exact pfe.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 exact mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 exact dependency mods\\ModLoader\\release\\ModLoaderMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 exact dependency mods\\Sandevistan\\release\\SandevistanMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 exact dependency mods\\Rconnect\\release\\RConnectMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 exact dependency mods\\RealisticVision\\release\\RealisticVisionMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 exact dependency mods\\MoreSkills&Weapons\\release\\MoreSkillsWeaponsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 exact dependency mods\\TDFC\\release\\TDFCMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 exact dependency mods\\RandomRooms\\release\\RandomRoomsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 exact dependency mods\\RModifier\\release\\LootEditorMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 exact dependency mods\\FirearmAttachments\\release\\FirearmAttachmentsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 exact dependency mods\\WallBlend\\release\\WallBlendMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 exact dependency mods\\LightAndDarkness\\release\\LightAndDarknessMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 exact dependency mods\\AddictionSystem\\release\\AddictionSystemMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 exact dependency mods\\PermanentInjury\\release\\PermanentInjuryMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 exact dependency mods\\ContinuousScene\\release\\ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 uncontended",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 actual native entry, progressive rendering",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 full logical world ready within 5 seconds",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-1 no diagnostic host",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 passed",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 exact pfe.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 exact mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 exact dependency mods\\ModLoader\\release\\ModLoaderMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 exact dependency mods\\Sandevistan\\release\\SandevistanMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 exact dependency mods\\Rconnect\\release\\RConnectMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 exact dependency mods\\RealisticVision\\release\\RealisticVisionMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 exact dependency mods\\MoreSkills&Weapons\\release\\MoreSkillsWeaponsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 exact dependency mods\\TDFC\\release\\TDFCMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 exact dependency mods\\RandomRooms\\release\\RandomRoomsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 exact dependency mods\\RModifier\\release\\LootEditorMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 exact dependency mods\\FirearmAttachments\\release\\FirearmAttachmentsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 exact dependency mods\\WallBlend\\release\\WallBlendMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 exact dependency mods\\LightAndDarkness\\release\\LightAndDarknessMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 exact dependency mods\\AddictionSystem\\release\\AddictionSystemMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 exact dependency mods\\PermanentInjury\\release\\PermanentInjuryMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 exact dependency mods\\ContinuousScene\\release\\ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 uncontended",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 actual native entry, progressive rendering",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 full logical world ready within 5 seconds",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-2 no diagnostic host",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 passed",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 exact pfe.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 exact mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 exact dependency mods\\ModLoader\\release\\ModLoaderMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 exact dependency mods\\Sandevistan\\release\\SandevistanMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 exact dependency mods\\Rconnect\\release\\RConnectMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 exact dependency mods\\RealisticVision\\release\\RealisticVisionMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 exact dependency mods\\MoreSkills&Weapons\\release\\MoreSkillsWeaponsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 exact dependency mods\\TDFC\\release\\TDFCMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 exact dependency mods\\RandomRooms\\release\\RandomRoomsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 exact dependency mods\\RModifier\\release\\LootEditorMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 exact dependency mods\\FirearmAttachments\\release\\FirearmAttachmentsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 exact dependency mods\\WallBlend\\release\\WallBlendMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 exact dependency mods\\LightAndDarkness\\release\\LightAndDarknessMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 exact dependency mods\\AddictionSystem\\release\\AddictionSystemMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 exact dependency mods\\PermanentInjury\\release\\PermanentInjuryMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 exact dependency mods\\ContinuousScene\\release\\ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 uncontended",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 actual native entry, progressive rendering",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 full logical world ready within 5 seconds",
+      "passed": true
+    },
+    {
+      "name": "loading-v07-final2-3 no diagnostic host",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final passed",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final exact pfe.swf",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final exact mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final exact dependency mods\\ModLoader\\release\\ModLoaderMod.swf",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final exact dependency mods\\Sandevistan\\release\\SandevistanMod.swf",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final exact dependency mods\\Rconnect\\release\\RConnectMod.swf",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final exact dependency mods\\RealisticVision\\release\\RealisticVisionMod.swf",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final exact dependency mods\\MoreSkills&Weapons\\release\\MoreSkillsWeaponsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final exact dependency mods\\TDFC\\release\\TDFCMod.swf",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final exact dependency mods\\RandomRooms\\release\\RandomRoomsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final exact dependency mods\\RModifier\\release\\LootEditorMod.swf",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final exact dependency mods\\FirearmAttachments\\release\\FirearmAttachmentsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final exact dependency mods\\WallBlend\\release\\WallBlendMod.swf",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final exact dependency mods\\LightAndDarkness\\release\\LightAndDarknessMod.swf",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final exact dependency mods\\AddictionSystem\\release\\AddictionSystemMod.swf",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final exact dependency mods\\PermanentInjury\\release\\PermanentInjuryMod.swf",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final exact dependency mods\\ContinuousScene\\release\\ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "native-v07-final complete passing assertions",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final passed",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final exact pfe.swf",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final exact mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final exact dependency mods\\ModLoader\\release\\ModLoaderMod.swf",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final exact dependency mods\\Sandevistan\\release\\SandevistanMod.swf",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final exact dependency mods\\Rconnect\\release\\RConnectMod.swf",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final exact dependency mods\\RealisticVision\\release\\RealisticVisionMod.swf",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final exact dependency mods\\MoreSkills&Weapons\\release\\MoreSkillsWeaponsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final exact dependency mods\\TDFC\\release\\TDFCMod.swf",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final exact dependency mods\\RandomRooms\\release\\RandomRoomsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final exact dependency mods\\RModifier\\release\\LootEditorMod.swf",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final exact dependency mods\\FirearmAttachments\\release\\FirearmAttachmentsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final exact dependency mods\\WallBlend\\release\\WallBlendMod.swf",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final exact dependency mods\\LightAndDarkness\\release\\LightAndDarknessMod.swf",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final exact dependency mods\\AddictionSystem\\release\\AddictionSystemMod.swf",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final exact dependency mods\\PermanentInjury\\release\\PermanentInjuryMod.swf",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final exact dependency mods\\ContinuousScene\\release\\ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "factory-v07-final complete passing assertions",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final passed",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final exact pfe.swf",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final exact mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final exact dependency mods\\ModLoader\\release\\ModLoaderMod.swf",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final exact dependency mods\\Sandevistan\\release\\SandevistanMod.swf",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final exact dependency mods\\Rconnect\\release\\RConnectMod.swf",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final exact dependency mods\\RealisticVision\\release\\RealisticVisionMod.swf",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final exact dependency mods\\MoreSkills&Weapons\\release\\MoreSkillsWeaponsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final exact dependency mods\\TDFC\\release\\TDFCMod.swf",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final exact dependency mods\\RandomRooms\\release\\RandomRoomsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final exact dependency mods\\RModifier\\release\\LootEditorMod.swf",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final exact dependency mods\\FirearmAttachments\\release\\FirearmAttachmentsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final exact dependency mods\\WallBlend\\release\\WallBlendMod.swf",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final exact dependency mods\\LightAndDarkness\\release\\LightAndDarknessMod.swf",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final exact dependency mods\\AddictionSystem\\release\\AddictionSystemMod.swf",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final exact dependency mods\\PermanentInjury\\release\\PermanentInjuryMod.swf",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final exact dependency mods\\ContinuousScene\\release\\ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "experience-v07-final complete passing assertions",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final passed",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final exact pfe.swf",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final exact mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final exact dependency mods\\ModLoader\\release\\ModLoaderMod.swf",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final exact dependency mods\\Sandevistan\\release\\SandevistanMod.swf",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final exact dependency mods\\Rconnect\\release\\RConnectMod.swf",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final exact dependency mods\\RealisticVision\\release\\RealisticVisionMod.swf",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final exact dependency mods\\MoreSkills&Weapons\\release\\MoreSkillsWeaponsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final exact dependency mods\\TDFC\\release\\TDFCMod.swf",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final exact dependency mods\\RandomRooms\\release\\RandomRoomsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final exact dependency mods\\RModifier\\release\\LootEditorMod.swf",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final exact dependency mods\\FirearmAttachments\\release\\FirearmAttachmentsMod.swf",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final exact dependency mods\\WallBlend\\release\\WallBlendMod.swf",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final exact dependency mods\\LightAndDarkness\\release\\LightAndDarknessMod.swf",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final exact dependency mods\\AddictionSystem\\release\\AddictionSystemMod.swf",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final exact dependency mods\\PermanentInjury\\release\\PermanentInjuryMod.swf",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final exact dependency mods\\ContinuousScene\\release\\ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "upcoming-v07-final input inside isolated runtime",
+      "passed": true
+    },
+    {
+      "name": "Motion regression uses actual native progressive scene",
+      "passed": true
+    },
+    {
+      "name": "Continuous motion and zoom retain complete viewport",
+      "passed": true
+    },
+    {
+      "name": "Initial viewport pixels match full regional rendering",
+      "passed": true
+    },
+    {
+      "name": "Upcoming preparation avoids synchronous missing-surface fills during tested motion",
+      "passed": true
+    },
+    {
+      "name": "Native factory content and pixels verified",
+      "passed": true
+    },
+    {
+      "name": "Three frozen WallBlend suites supplied",
+      "passed": true
+    },
+    {
+      "name": "Safe WallBlend evidence name",
+      "passed": true
+    },
+    {
+      "name": "wallblend-test-cs053-harness-20261016145045-60e50c exact host and wall candidate",
+      "passed": true
+    },
+    {
+      "name": "wallblend-test-cs053-harness-20261016145045-60e50c passed",
+      "passed": true
+    },
+    {
+      "name": "Safe WallBlend evidence name",
+      "passed": true
+    },
+    {
+      "name": "wallblend-test-cs053-coverage-20261016145141-0fd7c5 exact host and wall candidate",
+      "passed": true
+    },
+    {
+      "name": "wallblend-test-cs053-coverage-20261016145141-0fd7c5 passed",
+      "passed": true
+    },
+    {
+      "name": "Safe WallBlend evidence name",
+      "passed": true
+    },
+    {
+      "name": "wallblend-test-cs053-destruction-20261016145450-5e2ee9 exact host and wall candidate",
+      "passed": true
+    },
+    {
+      "name": "wallblend-test-cs053-destruction-20261016145450-5e2ee9 passed",
+      "passed": true
+    },
+    {
+      "name": "Wall historical modes, catalogue and destruction covered",
+      "passed": true
+    },
+    {
+      "name": "No AIR during deployment",
+      "passed": true
+    },
+    {
+      "name": "Unique deployment backup",
+      "passed": true
+    },
+    {
+      "name": "Backup pfe.swf",
+      "passed": true
+    },
+    {
+      "name": "Backup mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "Backup mods/WallBlend/release/WallBlendMod.swf",
+      "passed": true
+    },
+    {
+      "name": "Pre-replacement identity pfe.swf",
+      "passed": true
+    },
+    {
+      "name": "Installed pfe.swf",
+      "passed": true
+    },
+    {
+      "name": "Pre-replacement identity mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "Installed mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "passed": true
+    },
+    {
+      "name": "Pre-replacement identity mods/WallBlend/release/WallBlendMod.swf",
+      "passed": true
+    },
+    {
+      "name": "Installed mods/WallBlend/release/WallBlendMod.swf",
+      "passed": true
+    }
+  ],
+  "wallEvidence": [
+    "wallblend-test-cs053-harness-20261016145045-60e50c",
+    "wallblend-test-cs053-coverage-20261016145141-0fd7c5",
+    "wallblend-test-cs053-destruction-20261016145450-5e2ee9"
+  ],
+  "hostHash": "2A4662488BA3B690EB23ACFE4B79ACA3F0D9AE114E5E2DEE7595AF3CABFFB3EA",
+  "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\upgrade-v07-20261016-151232751",
+  "verification": {
+    "passed": true,
+    "verifiedAt": "2026-10-16T15:14:05.0646957+08:00",
+    "appId": "pfe-modsettings-continuous-installed-20261016151253",
+    "checks": 19,
+    "evidence": "knowledge/experiments/evidence/pfe-modsettings-continuous-installed-20261016151253/InstalledSmoke.json",
+    "scope": "Native startup using installed bytes; button/travel coverage belongs to the referenced same-hash isolated regression"
+  }
+}

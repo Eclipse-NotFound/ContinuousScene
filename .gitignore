@@ -2,6 +2,7 @@ build/runtime/
 build/generated/
 build/cache/
 build/backups/
+build/candidate-v07-*/
 build/*.swf
 build/*.log
 build/*.json

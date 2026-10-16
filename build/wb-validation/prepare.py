@@ -47,7 +47,7 @@ for relative in files:
         # public version is the explicitly reviewed compatibility suffix.
         anchor = b'entry["status"].version=="0.5.3"'
         assert original.count(anchor) == 1
-        adapted = original.replace(anchor, b'entry["status"].version=="0.5.4-scene"')
+        adapted = original.replace(anchor, b'entry["status"].version=="0.5.6-scene"')
     target = TESTS / Path(relative).relative_to("tests")
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_bytes(adapted)
