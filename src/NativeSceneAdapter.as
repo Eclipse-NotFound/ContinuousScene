@@ -47,6 +47,7 @@ package {
             if(width>512 || height>256) throw new Error("ContinuousScene native map exceeds supported bounds");
             var dest:*=regions[0].source;
             var state:Object={land:land,loc:dest,regions:regions,byCell:{},width:width,height:height};
+            state.boundaryRestored=NativeSceneWalls.restore(land,regions);
             var space:Array=[],Tile:Class=getDefinitionByName("fe.loc.Tile") as Class,tile:*;
             // Reuse every native tile. Allocate solid placeholders only for
             // genuinely missing room cells, not all 14,400 cells before

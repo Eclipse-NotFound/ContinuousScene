@@ -1,0 +1,44 @@
+{
+  "version": "0.8.1",
+  "status": "verified",
+  "time": "2026-10-19T21:37:36.197072+08:00",
+  "target": "mods\\ContinuousScene\\release\\ContinuousSceneMod.swf",
+  "before": "B5E8110E11FE2DF8A748B223DFFA6E0EC42E4F61A931D4D4E065CC199EFA2F1B",
+  "after": "241E48EA217D47932B6014B4AB213473E5FCF471E533CCB8F2CD91C4E15B02EA",
+  "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\boundary-v081-20261019-213736\\ContinuousSceneMod.swf",
+  "checks": [
+    {
+      "evidence": "boundary-candidate-mane-20261019",
+      "assertions": 20
+    },
+    {
+      "evidence": "boundary-candidate-plant-20261019",
+      "assertions": 15
+    },
+    {
+      "evidence": "boundary-disabled-mane-20261019",
+      "assertions": 15
+    }
+  ],
+  "baseline": {
+    "mods\\ModLoader\\release\\ModLoaderMod.swf": "BD71B6F31774B97841D4C158451DA0353B53BC46AC72F8E2A7FE2C3F3F4908B1",
+    "mods\\Sandevistan\\release\\SandevistanMod.swf": "CEC6A3061CB90380579D8A95AA1254E0328BD0DAE6E239FC4CA5205D6CCCF942",
+    "mods\\Rconnect\\release\\RConnectMod.swf": "574D2B51490AE8B25A1396555600F56A301F8A20AE50104C0E35CF2796441AFE",
+    "mods\\RealisticVision\\release\\RealisticVisionMod.swf": "76314B819151FBA6F67F6D740B21030A9EEC8359AF4C9C9DDEB83D4CAF5C46B7",
+    "mods\\MoreSkills&Weapons\\release\\MoreSkillsWeaponsMod.swf": "B7A3C811D0A073F026A5E810386699C1059F99EF066012992CFDE605FF96E402",
+    "mods\\TDFC\\release\\TDFCMod.swf": "03243196C99D6C4F1A2BE081598DBAE9B5D89A414BCD48E1F860232BCFDDE1E5",
+    "mods\\RandomRooms\\release\\RandomRoomsMod.swf": "3F8789C62F9B2EF8EFC082597F672A2FEA230A0D7FCE3BE90C04EFD9582E5145",
+    "mods\\RModifier\\release\\LootEditorMod.swf": "4F1D6CF19979F4EA4960F8CCD8377C1D3CAC490BED9949866885357D073C8625",
+    "mods\\PermanentInjury\\release\\PermanentInjuryMod.swf": "D4F6A096EE06F8869FFFB316801C6325DF26F54260A34666AC17EC24AD8BD083",
+    "mods\\AddictionSystem\\release\\AddictionSystemMod.swf": "5A4D9A405777867826061BB50178DF931591987EA0737580BD0AA8A89458B9B3",
+    "mods\\ContinuousScene\\release\\ContinuousSceneMod.swf": "B5E8110E11FE2DF8A748B223DFFA6E0EC42E4F61A931D4D4E065CC199EFA2F1B",
+    "mods\\FirearmAttachments\\release\\FirearmAttachmentsMod.swf": "B3304596EB7E08796F9DE2CF02E1E7CCCFF10E188D26FEDFA960AA6370D2A4B9",
+    "mods\\LightAndDarkness\\release\\LightAndDarknessMod.swf": "94A2F0861B9757815F1554D5FBF3C216F403053D1EBCF4B546F9F7A2868A21BD",
+    "mods\\WallBlend\\release\\WallBlendMod.swf": "0BD209A1763D1C08BCEEAA6415DC768AB3D18AD99BAD377B4D8C188EBD48DE5A",
+    "pfe.swf": "02BFABE6A3B4881DFA1227515E71F2A8EA863D4B1B468FBE1D8008AEBA7D9240",
+    "mods/loader-manifest.txt": "33DE189E1209FDD397E811A52E9AC67FF0DEDAEEAE5CFEFF4B7D15D4536EB133",
+    "mods/ContinuousScene/release/scene.xml": "1CEA74E218A55894D432E12CDFC544952D37CFFF5FF55B256B1B970573EB7A9E"
+  },
+  "sourceRevision": "3882d90",
+  "smoke": "boundary-installed-mane-20261019"
+}

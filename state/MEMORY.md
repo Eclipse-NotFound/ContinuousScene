@@ -7,6 +7,10 @@
 中文。CS修复/构建/部署及RV、WallBlend、LightAndDarkness、TDFC必要兼容已授权；保留效果和原版能力例外。用户接受远处未参战敌人暂缓，近处/追击/受伤/效果/弹体附近保持运行。允许本轮逐条登记会话绑定、每次≤10分钟精确调用授权，不关闭钩子。无Ghost或新增委托授权，不停止他人实例、不写真实pfe存储。用户选择不跨任务发消息，本任务未发送；收到对方窗口交还不等于获准回复。2026-10-19明确要求“请部署”。
 
 ## 3. 当前安装
+**2026-10-19 21:37边界墙热修0.8.1已安装并复验。** 仅CS B5E8110E→241E48EA，宿主02BF与14个已选模组依赖/配置保持；当前LAD已独立更新为0.4.1/94A2F086，本轮按此组合实测。内部接缝按当前可破坏材质恢复hp/thre，钢墙、外沿/角、缺房、模板固有保护和门/机关保持。候选马哈顿20、工厂15、关闭模式15、正式回读21项通过；正式1587格恢复，原生地形命中后碰撞与画面同步移除。回执deployment-v081.json=verified；报告boundary-walls-v081-20261019.md。下一次生成地图生效，不热改旧游戏实例。
+
+下述0.8安装及宿主接续记录保留其当时事实，CS当前指纹以本段0.8.1为准。本轮“大场景 (2)”已获明确修复协调授权并发送过消息；旧“不跨任务发消息”是另一对话当时的约定，不覆盖该授权。另一对话仍在处理箭头和移动性能，不在本热修产物中。
+
 **后续独立更新已只读核对：** RConnect在A61上追加安保接口后，当前宿主为 **02BFABE6A3B4881DFA1227515E71F2A8EA863D4B1B468FBE1D8008AEBA7D9240**，RC为574D2B51…441AFE；CS B5/TDFC032/WB0BD字节保持。回执../../RConnect/build/m52/coop-bundle-04/deployment.json=deployed-smoke-passed。对方报告432项及双侧启动通过、保留sceneNativeCall(moveOffset)；本任务只核对回执和指纹，未复跑。以下17:14性能属于RC更新前组合，不移用为新组合实测。后续宿主必须基于02BF或更新发布合并，禁止覆盖回A61；旧upgrade-v08的Check/Rollback拒绝是预期保护。
 
 **2026-10-19 17:14已安装0.8.0，回执deployment-v08.json=verified。** 宿主A61EA4A3、CS B5E8110E、TDFC 03243196（0.6.4-scene1）、WB 0BD209A1（0.5.8-scene）。四文件从2A/70/99/DF9升级；保留独立已发布RV0.32.3/76314B81、LAD0.3.1/514A7671、14模块清单33DE和XML1CEA。后续继续前重核，不能覆盖别人新发布。
@@ -23,11 +27,13 @@
 第五阶段随机生成偶发Unit.run→stepInvis→preStep #1010，在旧正式0.7且关闭合并也复现（Mole rat，布局seed4077752896）。本轮未引入但具体根因未修，不能称无模组原版也复现。完整剧情、所有地图/机关、联机、更大尺寸与长时运行未全面验收；512×256只是输入上限。
 
 ## 6. 停点与回退
+本轮边界墙交付已完成；0.8.1回滚用 `python build/boundary-wall/check.py rollback`，仅恢复CS备份build/backups/boundary-v081-20261019-213736，须当前仍为241E且备份为B5。禁止使用旧0.8整组回退覆盖后续宿主/依赖。NativeSceneAdapter仅增加墙体恢复一行；并行箭头WIP由另一对话持有，不可覆盖。
 用户要求的本轮部署已完成。性能进一步逼近普通房间是尚未完成的原始目标；下一步按实际反馈与干净采样继续查持续帧开销，不为已经通过的同字节检查反复重测。编辑器继续暂缓。
 回退build/upgrade-v08.ps1 -Action Rollback仅恢复本次四目标，须当前与本次after、备份与before吻合；拒绝覆盖后续发布。不要用0.7或更早整体备份强制恢复。修改后需正常重启游戏。
 其他任务的build/object-audit与LAD机器灯WIP不归本任务，不能恢复/提交其源码。WB/TDFC未发布联网/比较缓存不在本次产物，禁止直接从其HEAD构建覆盖正式。17:20左右收到RConnect主动通知将接续另行部署；本任务不再开AIR，不发回复，后续先核对其新回执。
 
 ## 7. 深入与复现
+本轮边界墙：knowledge/experiments/boundary-walls-v081-20261019.md、state/deployment-v081.json、build/boundary-wall/check.py。候选从已发布3882d90冻结；不要从当前含并行WIP的工作树构建后冒充本次已测241E字节。墙体恢复helper在src/NativeSceneWalls.as。
 README、design/runtime.md、knowledge/experiments/scene-v08-20261019.md、state/journal.md、deployment-v08.json；历史尝试见in-progress-v08.md。本轮技能报告已登记台账609行，不重复追加。
 冻结build/candidate-v08-final；宿主以2A为基线，4665无关方法/1015类布局/原常量池保留。candidate-v08-build.ps1只适用该冻结基线，不能直接覆盖新宿主；不要运行旧build.ps1整包。ProbeOnly仅探针，DriverOnly入口及探针。test-mods -AllMods -Prepared配RefreshModules定向同步依赖。
 performance-v08-rv323.ps1已执行完成，原版对照证据-r2保留首次争用失败；重测需新EvidenceName。test.ps1隔离身份、串行，性能拒绝其他AIR。门禁upgrade-v08.ps1，成功安装后Check预期拒绝旧before，这是防覆盖设计；用回执+实际指纹核对当前安装。
