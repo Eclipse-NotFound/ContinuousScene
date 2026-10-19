@@ -1,12 +1,20 @@
 """Current-byte isolated motion test on a private desktop; never edits pfe storage."""
 from pathlib import Path
-import argparse, ctypes, hashlib, json, os, shutil, subprocess, sys, time, uuid
+import argparse, ctypes, hashlib, json, os, re, shutil, subprocess, sys, time, uuid
 from ctypes import wintypes as W
 BASE=Path(__file__).resolve().parent
 ROOT=BASE.parents[2]
 RUNTIME=BASE/'runtime'
 sys.path.insert(0,str(ROOT/'mods/ModLoader/tools'))
 from air_test_process import HiddenProcess
+
+def memory_status():
+    class Memory(ctypes.Structure):
+        _fields_=[('length',W.DWORD),('load',W.DWORD)]+[(name,ctypes.c_ulonglong) for name in
+            ('totalPhysical','availablePhysical','totalCommit','availableCommit','totalVirtual','availableVirtual','extended')]
+    value=Memory();value.length=ctypes.sizeof(value)
+    if not ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(value)):raise ctypes.WinError()
+    return {key:getattr(value,key) for key in ('load','availablePhysical','availableCommit')}
 
 def responsive_owned(process):
     class State(ctypes.Structure):
@@ -72,7 +80,7 @@ def prepare():
     report=BASE/'generated'/('motion-selection-'+uuid.uuid4().hex+'.json')
     selection=subprocess.run([str(ROOT/'mods/ModLoader/RemainsModLauncher.exe'),'--root',str(RUNTIME),'--only',','.join(data['selected']+['ContinuousSceneMotionMod']),'--no-ui','--report',str(report)],capture_output=True)
     if selection.returncode:raise RuntimeError(repr(selection.stderr))
-    print(json.dumps({'prepared':True,'hashes':hashes()}))
+    print(json.dumps({'prepared':True,'inputFiles':len(hashes())}))
 
 def run(args):
     import msvcrt
@@ -80,12 +88,21 @@ def run(args):
     out=BASE.parent/'knowledge/experiments/evidence'/args.name
     if out.exists():raise FileExistsError(out)
     if air_pids():raise RuntimeError('Performance requires no other AIR; untouched')
+    memory=memory_status()
+    required=(5 if args.suite in ('experience','factory') else 3)*1024**3
+    if memory['availableCommit']<required or memory['availablePhysical']<1.5*1024**3:
+        raise RuntimeError('Insufficient memory for this single-instance fixture: '+json.dumps(memory))
     out.mkdir();app='pfe-modsettings-continuous-motion-'+uuid.uuid4().hex
     descriptor=RUNTIME/(app+'.xml')
     descriptor.write_text((RUNTIME/'application.xml').read_text(encoding='utf-8-sig').replace('<id>pfe-modsettings-continuous-scene</id>','<id>'+app+'</id>'),encoding='utf-8')
     cfg={'visual':args.visual,'short':args.short,'expectNoSigns':args.expect_no_signs,'stage':args.stage,'vision':args.vision,'lightingCheck':args.lighting_check,'noLighting':args.no_lighting,'culling':args.culling,'profile':args.profile}
     cfg['rasterCheck']=args.raster_check
     cfg['wallCheck']=args.wall_check
+    cfg['benchmark']=args.benchmark
+    cfg['noWall']=args.no_wall
+    cfg['fogCheck']=args.fog_check
+    cfg['fogABBA']=args.fog_abba
+    cfg['land']=args.land
     cfg['suite']=args.suite
     cfg['syncWarm']=args.sync_warm
     suite_flags=[]
@@ -95,11 +112,16 @@ def run(args):
             shutil.copy2(RUNTIME/'scene-factory.xml',RUNTIME/'scene.xml')
         if args.suite=='upcoming':suite_flags=['load-native.flag','user-vision-controls.flag']
         if args.suite=='mechanics':suite_flags=['mechanics-controls.flag','user-vision-controls.flag']
+        if args.suite=='combat':
+            suite_flags=['combat-controls.flag']
+            if args.benchmark=='normal':suite_flags.append('native-rooms-controls.flag')
+            if not args.vision:suite_flags.append('user-vision-controls.flag')
         for name in suite_flags:(RUNTIME/name).write_text('isolated motion regression','utf-8')
     flag=RUNTIME/'motion-controls.json';inputs=hashes();store=Path(os.environ['APPDATA'])/app/'Local Store'
     lock=open(RUNTIME/'session.lock','a+b');lock.seek(0);msvcrt.locking(lock.fileno(),msvcrt.LK_NBLCK,1)
     flag.write_text(json.dumps(cfg),encoding='utf-8')
-    policy={'appId':app,'desktopPolicy':'private','performanceEligible':not (args.visual or args.lighting_check or args.profile or args.raster_check or args.wall_check or args.suite),'otherAirProcessIds':[]}
+    policy={'appId':app,'desktopPolicy':'private','performanceEligible':not (args.visual or args.lighting_check or args.profile or args.raster_check or args.wall_check or args.fog_check or args.suite),'otherAirProcessIds':[]}
+    policy['memoryBefore']=memory;policy['minimumAvailableCommit']=memory['availableCommit']
     process=None
     try:
         with open(out/'stdout.log','wb') as stdout,open(out/'stderr.log','wb') as stderr:
@@ -109,6 +131,10 @@ def run(args):
             start=time.monotonic()
             while process.poll() is None and time.monotonic()-start<600:
                 time.sleep(1)
+                current=memory_status();policy['minimumAvailableCommit']=min(policy['minimumAvailableCommit'],current['availableCommit'])
+                if current['availableCommit']<512*1024**2:
+                    policy['performanceEligible']=False;policy['memoryAbort']=current
+                    raise RuntimeError('Memory pressure; stopped only owned test')
                 others=[p for p in air_pids() if p!=process.pid]
                 if others:
                     policy['otherAirProcessIds']=others;policy['performanceEligible']=False
@@ -125,10 +151,21 @@ def run(args):
         for name in suite_flags:(RUNTIME/name).unlink(missing_ok=True)
         lock.seek(0);msvcrt.locking(lock.fileno(),msvcrt.LK_UNLCK,1);lock.close()
     assert hashes()==inputs,'Test input changed'
+    loader=(out/'storage/#SharedObjects/ModLoader.sol').read_bytes()
+    sessions=set(re.findall(rb'run_\d+_\d+',loader))
+    selected=[]
+    for line in (RUNTIME/'mods/loader-manifest.txt').read_text(encoding='utf-8-sig').splitlines():
+        fields=line.split('|')
+        if len(fields)==5 and fields[2]=='1':selected.append(fields[1])
+    loaded={name:('ok_'+name).encode() in loader and ('requested_'+name).encode() in loader for name in selected}
+    (out/'loader-check.json').write_text(json.dumps({'sessions':[s.decode() for s in sessions],'loaded':loaded},indent=2),'utf-8')
+    assert len(sessions)==1 and all(loaded.values()) and b'err_' not in loader,'Current session loader failed'
     result=json.loads((out/'storage/result.json').read_text(encoding='utf-8-sig'))
     print(json.dumps({'ok':result['ok'],'entryMs':result.get('entryMs'),'internalSigns':result.get('internalSigns'),'samples':len(result.get('samples',[])),'checks':len(result.get('assertions',[])),'error':result.get('error')}))
     if not result['ok']:raise RuntimeError('Probe failed')
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--prepare',action='store_true');p.add_argument('--name');p.add_argument('--visual',action='store_true');p.add_argument('--short',action='store_true');p.add_argument('--expect-no-signs',action='store_true');p.add_argument('--lighting-check',action='store_true');p.add_argument('--no-lighting',action='store_true');p.add_argument('--culling',action='store_true');p.add_argument('--profile',action='store_true');p.add_argument('--raster-check',action='store_true');p.add_argument('--wall-check',action='store_true');p.add_argument('--high-qos',action='store_true');p.add_argument('--sync-warm',action='store_true');p.add_argument('--suite',choices=['native','experience','factory','upcoming','mechanics']);p.add_argument('--stage',type=int,default=1);p.add_argument('--vision',action='store_true');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--prepare',action='store_true');p.add_argument('--name');p.add_argument('--visual',action='store_true');p.add_argument('--short',action='store_true');p.add_argument('--expect-no-signs',action='store_true');p.add_argument('--lighting-check',action='store_true');p.add_argument('--no-lighting',action='store_true');p.add_argument('--culling',action='store_true');p.add_argument('--profile',action='store_true');p.add_argument('--raster-check',action='store_true');p.add_argument('--wall-check',action='store_true');p.add_argument('--benchmark',choices=['normal','scene']);p.add_argument('--no-wall',action='store_true');p.add_argument('--high-qos',action='store_true');p.add_argument('--sync-warm',action='store_true');p.add_argument('--suite',choices=['native','experience','factory','upcoming','mechanics','combat']);p.add_argument('--stage',type=int,default=1);p.add_argument('--vision',action='store_true')
+    p.add_argument('--fog-check',action='store_true');p.add_argument('--fog-abba',action='store_true')
+    p.add_argument('--land',choices=['random_mane','random_plant'],default='random_mane');a=p.parse_args()
     prepare() if a.prepare else run(a)

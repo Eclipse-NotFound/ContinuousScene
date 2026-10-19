@@ -22,7 +22,8 @@ package tests {
     public class SceneDecalChecks {
         public static function run(w:*):Array {
             var result:Array=[];
-            if(NativeApplication.nativeApplication.applicationID!="pfe-modsettings-continuous-scene") {
+            var isolatedId:String=NativeApplication.nativeApplication.applicationID;
+            if(isolatedId!="pfe-modsettings-continuous-scene" && isolatedId.indexOf("pfe-modsettings-continuous-motion-")!=0) {
                 add(result,"decal-isolated-probe-required",false);return result;
             }
             if(!w || !w.loc || !w.grafon || !w.grafon.sceneLarge) {

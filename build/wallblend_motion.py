@@ -59,6 +59,17 @@ def patch(name,s):
     if name=='SceneBlendCache.as':
         s=once(s,'    import flash.utils.Dictionary;','    import flash.utils.Dictionary;\n    import flash.utils.getTimer;')
         s=once(s,'        public static var trimPadding:', '        public static var sliced:Boolean=true;\n        public static var verify:Boolean=false;\n        public var comparisons:Array=[];\n        public var maxSliceMs:int=0;\n        public static var trimPadding:')
+        # Explicit invalidation must also clear completed async-pass markers.
+        # Otherwise unchanged settings skip both layers and republish old pixels.
+        s=once(s,'                state.settings="";',
+            '                state.settings="";state.pendingSettings=null;state.pendingRevision=-1;')
+        s=once(s,'        public function SceneBlendCache() {}', '''        public function SceneBlendCache() {}
+        public function rebuildCount():int {
+            var total:int=0;
+            for each(var state:Object in entries)for each(var pass:Object in state.passes)
+                total+=int(pass.front.stats.rebuilds)+int(pass.back.stats.rebuilds);
+            return total;
+        }''')
         anchor='            for each(var surface:Object in surfaces) alive[surface]=true;'
         s=once(s,anchor,'''            var deadline:int=getTimer()+6;
             if(viewport)surfaces.sort(function(a:Object,b:Object):Number {
@@ -116,7 +127,8 @@ def patch(name,s):
                     host.addEventListener("continuousSceneWallMotion",function(e:DataEvent):void {
                         if(e.data=="verify")SceneBlendCache.verify=true;
                         if(e.data=="sync")SceneBlendCache.sliced=false;
-                        e.data=JSON.stringify({comparisons:sceneCache.comparisons,maxSliceMs:sceneCache.maxSliceMs});
+                        if(e.data=="invalidate")refreshNow();
+                        e.data=JSON.stringify({comparisons:sceneCache.comparisons,maxSliceMs:sceneCache.maxSliceMs,rebuilds:sceneCache.rebuildCount()});
                     });
 '''+a)
     return s

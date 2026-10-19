@@ -12,6 +12,7 @@ package {
     import flash.geom.Point;
     import flash.utils.getDefinitionByName;
     import flash.utils.getTimer;
+    import tests.SceneFogChecks;
 
     /** Isolated movement attribution. Screenshot runs never supply timings. */
     public class ContinuousSceneMotionProbe {
@@ -29,11 +30,12 @@ package {
             if(cfg.suite=="experience"){ContinuousSceneExperienceProbe.init(host);return;}
             if(cfg.suite=="factory"){ContinuousSceneFactoryProbe.init(host);return;}
             if(cfg.suite=="upcoming"){ContinuousSceneLoadProbe.init(host);return;}
-            if(cfg.suite=="mechanics"){ContinuousSceneIssuesProbe.init(host);return;}
+            if(cfg.suite=="mechanics" || cfg.suite=="combat"){ContinuousSceneIssuesProbe.init(host);return;}
             report.phase="initialized";save("progress.json",report);
             if(cfg.short)cases=["cold-forward","warm-back","warm-forward","idle"];
             if(cfg.culling)cases=["cold-forward","cull-back","uncull-forward","cull-back-repeat"];
             if(cfg.profile)cases=["cold-forward"];
+            if(cfg.fogABBA)cases=["fog-original-a","fog-bounded-b","fog-bounded-b-repeat","fog-original-a-repeat"];
             main.stage.addEventListener(Event.ENTER_FRAME,function(e:Event):void {startFrame=band50=band150=band250=getTimer();},false,1000);
             main.stage.addEventListener(Event.ENTER_FRAME,function(e:Event):void {band50=getTimer();},false,-50);
             main.stage.addEventListener(Event.ENTER_FRAME,function(e:Event):void {band150=getTimer();},false,-150);
@@ -155,18 +157,20 @@ package {
             } finally {for each(layers in first)for each(var data:BitmapData in layers)data.dispose();g.sceneMaskBitmaps=true;}
         }
         private static function startCase():void {
+            if(cfg.fogABBA)main.getChildByName("ContinuousSceneCarrier")["nativeAPI"]["fogBoundsEnabled"]=index==1 || index==2;
             setting("light-and-darkness","enabled",!cfg.noLighting && index!=4);
-            setting("wallblend","enabled",index!=6);
+            setting("wallblend","enabled",!cfg.noWall && index!=6);
             row={name:cases[index],frames:[],nativeBand:[],wallBand:[],sceneBand:[],warm:[],draw:[],empty:0,missStart:w.grafon.sceneMisses,residentStart:w.grafon.sceneResident,camera:[],activity:[]};
             age=0;last=getTimer();phase=4;
             if("sceneMotionProfile" in w.grafon)w.grafon.sceneMotionProfile={};
+            if("csMotionNative" in loc)loc.csMotionNative={};
             if("sceneWarmSlices" in w.grafon){row.slicesStart=w.grafon.sceneWarmSlices;row.forcedStart=w.grafon.sceneWarmForced;}
         }
         private static function tick(e:Event):void {
             if(done)return;
             try {
                 w=getDefinitionByName("fe.World")["w"];
-                if(getTimer()-lastProgress>5000) {lastProgress=getTimer();report.phase=phase;report.age=age;save("progress.json",report);}
+                if(getTimer()-lastProgress>5000) {lastProgress=getTimer();save("heartbeat.json",{phase:phase,age:age,index:index});}
                 if(w && w.verror && w.verror.visible)throw new Error(w.verror.txt.text);
                 if(getTimer()-started>500000)throw new Error("Timeout "+phase);
                 if(w && w.gg){w.godMode=true;w.gg.invulner=true;}
@@ -175,22 +179,45 @@ package {
                 }else if(phase==1 && w.ng_wait==0 && w.allStat==1 && w.gg && w.loc) {
                     if(!w.gg.ggControl || w.pip.noAct){ready=0;w.ctr.keyPressed=w.ctr.keyPressed2=true;return;}
                     if(++ready<30)return;
-                    setting("continuousscene","nativeEnabled",true);setting("wallblend","enabled",true);
+                    setting("continuousscene","nativeEnabled",cfg.benchmark!="normal");setting("wallblend","enabled",!cfg.noWall);
                     setting("realisticvision","enabled",Boolean(cfg.vision));setting("realisticvision","wallbright",false);setting("light-and-darkness","enabled",!cfg.noLighting);
                     w.grafon.scenePreload=false;w.ctr.clearAll();
                     if("sceneAsyncWarm" in w.grafon)w.grafon.sceneAsyncWarm=!cfg.syncWarm;
                     if(cfg.rasterCheck && "sceneWarmVerify" in w.grafon)w.grafon.sceneWarmVerify=true;
-                    w.game.lands["random_mane"].landStage=(cfg.stage?int(cfg.stage):1)-1;
+                    w.game.lands[cfg.land?cfg.land:"random_mane"].landStage=(cfg.stage?int(cfg.stage):1)-1;
                     getDefinitionByName("fe.loc.Land")["rconnectSeedSource"]=function():uint{return 20261019;};
-                    entryAt=getTimer();w.game.beginMission("random_mane");phase=2;
-                }else if(phase==2 && w.land && w.land.act.id=="random_mane" && w.t_exit==0 && w.allStat==1) {
-                    loc=w.loc;report.entryMs=getTimer()-entryAt;report.world={width:loc.spaceX,height:loc.spaceY,units:loc.units.length};
-                    check("actual-continuous-native-map",w.grafon.sceneLarge && loc.spaceX>48);
+                    entryAt=getTimer();w.game.beginMission(cfg.land?cfg.land:"random_mane");phase=2;
+                }else if(phase==2 && w.land && w.land.act.id==(cfg.land?cfg.land:"random_mane") && w.t_exit==0 && w.allStat==1) {
+                    loc=w.loc;report.entryMs=getTimer()-entryAt;report.world={width:loc.spaceX,height:loc.spaceY,units:loc.units.length,black:loc.black,retDark:loc.retDark,lDist1:loc.lDist1,lDist2:loc.lDist2};
+                    check("actual-expected-native-map",cfg.benchmark=="normal"?(!w.grafon.sceneLarge && loc.spaceX==48):(w.grafon.sceneLarge && loc.spaceX>48));
+                    if(cfg.benchmark)path=1200;
                     x0=Math.max(200,Math.min(loc.limX-path-200,w.gg.X));y0=w.gg.Y;
-                    report.path={startX:x0,endX:x0+path,y:y0};signs();
+                    // Compare the same local route within the entry room. A
+                    // merged room uses global coordinates; native uses local.
+                    x0=int(w.gg.X/1920)*1920+200;
+                    y0=int(w.gg.Y/1000)*1000+800;
+                    w.gg.setLocPos(x0,y0);w.gg.dx=w.gg.dy=0;w.cam.calc(w.gg);
+                    var roomX:int=int(x0/1920)*48,roomY:int=int(y0/1000)*25,layout:uint=0;
+                    for(var lx:int=0;lx<48;++lx)for(var ly:int=0;ly<25;++ly) {
+                        var tile:*=loc.space[roomX+lx][roomY+ly];
+                        var cell:String=[tile.front,tile.back,tile.phis,tile.diagon,tile.zForm,tile.door].join(":");
+                        for(var ci:int=0;ci<cell.length;++ci)layout=uint(layout*31+cell.charCodeAt(ci));
+                    }
+                    report.world.entryRoomTiles=layout;report.world.layoutSeed=w.land.rconnectLayoutSeed;
+                    report.viewport={stageWidth:main.stage.stageWidth,stageHeight:main.stage.stageHeight,
+                        cameraWidth:w.cam.screenX,cameraHeight:w.cam.screenY,zoom:w.cam.scaleV};
+                    report.path={startX:x0,endX:x0+path,y:y0};if(w.grafon.sceneLarge)signs();
                     age=0;phase=3;
                 }else if(phase==3) {
                     w.ctr.clearAll();if(++age<20)return;
+                    // Prepare the same route before an in-process ABBA timing.
+                    if(cfg.fogABBA && age<620) {
+                        var warmAge:int=age-20;
+                        var warmForward:Boolean=warmAge<300;
+                        w.gg.setLocPos(x0+(warmForward?warmAge:600-warmAge)*path/300,y0);
+                        w.gg.dx=warmForward?path/300:-path/300;w.gg.dy=0;return;
+                    }
+                    if(cfg.fogCheck){report.fog=SceneFogChecks.run(w,check);finish();return;}
                     if(cfg.wallCheck){main.dispatchEvent(new DataEvent("continuousSceneWallMotion",false,false,"verify"));}
                     if(cfg.lightingCheck) {lightingChecks();finish();return;}
                     if(cfg.rasterCheck && !("sceneWarmVerify" in w.grafon)) {rasterChecks();finish();return;}
@@ -205,10 +232,18 @@ package {
                     }
                     report.lastWarm=w.grafon.sceneWarmCount;report.lastDraw=w.grafon.sceneDrawMs;startCase();
                 }else if(phase==4) {
+                    if(w.allStat!=1 || w.onPause || w.t_exit!=0)
+                        throw new Error("Timing invalid: native simulation paused/menu/travel state "+w.allStat);
                     if(cfg.wallCheck) {
                         var wallEvent:DataEvent=new DataEvent("continuousSceneWallMotion",false,false,"read");main.dispatchEvent(wallEvent);
                         var wallResults:Object=JSON.parse(wallEvent.data);
                         if(wallResults.comparisons.length>=40) {
+                            var priorRebuilds:int=wallResults.rebuilds;
+                            // Redispatching an Event clones it in Flash; a reply
+                            // on that clone would leave this request unchanged.
+                            wallEvent=new DataEvent("continuousSceneWallMotion",false,false,"invalidate");main.dispatchEvent(wallEvent);
+                            wallResults=JSON.parse(wallEvent.data);
+                            check("wall-explicit-refresh-rebuilds-complete-passes",int(wallResults.rebuilds)>priorRebuilds,{before:priorRebuilds,after:wallResults.rebuilds});
                             report.wallPixels=wallResults;
                             for each(var wallComparison:Object in wallResults.comparisons)check("wall-slice-pixels-"+wallComparison.cx+":"+wallComparison.cy+":"+wallComparison.layer,wallComparison.equal);
                             finish();return;
@@ -228,13 +263,15 @@ package {
                     if(age%30==0) {row.camera.push({x:w.cam.vx,y:w.cam.vy});row.activity.push(main.getChildByName("ContinuousSceneCarrier")["nativeAPI"].activityStats());}
                     w.ctr.clearAll();++age;
                     var forward:Boolean=index==0 || index==2 || index==5 || index==7;
-                    var distance:Number=Math.min(path,age*8);
-                    var idle:Boolean=index==3 && !cfg.culling;
+                    var speed:Number=cfg.benchmark?path/300:8;
+                    var distance:Number=Math.min(path,age*speed);
+                    var idle:Boolean=index==3 && !cfg.culling && !cfg.fogABBA;
                     var x:Number=idle?x0+path:x0+(forward?distance:path-distance);
-                    w.gg.setLocPos(x,y0);w.gg.dx=idle?0:forward?8:-8;w.gg.dy=0;
+                    w.gg.setLocPos(x,y0);w.gg.dx=idle?0:forward?speed:-speed;w.gg.dy=0;
                     if(age<300)return;
                     row.misses=w.grafon.sceneMisses-row.missStart;row.residentEnd=w.grafon.sceneResident;row.warmMaxMs=w.grafon.sceneWarmMaxMs;
                     if("sceneMotionProfile" in w.grafon)row.hostProfile=w.grafon.sceneMotionProfile;
+                    if("csMotionNative" in loc)row.nativeProfile=loc.csMotionNative;
                     if("sceneWarmSlices" in w.grafon){row.slices=w.grafon.sceneWarmSlices-row.slicesStart;row.forced=w.grafon.sceneWarmForced-row.forcedStart;}
                     check("same-logical-map-"+index,w.loc===loc);check("complete-viewport-"+index,row.empty==0,row.empty);
                     report.samples.push(row);save("progress.json",report);

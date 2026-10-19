@@ -1,0 +1,69 @@
+package tests {
+    import flash.desktop.NativeApplication;
+    import flash.display.BitmapData;
+    import flash.geom.Point;
+    import flash.utils.getDefinitionByName;
+    import flash.utils.getTimer;
+
+    /** Synchronous state-and-pixel comparison in owned test instances only. */
+    public class SceneFogChecks {
+        public static function run(w:*,check:Function):Object {
+            if(NativeApplication.nativeApplication.applicationID.indexOf("pfe-modsettings-continuous-motion-")!=0)
+                throw new Error("Fog comparison requires owned motion test ID");
+            var loc:*=w.loc,bitmap:BitmapData=w.grafon.lightBmp,base:BitmapData=bitmap.clone();
+            var saved:Array=[],targets:Array=[];
+            var oldDark:Boolean=loc.retDark,oldRelight:int=loc.relight_t;
+            var result:Object={comparisons:0,referenceMs:0,candidateMs:0};
+            var x:int,y:int,tile:*,row:Array;
+            for(x=0;x<loc.spaceX;++x)for(y=0;y<loc.spaceY;++y) {
+                tile=loc.space[x][y];saved.push([tile,tile.visi,tile.t_visi]);
+            }
+            targets=[[-10000,-10000,-1,-1],[w.gg.X,w.gg.Y,300,1000],
+                [0,0,0,80],[loc.limX-1,loc.limY-1,100,2000],
+                [1920,4000,300,1000],[-100,200,100,300],
+                [loc.limX+200,loc.limY+200,100,300],[w.gg.X,w.gg.Y,0,0],
+                [w.gg.X,w.gg.Y,600,2000],
+                [w.gg.X+40,w.gg.Y,600,2000],[w.gg.X-40,w.gg.Y-40,600,2000],
+                [w.gg.X,w.gg.Y,2000,2000],[w.gg.X,w.gg.Y,3000,2000]];
+            try {
+                for(var dark:int=0;dark<2;++dark)for(var pattern:int=0;pattern<3;++pattern)
+                    for(var n:int=0;n<targets.length;++n) {
+                        loc.retDark=dark==1;bitmap.copyPixels(base,base.rect,new Point());
+                        var i:int=0;
+                        for each(row in saved) {
+                            row[0].visi=pattern==2?0.99:pattern?((i*13)%101)/100:row[1];
+                            row[0].t_visi=pattern?((i*7)%101)/100:row[2];++i;
+                        }
+                        var args:Array=targets[n],start:int=getTimer();
+                        reference(loc,args[0],args[1],args[2],args[3]);result.referenceMs+=getTimer()-start;
+                        var expected:BitmapData=bitmap.clone(),values:Array=[];
+                        for each(row in saved)values.push(row[0].visi,row[0].t_visi);
+                        var expectedRelight:int=loc.relight_t;
+                        bitmap.copyPixels(base,base.rect,new Point());i=0;
+                        for each(row in saved) {
+                            row[0].visi=pattern==2?0.99:pattern?((i*13)%101)/100:row[1];
+                            row[0].t_visi=pattern?((i*7)%101)/100:row[2];++i;
+                        }
+                        start=getTimer();loc.lighting(args[0],args[1],args[2],args[3]);result.candidateMs+=getTimer()-start;
+                        var equal:Boolean=loc.relight_t==expectedRelight;i=0;
+                        for each(row in saved) {
+                            if(row[0].visi!==values[i] || row[0].t_visi!==values[i+1])equal=false;
+                            i+=2;
+                        }
+                        var difference:*=bitmap.compare(expected);
+                        check("native-fog-state-and-pixels-"+dark+"-"+pattern+"-"+n,equal && difference===0);
+                        if(difference is BitmapData)difference.dispose();expected.dispose();++result.comparisons;
+                    }
+            } finally {
+                for each(row in saved){row[0].visi=row[1];row[0].t_visi=row[2];}
+                bitmap.copyPixels(base,base.rect,new Point());base.dispose();loc.retDark=oldDark;loc.relight_t=oldRelight;
+            }
+            return result;
+        }
+        private static function reference(loc:*,param1:int=-10000,param2:int=-10000,param3:int=-1,param4:int=-1):* {
+            var Tile:Class=getDefinitionByName("fe.loc.Tile") as Class;
+@@REFERENCE@@
+            return;
+        }
+    }
+}

@@ -31,7 +31,8 @@ package tests {
          */
         public static function runPower(w:*):Array {
             var rows:Array=[],g:*=w.grafon,loc:*=w.loc,gg:*=w.gg;
-            var safe:Boolean=NativeApplication.nativeApplication.applicationID=="pfe-modsettings-continuous-scene" &&
+            var isolatedId:String=NativeApplication.nativeApplication.applicationID;
+            var safe:Boolean=(isolatedId=="pfe-modsettings-continuous-scene" || isolatedId.indexOf("pfe-modsettings-continuous-motion-")==0) &&
                 g.sceneLarge && loc.prob==null && !gg.pet && gg.effects.length==0;
             var electricalDoors:int=0;
             for each(var obj:* in loc.objs) if(obj.inter && obj.inter.lockTip==4) ++electricalDoors;

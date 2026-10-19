@@ -36,7 +36,8 @@ def main():
     old_xml = baseline / 'host.xml'
     patched = set(json.loads(Path(sys.argv[3]).read_text(encoding='utf-8'))) if len(sys.argv) > 3 else set()
     assert patched <= {'fe.serv.Interact::0:1:move','fe.loc.Bonus::0:1:take',
-                       'fe.unit.Unit::0:1:die','fe.unit.Unit::0:1:setCel','fe.unit.UnitPlayer::0:1:animate','fe.loc.Location::0:1:step'}, patched
+                       'fe.unit.Unit::0:1:die','fe.unit.Unit::0:1:setCel','fe.unit.UnitPlayer::0:1:animate','fe.loc.Location::0:1:step',
+                       'fe.loc.Location::0:1:lighting'}, patched
     new_xml = candidate.with_suffix('.xml')
     before, after = abc_methods(old_xml), abc_methods(new_xml)
     preserved = 0

@@ -1,95 +1,41 @@
 {
-  "status": "candidate-retained-at-user-request",
-  "deploymentAllowedNow": false,
-  "date": "2026-10-19",
+  "status": "deployed-verified",
+  "date": "2026-10-20",
+  "localDeploymentAuthorized": true,
+  "installedAt": "2026-10-20T02:11:17.684402+08:00",
+  "deploymentReceipt": "state/deployment-v082.json",
+  "gatePending": [],
+  "verifiedAssertions": 649,
   "report": "knowledge/experiments/motion-v082-20261019.md",
   "files": {
     "host": {
-      "path": "build/generated/motion-host-incremental/pfe.swf",
-      "sha256": "4D9CEF1FC713E50666971DEFDAB3A313F7FB46E10A332A32367ED965027DB5FC",
-      "bytes": 15142926
+      "path": "build/generated/motion-direction-rays/pfe.swf",
+      "sha256": "81C1BFB552AA8EFBB20CCF15CB404AB5D879F58515B466FF788A079F5F0EC015",
+      "baseline": "02BFABE6A3B4881DFA1227515E71F2A8EA863D4B1B468FBE1D8008AEBA7D9240"
     },
     "scene": {
-      "path": "build/runtime/mods/ContinuousScene/release/ContinuousSceneMod.swf",
-      "sha256": "CD65CEC6C763EF18B345BCC1208BAAA4911E02BDB1F557FE316EBBABFF9BD856",
-      "bytes": 11199
+      "path": "build/generated/motion-frozen-v082/ContinuousSceneMod.swf",
+      "sha256": "CD65CEC6C763EF18B345BCC1208BAAA4911E02BDB1F557FE316EBBABFF9BD856"
     },
     "wall": {
       "path": "build/generated/wb-motion-source/WallBlendMod.swf",
-      "sha256": "0DA5763EA4EF76CA3AB8EEBB58C4F852FFBA4883DEF2D884D72725D13895E0A5",
-      "bytes": 32440
-    },
-    "light": {
-      "path": "build/generated/lad-motion-v042/LightAndDarknessMod.swf",
-      "sha256": "6F138FB891A412905CA72EA94C47D4B48A72865A18C78603E844E0E2223816E0",
-      "bytes": 33338
+      "sha256": "14112DA06214BCA51C6875D2527E73246DCB4C985CAADDA719EB4F77F1C0920D"
     }
   },
-  "sources": {
-    "mods\\ContinuousScene\\src\\ContinuousSceneActivityChecks.as": "C87C84C7454F2F0A77C65D072166EA4E2787016DC1F98440A692A99D222FA335",
-    "mods\\ContinuousScene\\src\\ContinuousSceneDoc.as": "2FBFFE1895829A6D8DC866A170C92CDBF000DC99B1A08DFE92F0891432C2C462",
-    "mods\\ContinuousScene\\src\\ContinuousSceneExperienceProbe.as": "0D4F21593760817C53B167497598FEE459A42708E6AA4A476582CB959181F99B",
-    "mods\\ContinuousScene\\src\\ContinuousSceneFactoryProbe.as": "E50EDB779201A7BCAF6B7BD2315FA8245DBCF422767B11F0064E01A953616ADC",
-    "mods\\ContinuousScene\\src\\ContinuousSceneGenerationProbe.as": "EDC30896F85FEB7D128016F11CB5D81735E99A1C88ECB400CA9393017A90ED02",
-    "mods\\ContinuousScene\\src\\ContinuousSceneIssuesProbe.as": "A395A76E70B3F0B98897EA3FF17ADF51BBF12A77787EB09C7BE4285A51B08A2B",
-    "mods\\ContinuousScene\\src\\ContinuousSceneLightChecks.as": "CFFCE73DC00FAF9325E1E345F282F19321FCC0DC0185E4E8826D571037840796",
-    "mods\\ContinuousScene\\src\\ContinuousSceneLightRayChecks.as": "CC5FCE8CEB64E0A5BA55FF7904A37E3E9A97A25CB4463D11FD3F40AAFD4A2BAF",
-    "mods\\ContinuousScene\\src\\ContinuousSceneLoadProbe.as": "EEA6D5DB4C44085DBF3CDE9D8D5517CFB375C1510E97EFD9B31F12CC165FB4AE",
-    "mods\\ContinuousScene\\src\\ContinuousSceneMechanicsChecks.as": "1341E961A6F2B79ABA35EF23A5787067604F8C298E3CC25E15811947107CFD60",
-    "mods\\ContinuousScene\\src\\ContinuousSceneMod.as": "B6496B68B9BAF11A2B0DA492D82AF7992C80807EF5E559B1FF9C23600E57A3FD",
-    "mods\\ContinuousScene\\src\\ContinuousSceneMotionMod.as": "1A65EE867EDE855628902FC5F77F12F1BB27F173C46C40622B73B60D4FE6A691",
-    "mods\\ContinuousScene\\src\\ContinuousSceneMotionProbe.as": "47A01295C97C82062A88619D3D9FEDC5E4C00CB277CD69A8AFD55C424D548213",
-    "mods\\ContinuousScene\\src\\ContinuousSceneNativeProbe.as": "ADA13697D3E5D2835F2D412CDF837AB7789861392D02B6478DD4522A4D4EC726",
-    "mods\\ContinuousScene\\src\\ContinuousScenePerfProbe.as": "2D8A15CA9748C81560FC32A8EA205574B4B9195D2C8FF478738C046190CDA6D3",
-    "mods\\ContinuousScene\\src\\ContinuousSceneProbe.as": "B9E7C47712643042BE13203EEB4C11E8966250F607E851DF3DCE75158D279663",
-    "mods\\ContinuousScene\\src\\ContinuousSceneProbeDoc.as": "53227FAD847B1D5A7291866829C2F73C1F58043BEDA66ED638D37D3AA92169F6",
-    "mods\\ContinuousScene\\src\\ContinuousSceneWallTrimChecks.as": "41F0758712C40A38A92A96E3DD9F8288612910FE0F5CCC10690A85D68A1829EF",
-    "mods\\ContinuousScene\\src\\NativeSceneActivity.as": "01182FACDFB7AFBA7A03CCFF1C3C28E14219E8FE654118149C50FCF7261AC0F7",
-    "mods\\ContinuousScene\\src\\NativeSceneAdapter.as": "6541C722618DEC9BB637BA6082A950CC4A01029B1EB01B65D992516D1D7B90C3",
-    "mods\\ContinuousScene\\src\\NativeSceneWalls.as": "DB9F65FC20DDE979E36E203E78EE58FA8A5C75C0B268BE9B0A24111276BA06EF",
-    "mods\\ContinuousScene\\src\\SceneObjectCulling.as": "46A535FA1E41EA5113C4E567BFC9405DC21ECDDFC49E00E61F24F04A9803C53C",
-    "mods\\ContinuousScene\\src\\patches\\GrafonChunks.as.inc": "8272F8A9D0B555B41A6E942000C6B0CA5206B063933B51285C870101D8286CCE",
-    "mods\\ContinuousScene\\src\\patches\\SceneEntityColors.as.inc": "C2F1D72E3D0CA6C4E74357714A544E4C07CBC31598256A50F0C9435788C0D85B",
-    "mods\\ContinuousScene\\src\\patches\\SceneNativeBridge.as.inc": "3C3AFF04BDF0CF1ED10F03AD64E0863794982F1D10EFFA3D2B50B1AF03D86EB0",
-    "mods\\ContinuousScene\\src\\patches\\ScenePersistence.as.inc": "5BD1B7B16AD305A88279FE18A368F685B044C0C582E85480B3D3F24DCF57F160",
-    "mods\\ContinuousScene\\src\\patches\\ScenePreload.as.inc": "37B667843863FBBCBF968BA7B5DC0CCA251D7B55CFD337ED01894977EB5DD485",
-    "mods\\ContinuousScene\\src\\patches\\SceneRegions.as.inc": "8A7A4469B921EF425A1AF3C6EC3A3E13E9ACFD0F8CE5675F4F577DAC169BAD28",
-    "mods\\ContinuousScene\\src\\patches\\SceneUpcoming.as.inc": "EEE67E1CF7DF73529155ADFCFB6B1808B3BE977A6F09C717D013051690CECB8C",
-    "mods\\ContinuousScene\\src\\patches\\SceneWarmJob.as.inc": "03C4BA72DE7D3D0BD783B4D41B578CEFFC130D15839E752841D43A836A116182",
-    "mods\\ContinuousScene\\src\\tests\\SceneDecalBulletCut.as": "33A1C96055AA23FDA07934B6970B7DF0D93E75F83F1EE85CCDF8A51A5C60CCEA",
-    "mods\\ContinuousScene\\src\\tests\\SceneDecalChecks.as": "DFC83D02308A4F1C7400B54741C8038B6DC25EB2F0E09E3AC1FE0A45E8F700F4",
-    "mods\\ContinuousScene\\src\\tests\\SceneDecalCrackPaint.as": "AF04BD2B50D6D93BDD2C4B30A3D622BA35CFFFABDB6E756DBDE21B332F9FC97E",
-    "mods\\ContinuousScene\\src\\tests\\SceneDecalExplosionPaint.as": "8DC3DA91392C04352F12757995ACCE901DAC3F76183A8D0A46893BF315643457",
-    "mods\\ContinuousScene\\src\\tests\\SceneDecalMetalPaint.as": "F95358870839C0EB6937DF0AE249FE58D5D68AE4A6E7FD302369EEACD25CB39F",
-    "mods\\ContinuousScene\\src\\tests\\SceneImpactTiming.as": "BB82F17947E9863EDBC96E2040E815CC8A4BFEC5EA9E1E94F4A1EEEDD7DB961C",
-    "mods\\ContinuousScene\\src\\tests\\SceneInteractionChecks.as": "202114BCAFCEC425472EECD1142AF70C68BF65DEE67F43C22A06A3BE6FA1201C",
-    "mods\\ContinuousScene\\src\\tests\\SceneMapChecks.as": "8F2EDB9A42FBA8AF70E643E6C2B8D665E94299FE36F82839F524AFF235DE68EB",
-    "mods\\ContinuousScene\\src\\tests\\SceneRasterProbe.as.inc": "9AF842A0949B7BB489B21E2B6CB8451601144B5FA28DD1386D6B017D94E27FCC",
-    "mods\\ContinuousScene\\src\\tests\\SceneRenderChecks.as": "87B67865258F98D4FCAC888F17E8A5DF335C1D915CE320C8C3F232699AB98DAF",
-    "mods\\ContinuousScene\\src\\tests\\SceneSightHarness.as": "EEBDA60A2AC651D8103DEE9D4EF79514D9005CC7EB9EA103C261C6EB1333892C",
-    "mods\\ContinuousScene\\src\\tests\\SceneUpcomingChecks.as": "7F6648D30CFEFF2FCB50FA5CAEC66D93CEFBFD3B1D550C9527CFE070C1832A1C",
-    "mods\\LightAndDarkness\\src\\.gitkeep": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B",
-    "mods\\LightAndDarkness\\src\\LightAndDarknessDoc.as": "7B96FEBF163398810B3FF1EAC45F1A1AB21B59FF838449109654942B73F9C3FF",
-    "mods\\LightAndDarkness\\src\\LightAndDarknessMod.as": "FAF4659CC19F252F6DCAEC08996032E4C7D88005D85C34953D154EED49425DDC",
-    "mods\\LightAndDarkness\\src\\lad\\LadAtmosphere.as": "05D8EC3D24AB11830464662304D9F96E3108C3A2B310C1EE6D3F2D352C28B4BB",
-    "mods\\LightAndDarkness\\src\\lad\\LadCarrier.as": "6EEA873FE6564568C3A1A93C75707F02622DBAB2AEE0A20296A6F677D63AE02E",
-    "mods\\LightAndDarkness\\src\\lad\\LadEnvironment.as": "F762AD2F6F9A00BC1CE5251D4A287EC571EBBAF1E2A0202139E7AE040DA50D1B",
-    "mods\\LightAndDarkness\\src\\lad\\LadHud.as": "A85A3498D5F1B1DC741E99F0F129D6337AC443723F9E28C18AD787CA7D835471",
-    "mods\\LightAndDarkness\\src\\lad\\LadKeys.as": "C186918BFD0871D30989AB517C7EAF47D0C02E603666AD1656EB18BE4CB0411D",
-    "mods\\LightAndDarkness\\src\\lad\\LadLampCatalog.as": "873661D249C7CF6B19D59A6FB6D1C11542DE51C69839E4F965A58F074F34F9C6",
-    "mods\\LightAndDarkness\\src\\lad\\LadLandmarkLights.as": "FB24C09F3AD1B65BAE42E7E8B17D02B7FFBFF275A412354942B4DC0F4905C295",
-    "mods\\LightAndDarkness\\src\\lad\\LadLightField.as": "FE46CE373E0A1F9F0DF51EEF24F91BCCBA56F35AE0D412E82D84A8CC44310807",
-    "mods\\LightAndDarkness\\src\\lad\\LadLog.as": "D82CF52491F058F6EA2F3E4D2E7A465D5EFFF95958F6483B24B1E7F66166C136",
-    "mods\\LightAndDarkness\\src\\lad\\LadMachineLights.as": "F1B10BE964AF2EAC2F45FC5E958917A0D7B981AB68B3597B2686B47B796AC330",
-    "mods\\LightAndDarkness\\src\\lad\\LadPlayerTick.as": "333FA37745FD5E130E8D7DD45C9D417D784DAE67D163E846684B242B0E17F613",
-    "mods\\LightAndDarkness\\src\\lad\\LadProjectileProfiles.as": "0800CC15D287636D995DCBE2B29437021B922D4B06BED05D428EFE6830047D80",
-    "mods\\LightAndDarkness\\src\\lad\\LadProjectiles.as": "9B95024437356EE542F795168407E774D467F8CF2DB54D861C8326EACD3A15F6",
-    "mods\\LightAndDarkness\\src\\lad\\LadRuntime.as": "195FB37EBA74F0EC33B514D2770AB3AD970F1FB1D8B6B366A6167EBF8A3ADD93",
-    "mods\\LightAndDarkness\\src\\lad\\LadSceneBake.as": "AD0109DE08E1EE11B7B2A47C03704DF3700A4C4E0AA0FFFB4C7AE02E88B90DB9",
-    "mods\\LightAndDarkness\\src\\lad\\LadStore.as": "B934F459151090C23725739EBC82EBD029E613FFADEBD7656D53E97D8F53765E",
-    "mods\\LightAndDarkness\\src\\lad\\native\\LadLampTarget.as": "53F9962778A64F2AC200B7BE3085CC3DE727AB9DFEA9B19948647B0A647EBCA9",
-    "mods\\ContinuousScene\\build\\motion_incremental.py": "1A1D0A3B2710FB6BAB4FC2533A92E81B77416701C98C77AA4B3CA654AF31A0B4",
-    "mods\\ContinuousScene\\build\\wallblend_motion.py": "13606FED4C25E5120BE01C444F1741056F84A3A68886B8190E0CD4E5E2CC2F18",
-    "mods\\ContinuousScene\\build\\motion-host.py": "A7999E5A7FBE2A20C6E72414D63D5BEC9198C4B73D1F9FAF56E5832159492E2A"
-  }
+  "externalDependency": {
+    "path": "../../LightAndDarkness/release/LightAndDarknessMod.swf",
+    "version": "0.5.0",
+    "sha256": "4291B8250D607EA1C6B5BE48DED48BB5FA42AF37BFE0CB3ED7A2E7C84EFBBF90",
+    "deployByThisTask": false
+  },
+  "buildOrder": [
+    "motion-host.py incremental",
+    "motion-fog.py --build --rays",
+    "motion-direction.py --rays"
+  ],
+  "rejected": [
+    "C285 strip raster changes background pixels; not deployed",
+    "old LAD6F superseded by formal LAD4291"
+  ],
+  "limits": "Lights off: warm local route 36-37ms versus ordinary-room 33ms; first visit 41ms and rapid crossing 46ms. Lights on with LAD4291: warm large scene 47-48.5ms versus ordinary-room 33ms. Overall performance target is not fully met. Independent LAD updates require fresh measurements."
 }
