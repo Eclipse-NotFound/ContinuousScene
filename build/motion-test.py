@@ -1,0 +1,134 @@
+"""Current-byte isolated motion test on a private desktop; never edits pfe storage."""
+from pathlib import Path
+import argparse, ctypes, hashlib, json, os, shutil, subprocess, sys, time, uuid
+from ctypes import wintypes as W
+BASE=Path(__file__).resolve().parent
+ROOT=BASE.parents[2]
+RUNTIME=BASE/'runtime'
+sys.path.insert(0,str(ROOT/'mods/ModLoader/tools'))
+from air_test_process import HiddenProcess
+
+def responsive_owned(process):
+    class State(ctypes.Structure):
+        _fields_=[('version',W.DWORD),('control',W.DWORD),('state',W.DWORD)]
+    k=process.k
+    k.GetProcessInformation.argtypes=[W.HANDLE,ctypes.c_int,ctypes.c_void_p,W.DWORD]
+    k.SetProcessInformation.argtypes=[W.HANDLE,ctypes.c_int,ctypes.c_void_p,W.DWORD]
+    before=State(1,0,0)
+    if not k.GetProcessInformation(process._process,4,ctypes.byref(before),ctypes.sizeof(before)):raise ctypes.WinError()
+    after=State(1,before.control|1,before.state&~1)
+    if not k.SetProcessInformation(process._process,4,ctypes.byref(after),ctypes.sizeof(after)):raise ctypes.WinError()
+    actual=State(1,0,0)
+    if not k.GetProcessInformation(process._process,4,ctypes.byref(actual),ctypes.sizeof(actual)):raise ctypes.WinError()
+    assert actual.control&1 and not actual.state&1
+    return {'before':[before.control,before.state],'applied':[actual.control,actual.state]}
+
+def air_pids():
+    k=ctypes.WinDLL('kernel32',use_last_error=True);p=ctypes.WinDLL('psapi',use_last_error=True)
+    k.OpenProcess.argtypes=[W.DWORD,W.BOOL,W.DWORD];k.OpenProcess.restype=W.HANDLE
+    k.QueryFullProcessImageNameW.argtypes=[W.HANDLE,W.DWORD,W.LPWSTR,ctypes.POINTER(W.DWORD)]
+    k.CloseHandle.argtypes=[W.HANDLE]
+    ids=(W.DWORD*16384)();size=W.DWORD()
+    if not p.EnumProcesses(ids,ctypes.sizeof(ids),ctypes.byref(size)):raise ctypes.WinError()
+    result=[]
+    for pid in ids[:size.value//4]:
+        h=k.OpenProcess(0x1000,False,pid)
+        if not h:continue
+        try:
+            buf=ctypes.create_unicode_buffer(32768);n=W.DWORD(len(buf))
+            if k.QueryFullProcessImageNameW(h,0,buf,ctypes.byref(n)) and Path(buf.value).name.lower()=='adl64.exe':result.append(pid)
+        finally:k.CloseHandle(h)
+    return result
+
+def hashes():
+    paths=[RUNTIME/'pfe.swf',RUNTIME/'mods/loader-manifest.txt',RUNTIME/'mods/LightAndDarkness/atmosphere.json']
+    for line in (RUNTIME/'mods/loader-manifest.txt').read_text(encoding='utf-8-sig').splitlines():
+        f=line.split('|')
+        if len(f)==5 and f[2]=='1':
+            directory=RUNTIME/'mods'/f[0]
+            paths.append(directory/'release'/(f[1]+'.swf'))
+            for folder in ('release','config'):
+                paths.extend(p for p in (directory/folder).rglob('*') if p.is_file() and p.suffix!='.swf')
+    paths.extend(p for p in (RUNTIME/'scene.xml',RUNTIME/'application.xml') if p.exists())
+    return {str(p.relative_to(RUNTIME)):hashlib.sha256(p.read_bytes()).hexdigest().upper() for p in paths}
+
+def prepare():
+    if air_pids():raise RuntimeError('Existing AIR; do not mutate test input')
+    data=json.loads((BASE/'generated/inventory-motion-v082.json').read_text(encoding='utf-8-sig'))
+    shutil.copy2(ROOT/'pfe.swf',RUNTIME/'pfe.swf')
+    shutil.copy2(ROOT/'mods/loader-manifest.txt',RUNTIME/'mods/loader-manifest.txt')
+    for m in data['mods']:
+        if not m['enabled']:continue
+        src=ROOT/'mods'/m['directory'];dst=RUNTIME/'mods'/m['directory']
+        for folder in ('release','config'):
+            if (src/folder).is_dir():shutil.copytree(src/folder,dst/folder,dirs_exist_ok=True)
+        if m['directory']=='LightAndDarkness':shutil.copy2(src/'atmosphere.json',dst/'atmosphere.json')
+    shutil.copy2(ROOT/'mods/ModLoader/supported-mods.txt',RUNTIME/'mods/ModLoader/supported-mods.txt')
+    with (RUNTIME/'mods/ModLoader/supported-mods.txt').open('a',encoding='utf-8') as catalog:
+        catalog.write('\nContinuousSceneMotion|ContinuousSceneMotionMod|1|0|0\n')
+    motion=RUNTIME/'mods/ContinuousSceneMotion/release/ContinuousSceneMotionMod.swf'
+    motion.parent.mkdir(parents=True,exist_ok=True)
+    shutil.copy2(RUNTIME/'mods/ContinuousSceneProbe/release/ContinuousSceneProbe.swf',motion)
+    report=BASE/'generated'/('motion-selection-'+uuid.uuid4().hex+'.json')
+    selection=subprocess.run([str(ROOT/'mods/ModLoader/RemainsModLauncher.exe'),'--root',str(RUNTIME),'--only',','.join(data['selected']+['ContinuousSceneMotionMod']),'--no-ui','--report',str(report)],capture_output=True)
+    if selection.returncode:raise RuntimeError(repr(selection.stderr))
+    print(json.dumps({'prepared':True,'hashes':hashes()}))
+
+def run(args):
+    import msvcrt
+    if not args.name or any(c not in 'abcdefghijklmnopqrstuvwxyz0123456789-' for c in args.name):raise ValueError('Evidence name')
+    out=BASE.parent/'knowledge/experiments/evidence'/args.name
+    if out.exists():raise FileExistsError(out)
+    if air_pids():raise RuntimeError('Performance requires no other AIR; untouched')
+    out.mkdir();app='pfe-modsettings-continuous-motion-'+uuid.uuid4().hex
+    descriptor=RUNTIME/(app+'.xml')
+    descriptor.write_text((RUNTIME/'application.xml').read_text(encoding='utf-8-sig').replace('<id>pfe-modsettings-continuous-scene</id>','<id>'+app+'</id>'),encoding='utf-8')
+    cfg={'visual':args.visual,'short':args.short,'expectNoSigns':args.expect_no_signs,'stage':args.stage,'vision':args.vision,'lightingCheck':args.lighting_check,'noLighting':args.no_lighting,'culling':args.culling,'profile':args.profile}
+    cfg['rasterCheck']=args.raster_check
+    cfg['wallCheck']=args.wall_check
+    cfg['suite']=args.suite
+    cfg['syncWarm']=args.sync_warm
+    suite_flags=[]
+    if args.suite:
+        if list(RUNTIME.glob('*.flag')):raise RuntimeError('Stale controls must be reviewed before suite')
+        if args.suite in ('experience','factory','upcoming'):
+            shutil.copy2(RUNTIME/'scene-factory.xml',RUNTIME/'scene.xml')
+        if args.suite=='upcoming':suite_flags=['load-native.flag','user-vision-controls.flag']
+        if args.suite=='mechanics':suite_flags=['mechanics-controls.flag','user-vision-controls.flag']
+        for name in suite_flags:(RUNTIME/name).write_text('isolated motion regression','utf-8')
+    flag=RUNTIME/'motion-controls.json';inputs=hashes();store=Path(os.environ['APPDATA'])/app/'Local Store'
+    lock=open(RUNTIME/'session.lock','a+b');lock.seek(0);msvcrt.locking(lock.fileno(),msvcrt.LK_NBLCK,1)
+    flag.write_text(json.dumps(cfg),encoding='utf-8')
+    policy={'appId':app,'desktopPolicy':'private','performanceEligible':not (args.visual or args.lighting_check or args.profile or args.raster_check or args.wall_check or args.suite),'otherAirProcessIds':[]}
+    process=None
+    try:
+        with open(out/'stdout.log','wb') as stdout,open(out/'stderr.log','wb') as stderr:
+            process=HiddenProcess([ROOT/'adl64.exe','-runtime',ROOT/'runtimes/air/win64',descriptor],cwd=RUNTIME,stdout=stdout,stderr=stderr)
+            if args.high_qos:policy['powerPolicy']=responsive_owned(process)
+            policy.update(pid=process.pid,desktop=process.desktop);print('Owned AIR '+str(process.pid),flush=True)
+            start=time.monotonic()
+            while process.poll() is None and time.monotonic()-start<600:
+                time.sleep(1)
+                others=[p for p in air_pids() if p!=process.pid]
+                if others:
+                    policy['otherAirProcessIds']=others;policy['performanceEligible']=False
+                    raise RuntimeError('Other AIR appeared; do not use timing')
+            if process.poll() is None:raise TimeoutError('Owned test timed out')
+    finally:
+        if process:
+            if process.poll() is None:process.kill();process.wait(15)
+            process.close()
+        if store.exists():shutil.copytree(store,out/'storage')
+        (out/'inputs.json').write_text(json.dumps(inputs,indent=2),encoding='utf-8')
+        (out/'process-policy.json').write_text(json.dumps(policy,indent=2),encoding='utf-8')
+        flag.unlink(missing_ok=True);descriptor.unlink(missing_ok=True)
+        for name in suite_flags:(RUNTIME/name).unlink(missing_ok=True)
+        lock.seek(0);msvcrt.locking(lock.fileno(),msvcrt.LK_UNLCK,1);lock.close()
+    assert hashes()==inputs,'Test input changed'
+    result=json.loads((out/'storage/result.json').read_text(encoding='utf-8-sig'))
+    print(json.dumps({'ok':result['ok'],'entryMs':result.get('entryMs'),'internalSigns':result.get('internalSigns'),'samples':len(result.get('samples',[])),'checks':len(result.get('assertions',[])),'error':result.get('error')}))
+    if not result['ok']:raise RuntimeError('Probe failed')
+
+if __name__=='__main__':
+    p=argparse.ArgumentParser();p.add_argument('--prepare',action='store_true');p.add_argument('--name');p.add_argument('--visual',action='store_true');p.add_argument('--short',action='store_true');p.add_argument('--expect-no-signs',action='store_true');p.add_argument('--lighting-check',action='store_true');p.add_argument('--no-lighting',action='store_true');p.add_argument('--culling',action='store_true');p.add_argument('--profile',action='store_true');p.add_argument('--raster-check',action='store_true');p.add_argument('--wall-check',action='store_true');p.add_argument('--high-qos',action='store_true');p.add_argument('--sync-warm',action='store_true');p.add_argument('--suite',choices=['native','experience','factory','upcoming','mechanics']);p.add_argument('--stage',type=int,default=1);p.add_argument('--vision',action='store_true');a=p.parse_args()
+    prepare() if a.prepare else run(a)

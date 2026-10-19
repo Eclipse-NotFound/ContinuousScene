@@ -59,7 +59,8 @@ package {
         public static function init(host:*):void {
             var descriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
             var ns:Namespace = descriptor.namespace();
-            if(String(descriptor.ns::id) != "pfe-modsettings-continuous-scene") return;
+            if(String(descriptor.ns::id) != "pfe-modsettings-continuous-scene" && String(descriptor.ns::id).indexOf("pfe-modsettings-continuous-motion-")!=0) return;
+            if(File.applicationDirectory.resolvePath("motion-controls.json").exists) {ContinuousSceneMotionProbe.init(host);return;}
             if(File.applicationDirectory.resolvePath("generation-controls.flag").exists) {ContinuousSceneGenerationProbe.init(host);return;}
             if(File.applicationDirectory.resolvePath("issues.flag").exists) {ContinuousSceneIssuesProbe.init(host);return;}
             if(File.applicationDirectory.resolvePath("native.flag").exists) {ContinuousSceneNativeProbe.init(host);return;}

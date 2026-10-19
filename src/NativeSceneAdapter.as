@@ -48,6 +48,7 @@ package {
             var dest:*=regions[0].source;
             var state:Object={land:land,loc:dest,regions:regions,byCell:{},width:width,height:height};
             state.boundaryRestored=NativeSceneWalls.restore(land,regions);
+            for each(entry in regions) state.byCell[entry.lx+":"+entry.ly]=entry;
             var space:Array=[],Tile:Class=getDefinitionByName("fe.loc.Tile") as Class,tile:*;
             // Reuse every native tile. Allocate solid placeholders only for
             // genuinely missing room cells, not all 14,400 cells before
@@ -81,6 +82,13 @@ package {
                 for each(field in ARRAYS) {
                     for each(var value:* in entry.arrays[field]) {
                         if(value==null || value===land.gg || value===land.gg.defpet) continue;
+                        // These MovieClips only indicate native room switches.
+                        // Keep outer/hole edges and all real exit/door objects;
+                        // discard arrows where both rooms now share one world.
+                        if(field=="signposts" && internalSign(value,entry,state)) {
+                            if(value.parent)value.parent.removeChild(value);
+                            continue;
+                        }
                         rewardOwners[value]=entry.reward;
                         if(field=="signposts" || field=="enspawn") {value.x+=dx;value.y+=dy;}
                         else if(field!="recalcTiles") moveObject(value,dest,dx,dy,moved);
@@ -135,6 +143,16 @@ package {
             // Checkpoint trigger areas are owned by the checkpoint, not by
             // Location.areas. The dictionary also handles shared references.
             if("area" in value && value.area) moveObject(value.area,dest,dx,dy,moved);
+        }
+        private static function internalSign(sign:*,region:Object,state:Object):Boolean {
+            var x:int=region.lx,y:int=region.ly;
+            var rotation:int=Math.round(sign.rotation);
+            if(rotation==0)++x;
+            else if(rotation==180 || rotation==-180)--x;
+            else if(rotation==90)++y;
+            else if(rotation==-90)--y;
+            else return false;
+            return state.byCell[x+":"+y]!=null;
         }
         public static function state(land:*):Object {return states[land];}
         public static function host():* {return world;}
