@@ -7,6 +7,8 @@
 中文。CS修复/构建/部署及RV、WallBlend、LightAndDarkness、TDFC必要兼容已授权；保留效果和原版能力例外。用户接受远处未参战敌人暂缓，近处/追击/受伤/效果/弹体附近保持运行。允许本轮逐条登记会话绑定、每次≤10分钟精确调用授权，不关闭钩子。无Ghost或新增委托授权，不停止他人实例、不写真实pfe存储。用户选择不跨任务发消息，本任务未发送；收到对方窗口交还不等于获准回复。2026-10-19明确要求“请部署”。
 
 ## 3. 当前安装
+**后续独立更新已只读核对：** RConnect在A61上追加安保接口后，当前宿主为 **02BFABE6A3B4881DFA1227515E71F2A8EA863D4B1B468FBE1D8008AEBA7D9240**，RC为574D2B51…441AFE；CS B5/TDFC032/WB0BD字节保持。回执../../RConnect/build/m52/coop-bundle-04/deployment.json=deployed-smoke-passed。对方报告432项及双侧启动通过、保留sceneNativeCall(moveOffset)；本任务只核对回执和指纹，未复跑。以下17:14性能属于RC更新前组合，不移用为新组合实测。后续宿主必须基于02BF或更新发布合并，禁止覆盖回A61；旧upgrade-v08的Check/Rollback拒绝是预期保护。
+
 **2026-10-19 17:14已安装0.8.0，回执deployment-v08.json=verified。** 宿主A61EA4A3、CS B5E8110E、TDFC 03243196（0.6.4-scene1）、WB 0BD209A1（0.5.8-scene）。四文件从2A/70/99/DF9升级；保留独立已发布RV0.32.3/76314B81、LAD0.3.1/514A7671、14模块清单33DE和XML1CEA。后续继续前重核，不能覆盖别人新发布。
 部署前367项、含备份及回读共381项通过；正式文件独立启动20项通过，14模块加载正常，实例pfe-modsettings-continuous-installed-20261019171448已清理。备份build/backups/upgrade-v08-20261019-171447944。首次Install被新出现AIR拦在写入前，该实例自行结束后重试通过，未干扰其他进程。
 

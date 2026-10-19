@@ -1,5 +1,9 @@
 # 0.8 修复与部署记录，2026-10-19
 
+## 后续RConnect更新（只读核验）
+
+当前正式宿主02BFABE6…D9240、RC574D2B51…441AFE，CS B5/TDFC032/WB0BD未变。对方回执../../RConnect/build/m52/coop-bundle-04/deployment.json为deployed-smoke-passed，本任务只核对回执/指纹，没有新测试或回复。后续须基于02BF合并，不可覆盖回A61；17:14性能为更新前组合，旧回退保护应拒绝当前宿主。
+
 ## 17:14 已部署，以下旧停点仅作历史
 
 用户明确要求“请部署”；RConnect主动交还测试窗口，未回消息。最终当前RV763/LAD514组合：native-combat-rv323-r2与combat-rv323通过，三次真实进图3499/4373/4359ms；367项预检、381项含备份/回读和正式启动20项全部通过。四文件A61/B5/032/0BD已安装，deployment-v08.json verified，备份upgrade-v08-20261019-171447944。正式启动独立实例20261019171448已清理，无本任务flags。
