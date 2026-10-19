@@ -6,7 +6,7 @@ if((Get-FileHash (Join-Path $runtime 'mods/LightAndDarkness/release/LightAndDark
 $flags=@('combat-controls.flag','native-rooms-controls.flag','user-vision-controls.flag','stage5-controls.flag')
 try {
     foreach($flag in $flags){[IO.File]::WriteAllText((Join-Path $runtime $flag),'isolated native comparison')}
-    & (Join-Path $PSScriptRoot 'test.ps1') -Issues -Progressive -HighQoS -WaitForIdleSeconds 300 -TimeoutSeconds 500 -EvidenceName 'issues-v08-native-combat-rv323'
+    & (Join-Path $PSScriptRoot 'test.ps1') -Issues -Progressive -HighQoS -WaitForIdleSeconds 300 -TimeoutSeconds 500 -EvidenceName 'issues-v08-native-combat-rv323-r2'
     Remove-Item -LiteralPath (Join-Path $runtime 'native-rooms-controls.flag')
     & (Join-Path $PSScriptRoot 'test.ps1') -Issues -Progressive -HighQoS -WaitForIdleSeconds 300 -TimeoutSeconds 500 -EvidenceName 'issues-v08-combat-rv323'
 } finally {foreach($flag in $flags){Remove-Item -LiteralPath (Join-Path $runtime $flag) -ErrorAction SilentlyContinue}}
