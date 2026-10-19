@@ -4,6 +4,16 @@ from render_camera_patch import _replace
 
 
 def apply_grafon(source):
+    # Native drawLoc initializes the room borders; camera.setZoom then points
+    # the left/top rectangles outwards. Rasterizing a later chunk must not
+    # overwrite that camera state or it paints a 200px strip over the world.
+    begin = source.index('            this.ramT.x = this.ramB.x = -50;')
+    end = source.index('            World.w.gr_stage = 3;', begin)
+    borders = source[begin:end]
+    assert len(borders.strip().splitlines()) == 10
+    source = source[:begin] + '            if(!this.sceneRepaint) this.sceneConfigureBorders();\n' + source[end:]
+    helper = '      private function sceneConfigureBorders():void\n      {\n' + borders + '      }\n\n'
+    source = _replace(source, '      public function Grafon(param1:Sprite)', helper + '      public function Grafon(param1:Sprite)')
     source = _replace(source,
         '         this.sceneEnsure(left,top,World.w.swfStage.stageWidth,World.w.swfStage.stageHeight,true);',
         '         if(this.scenePreload) this.sceneEnsure(left,top,World.w.swfStage.stageWidth,World.w.swfStage.stageHeight,true);')

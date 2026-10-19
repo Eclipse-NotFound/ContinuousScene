@@ -14,7 +14,7 @@ package {
 
     /** Production entry only: no new game, test enemies, movement or save-slot writes. */
     public class ContinuousSceneMod {
-        public static const VERSION:String="0.7.0";
+        public static const VERSION:String="0.8.0";
         private static const LAND:String="continuous_scene";
         private static var main:*, w:*, worldClass:Class, gameData:Class;
         private static var pool:XML, definition:XML;
@@ -35,7 +35,11 @@ package {
             carrier=new MovieClip(); carrier.name="ContinuousSceneCarrier";
             carrier["sceneAPI"]={version:VERSION,ready:false,refresh:refresh,travel:travel};
             carrier["nativeAPI"]={prepare:NativeSceneAdapter.prepare,spawn:NativeSceneAdapter.spawn,
-                coordinates:NativeSceneAdapter.coordinates,door:NativeSceneAdapter.door,state:NativeSceneAdapter.state};
+                coordinates:NativeSceneAdapter.coordinates,door:NativeSceneAdapter.door,state:NativeSceneAdapter.state,
+                moveOffset:NativeSceneAdapter.moveOffset,reward:NativeSceneAdapter.reward,
+                takeXP:NativeSceneAdapter.takeXP,detecting:NativeSceneAdapter.detecting,
+                activity:NativeSceneActivity.update,sleeping:NativeSceneActivity.sleeping,
+                wake:NativeSceneActivity.wake,activityStats:NativeSceneActivity.stats};
             main.addChild(carrier); log("v"+VERSION+" loaded");
             main.stage.addEventListener(Event.ENTER_FRAME,onFrame,false,-200,true);
         }

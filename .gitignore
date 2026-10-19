@@ -3,6 +3,8 @@ build/generated/
 build/cache/
 build/backups/
 build/candidate-v07-*/
+build/candidate-v08-*/
+build/candidate-lad-*/
 build/*.swf
 build/*.log
 build/*.json

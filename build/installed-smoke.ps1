@@ -1,4 +1,4 @@
-param([string]$Receipt='install-receipt.json',[string]$SceneVersion='0.2.0',[string]$VisionVersion='v0.30.3-scene',[string]$WallVersion='0.4.1',[string]$SceneRegistration='registered 192x60 native land',[string]$LightVersion='',[int]$TimeoutSeconds=180)
+param([string]$Receipt='install-receipt.json',[string]$SceneVersion='0.2.0',[string]$VisionVersion='v0.30.3-scene',[string]$WallVersion='0.4.1',[string]$SceneRegistration='registered 192x60 native land',[string]$LightVersion='',[string]$TdfcMarker='',[int]$TimeoutSeconds=180)
 $ErrorActionPreference='Stop'
 $sceneRoot=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../../..')).Path
 $sceneReceipt=Get-Content -LiteralPath (Join-Path $PSScriptRoot $Receipt) -Raw | ConvertFrom-Json
@@ -26,6 +26,7 @@ try {
         if($sceneProcess.WaitForExit(1000)) {throw 'Native game exited before the startup check'}
         $sceneRequired=@('ContinuousScene.log','RVision.log','WallBlend.log')
         if($LightVersion) {$sceneRequired+='LightAndDarkness.log'}
+        if($TdfcMarker) {$sceneRequired+='tdfc.log'}
         if(@($sceneRequired | Where-Object {-not (Test-Path -LiteralPath (Join-Path $sceneStore $_))}).Count) {continue}
         $sceneBootLog=[string](Get-Content -LiteralPath (Join-Path $sceneStore 'ContinuousScene.log') -Raw)
         $sceneBootRV=[string](Get-Content -LiteralPath (Join-Path $sceneStore 'RVision.log') -Raw)
@@ -56,6 +57,11 @@ try {
         $sceneChecks += [pscustomobject]@{name='light-version';passed=$sceneLightLog.Contains('v'+$LightVersion+' loaded') -and $sceneLightLog -notmatch '(FRAME_ERROR|PREPARE_FAILED)'}
     }
     $sceneOutput=[string](Get-Content -LiteralPath (Join-Path $sceneEvidence 'stdout.log') -Raw)
+    if($TdfcMarker) {
+        $sceneTdfcLog=Get-Content -LiteralPath (Join-Path $sceneStore 'tdfc.log') -Raw
+        $sceneChecks += [pscustomobject]@{name='tdfc-scene-compatibility';passed=$sceneTdfcLog.Contains($TdfcMarker)}
+        Get-FileHash -LiteralPath (Join-Path $sceneRoot 'mods/TDFC/release/TDFCMod.swf') | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $sceneEvidence 'tdfc-hashes.json')
+    }
     $sceneChecks += [pscustomobject]@{name='no-uncaught-error';passed=$sceneOutput -notmatch '(TypeError|ReferenceError|VerifyError): Error #'}
     $sceneResult=[pscustomobject]@{passed=@($sceneChecks | Where-Object {-not $_.passed}).Count -eq 0;appId=$sceneId;checks=$sceneChecks;scope='Native startup using installed bytes; button/travel coverage belongs to the referenced same-hash isolated regression';runtimeRoot=$sceneRoot}
     $sceneResult | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $sceneEvidence 'InstalledSmoke.json')

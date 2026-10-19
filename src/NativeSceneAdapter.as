@@ -7,9 +7,21 @@ package {
     public class NativeSceneAdapter {
         private static var states:Dictionary=new Dictionary(true);
         private static var world:*;
+        private static var boxClass:Class;
+        private static var objectClass:Class;
+        private static var unitClass:Class;
+        private static var interOffsets:Dictionary=new Dictionary(true);
+        private static var rewardOwners:Dictionary=new Dictionary(true);
         private static const ARRAYS:Array=["units","ups","objs","bonuses","areas","acts","saves","backobjs","enspawn","signposts","recalcTiles"];
         private static const ENV:Array=["black","sky","gas","rad","wrad","wdam","wtipdam","tipWater","opacWater","maxdy","levitOn","portOn","petOn","destroyOn","visMult","earMult","electroDam","backform","transpFon","homeStable"];
-        public static function attach(w:*):void {world=w;}
+        public static function attach(w:*):void {
+            world=w;
+            if(!boxClass) {
+                boxClass=getDefinitionByName("fe.loc.Box") as Class;
+                objectClass=getDefinitionByName("fe.Obj") as Class;
+                unitClass=getDefinitionByName("fe.unit.Unit") as Class;
+            }
+        }
         public static function prepare(land:*):Object {
             if(states[land]) return states[land];
             if(!ContinuousSceneMod.nativeEnabled || land.act.tip=="base" || land.act.id=="continuous_scene") return null;
@@ -22,7 +34,9 @@ package {
                 entry={source:source,lx:x,ly:y,tx:(x-land.minLocX)*48,ty:(y-land.minLocY)*25,
                     spawn:source.spawnPoints.concat(),chain:[],arrays:{},environment:{},
                     backwall:source.backwall,color:source.color,darkness:source.darkness,
-                    room:source.room?source.room.id:"",space:source.space};
+                    room:source.room?source.room.id:"",space:source.space,
+                    reward:{kolXp:source.kolXp,maxXp:source.maxXp,unXp:source.unXp,
+                        summXp:source.summXp,detecting:source.detecting}};
                 for each(field in ARRAYS) entry.arrays[field]=source[field]?source[field].concat():[];
                 for each(field in ENV) entry.environment[field]=source[field];
                 for(var pt:*=source.firstObj;pt;pt=pt.nobj) entry.chain.push(pt);
@@ -59,12 +73,14 @@ package {
                 }
                 for each(var spawn:Object in entry.spawn) {spawn.x+=entry.tx;spawn.y+=entry.ty;}
                 for each(pt in entry.chain) {
+                    rewardOwners[pt]=entry.reward;
                     moveObject(pt,dest,dx,dy,moved);
                     pt.in_chain=false;pt.pobj=pt.nobj=null;dest.addObj(pt);
                 }
                 for each(field in ARRAYS) {
                     for each(var value:* in entry.arrays[field]) {
                         if(value==null || value===land.gg || value===land.gg.defpet) continue;
+                        rewardOwners[value]=entry.reward;
                         if(field=="signposts" || field=="enspawn") {value.x+=dx;value.y+=dy;}
                         else if(field!="recalcTiles") moveObject(value,dest,dx,dy,moved);
                         if(dest[field].indexOf(value)<0) dest[field].push(value);
@@ -99,12 +115,46 @@ package {
                 if(field in value && isFinite(Number(value[field]))) value[field]+=dy;
             if("portX" in value && value.portX>=0) value.portX+=dx/40;
             if("portY" in value && value.portY>=0) value.portY+=dy/40;
-            if("inter" in value && value.inter) {value.inter.loc=dest;value.inter.X+=dx;value.inter.Y+=dy;}
+            if("inter" in value && value.inter) {
+                value.inter.loc=dest;value.inter.X+=dx;value.inter.Y+=dy;
+                if(value.inter.isMove && (dx!=0 || dy!=0))interOffsets[value.inter]={x:dx,y:dy};
+                if(value.inter.area) moveObject(value.inter.area,dest,dx,dy,moved);
+            }
+            // Stationary native doors do not call runVis during their step.
+            // Move their image and native shadow together with the collision.
+            if(value is boxClass) value.runVis();
+            else if(value is unitClass) value.setVisPos();
+            else if(value is objectClass && value.vis) {value.vis.x+=dx;value.vis.y+=dy;}
+            // Trap overlays are separate world-space sprites. BackObj is not
+            // an Obj: its shared drawing templates must remain untranslated.
+            if(value is objectClass && "vis2" in value && value.vis2) {value.vis2.x+=dx;value.vis2.y+=dy;}
             for each(field in ["currentWeapon","throwWeapon","magicWeapon","weapon"])
                 if(field in value && value[field] && "loc" in value[field]) value[field].loc=dest;
             if("un" in value && value.un) moveObject(value.un,dest,dx,dy,moved);
+            // Checkpoint trigger areas are owned by the checkpoint, not by
+            // Location.areas. The dictionary also handles shared references.
+            if("area" in value && value.area) moveObject(value.area,dest,dx,dy,moved);
         }
         public static function state(land:*):Object {return states[land];}
+        public static function host():* {return world;}
+        // Native room rewards remain independent even after all objects share
+        // one collision world. An enemy keeps its original reward pool when
+        // pursuing the player across a former room boundary.
+        public static function reward(value:*):Object {return rewardOwners[value];}
+        public static function detecting(value:*):Boolean {
+            var r:Object=rewardOwners[value];if(!r)return false;
+            r.detecting=true;return true;
+        }
+        public static function takeXP(value:*,amount:int,x:Number,y:Number):Boolean {
+            var r:Object=rewardOwners[value];if(!r)return false;
+            amount=Math.min(amount,r.summXp);r.summXp-=amount;
+            value.loc.land.summXp+=amount;
+            if(amount>0)world.pers.expa(amount,x,y);
+            return true;
+        }
+        public static function moveOffset(inter:*):Object {
+            var offset:Object=interOffsets[inter];delete interOffsets[inter];return offset;
+        }
         public static function coordinates(land:*):void {
             var s:Object=states[land];
             if(!s || land.loc!==s.loc || land.prob!="") return;

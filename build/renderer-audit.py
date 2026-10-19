@@ -32,12 +32,16 @@ def classes(path):
 
 def main():
     candidate = Path(sys.argv[1]).resolve()
-    old_xml = ROOT / 'cache/v07-baseline/host.xml'
+    baseline = Path(sys.argv[2]).resolve() if len(sys.argv) > 2 else ROOT / 'cache/v07-baseline'
+    old_xml = baseline / 'host.xml'
+    patched = set(json.loads(Path(sys.argv[3]).read_text(encoding='utf-8'))) if len(sys.argv) > 3 else set()
+    assert patched <= {'fe.serv.Interact::0:1:move','fe.loc.Bonus::0:1:take',
+                       'fe.unit.Unit::0:1:die','fe.unit.Unit::0:1:setCel','fe.unit.UnitPlayer::0:1:animate','fe.loc.Location::0:1:step'}, patched
     new_xml = candidate.with_suffix('.xml')
     before, after = abc_methods(old_xml), abc_methods(new_xml)
     preserved = 0
     for key, value in before.items():
-        if key.startswith('fe.graph.Grafon::'):
+        if key.startswith('fe.graph.Grafon::') or key in patched:
             continue
         other = after.get(key)
         if value is None:
@@ -64,9 +68,11 @@ def main():
     result = {'passed': True, 'unchangedNamedMethodsAndInitializers': preserved,
               'unchangedClassLayouts': len(old_classes)-1, 'originalConstantPoolPreserved': True,
               'onlyRecompiledClass': 'fe.graph.Grafon',
-              'sourceHostSHA256': hashlib.sha256((ROOT/'cache/v07-baseline/pfe.swf').read_bytes()).hexdigest().upper(),
+              'patchedNativeMethods': sorted(patched),
+              'sourceHostSHA256': hashlib.sha256((baseline/'pfe.swf').read_bytes()).hexdigest().upper(),
               'finalHostSHA256': hashlib.sha256(candidate.read_bytes()).hexdigest().upper()}
-    candidate.with_suffix('.audit.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
+    output = Path(sys.argv[4]) if len(sys.argv) > 4 else candidate.with_suffix('.audit.json')
+    output.write_text(json.dumps(result, indent=2), encoding='utf-8')
     print(json.dumps(result))
 
 

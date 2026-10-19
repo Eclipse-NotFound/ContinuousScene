@@ -34,6 +34,14 @@ package {
             var fs:FileStream=new FileStream();fs.open(File.applicationStorageDirectory.resolvePath("result.json"),FileMode.WRITE);
             fs.writeUTFBytes(JSON.stringify(report,null,2));fs.close();log("RESULT "+ok+" "+error);NativeApplication.nativeApplication.exit(ok?0:1);
         }
+        private static function settingReady():Boolean {
+            var carrier:*=main.getChildByName("ModSettingsCarrier");
+            if(!carrier || !carrier["modAPI"])return false;
+            // The menu and scene fixture can finish before async settings loading.
+            for each(var page:Object in carrier["modAPI"].getPages()) if(page.modId=="continuousscene")
+                for each(var item:Object in page.items) if(item.key=="nativeEnabled")return true;
+            return false;
+        }
         private static function setting(enabled:Boolean):void {
             var api:*=main.getChildByName("ModSettingsCarrier")["modAPI"];
             for each(var page:Object in api.getPages()) if(page.modId=="continuousscene")
@@ -109,7 +117,7 @@ package {
                 if(getTimer()-start>360000)throw new Error("Timeout phase="+phase);
                 if(w && w.verror && w.verror.visible)throw new Error(w.verror.txt.text);
                 if(w && w.gg) {w.godMode=true;w.gg.invulner=true;}
-                if(phase==0 && w && w.mm && w.mm.loaded && w.allLandsLoaded && w.textLoaded && main.getChildByName("ContinuousSceneCarrier") && main.getChildByName("ContinuousSceneCarrier")["sceneAPI"].ready) {
+                if(phase==0 && w && w.mm && w.mm.loaded && w.allLandsLoaded && w.textLoaded && main.getChildByName("ContinuousSceneCarrier") && main.getChildByName("ContinuousSceneCarrier")["sceneAPI"].ready && settingReady()) {
                     w.grafon.scenePreload=File.applicationDirectory.resolvePath("preload.flag").exists;report.preload=w.grafon.scenePreload;
                     setting(true);w.mm.active=false;w.newGame(-1,"Native Scene",{propusk:true});phase=1;
                 } else if(phase==1 && w.ng_wait==0 && w.allStat==1 && w.gg && w.loc) {

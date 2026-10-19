@@ -15,6 +15,7 @@ package {
     import tests.SceneInteractionChecks;
     import tests.SceneRenderChecks;
     import tests.SceneDecalChecks;
+    import tests.SceneImpactTiming;
 
     /** Gameplay checks and screenshots run separately from the frame benchmark. */
     public class ContinuousSceneExperienceProbe {
@@ -138,6 +139,7 @@ package {
                     w.swfStage.removeEventListener(Event.DEACTIVATE,w.onDeactivate);
                     if(!decalOnly) for each(item in SceneRenderChecks.runPower(w))check(item.name,item.ok,item.detail);
                     for each(item in SceneDecalChecks.run(w))check(item.name,item.ok,item.detail);
+                    if(decalOnly)report.impactBenchmark=SceneImpactTiming.run(w.grafon);
                     finish(true);
                 }
             } catch(error:Error) {finish(false,error.message+"\n"+error.getStackTrace());}

@@ -2,6 +2,9 @@
       public var sceneX:int = 0;
       public var sceneY:int = 0;
       public var sceneLarge:Boolean = false;
+      public var sceneReuseIdleFrame:Boolean = true;
+      public var scenePauseDistant:Boolean = true;
+      public var sceneChunkSide:int = 320;
       public var sceneRedraws:int = 0;
       public var sceneDrawMs:int = 0;
       public var sceneMaxDrawMs:int = 0;
@@ -121,7 +124,9 @@
       private function sceneOpen(value:Location) : void
       {
          this.sceneClear();
+         this.sceneSide = this.sceneChunkSide == 640 ? 640 : 320;
          this.loc = value; value.grafon = this; this.sceneLarge = true;
+         this.sceneConfigureBorders();
          if(this.sceneHistory[value] == null) this.sceneHistory[value] = [];
          this.sceneMarks = this.sceneHistory[value];
          this.sceneRasterizing = true; this.scenePrepare(value); this.sceneRasterizing = false;

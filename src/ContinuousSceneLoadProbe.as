@@ -79,7 +79,10 @@ package {
                     if(++ready<30)return;
                     w.grafon.scenePreload=File.applicationDirectory.resolvePath("preload.flag").exists;
                     report.preload=w.grafon.scenePreload;
-                    setting("wallblend","enabled",true);setting("realisticvision","enabled",true);
+                    var userVision:Boolean=File.applicationDirectory.resolvePath("user-vision-controls.flag").exists;
+                    setting("wallblend","enabled",true);setting("realisticvision","enabled",!userVision);
+                    setting("realisticvision","wallbright",false);
+                    report.visionSettings={enabled:!userVision,wallbright:false};
                     setting("light-and-darkness","enabled",true);
                     if(nativeEntry)setting("continuousscene","nativeEnabled",true);
                     if(!entryOnly && "sceneProfileWantOracle" in w.grafon) {

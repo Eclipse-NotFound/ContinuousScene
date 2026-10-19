@@ -1,0 +1,169 @@
+diff --git a/src/LightAndDarknessMod.as b/src/LightAndDarknessMod.as
+index fe47a2a..fa55356 100644
+--- a/src/LightAndDarknessMod.as
++++ b/src/LightAndDarknessMod.as
+@@ -1,7 +1,7 @@
+ package {
+     import lad.LadRuntime;
+     public class LightAndDarknessMod {
+-        public static const VERSION:String = "0.3.1";
++        public static const VERSION:String = "0.3.2-scene";
+         public static var runtime:LadRuntime;
+         public static function init(main:*):void {
+             if(runtime == null) runtime = new LadRuntime(main);
+diff --git a/src/lad/LadLightField.as b/src/lad/LadLightField.as
+index ad1c5ed..bcd12db 100644
+--- a/src/lad/LadLightField.as
++++ b/src/lad/LadLightField.as
+@@ -18,6 +18,13 @@ package lad {
+         public var bounds:Rectangle = new Rectangle();
+         public var elapsedMs:int = 0;
+         public var rebuilds:int = 0;
++        public var reuseSceneFrames:Boolean = true;
++        public var reusedFrames:int = 0;
++        public var useOpacitySnapshot:Boolean = true;
++        private var outputKey:String = "";
++        private var opacityCells:Vector.<Number>;
++        private var opacityLeft:int,opacityTop:int,opacityWidth:int,opacityHeight:int;
++        private var opacityReady:Boolean=false,readingOpacity:Boolean=false;
+         private var cache:Object = {};
+         private var terrainHash:uint = 0;
+         private var terrainRegion:String = "";
+@@ -31,12 +38,13 @@ package lad {
+         }
+         public function clear():void {
+             for each(var item:Object in cache) item.data.dispose();
+-            cache = {}; terrainHash = 0; terrainRegion = ""; loc = null;
++            cache = {}; terrainHash = 0; terrainRegion = ""; loc = null; outputKey = "";
++            opacityCells=null;opacityReady=readingOpacity=false;
+             if(data) data.dispose(); data=null; bitmap.bitmapData=null;
+             if(background) background.dispose();background=null;backgroundKey="";
+             if(bitmap.parent) bitmap.parent.removeChild(bitmap);
+         }
+-        public function render(location:*, view:Rectangle, lights:Array, ambient:Number,zones:Array=null,darkness:Number=1):void {
++        public function render(location:*, view:Rectangle, lights:Array, ambient:Number,zones:Array=null,darkness:Number=1,scene:Boolean=false):void {
+             var started:int = getTimer();
+             if(loc !== location) { clear(); loc = location; }
+             var vx:int = Math.floor(view.x/cell)*cell-cell;
+@@ -44,7 +52,7 @@ package lad {
+             var width:int = Math.ceil((view.right-vx)/cell)+2;
+             var height:int = Math.ceil((view.bottom-vy)/cell)+2;
+             if(data == null || data.width != width || data.height != height) {
+-                if(data) data.dispose(); data=new BitmapData(width,height,false,0);
++                if(data) data.dispose(); data=new BitmapData(width,height,false,0); outputKey="";
+                 bitmap.bitmapData=data;
+                 // AIR resets smoothing when bitmapData is replaced; restore it on every resize.
+                 bitmap.smoothing=true;
+@@ -56,17 +64,43 @@ package lad {
+             var top:int=Math.max(0,int(scan.top/40));
+             var right:int=Math.min(loc.spaceX-1,int(scan.right/40));
+             var bottom:int=Math.min(loc.spaceY-1,int(scan.bottom/40));
++            opacityReady=scene && useOpacitySnapshot;
++            if(opacityReady) {
++                opacityLeft=left;opacityTop=top;opacityWidth=right-left+1;opacityHeight=bottom-top+1;
++                var size:int=Math.max(0,opacityWidth)*Math.max(0,opacityHeight);
++                if(!opacityCells || opacityCells.length!=size)opacityCells=new Vector.<Number>(size,true);
++            }
+             var hash:uint=2166136261;
+-            for(var x:int=left;x<=right;x++) for(var y:int=top;y<=bottom;y++) {
+-                hash ^= uint(Math.max(0,Math.min(255,Number(loc.space[x][y].opac)*255)));
+-                hash += (hash<<1)+(hash<<4)+(hash<<7)+(hash<<8)+(hash<<24);
++            for(var x:int=left;x<=right;x++) {
++                var column:*=loc.space[x];
++                for(var y:int=top;y<=bottom;y++) {
++                    var rawOpacity:Number=Number(column[y].opac);
++                    if(opacityReady)opacityCells[(x-left)*opacityHeight+y-top]=rawOpacity;
++                    var opacity:Number=rawOpacity*255;
++                    if(opacity<0) opacity=0;else if(opacity>255) opacity=255;
++                    hash ^= uint(opacity);
++                    hash += (hash<<1)+(hash<<4)+(hash<<7)+(hash<<8)+(hash<<24);
++                }
+             }
+             var region:String=[left,top,right,bottom].join(":");
+             if(hash!=terrainHash || region!=terrainRegion) {
+                 for each(var old:Object in cache) old.data.dispose(); cache={};
+-                terrainHash=hash;terrainRegion=region;
++                terrainHash=hash;terrainRegion=region;outputKey="";
+             }
+             ambientBackground(ambient,zones,darkness);
++            // Retain the exact current field only when every drawing input is
++            // unchanged. Terrain is still checked each call: moving doors and
++            // destroyed walls must affect visibility in the same native tick.
++            var nextKey:String="";
++            if(scene && reuseSceneFrames) {
++                var parts:Array=[backgroundKey,hash,region];
++                for each(var current:Object in lights)
++                    if(bounds.intersects(new Rectangle(current.x-current.radius,current.y-current.radius,current.radius*2,current.radius*2)))
++                        parts.push(current.id,current.x,current.y,current.radius,current.color,current.power,
++                            current.angle,current.cone,Boolean(current.transient));
++                nextKey=JSON.stringify(parts);
++                if(nextKey==outputKey) {++reusedFrames;elapsedMs=getTimer()-started;return;}
++            }
+             data.lock(); data.copyPixels(background,background.rect,new Point());
+             var alive:Object={};
+             for each(var light:Object in lights) {
+@@ -79,7 +113,10 @@ package lad {
+                 var entry:Object=cache[identity];
+                 if(entry==null || entry.key!=signature) {
+                     if(entry) entry.data.dispose();
+-                    entry={key:signature,data:makeLight(light)};cache[identity]=entry;rebuilds++;
++                    readingOpacity=opacityReady;
++                    try {entry={key:signature,data:makeLight(light)};}
++                    finally {readingOpacity=false;}
++                    cache[identity]=entry;rebuilds++;
+                 }
+                 var color:uint=uint(light.color);
+                 var transform:ColorTransform=new ColorTransform(((color>>16)&255)/255*light.power,
+@@ -88,7 +125,7 @@ package lad {
+                 data.draw(entry.data,matrix,transform,BlendMode.SCREEN,null,true);
+             }
+             for(var key:String in cache) if(!alive[key]) {cache[key].data.dispose();delete cache[key];}
+-            data.unlock();elapsedMs=getTimer()-started;
++            data.unlock();outputKey=nextKey;elapsedMs=getTimer()-started;
+         }
+         private function ambientBackground(ambient:Number,zones:Array,darkness:Number):void {
+             var signature:String=[bounds.x,bounds.y,data.width,data.height,ambient,darkness,JSON.stringify(zones)].join(":");
+@@ -153,7 +190,10 @@ package lad {
+                 else {distance=nextY;nextY+=deltaY;cy+=stepY;}
+                 if(distance>=radius) break;
+                 if(cx<0||cy<0||cx>=loc.spaceX||cy>=loc.spaceY) return Math.max(0,distance);
+-                opacity+=Math.max(0,Number(loc.space[cx][cy].opac));
++                var value:Number=readingOpacity && cx>=opacityLeft && cy>=opacityTop &&
++                    cx<opacityLeft+opacityWidth && cy<opacityTop+opacityHeight ?
++                    opacityCells[(cx-opacityLeft)*opacityHeight+cy-opacityTop] : Number(loc.space[cx][cy].opac);
++                opacity+=Math.max(0,value);
+                 if(opacity>=0.99) return Math.max(0,distance-1);
+             }
+             return radius;
+diff --git a/src/lad/LadRuntime.as b/src/lad/LadRuntime.as
+index a022c65..49dd098 100644
+--- a/src/lad/LadRuntime.as
++++ b/src/lad/LadRuntime.as
+@@ -55,7 +55,7 @@ package lad {
+         public function LadRuntime(value:*) {
+             main=value;lampLayer.name="LightAndDarknessFixtures";lampLayer.mouseEnabled=false;lampLayer.mouseChildren=false;
+             atmosphere.load();
+-            main.addChild(new LadCarrier({version:"0.3.1",runtime:this}));
++            main.addChild(new LadCarrier({version:"0.3.2-scene",runtime:this}));
+             main.addChild(hud);hud.visible=false;
+             main.stage.addEventListener(Event.ENTER_FRAME,onFrame,false,-80);
+             main.addEventListener(Event.ADDED,objectAdded,true);
+@@ -64,7 +64,7 @@ package lad {
+             main.stage.addEventListener(KeyboardEvent.KEY_DOWN,keyDown,true,900);
+             main.stage.addEventListener(KeyboardEvent.KEY_UP,keyUp,true,900);
+             main.stage.addEventListener(Event.DEACTIVATE,deactivate);
+-            LadLog.write("v0.3.1 loaded");
++            LadLog.write("v0.3.2-scene loaded");
+         }
+         private function objectAdded(event:Event):void {
+             if(!enabled || !atmosphere.settings.projectiles || !location || !world || world.loc!==location) return;
+@@ -237,7 +237,8 @@ package lad {
+                 if(lamp.holder.visible!=show) lamp.holder.visible=show;
+             }
+             field.render(location,view,lights(view),location.sky?Math.max(0.6,ambient):ambient,
+-                atmosphere.settings.darkZones?darkZones:null,atmosphere.settings.darkness);
++                atmosphere.settings.darkZones?darkZones:null,atmosphere.settings.darkness,
++                "sceneLarge" in world.grafon && world.grafon.sceneLarge);
+         }
+         public function simulationStep(value:*):void {
+             if(!enabled || value!==world.gg || world.loc!==location || !location || world.onPause) return;

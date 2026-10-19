@@ -60,6 +60,8 @@ package {
             var descriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
             var ns:Namespace = descriptor.namespace();
             if(String(descriptor.ns::id) != "pfe-modsettings-continuous-scene") return;
+            if(File.applicationDirectory.resolvePath("generation-controls.flag").exists) {ContinuousSceneGenerationProbe.init(host);return;}
+            if(File.applicationDirectory.resolvePath("issues.flag").exists) {ContinuousSceneIssuesProbe.init(host);return;}
             if(File.applicationDirectory.resolvePath("native.flag").exists) {ContinuousSceneNativeProbe.init(host);return;}
             if(File.applicationDirectory.resolvePath("loading.flag").exists) {ContinuousSceneLoadProbe.init(host);return;}
             if(File.applicationDirectory.resolvePath("experience.flag").exists) {ContinuousSceneExperienceProbe.init(host);return;}
