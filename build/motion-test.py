@@ -119,6 +119,7 @@ def run_owned(args,record):
     cfg['syncWarm']=args.sync_warm
     cfg['encounter']=getattr(args,'encounter',False)
     cfg['fixedEnemies']=getattr(args,'fixed_enemies',False)
+    cfg['localEnemies']=getattr(args,'local_enemies',False)
     cfg['speed']=getattr(args,'speed',8)
     cfg['windowWidth']=getattr(args,'window_width',0)
     cfg['windowHeight']=getattr(args,'window_height',0)
@@ -159,6 +160,10 @@ def run_owned(args,record):
                     policy['otherAirProcessIds']=others;policy['performanceEligible']=False
                     raise RuntimeError('Other AIR appeared; do not use timing')
             if process.poll() is None:raise TimeoutError('Owned test timed out')
+    except BaseException as error:
+        policy['performanceEligible']=False
+        policy['runFailure']=type(error).__name__+': '+str(error)
+        raise
     finally:
         if process:
             if process.poll() is None:process.kill();process.wait(15)
@@ -205,6 +210,7 @@ def parse_args(argv=None):
     p.add_argument('--land',choices=['random_mane','random_plant'],default='random_mane')
     p.add_argument('--encounter',action='store_true')
     p.add_argument('--fixed-enemies',action='store_true')
+    p.add_argument('--local-enemies',action='store_true')
     p.add_argument('--speed',type=float,default=8);p.add_argument('--window-width',type=int,default=0);p.add_argument('--window-height',type=int,default=0)
     p.add_argument('--refresh',action='store_true');p.add_argument('--registry-wait',type=int,default=30)
     return p.parse_args(argv)

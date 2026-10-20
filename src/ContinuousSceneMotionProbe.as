@@ -232,7 +232,7 @@ package {
                     report.viewport={stageWidth:main.stage.stageWidth,stageHeight:main.stage.stageHeight,
                         cameraWidth:w.cam.screenX,cameraHeight:w.cam.screenY,zoom:w.cam.scaleV};
                     report.path={startX:x0,endX:x0+path,y:y0};if(w.grafon.sceneLarge)signs();
-                    if(cfg.encounter){encounter=new SceneEncounter(w);report.encounter=encounter.prepare(x0,y0,Boolean(cfg.fixedEnemies));y0=report.encounter.playerY;report.path.y=y0;check("encounter-has-native-armed-enemies",report.encounter.units.length>=(cfg.fixedEnemies?6:3),report.encounter);}
+                    if(cfg.encounter){encounter=new SceneEncounter(w);report.encounter=encounter.prepare(x0,y0,Boolean(cfg.fixedEnemies),Boolean(cfg.localEnemies));y0=report.encounter.playerY;report.path.y=y0;check("encounter-has-native-armed-enemies",report.encounter.units.length>=(cfg.fixedEnemies?6:3),report.encounter);}
                     age=0;phase=3;
                 }else if(phase==3) {
                     w.ctr.clearAll();if(++age<20)return;

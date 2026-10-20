@@ -21,8 +21,18 @@ package tests {
             }
             return best;
         }
-        public function prepare(x:Number,y:Number,fixed:Boolean=false):Object {
-            var details:Array=[],nextX:Number=x+350;
+        public function prepare(x:Number,y:Number,fixed:Boolean=false,localOnly:Boolean=false):Object {
+            var details:Array=[],nextX:Number=x+350,removed:int=0;
+            if(localOnly){
+                if(!fixed)throw new Error("Local population control requires fixed actors");
+                // Attribution fixture only. Remove actors without death, loot,
+                // quest callbacks or writes to any real game storage.
+                for each(var old:* in w.loc.units.concat()){
+                    if(!old || old===w.gg || old.player || old.npc || old.fraction<=0 || old.fraction>=100 || old.fraction==w.gg.fraction)continue;
+                    old.disabled=true;old.remVisual();w.loc.remObj(old);
+                    w.loc.units.splice(w.loc.units.indexOf(old),1);++removed;
+                }
+            }
             var candidates:Array=w.loc.units;
             if(fixed){
                 candidates=[];var Raider:Class=getDefinitionByName("fe.unit.UnitRaider") as Class;
@@ -42,7 +52,7 @@ package tests {
                 details.push({type:kind,id:u.id,x:xx,y:yy,weapon:u.currentWeapon.id});
             }
             var playerY:Number=floorAt(x,y,w.gg.scY,w.gg.scX);
-            return {units:details,fixed:fixed,playerY:isNaN(playerY)?y:playerY};
+            return {units:details,fixed:fixed,localOnly:localOnly,removed:removed,playerY:isNaN(playerY)?y:playerY};
         }
         public function sample():void {
             for each(var r:Object in actors){
