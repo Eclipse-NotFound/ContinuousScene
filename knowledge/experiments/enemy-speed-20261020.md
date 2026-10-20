@@ -66,3 +66,5 @@
 - 最后有效自然人口样本activity-census为高速中位67/68.5ms、入场5162ms、16项通过；不同轮次大图可达98/105ms，普通对照47.5/53ms，随机战斗与机况导致波动，须恢复后严格对照。活动单位从26增至70左右，远处部分有目标或历史参战保活；未改变追击/脱战规则。
 - 六敌人受控人口试验local-population因环境长停顿超时，只有第一段完整，整轮作废；r2/r3均在启动前发现其他AIR而退出，无新游戏。sandbox内进程列表漏见宿主实例，受权只读核对才确认正式游戏；不能把受限环境AIR=[]当全机空闲。run_owned异常现在明确写performanceEligible=false。未能读取电源事件，未断言电脑睡眠。
 - 接续：用户恢复实测后，先核对已安装文件与是否仍有用户游戏，再用enemy-baseline-test.py --local-enemies和全新证据前缀完成普通/大图人口控制对照；该模式仅私有测试移走原生敌人，不代表正式体验。随后取RC负责人基于574D的最小离线修复做组合测试，不发布room-entry加载WIP。显示裁块/遮罩/合图原型仍仅探针引用，WB层次/完整截图兼容未验，继续禁用。
+
+后续只读协调：已向RConnect负责人核对BEFC的Grafon来源：generated/motion-direction-rays/source/fe/graph/Grafon.as为81C1编译源（SHA75157C93…D38EB），fog-typed仅替换Location.lighting，strict-audit确认全部Grafon方法字节保留。当前无通用任意区域invalidate/repaint公开接口；sceneTick负责视口补绘，局部drawWater/decal/gwall/paint有各自副作用及revision/预绘取消语义。提醒复用必须同Location/生成代次并覆盖区域环境、背景引用、历史痕迹与预绘状态；未验证RC跳过drawLoc路径。只读答复未启动AIR、未修改源码或安装文件，用户暂停实测仍有效。
