@@ -14,7 +14,7 @@ package {
 
     /** Production entry only: no new game, test enemies, movement or save-slot writes. */
     public class ContinuousSceneMod {
-        public static const VERSION:String="0.8.2";
+        public static const VERSION:String="0.9.0";
         private static const LAND:String="continuous_scene";
         private static var main:*, w:*, worldClass:Class, gameData:Class;
         private static var pool:XML, definition:XML;
@@ -26,6 +26,8 @@ package {
         private static var settingsAPI:*;
         private static var nextSettings:int=0;
         private static var fastTransition:Boolean=false;
+        private static var authored:Boolean=false;
+        private static var nextMapCheck:int=0;
         public static function init(host:*):void {
             if(main) return;
             main=host;
@@ -56,18 +58,19 @@ package {
                 failed=true; log("host patch missing: scene entry disabled"); return;
             }
             if("scenePreload" in w.grafon) w.grafon.scenePreload=false;
-            var stream:FileStream=new FileStream();
-            try {
-                stream.open(File.applicationDirectory.resolvePath("mods/ContinuousScene/release/scene.xml"),FileMode.READ);
-                pool=new XML(stream.readUTFBytes(stream.bytesAvailable));
-            } finally { stream.close(); }
+            try {pool=readScene();}
+            catch(mapError:Error) {
+                log("authored map invalid at startup: "+mapError.message);
+                pool=readScene(true);
+            }
             definition=<land id="continuous_scene" dif="0" locx="0" locy="0" stage="1" tip="test" acc="1" list="0"><options backwall="tBackWall" fon="fonDarkClouds" music="music_plant_2"/></land>;
+            applyEnvironment();
             var exists:Boolean=false;
             for each(var land:XML in gameData["d"].land) if(String(land.@id)==LAND) exists=true;
             if(!exists) gameData["d"].appendChild(definition);
             w.landData[LAND]={allroom:pool,loaded:true};
             var res:*=getDefinitionByName("fe.Res");
-            res["d"].appendChild(<map id="continuous_scene"><n>大场景 · 工厂</n></map>);
+            res["d"].appendChild(<map id="continuous_scene"><n>{String(pool.room.@name)||"大地图"}</n></map>);
             ready=true; carrier["sceneAPI"].ready=true;
             log("registered "+pool.room.@sceneWidth+"x"+pool.room.@sceneHeight+" native land kind="+pool.@sceneKind);
         }
@@ -112,7 +115,8 @@ package {
                 label.defaultTextFormat=new TextFormat("Microsoft YaHei",13,0xd5ebbc,false,null,null,null,null,"center");
                 button.addChild(label); button.addEventListener(MouseEvent.CLICK,onClick);
             }
-            label.text=w.game.curLandId==LAND?"大场景 · 返回基地":"大场景 · 工厂测试";
+            if(getTimer()>nextMapCheck) {nextMapCheck=getTimer()+1000;authored=File.applicationDirectory.resolvePath("mods/ContinuousScene/maps/active.xml").exists;}
+            label.text=w.game.curLandId==LAND?"大地图 · 返回基地":(authored?"大地图 · 编辑地图":"大场景 · 工厂测试");
             button.x=540; button.y=30;
             if(!button.parent) w.vpip.addChild(button);
             // The native page carries its previous pan between lands. Center a
@@ -171,8 +175,37 @@ package {
             if(!w.game.lands[target] || !w.game.checkTravel(target) || (!leaving && w.game.triggers["noreturn"]>0)) {
                 w.gui.messText("","当前剧情暂不能旅行"); return;
             }
-            if(leaving) w.game.gotoLand(target); else w.game.beginMission(target);
+            if(leaving) w.game.gotoLand(target); else {
+                // Re-read the authored file on each fresh expedition; editing never changes a live map.
+                try {
+                    var next:XML=readScene();
+                    pool=next;applyEnvironment();
+                    var res:*=getDefinitionByName("fe.Res");
+                    for each(var title:XML in res["d"].map) if(String(title.@id)==LAND) title.n=String(pool.room.@name)||"大地图";
+                    w.landData[LAND]={allroom:pool,loaded:true};
+                    var LandAct:Class=getDefinitionByName("fe.loc.LandAct") as Class;
+                    var act:*=new LandAct(definition);act.allroom=pool;act.loaded=true;
+                    w.game.lands[LAND]=act;
+                } catch(error:Error) {w.gui.messText("","大地图载入失败："+error.message);log("map rejected "+error.message);return;}
+                w.game.beginMission(target);
+            }
             if(w.game.curLandId==target) { w.pip.onoff(-1); log("travel requested "+target); }
+        }
+        private static function readScene(fallback:Boolean=false):XML {
+            var file:File=File.applicationDirectory.resolvePath("mods/ContinuousScene/maps/active.xml");
+            authored=file.exists;
+            if(!authored || fallback) file=File.applicationDirectory.resolvePath("mods/ContinuousScene/release/scene.xml");
+            if(file.size>16*1024*1024) throw new Error("地图文件超过 16 MB。");
+            var stream:FileStream=new FileStream();var doc:XML;
+            try {stream.open(file,FileMode.READ);doc=new XML(stream.readUTFBytes(stream.bytesAvailable));}
+            finally {stream.close();}
+            var room:XML=SingleSceneDocument.validate(doc);
+            return SingleSceneDocument.pack(room,doc.land[0]);
+        }
+        private static function applyEnvironment():void {
+            if(!definition) return;
+            definition.options=<options backwall="tBackWall" fon="fonDarkClouds" music="music_plant_2"/>;
+            if(pool.land.options.length()) for each(var a:XML in pool.land.options[0].attributes()) definition.options[0].@[a.name()]=a;
         }
         private static function readPreference():void {
             var file:File=File.applicationStorageDirectory.resolvePath("ContinuousScene.preferences.json");

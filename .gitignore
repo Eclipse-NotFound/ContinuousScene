@@ -1,4 +1,8 @@
 build/runtime/
+build/large-map/
+maps/active.xml
+maps/backups/
+maps/active-writing.tmp
 build/generated/
 build/cache/
 build/backups/

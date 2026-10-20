@@ -1,0 +1,30 @@
+[
+  {
+    "Path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\.agents\\skills\\remains-mod-build\\SKILL.md",
+    "Hash": "1907A013DC94D0848D88B1CCD163CF0045D65EDEBD49B33AF8575BCB5AC6F88A"
+  },
+  {
+    "Path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\.agents\\skills\\remains-auto-testing\\SKILL.md",
+    "Hash": "D6C2EFBB03C2D5431C438B4626B83AE00C36E2904B91DBA10C4D4A2B06A4DC89"
+  },
+  {
+    "Path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\.agents\\skills\\remains-runtime-debug\\SKILL.md",
+    "Hash": "6017FBD0D89C8AA08F31C3B8474F7FECA6F901C483F0FE08F10178E1246F6EB7"
+  },
+  {
+    "Path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\.agents\\skills\\remains-swf-patching\\SKILL.md",
+    "Hash": "91E2B533F5229E4E122FFB8936C053566D71C4234C0F9D61B67F367C84052B8B"
+  },
+  {
+    "Path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\.agents\\skills\\remains-release-gate\\SKILL.md",
+    "Hash": "2D6030BC3311400FDB4301E7708E45357FF7DD66F1C86C9298C3914100C6DB02"
+  },
+  {
+    "Path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\.agents\\skills\\remains-mod-memory\\SKILL.md",
+    "Hash": "BF89D2CE22BEFE7DEAE310BEB95F715E9FE9D0086DBEFE2407D68AB8A2E1EFBB"
+  },
+  {
+    "Path": "C:\\Users\\hello\\.agents\\skills\\test-report\\SKILL.md",
+    "Hash": "CDE4695F98417768F2C11EA42F6EA1F4400DDECC5D00F5A224FCC988646FEBF5"
+  }
+]
