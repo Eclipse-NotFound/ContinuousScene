@@ -7,6 +7,7 @@ ROOT=BASE.parents[2]
 RUNTIME=BASE/'runtime'
 sys.path.insert(0,str(ROOT/'mods/ModLoader/tools'))
 from air_test_process import HiddenProcess
+from test_registry import Registration
 
 def memory_status():
     class Memory(ctypes.Structure):
@@ -60,9 +61,10 @@ def hashes():
     paths.extend(p for p in (RUNTIME/'scene.xml',RUNTIME/'application.xml') if p.exists())
     return {str(p.relative_to(RUNTIME)):hashlib.sha256(p.read_bytes()).hexdigest().upper() for p in paths}
 
-def prepare():
+def prepare(excluded=()):
     if air_pids():raise RuntimeError('Existing AIR; do not mutate test input')
-    data=json.loads((BASE/'generated/inventory-motion-v082.json').read_text(encoding='utf-8-sig'))
+    inventory=subprocess.run([str(ROOT/'mods/ModLoader/RemainsModLauncher.exe'),'--list','--json','--no-ui'],capture_output=True,check=True)
+    data=json.loads(inventory.stdout.decode('utf-8-sig'))
     shutil.copy2(ROOT/'pfe.swf',RUNTIME/'pfe.swf')
     shutil.copy2(ROOT/'mods/loader-manifest.txt',RUNTIME/'mods/loader-manifest.txt')
     for m in data['mods']:
@@ -78,11 +80,11 @@ def prepare():
     motion.parent.mkdir(parents=True,exist_ok=True)
     shutil.copy2(RUNTIME/'mods/ContinuousSceneProbe/release/ContinuousSceneProbe.swf',motion)
     report=BASE/'generated'/('motion-selection-'+uuid.uuid4().hex+'.json')
-    selection=subprocess.run([str(ROOT/'mods/ModLoader/RemainsModLauncher.exe'),'--root',str(RUNTIME),'--only',','.join(data['selected']+['ContinuousSceneMotionMod']),'--no-ui','--report',str(report)],capture_output=True)
+    selection=subprocess.run([str(ROOT/'mods/ModLoader/RemainsModLauncher.exe'),'--root',str(RUNTIME),'--only',','.join([name for name in data['selected'] if name not in excluded]+['ContinuousSceneMotionMod']),'--no-ui','--report',str(report)],capture_output=True)
     if selection.returncode:raise RuntimeError(repr(selection.stderr))
     print(json.dumps({'prepared':True,'inputFiles':len(hashes())}))
 
-def run(args):
+def run_owned(args,record):
     import msvcrt
     if not args.name or any(c not in 'abcdefghijklmnopqrstuvwxyz0123456789-' for c in args.name):raise ValueError('Evidence name')
     out=BASE.parent/'knowledge/experiments/evidence'/args.name
@@ -94,17 +96,32 @@ def run(args):
         raise RuntimeError('Insufficient memory for this single-instance fixture: '+json.dumps(memory))
     out.mkdir();app='pfe-modsettings-continuous-motion-'+uuid.uuid4().hex
     descriptor=RUNTIME/(app+'.xml')
-    descriptor.write_text((RUNTIME/'application.xml').read_text(encoding='utf-8-sig').replace('<id>pfe-modsettings-continuous-scene</id>','<id>'+app+'</id>'),encoding='utf-8')
+    descriptor_text=(RUNTIME/'application.xml').read_text(encoding='utf-8-sig').replace('<id>pfe-modsettings-continuous-scene</id>','<id>'+app+'</id>')
+    if getattr(args,'window_width',0)>0:
+        descriptor_text=re.sub(r'<width>\d+</width>','<width>'+str(args.window_width)+'</width>',descriptor_text)
+        descriptor_text=re.sub(r'<height>\d+</height>','<height>'+str(args.window_height)+'</height>',descriptor_text)
+    descriptor.write_text(descriptor_text,encoding='utf-8')
     cfg={'visual':args.visual,'short':args.short,'expectNoSigns':args.expect_no_signs,'stage':args.stage,'vision':args.vision,'lightingCheck':args.lighting_check,'noLighting':args.no_lighting,'culling':args.culling,'profile':args.profile}
     cfg['rasterCheck']=args.raster_check
     cfg['wallCheck']=args.wall_check
     cfg['benchmark']=args.benchmark
     cfg['noWall']=args.no_wall
     cfg['fogCheck']=args.fog_check
+    cfg['fogPerf']=getattr(args,'fog_perf',False)
+    cfg['drawControl']=getattr(args,'draw_control',None)
+    cfg['renderPerf']=getattr(args,'render_perf',False)
+    cfg['threatCheck']=getattr(args,'threat_check',False)
+    cfg['presentationCheck']=getattr(args,'presentation_check',False)
     cfg['fogABBA']=args.fog_abba
+    cfg['fogTypedABBA']=getattr(args,'fog_typed_abba',False)
     cfg['land']=args.land
     cfg['suite']=args.suite
     cfg['syncWarm']=args.sync_warm
+    cfg['encounter']=getattr(args,'encounter',False)
+    cfg['fixedEnemies']=getattr(args,'fixed_enemies',False)
+    cfg['speed']=getattr(args,'speed',8)
+    cfg['windowWidth']=getattr(args,'window_width',0)
+    cfg['windowHeight']=getattr(args,'window_height',0)
     suite_flags=[]
     if args.suite:
         if list(RUNTIME.glob('*.flag')):raise RuntimeError('Stale controls must be reviewed before suite')
@@ -120,12 +137,14 @@ def run(args):
     flag=RUNTIME/'motion-controls.json';inputs=hashes();store=Path(os.environ['APPDATA'])/app/'Local Store'
     lock=open(RUNTIME/'session.lock','a+b');lock.seek(0);msvcrt.locking(lock.fileno(),msvcrt.LK_NBLCK,1)
     flag.write_text(json.dumps(cfg),encoding='utf-8')
-    policy={'appId':app,'desktopPolicy':'private','performanceEligible':not (args.visual or args.lighting_check or args.profile or args.raster_check or args.wall_check or args.fog_check or args.suite),'otherAirProcessIds':[]}
+    policy={'appId':app,'desktopPolicy':'private','performanceEligible':not (args.visual or args.lighting_check or args.profile or args.raster_check or args.wall_check or args.fog_check or getattr(args,'fog_perf',False) or getattr(args,'render_perf',False) or getattr(args,'threat_check',False) or getattr(args,'presentation_check',False) or args.suite),'otherAirProcessIds':[]}
     policy['memoryBefore']=memory;policy['minimumAvailableCommit']=memory['availableCommit']
     process=None
     try:
         with open(out/'stdout.log','wb') as stdout,open(out/'stderr.log','wb') as stderr:
+            record.before_launch(app+' / '+args.name)
             process=HiddenProcess([ROOT/'adl64.exe','-runtime',ROOT/'runtimes/air/win64',descriptor],cwd=RUNTIME,stdout=stdout,stderr=stderr)
+            record.child(process.pid)
             if args.high_qos:policy['powerPolicy']=responsive_owned(process)
             policy.update(pid=process.pid,desktop=process.desktop);print('Owned AIR '+str(process.pid),flush=True)
             start=time.monotonic()
@@ -144,6 +163,7 @@ def run(args):
         if process:
             if process.poll() is None:process.kill();process.wait(15)
             process.close()
+            record.child_stopped()
         if store.exists():shutil.copytree(store,out/'storage')
         (out/'inputs.json').write_text(json.dumps(inputs,indent=2),encoding='utf-8')
         (out/'process-policy.json').write_text(json.dumps(policy,indent=2),encoding='utf-8')
@@ -163,9 +183,32 @@ def run(args):
     result=json.loads((out/'storage/result.json').read_text(encoding='utf-8-sig'))
     print(json.dumps({'ok':result['ok'],'entryMs':result.get('entryMs'),'internalSigns':result.get('internalSigns'),'samples':len(result.get('samples',[])),'checks':len(result.get('assertions',[])),'error':result.get('error')}))
     if not result['ok']:raise RuntimeError('Probe failed')
+    record.outcome='passed'
+    record.note='Current loader, unchanged inputs and scene assertions passed; timing conclusions require result review'
 
-if __name__=='__main__':
+def run(args):
+    with Registration(owner='ContinuousScene / enemy and high-speed motion / 01a13816-367b-7261-8e11-ca9152565dd9',
+                      purpose=args.name or 'motion probe',run_dir=RUNTIME,
+                      evidence=BASE.parent/'knowledge/experiments/evidence'/str(args.name),wait=args.registry_wait) as record:
+        if args.refresh:prepare()
+        run_owned(args,record)
+
+def parse_args(argv=None):
     p=argparse.ArgumentParser();p.add_argument('--prepare',action='store_true');p.add_argument('--name');p.add_argument('--visual',action='store_true');p.add_argument('--short',action='store_true');p.add_argument('--expect-no-signs',action='store_true');p.add_argument('--lighting-check',action='store_true');p.add_argument('--no-lighting',action='store_true');p.add_argument('--culling',action='store_true');p.add_argument('--profile',action='store_true');p.add_argument('--raster-check',action='store_true');p.add_argument('--wall-check',action='store_true');p.add_argument('--benchmark',choices=['normal','scene']);p.add_argument('--no-wall',action='store_true');p.add_argument('--high-qos',action='store_true');p.add_argument('--sync-warm',action='store_true');p.add_argument('--suite',choices=['native','experience','factory','upcoming','mechanics','combat']);p.add_argument('--stage',type=int,default=1);p.add_argument('--vision',action='store_true')
     p.add_argument('--fog-check',action='store_true');p.add_argument('--fog-abba',action='store_true')
-    p.add_argument('--land',choices=['random_mane','random_plant'],default='random_mane');a=p.parse_args()
+    p.add_argument('--fog-typed-abba',action='store_true')
+    p.add_argument('--fog-perf',action='store_true')
+    p.add_argument('--draw-control',choices=['world','fog','objects','tilecrop','fogpixels','atlas'])
+    p.add_argument('--render-perf',action='store_true')
+    p.add_argument('--threat-check',action='store_true')
+    p.add_argument('--presentation-check',action='store_true')
+    p.add_argument('--land',choices=['random_mane','random_plant'],default='random_mane')
+    p.add_argument('--encounter',action='store_true')
+    p.add_argument('--fixed-enemies',action='store_true')
+    p.add_argument('--speed',type=float,default=8);p.add_argument('--window-width',type=int,default=0);p.add_argument('--window-height',type=int,default=0)
+    p.add_argument('--refresh',action='store_true');p.add_argument('--registry-wait',type=int,default=30)
+    return p.parse_args(argv)
+
+if __name__=='__main__':
+    a=parse_args()
     prepare() if a.prepare else run(a)

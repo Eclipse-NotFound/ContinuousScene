@@ -13,14 +13,25 @@ package {
     import flash.utils.getDefinitionByName;
     import flash.utils.getTimer;
     import tests.SceneFogChecks;
+    import tests.SceneEncounter;
+    import tests.SceneRasterTiming;
+    import tests.SceneThreatChecks;
+    import tests.ScenePresentationChecks;
+    import tests.SceneActivityCensus;
 
     /** Isolated movement attribution. Screenshot runs never supply timings. */
     public class ContinuousSceneMotionProbe {
         private static var main:*,w:*,loc:*,cfg:Object,phase:int=0,age:int=0,ready:int=0,index:int=0;
         private static var started:int,last:int,startFrame:int,band50:int,band150:int,band250:int,entryAt:int;
+        private static var absoluteStart:int,lastEnd:int,priorAbsolute:int,priorProbe:int;
+        private static var renderAt:int,renderMs:int,renderCalls:int,exitAt:int,exitMs:int,exitCalls:int;
         private static var x0:Number,y0:Number,path:Number=2400,done:Boolean=false,row:Object;
         private static var report:Object={version:"motion-0.8.2",assertions:[],samples:[]};
         private static var objectCulling:SceneObjectCulling=new SceneObjectCulling();
+        private static var tilePresentation:SceneTilePresentation=new SceneTilePresentation();
+        private static var fogPresentation:SceneFogPresentation=new SceneFogPresentation();
+        private static var rasterPresentation:SceneRasterPresentation=new SceneRasterPresentation();
+        private static var encounter:SceneEncounter;
         private static var cases:Array=["cold-forward","warm-back","warm-forward","idle","no-lad-back","full-forward","no-wall-back","full-forward-restored"];
         public static function init(host:*):void {
             main=host;started=getTimer();var f:FileStream=new FileStream();
@@ -35,7 +46,16 @@ package {
             if(cfg.short)cases=["cold-forward","warm-back","warm-forward","idle"];
             if(cfg.culling)cases=["cold-forward","cull-back","uncull-forward","cull-back-repeat"];
             if(cfg.profile)cases=["cold-forward"];
+            if(cfg.encounter)cases=["enemy-idle","enemy-fast-forward","enemy-fast-back","enemy-idle-end"];
             if(cfg.fogABBA)cases=["fog-original-a","fog-bounded-b","fog-bounded-b-repeat","fog-original-a-repeat"];
+            if(cfg.fogTypedABBA)cases=["fog-deployed-a","fog-typed-b","fog-typed-b-repeat","fog-deployed-a-repeat"];
+            if(cfg.drawControl)cases=["draw-baseline-a","draw-control-b","draw-control-b-repeat","draw-baseline-a-repeat"];
+            main.stage.addEventListener(Event.ENTER_FRAME,function(e:Event):void {absoluteStart=getTimer();rasterPresentation.beginFrame();},false,2147483647);
+            main.stage.addEventListener(Event.ENTER_FRAME,function(e:Event):void {lastEnd=getTimer();},false,-2147483647);
+            main.stage.addEventListener(Event.RENDER,function(e:Event):void {renderAt=getTimer();},false,2147483647);
+            main.stage.addEventListener(Event.RENDER,function(e:Event):void {renderMs+=getTimer()-renderAt;++renderCalls;},false,-2147483647);
+            main.stage.addEventListener(Event.EXIT_FRAME,function(e:Event):void {exitAt=getTimer();},false,2147483647);
+            main.stage.addEventListener(Event.EXIT_FRAME,function(e:Event):void {exitMs+=getTimer()-exitAt;++exitCalls;},false,-2147483647);
             main.stage.addEventListener(Event.ENTER_FRAME,function(e:Event):void {startFrame=band50=band150=band250=getTimer();},false,1000);
             main.stage.addEventListener(Event.ENTER_FRAME,function(e:Event):void {band50=getTimer();},false,-50);
             main.stage.addEventListener(Event.ENTER_FRAME,function(e:Event):void {band150=getTimer();},false,-150);
@@ -157,10 +177,15 @@ package {
             } finally {for each(layers in first)for each(var data:BitmapData in layers)data.dispose();g.sceneMaskBitmaps=true;}
         }
         private static function startCase():void {
+            var timing:*=main.getChildByName("ContinuousSceneTdfcProfile");
+            if(timing)timing.api.reset();
             if(cfg.fogABBA)main.getChildByName("ContinuousSceneCarrier")["nativeAPI"]["fogBoundsEnabled"]=index==1 || index==2;
+            if(cfg.fogTypedABBA)main.getChildByName("ContinuousSceneCarrier")["nativeAPI"]["fogTypedEnabled"]=index==1 || index==2;
             setting("light-and-darkness","enabled",!cfg.noLighting && index!=4);
             setting("wallblend","enabled",!cfg.noWall && index!=6);
-            row={name:cases[index],frames:[],nativeBand:[],wallBand:[],sceneBand:[],warm:[],draw:[],empty:0,missStart:w.grafon.sceneMisses,residentStart:w.grafon.sceneResident,camera:[],activity:[]};
+            row={name:cases[index],frames:[],nativeBand:[],wallBand:[],sceneBand:[],preBand:[],tailBand:[],afterProbeBand:[],totalScript:[],warm:[],draw:[],empty:0,missStart:w.grafon.sceneMisses,residentStart:w.grafon.sceneResident,camera:[],activity:[]};
+            row.renderBand=[];row.exitBand=[];row.renderEvents=[];row.exitEvents=[];
+            renderMs=exitMs=renderCalls=exitCalls=0;
             age=0;last=getTimer();phase=4;
             if("sceneMotionProfile" in w.grafon)w.grafon.sceneMotionProfile={};
             if("csMotionNative" in loc)loc.csMotionNative={};
@@ -173,7 +198,7 @@ package {
                 if(getTimer()-lastProgress>5000) {lastProgress=getTimer();save("heartbeat.json",{phase:phase,age:age,index:index});}
                 if(w && w.verror && w.verror.visible)throw new Error(w.verror.txt.text);
                 if(getTimer()-started>500000)throw new Error("Timeout "+phase);
-                if(w && w.gg){w.godMode=true;w.gg.invulner=true;}
+                if(w && w.gg){w.godMode=true;w.gg.invulner=!cfg.encounter;}
                 if(phase==0 && w && w.mm && w.mm.loaded && w.allLandsLoaded && w.textLoaded && settingsReady()) {
                     w.mm.active=false;w.newGame(-1,"Scene Motion",{propusk:true});phase=1;
                 }else if(phase==1 && w.ng_wait==0 && w.allStat==1 && w.gg && w.loc) {
@@ -207,17 +232,25 @@ package {
                     report.viewport={stageWidth:main.stage.stageWidth,stageHeight:main.stage.stageHeight,
                         cameraWidth:w.cam.screenX,cameraHeight:w.cam.screenY,zoom:w.cam.scaleV};
                     report.path={startX:x0,endX:x0+path,y:y0};if(w.grafon.sceneLarge)signs();
+                    if(cfg.encounter){encounter=new SceneEncounter(w);report.encounter=encounter.prepare(x0,y0,Boolean(cfg.fixedEnemies));y0=report.encounter.playerY;report.path.y=y0;check("encounter-has-native-armed-enemies",report.encounter.units.length>=(cfg.fixedEnemies?6:3),report.encounter);}
                     age=0;phase=3;
                 }else if(phase==3) {
                     w.ctr.clearAll();if(++age<20)return;
                     // Prepare the same route before an in-process ABBA timing.
-                    if(cfg.fogABBA && age<620) {
+                    if((cfg.fogABBA || cfg.fogTypedABBA) && age<620) {
                         var warmAge:int=age-20;
                         var warmForward:Boolean=warmAge<300;
                         w.gg.setLocPos(x0+(warmForward?warmAge:600-warmAge)*path/300,y0);
                         w.gg.dx=warmForward?path/300:-path/300;w.gg.dy=0;return;
                     }
                     if(cfg.fogCheck){report.fog=SceneFogChecks.run(w,check);finish();return;}
+                    if(cfg.fogPerf){report.fogTiming=SceneFogChecks.benchmark(w);finish();return;}
+                    if(cfg.renderPerf){report.renderTiming=SceneRasterTiming.run(w,fogPresentation);finish();return;}
+                    if(cfg.threatCheck){report.threat=SceneThreatChecks.run(w,check);finish();return;}
+                    if(cfg.presentationCheck){
+                        var presenter:*=cfg.drawControl=="atlas"?rasterPresentation:cfg.drawControl=="fogpixels"?fogPresentation:tilePresentation;
+                        report.presentation=ScenePresentationChecks.run(w,presenter,check,cfg.drawControl!="atlas" && cfg.drawControl!="fogpixels");finish();return;
+                    }
                     if(cfg.wallCheck){main.dispatchEvent(new DataEvent("continuousSceneWallMotion",false,false,"verify"));}
                     if(cfg.lightingCheck) {lightingChecks();finish();return;}
                     if(cfg.rasterCheck && !("sceneWarmVerify" in w.grafon)) {rasterChecks();finish();return;}
@@ -255,7 +288,22 @@ package {
                         finish();return;
                     }
                     if(cfg.culling)objectCulling.update(w,index%2==1);
+                    if(cfg.drawControl){
+                        var altered:Boolean=index==1 || index==2;
+                        if(cfg.drawControl=="tilecrop")tilePresentation.update(w,altered);
+                        if(cfg.drawControl=="fogpixels")fogPresentation.update(w,altered);
+                        if(cfg.drawControl=="atlas")rasterPresentation.update(w,altered);
+                        if(cfg.drawControl=="world")w.visual.visible=!altered;
+                        if(cfg.drawControl=="fog")w.grafon.visLight.visible=!altered && loc.black && w.black;
+                        if(cfg.drawControl=="objects")for each(var objectLayer:* in w.grafon.visObjs)objectLayer.visible=!altered;
+                    }
                     var now:int=getTimer();row.frames.push(now-last);last=now;
+                    row.renderBand.push(renderMs);row.exitBand.push(exitMs);row.renderEvents.push(renderCalls);row.exitEvents.push(exitCalls);
+                    renderMs=exitMs=renderCalls=exitCalls=0;
+                    row.preBand.push(startFrame-absoluteStart);row.tailBand.push(now-band250);
+                    if(priorAbsolute>0){row.afterProbeBand.push(lastEnd-priorProbe);row.totalScript.push(lastEnd-priorAbsolute);}
+                    priorAbsolute=absoluteStart;priorProbe=now;
+                    if(encounter)encounter.sample();
                     row.nativeBand.push(band50-startFrame);row.wallBand.push(band150-band50);row.sceneBand.push(band250-band150);
                     row.warm.push(w.grafon.sceneWarmCount-report.lastWarm);report.lastWarm=w.grafon.sceneWarmCount;
                     row.draw.push(row.warm[row.warm.length-1]>0?w.grafon.sceneDrawMs:0);
@@ -263,19 +311,34 @@ package {
                     if(age%30==0) {row.camera.push({x:w.cam.vx,y:w.cam.vy});row.activity.push(main.getChildByName("ContinuousSceneCarrier")["nativeAPI"].activityStats());}
                     w.ctr.clearAll();++age;
                     var forward:Boolean=index==0 || index==2 || index==5 || index==7;
-                    var speed:Number=cfg.benchmark?path/300:8;
-                    var distance:Number=Math.min(path,age*speed);
-                    var idle:Boolean=index==3 && !cfg.culling && !cfg.fogABBA;
+                    var speed:Number=cfg.benchmark?path/300:(cfg.speed>0?cfg.speed:8);
+                    if(cfg.fixedEnemies && cfg.speed>0)speed=cfg.speed;
+                    var travel:Number=age*speed;
+                    var distance:Number=travel%(path*2);if(distance>path)distance=path*2-distance;
+                    var idle:Boolean=index==3 && !cfg.culling && !cfg.fogABBA && !cfg.fogTypedABBA;
+                    if(cfg.encounter){idle=index==0 || index==3;forward=index==1;}
+                    if(cfg.drawControl){idle=false;forward=true;}
                     var x:Number=idle?x0+path:x0+(forward?distance:path-distance);
-                    w.gg.setLocPos(x,y0);w.gg.dx=idle?0:forward?speed:-speed;w.gg.dy=0;
+                    if(cfg.encounter && idle)x=x0;
+                    var goingForward:Boolean=forward;if(int(travel/path)%2==1)goingForward=!goingForward;
+                    w.gg.setLocPos(x,y0);w.gg.dx=idle?0:goingForward?speed:-speed;w.gg.dy=0;
                     if(age<300)return;
                     row.misses=w.grafon.sceneMisses-row.missStart;row.residentEnd=w.grafon.sceneResident;row.warmMaxMs=w.grafon.sceneWarmMaxMs;
+                    if(cfg.drawControl=="tilecrop")row.presentation={copies:tilePresentation.copies,allocated:tilePresentation.allocated};
+                    if(cfg.drawControl=="atlas")row.presentation={copies:rasterPresentation.copies,rebuilds:rasterPresentation.rebuilds};
                     if("sceneMotionProfile" in w.grafon)row.hostProfile=w.grafon.sceneMotionProfile;
                     if("csMotionNative" in loc)row.nativeProfile=loc.csMotionNative;
+                    var timing:*=main.getChildByName("ContinuousSceneTdfcProfile");
+                    if(timing)row.tdfcProfile=timing.api.snapshot();
+                    if(encounter)row.encounter=encounter.snapshot();
+                    if(w.grafon.sceneLarge)row.activityCensus=SceneActivityCensus.read(w);
                     if("sceneWarmSlices" in w.grafon){row.slices=w.grafon.sceneWarmSlices-row.slicesStart;row.forced=w.grafon.sceneWarmForced-row.forcedStart;}
                     check("same-logical-map-"+index,w.loc===loc);check("complete-viewport-"+index,row.empty==0,row.empty);
                     report.samples.push(row);save("progress.json",report);
-                    if(++index<cases.length)startCase();else finish();
+                    if(++index<cases.length)startCase();else {
+                        if(encounter){check("enemies-targeted-player",encounter.targetFrames>30,encounter.targetFrames);check("enemies-fired",encounter.shots>0,encounter.shots);}
+                        finish();
+                    }
                 }
             }catch(error:Error){finish(error.message+"\n"+error.getStackTrace());}
         }

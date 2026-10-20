@@ -7,6 +7,25 @@ package tests {
 
     /** Synchronous state-and-pixel comparison in owned test instances only. */
     public class SceneFogChecks {
+        public static function benchmark(w:*):Array {
+            var loc:*=w.loc,api:*=w.main.getChildByName("ContinuousSceneCarrier")["nativeAPI"];
+            var bitmap:BitmapData=w.grafon.lightBmp,base:BitmapData=bitmap.clone(),saved:Array=[],result:Array=[];
+            var oldFlag:*=api["fogTypedEnabled"],oldRelight:int=loc.relight_t;
+            for(var x:int=0;x<loc.spaceX;++x)for(var y:int=0;y<loc.spaceY;++y){var t:*=loc.space[x][y];saved.push([t,t.visi,t.t_visi]);}
+            try {
+                for(var run:int=0;run<4;++run){
+                    for each(var item:Array in saved){item[0].visi=item[1];item[0].t_visi=item[2];}
+                    bitmap.copyPixels(base,base.rect,new Point());api["fogTypedEnabled"]=run==1 || run==2;
+                    var start:int=getTimer();
+                    for(var n:int=0;n<120;++n)loc.lighting(w.gg.X+(n%30)*8,w.gg.Y,600,2000);
+                    result.push({typed:api["fogTypedEnabled"],calls:120,ms:getTimer()-start});
+                }
+            } finally {
+                for each(item in saved){item[0].visi=item[1];item[0].t_visi=item[2];}
+                bitmap.copyPixels(base,base.rect,new Point());base.dispose();api["fogTypedEnabled"]=oldFlag;loc.relight_t=oldRelight;
+            }
+            return result;
+        }
         public static function run(w:*,check:Function):Object {
             if(NativeApplication.nativeApplication.applicationID.indexOf("pfe-modsettings-continuous-motion-")!=0)
                 throw new Error("Fog comparison requires owned motion test ID");
