@@ -1,7 +1,7 @@
 """Prepare uncompiled SATS/impact candidates from the verified BEFC renderer.
 
 This command only writes generated source and its provenance. It cannot launch
-AIR/Java, compile, test or deploy. The current user request pauses all testing.
+AIR/Java, compile, test or deploy. Later build/test commands remain separate.
 Do not feed the old whole-game prepare/upgrade recipe into a later deployment.
 """
 from pathlib import Path
@@ -85,7 +85,7 @@ def main():
     if args.mode in ('sats', 'combined'):
         source = sats(source)
         changed += ['sceneSats', 'sceneTick', 'sceneClear', 'onSats']
-        added += ['sceneSatsViewKey', 'sceneClearSats', 'sceneCaptureSatsView', 'sceneCaptureSatsBatch']
+        added += ['sceneSatsVersion', 'sceneSatsViewKey', 'sceneClearSats', 'sceneCaptureSatsView', 'sceneCaptureSatsBatch']
     if args.mode in ('impacts', 'combined'):
         source = impacts(source)
         changed += ['sceneApply']
@@ -96,8 +96,7 @@ def main():
     manifest = {'status': 'source-only-uncompiled-untested', 'mode': args.mode,
         'baseHostSHA256': HOST, 'baseGrafonSourceSHA256': SOURCE_SHA,
         'candidateSourceSHA256': sha(dest), 'changedMethods': changed, 'addedMembers': added,
-        'compiled': False, 'tested': False, 'deployed': False,
-        'userConstraint': '2026-10-21: 先不做测试'}
+        'compiled': False, 'tested': False, 'deployed': False}
     (out / 'provenance.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2), 'utf-8')
     print(json.dumps({'source': str(dest), **manifest}, ensure_ascii=False))
 

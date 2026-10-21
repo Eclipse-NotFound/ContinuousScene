@@ -1,5 +1,6 @@
       // Candidate only. Installed by prepare-sats-viewport.py into a separate
       // source tree; the production renderer does not include this file yet.
+      public const sceneSatsVersion:String = "sats-viewport-1";
       private var sceneSatsViewKey:String = "";
 
       private function sceneClearSats() : void
@@ -76,9 +77,9 @@
             // Native onSats(true) hides this live layer AFTER the opening
             // snapshot. Restore it temporarily for later camera exposures.
             if(shown) actors.visible = true;
-            // One display-tree draw per batch, then copy the individual cells.
-            // Bound temporary bitmaps to 1920px per axis at both chunk sizes.
-            var batch:int = Math.max(1,int(1920/this.sceneSide));
+            // Keep the original raster origin and canvas size for exact native
+            // alpha/gradient rounding. Larger captures changed edge pixels.
+            var batch:int = 1;
             for(x = minX; x <= maxX; x += batch)
                for(y = minY; y <= maxY; y += batch)
                   this.sceneCaptureSatsBatch(x,y,Math.min(maxX,x+batch-1),Math.min(maxY,y+batch-1));
@@ -135,10 +136,9 @@
             data.draw(this.visual,new Matrix(1,0,0,1,-area.x,-area.y));
             for each(entry in pending)
             {
-               cell = new BitmapData(this.sceneSide,this.sceneSide,true,0);
-               bounds = new Rectangle(entry.cx*this.sceneSide-area.x,entry.cy*this.sceneSide-area.y,
-                  this.sceneSide,this.sceneSide);
-               cell.copyPixels(data,bounds,new Point(0,0));
+               // Batches deliberately contain exactly one native cell. Pass
+               // through that raster directly, without allocating/copying it.
+               cell = data; data = null;
                var bitmap:Bitmap = new Bitmap(cell,"auto",true);
                bitmap.x = entry.cx*this.sceneSide; bitmap.y = entry.cy*this.sceneSide;
                this.visSats.addChild(bitmap);

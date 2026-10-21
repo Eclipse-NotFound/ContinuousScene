@@ -18,6 +18,8 @@ package {
     import tests.SceneThreatChecks;
     import tests.ScenePresentationChecks;
     import tests.SceneActivityCensus;
+    import tests.SceneSatsChecks;
+    import tests.SceneDecalChecks;
 
     /** Isolated movement attribution. Screenshot runs never supply timings. */
     public class ContinuousSceneMotionProbe {
@@ -243,6 +245,7 @@ package {
                         w.gg.setLocPos(x0+(warmForward?warmAge:600-warmAge)*path/300,y0);
                         w.gg.dx=warmForward?path/300:-path/300;w.gg.dy=0;return;
                     }
+                    if(cfg.satsCheck){report.sats=SceneSatsChecks.run(w,check);report.sats.od=w.sats.od;w.ctr.keySats=true;phase=90;return;}
                     if(cfg.fogCheck){report.fog=SceneFogChecks.run(w,check);finish();return;}
                     if(cfg.fogPerf){report.fogTiming=SceneFogChecks.benchmark(w);finish();return;}
                     if(cfg.renderPerf){report.renderTiming=SceneRasterTiming.run(w,fogPresentation);finish();return;}
@@ -264,6 +267,23 @@ package {
                         check("visible-surface-ready",w.grafon.sceneViewReady());finish();return;
                     }
                     report.lastWarm=w.grafon.sceneWarmCount;report.lastDraw=w.grafon.sceneDrawMs;startCase();
+                }else if(phase==90) {
+                    check("sats-v-opens-native-ui",w.sats.active && w.sats.vis.visible && w.grafon.visSats.visible && w.allStat==2);
+                    check("sats-opening-does-not-charge-ap",w.sats.od==report.sats.od);
+                    w.ctr.keySats=true;phase=91;return;
+                }else if(phase==91) {
+                    check("sats-v-closes-and-resumes",!w.sats.active && !w.grafon.visSats.visible && w.grafon.visObjs[2].visible && w.allStat==1);
+                    check("sats-close-does-not-charge-ap",w.sats.od==report.sats.od);
+                    // Terminal-only: these isolated artwork fixtures must not
+                    // be auto-saved or replayed into a subsequent location.
+                    w.swfStage.removeEventListener(Event.DEACTIVATE,w.onDeactivate);
+                    var decalCamera:Object={vx:w.cam.vx,vy:w.cam.vy,s:w.cam.scaleV,x:w.cam.screenX,y:w.cam.screenY};
+                    w.cam.vx=-1920;w.cam.vy=0;w.cam.scaleV=1;w.cam.screenX=3200;w.cam.screenY=2400;
+                    w.grafon.sceneTick();
+                    w.cam.vx=decalCamera.vx;w.cam.vy=decalCamera.vy;w.cam.scaleV=decalCamera.s;w.cam.screenX=decalCamera.x;w.cam.screenY=decalCamera.y;
+                    for each(var decalResult:Object in SceneDecalChecks.run(w))
+                        check(decalResult.name,decalResult.ok,decalResult.detail);
+                    finish();return;
                 }else if(phase==4) {
                     if(w.allStat!=1 || w.onPause || w.t_exit!=0)
                         throw new Error("Timing invalid: native simulation paused/menu/travel state "+w.allStat);
