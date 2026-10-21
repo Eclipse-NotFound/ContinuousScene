@@ -1,5 +1,5 @@
 {
-  "status": "verified",
+  "status": "rolled-back-by-user",
   "time": "2026-10-21T17:54:27.575412+08:00",
   "version": "impact-art-1",
   "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\impact-20261021-175427",
@@ -577,5 +577,6 @@
   "smoke": {
     "name": "combat-20261021-installed",
     "checks": 136
-  }
+  },
+  "recoveryReceipt": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\state\\afternoon-recovery-20261021.json"
 }

@@ -1,8 +1,8 @@
 # ContinuousScene：连续大场景与单一地图编辑 0.9.0
 
-2026-10-21 17:56 已安装原生弹痕素材复用：同次命中的相邻图块复用已审核的原版素材，保持绘图起点、像素与玩法。403项发布前、136项安装后检查通过。100次弹痕组件平均476→423.5毫秒，约省11%；**尚未证实整场战斗帧率稳定改善，仍未达到近原版**。正常重启生效，见[本轮记录](knowledge/experiments/combat-impacts-20261021.md)与[回执](state/impact-deployment-20261021.json)。只更新宿主为5432，CS0.9.0、编辑器和其他模组保持。
+2026-10-21 22:22：用户反馈下午修改后性能下降，已恢复到该轮修改前的 **BEFC** 宿主，安装后51项进图、刷新、存读档及普通房间检查通过。下午的SATS视野截图、矩形复用和弹痕素材复用均已撤下；CS0.9.0和编辑器保留，存档与设置未改。正常重启生效。回执见 [本轮回退](state/afternoon-recovery-20261021.json)，性能调查见 [记录](knowledge/experiments/afternoon-recovery-20261021.md)。
 
-2026-10-21 已安装 SATS 截图优化：只捕捉当前视野，保留原画面像素、镜头补齐与冻结效果，减少弹痕临时对象。发布前199项、安装后60项通过；同场景截图约0.9秒降至0.32秒。见[测试记录](knowledge/experiments/sats-viewport-20261021.md)与[部署回执](state/sats-deployment-20261021.json)。本轮5432保留此项优化。
+下午两次发布的 [SATS记录](knowledge/experiments/sats-viewport-20261021.md) 和 [弹痕记录](knowledge/experiments/combat-impacts-20261021.md) 保留为历史。组件耗时降低并未证明整场战斗改善，当前正式版不再包含这些候选，不使用旧发布脚本重新安装。
 
 0.9.0 增加可编辑的单一大地图：完整地形、物体与碰撞属于同一场景，原版房间仅作为样例素材。附带192×50格工厂／研发部试验图。正式安装状态及备份见 [0.9.0回执](state/deployment-v090.json)，验证范围见 [验收记录](knowledge/experiments/single-map-authoring-20261020.md)。
 

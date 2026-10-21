@@ -1,5 +1,5 @@
 {
-  "status": "verified",
+  "status": "rolled-back-by-user",
   "time": "2026-10-21T15:40:54.840245+08:00",
   "version": "sats-viewport-1",
   "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\sats-20261021-154054",
@@ -557,5 +557,6 @@
   "smoke": {
     "name": "sats-20261021-installed",
     "checks": 60
-  }
+  },
+  "recoveryReceipt": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\state\\afternoon-recovery-20261021.json"
 }
