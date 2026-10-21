@@ -8,7 +8,15 @@
 
 延迟援兵 enemySpawn 另受 t_alarm、kolEnSpawn 和 enspawn 限制，不等于瞬移或无限生怪。TDFC 正式冻结源不接管 alicorn 战术。建议后续按局部警报、目标来源/防接力和独立瞬移范围兼容，保留心灵通信、连续追击，不恢复旧房硬边界；未实施。报告 knowledge/experiments/alicorn-alert-static-20261021.md。正式 BEFC/CS7F1F/TDFC7ACD 指纹仍匹配；仅提交本轮记录，既有 src/tests/SceneRenderChecks.as WIP 不接管。
 
-> **15:30用户选择先保留修复、稍后再测，后续AIR实测暂缓。** 正式BEFC/7ACD已verified，其余CS0.9.0与RC574D保留。RC兼容授权已有，负责人尚未交付候选；不可写成已修复RC。接续与无效人口对照见journal最新项。 已向RC负责人提供BEFC内Grafon准确来源和公开接口边界；未恢复测试或变更安装。
+## 性能会话停点：跳跃/交战/SATS（2026-10-21，源码候选）
+
+本会话用户再次明确“先不做测试”。仅静态排查/候选文本生成，无编译、测试或部署。正式BEFC/7ACD、CS0.9.0/7F1F、RC574D指纹复核未变；RC最小离线兼容尚未交付，不能写成已修复。测试恢复须用户后续指令，天角兽会话记录保留。
+
+V卡顿有明确多余路径：旧sceneSats对所有驻留块逐块截图；候选改为视野内分批截图、镜头新露出范围补齐、关闭释放，补截图临时恢复onSats隐藏的角色层。另复用sceneApply的Rectangle减少弹痕分配，不声称战斗已解决。
+
+候选为src/patches/SceneSatsViewport.as.inc与build/prepare-sats-viewport.py；后者只能生成文本，分sats/impacts/combined。combined源码FF9A7015…00E4067，未编译/未测/未装；不能跑旧整包配方。静态依据与未验边界见knowledge/discoveries/static-performance-20261021.md。
+
+仍待归因：永久engaged保活、TDFC按曾见过而非记忆年龄唤醒、原生弹体子步遍历全单位、弹痕取消未完成预绘后缺块同步补绘。未改AI追击或移动预算。SATS新区域动画相位、像素/效果兼容及性能均未验；当前无近原版达标证据。
 
 ## 进行中：敌人交战与高速移动性能（2026-10-20，01a13816会话）
 

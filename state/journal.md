@@ -1,5 +1,12 @@
 # 开发日志
 
+## 2026-10-21 — 暂停实测期间排查跳跃、交战和SATS，保留源码候选
+
+- 用户反馈跳跃/高速移动轻微卡顿、交战明显卡顿、V开启SATS延迟，明确“先不做测试”。无AIR/JVM、无编译、无测试、无部署；正式BEFC/7F1F/7ACD/574D指纹未变，没有查询/关闭用户进程或要求退出游戏。
+- 准确Grafon来源确认sceneSats对全体驻留块各次截图。独立候选SceneSatsViewport.as.inc实现视野分批捕捉、镜头补齐、摘下离屏快照、关闭释放，临时恢复原生隐藏角色层并finally还原。sceneApply另复用Rectangle。prepare-sats-viewport.py只生成文本，combined源码FF9A7015…00E4067；未接旧整包或安装点。
+- 静态发现永久engaged、正式TDFC按lastSeen>=0唤醒、原版子弹子步全单位扫描、弹痕取消相交的未完成预绘。未验证各自占比，未改变追击/碰撞或移动预算。
+- 归档knowledge/discoveries/static-performance-20261021.md（verified:false）。候选编译/像素/新曝光动画相位/效果兼容/整体性能待验，继续暂停测试。保留并合并期间另一会话已提交的天角兽记录；SceneRenderChecks.as无实质diff的标记未纳入本轮提交。
+
 ## 2026-10-21 — 天角兽整图警报与远距瞬移静态诊断
 
 - 用户报告一只发现玩家后多只瞬移围攻，明确先不做测试。本轮只读原版 1.02 源码、CS 源、TDFC 已部署冻结源及既有审计，未测试/构建/部署/修改玩法。
