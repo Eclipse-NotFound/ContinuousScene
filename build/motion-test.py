@@ -113,6 +113,8 @@ def run_owned(args,record):
     cfg['threatCheck']=getattr(args,'threat_check',False)
     cfg['presentationCheck']=getattr(args,'presentation_check',False)
     cfg['satsCheck']=getattr(args,'sats_check',False)
+    cfg['impactCheck']=getattr(args,'impact_check',False)
+    cfg['impactABBA']=getattr(args,'impact_abba',False)
     cfg['fogABBA']=args.fog_abba
     cfg['fogTypedABBA']=getattr(args,'fog_typed_abba',False)
     cfg['land']=args.land
@@ -142,6 +144,7 @@ def run_owned(args,record):
     policy={'appId':app,'desktopPolicy':'private','performanceEligible':not (args.visual or args.lighting_check or args.profile or args.raster_check or args.wall_check or args.fog_check or getattr(args,'fog_perf',False) or getattr(args,'render_perf',False) or getattr(args,'threat_check',False) or getattr(args,'presentation_check',False) or args.suite),'otherAirProcessIds':[]}
     policy['memoryBefore']=memory;policy['minimumAvailableCommit']=memory['availableCommit']
     if getattr(args,'sats_check',False):policy['performanceEligible']=False
+    if getattr(args,'impact_check',False):policy['performanceEligible']=False
     process=None
     try:
         with open(out/'stdout.log','wb') as stdout,open(out/'stderr.log','wb') as stderr:
@@ -210,6 +213,8 @@ def parse_args(argv=None):
     p.add_argument('--threat-check',action='store_true')
     p.add_argument('--presentation-check',action='store_true')
     p.add_argument('--sats-check',action='store_true')
+    p.add_argument('--impact-check',action='store_true')
+    p.add_argument('--impact-abba',action='store_true')
     p.add_argument('--land',choices=['random_mane','random_plant'],default='random_mane')
     p.add_argument('--encounter',action='store_true')
     p.add_argument('--fixed-enemies',action='store_true')

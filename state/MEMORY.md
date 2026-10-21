@@ -12,6 +12,16 @@
 
 延迟援兵 enemySpawn 另受 t_alarm、kolEnSpawn 和 enspawn 限制，不等于瞬移或无限生怪。TDFC 正式冻结源不接管 alicorn 战术。建议后续按局部警报、目标来源/防接力和独立瞬移范围兼容，保留心灵通信、连续追击，不恢复旧房硬边界；未实施。报告 knowledge/experiments/alicorn-alert-static-20261021.md。正式 BEFC/CS7F1F/TDFC7ACD 指纹仍匹配；仅提交本轮记录，既有 src/tests/SceneRenderChecks.as WIP 不接管。
 
+## 性能会话：战斗弹痕（2026-10-21 17:56，已安装并复验）
+
+用户要求继续解决战斗卡顿，测试/部署授权有效；另一会话天角兽机制仍不实施。正式现5432，CS7F1F/TDFC7ACD/RC574D保持；RV为其负责人更新的F2B8、LAD0.7.0/8ADB。RC负责人随后明确允许其最后一组旧版复测结束后更新宿主；17:54:26共享登记释放后执行安装，已通知其新基线，未覆盖其源或release。
+
+两轮诊断把主要弹体开销定位到命中墙面后的decal实际draw；不是已证明全图碰撞扫描主导。clipRect、复用临时画布无稳定收益；移动光栅起点出现像素差异拒绝。5432候选只在一次sceneApply中复用18种已审原版素材，未知类fallback，不跨帧/replay，不改AI/碰撞/画面起点。原版素材构造/静态Shape审计通过，4672其他方法、1015类布局和常量池保持。
+
+马哈顿128项、工厂完整效果136项、交战16项、生命周期51项、SATS60项、普通房12项，共403项发布前通过；从正式文件另起隔离工厂全效果136项通过。receipt state/impact-deployment-20261021.json verified；备份build/backups/impact-20261021-175427/pfe.swf为7D42。只更新root pfe，正常重启生效，回滚只接受5432或7D42，不覆盖后续宿主。构建impact-native-build.py、测试impact-run.py、部署impact-release.py；冻结Grafon在generated/impact-native-20261021/source。
+
+工厂100次decal八轮交错原均476ms、新423.5ms，属约11%组件收益；真实交战1200帧中位52/60/57.5/69ms、开火696次，交战进程不同且整体仍卡，不能称近原版。详情knowledge/experiments/combat-impacts-20261021.md；6种原生多帧类未逐帧真实分支像素配对，只有静态审核/运行回归，包装类走fallback。透明erase片段仅实验、未编译，不跟随发布。剩余战斗与显示开销继续归因，保留其他会话SceneRenderChecks.as的无实质diff标记。
+
 ## 性能会话：跳跃/交战/SATS（2026-10-21 15:40，已安装并复验）
 
 本会话用户已明确“请进行测试和部署”，取代性能任务的暂停实测要求；天角兽独立讨论约束保留。正式宿主现为7D42，CS0.9.0/7F1F、TDFC7ACD、RC574D未改；RC运动候选尚未通过性能门禁，不能写成已修复。测试期间RV由其负责人更新为8D4A，最终组合证据已对齐当前全部发布依赖。

@@ -20,6 +20,7 @@ package {
     import tests.SceneActivityCensus;
     import tests.SceneSatsChecks;
     import tests.SceneDecalChecks;
+    import tests.SceneImpactChecks;
 
     /** Isolated movement attribution. Screenshot runs never supply timings. */
     public class ContinuousSceneMotionProbe {
@@ -52,6 +53,7 @@ package {
             if(cfg.fogABBA)cases=["fog-original-a","fog-bounded-b","fog-bounded-b-repeat","fog-original-a-repeat"];
             if(cfg.fogTypedABBA)cases=["fog-deployed-a","fog-typed-b","fog-typed-b-repeat","fog-deployed-a-repeat"];
             if(cfg.drawControl)cases=["draw-baseline-a","draw-control-b","draw-control-b-repeat","draw-baseline-a-repeat"];
+            if(cfg.impactABBA)cases=["impact-original-a","impact-candidate-b","impact-candidate-b-repeat","impact-original-a-repeat"];
             main.stage.addEventListener(Event.ENTER_FRAME,function(e:Event):void {absoluteStart=getTimer();rasterPresentation.beginFrame();},false,2147483647);
             main.stage.addEventListener(Event.ENTER_FRAME,function(e:Event):void {lastEnd=getTimer();},false,-2147483647);
             main.stage.addEventListener(Event.RENDER,function(e:Event):void {renderAt=getTimer();},false,2147483647);
@@ -187,6 +189,11 @@ package {
             setting("wallblend","enabled",!cfg.noWall && index!=6);
             row={name:cases[index],frames:[],nativeBand:[],wallBand:[],sceneBand:[],preBand:[],tailBand:[],afterProbeBand:[],totalScript:[],warm:[],draw:[],empty:0,missStart:w.grafon.sceneMisses,residentStart:w.grafon.sceneResident,camera:[],activity:[]};
             row.renderBand=[];row.exitBand=[];row.renderEvents=[];row.exitEvents=[];
+            if(cfg.impactABBA) {
+                if(!("sceneImpactArtEnabled" in w.grafon))throw new Error("Impact ABBA needs native impact host");
+                w.grafon.sceneImpactArtEnabled=index==1 || index==2;
+                row.impactEnabled=w.grafon.sceneImpactArtEnabled;
+            }
             renderMs=exitMs=renderCalls=exitCalls=0;
             age=0;last=getTimer();phase=4;
             if("sceneMotionProfile" in w.grafon)w.grafon.sceneMotionProfile={};
@@ -244,6 +251,18 @@ package {
                         var warmForward:Boolean=warmAge<300;
                         w.gg.setLocPos(x0+(warmForward?warmAge:600-warmAge)*path/300,y0);
                         w.gg.dx=warmForward?path/300:-path/300;w.gg.dy=0;return;
+                    }
+                    if(cfg.impactCheck){
+                        w.swfStage.removeEventListener(Event.DEACTIVATE,w.onDeactivate);
+                        var impactCamera:Object={vx:w.cam.vx,vy:w.cam.vy,s:w.cam.scaleV,x:w.cam.screenX,y:w.cam.screenY};
+                        w.cam.vx=0;w.cam.vy=0;w.cam.scaleV=1;w.cam.screenX=1280;w.cam.screenY=960;
+                        w.grafon.sceneTick();
+                        w.cam.vx=-1920;w.cam.vy=0;w.cam.scaleV=1;w.cam.screenX=3200;w.cam.screenY=2400;
+                        w.grafon.sceneTick();
+                        w.cam.vx=impactCamera.vx;w.cam.vy=impactCamera.vy;w.cam.scaleV=impactCamera.s;w.cam.screenX=impactCamera.x;w.cam.screenY=impactCamera.y;
+                        report.impact=SceneImpactChecks.run(w,check);
+                        for each(var impactResult:Object in SceneDecalChecks.run(w))check(impactResult.name,impactResult.ok,impactResult.detail);
+                        finish();return;
                     }
                     if(cfg.satsCheck){report.sats=SceneSatsChecks.run(w,check);report.sats.od=w.sats.od;w.ctr.keySats=true;phase=90;return;}
                     if(cfg.fogCheck){report.fog=SceneFogChecks.run(w,check);finish();return;}
@@ -337,7 +356,7 @@ package {
                     var distance:Number=travel%(path*2);if(distance>path)distance=path*2-distance;
                     var idle:Boolean=index==3 && !cfg.culling && !cfg.fogABBA && !cfg.fogTypedABBA;
                     if(cfg.encounter){idle=index==0 || index==3;forward=index==1;}
-                    if(cfg.drawControl){idle=false;forward=true;}
+                    if(cfg.drawControl || cfg.impactABBA){idle=false;forward=true;}
                     var x:Number=idle?x0+path:x0+(forward?distance:path-distance);
                     if(cfg.encounter && idle)x=x0;
                     var goingForward:Boolean=forward;if(int(travel/path)%2==1)goingForward=!goingForward;
