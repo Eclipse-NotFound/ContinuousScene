@@ -17,6 +17,11 @@ package {
     import tests.SceneRasterTiming;
     import tests.SceneThreatChecks;
     import tests.ScenePresentationChecks;
+    import tests.SceneNativeCropChecks;
+    import tests.SceneStoppedThreatChecks;
+    import tests.SceneBlitReuse;
+    import tests.SceneSleepingTimelineChecks;
+    import tests.SceneImplicitFreezeProbe;
     import tests.SceneActivityCensus;
     import tests.SceneSatsChecks;
     import tests.SceneDecalChecks;
@@ -35,6 +40,10 @@ package {
         private static var fogPresentation:SceneFogPresentation=new SceneFogPresentation();
         private static var rasterPresentation:SceneRasterPresentation=new SceneRasterPresentation();
         private static var encounter:SceneEncounter;
+        private static var blitReuse:SceneBlitReuse=new SceneBlitReuse();
+        private static var sleepingTimelines:SceneSleepingTimelineChecks=new SceneSleepingTimelineChecks();
+        private static var implicitFreeze:SceneImplicitFreezeProbe=new SceneImplicitFreezeProbe();
+        private static var mouseTreeOriginal:Object=null;
         private static var cases:Array=["cold-forward","warm-back","warm-forward","idle","no-lad-back","full-forward","no-wall-back","full-forward-restored"];
         public static function init(host:*):void {
             main=host;started=getTimer();var f:FileStream=new FileStream();
@@ -53,6 +62,7 @@ package {
             if(cfg.fogABBA)cases=["fog-original-a","fog-bounded-b","fog-bounded-b-repeat","fog-original-a-repeat"];
             if(cfg.fogTypedABBA)cases=["fog-deployed-a","fog-typed-b","fog-typed-b-repeat","fog-deployed-a-repeat"];
             if(cfg.drawControl)cases=["draw-baseline-a","draw-control-b","draw-control-b-repeat","draw-baseline-a-repeat"];
+            if(cfg.drawControl=="objectgroups")cases=["all-object-layers-a","hide-box-layers","hide-unit-layer","all-object-layers-a-repeat"];
             if(cfg.impactABBA)cases=["impact-original-a","impact-candidate-b","impact-candidate-b-repeat","impact-original-a-repeat"];
             main.stage.addEventListener(Event.ENTER_FRAME,function(e:Event):void {absoluteStart=getTimer();rasterPresentation.beginFrame();},false,2147483647);
             main.stage.addEventListener(Event.ENTER_FRAME,function(e:Event):void {lastEnd=getTimer();},false,-2147483647);
@@ -70,7 +80,13 @@ package {
         private static function save(name:String,value:*):void {var f:FileStream=new FileStream();f.open(File.applicationStorageDirectory.resolvePath(name),FileMode.WRITE);f.writeUTFBytes(JSON.stringify(value,null,2));f.close();}
         private static function check(name:String,ok:Boolean,detail:*=null):void {report.assertions.push({name:name,ok:ok,detail:detail});}
         private static function finish(error:String=null):void {
-            if(done)return;done=true;report.error=error;report.elapsedMs=getTimer()-started;report.ok=error==null;
+            if(done)return;done=true;
+            if(mouseTreeOriginal && w && w.visual===mouseTreeOriginal.root) {
+                w.visual.mouseChildren=mouseTreeOriginal.children;w.visual.mouseEnabled=mouseTreeOriginal.enabled;
+            }
+            try {implicitFreeze.clear();}
+            catch(cleanup:*) {error=(error?error+"\n":"")+"Implicit probe cleanup: "+String(cleanup);}
+            report.error=error;report.elapsedMs=getTimer()-started;report.ok=error==null;
             for each(var a:Object in report.assertions)if(!a.ok)report.ok=false;
             save("result.json",report);NativeApplication.nativeApplication.exit(report.ok?0:1);
         }
@@ -181,6 +197,27 @@ package {
             } finally {for each(layers in first)for each(var data:BitmapData in layers)data.dispose();g.sceneMaskBitmaps=true;}
         }
         private static function startCase():void {
+            if(cfg.drawControl=="mousetree") {
+                if(mouseTreeOriginal==null)mouseTreeOriginal={root:w.visual,children:w.visual.mouseChildren,enabled:w.visual.mouseEnabled};
+                if(w.visual!==mouseTreeOriginal.root)throw new Error("Mouse attribution root changed");
+                w.visual.mouseChildren=index==1 || index==2 ? false : mouseTreeOriginal.children;
+                w.visual.mouseEnabled=index==1 || index==2 ? false : mouseTreeOriginal.enabled;
+            }
+            if(cfg.drawControl=="unitblit") {
+                blitReuse.reset(index==1 || index==2,Boolean(cfg.blitVerify));
+                main.getChildByName("ContinuousSceneCarrier")["nativeAPI"].unitBlitGate=blitReuse.gate;
+            }
+            if(cfg.bulletSegments)main.getChildByName("ContinuousSceneCarrier")["nativeAPI"].bulletSegments={};
+            if(cfg.drawControl=="stationary") {
+                var activityAPI:*=main.getChildByName("ContinuousSceneCarrier")["nativeAPI"];
+                if(activityAPI.activityStats().version!="stationary-threats-1")throw new Error("Stationary threat candidate required");
+                activityAPI.stationaryThreatsEnabled=index==1 || index==2;
+            }
+            if(cfg.drawControl=="nativecrop") {
+                if(!("sceneCropPresentation" in w.grafon))throw new Error("Native crop host required");
+                w.grafon.sceneCropPresentation=index==1 || index==2;
+                w.grafon.sceneTick();
+            }
             var timing:*=main.getChildByName("ContinuousSceneTdfcProfile");
             if(timing)timing.api.reset();
             if(cfg.fogABBA)main.getChildByName("ContinuousSceneCarrier")["nativeAPI"]["fogBoundsEnabled"]=index==1 || index==2;
@@ -189,6 +226,8 @@ package {
             setting("wallblend","enabled",!cfg.noWall && index!=6);
             row={name:cases[index],frames:[],nativeBand:[],wallBand:[],sceneBand:[],preBand:[],tailBand:[],afterProbeBand:[],totalScript:[],warm:[],draw:[],empty:0,missStart:w.grafon.sceneMisses,residentStart:w.grafon.sceneResident,camera:[],activity:[]};
             row.renderBand=[];row.exitBand=[];row.renderEvents=[];row.exitEvents=[];
+            if(cfg.drawControl=="implicitpause")row.implicitHeld=[];
+            if(cfg.drawControl=="mousetree")row.mouseTree={children:w.visual.mouseChildren,enabled:w.visual.mouseEnabled,stageX:main.stage.mouseX,stageY:main.stage.mouseY};
             if(cfg.impactABBA) {
                 if(!("sceneImpactArtEnabled" in w.grafon))throw new Error("Impact ABBA needs native impact host");
                 w.grafon.sceneImpactArtEnabled=index==1 || index==2;
@@ -245,6 +284,9 @@ package {
                     age=0;phase=3;
                 }else if(phase==3) {
                     w.ctr.clearAll();if(++age<20)return;
+                    if(cfg.drawControl=="sleepclips" || cfg.drawControl=="implicitpause") {
+                        sleepingTimelines.begin(w);phase=92;return;
+                    }
                     // Prepare the same route before an in-process ABBA timing.
                     if((cfg.fogABBA || cfg.fogTypedABBA) && age<620) {
                         var warmAge:int=age-20;
@@ -270,8 +312,17 @@ package {
                     if(cfg.renderPerf){report.renderTiming=SceneRasterTiming.run(w,fogPresentation);finish();return;}
                     if(cfg.threatCheck){report.threat=SceneThreatChecks.run(w,check);finish();return;}
                     if(cfg.presentationCheck){
-                        var presenter:*=cfg.drawControl=="atlas"?rasterPresentation:cfg.drawControl=="fogpixels"?fogPresentation:tilePresentation;
-                        report.presentation=ScenePresentationChecks.run(w,presenter,check,cfg.drawControl!="atlas" && cfg.drawControl!="fogpixels");finish();return;
+                        if(cfg.drawControl=="stationary") {
+                            w.swfStage.removeEventListener(Event.DEACTIVATE,w.onDeactivate);
+                            main.getChildByName("ContinuousSceneCarrier")["nativeAPI"].stationaryThreatsEnabled=true;
+                            report.stationaryThreats=SceneStoppedThreatChecks.run(main,w,check);finish();return;
+                        }
+                        if(cfg.drawControl=="nativecrop") {
+                            report.presentation=SceneNativeCropChecks.run(w,check);
+                            report.sats={od:report.presentation.od};w.ctr.keySats=true;phase=90;return;
+                        }
+                        var presenter:*=cfg.drawControl=="objectviewport"?objectCulling:cfg.drawControl=="atlas"?rasterPresentation:cfg.drawControl=="fogpixels"?fogPresentation:tilePresentation;
+                        report.presentation=ScenePresentationChecks.run(w,presenter,check,cfg.drawControl!="atlas" && cfg.drawControl!="fogpixels" && cfg.drawControl!="objectviewport");finish();return;
                     }
                     if(cfg.wallCheck){main.dispatchEvent(new DataEvent("continuousSceneWallMotion",false,false,"verify"));}
                     if(cfg.lightingCheck) {lightingChecks();finish();return;}
@@ -286,6 +337,22 @@ package {
                         check("visible-surface-ready",w.grafon.sceneViewReady());finish();return;
                     }
                     report.lastWarm=w.grafon.sceneWarmCount;report.lastDraw=w.grafon.sceneDrawMs;startCase();
+                }else if(phase==92) {
+                    w.ctr.clearAll();
+                    check("timeline-simulation-active-"+age,w.loc===loc && w.allStat==1 && !w.onPause && w.t_exit==0);
+                    ++age;
+                    if(sleepingTimelines.sample(w)) {
+                        report.sleepingTimelines=sleepingTimelines.report();
+                        check("timeline-completed-eight-frames",report.sleepingTimelines.complete);
+                        check("timeline-has-stable-sleeping-units",report.sleepingTimelines.stableSleepingOwners>0);
+                        if(cfg.drawControl=="implicitpause") {
+                            var implicitCandidates:Array=sleepingTimelines.observedCandidates();
+                            check("timeline-found-implicit-candidates",implicitCandidates.length>0,implicitCandidates.length);
+                            implicitFreeze.seed(implicitCandidates);
+                            report.lastWarm=w.grafon.sceneWarmCount;report.lastDraw=w.grafon.sceneDrawMs;startCase();return;
+                        }
+                        finish();return;
+                    }
                 }else if(phase==90) {
                     check("sats-v-opens-native-ui",w.sats.active && w.sats.vis.visible && w.grafon.visSats.visible && w.allStat==2);
                     check("sats-opening-does-not-charge-ap",w.sats.od==report.sats.od);
@@ -332,9 +399,17 @@ package {
                         if(cfg.drawControl=="tilecrop")tilePresentation.update(w,altered);
                         if(cfg.drawControl=="fogpixels")fogPresentation.update(w,altered);
                         if(cfg.drawControl=="atlas")rasterPresentation.update(w,altered);
+                        if(cfg.drawControl=="objectviewport")objectCulling.update(w,altered);
+                        if(cfg.drawControl=="implicitpause") {
+                            implicitFreeze.update(w,altered);row.implicitHeld.push(implicitFreeze.snapshot().held);
+                        }
                         if(cfg.drawControl=="world")w.visual.visible=!altered;
                         if(cfg.drawControl=="fog")w.grafon.visLight.visible=!altered && loc.black && w.black;
                         if(cfg.drawControl=="objects")for each(var objectLayer:* in w.grafon.visObjs)objectLayer.visible=!altered;
+                        if(cfg.drawControl=="effects")for(var effectLayer:int=0;effectLayer<w.grafon.visObjs.length;++effectLayer)
+                            w.grafon.visObjs[effectLayer].visible=!(altered && effectLayer>=3);
+                        if(cfg.drawControl=="objectgroups")for(var groupIndex:int=0;groupIndex<w.grafon.visObjs.length;++groupIndex)
+                            w.grafon.visObjs[groupIndex].visible=!(index==1 && groupIndex<2) && !(index==2 && groupIndex==2);
                     }
                     var now:int=getTimer();row.frames.push(now-last);last=now;
                     row.renderBand.push(renderMs);row.exitBand.push(exitMs);row.renderEvents.push(renderCalls);row.exitEvents.push(exitCalls);
@@ -364,12 +439,28 @@ package {
                     if(age<300)return;
                     row.misses=w.grafon.sceneMisses-row.missStart;row.residentEnd=w.grafon.sceneResident;row.warmMaxMs=w.grafon.sceneWarmMaxMs;
                     if(cfg.drawControl=="tilecrop")row.presentation={copies:tilePresentation.copies,allocated:tilePresentation.allocated};
+                    if(cfg.drawControl=="nativecrop")row.presentation={enabled:w.grafon.sceneCropPresentation,copies:w.grafon.sceneCropCopies,allocated:w.grafon.sceneCropAllocations};
                     if(cfg.drawControl=="atlas")row.presentation={copies:rasterPresentation.copies,rebuilds:rasterPresentation.rebuilds};
+                    if(cfg.drawControl=="objectviewport")row.presentation={hidden:objectCulling.hidden};
+                    if(cfg.drawControl=="implicitpause") {
+                        row.presentation=implicitFreeze.snapshot();
+                        if(index==1 || index==2)check("observed-implicit-pause-applied-"+index,row.presentation.stopped>0,row.presentation);
+                    }
+                    if(cfg.drawControl=="mousetree") {
+                        row.mouseTree.endX=main.stage.mouseX;row.mouseTree.endY=main.stage.mouseY;
+                        check("mouse-tree-policy-stable-"+index,w.visual.mouseChildren===row.mouseTree.children && w.visual.mouseEnabled===row.mouseTree.enabled,row.mouseTree);
+                    }
+                    if(cfg.drawControl=="unitblit") {
+                        row.blit=blitReuse.snapshot();
+                        check("blit-callback-active-"+index,row.blit.calls>0 && row.blit.repeats>0,row.blit);
+                        if(cfg.blitVerify)check("blit-repeat-pixels-"+index,row.blit.verified>0 && row.blit.mismatches==0,row.blit);
+                    }
                     if("sceneMotionProfile" in w.grafon)row.hostProfile=w.grafon.sceneMotionProfile;
                     if("csMotionNative" in loc)row.nativeProfile=loc.csMotionNative;
                     var timing:*=main.getChildByName("ContinuousSceneTdfcProfile");
                     if(timing)row.tdfcProfile=timing.api.snapshot();
                     if(encounter)row.encounter=encounter.snapshot();
+                    if(cfg.bulletSegments)row.bulletSegments=main.getChildByName("ContinuousSceneCarrier")["nativeAPI"].bulletSegments;
                     if(w.grafon.sceneLarge)row.activityCensus=SceneActivityCensus.read(w);
                     if("sceneWarmSlices" in w.grafon){row.slices=w.grafon.sceneWarmSlices-row.slicesStart;row.forced=w.grafon.sceneWarmForced-row.forcedStart;}
                     check("same-logical-map-"+index,w.loc===loc);check("complete-viewport-"+index,row.empty==0,row.empty);

@@ -109,6 +109,8 @@ def run_owned(args,record):
     cfg['fogCheck']=args.fog_check
     cfg['fogPerf']=getattr(args,'fog_perf',False)
     cfg['drawControl']=getattr(args,'draw_control',None)
+    cfg['bulletSegments']=getattr(args,'bullet_segments',False)
+    cfg['blitVerify']=getattr(args,'blit_verify',False)
     cfg['renderPerf']=getattr(args,'render_perf',False)
     cfg['threatCheck']=getattr(args,'threat_check',False)
     cfg['presentationCheck']=getattr(args,'presentation_check',False)
@@ -141,10 +143,20 @@ def run_owned(args,record):
     flag=RUNTIME/'motion-controls.json';inputs=hashes();store=Path(os.environ['APPDATA'])/app/'Local Store'
     lock=open(RUNTIME/'session.lock','a+b');lock.seek(0);msvcrt.locking(lock.fileno(),msvcrt.LK_NBLCK,1)
     flag.write_text(json.dumps(cfg),encoding='utf-8')
-    policy={'appId':app,'desktopPolicy':'private','performanceEligible':not (args.visual or args.lighting_check or args.profile or args.raster_check or args.wall_check or args.fog_check or getattr(args,'fog_perf',False) or getattr(args,'render_perf',False) or getattr(args,'threat_check',False) or getattr(args,'presentation_check',False) or args.suite),'otherAirProcessIds':[]}
+    policy={'appId':app,'desktopPolicy':'private','performanceEligible':not (args.visual or args.lighting_check or args.profile or args.raster_check or args.wall_check or args.fog_check or getattr(args,'fog_perf',False) or getattr(args,'render_perf',False) or getattr(args,'threat_check',False) or getattr(args,'presentation_check',False) or getattr(args,'bullet_segments',False) or args.suite),'otherAirProcessIds':[]}
     policy['memoryBefore']=memory;policy['minimumAvailableCommit']=memory['availableCommit']
     if getattr(args,'sats_check',False):policy['performanceEligible']=False
     if getattr(args,'impact_check',False):policy['performanceEligible']=False
+    if getattr(args,'blit_verify',False):policy['performanceEligible']=False
+    if getattr(args,'draw_control',None) in ('world','fog','objects','objectgroups','effects','sleepclips','implicitpause','mousetree'):
+        policy['performanceEligible']=False
+        policy['diagnosticOnly']='Rendering intentionally hidden for attribution'
+    if getattr(args,'draw_control',None)=='sleepclips':
+        policy['diagnosticOnly']='Read-only sleeping timeline census; no timing acceptance'
+    if getattr(args,'draw_control',None)=='implicitpause':
+        policy['diagnosticOnly']='Only observed implicit sleeping timelines paused for attribution; production lifecycle not implemented'
+    if getattr(args,'draw_control',None)=='mousetree':
+        policy['diagnosticOnly']='World display mouse hit testing disabled for attribution; input compatibility not accepted'
     process=None
     try:
         with open(out/'stdout.log','wb') as stdout,open(out/'stderr.log','wb') as stderr:
@@ -208,10 +220,12 @@ def parse_args(argv=None):
     p.add_argument('--fog-check',action='store_true');p.add_argument('--fog-abba',action='store_true')
     p.add_argument('--fog-typed-abba',action='store_true')
     p.add_argument('--fog-perf',action='store_true')
-    p.add_argument('--draw-control',choices=['world','fog','objects','tilecrop','fogpixels','atlas'])
+    p.add_argument('--draw-control',choices=['world','fog','objects','objectgroups','effects','sleepclips','implicitpause','mousetree','tilecrop','fogpixels','atlas','nativecrop','stationary','objectviewport','unitblit'])
     p.add_argument('--render-perf',action='store_true')
     p.add_argument('--threat-check',action='store_true')
     p.add_argument('--presentation-check',action='store_true')
+    p.add_argument('--bullet-segments',action='store_true')
+    p.add_argument('--blit-verify',action='store_true')
     p.add_argument('--sats-check',action='store_true')
     p.add_argument('--impact-check',action='store_true')
     p.add_argument('--impact-abba',action='store_true')

@@ -1,0 +1,131 @@
+{
+  "date": "2026-10-22",
+  "deployed": false,
+  "goalReached": false,
+  "completeRuns": [
+    {
+      "name": "crop-20261021-combat-r1",
+      "frames": 1200,
+      "assertions": 16,
+      "diagnosticOnly": false,
+      "timingPolicyEligible": true,
+      "optimizationAccepted": false,
+      "resultSHA256": "6E69631C0A26809628CCC7798E891ABBBF957CD172BC3DA9A5B70735FE529B04",
+      "inputsSHA256": "1211ED4661808D80010A785FF6725B5BD9D735EC6EE0ED282ABCD01FB690F661"
+    },
+    {
+      "name": "stationary-20261021-combat-r1",
+      "frames": 1200,
+      "assertions": 16,
+      "diagnosticOnly": false,
+      "timingPolicyEligible": true,
+      "optimizationAccepted": false,
+      "resultSHA256": "8CB790849DD417BF2112A8AAA8536716EC34C471CB18C7ACF8ED590085C96D29",
+      "inputsSHA256": "7D2AB4479C285EA911329A39F051D946AB1A41A5920D59FCEF79FB46E94196FA"
+    },
+    {
+      "name": "bullet-segments-20261021-scene-r2",
+      "frames": 1200,
+      "assertions": 16,
+      "diagnosticOnly": false,
+      "timingPolicyEligible": false,
+      "optimizationAccepted": false,
+      "resultSHA256": "C5E02CAAA9A545B894947EF9F5F2A78458F46AA37178D93FF312A8D10E35838B",
+      "inputsSHA256": "A15DE859551F090928EF216CA394E0771F4778070D7ED55B06990AAC168C59A0"
+    },
+    {
+      "name": "combat-display-20261022-objects-r1",
+      "frames": 1200,
+      "assertions": 16,
+      "diagnosticOnly": "Rendering intentionally hidden for attribution",
+      "timingPolicyEligible": false,
+      "optimizationAccepted": false,
+      "resultSHA256": "F4FF9E8D5FD07F4F97AFF656CC268A4101B9711BF8DC11571B9E3FB6B7A75FCD",
+      "inputsSHA256": "EF5F195E8375C696A507353E63F61DE2EA2312868B5C692041BDAD2616EE01CA"
+    },
+    {
+      "name": "combat-display-20261022-viewport-r1",
+      "frames": 1200,
+      "assertions": 16,
+      "diagnosticOnly": false,
+      "timingPolicyEligible": true,
+      "optimizationAccepted": false,
+      "resultSHA256": "97434291B3EAC03255725D3E2610A9A28FEE1119AA95B25DE7AD0C3393F7E2DD",
+      "inputsSHA256": "1AC0B0545927261B4BAB2E50C2EC46B5EBFD64FB4ACB2AD1F89C768D6231C2C8"
+    },
+    {
+      "name": "combat-display-20261022-groups-r1",
+      "frames": 1200,
+      "assertions": 16,
+      "diagnosticOnly": "Rendering intentionally hidden for attribution",
+      "timingPolicyEligible": false,
+      "optimizationAccepted": false,
+      "resultSHA256": "3F24FBD84DABEB3A1734618AB49787D8016D5C6AA1CD85D2558A10C55D297E0F",
+      "inputsSHA256": "260C92D7C07897C2C2C597292FD00B1898820896799DC54AE6F76BDECBE4CF93"
+    },
+    {
+      "name": "combat-display-20261022-effects-r1",
+      "frames": 1200,
+      "assertions": 16,
+      "diagnosticOnly": "Rendering intentionally hidden for attribution",
+      "timingPolicyEligible": false,
+      "optimizationAccepted": false,
+      "resultSHA256": "51F0E6ECE1FFEEAF1F329F3C7C6AA51E8354F2BA00949E5A376F254E13B95844",
+      "inputsSHA256": "1FDA64CF74710AA41E326BE00F18DB840762A30AAC82BCF735CD68FA999A6810"
+    },
+    {
+      "name": "unit-blit-20261022-pixels-r1",
+      "frames": 1200,
+      "assertions": 24,
+      "diagnosticOnly": false,
+      "timingPolicyEligible": false,
+      "optimizationAccepted": false,
+      "resultSHA256": "5E464EBE0AE9387433DA96E6DB8A378883BE5C077939EF6EAB40A918DA04586A",
+      "inputsSHA256": "E927221E853F943898CBD63AD725A5F690E08A091A25B30C8268244901545B18"
+    },
+    {
+      "name": "unit-blit-20261022-combat-r1",
+      "frames": 1200,
+      "assertions": 20,
+      "diagnosticOnly": false,
+      "timingPolicyEligible": true,
+      "optimizationAccepted": false,
+      "resultSHA256": "36DD227A16D273C9ED4C3AA7358E0D065B12A8ECC2D9F90AD80B34A841738746",
+      "inputsSHA256": "E927221E853F943898CBD63AD725A5F690E08A091A25B30C8268244901545B18"
+    },
+    {
+      "name": "combat-display-20261022-implicitpause-r1",
+      "frames": 1200,
+      "assertions": 29,
+      "diagnosticOnly": "Only observed implicit sleeping timelines paused for attribution; production lifecycle not implemented",
+      "timingPolicyEligible": false,
+      "optimizationAccepted": false,
+      "resultSHA256": "5F014920FFBD33FA70852FA71CB193E65020B624F09FBDB8C45C1FA307D5947D",
+      "inputsSHA256": "A58BC466BD17DF6D6C150E5F5CA1215E130EFDA321211BC7D63ED258B0F7B724"
+    },
+    {
+      "name": "combat-display-20261022-mousetree-r1",
+      "frames": 1200,
+      "assertions": 20,
+      "diagnosticOnly": "World display mouse hit testing disabled for attribution; input compatibility not accepted",
+      "timingPolicyEligible": false,
+      "optimizationAccepted": false,
+      "resultSHA256": "F9BA95C2C1C178D950526D658824C6CF431B9401B4B5492DC3BD4442C3B0745B",
+      "inputsSHA256": "4B787B75FB86BB6A6662E1E78C9980A4A34165AA0A9F1DA606CA2EA0330961F1"
+    }
+  ],
+  "frames": 13200,
+  "currentProductionSHA256": {
+    "pfe.swf": "BEFCF0509E11FAC9FEF7AFB834708B8B93752A14AE3D5CD72B42AA6D42F9B82A",
+    "mods/ContinuousScene/release/ContinuousSceneMod.swf": "7F1F2961C6E299D949423591F3C65C610C2EAEFA7FC72E8A583A402770D6B51F",
+    "mods/TDFC/release/TDFCMod.swf": "7ACD45193109267DBBF875240528048AD6F1D09FA3B8B36BAA6F98EBB5FDDCE5",
+    "mods/RConnect/release/RConnectMod.swf": "574D2B51490AE8B25A1396555600F56A301F8A20AE50104C0E35CF2796441AFE",
+    "mods/RealisticVision/release/RealisticVisionMod.swf": "7852F61E083993E69431D5D8CA2FDF3C07D4068715946D04B3E796CECBE86764",
+    "mods/LightAndDarkness/release/LightAndDarknessMod.swf": "8ADBA6914DF5AADA4DF12A646B6C22DF4B95B9630A55DD05CA7F713621C7E3EF"
+  },
+  "notes": [
+    "Functional checks passing does not mean performance accepted.",
+    "Failed pixel and aborted runs remain recorded separately in the report.",
+    "Mouse input coverage remains limited to stage coordinates 0,0."
+  ]
+}
