@@ -1,5 +1,13 @@
 # ContinuousScene
 
+> **2026-10-21：用户要求调查天角兽全图瞬移围攻，先不做测试。** 本轮仅静态读源码/历史审计/指纹，无构建、游戏运行、部署或玩法修改。发现及下一步见下；此约束不因历史测试授权自动解除。
+
+## 当前：天角兽警报与瞬移范围（2026-10-21，静态诊断完成）
+
+原版 UnitAlicorn.budilo/telepat 无距离或接收者视线过滤、遍历同 loc 全部同阵营单位；合图扩大到整图。alarma 独立提升 aiSpok，tr=2 的 actPort 以玩家附近选点，无施法距离上限，碰撞只检查落点；因此代码链与用户围攻反馈高度吻合，未作现场复现。NativeSceneActivity 采到 celUnit 会锁存 engaged，可能进一步唤醒远处单位；此放大项只适用于 native 合图，手工单图同样有原生全 loc 范围问题。
+
+延迟援兵 enemySpawn 另受 t_alarm、kolEnSpawn 和 enspawn 限制，不等于瞬移或无限生怪。TDFC 正式冻结源不接管 alicorn 战术。建议后续按局部警报、目标来源/防接力和独立瞬移范围兼容，保留心灵通信、连续追击，不恢复旧房硬边界；未实施。报告 knowledge/experiments/alicorn-alert-static-20261021.md。正式 BEFC/CS7F1F/TDFC7ACD 指纹仍匹配；仅提交本轮记录，既有 src/tests/SceneRenderChecks.as WIP 不接管。
+
 > **15:30用户选择先保留修复、稍后再测，后续AIR实测暂缓。** 正式BEFC/7ACD已verified，其余CS0.9.0与RC574D保留。RC兼容授权已有，负责人尚未交付候选；不可写成已修复RC。接续与无效人口对照见journal最新项。 已向RC负责人提供BEFC内Grafon准确来源和公开接口边界；未恢复测试或变更安装。
 
 ## 进行中：敌人交战与高速移动性能（2026-10-20，01a13816会话）
