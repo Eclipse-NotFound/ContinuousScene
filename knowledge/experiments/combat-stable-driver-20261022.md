@@ -173,3 +173,55 @@ sleeping-root r1精确Raider无合格者，检查失败、实际移出0；日志
 timing-r2完整1200帧25项，A/B各598非切换样本，合并中位67/59、均72.380/62.873、P95 105/85、>100ms37/17。但四段中位58/56/64/72、均69.12/59.28/66.46/75.64，A0含887ms长帧；脚本23.88/23.53/25.37/28.69ms。A0/B1 awake38–42、敌243/241发、玩家各100，最可比中位仅2ms改善；B2中段awake跃至约90，A3为84–101，预绘0/12/32/59、resident101→120，敌后段200/134发。移出根36→33，callback约0.27/0.32ms，最终39全部恢复0错误。合并13%不能解释为净收益，需真实输入和更短交错重复；所有performanceAcceptance/deployed仍false。
 
 补充来源限制：布局seed并不固定原生自然敌人种类/人口（r1有19活动Alicorn，另一轮0）。原版UnitAlicorn.telepat对同loc同阵营广播无距离、control有30tick触发，可能造成后段远处目标增长；这里只读正式源码调查，不构建或接管其他会话的Alicorn source-only候选。
+
+## 真实输入首轮与独立窄候选（2026-10-23 00:13）
+
+native-input-20261023-sleep-short-r1 已编译并运行，0计时段、失败保留：初始spawn一次，随后0强制定位，以左右键驱动；真实地面Y4120、stay/floorContact确实建立。原6名autor全部在玩家右侧，暖场齐射把玩家dx推到−19.71、X4358.51，越出已验证[4360,4720]走廊，探针按约定失败，没有复位/删除该失败。不是性能结果。下一轮仅调整新夹具到原平台两侧各3敌、玩家路线居中，保留原生击退、AI和原场景人口，重验地面、身体余量和视线；不通过无敌或强写速度掩盖失败。首轮冻结probe f079c09e23b442ea9129c90a82c42d65保留。
+
+两处空中/静梯条件候选B1DB8FD7…F5CA0E2（XML D3FE8F73…2D6168、审计F79A3515…CFD21）仅目标animate改变，5770其他体/1016类/原CP素材保持，6负例拒绝，无新字段/局部/计时器，未运行。复用sceneReuseIdleFrame开关会同时影响既有站立guard，内部开关结果不能单独归功新增两处；最终须正式BEFC true对候选true或精确隔离新增路径。
+
+sleeping-root r3辅助代码仅扩大7个已审非Pon精确类（Slime/Bat/Bloat/Monstrik/Ant/Turret/Vortex），null childObjs只在这些类且currentWeapon===null时允许，保留原null身份；safeTree/屏外余量/父层归属/恢复/零clips唤醒检查原样。builder A924F632…82CB5D、helper210DD1BF…09B8A5、proof7EFEFC21…0FDF26，仅静态prepare/check，未编译/运行。复用r2 CS76748C8E，live及r2helper不变。写builder曾被hook误归SWF写入；root复核原调用只写.py后按已有授权登记9分钟，原样重放写入，预期regex转义AST错误再正常修复。grant20aa7cb6…a660d0，原args/grant保存在generated/player-airframe-20261022；未改护栏。
+
+## 真实输入否定显示根收益，转向离线采集（2026-10-23 01:07）
+
+native-input-20261023-sleep-short-r4 完整1200帧、90项、20/20短窗双方实射；每场只spawn一次、计时0强制定位。r2睡眠Slaver显示根摘除在五个ABBA块均更慢：A/B均65.857/70.125ms、中位63.5/67、P95 80/95，超过100ms为12/22；排除切换前两帧仍65.60/70.11。玩家200/200射、敌304/318射；awake均42.8/43.6、显示节点仅减少约3.2%。216次变动全部恢复，无遗留。停止r2路线，不以旧长窗合并13%继续宣称收益。r2/r3失败记录为目标余量不足、完整平台边界1px错误，r4使用原生真实允许的中心4305..5295含端点。
+
+r3首轮长像素检查在候选启用前被原生战斗抛飞越平台而失败；随后将画面检查拆为首次10帧真实落地后持有10原生帧的独立检查。sleep-r3-early-pixels-r1 出现#1009，3Slaver/9根全部恢复。r4纯诊断第一次仅编译失败（旧Flex try内返回路径），修复后sleep-r4-early-diagnostic-r2 指向UnitVortex / safe-tree / nodeNull=true；不是已确认childObjs错误。保留原失败与冻结源码，暂缓扩类路线。
+
+background-composite-20261023-early-pixels-r1 在整个10帧内均因foreign-child-or-native-scratch-mismatch拒绝，0复制、0显示变动，不能称像素通过。diagnostic-2只增加原生父层/非surface节点详细读数，不放宽拒绝条件，待运行。
+
+正式RC574D冻结源78份经prepared/deployment核验，75份不变，仅Session、RConnectMod、GameBridge三类形成隔离离线采集候选88CC639E…D0E968。首次host/join在stop前永久撤销资格；默认关闭，载体仅唯一测试appID可用。只gate mirror与RENDER两处presentation/bodyEffects采集，保留wall回放、ports、invalidate、onPerceptionFrame、实际呈现和AI。源码可逐字节逆向恢复；构建来源0BE07E23…EC81C。已编译，尚未运行或部署。UnitPresentation的recorded事件只有capture才标endSentAt，离线可能积留，但标准assr/autor在loc.units先采为非recorded，会700ms淘汰，不能把条件性积留泛化为当前普通枪夹具根因。已向RC负责人说明此限制。
+
+探针加入独立probeTiming，分别记录自身工作、census、save、切换和后置监听器。此前afterProbeBand普通帧约5.6ms包含自身和RC后置回调，不能全部归于任一方；19段末100–212ms是诊断负担。当前正式BEFC/CS7F1F/RC574D未改，其他会话RV发布按每轮指纹冻结；未达到明显改善，目标继续。
+
+## 离线采集首轮出现稳定方向，补连续计时（2026-10-23 01:25）
+
+rc-offline-20261023-native-abba-r1 完成1200帧90项、五ABBA，每段60帧；冻结probe bc3a4692377a44119764ee4e255870f2。88CC关闭/开启A/B段内均66.648/57.582ms、中位63/54、P95 86/77，五块中位改善7/10/6/10/11ms。玩家200/200发、敌403/396发，预绘1/3块；探针自身total2.238/2.268ms、后置监听4.820/0.573ms。候选mirror实际跳过600、final1200，errors0，perception保持、cleanupfalse。只有关LAD/RV/WB、首次联网前的条件，尚未正式化或部署。
+
+RC负责人复核源及实际数据，并指出startCase重设last排除了上一段末now到caseBegin的census/save；原摘要“All frames”不应解释成跨段完整连续墙钟。补充timing-boundary-note.md，原始证据保持。下一轮独立sampleAtMs/continuousFramesMs跨段不重置，明确间隔归到结束段、终端末采样后处理不包含；不扣减诊断耗时伪造净收益。正式化须移除carrier/计数器，另对未改574D实测，首次host无人/join失败/leave/重连以及连接瞬间特殊效果仍需验收。RC负责人负责正式整合，本任务不覆盖其工作。
+
+## 连续间隔复验支持收益（2026-10-23 01:33）
+
+rc-offline-20261023-native-abba-r2，冻结probe 8a70233341d64f6fb68b9dd606f56af8，1200帧90项通过。20×60 sampleAtMs逐项差等于continuousFramesMs，跨段无重置且总和等于末点减起点。A/B主均71.645/60.852ms、中位67/56、P9597/83、>100ms26/19；五块中位差14/7/10.5/8/14ms，均值五块全改善。B第3块max286ms大于A197，保留异常不声称所有长帧消失。旧段内均71.030/60.043；连续主统计按间隔终点归组，包含上一段尾处理，末采样之后的最终清理无后继间隔，不补伪样本。
+
+玩家200/200射、敌367/328，20/20窗双向实射；awake均41.8/41.2，预绘4/0块，落地样本378/398（其余为原生受击/跳动）。probe自身总均2.167/2.438ms，work0.157/0.132、save0.702/0.740、startCase1.233/1.490，后置监听5.294/0.667ms；不把后置所有监听当RC单函数精确成本。mirror600/final1200、errors0、资格始终纯离线，末尾off。两轮十ABBA块方向一致，约14–16%中位改善仅为当前关LAD/RV/WB单机战斗场景，需生产形态对原574D及联网/功能验收后再部署。
+
+生产源码建议已交RC负责人，generated/rc-offline-production-proposal-20261023-r1/source-provenance.json EC95927A…DD045。完整78源75不变，三类精确可逆；诊断接口/计数/开关全移除，首次网络尝试永久撤资格，未知/异常资格执行旧路径，版本未定、未编译。此时正式BEFC/CS7F1F/RC574D保持。BG3早检查因WallBlend类status不可访问拒绝，0应用/0复制；这是探针域入口问题，不能称合成像素失败或成功。
+
+## 正式形态直接对照（2026-10-23 01:54）
+
+RC负责人独立构建0.2.24-offline1，准确SWF EB3653533CFB305BCCA0B0CFE5E81BC306EA28FA400AAE751AB7B5AE1CFA5FEE，prepared C15EE493FDFEB804A2DD39C9710B3127C7BA7F458EFD238F6FAB8443EEA6D5E7，compile DA37C6C00D922DF3B900B9B3E4AC4E086A4DD3309989B49D28EAAF8772AE671D。来源为574D的78源/71工具输入，75源保持，三类最小改动及版本更新；prepared.compiled=false是准备时快照，实际编译回执为true、两工具退出0。按负责人verify及完整产物哈希核验，不仅凭版本号。
+
+build/rc-native-combat-run.py新增rcnative空操作模式，整个进程单一RC版本、20×60真实输入与持续开火、不调用RC诊断API、不隐藏显示、index4/6不切效果。同冻结probe-source/3fa568cbe2464a5ca40d6ccb37705e87/probe-build.json用于原574D和产品EB365；两轮正式其他文件与工具输入相同。证据rc-native-20261023-baseline-r1/candidate-r1，各1200帧90项全部通过，逐项时间戳差与连续列一致，跨段尾census/save不漏计；最终末采样之后无虚构间隔。
+
+| 连续指标 | 原574D | 生产候选EB365 |
+|---|---:|---:|
+| 均值ms | 69.615 | 58.866 |
+| 中位ms | 64 | 54 |
+| P95 ms | 96 | 80 |
+| >100ms帧 | 51 | 32 |
+| 最大ms | 306 | 473 |
+| 玩家实际出膛 | 400 | 400 |
+| 敌实际出膛 | 810 | 884 |
+
+五个240帧块中位原版63/64/63/66/65，候选54/53/55/53/55；均值全部改善。候选火力并未减少，但AI及自然人口非固定种子、各段负载仍需联读，不能把跨进程全部差额宣称为精确净RC成本。存在473ms长帧，仍非近原版流畅度。该真实场景的明显改善另由两轮十ABBA块同向支持，尚不能替代联机生命周期及特殊效果门禁。无正式部署，RC负责人继续真实Session测试并负责最后部署复验。

@@ -123,9 +123,24 @@ def run_owned(args,record):
     cfg['worldProfile']=getattr(args,'world_profile',False)
     cfg['blitVerify']=getattr(args,'blit_verify',False)
     cfg['stableMotion']=getattr(args,'stable_motion',False)
+    cfg['nativeInputMotion']=getattr(args,'native_input_motion',False)
+    cfg['nativeSprint']=getattr(args,'native_sprint',False)
     cfg['combatRoute']=getattr(args,'combat_route',False)
     cfg['combatRouteLength']=getattr(args,'combat_route_length',400)
     cfg['playerFire']=getattr(args,'player_fire',False)
+    cfg['activityTelemetry']=getattr(args,'activity_telemetry',False)
+    cfg['locationProfile']=getattr(args,'location_profile',False)
+    cfg['guiWeaponProfile']=getattr(args,'gui_weapon_profile',False)
+    cfg['playerStepProfile']=getattr(args,'player_step_profile',False)
+    cfg['playerAnimateProfile']=getattr(args,'player_animate_profile',False)
+    cfg['sleepingRootCheck']=getattr(args,'sleeping_root_check',False)
+    cfg['sleepingRootEarlyCheck']=getattr(args,'sleeping_root_early_check',False)
+    cfg['sleepingRootShort']=getattr(args,'sleeping_root_short',False)
+    cfg['nativeRoomX']=getattr(args,'native_room_x',-1)
+    cfg['nativeRoomY']=getattr(args,'native_room_y',-1)
+    cfg['nativeRouteX']=getattr(args,'native_route_x',-1)
+    cfg['nativeRouteY']=getattr(args,'native_route_y',-1)
+    cfg['chunkSide']=getattr(args,'chunk_side',320)
     cfg['renderPerf']=getattr(args,'render_perf',False)
     cfg['threatCheck']=getattr(args,'threat_check',False)
     cfg['presentationCheck']=getattr(args,'presentation_check',False)
@@ -163,10 +178,40 @@ def run_owned(args,record):
     if getattr(args,'world_profile',False):
         policy['performanceEligible']=False
         policy['diagnosticOnly']='Native World.step inclusive section timers; not uninstrumented frame performance'
+    if getattr(args,'activity_telemetry',False):
+        policy['performanceEligible']=False
+        policy['diagnosticOnly']='Read-only native scheduling telemetry; observation overhead prohibits frame-time acceptance'
+    if getattr(args,'location_profile',False):
+        policy['performanceEligible']=False
+        policy['diagnosticOnly']='Native Location.step inclusive section timers; not uninstrumented frame performance'
+    if getattr(args,'gui_weapon_profile',False):
+        policy['performanceEligible']=False
+        policy['diagnosticOnly']='Native GUI.setWeapon inclusive section timers; not uninstrumented frame performance'
+    if getattr(args,'player_step_profile',False):
+        policy['performanceEligible']=False
+        policy['diagnosticOnly']='Native Unit.step player-only inclusive timers; not uninstrumented frame performance'
+    if getattr(args,'player_animate_profile',False):
+        policy['performanceEligible']=False
+        policy['diagnosticOnly']='Native UnitPlayer.animate inclusive timers; not uninstrumented frame performance'
+    if getattr(args,'draw_control',None)=='emptyterrain':
+        policy['performanceEligible']=False
+        policy['diagnosticOnly']='Completely transparent native terrain display attribution; lifecycle and pixels not yet accepted'
+    if getattr(args,'draw_control',None)=='backgrounds':
+        policy['performanceEligible']=False
+        policy['diagnosticOnly']='Native background composite early same-frame pixels; no timing or production acceptance'
+    if getattr(args,'draw_control',None)=='rcoffline':
+        policy['performanceEligible']=False
+        policy['diagnosticOnly']='Isolated offline RC presentation collection ABBA; no network or production acceptance'
+    if getattr(args,'draw_control',None)=='rcnative':
+        policy['performanceEligible']=False
+        policy['diagnosticOnly']='Independent RC binary comparison with native input and continuous timing; noop control, no RC probe API'
+    if getattr(args,'sleeping_root_check',False) or getattr(args,'sleeping_root_early_check',False) or getattr(args,'draw_control',None)=='sleepingroots':
+        policy['performanceEligible']=False
+        policy['diagnosticOnly']='Sleeping UnitRaider display-root detachment diagnostic; no production acceptance'
     if getattr(args,'sats_check',False):policy['performanceEligible']=False
     if getattr(args,'impact_check',False):policy['performanceEligible']=False
     if getattr(args,'blit_verify',False):policy['performanceEligible']=False
-    if getattr(args,'draw_control',None) in ('world','fog','objects','objectgroups','effects','sleepclips','implicitpause','mousetree','shortlayers','unitviewport','bulletblend'):
+    if getattr(args,'draw_control',None) in ('world','fog','objects','objectgroups','effects','sleepclips','implicitpause','mousetree','shortlayers','worldlayers','unitviewport','bulletblend'):
         policy['performanceEligible']=False
         policy['diagnosticOnly']='Rendering intentionally hidden for attribution'
     if getattr(args,'draw_control',None)=='sleepclips':
@@ -178,7 +223,7 @@ def run_owned(args,record):
     if getattr(args,'draw_control',None)=='playercache':
         policy['performanceEligible']=False
         policy['diagnosticOnly']='Player cache changes 63 observed edge pixels; attribution only, not a visual-preserving candidate'
-    if getattr(args,'draw_control',None)=='atlas':
+    if getattr(args,'draw_control',None) in ('atlas','atlasrows'):
         policy['performanceEligible']=False
         policy['diagnosticOnly']='Atlas has measured transform/edge pixel differences; attribution only until strict visual checks pass'
     process=None
@@ -247,7 +292,7 @@ def parse_args(argv=None):
     p.add_argument('--fog-check',action='store_true');p.add_argument('--fog-abba',action='store_true')
     p.add_argument('--fog-typed-abba',action='store_true')
     p.add_argument('--fog-perf',action='store_true')
-    p.add_argument('--draw-control',choices=['world','fog','objects','objectgroups','effects','sleepclips','implicitpause','mousetree','shortlayers','compact','compactshort','tilecrop','fogpixels','atlas','nativecrop','stationary','objectviewport','unitblit','unitviewport','bulletblend','playercache'])
+    p.add_argument('--draw-control',choices=['world','fog','objects','objectgroups','effects','sleepclips','implicitpause','mousetree','shortlayers','worldlayers','compact','compactshort','tilecrop','fogpixels','atlas','atlasrows','emptyterrain','backgrounds','rcoffline','rcnative','sleepingroots','nativecrop','stationary','objectviewport','unitblit','unitviewport','bulletblend','playercache'])
     p.add_argument('--combat-route',action='store_true')
     p.add_argument('--combat-route-length',type=int,choices=[100,200,400],default=400)
     p.add_argument('--render-perf',action='store_true')
@@ -255,8 +300,23 @@ def parse_args(argv=None):
     p.add_argument('--presentation-check',action='store_true')
     p.add_argument('--bullet-segments',action='store_true')
     p.add_argument('--world-profile',action='store_true')
+    p.add_argument('--activity-telemetry',action='store_true')
+    p.add_argument('--location-profile',action='store_true')
+    p.add_argument('--gui-weapon-profile',action='store_true')
+    p.add_argument('--player-step-profile',action='store_true')
+    p.add_argument('--player-animate-profile',action='store_true')
+    p.add_argument('--sleeping-root-check',action='store_true')
+    p.add_argument('--sleeping-root-early-check',action='store_true')
+    p.add_argument('--sleeping-root-short',action='store_true')
+    p.add_argument('--native-room-x',type=int,default=-1)
+    p.add_argument('--native-room-y',type=int,default=-1)
+    p.add_argument('--native-route-x',type=int,default=-1)
+    p.add_argument('--native-route-y',type=int,default=-1)
+    p.add_argument('--chunk-side',type=int,choices=[320,640],default=320)
     p.add_argument('--blit-verify',action='store_true')
     p.add_argument('--stable-motion',action='store_true')
+    p.add_argument('--native-input-motion',action='store_true')
+    p.add_argument('--native-sprint',action='store_true')
     p.add_argument('--player-fire',action='store_true')
     p.add_argument('--sats-check',action='store_true')
     p.add_argument('--impact-check',action='store_true')
