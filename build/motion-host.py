@@ -20,8 +20,11 @@ def main():
     if not (BASE/'host.xml').exists():ff('-swf2xml',BASE/'pfe.swf',BASE/'host.xml')
     subprocess.run([sys.executable,str(B/'prepare.py'),str(GAME/'pfe_before_ContinuousScene_20261014-181702.swf'),'--sources-only'],check=True)
     source=(B/'generated/scripts/fe/graph/Grafon.as').read_text(encoding='utf-8-sig')
-    # This compact-impact patch is already present in the published 02BF renderer.
-    # Its historical build applied it after prepare.py; retain it in regeneration.
+    # Historical 0.8.2 reproduction ONLY: these lines accidentally reintroduced
+    # a rejected experiment. Actual A61/02BF SWFs do NOT contain this helper;
+    # 4D9/81C1/BEFC do. Keep this legacy recipe identifiable, not an assertion
+    # that the experiment was approved. New production changes must use the
+    # audited one-method patch route on the current host, not this old rebuild.
     from decal_compact_experiment import HELPER,apply_compact
     source=source.replace('      // Match the two native decal frame choices',HELPER+'      // Match the two native decal frame choices')
     source=apply_compact(source)

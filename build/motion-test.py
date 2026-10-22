@@ -32,6 +32,16 @@ def responsive_owned(process):
     assert actual.control&1 and not actual.state&1
     return {'before':[before.control,before.state],'applied':[actual.control,actual.state]}
 
+def cpu_owned(process,elapsed):
+    # Read only the handle returned for this exact owned test process. CPU is
+    # summed across its threads; it must not be labelled renderer/main-thread time.
+    values=[W.FILETIME() for _ in range(4)]
+    process.k.GetProcessTimes.argtypes=[W.HANDLE]+[ctypes.POINTER(W.FILETIME)]*4
+    process.k.GetProcessTimes.restype=W.BOOL
+    if not process.k.GetProcessTimes(process._process,*[ctypes.byref(v) for v in values]):raise ctypes.WinError()
+    ms=lambda v:((int(v.dwHighDateTime)<<32)|int(v.dwLowDateTime))/10000.0
+    return {'elapsed':elapsed,'kernelMs':ms(values[2]),'userMs':ms(values[3])}
+
 def air_pids():
     k=ctypes.WinDLL('kernel32',use_last_error=True);p=ctypes.WinDLL('psapi',use_last_error=True)
     k.OpenProcess.argtypes=[W.DWORD,W.BOOL,W.DWORD];k.OpenProcess.restype=W.HANDLE
@@ -110,7 +120,12 @@ def run_owned(args,record):
     cfg['fogPerf']=getattr(args,'fog_perf',False)
     cfg['drawControl']=getattr(args,'draw_control',None)
     cfg['bulletSegments']=getattr(args,'bullet_segments',False)
+    cfg['worldProfile']=getattr(args,'world_profile',False)
     cfg['blitVerify']=getattr(args,'blit_verify',False)
+    cfg['stableMotion']=getattr(args,'stable_motion',False)
+    cfg['combatRoute']=getattr(args,'combat_route',False)
+    cfg['combatRouteLength']=getattr(args,'combat_route_length',400)
+    cfg['playerFire']=getattr(args,'player_fire',False)
     cfg['renderPerf']=getattr(args,'render_perf',False)
     cfg['threatCheck']=getattr(args,'threat_check',False)
     cfg['presentationCheck']=getattr(args,'presentation_check',False)
@@ -145,10 +160,13 @@ def run_owned(args,record):
     flag.write_text(json.dumps(cfg),encoding='utf-8')
     policy={'appId':app,'desktopPolicy':'private','performanceEligible':not (args.visual or args.lighting_check or args.profile or args.raster_check or args.wall_check or args.fog_check or getattr(args,'fog_perf',False) or getattr(args,'render_perf',False) or getattr(args,'threat_check',False) or getattr(args,'presentation_check',False) or getattr(args,'bullet_segments',False) or args.suite),'otherAirProcessIds':[]}
     policy['memoryBefore']=memory;policy['minimumAvailableCommit']=memory['availableCommit']
+    if getattr(args,'world_profile',False):
+        policy['performanceEligible']=False
+        policy['diagnosticOnly']='Native World.step inclusive section timers; not uninstrumented frame performance'
     if getattr(args,'sats_check',False):policy['performanceEligible']=False
     if getattr(args,'impact_check',False):policy['performanceEligible']=False
     if getattr(args,'blit_verify',False):policy['performanceEligible']=False
-    if getattr(args,'draw_control',None) in ('world','fog','objects','objectgroups','effects','sleepclips','implicitpause','mousetree'):
+    if getattr(args,'draw_control',None) in ('world','fog','objects','objectgroups','effects','sleepclips','implicitpause','mousetree','shortlayers','unitviewport','bulletblend'):
         policy['performanceEligible']=False
         policy['diagnosticOnly']='Rendering intentionally hidden for attribution'
     if getattr(args,'draw_control',None)=='sleepclips':
@@ -157,6 +175,12 @@ def run_owned(args,record):
         policy['diagnosticOnly']='Only observed implicit sleeping timelines paused for attribution; production lifecycle not implemented'
     if getattr(args,'draw_control',None)=='mousetree':
         policy['diagnosticOnly']='World display mouse hit testing disabled for attribution; input compatibility not accepted'
+    if getattr(args,'draw_control',None)=='playercache':
+        policy['performanceEligible']=False
+        policy['diagnosticOnly']='Player cache changes 63 observed edge pixels; attribution only, not a visual-preserving candidate'
+    if getattr(args,'draw_control',None)=='atlas':
+        policy['performanceEligible']=False
+        policy['diagnosticOnly']='Atlas has measured transform/edge pixel differences; attribution only until strict visual checks pass'
     process=None
     try:
         with open(out/'stdout.log','wb') as stdout,open(out/'stderr.log','wb') as stderr:
@@ -166,8 +190,11 @@ def run_owned(args,record):
             if args.high_qos:policy['powerPolicy']=responsive_owned(process)
             policy.update(pid=process.pid,desktop=process.desktop);print('Owned AIR '+str(process.pid),flush=True)
             start=time.monotonic()
+            policy['ownedProcessCpuSamples']=[]
             while process.poll() is None and time.monotonic()-start<600:
                 time.sleep(1)
+                try:policy['ownedProcessCpuSamples'].append(cpu_owned(process,time.monotonic()-start))
+                except OSError as cpu_error:policy.setdefault('cpuSamplingErrors',[]).append(str(cpu_error))
                 current=memory_status();policy['minimumAvailableCommit']=min(policy['minimumAvailableCommit'],current['availableCommit'])
                 if current['availableCommit']<512*1024**2:
                     policy['performanceEligible']=False;policy['memoryAbort']=current
@@ -220,12 +247,17 @@ def parse_args(argv=None):
     p.add_argument('--fog-check',action='store_true');p.add_argument('--fog-abba',action='store_true')
     p.add_argument('--fog-typed-abba',action='store_true')
     p.add_argument('--fog-perf',action='store_true')
-    p.add_argument('--draw-control',choices=['world','fog','objects','objectgroups','effects','sleepclips','implicitpause','mousetree','tilecrop','fogpixels','atlas','nativecrop','stationary','objectviewport','unitblit'])
+    p.add_argument('--draw-control',choices=['world','fog','objects','objectgroups','effects','sleepclips','implicitpause','mousetree','shortlayers','compact','compactshort','tilecrop','fogpixels','atlas','nativecrop','stationary','objectviewport','unitblit','unitviewport','bulletblend','playercache'])
+    p.add_argument('--combat-route',action='store_true')
+    p.add_argument('--combat-route-length',type=int,choices=[100,200,400],default=400)
     p.add_argument('--render-perf',action='store_true')
     p.add_argument('--threat-check',action='store_true')
     p.add_argument('--presentation-check',action='store_true')
     p.add_argument('--bullet-segments',action='store_true')
+    p.add_argument('--world-profile',action='store_true')
     p.add_argument('--blit-verify',action='store_true')
+    p.add_argument('--stable-motion',action='store_true')
+    p.add_argument('--player-fire',action='store_true')
     p.add_argument('--sats-check',action='store_true')
     p.add_argument('--impact-check',action='store_true')
     p.add_argument('--impact-abba',action='store_true')

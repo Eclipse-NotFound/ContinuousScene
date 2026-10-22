@@ -14,7 +14,7 @@ package {
         private var location:*;
         private var layers:*;
         public var hidden:int=0;
-        public function update(w:*,enabled:Boolean):void {
+        public function update(w:*,enabled:Boolean,unitsOnly:Boolean=false):void {
             if(!enabled || !w.grafon.sceneLarge){clear();return;}
             if(location!==w.loc || layers!==w.grafon.visObjs) {
                 clear();location=w.loc;layers=w.grafon.visObjs;
@@ -25,7 +25,8 @@ package {
             var cam:*=w.cam,scale:Number=cam.scaleV;
             var view:Rectangle=new Rectangle(-cam.vx/scale-320,-cam.vy/scale-320,cam.screenX/scale+640,cam.screenY/scale+640);
             hidden=0;
-            for each(var layer:DisplayObjectContainer in layers) {
+            var selected:Array=unitsOnly?[layers[2]]:layers;
+            for each(var layer:DisplayObjectContainer in selected) {
                 var i:int=0;
                 while(i<layer.numChildren) {
                     var child:DisplayObject=layer.getChildAt(i),e:Object=entries[child];

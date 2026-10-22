@@ -18,10 +18,16 @@ package {
     import tests.SceneThreatChecks;
     import tests.ScenePresentationChecks;
     import tests.SceneNativeCropChecks;
+    import tests.SceneAtlasChecks;
     import tests.SceneStoppedThreatChecks;
     import tests.SceneBlitReuse;
     import tests.SceneSleepingTimelineChecks;
     import tests.SceneImplicitFreezeProbe;
+    import tests.SceneDisplayAttribution;
+    import tests.SceneCombatRoute;
+    import tests.SceneUnitLayerCensus;
+    import tests.SceneBulletBlendProbe;
+    import tests.ScenePlayerCacheProbe;
     import tests.SceneActivityCensus;
     import tests.SceneSatsChecks;
     import tests.SceneDecalChecks;
@@ -44,6 +50,13 @@ package {
         private static var sleepingTimelines:SceneSleepingTimelineChecks=new SceneSleepingTimelineChecks();
         private static var implicitFreeze:SceneImplicitFreezeProbe=new SceneImplicitFreezeProbe();
         private static var mouseTreeOriginal:Object=null;
+        private static var displayAttribution:SceneDisplayAttribution=new SceneDisplayAttribution();
+        private static var playerShotFrames:int=0,driverCalls:int=0,driverMs:int=0;
+        private static var playerWarmFrames:int=0,playerWarmShots:int=0;
+        private static var playerWarmReady:Boolean=false,warmLastCount:int=-1,warmQuietFrames:int=0;
+        private static var compactOriginal:Object=null;
+        private static var bulletBlend:SceneBulletBlendProbe=new SceneBulletBlendProbe();
+        private static var playerCache:ScenePlayerCacheProbe=new ScenePlayerCacheProbe();
         private static var cases:Array=["cold-forward","warm-back","warm-forward","idle","no-lad-back","full-forward","no-wall-back","full-forward-restored"];
         public static function init(host:*):void {
             main=host;started=getTimer();var f:FileStream=new FileStream();
@@ -81,12 +94,29 @@ package {
         private static function check(name:String,ok:Boolean,detail:*=null):void {report.assertions.push({name:name,ok:ok,detail:detail});}
         private static function finish(error:String=null):void {
             if(done)return;done=true;
+            var displayCleanup:Object=displayAttribution.clear();
+            if(displayCleanup.started && !displayCleanup.restored)error=(error?error+"\n":"")+"Display attribution cleanup did not restore original layers";
+            if(compactOriginal && w && w.grafon===compactOriginal.root)w.grafon.sceneCompactImpacts=compactOriginal.value;
             if(mouseTreeOriginal && w && w.visual===mouseTreeOriginal.root) {
                 w.visual.mouseChildren=mouseTreeOriginal.children;w.visual.mouseEnabled=mouseTreeOriginal.enabled;
             }
             try {implicitFreeze.clear();}
             catch(cleanup:*) {error=(error?error+"\n":"")+"Implicit probe cleanup: "+String(cleanup);}
+            try {objectCulling.clear();}
+            catch(cullCleanup:*) {error=(error?error+"\n":"")+"Object culling cleanup: "+String(cullCleanup);}
+            if(cfg.drawControl=="bulletblend") {
+                bulletBlend.clear();report.bulletBlendCleanup=bulletBlend.snapshot();
+                if(!report.bulletBlendCleanup.valid || report.bulletBlendCleanup.pendingRestore!=0)
+                    error=(error?error+"\n":"")+"Bullet blend cleanup/conflict failure";
+            }
+            if(cfg.drawControl=="playercache") {
+                playerCache.clear();report.playerCacheCleanup=playerCache.snapshot();
+                if(!report.playerCacheCleanup.valid || report.playerCacheCleanup.pendingRestore!=0)
+                    error=(error?error+"\n":"")+"Player cache cleanup/conflict failure";
+            }
             report.error=error;report.elapsedMs=getTimer()-started;report.ok=error==null;
+            report.playerFire={enabled:Boolean(cfg.playerFire),shotFrames:playerShotFrames,weapon:w && w.gg && w.gg.currentWeapon?w.gg.currentWeapon.id:null};
+            report.driver={stableMotion:Boolean(cfg.stableMotion),calls:driverCalls,ms:driverMs,perFrameMethod:cfg.stableMotion?"Unit.setPos (position/bounds/target only)":"UnitPlayer.setLocPos (resets weapon and filters)"};
             for each(var a:Object in report.assertions)if(!a.ok)report.ok=false;
             save("result.json",report);NativeApplication.nativeApplication.exit(report.ok?0:1);
         }
@@ -197,6 +227,10 @@ package {
             } finally {for each(layers in first)for each(var data:BitmapData in layers)data.dispose();g.sceneMaskBitmaps=true;}
         }
         private static function startCase():void {
+            if(cfg.drawControl=="compact") {
+                if(compactOriginal==null)compactOriginal={root:w.grafon,value:w.grafon.sceneCompactImpacts};
+                w.grafon.sceneCompactImpacts=index==0 || index==3;
+            }
             if(cfg.drawControl=="mousetree") {
                 if(mouseTreeOriginal==null)mouseTreeOriginal={root:w.visual,children:w.visual.mouseChildren,enabled:w.visual.mouseEnabled};
                 if(w.visual!==mouseTreeOriginal.root)throw new Error("Mouse attribution root changed");
@@ -208,6 +242,7 @@ package {
                 main.getChildByName("ContinuousSceneCarrier")["nativeAPI"].unitBlitGate=blitReuse.gate;
             }
             if(cfg.bulletSegments)main.getChildByName("ContinuousSceneCarrier")["nativeAPI"].bulletSegments={};
+            if(cfg.worldProfile)main.getChildByName("ContinuousSceneCarrier")["nativeAPI"].worldStepProfile={};
             if(cfg.drawControl=="stationary") {
                 var activityAPI:*=main.getChildByName("ContinuousSceneCarrier")["nativeAPI"];
                 if(activityAPI.activityStats().version!="stationary-threats-1")throw new Error("Stationary threat candidate required");
@@ -228,6 +263,10 @@ package {
             row.renderBand=[];row.exitBand=[];row.renderEvents=[];row.exitEvents=[];
             if(cfg.drawControl=="implicitpause")row.implicitHeld=[];
             if(cfg.drawControl=="mousetree")row.mouseTree={children:w.visual.mouseChildren,enabled:w.visual.mouseEnabled,stageX:main.stage.mouseX,stageY:main.stage.mouseY};
+            row.playerShotStart=playerShotFrames;
+            row.enemyShotStart=encounter?encounter.actualShotFrames:0;
+            row.combatWindows=[];
+            if(cfg.drawControl=="compact")row.compactImpacts=w.grafon.sceneCompactImpacts;
             if(cfg.impactABBA) {
                 if(!("sceneImpactArtEnabled" in w.grafon))throw new Error("Impact ABBA needs native impact host");
                 w.grafon.sceneImpactArtEnabled=index==1 || index==2;
@@ -280,10 +319,73 @@ package {
                     report.viewport={stageWidth:main.stage.stageWidth,stageHeight:main.stage.stageHeight,
                         cameraWidth:w.cam.screenX,cameraHeight:w.cam.screenY,zoom:w.cam.scaleV};
                     report.path={startX:x0,endX:x0+path,y:y0};if(w.grafon.sceneLarge)signs();
-                    if(cfg.encounter){encounter=new SceneEncounter(w);report.encounter=encounter.prepare(x0,y0,Boolean(cfg.fixedEnemies),Boolean(cfg.localEnemies));y0=report.encounter.playerY;report.path.y=y0;check("encounter-has-native-armed-enemies",report.encounter.units.length>=(cfg.fixedEnemies?6:3),report.encounter);}
+                    if(cfg.combatRoute) {
+                        if(!cfg.fixedEnemies || !cfg.stableMotion || !cfg.playerFire)throw new Error("Combat route requires fixed armed actors, stable movement and player fire");
+                        report.combatRoute=SceneCombatRoute.select(w,x0,y0,int(cfg.combatRouteLength));
+                        x0=report.combatRoute.x;y0=report.combatRoute.y;path=report.combatRoute.path;cfg.speed=path/50;
+                        report.path={startX:x0,endX:x0+path,y:y0,speed:cfg.speed};w.gg.setPos(x0,y0);w.cam.calc(w.gg);
+                    }
+                    if(cfg.encounter){encounter=new SceneEncounter(w);report.encounter=encounter.prepare(x0,y0,Boolean(cfg.fixedEnemies),Boolean(cfg.localEnemies),Boolean(cfg.playerFire),report.combatRoute);y0=report.encounter.playerY;report.path.y=y0;check("encounter-has-native-armed-enemies",report.encounter.units.length>=(cfg.fixedEnemies?6:3),report.encounter);}
+                    if(cfg.playerFire) {
+                        if(!cfg.stableMotion)throw new Error("Player fire fixture requires movement without setNull");
+                        var fixtureGun:*=w.invent.addWeapon("assr");fixtureGun.lvl=0;fixtureGun.perslvl=0;
+                        w.gg.changeWeapon("assr");
+                        report.playerFireFixture="Native assault rifle; requirements waived, ammo/durability refilled; native cadence/projectiles/damage retained";
+                    }
                     age=0;phase=3;
                 }else if(phase==3) {
                     w.ctr.clearAll();if(++age<20)return;
+                    if(cfg.playerFire && !playerWarmReady) {
+                        var warmGun:*=w.gg.currentWeapon;
+                        if(!warmGun || warmGun.id!="assr" || w.gg.t_work>0) {
+                            if(age>240)throw new Error("Player weapon did not finish switching before warm-up");
+                            return;
+                        }
+                        if(samplePlayerFire())++playerWarmShots;
+                        if(encounter)encounter.sample();
+                        ++playerWarmFrames;
+                        var fireWarmTravel:Number=playerWarmFrames*cfg.speed;
+                        var fireWarmDistance:Number=fireWarmTravel%(path*2);
+                        if(fireWarmDistance>path)fireWarmDistance=path*2-fireWarmDistance;
+                        movePlayer(x0+fireWarmDistance,y0);
+                        w.gg.dx=int(fireWarmTravel/path)%2==0?cfg.speed:-cfg.speed;w.gg.dy=0;
+                        drivePlayerFire();
+                        if(warmLastCount!=w.grafon.sceneWarmCount){warmLastCount=w.grafon.sceneWarmCount;warmQuietFrames=0;}
+                        else ++warmQuietFrames;
+                        if(playerWarmFrames>1200)throw new Error("Scene prewarming did not settle before combat timing");
+                        if(playerWarmFrames<100 || cfg.combatRoute && (warmQuietFrames<100 || playerWarmFrames%100!=0))return;
+                        if(playerWarmShots<5)throw new Error("Insufficient actual player shots during warm-up");
+                        report.playerFireWarmup={frames:playerWarmFrames,quietWarmFrames:warmQuietFrames,warmCount:warmLastCount,shotFrames:playerWarmShots,encounter:encounter?encounter.snapshot():null};
+                        playerWarmReady=true;
+                        playerShotFrames=0;
+                    }
+                    if(cfg.drawControl=="playercache" && !cfg.presentationCheck) {
+                        if(!cfg.stableMotion || !cfg.combatRoute)throw new Error("Player cache comparison requires stable shared combat route");
+                        report.playerCache={order:[false,true,true,false,true,false,false,true],windowFrames:100,frames:[],windows:[],empty:0,missStart:w.grafon.sceneMisses,warmStart:w.grafon.sceneWarmCount};
+                        playerCache.update(w,false);
+                        age=0;last=getTimer();phase=96;return;
+                    }
+                    if(cfg.drawControl=="bulletblend") {
+                        if(!cfg.stableMotion || !cfg.combatRoute)throw new Error("Bullet blend comparison requires stable shared combat route");
+                        report.bulletBlend={order:[false,true,true,false,true,false,false,true],windowFrames:100,frames:[],windows:[],empty:0,missStart:w.grafon.sceneMisses,warmStart:w.grafon.sceneWarmCount};
+                        bulletBlend.update(w,false);
+                        age=0;last=getTimer();phase=95;return;
+                    }
+                    if(cfg.drawControl=="compactshort") {
+                        if(!cfg.stableMotion)throw new Error("Compact comparison requires stable motion driver");
+                        compactOriginal={root:w.grafon,value:w.grafon.sceneCompactImpacts};
+                        report.compactShort={order:[true,false,false,true,false,true,true,false],windowFrames:100,frames:[],empty:0,missStart:w.grafon.sceneMisses};
+                        w.grafon.sceneCompactImpacts=true;
+                        age=0;last=getTimer();phase=94;return;
+                    }
+                    if(cfg.drawControl=="shortlayers") {
+                        if(!cfg.stableMotion)throw new Error("Short attribution requires stable motion driver");
+                        report.displayStart=displayAttribution.start(w);
+                        report.displayFrames=[];report.displayEmpty=0;
+                        report.displayMissStart=w.grafon.sceneMisses;
+                        report.displayView={width:main.stage.stageWidth,height:main.stage.stageHeight,quality:main.stage.quality,filters:w.visual.filters.length,cached:w.visual.cacheAsBitmap};
+                        age=0;last=getTimer();phase=93;return;
+                    }
                     if(cfg.drawControl=="sleepclips" || cfg.drawControl=="implicitpause") {
                         sleepingTimelines.begin(w);phase=92;return;
                     }
@@ -312,6 +414,11 @@ package {
                     if(cfg.renderPerf){report.renderTiming=SceneRasterTiming.run(w,fogPresentation);finish();return;}
                     if(cfg.threatCheck){report.threat=SceneThreatChecks.run(w,check);finish();return;}
                     if(cfg.presentationCheck){
+                        if(cfg.drawControl=="playercache") {
+                            report.presentation=playerCache.verify(w);
+                            check("player-cache-same-frame-pixels",report.presentation.valid && report.presentation.equal,report.presentation);
+                            finish();return;
+                        }
                         if(cfg.drawControl=="stationary") {
                             w.swfStage.removeEventListener(Event.DEACTIVATE,w.onDeactivate);
                             main.getChildByName("ContinuousSceneCarrier")["nativeAPI"].stationaryThreatsEnabled=true;
@@ -319,6 +426,10 @@ package {
                         }
                         if(cfg.drawControl=="nativecrop") {
                             report.presentation=SceneNativeCropChecks.run(w,check);
+                            report.sats={od:report.presentation.od};w.ctr.keySats=true;phase=90;return;
+                        }
+                        if(cfg.drawControl=="atlas") {
+                            report.presentation=SceneAtlasChecks.run(w,rasterPresentation,check);
                             report.sats={od:report.presentation.od};w.ctr.keySats=true;phase=90;return;
                         }
                         var presenter:*=cfg.drawControl=="objectviewport"?objectCulling:cfg.drawControl=="atlas"?rasterPresentation:cfg.drawControl=="fogpixels"?fogPresentation:tilePresentation;
@@ -337,6 +448,113 @@ package {
                         check("visible-surface-ready",w.grafon.sceneViewReady());finish();return;
                     }
                     report.lastWarm=w.grafon.sceneWarmCount;report.lastDraw=w.grafon.sceneDrawMs;startCase();
+                }else if(phase==96) {
+                    if(w.allStat!=1 || w.onPause || w.t_exit!=0 || w.loc!==loc)
+                        throw new Error("Player cache timing lost active original location");
+                    var cacheNow:int=getTimer(),cacheIndex:int=int(age/100);
+                    var cacheFrame:Object={frame:age,window:cacheIndex,enabled:report.playerCache.order[cacheIndex],transition:age%100==0,dt:cacheNow-last,native:band50-startFrame,scriptBeforeProbe:cacheNow-absoluteStart,warmCount:w.grafon.sceneWarmCount};
+                    last=cacheNow;report.playerCache.frames.push(cacheFrame);
+                    if(!w.grafon.sceneViewReady())++report.playerCache.empty;
+                    sampleCombat(cacheFrame,age%100==0 || age%100==99);
+                    if(age%100==99)report.playerCache.windows.push(playerCache.snapshot());
+                    w.ctr.clearAll();++age;
+                    if(age==800) {
+                        report.playerCache.misses=w.grafon.sceneMisses-report.playerCache.missStart;
+                        report.playerCache.warmed=w.grafon.sceneWarmCount-report.playerCache.warmStart;
+                        check("player-cache-complete",report.playerCache.frames.length==800);
+                        check("player-cache-complete-view",report.playerCache.empty==0 && report.playerCache.misses==0);
+                        check("player-cache-valid",playerCache.snapshot().valid,playerCache.snapshot());
+                        check("player-cache-applied",playerCache.snapshot().changed>0,playerCache.snapshot().changed);
+                        if(cfg.playerFire)check("player-cache-player-fired",playerShotFrames>30,playerShotFrames);
+                        finish();return;
+                    }
+                    var cacheUpdate:int=getTimer();
+                    playerCache.update(w,report.playerCache.order[int(age/100)]);
+                    cacheFrame.probeMs=getTimer()-cacheUpdate;
+                    var cacheTravel:Number=age*cfg.speed;
+                    var cacheDistance:Number=cacheTravel%(path*2);if(cacheDistance>path)cacheDistance=path*2-cacheDistance;
+                    movePlayer(x0+cacheDistance,y0);w.gg.dx=int(cacheTravel/path)%2==0?cfg.speed:-cfg.speed;w.gg.dy=0;
+                    drivePlayerFire();
+                }else if(phase==95) {
+                    if(w.allStat!=1 || w.onPause || w.t_exit!=0 || w.loc!==loc)
+                        throw new Error("Bullet blend timing lost active original location");
+                    var blendNow:int=getTimer(),blendIndex:int=int(age/100);
+                    var blendFrame:Object={frame:age,window:blendIndex,enabled:report.bulletBlend.order[blendIndex],transition:age%100==0,dt:blendNow-last,native:band50-startFrame,scriptBeforeProbe:blendNow-absoluteStart,warmCount:w.grafon.sceneWarmCount};
+                    last=blendNow;report.bulletBlend.frames.push(blendFrame);
+                    if(!w.grafon.sceneViewReady())++report.bulletBlend.empty;
+                    sampleCombat(blendFrame,age%100==0 || age%100==99);
+                    if(age%100==99)report.bulletBlend.windows.push(bulletBlend.snapshot());
+                    w.ctr.clearAll();++age;
+                    if(age==800) {
+                        report.bulletBlend.misses=w.grafon.sceneMisses-report.bulletBlend.missStart;
+                        report.bulletBlend.warmed=w.grafon.sceneWarmCount-report.bulletBlend.warmStart;
+                        check("bullet-blend-complete",report.bulletBlend.frames.length==800);
+                        check("bullet-blend-complete-view",report.bulletBlend.empty==0 && report.bulletBlend.misses==0);
+                        check("bullet-blend-valid",bulletBlend.snapshot().valid,bulletBlend.snapshot());
+                        check("bullet-blend-applied",bulletBlend.snapshot().changed>0,bulletBlend.snapshot().changed);
+                        if(cfg.playerFire)check("bullet-blend-player-fired",playerShotFrames>30,playerShotFrames);
+                        finish();return;
+                    }
+                    var blendUpdate:int=getTimer();
+                    bulletBlend.update(w,report.bulletBlend.order[int(age/100)]);
+                    blendFrame.probeMs=getTimer()-blendUpdate;
+                    var blendTravel:Number=age*cfg.speed;
+                    var blendDistance:Number=blendTravel%(path*2);if(blendDistance>path)blendDistance=path*2-blendDistance;
+                    movePlayer(x0+blendDistance,y0);w.gg.dx=int(blendTravel/path)%2==0?cfg.speed:-cfg.speed;w.gg.dy=0;
+                    drivePlayerFire();
+                }else if(phase==94) {
+                    if(w.allStat!=1 || w.onPause || w.t_exit!=0 || w.loc!==loc)
+                        throw new Error("Compact timing lost active original location");
+                    var compactNow:int=getTimer();
+                    var compactIndex:int=int(age/100);
+                    if(w.grafon.sceneCompactImpacts!==report.compactShort.order[compactIndex])throw new Error("Compact mode changed externally");
+                    var compactFrame:Object={frame:age,window:compactIndex,compact:w.grafon.sceneCompactImpacts,transition:age%100==0,dt:compactNow-last,native:band50-startFrame,scriptBeforeProbe:compactNow-absoluteStart,playerShot:cfg.playerFire && w.gg.currentWeapon.hold<w.gg.currentWeapon.holder};
+                    last=compactNow;report.compactShort.frames.push(compactFrame);
+                    if(!w.grafon.sceneViewReady())++report.compactShort.empty;
+                    sampleCombat(compactFrame,age%100==0 || age%100==99);
+                    w.ctr.clearAll();++age;
+                    if(age==800) {
+                        report.compactShort.misses=w.grafon.sceneMisses-report.compactShort.missStart;
+                        report.encounterEnd=encounter?encounter.snapshot():null;
+                        check("compact-short-complete",report.compactShort.frames.length==800);
+                        check("compact-short-complete-view",report.compactShort.empty==0 && report.compactShort.misses==0);
+                        if(cfg.playerFire)check("compact-short-player-fired",playerShotFrames>30,playerShotFrames);
+                        if(encounter)check("compact-short-enemies-fired",encounter.shots>30,encounter.shots);
+                        finish();return;
+                    }
+                    if(age%100==0)w.grafon.sceneCompactImpacts=report.compactShort.order[int(age/100)];
+                    var compactTravel:Number=age*cfg.speed;
+                    var compactDistance:Number=compactTravel%(path*2);if(compactDistance>path)compactDistance=path*2-compactDistance;
+                    movePlayer(x0+compactDistance,y0);w.gg.dx=int(compactTravel/path)%2==0?cfg.speed:-cfg.speed;w.gg.dy=0;
+                    drivePlayerFire();
+                }else if(phase==93) {
+                    if(w.allStat!=1 || w.onPause || w.t_exit!=0 || w.loc!==loc)
+                        throw new Error("Short display timing lost active original location");
+                    var displayNow:int=getTimer();
+                    var displayRow:Object=displayAttribution.sample(w,displayNow-last,band50-startFrame);last=displayNow;
+                    displayRow.currentScriptBeforeProbe=displayNow-absoluteStart;
+                    report.displayFrames.push(displayRow);
+                    if(displayRow.aborted)throw new Error("Short display attribution aborted: "+JSON.stringify(displayRow));
+                    if(!w.grafon.sceneViewReady())++report.displayEmpty;
+                    sampleCombat(displayRow,age%30==0 || age%30==29);
+                    if(displayAttribution.done) {
+                        report.displaySummary=displayAttribution.snapshot();
+                        report.displayMisses=w.grafon.sceneMisses-report.displayMissStart;
+                        report.encounterEnd=encounter?encounter.snapshot():null;
+                        report.activityCensus=SceneActivityCensus.read(w);
+                        report.unitLayerCensus=SceneUnitLayerCensus.read(w);
+                        check("short-display-complete",report.displaySummary.complete && report.displaySummary.sampledFrames==1500,report.displaySummary);
+                        check("short-display-restored",report.displaySummary.cleanup.restored);
+                        check("short-display-no-missing-view",report.displayEmpty==0 && report.displayMisses==0);
+                        if(cfg.playerFire)check("real-player-fired-without-reset",playerShotFrames>30,playerShotFrames);
+                        finish();return;
+                    }
+                    w.ctr.clearAll();++age;
+                    var displayTravel:Number=age*(cfg.speed>0?cfg.speed:24);
+                    var displayDistance:Number=displayTravel%(path*2);if(displayDistance>path)displayDistance=path*2-displayDistance;
+                    movePlayer(x0+displayDistance,y0);
+                    w.gg.dx=int(displayTravel/path)%2==0?cfg.speed:-cfg.speed;w.gg.dy=0;
+                    drivePlayerFire();
                 }else if(phase==92) {
                     w.ctr.clearAll();
                     check("timeline-simulation-active-"+age,w.loc===loc && w.allStat==1 && !w.onPause && w.t_exit==0);
@@ -356,10 +574,15 @@ package {
                 }else if(phase==90) {
                     check("sats-v-opens-native-ui",w.sats.active && w.sats.vis.visible && w.grafon.visSats.visible && w.allStat==2);
                     check("sats-opening-does-not-charge-ap",w.sats.od==report.sats.od);
+                    if(cfg.presentationCheck && cfg.drawControl=="atlas")report.presentation.satsOpened=SceneAtlasChecks.onSatsOpened(w,rasterPresentation,check);
                     w.ctr.keySats=true;phase=91;return;
                 }else if(phase==91) {
                     check("sats-v-closes-and-resumes",!w.sats.active && !w.grafon.visSats.visible && w.grafon.visObjs[2].visible && w.allStat==1);
                     check("sats-close-does-not-charge-ap",w.sats.od==report.sats.od);
+                    if(cfg.presentationCheck && cfg.drawControl=="atlas") {
+                        report.presentation.satsClosed=SceneAtlasChecks.onSatsClosed(w,rasterPresentation,check);
+                        rasterPresentation.clear();
+                    }
                     // Terminal-only: these isolated artwork fixtures must not
                     // be auto-saved or replayed into a subsequent location.
                     w.swfStage.removeEventListener(Event.DEACTIVATE,w.onDeactivate);
@@ -400,6 +623,7 @@ package {
                         if(cfg.drawControl=="fogpixels")fogPresentation.update(w,altered);
                         if(cfg.drawControl=="atlas")rasterPresentation.update(w,altered);
                         if(cfg.drawControl=="objectviewport")objectCulling.update(w,altered);
+                        if(cfg.drawControl=="unitviewport")objectCulling.update(w,altered,true);
                         if(cfg.drawControl=="implicitpause") {
                             implicitFreeze.update(w,altered);row.implicitHeld.push(implicitFreeze.snapshot().held);
                         }
@@ -418,6 +642,8 @@ package {
                     if(priorAbsolute>0){row.afterProbeBand.push(lastEnd-priorProbe);row.totalScript.push(lastEnd-priorAbsolute);}
                     priorAbsolute=absoluteStart;priorProbe=now;
                     if(encounter)encounter.sample();
+                    samplePlayerFire();
+                    if(encounter && (age%30==0 || age%30==29))row.combatWindows.push({frame:age,playerShots:playerShotFrames,encounter:encounter.snapshot()});
                     row.nativeBand.push(band50-startFrame);row.wallBand.push(band150-band50);row.sceneBand.push(band250-band150);
                     row.warm.push(w.grafon.sceneWarmCount-report.lastWarm);report.lastWarm=w.grafon.sceneWarmCount;
                     row.draw.push(row.warm[row.warm.length-1]>0?w.grafon.sceneDrawMs:0);
@@ -435,13 +661,19 @@ package {
                     var x:Number=idle?x0+path:x0+(forward?distance:path-distance);
                     if(cfg.encounter && idle)x=x0;
                     var goingForward:Boolean=forward;if(int(travel/path)%2==1)goingForward=!goingForward;
-                    w.gg.setLocPos(x,y0);w.gg.dx=idle?0:goingForward?speed:-speed;w.gg.dy=0;
+                    movePlayer(x,y0);w.gg.dx=idle?0:goingForward?speed:-speed;w.gg.dy=0;
+                    drivePlayerFire();
                     if(age<300)return;
                     row.misses=w.grafon.sceneMisses-row.missStart;row.residentEnd=w.grafon.sceneResident;row.warmMaxMs=w.grafon.sceneWarmMaxMs;
+                    row.playerShotFrames=playerShotFrames-row.playerShotStart;
+                    row.enemyShotFrames=encounter?encounter.actualShotFrames-row.enemyShotStart:0;
+                    if(cfg.playerFire)check("actual-player-fire-"+index,row.playerShotFrames>0,row.playerShotFrames);
+                    if(cfg.combatRoute && encounter)check("actual-enemy-fire-"+index,row.enemyShotFrames>0 && encounter.snapshot().alive==6 && encounter.snapshot().armed==6,row.enemyShotFrames);
                     if(cfg.drawControl=="tilecrop")row.presentation={copies:tilePresentation.copies,allocated:tilePresentation.allocated};
                     if(cfg.drawControl=="nativecrop")row.presentation={enabled:w.grafon.sceneCropPresentation,copies:w.grafon.sceneCropCopies,allocated:w.grafon.sceneCropAllocations};
                     if(cfg.drawControl=="atlas")row.presentation={copies:rasterPresentation.copies,rebuilds:rasterPresentation.rebuilds};
                     if(cfg.drawControl=="objectviewport")row.presentation={hidden:objectCulling.hidden};
+                    if(cfg.drawControl=="unitviewport")row.presentation={hidden:objectCulling.hidden,layer:2,diagnosticOnly:true};
                     if(cfg.drawControl=="implicitpause") {
                         row.presentation=implicitFreeze.snapshot();
                         if(index==1 || index==2)check("observed-implicit-pause-applied-"+index,row.presentation.stopped>0,row.presentation);
@@ -461,16 +693,49 @@ package {
                     if(timing)row.tdfcProfile=timing.api.snapshot();
                     if(encounter)row.encounter=encounter.snapshot();
                     if(cfg.bulletSegments)row.bulletSegments=main.getChildByName("ContinuousSceneCarrier")["nativeAPI"].bulletSegments;
+                    if(cfg.worldProfile)row.worldProfile=main.getChildByName("ContinuousSceneCarrier")["nativeAPI"].worldStepProfile;
                     if(w.grafon.sceneLarge)row.activityCensus=SceneActivityCensus.read(w);
                     if("sceneWarmSlices" in w.grafon){row.slices=w.grafon.sceneWarmSlices-row.slicesStart;row.forced=w.grafon.sceneWarmForced-row.forcedStart;}
                     check("same-logical-map-"+index,w.loc===loc);check("complete-viewport-"+index,row.empty==0,row.empty);
                     report.samples.push(row);save("progress.json",report);
                     if(++index<cases.length)startCase();else {
                         if(encounter){check("enemies-targeted-player",encounter.targetFrames>30,encounter.targetFrames);check("enemies-fired",encounter.shots>0,encounter.shots);}
+                        if(cfg.drawControl=="unitviewport")report.unitLayerCensus=SceneUnitLayerCensus.read(w);
                         finish();
                     }
                 }
             }catch(error:Error){finish(error.message+"\n"+error.getStackTrace());}
+        }
+        private static function movePlayer(x:Number,y:Number):void {
+            var begin:int=getTimer();
+            if(cfg.stableMotion)w.gg.setPos(x,y);else w.gg.setLocPos(x,y);
+            ++driverCalls;driverMs+=getTimer()-begin;
+        }
+        private static function sampleCombat(frame:Object,boundary:Boolean):void {
+            frame.playerShot=samplePlayerFire();
+            if(encounter) {
+                var oldShots:int=encounter.actualShotFrames,oldTargets:int=encounter.targetFrames;
+                encounter.sample();
+                frame.enemyShots=encounter.actualShotFrames-oldShots;
+                frame.enemyTargets=encounter.targetFrames-oldTargets;
+                if(boundary)frame.encounter=encounter.snapshot();
+            }
+        }
+        private static function samplePlayerFire():Boolean {
+            if(!cfg.playerFire)return false;
+            var gun:*=w.gg.currentWeapon;
+            if(!gun || gun.id!="assr")throw new Error("Player fixture weapon changed");
+            var fired:Boolean=gun.hold<gun.holder;
+            if(fired)++playerShotFrames;
+            return fired;
+        }
+        private static function drivePlayerFire():void {
+            if(!cfg.playerFire)return;
+            var gun:*=w.gg.currentWeapon;
+            w.cam.celX=w.gg.X*w.cam.scaleV+w.cam.vx+450;
+            w.cam.celY=(w.gg.Y-30)*w.cam.scaleV+w.cam.vy;
+            w.ctr.keyAttack=true;
+            gun.hold=gun.holder;gun.hp=gun.maxhp;
         }
         private static var lastProgress:int=0;
     }
