@@ -233,3 +233,7 @@ build/rc-native-combat-run.py新增rcnative空操作模式，整个进程单一R
 
 
 2026-10-23 02:22补充：RC单实例真实采集回退f6eece7606（build/m52/recovery-offline-collector-native-01/result.json）86项/0失败，virgin/null/throws/falseValue/truthyString/afterHost全通过。实际原生喷火弹持续运动，产品历史必须有两个不同时间和位置且匹配独立原生观测；一次readSnapshot的stamp=0不能伪造多帧历史。纯离线原hook不积历史；其余保守分支与首次主持后恢复。全部临时状态清理、安装22项不变，源码复审无阻塞。仅证明玩家弹丸历史采集，不冒充全部body effects或真实两游戏接入。剩余门禁缩为首次真实接入和双向可见事件；内存余量仍约4.95GiB，6GiB双实例门槛保持，未部署。用户释放内存事项已由RC会话集中接续，此处不重复请求。
+
+2026-10-23 07:23首次连接夹具补充审查：当时`experimental/recovery-offline-first-connect/tests/OfflineFirstConnectTestDoc.as`的`observePacket`仅phase==round保留生产包，`render`也仅round观察远端显示；从首次startHost/startJoin至roomReady/prepare/begin(0)的窗口未覆盖。旧事件若在这个窗口短暂重播并消失，后续quietNoReplay可能误通过。peerClass要到ready/prepare才确定，begin(0)清空计数，before在connecting/prepare早退不触发invalidate，均属同一缺口。主代理与只读子代理独立确认，已发RC负责人修正，不改其活动源码。移动稿多次变化，本文不是冻结版本的完整审查或实测结论。最新提交余量2.73GiB，未达到原双实例6GiB门槛；正式BEFC/7F1F/574D复核未动、性能候选EB365保留。恢复后的第2目标回合有具体审查进展，目标active。
+
+07:26纠正与收束：最新只读D65B4345317F2A5824C6B3C10961D6CCB1801E109421244A1B5DEAE7D057DA3E已经覆盖connecting/prepare生产包、peerClass未知回退expectedClass，并在begin(0)前保存/判定；旧包漏检已修。独立子代理曾继续把before提前return当显示检查无可靠驱动，根查准确EB365源码反证：ExplorationSync构造:45注册ENTER_FRAME requestRender，:285只要stage存在即invalidate；GameBridge onMirrorFrame:359也请求。因此“夹具before自身没有invalidate”不能证明实际RENDER不触发，此项意见撤回并同步负责人。显式补触发只属夹具自包含改善，不增设额外必过门禁。尚无双人运行结果。
