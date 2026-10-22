@@ -21,11 +21,14 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--name', required=True)
     parser.add_argument('--mode', choices=['pixels', 'combat'], default='pixels')
+    parser.add_argument('--variant', choices=['atlas', 'atlasrows'], default='atlas')
     parser.add_argument('--effects', choices=['off', 'full'], default='off')
     parser.add_argument('--land', default='random_mane')
     parser.add_argument('--compile-probe', action='store_true')
     parser.add_argument('--registry-wait', type=int, default=600)
     args = parser.parse_args(); OUT.mkdir(exist_ok=True)
+    assert args.variant == 'atlas' or args.mode == 'combat', 'Rows are a timing diagnostic; pixel coverage is not implemented here'
+    assert not (r.E/args.name).exists(), 'Never overwrite prior evidence'
     with m.Registration(owner='ContinuousScene / atlas investigation / 01a13816',
             purpose=args.name, run_dir=m.RUNTIME, evidence=r.E/args.name, wait=args.registry_wait) as lease:
         assert not m.air_pids(), 'Other AIR present; untouched'
@@ -44,7 +47,7 @@ def main():
         shutil.copy2(OUT/'ContinuousSceneProbe.swf', m.RUNTIME/'mods/ContinuousSceneMotion/release/ContinuousSceneMotionMod.swf')
         options = ['--name', args.name, '--high-qos', '--land', args.land,
                    '--window-width', '2048', '--window-height', '1123',
-                   '--expect-no-signs', '--draw-control', 'atlas']
+                   '--expect-no-signs', '--draw-control', args.variant]
         if args.mode == 'pixels': options += ['--presentation-check']
         else:
             options += ['--encounter', '--fixed-enemies', '--benchmark', 'scene',
@@ -53,12 +56,13 @@ def main():
         options += ['--no-lighting', '--no-wall'] if args.effects == 'off' else ['--vision']
         m.run_owned(m.parse_args(options), lease)
         result, inputs = r.result(args.name)
+        assert probe['sourceSHA256'] == hashes(), 'Probe source changed during run'
         assert r.baseline() == baseline, 'Production dependency drift'
         for path, digest in baseline.items():
             if path not in ('application.xml', 'mods/loader-manifest.txt'): assert inputs[path] == digest, path
         assert inputs['mods/ContinuousSceneMotion/release/ContinuousSceneMotionMod.swf'] == probe['probeSHA256']
         r.save(r.E/args.name/'probe-build.json', probe)
-        summary = dict(name=args.name, mode=args.mode, effects=args.effects, land=args.land,
+        summary = dict(name=args.name, mode=args.mode, variant=args.variant, effects=args.effects, land=args.land,
                        checks=len(result['assertions']), deployed=False,
                        acceptance=False, samples=[])
         if args.mode == 'pixels':

@@ -4,11 +4,13 @@ package tests {
     import flash.display.BitmapData;
     import flash.display.DisplayObjectContainer;
     import flash.display.PNGEncoderOptions;
+    import flash.display.Sprite;
     import flash.events.Event;
     import flash.filesystem.File;
     import flash.filesystem.FileMode;
     import flash.filesystem.FileStream;
     import flash.geom.Matrix;
+    import flash.geom.Point;
     import flash.geom.Rectangle;
     import flash.utils.getDefinitionByName;
 
@@ -31,6 +33,7 @@ package tests {
             var result:Object={terminalOnly:true,performanceEligible:false,views:[],mutations:[],sats:[],
                 oracle:"same synchronous frame; restore original native bitmap visibility only",
                 history:"Exit without saving, travelling or another lifecycle fixture.",wallblend:wallState(w)};
+            result.scrollRectSentinel=scrollRectSentinel(check);
             var baseX:Number=Math.max(0,-Number(c.vx)/Number(c.scaleV));
             var baseY:Number=Math.max(0,-Number(c.vy)/Number(c.scaleV));
             var side:int=int(g.sceneSurfaces()[0].side);
@@ -198,21 +201,191 @@ package tests {
             var data:BitmapData=new BitmapData(w.main.stage.stageWidth,w.main.stage.stageHeight,false,0);
             data.draw(w.main.stage);return data;
         }
+        private static function scrollRectSentinel(check:Function):Object {
+            var source:BitmapData=new BitmapData(120,120,true,0xFFE01010);
+            var baseline:BitmapData=new BitmapData(80,80,true,0),actual:BitmapData=baseline.clone();
+            var expected:BitmapData=baseline.clone(),restored:BitmapData=baseline.clone();
+            var parent:Sprite=new Sprite(),bitmap:Bitmap=new Bitmap(source),delta:*=null,restoreDelta:*=null;
+            var row:Object={path:"isolated-parent-draw-after-scrollRect-set",equal:false,restored:false};
+            try {
+                var colors:Array=[0xFF10AA20,0xFF2030CC,0xFFFF8800,0xFFCC00AA];
+                for(var i:int=0;i<4;++i) {
+                    source.fillRect(new Rectangle(40+(i%2)*20,40+int(i/2)*20,20,20),colors[i]);
+                    expected.fillRect(new Rectangle(7+(i%2)*20,9+int(i/2)*20,20,20),colors[i]);
+                }
+                bitmap.x=7;bitmap.y=9;parent.addChild(bitmap);baseline.draw(parent);
+                bitmap.scrollRect=new Rectangle(40,40,40,40);
+                // The pixels, not the property getter or localToGlobal, prove
+                // that this immediate parent draw consumed the new crop/origin.
+                actual.draw(parent);delta=actual.compare(expected);row.equal=delta===0;
+                row.originChanged=baseline.getPixel32(7,9)!=actual.getPixel32(7,9);
+                row.cropped=actual.getPixel32(47,9)==0 && actual.getPixel32(7,49)==0;
+                check("atlas-scrollRect-sentinel-immediate-pixels",row.equal && row.originChanged && row.cropped,row);
+                bitmap.scrollRect=null;restored.draw(parent);restoreDelta=restored.compare(baseline);row.restored=restoreDelta===0;
+                check("atlas-scrollRect-sentinel-restored",row.restored);
+            } finally {
+                bitmap.scrollRect=null;bitmap.bitmapData=null;if(bitmap.parent)bitmap.parent.removeChild(bitmap);
+                if(delta is BitmapData)delta.dispose();if(restoreDelta is BitmapData)restoreDelta.dispose();
+                source.dispose();baseline.dispose();actual.dispose();expected.dispose();restored.dispose();
+            }
+            return row;
+        }
+        private static function captureWithWholeAtlasClip(w:*):BitmapData {
+            var saved:Array=[],ps:Array=parents(w);
+            try {
+                for(var i:int=0;i<4;++i) {
+                    var atlas:Bitmap=ps[i].getChildByName(NAMES[i]) as Bitmap;
+                    if(!atlas || !atlas.bitmapData)throw new Error("Whole-atlas clip diagnostic requires four live atlas layers");
+                    saved.push({bitmap:atlas,clip:atlas.scrollRect});
+                    atlas.scrollRect=atlas.bitmapData.rect;
+                }
+                return capture(w);
+            } finally {for each(var old:Object in saved)old.bitmap.scrollRect=old.clip;}
+            return null;
+        }
+        private static function captureWithNativeGutterOrigin(w:*):BitmapData {
+            var saved:Array=[],ps:Array=parents(w);
+            try {
+                for(var i:int=0;i<4;++i) {
+                    var atlas:Bitmap=ps[i].getChildByName(NAMES[i]) as Bitmap;
+                    if(!atlas || !atlas.bitmapData)throw new Error("Native-gutter diagnostic requires four live atlas layers");
+                    var source:BitmapData=atlas.bitmapData;
+                    var padded:BitmapData=new BitmapData(source.width+80,source.height+80,true,0);
+                    saved.push({bitmap:atlas,data:source,clip:atlas.scrollRect,temporary:padded});
+                    padded.copyPixels(source,source.rect,new Point(40,40));
+                    atlas.bitmapData=padded;
+                    atlas.scrollRect=new Rectangle(40,40,source.width,source.height);
+                }
+                return capture(w);
+            } finally {
+                for each(var old:Object in saved) {
+                    old.bitmap.bitmapData=old.data;old.bitmap.scrollRect=old.clip;
+                    old.temporary.dispose();
+                }
+            }
+            return null;
+        }
         private static function compareNow(w:*,present:*,check:Function,name:String):Object {
             // Restoring visibility before taking references is preparation only;
             // it never rebuilds native pixels or repairs atlas revision tracking.
             present.beginFrame();var refs:Array=bindings(w),actual:BitmapData=null,expected:BitmapData=null,delta:*=null;
+            var clipped:BitmapData=null,clipDelta:*=null;
+            var gutterPixels:BitmapData=null,gutterDelta:*=null;
             var result:Object={name:name,path:"atlas",camera:camera(w)};
             try {
                 present.update(w,true);result.placement=placement(w);
                 check(name+"-native-depth-and-wb",result.placement.layers==4 && result.placement.bad==0,result.placement);
-                actual=capture(w);present.beginFrame();
+                actual=capture(w);clipped=captureWithWholeAtlasClip(w);
+                gutterPixels=captureWithNativeGutterOrigin(w);present.beginFrame();
                 check(name+"-native-bindings-restored",checkBindings(refs));
                 expected=capture(w);delta=actual.compare(expected);result.equal=delta===0;
+                clipDelta=clipped.compare(expected);
+                result.wholeAtlasScrollRect={path:"diagnostic-only-atlas-full-scrollRect",equal:clipDelta===0};
+                if(clipDelta!==0)result.wholeAtlasScrollRect.diagnostic=failure(name+"-whole-clip",clipped,expected,clipDelta);
+                check(name+"-whole-scroll-rect-pixels",clipDelta===0,result.wholeAtlasScrollRect);
+                gutterDelta=gutterPixels.compare(expected);
+                result.nativeGutterOrigin={path:"diagnostic-only-native-gutter-origin",equal:gutterDelta===0};
+                if(gutterDelta!==0)result.nativeGutterOrigin.diagnostic=failure(name+"-native-gutter-origin",gutterPixels,expected,gutterDelta);
+                check(name+"-native-gutter-origin-pixels",gutterDelta===0,result.nativeGutterOrigin);
+                // Read the ORIGINAL pixel stores after both stage captures.
+                // A second copyPixels/draw-based oracle could repeat the very
+                // conversion under investigation and hide a storage mismatch.
+                result.rawCopies=rawCopyPixels(w);
+                check(name+"-raw-copy-pixels",result.rawCopies.comparedPixels>0 && result.rawCopies.badGeometry==0 &&
+                    result.rawCopies.changedPixels==0,result.rawCopies);
                 if(!result.equal)result.diagnostic=failure(name,actual,expected,delta);
                 check(name+"-pixels",result.equal,result);
-            } finally {if(delta is BitmapData)delta.dispose();if(actual)actual.dispose();if(expected)expected.dispose();present.update(w,true);}
+                if(name=="atlas-view-0.8-2" || name=="atlas-view-1-2") {
+                    result.nativeStorage=[nativeStorageVariant(w,check,name,expected,false),
+                        nativeStorageVariant(w,check,name,expected,true)];
+                    result.partitions=SceneAtlasPartitionChecks.run(w,expected,check,name);
+                }
+            } finally {
+                if(delta is BitmapData)delta.dispose();if(clipDelta is BitmapData)clipDelta.dispose();if(gutterDelta is BitmapData)gutterDelta.dispose();
+                if(actual)actual.dispose();if(clipped)clipped.dispose();if(gutterPixels)gutterPixels.dispose();if(expected)expected.dispose();present.update(w,true);
+            }
             return result;
+        }
+        private static function nativeStorageVariant(w:*,check:Function,name:String,reference:BitmapData,useClone:Boolean):Object {
+            var refs:Array=bindings(w),saved:Array=[],actual:BitmapData=null,restored:BitmapData=null,delta:*=null,restoreDelta:*=null;
+            var mode:String=useClone?"clone":"copyPixels";
+            var row:Object={path:"native-geometry-"+mode,blocks:0,equal:false,restored:false,geometryPreserved:true};
+            try {
+                try {
+                    for each(var s:Object in w.grafon.sceneSurfaces())for(var layer:int=0;layer<4;++layer) {
+                        var b:Bitmap=s.bitmaps[layer];if(!b.visible)continue;
+                        var source:BitmapData=b.bitmapData;
+                        if(!source || source!==s.nativeBuffers[layer])throw new Error("Native storage diagnostic requires original native bindings");
+                        var temporary:BitmapData=useClone?source.clone():new BitmapData(source.width,source.height,source.transparent,0);
+                        var old:Object={bitmap:b,data:source,temporary:temporary,clip:b.scrollRect?b.scrollRect.toString():null,
+                            matrix:b.transform.matrix.toString(),visible:b.visible,snap:b.pixelSnapping,smooth:b.smoothing};
+                        saved.push(old);
+                        if(!useClone)temporary.copyPixels(source,source.rect,new Point(0,0),null,null,false);
+                        b.bitmapData=temporary;++row.blocks;
+                        if(b.transform.matrix.toString()!=old.matrix || (b.scrollRect?b.scrollRect.toString():null)!==old.clip ||
+                            b.visible!==old.visible || b.pixelSnapping!==old.snap || b.smoothing!==old.smooth ||
+                            temporary.width!=source.width || temporary.height!=source.height || temporary.transparent!==source.transparent ||
+                            s.nativeBuffers[layer]!==source)row.geometryPreserved=false;
+                    }
+                    actual=capture(w);
+                } finally {
+                    for each(old in saved){old.bitmap.bitmapData=old.data;old.temporary.dispose();}
+                }
+                // No sceneTick, atlas update, frame advance or geometry write.
+                // The second native screenshot rejects binding/cache pollution.
+                restored=capture(w);delta=actual.compare(reference);restoreDelta=restored.compare(reference);
+                row.equal=delta===0;row.restored=restoreDelta===0 && checkBindings(refs);
+                if(delta!==0)row.diagnostic=failure(name+"-native-"+mode,actual,reference,delta);
+                if(restoreDelta!==0)row.restoreDiagnostic=failure(name+"-native-"+mode+"-restored",restored,reference,restoreDelta);
+                check(name+"-native-"+mode+"-geometry",row.blocks>0 && row.geometryPreserved,{blocks:row.blocks,preserved:row.geometryPreserved});
+                check(name+"-native-"+mode+"-pixels",row.equal,row);
+                check(name+"-native-"+mode+"-restored",row.restored,row.restoreDiagnostic);
+            } finally {
+                if(delta is BitmapData)delta.dispose();if(restoreDelta is BitmapData)restoreDelta.dispose();
+                if(actual)actual.dispose();if(restored)restored.dispose();
+            }
+            return row;
+        }
+        private static function rawCopyPixels(w:*):Object {
+            var row:Object={scope:"all four layers; complete native centres intersecting the current viewport",
+                comparedPixels:0,changedPixels:0,badGeometry:0,maxDelta:0,
+                changedTransparent:0,changedPartialAlpha:0,changedOpaque:0,layers:[],samples:[]};
+            var ps:Array=parents(w),surfaces:Array=w.grafon.sceneSurfaces(),view:Rectangle=w.grafon.sceneViewport();
+            if(!view){row.badGeometry=1;return row;}
+            for(var layer:int=0;layer<4;++layer) {
+                var atlas:Bitmap=ps[layer].getChildByName(NAMES[layer]) as Bitmap;
+                var layerRow:Object={name:NAMES[layer],blocks:0,comparedPixels:0,changedPixels:0};
+                row.layers.push(layerRow);
+                if(!atlas || !atlas.bitmapData){++row.badGeometry;continue;}
+                for each(var s:Object in surfaces) {
+                    var worldRect:Rectangle=new Rectangle(s.cx*s.side,s.cy*s.side,s.side,s.side);
+                    if(!view.intersects(worldRect))continue;
+                    var nativeData:BitmapData=s.nativeBuffers[layer];
+                    var sourceRect:Rectangle=new Rectangle(s.gutter,s.gutter,s.side,s.side);
+                    var atlasRect:Rectangle=new Rectangle(worldRect.x-atlas.x,worldRect.y-atlas.y,s.side,s.side);
+                    if(!nativeData || !nativeData.rect.containsRect(sourceRect) || !atlas.bitmapData.rect.containsRect(atlasRect) ||
+                        atlasRect.x!=int(atlasRect.x) || atlasRect.y!=int(atlasRect.y)) {++row.badGeometry;continue;}
+                    // getVector reads each original BitmapData directly; no
+                    // intermediate bitmap, draw, alpha blend or pixel write.
+                    var original:Vector.<uint> = nativeData.getVector(sourceRect);
+                    var copied:Vector.<uint> = atlas.bitmapData.getVector(atlasRect);
+                    ++layerRow.blocks;layerRow.comparedPixels+=original.length;row.comparedPixels+=original.length;
+                    for(var pixel:int=0;pixel<original.length;++pixel)if(original[pixel]!==copied[pixel]) {
+                        ++layerRow.changedPixels;++row.changedPixels;
+                        var alpha:uint=original[pixel]>>>24;
+                        if(alpha==0)++row.changedTransparent;
+                        else if(alpha==255)++row.changedOpaque;
+                        else ++row.changedPartialAlpha;
+                        for(var shift:int=0;shift<32;shift+=8)row.maxDelta=Math.max(row.maxDelta,
+                            Math.abs(int((original[pixel]>>>shift)&255)-int((copied[pixel]>>>shift)&255)));
+                        if(row.samples.length<8)row.samples.push({layer:layer,cx:s.cx,cy:s.cy,revision:s.revision,
+                            x:worldRect.x+pixel%int(s.side),y:worldRect.y+int(pixel/int(s.side)),
+                            original:original[pixel].toString(16),copied:copied[pixel].toString(16)});
+                    }
+                    original=null;copied=null;
+                }
+            }
+            return row;
         }
         private static function findFixture(w:*,breakable:Boolean):Object {
             var c:*=w.cam,view:Rectangle=new Rectangle((-c.vx-c.quakeX)/c.scaleV,(-c.vy-c.quakeY)/c.scaleV,c.screenX/c.scaleV,c.screenY/c.scaleV);
