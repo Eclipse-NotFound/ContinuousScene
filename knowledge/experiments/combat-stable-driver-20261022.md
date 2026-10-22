@@ -230,3 +230,6 @@ build/rc-native-combat-run.py新增rcnative空操作模式，整个进程单一R
 
 
 2026-10-23 02:02门禁状态：RC负责人真实Session生命周期7a10b4a47f已56/0、12阶段通过，证据mods/RConnect/build/m52/recovery-offline-lifecycle-native-03/result.json（F97729DB…97D4F1）；前两次准备/清理失败保留，产品EB365未改。该测试不覆盖实际双人画面或实际观察调用。当前可用commit约4.96GiB，未达到既有双实例6GiB门槛；已异步请求用户方便时释放暂不用应用的内存，不结束他人进程、不降低门槛。继续单实例功能验证、正式仍574D，目标active。正式用户pfe私有RC配置autoRole为空，仅只读核对，未改用户存档/配置。
+
+
+2026-10-23 02:22补充：RC单实例真实采集回退f6eece7606（build/m52/recovery-offline-collector-native-01/result.json）86项/0失败，virgin/null/throws/falseValue/truthyString/afterHost全通过。实际原生喷火弹持续运动，产品历史必须有两个不同时间和位置且匹配独立原生观测；一次readSnapshot的stamp=0不能伪造多帧历史。纯离线原hook不积历史；其余保守分支与首次主持后恢复。全部临时状态清理、安装22项不变，源码复审无阻塞。仅证明玩家弹丸历史采集，不冒充全部body effects或真实两游戏接入。剩余门禁缩为首次真实接入和双向可见事件；内存余量仍约4.95GiB，6GiB双实例门槛保持，未部署。用户释放内存事项已由RC会话集中接续，此处不重复请求。
