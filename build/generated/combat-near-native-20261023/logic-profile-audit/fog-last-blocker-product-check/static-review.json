@@ -1,0 +1,48 @@
+{
+  "staticOnly": true,
+  "compiled": false,
+  "airStarted": false,
+  "staging": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-product-check\\static-staging\\81060667a925410c86bea4d01a2e2f62",
+  "sourceUnchanged": true,
+  "changed": [
+    "ContinuousSceneMotionProbe.as",
+    "tests/SceneDenseCombatMetrics.as",
+    "tests/SceneEncounter.as",
+    "tests/SceneFogProductCheck.as"
+  ],
+  "sourceHashes": {
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-product-check\\SceneFogProductCheck.as": "A76C486B5A0036231EC9443C3E0AE6B13134F01A65366AEDD44B65F6534561B9",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-product-check\\component-run.py": "15040E28F60FDDE415F46AD482E03088CF0C49601A5045BBC5C3080F964BCDF4",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-product-check\\probe_patch.py": "690BF800C144CBA21589301531636F491DA065E55F7DAF25AD85BD6155C7F494"
+  },
+  "original89SpecSHA256": "4FE7896EC70FC16C9EA7184B4E9F78EF5538158E2F10FFA577C1EFC673BBEF41",
+  "original89SpecsVerbatim": true,
+  "negativeCasesRejected": [
+    "self-comparison-reference",
+    "missing-91st-case",
+    "pixel-mismatch",
+    "arm-input-drift",
+    "fabricated-production-hits",
+    "lost-scene-bypass",
+    "no-op-positive",
+    "unrestored-state",
+    "typed-legacy-bypass"
+  ],
+  "nullCandidatePinsRejected": true,
+  "witnessInputs": {
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\fog-last-blocker-20261023-check-r1\\summary.json": "10E79F90E24D6A3B0B489512C462B8ECAF0867797F1171E8AEC6C964CCEDFA32",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\fog-last-blocker-20261023-check-r1\\storage\\result.json": "1BFEFACB95CC297E1211809C82C07A39027F7AC654E07FC80738819B32145656",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\fog-last-blocker-20261023-check-r1\\inputs.json": "9D908B74D18019753FF7921C51296EFCC3ABB0A0A2949D28E01F8CCCE62F7287",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker\\SceneFogLastBlockerProbe.as": "9B6278438A08251E6C73BA02C0AE3658403E2A1DA51D9576B744C11CCE628C37"
+  },
+  "warning": "Synthetic validator inputs were used only to test rejection logic; no runtime component result is created.",
+  "candidatePinsReadBackValidated": true,
+  "candidateHostSHA256": "80CFD8CF3138EE59CBF6EDA0A1824A9EC960F413BD95E4B90D41DD0322B4FD3D",
+  "candidateHostInputs": {
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\pfe.swf": "80CFD8CF3138EE59CBF6EDA0A1824A9EC960F413BD95E4B90D41DD0322B4FD3D",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\pfe.xml": "B92260A7A0DFA80EB129C60AEF273645C32BBBA9B3588770BD7083D6984E7E04",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\semantic-audit.json": "D239A9D614C26F2704E6ED7E6F452ABF49D6D27E0A98CB58EE9BD933F0E19A66",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\build.json": "256FF395CF5397D07554081936F40A25FCDAB27A2C2725C341D6EE86699A9434",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-product-check\\candidate-pins.json": "E59B4F4630289B46A7B30840FCFFC0D506E9DAF4ED77969E0DF804F55620ACAB"
+  }
+}

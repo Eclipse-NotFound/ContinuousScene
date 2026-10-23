@@ -10,7 +10,6 @@ package tests {
     import flash.geom.Point;
     import flash.geom.Rectangle;
     import flash.utils.Dictionary;
-    import flash.utils.getDefinitionByName;
     import flash.utils.getQualifiedClassName;
     import flash.utils.getTimer;
 
@@ -21,7 +20,7 @@ package tests {
      * Equal pixels are NOT assumed: verify() must test the actual camera view.
      */
     public class SceneBackgroundCompositeProbe {
-        public static const VERSION:String="native-background-composite-diagnostic-3";
+        public static const VERSION:String="native-background-composite-diagnostic-4";
         private static const SIDE:int=320, GUTTER:int=40, SIZE:int=400, MAX_PAIRS:int=128;
         private static const WALL_VERSION:String="0.5.9-scene", WALL_RESIDUE:String="WallBlendBackgroundLayer";
         private var world:*,location:*,grafon:*;
@@ -29,7 +28,7 @@ package tests {
         private var presentation:Sprite;
         private var records:Dictionary=new Dictionary();
         private var pool:Array=[],settingGetters:Array=[];
-        private var wallClass:Class,residue:Bitmap,residueData:BitmapData;
+        private var wallEnabledGetter:Function,residue:Bitmap,residueData:BitmapData;
         private var residueChecked:Boolean=false,residueInvalid:Boolean=false;
         private var held:Boolean=false;
         private var originalLower:Boolean,originalUpper:Boolean;
@@ -74,10 +73,9 @@ package tests {
         private function bind(w:*):void {
             clear();world=w;location=w.loc;grafon=w.grafon;visual=w.visual as DisplayObjectContainer;
             lower=grafon.visBack as DisplayObjectContainer;upper=grafon.visBack2 as DisplayObjectContainer;
-            // Same public static status path used by ContinuousSceneLoadProbe.
-            // A missing definition/getter is a rejection, never an offline guess.
-            try {wallClass=getDefinitionByName("WallBlendMod") as Class;}
-            catch(unavailable:Error){wallClass=null;}
+            // The settings closure is the existing cross-domain public API.
+            // Sibling SWF classes are not visible from this probe's domain.
+            // Native structure is checked independently; do not invent status.
             var carrier:*=w.main.getChildByName("ModSettingsCarrier");
             if(!carrier)throw new Error("Cannot establish disabled presentation mods");
             var wanted:Array=["wallblend","realisticvision","light-and-darkness"];
@@ -88,6 +86,7 @@ package tests {
                     for each(var item:Object in page.items)if(item.key=="enabled" && item["get"] is Function)found=item;
                 if(found==null)throw new Error("Missing enabled setting for "+id);
                 settingGetters.push(found);
+                if(id=="wallblend")wallEnabledGetter=found["get"] as Function;
             }
         }
         private function neutral(node:DisplayObject):Boolean {
@@ -102,14 +101,14 @@ package tests {
             return m && m.a==1 && m.b==0 && m.c==0 && m.d==1 && m.tx==0 && m.ty==0;
         }
         private function wallStateReason():String {
-            if(!wallClass)return "wallblend-status-unavailable";
-            var status:*;
-            try {status=wallClass["status"];}
-            catch(error:Error){last.wallBlendReadError=error.message;return "wallblend-status-unavailable";}
-            if(!status)return "wallblend-status-unavailable";
-            last.wallBlend={version:status.version,enabled:status.enabled,failed:status.failed,sceneChunks:status.sceneChunks};
-            if(status.version!==WALL_VERSION)return "wallblend-version-mismatch";
-            if(status.enabled!==false || status.failed!==false || status.sceneChunks!==0)return "wallblend-not-disabled-and-empty";
+            if(wallEnabledGetter==null)return "wallblend-enabled-getter-unavailable";
+            var enabled:*;
+            try {enabled=wallEnabledGetter();}
+            catch(error:Error){last.wallBlendReadError=error.message;return "wallblend-enabled-getter-unavailable";}
+            last.wallBlend={enabled:enabled,statusRead:false,
+                source:"public-enabled-setting-and-actual-display-tree",
+                requiredBuildVersion:WALL_VERSION};
+            if(enabled!==false)return "wallblend-not-disabled";
             return "";
         }
         private function contextReason(w:*):String {
@@ -160,6 +159,8 @@ package tests {
          * then returns before the scene branch that would dispose it. Source:
          * generated/wb-motion-source/WallBlendMod.as setEnabled/onFrame;
          * BackgroundBlendLayer.update creates this exact name and dimensions.
+         * Runner pins WB14112; enabled=false plus the actual complete native
+         * structure check replaces inaccessible sibling-class status counters.
          * This is a fixed-build structural exception, not a private-owner read.
          * Never alter, detach or composite this still-hidden layer. */
         private function permittedWallResidue(b:Bitmap):Boolean {
@@ -360,7 +361,7 @@ package tests {
             pool=[];records=new Dictionary();
             if(presentation && presentation.parent)presentation.parent.removeChild(presentation);
             presentation=null;world=null;location=null;grafon=null;visual=null;lower=null;upper=null;settingGetters=[];
-            wallClass=null;residue=null;residueData=null;residueChecked=false;residueInvalid=false;
+            wallEnabledGetter=null;residue=null;residueData=null;residueChecked=false;residueInvalid=false;
         }
         public function snapshot():Object {
             return {version:VERSION,diagnosticOnly:true,performanceAcceptance:false,updates:updates,
@@ -370,11 +371,13 @@ package tests {
                 attachedCompositeBitmaps:presentation?presentation.numChildren:0,
                 updateCost:updateCost,copyCost:copyCost,prepareCost:prepareCost,
                 conflicts:conflicts,errors:errorCount,errorDetails:errors.concat(),last:last,
-                requiredWallBlendVersion:WALL_VERSION,trackedWallResidues:residue?1:0,residueIdentityInvalid:residueInvalid,
+                requiredWallBlendVersion:WALL_VERSION,wallStatusRead:false,
+                wallEligibilitySource:"public-enabled-setting-and-actual-display-tree",
+                trackedWallResidues:residue?1:0,residueIdentityInvalid:residueInvalid,
                 pixelStatus:"Requires same-frame verify at each camera/zoom; compositing and resampling need not commute",
                 scope:"BEFC 400px backgrounds; WB14112/RV/LAD disabled; only one exact hidden WB1920 residue allowed; no SATS",
                 scratchIdentity:"Two hidden first-child sentinels match BEFC structure; internal field identity is not read",
-                residueIdentity:"Pinned WB14112/public status plus unique index-1 name and shape; node/data identity held until clear; private owner is not read",
+                residueIdentity:"Pinned WB14112/public enabled getter and complete actual child ownership; unique index-1 hidden residue with stable node/data identity; private owner/status is not read",
                 limitation:"Same-value external visibility writes cannot be distinguished; source pixel changes must advance revision"};
         }
         private function capture(w:*):BitmapData {

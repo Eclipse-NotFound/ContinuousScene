@@ -1,0 +1,6 @@
+# Preserve the exact bytes of the reviewed, hash-pinned host recipe and probes.
+build/generated/combat-near-native-20261023/logic-profile-audit/fog-last-blocker-production-minimal/** -text whitespace=cr-at-eol
+build/generated/combat-near-native-20261023/logic-profile-audit/fog-last-blocker-product-check/** -text whitespace=cr-at-eol
+build/generated/combat-near-native-20261023/logic-profile-audit/fog-last-blocker-production-performance/** -text whitespace=cr-at-eol
+build/generated/combat-near-native-20261023/fixture-audit-v2/** -text whitespace=cr-at-eol
+build/generated/combat-near-native-20261023/logic-profile-audit/fog-last-blocker/SceneFogLastBlockerProbe.as -text whitespace=cr-at-eol

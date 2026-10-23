@@ -1,6 +1,6 @@
 # ContinuousScene — 当前快照
 
-更新：2026-10-23，战斗优化已部署并复验。此文件是入口；详细历程见 journal.md，先前长快照完整保留于 MEMORY-history-20261023-0818.md。
+更新：2026-10-23，原生视野遮挡格复用80CF已部署并完成51项安装验证；这是小幅算法改善，密集战斗接近原版的目标仍未完成。此文件是入口；详细历程见 journal.md，先前长快照完整保留于 MEMORY-history-20261023-0818.md。
 
 ## 1. 模组与体验
 
@@ -10,7 +10,7 @@
 
 ## 2. 用户约定与职责边界
 
-- 当前性能任务用户要求持续修复至战斗卡顿明显下降，并测试、部署。2026-10-23最新答复：已退出应用，优先保证任务进行。不要重复问已授权事项。
+- 当前性能任务用户进一步要求多实体、密集子弹、高速移动战斗接近原版；前轮约15%改善不代表新目标完成。2026-10-23检测到玩家重开游戏后，用户再次答复现在保存并退出。不要重复问已授权事项。
 - 保持原画面、战斗机制及跨房连续性。已允许视野预绘与远处未参战敌人暂缓行动。
 - 必要兼容授权包括 RV、WallBlend、LAD、TDFC、RConnect；RC协调已明确授权。RC负责人会话01a086bb-378c-7f60-b8e1-50d90ffa0996集中维护、构建和部署RC，本侧不并行覆盖它。
 - 性能根会话01a13816-367b-7261-8e11-ca9152565dd9。所有游戏测试登记、唯一AIR ID、私有桌面、独立存储；不写真实APPDATA/pfe，不关闭用户或其他任务的进程，不用Ghost。
@@ -20,19 +20,43 @@
 
 ## 3. 当前安装与候选
 
-本轮仅更新RC离线采集开销，其余保持用户要求回退后的组合：
+当前正式宿主在用户要求回退后的BEFC上仅加入已验证的遮挡格复用，CS保持7F1F；RC和RV由各自负责人独立更新，不计作本轮算法改善的收益：
 
-- root pfe.swf：BEFCF0509E11FAC9FEF7AFB834708B8B93752A14AE3D5CD72B42AA6D42F9B82A。
+- root pfe.swf：80CFD8CF3138EE59CBF6EDA0A1824A9EC960F413BD95E4B90D41DD0322B4FD3D；state/fog-last-blocker-deployment-20261023.json为verified，安装后installed-native-r1共51项通过。
 - CS0.9.0：7F1F2961C6E299D949423591F3C65C610C2EAEFA7FC72E8A583A402770D6B51F。
-- RC0.2.24-offline1：EB3653533CFB305BCCA0B0CFE5E81BC306EA28FA400AAE751AB7B5AE1CFA5FEE。
-- TDFC7ACD、LAD8ADB、WB1411；RV由其负责人独立更新，最新已核83D8。每轮须冻结实际依赖，不把其他任务更新归本任务。
-- 已测准确生产输入：../RConnect/build/m52/recovery-offline-production-01。部署回执../RConnect/build/m52/recovery-offline-deploy-01/deployment.json，状态deployed-smoke-passed，SHA256 7DB4BDC4F9BF9317A96EC51DB3076A5B8F0D49BBC9254692142BE92F7065EE86。
+- RC0.2.24-aura1：DF0FA0E2CA952E77E5132E75D71E73558DC919C7B8CDEBA5DA05FC9E94DC01E7。
+- TDFC7ACD、LAD8ADB、WB1411；RV最新冻结指纹为6DBBAE60EB09FF8F42D34E31EDC92FB9F83009BA918E9145980C6D289723D8BA。每轮仍须核对实际依赖，旧83D8/EB365组合只属历史。
+- 前轮offline1已测生产输入与部署回执保留：../RConnect/build/m52/recovery-offline-production-01、../RConnect/build/m52/recovery-offline-deploy-01/deployment.json；当时状态deployed-smoke-passed，回执SHA256 7DB4BDC4F9BF9317A96EC51DB3076A5B8F0D49BBC9254692142BE92F7065EE86，不作为当前aura1部署回执。
 
-EB365基于准确574D冻结源，仅三类和版本变化；未联网时跳过两组弹道/身体效果历史采集。首次host/join尝试即永久恢复采集（直到进程重启）；null、异常、非严格true均保守回退。保持墙面、感知、实际呈现、失效刷新和联网路径；生产包无诊断开关。诊断88CC不得部署。
+历史EB365基于准确574D冻结源，仅三类和版本变化；未联网时跳过两组弹道/身体效果历史采集。首次host/join尝试即永久恢复采集（直到进程重启）；null、异常、非严格true均保守回退。保持墙面、感知、实际呈现、失效刷新和联网路径；生产包无诊断开关。其旧对照与门禁保留历史标签，不跨组合计算新收益。诊断88CC不得部署。
 
 CS编辑器0.9.0已于10月20日安装并复验25+22项：Editor7344、EditorTools02F5、CS7F1F，168固定箱体逐件对应。192×50研发部样例，地图编辑器.vbs→大地图，应用maps/active.xml后重新进入读取；nativeEnabled独立。当前性能任务不重建编辑器。
 
 ## 4. 当前任务进展与停点
+
+本轮已部署80CF的小幅算法改善，近原版目标仍在进行。此前BEFC低干扰denseV2真实Shift/六LMG/玩家ASSR共探针1200帧：原版均35.573/中34/P9547，大场景均63.253/中59/P9594，双方实射400/2009和400/1109。路线/地形/视口相同，大场景火力更低仍慢；不称近原版。V1原房2659ms尖峰已定位探针startCase2591ms，V2移除段边重复设置/整报告写入，未扣帧伪造速度。
+
+背景长ABBA无收益；短ABBA表面6.24%改善但敌方火力和预绘更少，尚不稳。571次完整扫描无不透明块，停止该缓存。区域合成缓存049DE诊断1200帧目标calls/rebuilds全0，排除本负载热点，不生产构建。详细结果见knowledge/experiments/dense-combat-near-native-20261023.md。
+
+349F单方法Location诊断：大场景总15.7–19.0ms/帧，单位4.1–5.1、子弹3.3–5.2、玩家2.5–3.0、原生lighting2.5；600箱子仅.2–.3。原版同负载总6.5–7.7、单位2.0–2.8、子弹1.3–1.9、lighting.55–.61。B8C子弹分段：hitTile包含1.35–3.25ms/帧，单位遍历.28–.64。RC owner19FF诊断1200帧墙采集仅.37–.46ms/帧，0重建/0compare，不是主因，已回报owner。
+
+后续decal3401诊断1200帧：outer7.4–7.85ms/次、scenePaint2.89–3.19ms/次，素材准备仅.055–.088，降低素材缓存优先级。普通房该轮900帧后真实击退越平台，完整失败保留。休眠显示根缓存短ABBA均63.708→64.468ms，没有稳定净收益，停止。lighting2整数循环BCCF六组组件状态/像素一致，但真实战斗900帧仅16次调用（原4次10ms，新12次12ms），第16窗击退越平台终止；它不解释2.5ms/帧视野成本，停止。clipRect历史已测无稳定收益，不重启。随后CS只读stats快照已完成，见下文；V2原world已记录retDark=false、240×125、lDist1=600/lDist2=2000。未缩范围，这些诊断均未部署。
+
+Location首两轮因系统可提交余量约.4GB中止，未产终态不作有效样本。用户已正常关闭暂不用程序，余量恢复7.16GB后上述分组实测完成；不重复要求退出，不降低512MiB运行保护。全部新驱动/审计在build/generated/combat-near-native-20261023，准确宿主/探针各自独立，不叠加诊断。
+
+只读activity-spatial-20261023-scene-r1已完整1200帧/26项/44快照：159单位、活动均47.16、屏外26，缩为视口+320或玩家±900×700的数量上界均13.86，但搜索状态未观察，不能直接休眠；当前宽限内立即可减0。正式调度不改。
+
+上述fog-terminal已实测并停止：84组/30000格状态像素全等，真实20×60/90项通过但均63.343→64.007ms，视野每次2.743→3.027ms，496810次实际提前拒绝也无净收益，不部署。activity-internal已完整1200帧/26项/44快照，实际域身份一致；无当前目标的Merc仍有state2/3和正警戒值，不能一律暂停。已核平静Raider家族均4.41个只是缩范围上界，engaged/宽限仍保留。
+
+fog-bitmap-lock首次try/finally导入将整个lighting变为67 activation槽，停止保留。独立inline 4A84严格单方法审计与84对像素/状态通过；真实20×60/90项A58.163/B59.793ms、P95 70/75，仍无净收益，停止。A594次调用仅472写像素，B590次1401写、104对称lock/unlock，写入稀少。无生产构建，不再补此诊断的异常清理。
+
+decal-stamp-proof停止：r1旧Flex要求显式终末return；r2实际擦除像素不等；r3普通paint的alpha变换差10个RGB像素；r4限定alpha保持后bullet_tre第5帧仍差7个RGB像素（最大通道差1），尚未进入跨块检查。三轮执行与恢复均成功，失败证据完整保留，不生产化、不报提速。
+
+fog-last-blocker 38C7已严格审核并通过89对（原86+负visi两对+弱水），不叠加terminal/lock。历史EB365组合真实两轮20×60/90项A/B均61.463/60.572、63.228/61.418ms，10块7块改善；lighting每调用2.694→2.038、2.743→1.975ms。已观察到可重复的函数收益和小幅整帧改善，仍非近原版。独立无计数生产80CF仅在sceneLarge&&bounded&&interiorRay生效；BEFC基线和80CF同冻结探针各91对原生legacy/typed全图状态与像素一致并恢复。生产组件不测缓存命中，另两对sceneLarge=false仅验证标志旁路，不是原版房玩法验收。新生产对照统一RC DF0F/RV6DBB组合，80CF已部署，详见第6节。opacity-call-cache的101对通过，但真实A/B均64.24/64.1083ms，几乎不变，停止该方向。被钩子误拦的stamp驱动源码写入已按此前授权登记10分钟精确补丁完成，未关闭护栏。
+
+80CF生产对照完整保留：baseline-r2均65.795/中63/P95 91，candidate-r1均60.415/中56/P95 80，但敌方出膛1875→1063、活动均46.75→41.55；candidate-r2均56.1975/中54/P95 75、敌方1622。反向baseline-r4已完成1200帧，均58.2075/中56/P95 75、敌方1806；与candidate-r2比较仍有火力/预绘混杂，不报精确净百分比。普通房双1200帧A35.520833/中34/P95 49/max188/敌1651，B34.1925/中33/P95 43/max132/敌1767；旁路未见回退，也不把这个差值当作未启用算法的收益。各完整轮玩家400次。首候选820ms长帧未落在现有计时脚本段，原因未定；baseline-r1预热超过1200帧仍未稳定、0样本，baseline-r3第二段前原生击退越平台、仅1段完成，两次失败保留。
+
+测试工具修正：motion-test.py air_pids改Toolhelp32直接按名称枚举，避免沙箱OpenProcess拒绝被误当无AIR；首次后台桌面权限失败0e722d...已核对本轮进程退出并恢复登记。实际游戏测试需允许私有桌面启动的执行权限；不杀玩家游戏。
 
 真实战斗已获得可重复约15%改善，联网门禁、精确部署和安装冒烟全部完成。原574D与EB365各1200帧、90项PASS，原生按键/物理/真实双方开火、同地形及路线：平均69.615→58.866ms，中位64→54，P95 96→80，>100ms帧51→32；五块均值/中位都改善。两轮诊断ABBA另有十块同向支持。收益范围是未尝试联网的单人游玩，测量时LAD/RV/WB关闭，不是所有配置或联网性能保证。
 
@@ -47,7 +71,7 @@ CS编辑器0.9.0已于10月20日安装并复验25+22项：Editor7344、EditorToo
 - c6c9757ebc：首次联机、两向实弹与最终像素、冻结/解除全完成，但host在join退出后继续检查房间而报终态竞态；原FAIL保留。
 - 最终driver07/native08/d0048aff49：两端各39/0、首次attempt各1、hello/welcome、十项coverage全true、finishing确认及所有清理通过。result.json SHA256 C103B58822FBE0547AB226907E0D138633D0A782A5FA4217EC4117356BE6C066；根独立核对，候选仍准确EB365、测试前后22安装项不变。联网功能门禁完成，不再追加无关场景。
 
-RC负责人已完成安装及实际release输入的无诊断驱动冒烟ae58b8049b，原runner/登记PASS。根与子代理独立核对两端新版初始化、tick200、join welcome/unitsync、日志散列和清理；当前22项安装仅RC变化，source/installed同EB365、备份574D。本轮“真实战斗明显下降并部署复验”目标已达到，不把旧资源阻塞当当前状态，也不冒充整体近原版。
+前轮RC负责人完成安装及实际release输入的无诊断驱动冒烟ae58b8049b，原runner/登记PASS。根与子代理独立核对两端新版初始化、tick200、join welcome/unitsync、日志散列和清理；当时22项安装仅RC变化，source/installed同EB365、备份574D。前轮“真实战斗明显下降并部署复验”目标已达到，不把旧资源阻塞当当前状态，也不冒充整体近原版；当前安装与后续任务见第3、6节。
 
 ## 5. 已知限制与拒绝路线
 
@@ -59,16 +83,19 @@ RC负责人已完成安装及实际release输入的无诊断驱动冒烟ae58b804
 
 ## 6. 下一步、构建与回退
 
-本轮交付完成，下一次正常启动游戏生效。首次联机78/0及实际安装冒烟均通过，无需重跑已完成的性能和功能数据。原版墙面候选不并入本次，后续尖峰、高速/全效果仍可继续针对性归因；不得重启已被证伪的旧配方或将其累成必做事项。
+80CF按release gate 2026-10-19.1完成本机部署；持续授权无需重复确认。state/fog-last-blocker-deployment-20261023.json状态verified，实际pfe指纹与回执一致；安装后fog-blocker-product-20261023-installed-native-r1为51/0，结果SHA73C7B1804B411E7C1260DAD0A1D6E1EC91AC6FD37A773DC6901EF673D0FD7B99。备份为build/backups/fog-last-blocker-20261023-184722/pfe_before_ContinuousScene_fog_last_blocker_20261023.swf（BEFC），回退前须核当前仍是本次80CF，不能覆盖后续他人改动。
 
-RC本轮回滚点：../RConnect/build/m52/recovery-offline-deploy-01/RConnectMod.before.swf（574D2B51490AE8B25A1396555600F56A301F8A20AE50104C0E35CF2796441AFE）。回滚应核对当前仍为本轮EB365，由RC负责人协调，不覆盖未来版本。用户配置与存档保持。
+近原版目标仍未完成。更激进绘制缓存涉及像素容差的取舍已询问用户，尚未回复，未启用；保持现有严格画面边界，不能把提问当作授权。前轮RC首次联机78/0及安装冒烟为历史已完成门禁，无需重跑无关联网项目；上述阴性路线不再重跑。原版墙面候选不并入，不复活旧配方。
 
-撤回基线：state/afternoon-recovery-20261021.json verified，51项安装后检查。BEFC来源build/backups/sats-20261021-154054/pfe.swf，回退前5432另存build/backups/afternoon-recovery-20261021-222045。旧SATS/impact回执已rolled-back-by-user。
+RC前轮历史回滚点：../RConnect/build/m52/recovery-offline-deploy-01/RConnectMod.before.swf（574D2B51490AE8B25A1396555600F56A301F8A20AE50104C0E35CF2796441AFE）。当前已是负责人后续DF0F版本，不能直接套用旧EB365回滚；如需回退由RC负责人核对当前版本与对应备份，用户配置与存档保持。
 
-性能驱动build/rc-native-combat-run.py，冻结probe build/generated/rc-native-combat-20261023/probe-source/3fa568cbe2464a5ca40d6ccb37705e87。不要用旧motion整包构建/回退覆盖CS0.9.0或其他后续修改。历史宿主构建链motion-host incremental→motion-fog --rays→motion-direction不是当前候选发布入口。
+历史撤回基线：state/afternoon-recovery-20261021.json verified，51项安装后检查。BEFC来源build/backups/sats-20261021-154054/pfe.swf，回退前5432另存build/backups/afternoon-recovery-20261021-222045。旧SATS/impact回执已rolled-back-by-user；当前正式已前进至80CF，不能再把BEFC当作当前安装。
+
+旧性能驱动（包括build/rc-native-combat-run.py及各BEFC诊断/对照）绑定历史BEFC基线，未来不能直接运行其部署/回退路径覆盖80CF；新工作须明确保留当前宿主改动并重新冻结输入。历史probe build/generated/rc-native-combat-20261023/probe-source/3fa568cbe2464a5ca40d6ccb37705e87保持。不要用旧motion整包覆盖CS0.9.0或后续修改；motion-host incremental→motion-fog --rays→motion-direction不是当前发布入口。foreign SceneRenderChecks WIP继续不触碰、不提交。
 
 ## 7. 证据与深入入口
 
+- knowledge/experiments/dense-combat-near-native-20261023.md：当前近原版任务、80CF生产组件/普通房与大场景对照/部署复验，含混杂因素及失败样本。
 - knowledge/experiments/combat-stable-driver-20261022.md：当前真实性修正、归因、有效收益及失败路线。
 - knowledge/experiments/evidence/rc-native-20261023-baseline-r1 与 candidate-r1：准确生产包1200帧对照。
 - ../RConnect/build/m52/recovery-offline-{production-01,lifecycle-native-03,collector-native-01,first-connect-*}：候选、功能及首次接入证据。

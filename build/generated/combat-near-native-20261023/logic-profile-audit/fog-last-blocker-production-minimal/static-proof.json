@@ -1,0 +1,87 @@
+{
+  "version": "fog-last-blocker-production-minimal-1",
+  "productionCandidate": true,
+  "compiled": false,
+  "runtimeVerified": false,
+  "releaseVerified": false,
+  "deployed": false,
+  "baseHost": "BEFCF0509E11FAC9FEF7AFB834708B8B93752A14AE3D5CD72B42AA6D42F9B82A",
+  "sourceInput": {
+    "path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\fog-typed\\source\\fe\\loc\\Location.as",
+    "sha256": "4D8B971D16A6D4CE8E8E8F691D9E8006969DD8779DB5B0D08DD1D4D8FA7D6320"
+  },
+  "candidateSource": {
+    "path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\source\\fe\\loc\\Location.as",
+    "sha256": "CCF5E314127944FCE2F98FC4A6C6EFA95C033511EE66C3DDED111C5FCF878563"
+  },
+  "inputs": {
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\recipe.py": "FAAEFFE5C863A886DE1EED3CC8591B766E8BC4910B7E00C3D8E5177EDD984AE9",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\build.py": "2AABA64FCA69839BA410B6A58C94D09DA0C9365D1749F8C01E474BE94B9AC78E",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\audit.py": "9DC04617CE9285B1947B04CCB79A20C60C6CC3DF341BB7BD02D0A48F988CBA8E"
+  },
+  "checks": {
+    "pythonSyntax": true,
+    "inverseTransformExact": true,
+    "legacyPrefixExact": true,
+    "originalSixWritesPreserved": true,
+    "fourLocalsOnly": true,
+    "effectiveOpacityUpdateEqualsTestedAlgorithmWithoutCounter": true,
+    "noNewImportsTimersCountersAPIOrExceptions": true,
+    "actualImportPinsAbsent": true
+  },
+  "scopeTruthTable": [
+    {
+      "sceneLarge": false,
+      "bounded": false,
+      "interiorRay": false,
+      "cacheEligible": false
+    },
+    {
+      "sceneLarge": false,
+      "bounded": false,
+      "interiorRay": true,
+      "cacheEligible": false
+    },
+    {
+      "sceneLarge": false,
+      "bounded": true,
+      "interiorRay": false,
+      "cacheEligible": false
+    },
+    {
+      "sceneLarge": false,
+      "bounded": true,
+      "interiorRay": true,
+      "cacheEligible": false
+    },
+    {
+      "sceneLarge": true,
+      "bounded": false,
+      "interiorRay": false,
+      "cacheEligible": false
+    },
+    {
+      "sceneLarge": true,
+      "bounded": false,
+      "interiorRay": true,
+      "cacheEligible": false
+    },
+    {
+      "sceneLarge": true,
+      "bounded": true,
+      "interiorRay": false,
+      "cacheEligible": false
+    },
+    {
+      "sceneLarge": true,
+      "bounded": true,
+      "interiorRay": true,
+      "cacheEligible": true
+    }
+  ],
+  "limitations": [
+    "Exact emitted body/private/frame review still pending.",
+    "Diagnostic 89 pairs/two timing rounds are supporting evidence, not exact-production-package acceptance.",
+    "Normal and non-scene-large paths execute the original algorithm; added local initialization and false predicate still exist."
+  ]
+}

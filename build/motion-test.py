@@ -43,21 +43,32 @@ def cpu_owned(process,elapsed):
     return {'elapsed':elapsed,'kernelMs':ms(values[2]),'userMs':ms(values[3])}
 
 def air_pids():
-    k=ctypes.WinDLL('kernel32',use_last_error=True);p=ctypes.WinDLL('psapi',use_last_error=True)
-    k.OpenProcess.argtypes=[W.DWORD,W.BOOL,W.DWORD];k.OpenProcess.restype=W.HANDLE
-    k.QueryFullProcessImageNameW.argtypes=[W.HANDLE,W.DWORD,W.LPWSTR,ctypes.POINTER(W.DWORD)]
+    # Enumerate names without opening other users' process handles. A denied
+    # OpenProcess used to silently hide the player's AIR under the sandbox.
+    class Entry(ctypes.Structure):
+        _fields_=[('dwSize',W.DWORD),('cntUsage',W.DWORD),('th32ProcessID',W.DWORD),
+            ('th32DefaultHeapID',ctypes.c_size_t),('th32ModuleID',W.DWORD),
+            ('cntThreads',W.DWORD),('th32ParentProcessID',W.DWORD),
+            ('pcPriClassBase',W.LONG),('dwFlags',W.DWORD),('szExeFile',W.WCHAR*260)]
+    k=ctypes.WinDLL('kernel32',use_last_error=True)
+    k.CreateToolhelp32Snapshot.argtypes=[W.DWORD,W.DWORD];k.CreateToolhelp32Snapshot.restype=W.HANDLE
+    k.Process32FirstW.argtypes=[W.HANDLE,ctypes.POINTER(Entry)];k.Process32FirstW.restype=W.BOOL
+    k.Process32NextW.argtypes=[W.HANDLE,ctypes.POINTER(Entry)];k.Process32NextW.restype=W.BOOL
     k.CloseHandle.argtypes=[W.HANDLE]
-    ids=(W.DWORD*16384)();size=W.DWORD()
-    if not p.EnumProcesses(ids,ctypes.sizeof(ids),ctypes.byref(size)):raise ctypes.WinError()
-    result=[]
-    for pid in ids[:size.value//4]:
-        h=k.OpenProcess(0x1000,False,pid)
-        if not h:continue
-        try:
-            buf=ctypes.create_unicode_buffer(32768);n=W.DWORD(len(buf))
-            if k.QueryFullProcessImageNameW(h,0,buf,ctypes.byref(n)) and Path(buf.value).name.lower()=='adl64.exe':result.append(pid)
-        finally:k.CloseHandle(h)
-    return result
+    snapshot=k.CreateToolhelp32Snapshot(2,0)
+    if snapshot==ctypes.c_void_p(-1).value:raise ctypes.WinError(ctypes.get_last_error())
+    try:
+        entry=Entry();entry.dwSize=ctypes.sizeof(entry)
+        if not k.Process32FirstW(snapshot,ctypes.byref(entry)):raise ctypes.WinError(ctypes.get_last_error())
+        result=[]
+        while True:
+            if entry.szExeFile.lower() in ('adl.exe','adl64.exe'):result.append(entry.th32ProcessID)
+            if not k.Process32NextW(snapshot,ctypes.byref(entry)):
+                error=ctypes.get_last_error()
+                if error!=18:raise ctypes.WinError(error)
+                break
+        return result
+    finally:k.CloseHandle(snapshot)
 
 def hashes():
     paths=[RUNTIME/'pfe.swf',RUNTIME/'mods/loader-manifest.txt',RUNTIME/'mods/LightAndDarkness/atmosphere.json']

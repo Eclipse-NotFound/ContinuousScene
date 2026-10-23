@@ -1,0 +1,59 @@
+{
+  "version": "fog-last-blocker-production-minimal-1",
+  "diagnosticOnly": false,
+  "productionCandidate": true,
+  "performanceEligible": false,
+  "deployed": false,
+  "base": "BEFCF0509E11FAC9FEF7AFB834708B8B93752A14AE3D5CD72B42AA6D42F9B82A",
+  "baseXML": "E5DBF6959F268078B99F0111EB9720F49C2759C1837C82486D9638A17AB92A66",
+  "target": "fe.loc.Location::0:1:lighting",
+  "sourceInputs": {
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\build.py": "2AABA64FCA69839BA410B6A58C94D09DA0C9365D1749F8C01E474BE94B9AC78E",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\recipe.py": "FAAEFFE5C863A886DE1EED3CC8591B766E8BC4910B7E00C3D8E5177EDD984AE9",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\audit.py": "90FE85A3794EE4B2B77E48CF29174C7FE022BCBEA5F1800B006F0646181C1F96",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\enemy-speed.py": "C5799740FD4DAB5BC2322B0E48055B215C554FBDEBF138EFB72575D9F9CB5221",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\profile-vision.py": "6A707A8959C101325535B3DE65CB5E1A1B4CA0E18798F6614D8AE35B1A567151",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\motion-test.py": "2371AF3E3AB4C6ADC99BC67C949BA6182F3767114A722B65A3EFB7FD5A18CDC6",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\bullet-segments-audit.py": "FDE9CD32AB29F28F173DA0829CD311D0EEA00A6AAE3B89B430BBCF28682D8264",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\stationary-threat-audit.py": "6137863C167A2F09A7BA35DBC933E789213246302CF15E5C5048516AA1B758A2",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\native-crop-audit.py": "AC4383A6FA899EE62CAA54282AE6F31E5DDB83CEBABFC65A920EA5954F0F46DE",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\fog-typed\\source\\fe\\loc\\Location.as": "4D8B971D16A6D4CE8E8E8F691D9E8006969DD8779DB5B0D08DD1D4D8FA7D6320",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\fog-typed\\provenance.json": "A7568546F8919C937B603CA29ACEFFA9036EE5ED8D3C510C32077E215587200A"
+  },
+  "originalPath": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\original-source\\fe\\loc\\Location.as",
+  "originalSource": "4D8B971D16A6D4CE8E8E8F691D9E8006969DD8779DB5B0D08DD1D4D8FA7D6320",
+  "instrumentedSource": "CCF5E314127944FCE2F98FC4A6C6EFA95C033511EE66C3DDED111C5FCF878563",
+  "sourceTransformReversible": true,
+  "originalCallOrderPreserved": true,
+  "newClassMembers": false,
+  "newClosures": false,
+  "newTryCatchFinally": false,
+  "timerCalls": 0,
+  "limitations": [
+    "Only typed bounded interior rays with this.grafon.sceneLarge use per-call blocker reuse.",
+    "Ordinary rooms and non-scene large rooms retain the complete native ray loop.",
+    "No diagnostic API, timing, counters, added imports or persistent state in target source.",
+    "Valid dense native Tile grid required; same-call opac/water fields are stable.",
+    "Prior diagnostic results do not replace exact production-candidate component/performance/release checks."
+  ],
+  "continuedFrom": {
+    "path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\compiled-provenance.json",
+    "sha256": "14D956646525E7A5A594CB1D6038642CFA0BA1CD680E2F1A1505A85FCE6B2F07",
+    "sourceInputs": {
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\build.py": "2AABA64FCA69839BA410B6A58C94D09DA0C9365D1749F8C01E474BE94B9AC78E",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\recipe.py": "FAAEFFE5C863A886DE1EED3CC8591B766E8BC4910B7E00C3D8E5177EDD984AE9",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\audit.py": "9DC04617CE9285B1947B04CCB79A20C60C6CC3DF341BB7BD02D0A48F988CBA8E",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\enemy-speed.py": "C5799740FD4DAB5BC2322B0E48055B215C554FBDEBF138EFB72575D9F9CB5221",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\profile-vision.py": "6A707A8959C101325535B3DE65CB5E1A1B4CA0E18798F6614D8AE35B1A567151",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\motion-test.py": "2371AF3E3AB4C6ADC99BC67C949BA6182F3767114A722B65A3EFB7FD5A18CDC6",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\bullet-segments-audit.py": "FDE9CD32AB29F28F173DA0829CD311D0EEA00A6AAE3B89B430BBCF28682D8264",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\stationary-threat-audit.py": "6137863C167A2F09A7BA35DBC933E789213246302CF15E5C5048516AA1B758A2",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\native-crop-audit.py": "AC4383A6FA899EE62CAA54282AE6F31E5DDB83CEBABFC65A920EA5954F0F46DE",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\fog-typed\\source\\fe\\loc\\Location.as": "4D8B971D16A6D4CE8E8E8F691D9E8006969DD8779DB5B0D08DD1D4D8FA7D6320",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\fog-typed\\provenance.json": "A7568546F8919C937B603CA29ACEFFA9036EE5ED8D3C510C32077E215587200A"
+    }
+  },
+  "candidate": "80CFD8CF3138EE59CBF6EDA0A1824A9EC960F413BD95E4B90D41DD0322B4FD3D",
+  "candidateXML": "B92260A7A0DFA80EB129C60AEF273645C32BBBA9B3588770BD7083D6984E7E04",
+  "audit": "D239A9D614C26F2704E6ED7E6F452ABF49D6D27E0A98CB58EE9BD933F0E19A66"
+}
