@@ -1,5 +1,7 @@
 # ContinuousScene：连续大场景与单一地图编辑 0.9.0
 
+2026-10-23：已安装配套 RConnect 0.2.24-offline1，减少单人游玩时无用的弹道与特效记录。关闭灯光、视野及墙面融合的同路线真实战斗对照中，平均每帧耗时 **69.6→58.9毫秒，约下降15%**；首次联机78项及安装后双实例复验通过。仍有偶发长帧，尚未达到整体原版流畅度。下次正常启动生效，详见[战斗性能实测与交付记录](knowledge/experiments/combat-stable-driver-20261022.md)。
+
 2026-10-21 22:22：用户反馈下午修改后性能下降，已恢复到该轮修改前的 **BEFC** 宿主，安装后51项进图、刷新、存读档及普通房间检查通过。下午的SATS视野截图、矩形复用和弹痕素材复用均已撤下；CS0.9.0和编辑器保留，存档与设置未改。正常重启生效。回执见 [本轮回退](state/afternoon-recovery-20261021.json)，性能调查见 [记录](knowledge/experiments/afternoon-recovery-20261021.md)。
 
 下午两次发布的 [SATS记录](knowledge/experiments/sats-viewport-20261021.md) 和 [弹痕记录](knowledge/experiments/combat-impacts-20261021.md) 保留为历史。组件耗时降低并未证明整场战斗改善，当前正式版不再包含这些候选，不使用旧发布脚本重新安装。

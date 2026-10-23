@@ -1,6 +1,6 @@
 # ContinuousScene — 当前快照
 
-更新：2026-10-23 08:49。此文件是入口；详细历程见 journal.md，先前长快照完整保留于 MEMORY-history-20261023-0818.md。
+更新：2026-10-23，战斗优化已部署并复验。此文件是入口；详细历程见 journal.md，先前长快照完整保留于 MEMORY-history-20261023-0818.md。
 
 ## 1. 模组与体验
 
@@ -20,13 +20,13 @@
 
 ## 3. 当前安装与候选
 
-当前正式仍为用户要求回退后的组合，未安装本轮性能候选：
+本轮仅更新RC离线采集开销，其余保持用户要求回退后的组合：
 
 - root pfe.swf：BEFCF0509E11FAC9FEF7AFB834708B8B93752A14AE3D5CD72B42AA6D42F9B82A。
 - CS0.9.0：7F1F2961C6E299D949423591F3C65C610C2EAEFA7FC72E8A583A402770D6B51F。
-- RC：574D2B51490AE8B25A1396555600F56A301F8A20AE50104C0E35CF2796441AFE。
+- RC0.2.24-offline1：EB3653533CFB305BCCA0B0CFE5E81BC306EA28FA400AAE751AB7B5AE1CFA5FEE。
 - TDFC7ACD、LAD8ADB、WB1411；RV由其负责人独立更新，最新已核83D8。每轮须冻结实际依赖，不把其他任务更新归本任务。
-- 已测生产候选RC0.2.24-offline1：EB3653533CFB305BCCA0B0CFE5E81BC306EA28FA400AAE751AB7B5AE1CFA5FEE，路径 ../RConnect/build/m52/recovery-offline-production-01。
+- 已测准确生产输入：../RConnect/build/m52/recovery-offline-production-01。部署回执../RConnect/build/m52/recovery-offline-deploy-01/deployment.json，状态deployed-smoke-passed，SHA256 7DB4BDC4F9BF9317A96EC51DB3076A5B8F0D49BBC9254692142BE92F7065EE86。
 
 EB365基于准确574D冻结源，仅三类和版本变化；未联网时跳过两组弹道/身体效果历史采集。首次host/join尝试即永久恢复采集（直到进程重启）；null、异常、非严格true均保守回退。保持墙面、感知、实际呈现、失效刷新和联网路径；生产包无诊断开关。诊断88CC不得部署。
 
@@ -34,7 +34,7 @@ CS编辑器0.9.0已于10月20日安装并复验25+22项：Editor7344、EditorToo
 
 ## 4. 当前任务进展与停点
 
-真实战斗已获得可重复约15%改善，有限联网门禁也已通过，正在由RC负责人部署。原574D与EB365各1200帧、90项PASS，原生按键/物理/真实双方开火、同地形及路线：平均69.615→58.866ms，中位64→54，P95 96→80，>100ms帧51→32；五块均值/中位都改善。两轮诊断ABBA另有十块同向支持。
+真实战斗已获得可重复约15%改善，联网门禁、精确部署和安装冒烟全部完成。原574D与EB365各1200帧、90项PASS，原生按键/物理/真实双方开火、同地形及路线：平均69.615→58.866ms，中位64→54，P95 96→80，>100ms帧51→32；五块均值/中位都改善。两轮诊断ABBA另有十块同向支持。收益范围是未尝试联网的单人游玩，测量时LAD/RV/WB关闭，不是所有配置或联网性能保证。
 
 玩家各400射，敌810→884；人口、种类略有差，节点候选少约1.1%，不报纯净单函数因果值。中间三块双方预绘分片均0，仍改善。最大帧306→473ms，候选473ms发生段内nativeBand443ms，不能剔除或断言无未完成预绘，具体来源未定。不称整体近原版或所有尖峰消失。
 
@@ -47,7 +47,7 @@ CS编辑器0.9.0已于10月20日安装并复验25+22项：Editor7344、EditorToo
 - c6c9757ebc：首次联机、两向实弹与最终像素、冻结/解除全完成，但host在join退出后继续检查房间而报终态竞态；原FAIL保留。
 - 最终driver07/native08/d0048aff49：两端各39/0、首次attempt各1、hello/welcome、十项coverage全true、finishing确认及所有清理通过。result.json SHA256 C103B58822FBE0547AB226907E0D138633D0A782A5FA4217EC4117356BE6C066；根独立核对，候选仍准确EB365、测试前后22安装项不变。联网功能门禁完成，不再追加无关场景。
 
-当前goal工具仍有此前blocked快照；用户已明确继续，任务实际推进。不得把旧资源阻塞当当前停工理由，不创建重复goal。待全部工作完成再确认complete。
+RC负责人已完成安装及实际release输入的无诊断驱动冒烟ae58b8049b，原runner/登记PASS。根与子代理独立核对两端新版初始化、tick200、join welcome/unitsync、日志散列和清理；当前22项安装仅RC变化，source/installed同EB365、备份574D。本轮“真实战斗明显下降并部署复验”目标已达到，不把旧资源阻塞当当前状态，也不冒充整体近原版。
 
 ## 5. 已知限制与拒绝路线
 
@@ -59,9 +59,9 @@ CS编辑器0.9.0已于10月20日安装并复验25+22项：Editor7344、EditorToo
 
 ## 6. 下一步、构建与回退
 
-1. 首次联机门禁已78/0完整通过，无需重跑已完成的性能和功能数据。
-2. 由RC负责人备份、精确安装EB365、回读指纹，并从实际安装文件进行隔离冒烟；失败回滚。本侧复核回执后记录交付。原版墙面候选不并入此次性能交付。
-3. 更新MEMORY/journal及本轮证据，提交自己的文件，保留外来WIP。用户正常重启生效。
+本轮交付完成，下一次正常启动游戏生效。首次联机78/0及实际安装冒烟均通过，无需重跑已完成的性能和功能数据。原版墙面候选不并入本次，后续尖峰、高速/全效果仍可继续针对性归因；不得重启已被证伪的旧配方或将其累成必做事项。
+
+RC本轮回滚点：../RConnect/build/m52/recovery-offline-deploy-01/RConnectMod.before.swf（574D2B51490AE8B25A1396555600F56A301F8A20AE50104C0E35CF2796441AFE）。回滚应核对当前仍为本轮EB365，由RC负责人协调，不覆盖未来版本。用户配置与存档保持。
 
 撤回基线：state/afternoon-recovery-20261021.json verified，51项安装后检查。BEFC来源build/backups/sats-20261021-154054/pfe.swf，回退前5432另存build/backups/afternoon-recovery-20261021-222045。旧SATS/impact回执已rolled-back-by-user。
 

@@ -249,3 +249,11 @@ driver06（36DB3C65…86D0906）/native07/c6c9757ebc已完成真实业务全链�
 本轮整体仍为FAIL：join39/39结束，host38项通过、round4及对侧完成确认之后，join正常断开，host继续房间身份采样触发失败。host.log:65–70明确顺序。不得事后改判PASS；RC负责人仅修终态收尾顺序后再运行，随后按门禁精确部署及实际安装冒烟。正式BEFC/7F1F/574D保持，尚未部署。
 
 08:49最终门禁：driver07/native08/d0048aff49已完整PASS，两端各39项/0失败、attempt各1、真实hello/welcome、十项coverage全true，finishing确认和清理均通过。根直接核对result.json（C103B58822FBE0547AB226907E0D138633D0A782A5FA4217EC4117356BE6C066）及候选EB365原字节，安装22项不变。终态只停止已完成后的游戏观察，保留有界最终确认、全部原断言及清理。联网功能门禁至此完成，RC负责人进入备份/安装/实际安装冒烟；旧FAIL不改写，不额外扩大门禁。
+
+## 本轮交付：EB365已安装，实际安装冒烟通过
+
+2026-10-23 08:58，RC负责人完成准确EB365部署与原运行器双实例冒烟ae58b8049b。回执`mods/RConnect/build/m52/recovery-offline-deploy-01/deployment.json`为deployed-smoke-passed/exit0，SHA256 7DB4BDC4F9BF9317A96EC51DB3076A5B8F0D49BBC9254692142BE92F7065EE86。根和独立子代理复核run.json候选路径指向实际release，双端输入同EB365且无诊断驱动；版本初始化/tick200、join welcome/unitsync及登记PASS，日志散列一致，自有实例清理完成。
+
+当前22项正式安装仅`mods/Rconnect/release/RConnectMod.swf`从574D变EB365；root BEFC、CS7F1F、全部配置及其他模组保持。源产物/正式文件/两端测试字节一致，备份`recovery-offline-deploy-01/RConnectMod.before.swf`为准确574D。部署脚本在共享登记内重核基线、备份并原子替换；失败只回滚自身字节，不覆盖后来者。普通墙面候选未混入。
+
+至此限定的单人真实战斗明显下降与部署复验目标完成；性能依据仍是上文关闭LAD/RV/WB时三轮对照，不是此功能冒烟新测得的帧率或全配置净收益。保留473ms长帧及自然人口差异，整体近原版尚未达到。下次正常启动生效，首次联网尝试后按设计恢复采集，不宣称多人性能同幅改善。
