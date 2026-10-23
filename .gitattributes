@@ -4,3 +4,6 @@ build/generated/combat-near-native-20261023/logic-profile-audit/fog-last-blocker
 build/generated/combat-near-native-20261023/logic-profile-audit/fog-last-blocker-production-performance/** -text whitespace=cr-at-eol
 build/generated/combat-near-native-20261023/fixture-audit-v2/** -text whitespace=cr-at-eol
 build/generated/combat-near-native-20261023/logic-profile-audit/fog-last-blocker/SceneFogLastBlockerProbe.as -text whitespace=cr-at-eol
+build/generated/combat-near-native-20261023/logic-profile-audit/decal-stamp-tolerance/** -text whitespace=cr-at-eol
+build/generated/combat-near-native-20261023/logic-profile-audit/decal-stamp-copy-pixels/** -text whitespace=cr-at-eol
+build/generated/combat-near-native-20261023/logic-profile-audit/front-shadow/** -text whitespace=cr-at-eol

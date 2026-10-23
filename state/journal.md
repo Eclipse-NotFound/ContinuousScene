@@ -1,5 +1,13 @@
 # 开发日志
 
+## 2026-10-23晚 — 缓存容差与2400帧复测完成，本轮不部署
+
+用户已答复接受测试近乎看不出的色差，要求先确认明显提速。图章draw与copyPixels各完成172项；均153严格相等、158在RGB每通道≤1/alpha0内、14超界，alpha全部相等。比较器原alpha-only哨兵失败已另存，修正为完整ARGB扫描后没有删反例。两路停止，可复用方法归档KB-000111修订1，细节见dense-combat-near-native-20261023.md及新实验RESULTS.md。
+
+前景同尺寸显示副本先解决测试准备：r1/r2未启用就超时/击退越平台；r3在创建测试敌人前原生预绘测试区域，准备7833ms单列，不算加载改善。30帧真实交战、50次尾同步、四组整屏像素一致，177副本清理完整。同冻结探针两轮各1200帧/90项通过：A/B平均65.0567/63.2633ms与64.010/61.505ms；中位61/61和61/59，敌方882/863与815/887，各五块四好一坏。仅小幅改善倾向，仍有负载差异，常驻约108MiB，未达明显接近原版的目标，不部署、不继续扩建此缓存。
+
+正式80CF/CS7F1F/RCDF0F保持；他人SceneRenderChecks WIP及天角兽候选未触碰。下一次从新的高占比证据入手，不能直接跳过活动屏外单位动画（影响枪口与射击时序），也不复活已撤回配方。当前继续优化目标未完成。
+
 ## 2026-10-23 — 遮挡格复用80CF已部署，安装后51项通过
 
 release.py deploy按release gate 2026-10-19.1与本机持续授权完成，state/fog-last-blocker-deployment-20261023.json为verified；正式pfe.swf实读SHA80CFD8CF3138EE59CBF6EDA0A1824A9EC960F413BD95E4B90D41DD0322B4FD3D，与回执一致。原BEFC备份在build/backups/fog-last-blocker-20261023-184722/pfe_before_ContinuousScene_fog_last_blocker_20261023.swf。installed-native-r1安装后51/0、ok=true、error=null，结果SHA73C7B1804B411E7C1260DAD0A1D6E1EC91AC6FD37A773DC6901EF673D0FD7B99；没有新增生产计数或诊断开关。
