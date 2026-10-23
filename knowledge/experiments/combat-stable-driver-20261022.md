@@ -237,3 +237,15 @@ build/rc-native-combat-run.py新增rcnative空操作模式，整个进程单一R
 2026-10-23 07:23首次连接夹具补充审查：当时`experimental/recovery-offline-first-connect/tests/OfflineFirstConnectTestDoc.as`的`observePacket`仅phase==round保留生产包，`render`也仅round观察远端显示；从首次startHost/startJoin至roomReady/prepare/begin(0)的窗口未覆盖。旧事件若在这个窗口短暂重播并消失，后续quietNoReplay可能误通过。peerClass要到ready/prepare才确定，begin(0)清空计数，before在connecting/prepare早退不触发invalidate，均属同一缺口。主代理与只读子代理独立确认，已发RC负责人修正，不改其活动源码。移动稿多次变化，本文不是冻结版本的完整审查或实测结论。最新提交余量2.73GiB，未达到原双实例6GiB门槛；正式BEFC/7F1F/574D复核未动、性能候选EB365保留。恢复后的第2目标回合有具体审查进展，目标active。
 
 07:26纠正与收束：最新只读D65B4345317F2A5824C6B3C10961D6CCB1801E109421244A1B5DEAE7D057DA3E已经覆盖connecting/prepare生产包、peerClass未知回退expectedClass，并在begin(0)前保存/判定；旧包漏检已修。独立子代理曾继续把before提前return当显示检查无可靠驱动，根查准确EB365源码反证：ExplorationSync构造:45注册ENTER_FRAME requestRender，:285只要stage存在即invalidate；GameBridge onMirrorFrame:359也请求。因此“夹具before自身没有invalidate”不能证明实际RENDER不触发，此项意见撤回并同步负责人。显式补触发只属夹具自包含改善，不增设额外必过门禁。尚无双人运行结果。
+
+## 2026-10-23 08:43 — 资源恢复后的真实首连与夹具修复
+
+用户退出暂不用应用并要求优先推进，提交余量恢复超过原双实例6GiB门槛，未修改保护或系统设置。产品仍准确EB365；普通墙面候选不并入此次性能交付。实际连续失败均保留：5589fa431d在AIR虚拟app:/父目录为空处失败；622039485c路径修正通过，但rbl原生空气带被内部竖墙分隔，28格双向走廊不存在。改为原生620,640前位射手、480,640后位接收者分轮换位，保留14格空气带及两次真实位移。
+
+9b2366ad51与诊断d87d5871bf进一步确认不是多射或归属变化：测试提前保存弹药200，附件模组随后正常退回超额弹药，host实际容量72、join90；真实一发后为71/89，owner/weap/gun.b身份全正确。源码FirearmAttachments Runtime.as:127–128及本轮capacity-refund日志相符。驱动改为紧邻真实attack前仅一次记录弹药和弹体基线，不改附件或RC产品，不硬编码容量、不放松严格耗弹断言。
+
+driver06（36DB3C65…86D0906）/native07/c6c9757ebc已完成真实业务全链，独立复核两端准确EB365、首次attempt各1、host hello与join welcome、十项coverage全true。首连至新攻击前host/join分别57/121包及62/72显示帧，旧弹与可播放事件0。host→join原生9位置样本/311像素，对侧10运动样本/313像素/2帧枪口；join→host原生10位置/267像素，对侧10运动样本/283像素/2帧枪口，轨迹对照通过。冻结/解除对侧25/27次身体匹配，像素3310/2731。
+
+本轮整体仍为FAIL：join39/39结束，host38项通过、round4及对侧完成确认之后，join正常断开，host继续房间身份采样触发失败。host.log:65–70明确顺序。不得事后改判PASS；RC负责人仅修终态收尾顺序后再运行，随后按门禁精确部署及实际安装冒烟。正式BEFC/7F1F/574D保持，尚未部署。
+
+08:49最终门禁：driver07/native08/d0048aff49已完整PASS，两端各39项/0失败、attempt各1、真实hello/welcome、十项coverage全true，finishing确认和清理均通过。根直接核对result.json（C103B58822FBE0547AB226907E0D138633D0A782A5FA4217EC4117356BE6C066）及候选EB365原字节，安装22项不变。终态只停止已完成后的游戏观察，保留有界最终确认、全部原断言及清理。联网功能门禁至此完成，RC负责人进入备份/安装/实际安装冒烟；旧FAIL不改写，不额外扩大门禁。
