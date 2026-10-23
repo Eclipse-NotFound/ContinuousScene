@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "nativeInstructions": 541,
+  "removedCandidateRanges": [
+    [
+      2,
+      155
+    ],
+    [
+      230,
+      1064
+    ],
+    [
+      1409,
+      1488
+    ]
+  ],
+  "branchRedirects": {
+    "230": 1064,
+    "1409": 1488
+  },
+  "originalTemporaryRegister": 2,
+  "candidateTemporaryRegister": 14,
+  "allNativeBranchesPreserved": true,
+  "normalizedXMLSHA256": "1072A089293134D82BF752B4042AB5F35B35ACC7F430031E1F169F9E93B90DD0",
+  "normalizedBindingsSHA256": "CDE5B03958B711256B80578B9EE5EE5B0724A55DA636372FA6B4585DE5FD1EF4"
+}

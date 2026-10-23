@@ -1,0 +1,48 @@
+{
+  "rawImportSHA256": "D401E2B181BE9A5FC1E5E2FEAB388D1364DBF1A64A83C8212905FA2421B1933C",
+  "normalizedImportSHA256": "1072A089293134D82BF752B4042AB5F35B35ACC7F430031E1F169F9E93B90DD0",
+  "codeSHA256": "15315A6FFD285685C9CF7B2087D07483EB56CB35C81F5A982C463FA729F18B17",
+  "changedNamespaceSet": 182,
+  "originalEquivalentSet": 164,
+  "before": [
+    1,
+    421,
+    14,
+    36,
+    867,
+    62,
+    846,
+    866
+  ],
+  "after": [
+    1,
+    421,
+    14,
+    36,
+    62,
+    846
+  ],
+  "removedUnusedPrivateIdentities": [
+    866,
+    867
+  ],
+  "cameraPrivateTraits": 0,
+  "allOtherXMLNodesUnchanged": true,
+  "codeBytesUnchanged": true,
+  "originalPoolPrefixUnchanged": true,
+  "normalizationReversible": true,
+  "dynamicNames": [
+    "",
+    "camera",
+    "constructor",
+    "isFinite",
+    "lastPlayerX",
+    "lastPlayerY",
+    "loc",
+    "lookActive",
+    "scale",
+    "screenX",
+    "screenY",
+    "version"
+  ]
+}

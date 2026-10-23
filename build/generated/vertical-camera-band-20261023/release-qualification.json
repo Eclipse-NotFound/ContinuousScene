@@ -1,0 +1,144 @@
+{
+  "schema": "vertical-camera-band-release-qualification-1",
+  "version": "vertical-camera-band-1",
+  "passed": true,
+  "baselineHostSHA256": "80CFD8CF3138EE59CBF6EDA0A1824A9EC960F413BD95E4B90D41DD0322B4FD3D",
+  "candidateHostSHA256": "ABE2B65EDF3D0E4E0FA8ECA76A60E577D40E47F20B9ACECEBEC7730849A2602A",
+  "sourceBuildSHA256": "5B37B61E1552082022A423ADFB24597360010EBF9EEA8B8D44FE1DEFDCB85E5F",
+  "semanticAuditSHA256": "F8147E6F0E6939E65387F5A15FE9E80322EF925A306096F8816A490F401AE4B1",
+  "review": {
+    "componentPassed": true,
+    "jumpBenefitAccepted": true,
+    "combatRegressionAccepted": true,
+    "decision": "Release only the user-approved vertical jump buffer. Three real jump runs support a benefit; all four complete dense combat runs show no consistent regression signal. This is a limited regression gate, not proof of exact nonregression or combat improvement.",
+    "limitations": [
+      "Jump A/B/A means 49.395833/37.870833/46.041667 ms; natural awake counts 28/25/28 differ. The approximately 18-23 percent interval change is not a pure causal estimate or final-game FPS.",
+      "Dense A1/B1/A2/B3 means 61.330833/66.870/67.7975/60.988333 ms. All 1200-frame runs and every long frame are retained; pooled A64.564167/B63.929167 is not claimed as a combat speed gain.",
+      "Combat AI types/activity, native movement and enemy firing differ. B1 awake49.35 versus A1 40.15; B3 LMG concurrency4.107 versus A2 6.525. Run-order reversal reduces concern about a consistent regression but does not eliminate confounding.",
+      "Combat candidate-r2 ended after 900 complete recorded frames and part of the fourth segment when the actor left the verified platform. No forced position reset. World displacement is real, but its cause was not captured and is not asserted to be knockback.",
+      "All workloads include diagnostic probes with performanceEligible false. The production Camera.calc has no counters, timer calls or diagnostic switches.",
+      "Collision-body visibility is bounded by existing map-edge and quake behavior. Tall jumps can retain camera offset after landing and thereby change viewport-based activity. Full art extents, all maps, long exploration and every effect combination are not comprehensively verified.",
+      "The broad combat-near-original objective and real exploration accumulation issue remain unresolved. No rollback to the withdrawn afternoon recipes, no CS/RConnect/RV/LAD/WB/TDFC artifact changes."
+    ]
+  },
+  "evidence": {
+    "components": {
+      "role": "components",
+      "name": "vertical-camera-band-20261023-components-candidate-r3",
+      "hashes": {
+        "summary.json": "DC32A5A9A67511F57F5469C147D23B0BDC5AAC8E2C3436A686C02944832B0107",
+        "storage/result.json": "287D690FC3E6CE4CA80D64A3832849B0A51CE8B05A1F6AE51797D210F66E9911",
+        "inputs.json": "0B5E6F065921F5651A9037129BD2CD864D0A8FF24F94686AB6F42FFB2A3C60DD",
+        "runner-inputs.json": "9BB89517C2A1239520C6CCF54AECD5877C3A84FC633CB76B62A3972E334E2371",
+        "probe-build.json": "536FB6742657F6D872DAD5D92662D2C9A5791BD5A8B8931CD3FB999C2D5F98A2",
+        "process-policy.json": "F93242DC488AEA856DFF5B95B90F88AE675875E9098605818F3B5BF08D26662E",
+        "loader-check.json": "A569A301CA8BE9FAD229336EF1108E89ABE249A4D6D05D5EFEEAF1D24172AB65",
+        "storage/tdfc.log": "738C294F969C1229EE725F40456E9FD45A4DB436886AB4EB933D9C333E8F51A0"
+      }
+    },
+    "jumpBaseline": {
+      "role": "jumpBaseline",
+      "name": "vertical-camera-band-20261023-jump-baseline-r2",
+      "hashes": {
+        "summary.json": "C8BD300E7FC6C553AB1856221C3C9F633C9046936E9BBE9B057DB0782F700329",
+        "storage/result.json": "A56A280A8DCC1CF6243F1BBE8A3B51315CF54B94801FA725985F77DD5017782E",
+        "inputs.json": "800FE8C442EEE77B485D7C74B48117D74F41293D6C380D59E8C15C12AF166795",
+        "runner-inputs.json": "C3B86784A82EC50587D2AAFEDAE1D10EA9D6D70117EDCFA9FEDD9F35F4C062A2",
+        "probe-build.json": "E200375D00F6A95388D4F49D3944C714916B475C9FC2CCE5619D3B004A338BE6",
+        "process-policy.json": "0E269FC8F1A0A16902FA4C71C1E8E61628293597B234E58F1B5A6E5DEF8A6CAA",
+        "loader-check.json": "9A62B6488F30CC3FBA711008AB7CFD6E1AC5120D9D17679FA3CB5D117175B768",
+        "storage/tdfc.log": "F5FBE0D9B86271875AA1A4B50B110D7A4601E85A9EDC01ED132984975512103F"
+      }
+    },
+    "jumpCandidate": {
+      "role": "jumpCandidate",
+      "name": "vertical-camera-band-20261023-jump-candidate-r1",
+      "hashes": {
+        "summary.json": "8EF6EEAACD11E5C7B41863A2D33A200FBBB0D93A63047FCAF297DA60FCF9779B",
+        "storage/result.json": "C7D95047A4E2E11BD430FB53EF4CBD75B17F60C5F59E067703564C7050A3D88A",
+        "inputs.json": "A9673B5C662F3DBF4B1809FDD3AE33B3B34DC08B9671C27D73E09C3473F7D723",
+        "runner-inputs.json": "1D99E07993CBBFEBBDEE87D11091C683DE63CC42570D1E1C74D00D8617501CC2",
+        "probe-build.json": "E200375D00F6A95388D4F49D3944C714916B475C9FC2CCE5619D3B004A338BE6",
+        "process-policy.json": "0779B10F99F679986218B5CA38CE698FF86588DA77F539B95E17EFFCCC45410D",
+        "loader-check.json": "6ACB1F77F27AB9EF6EB4451ECC1659C17988D322571FB3D3ACD69C3D884347C1",
+        "storage/tdfc.log": "52E9D22D932513EF7E6464FB490A0109FBA2713AC59FA7C76F513D1C2E15DEB0"
+      }
+    },
+    "jumpReverseBaseline": {
+      "role": "jumpBaseline",
+      "name": "vertical-camera-band-20261023-jump-baseline-r3",
+      "hashes": {
+        "summary.json": "BE7763B5F591BC19D9E4826B5DC2F3F12DA2154323F123C391A4209EF091FA96",
+        "storage/result.json": "BBA3A08CF29C4E82743FE3CF487CDE69934C98D464C6C403E008B64C69F7F79B",
+        "inputs.json": "800FE8C442EEE77B485D7C74B48117D74F41293D6C380D59E8C15C12AF166795",
+        "runner-inputs.json": "91B41D715A9BEA5E731AE065607766B78E494975D6D94B43C238FBB90FD928BD",
+        "probe-build.json": "E200375D00F6A95388D4F49D3944C714916B475C9FC2CCE5619D3B004A338BE6",
+        "process-policy.json": "B2A93F25176879E24452F7612BF698B04FA8A9C267CF3E97BECBB6E4A613E844",
+        "loader-check.json": "414CC0453B7F6B773BD4F5A3975C4FE470A4CA1C0D5568A6C74772E15734B2AA",
+        "storage/tdfc.log": "FECFAFAA7A7B481411EB82B2B4039B97A607D6C7159517944526142C40E80323"
+      }
+    },
+    "combatBaseline": {
+      "role": "combatBaseline",
+      "name": "vertical-camera-band-20261023-combat-baseline-r1",
+      "hashes": {
+        "summary.json": "50E81D19E25A1AB82A712D6F8E58EA79095373EB23E1F6BBC8F8A70897AEA1E0",
+        "storage/result.json": "BE5819AF13D79372BC6870C39C119F32E9521B2AA5FFF459BD8767600A7564D5",
+        "inputs.json": "541078F2AA760F225B29CD607E55B3179729726153A8279DD068FF9F9850C197",
+        "runner-inputs.json": "974FE0B3A058642FF5606109AE341BF598864EB26D52E82A93BFA1C53698D45A",
+        "probe-build.json": "B7ED1EAB8BEE0DC1024D6EF0A56A965F311B97E8CED9A9F32A2BCDE35B35FF13",
+        "process-policy.json": "4FE29C2A2E36BC6A97B44EDFA0F9734D9974DD83882CB8C93BDC5165A3ACDCF3",
+        "loader-check.json": "875D304333034684B2F7C806490795F2B369B480ADBABC7EDFEBB9C86F84A311",
+        "storage/tdfc.log": "06F2B54CA14D26E47F74EFAB2923A2D254A46F81493D7272F145EB8B9841196B"
+      }
+    },
+    "combatCandidate": {
+      "role": "combatCandidate",
+      "name": "vertical-camera-band-20261023-combat-candidate-r1",
+      "hashes": {
+        "summary.json": "1286F6BBE7A7648D538BB6CA685E6CE86D556E7D73EBD445A1F8278E55A3E181",
+        "storage/result.json": "8AF7C47871D8AE8B43148B575265705B9A67A3784976840DA769FEFFCB710EE3",
+        "inputs.json": "14C123210E870324E31D3EAC013BA171D43953B69477D5255D9F9E53715C6D1A",
+        "runner-inputs.json": "D05021B1DA0533238D14A721F658D01A216B1051C648A83763EFCBAF54133006",
+        "probe-build.json": "B7ED1EAB8BEE0DC1024D6EF0A56A965F311B97E8CED9A9F32A2BCDE35B35FF13",
+        "process-policy.json": "404705A6D701CCE6171F5C57051D8D31F10FB07CDA2F4A4BB2D4C28DC653FC51",
+        "loader-check.json": "662119C89EEDC2BA2C2AE1016BDD9C01076E1F6E26302A794C3A9D7E231401F3",
+        "storage/tdfc.log": "2EADCDD02379E84412AB1BD63B3C33573A4620619D8BCE9B7C93A635B17B5E1D"
+      }
+    },
+    "combatReverseBaseline": {
+      "role": "combatBaseline",
+      "name": "vertical-camera-band-20261023-combat-baseline-r2",
+      "hashes": {
+        "summary.json": "0D8E213B0258335335F3CFFD24221D993460588DD68BFBF179125A0E9B8DBF39",
+        "storage/result.json": "1C3EA2DD629ABDF1E1AB490F7B2E555E50CF107599980E476989CAB72B1B1FCB",
+        "inputs.json": "541078F2AA760F225B29CD607E55B3179729726153A8279DD068FF9F9850C197",
+        "runner-inputs.json": "CF2E56A4DD5DB6C0CB2FEF477B70D963056C6044C7866EAD1CAFA32084B4F149",
+        "probe-build.json": "B7ED1EAB8BEE0DC1024D6EF0A56A965F311B97E8CED9A9F32A2BCDE35B35FF13",
+        "process-policy.json": "88A03541B83509409F1803B565796D0530F635BCAE569C960233FF9FEBB5BC28",
+        "loader-check.json": "BF48E104869DC4D66EE859334C5A7B40E88FD14992C354272D7169A35F582E75",
+        "storage/tdfc.log": "3D039952A576B7D13EDD4EE481271AE6102F0838A7D539AB9EFDF71AACD98E8B"
+      }
+    },
+    "combatRepeatCandidate": {
+      "role": "combatCandidate",
+      "name": "vertical-camera-band-20261023-combat-candidate-r3",
+      "hashes": {
+        "summary.json": "60E4308FFAAFE0E30666550BF5679FBE6B3EED5BB17E3D1DA133B1110D3BD186",
+        "storage/result.json": "3F3419D86D45BDDE882D772A99BF7A9208A0968380D612B993D1A380DC35DC8A",
+        "inputs.json": "14C123210E870324E31D3EAC013BA171D43953B69477D5255D9F9E53715C6D1A",
+        "runner-inputs.json": "B8895B4CE3ACBD9E6D3E16BC95D3FDE68079508F6100108FB29C1706096E8474",
+        "probe-build.json": "B7ED1EAB8BEE0DC1024D6EF0A56A965F311B97E8CED9A9F32A2BCDE35B35FF13",
+        "process-policy.json": "3FDDCB49A2BA1D7EAE7298FF35ED5CC3BA34E3841B5D6F0C49605716078F7218",
+        "loader-check.json": "2C27A31C5D48F06643FF45849F876AFAA984646C7D2029E761C78DFF491FB9D2",
+        "storage/tdfc.log": "EA6AB8AC41B07F907E3C32D14C5407AACFFF9837ABC573DD7071A6C00C4F8579"
+      }
+    }
+  },
+  "retainedIncomplete": {
+    "name": "vertical-camera-band-20261023-combat-candidate-r2",
+    "resultSHA256": "0FE4A16D2966819F243D459B776692237B2770E5BA6261BAC928E04ED9A071D2",
+    "acceptedAsCompletePerformanceSample": false
+  },
+  "independentReview": "compact_lineage reviewed all four completed combat runs and the incomplete failure; no new material reason to block the jump-only change. player_fixture_audit reviewed geometry, lifecycle and native boundary behavior."
+}

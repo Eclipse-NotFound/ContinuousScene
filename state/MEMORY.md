@@ -1,6 +1,6 @@
 # ContinuousScene — 当前快照
 
-更新：2026-10-23晚，80CF正式版本保持；新图章缓存容差未通过，前景显示副本两轮2400帧仅见小幅改善倾向，不部署。密集战斗接近原版的目标仍未完成。此文件是入口；详细历程见 journal.md，先前长快照完整保留于 MEMORY-history-20261023-0818.md。
+更新：2026-10-24 00:00后，纵向缓冲ABE2已部署，实际安装65项复验通过。真实跳跃A/B/A均49.40/37.87/46.04ms；四轮密集战斗未见持续回退信号，不声称战斗提速。缓存124→155未显示跳跃继续变慢，实际深度探索和整体近原版目标仍未完成。此文件是入口；详细历程见journal.md，先前长快照完整保留于MEMORY-history-20261023-0818.md。
 
 ## 1. 模组与体验
 
@@ -12,6 +12,7 @@
 
 - 当前性能任务用户进一步要求多实体、密集子弹、高速移动战斗接近原版；前轮约15%改善不代表新目标完成。2026-10-23检测到玩家重开游戏后，用户再次答复现在保存并退出。不要重复问已授权事项。
 - 保持原画面、战斗机制及跨房连续性。已允许视野预绘与远处未参战敌人暂缓行动。
+- 新反馈是跳跃明显卡顿、探索越深越明显，用户尚未试回起点比较。已明确接受纵向镜头缓冲及测试：普通跳跃少移动，持续升降仍连续跟随；这项镜头手感变化无需再问。
 - 必要兼容授权包括 RV、WallBlend、LAD、TDFC、RConnect；RC协调已明确授权。RC负责人会话01a086bb-378c-7f60-b8e1-50d90ffa0996集中维护、构建和部署RC，本侧不并行覆盖它。
 - 性能根会话01a13816-367b-7261-8e11-ca9152565dd9。所有游戏测试登记、唯一AIR ID、私有桌面、独立存储；不写真实APPDATA/pfe，不关闭用户或其他任务的进程，不用Ghost。
 - 用户已要求撤回10月21日下午配方：绝不重新安装7D42/5432宿主或旧整包配方。
@@ -20,12 +21,12 @@
 
 ## 3. 当前安装与候选
 
-当前正式宿主在用户要求回退后的BEFC上仅加入已验证的遮挡格复用，CS保持7F1F；RC和RV由各自负责人独立更新，不计作本轮算法改善的收益：
+当前正式宿主在用户要求回退后的BEFC上保留已验证的遮挡格复用，并新增用户接受的纵向镜头缓冲；CS保持7F1F。RC和RV由各自负责人独立更新，不计作本轮算法改善的收益：
 
-- root pfe.swf：80CFD8CF3138EE59CBF6EDA0A1824A9EC960F413BD95E4B90D41DD0322B4FD3D；state/fog-last-blocker-deployment-20261023.json为verified，安装后installed-native-r1共51项通过。
+- root pfe.swf：ABE2B65EDF3D0E4E0FA8ECA76A60E577D40E47F20B9ACECEBEC7730849A2602A；state/vertical-camera-band-deployment-20261023.json为verified，安装后installed-components-r1共65项通过。精确80CF上仅Camera.calc变化，5770其他方法体、1016类/初始化器与素材保留；无新Camera字段、计数/计时或诊断开关。
 - CS0.9.0：7F1F2961C6E299D949423591F3C65C610C2EAEFA7FC72E8A583A402770D6B51F。
 - RC0.2.24-aura1：DF0FA0E2CA952E77E5132E75D71E73558DC919C7B8CDEBA5DA05FC9E94DC01E7。
-- TDFC7ACD、LAD8ADB、WB1411；RV最新冻结指纹为6DBBAE60EB09FF8F42D34E31EDC92FB9F83009BA918E9145980C6D289723D8BA。每轮仍须核对实际依赖，旧83D8/EB365组合只属历史。
+- TDFC7ACD、LAD8ADB、WB1411；RV由其负责人独立更新为0DBE0D7A95B8E496FB393D7FCD75F88D60C34A1D0FABB33266B122E3FA04F2BF（0.33.8）。新镜头候选组件r3、跳跃r2起及战斗使用这一依赖。旧RV6DBB的jump-baseline-r1不混入新版本对照；每轮仍核对实际依赖。
 - 前轮offline1已测生产输入与部署回执保留：../RConnect/build/m52/recovery-offline-production-01、../RConnect/build/m52/recovery-offline-deploy-01/deployment.json；当时状态deployed-smoke-passed，回执SHA256 7DB4BDC4F9BF9317A96EC51DB3076A5B8F0D49BBC9254692142BE92F7065EE86，不作为当前aura1部署回执。
 
 历史EB365基于准确574D冻结源，仅三类和版本变化；未联网时跳过两组弹道/身体效果历史采集。首次host/join尝试即永久恢复采集（直到进程重启）；null、异常、非严格true均保守回退。保持墙面、感知、实际呈现、失效刷新和联网路径；生产包无诊断开关。其旧对照与门禁保留历史标签，不跨组合计算新收益。诊断88CC不得部署。
@@ -34,7 +35,13 @@ CS编辑器0.9.0已于10月20日安装并复验25+22项：Editor7344、EditorToo
 
 ## 4. 当前任务进展与停点
 
-本轮已部署80CF的小幅算法改善，近原版目标仍在进行。此前BEFC低干扰denseV2真实Shift/六LMG/玩家ASSR共探针1200帧：原版均35.573/中34/P9547，大场景均63.253/中59/P9594，双方实射400/2009和400/1109。路线/地形/视口相同，大场景火力更低仍慢；不称近原版。V1原房2659ms尖峰已定位探针startCase2591ms，V2移除段边重复设置/整报告写入，未扣帧伪造速度。
+最新真实跳跃工作见knowledge/experiments/vertical-motion-20261023.md。r1首跳含原生水平惯性，第二跳为纯Y；r2补dx=0/左右键释放后仍45.78/44.04ms，静止约33ms。所有测量窗无新块/缺块补绘，纯Y每窗3次150px跳跃、镜头跨度149px。native-r1平台floor120导致原生向上换房，0样本，保留失败不当CS故障。固定镜头ABBA诊断720帧合并A44.1958/B35.2208ms、约20.3%差异；仅诊断，不当产品收益。growth-r2被自设1.5GiB进程预算拒绝；核实系统提交余量14GiB后，r3诊断预算2GiB并新增4GiB提交/2GiB物理预检，512MiB运行保护不变。r3完整1440帧，驻留124→155、private +72.08MB，跳跃43.271→41.521ms，没有复现随此增长恶化，不能当真实探索验证。
+
+用户接受的真实缓冲候选在build/generated/vertical-camera-band-20261023，仅Camera.calc定向方法；动态nativeAPI.verticalCameraState存唯一上下文，不加Camera字段。正常跟随半带≤160px、按screenY与完整碰撞高度缩小，带外硬跟随；缩放/loc/camera/屏幕变化、传送与退出观察时重新定位，原观察/camRun/边界/震屏/sceneTick等保留。ABE2B65EDF3D0E4E0FA8ECA76A60E577D40E47F20B9ACECEBEC7730849A2602A已构建，严格保留5770个其他方法、1016类/初始化器与原素材；组件r3共65项/56次实际calc通过。前两轮组件失败分别是探针public静态访问命名空间和DisplayObject小数坐标量化期望，已保留，不改候选迁就断言。真实跳跃三轮每轮720帧/12次150px跳跃：A49.3958、B37.8708、反向A46.0417ms，B镜头不随普通跳跃移动；自然活动28/25/28，不能称精确净提升。普通房/缩放/观察/传送等为组件覆盖，不冒充完整玩法。vertical-activity-20261023的engaged只读观察仍未运行。
+
+密集战斗四轮完整1200帧：A1 61.3308/中58/P9583，B1 66.87/63/95，反向A2 67.7975/63/99，B3 60.9883/57/84ms。A合并均64.5642、B63.9292，中位均60；AI活动/火力/预绘不同，约1%差距不算战斗收益。首B活动49.35比首A40.15多9.2，B3火力低于A2；无持续回退信号，限定放行已验证的跳跃改善。B2完成900帧后实际角色离开平台，原因为何未捕获，不能称已证击退；失败完整保留。release-qualification.json绑定全部8组完整证据及不完整B2，check通过，deploy已完成实际安装65/0验证。总体性能未接近原版，不将此发布作为战斗问题解决。
+
+本轮先前部署80CF的小幅算法改善，ABE2继续保留它，近原版目标仍在进行。此前BEFC低干扰denseV2真实Shift/六LMG/玩家ASSR共探针1200帧：原版均35.573/中34/P9547，大场景均63.253/中59/P9594，双方实射400/2009和400/1109。路线/地形/视口相同，大场景火力更低仍慢；不称近原版。V1原房2659ms尖峰已定位探针startCase2591ms，V2移除段边重复设置/整报告写入，未扣帧伪造速度。
 
 背景长ABBA无收益；短ABBA表面6.24%改善但敌方火力和预绘更少，尚不稳。571次完整扫描无不透明块，停止该缓存。区域合成缓存049DE诊断1200帧目标calls/rebuilds全0，排除本负载热点，不生产构建。详细结果见knowledge/experiments/dense-combat-near-native-20261023.md。
 
@@ -87,9 +94,11 @@ fog-last-blocker 38C7已严格审核并通过89对（原86+负visi两对+弱水�
 
 ## 6. 下一步、构建与回退
 
+最新ABE2部署回执state/vertical-camera-band-deployment-20261023.json为verified。2026-10-24 00:00备份80CF至build/backups/vertical-camera-band-20261024-000000-9ee00a9c/pfe_before_vertical_camera_band.swf后定向安装；524其他依赖保持，安装后65/0、56个实际calc案例通过，结果SHAF8CC27E86C17FA27802C21ACA4DA447E062EE09FBD4DA17E69B817CBA3E32E38。回滚使用vertical-camera-band-20261023/release.py rollback，仅当当前仍是ABE2时恢复80CF；遇第三方宿主变化中止。此前80CF→BEFC备份只属历史，不能直接覆盖ABE2。RC负责人已获准确新SHA及回执。未重新构建整个Camera类/CS，也没有并入外部天角兽候选。后续所有性能实验须以实际ABE2重新冻结准入；旧80CF驱动不能直接当新基线。
+
 80CF按release gate 2026-10-19.1完成本机部署；持续授权无需重复确认。state/fog-last-blocker-deployment-20261023.json状态verified，实际pfe指纹与回执一致；安装后fog-blocker-product-20261023-installed-native-r1为51/0，结果SHA73C7B1804B411E7C1260DAD0A1D6E1EC91AC6FD37A773DC6901EF673D0FD7B99。备份为build/backups/fog-last-blocker-20261023-184722/pfe_before_ContinuousScene_fog_last_blocker_20261023.swf（BEFC），回退前须核当前仍是本次80CF，不能覆盖后续他人改动。
 
-近原版目标仍未完成。2026-10-23用户已接受测试近乎看不出的色差，要求明显提速后再考虑部署；本轮以RGB≤1/alpha0保守验收，图章draw/copyPixels均失败，前景副本虽像素通过但2400帧仅小幅改善，全部不部署。原失败与冻结源保持，不再重跑同一路线来挑好结果。下一轮需新的高占比证据：活动屏外单位的动画与枪口位置/出膛顺序耦合，不能整段跳过；仅body blit可研究但SATS/死亡截图与先blit后推进帧的时序必须保留，尚未测该项成本。sceneApply全驻留粗排除也是小候选，上界不足约1ms/帧，先不扩建索引。当前安装仍80CF；前轮RC首次联机及安装冒烟历史已完成，无需重跑无关联网项目。原版墙面候选不并入，不复活旧配方。
+近原版目标仍未完成。2026-10-23用户已接受测试近乎看不出的色差，要求明显提速后再考虑部署；本轮以RGB≤1/alpha0保守验收，图章draw/copyPixels均失败，前景副本虽像素通过但2400帧仅小幅改善，全部不部署。原失败与冻结源保持，不再重跑同一路线来挑好结果。下一轮需新的高占比证据：活动屏外单位的动画与枪口位置/出膛顺序耦合，不能整段跳过；仅body blit可研究但SATS/死亡截图与先blit后推进帧的时序必须保留，尚未测该项成本。sceneApply全驻留粗排除也是小候选，上界不足约1ms/帧，先不扩建索引。当前安装为ABE2；前轮RC首次联机及安装冒烟历史已完成，无需重跑无关联网项目。原版墙面候选不并入，不复活旧配方。
 
 RC前轮历史回滚点：../RConnect/build/m52/recovery-offline-deploy-01/RConnectMod.before.swf（574D2B51490AE8B25A1396555600F56A301F8A20AE50104C0E35CF2796441AFE）。当前已是负责人后续DF0F版本，不能直接套用旧EB365回滚；如需回退由RC负责人核对当前版本与对应备份，用户配置与存档保持。
 

@@ -1,0 +1,62 @@
+{
+  "version": "vertical-camera-band-1",
+  "diagnosticOnly": false,
+  "productionCandidate": true,
+  "performanceEligible": false,
+  "deployed": false,
+  "base": "80CFD8CF3138EE59CBF6EDA0A1824A9EC960F413BD95E4B90D41DD0322B4FD3D",
+  "baseXML": "B92260A7A0DFA80EB129C60AEF273645C32BBBA9B3588770BD7083D6984E7E04",
+  "target": "fe.inter.Camera::0:1:calc",
+  "sourceInputs": {
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\vertical-camera-band-20261023\\build.py": "8D7DC7D452447F2BE84E260F682433C1861B0886CA6943C7FD90FB349C161578",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\vertical-camera-band-20261023\\recipe.py": "323AAF667D537B71BDBECF2F7116E4E6BB781A1445D28F9A2CE1F4063D2F5EE3",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\vertical-camera-band-20261023\\audit.py": "64EF475F19F7B8DA277B1F3E8212787DF82C3CF0E5364149F021DEAB5E0126AD",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\enemy-speed.py": "C5799740FD4DAB5BC2322B0E48055B215C554FBDEBF138EFB72575D9F9CB5221",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\profile-vision.py": "6A707A8959C101325535B3DE65CB5E1A1B4CA0E18798F6614D8AE35B1A567151",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\motion-test.py": "2371AF3E3AB4C6ADC99BC67C949BA6182F3767114A722B65A3EFB7FD5A18CDC6",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\bullet-segments-audit.py": "FDE9CD32AB29F28F173DA0829CD311D0EEA00A6AAE3B89B430BBCF28682D8264",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\stationary-threat-audit.py": "6137863C167A2F09A7BA35DBC933E789213246302CF15E5C5048516AA1B758A2",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\native-crop-audit.py": "AC4383A6FA899EE62CAA54282AE6F31E5DDB83CEBABFC65A920EA5954F0F46DE",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\scripts\\fe\\inter\\Camera.as": "4EB7D9B9E96B1CFF61A92A8297DC537CE1D488E051EF1236672F926CEA9A22A2",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\build.json": "256FF395CF5397D07554081936F40A25FCDAB27A2C2725C341D6EE86699A9434",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\semantic-audit.json": "D239A9D614C26F2704E6ED7E6F452ABF49D6D27E0A98CB58EE9BD933F0E19A66"
+  },
+  "originalPath": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\vertical-camera-band-20261023\\original-9e88fbfd64dc4793b441a312399ec088\\scripts\\fe\\inter\\Camera.as",
+  "originalSource": "4EB7D9B9E96B1CFF61A92A8297DC537CE1D488E051EF1236672F926CEA9A22A2",
+  "instrumentedSource": "392218D33CAD0A9ACB1C5237281B407A513E6360DD8E8454A8260C24598A4C70",
+  "sourceTransformReversible": true,
+  "originalCallOrderPreserved": true,
+  "newClassMembers": false,
+  "newClosures": false,
+  "newTryCatchFinally": false,
+  "timerCalls": 0,
+  "carrierStateKey": "verticalCameraState",
+  "inspectedReferenceSHA256": "4EB7D9B9E96B1CFF61A92A8297DC537CE1D488E051EF1236672F926CEA9A22A2",
+  "limitations": [
+    "Normal large-scene player follow only; existing carrier owns versioned context state.",
+    "No Camera class members, timers or diagnostic counters; exact runtime/visual/performance checks pending.",
+    "Normal rooms and look/camRun retain native calculations; ineligible context releases this version state.",
+    "Only Camera.calc body is retained; all 80CF non-target bodies/layouts and raw assets remain."
+  ],
+  "continuedFrom": {
+    "path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\vertical-camera-band-20261023\\compiled-provenance.json",
+    "sha256": "F99916BD04634D70DDEBC33F5B3782497F44377D6C088E4EC1411BB271F4C36B",
+    "sourceInputs": {
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\vertical-camera-band-20261023\\build.py": "8D7DC7D452447F2BE84E260F682433C1861B0886CA6943C7FD90FB349C161578",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\vertical-camera-band-20261023\\recipe.py": "323AAF667D537B71BDBECF2F7116E4E6BB781A1445D28F9A2CE1F4063D2F5EE3",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\vertical-camera-band-20261023\\audit.py": "B3024E87B43D44C76D38BFCB7110590825FF7E1DAEAE94897E59C4E782BF8E45",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\enemy-speed.py": "C5799740FD4DAB5BC2322B0E48055B215C554FBDEBF138EFB72575D9F9CB5221",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\profile-vision.py": "6A707A8959C101325535B3DE65CB5E1A1B4CA0E18798F6614D8AE35B1A567151",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\motion-test.py": "2371AF3E3AB4C6ADC99BC67C949BA6182F3767114A722B65A3EFB7FD5A18CDC6",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\bullet-segments-audit.py": "FDE9CD32AB29F28F173DA0829CD311D0EEA00A6AAE3B89B430BBCF28682D8264",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\stationary-threat-audit.py": "6137863C167A2F09A7BA35DBC933E789213246302CF15E5C5048516AA1B758A2",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\native-crop-audit.py": "AC4383A6FA899EE62CAA54282AE6F31E5DDB83CEBABFC65A920EA5954F0F46DE",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\scripts\\fe\\inter\\Camera.as": "4EB7D9B9E96B1CFF61A92A8297DC537CE1D488E051EF1236672F926CEA9A22A2",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\build.json": "256FF395CF5397D07554081936F40A25FCDAB27A2C2725C341D6EE86699A9434",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-near-native-20261023\\logic-profile-audit\\fog-last-blocker-production-minimal\\semantic-audit.json": "D239A9D614C26F2704E6ED7E6F452ABF49D6D27E0A98CB58EE9BD933F0E19A66"
+    }
+  },
+  "candidate": "ABE2B65EDF3D0E4E0FA8ECA76A60E577D40E47F20B9ACECEBEC7730849A2602A",
+  "candidateXML": "EE33CE0282C1DFBA7BF7AE03D1E7646383DCCF79EA1252F9792A57344E1208CF",
+  "audit": "F8147E6F0E6939E65387F5A15FE9E80322EF925A306096F8816A490F401AE4B1"
+}

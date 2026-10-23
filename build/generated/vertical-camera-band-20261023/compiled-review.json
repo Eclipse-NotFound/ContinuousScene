@@ -1,0 +1,124 @@
+{
+  "passed": true,
+  "scope": "Reviewed emitted Camera.calc only; retention/runtime tests still required",
+  "base": "80CFD8CF3138EE59CBF6EDA0A1824A9EC960F413BD95E4B90D41DD0322B4FD3D",
+  "baseXML": "B92260A7A0DFA80EB129C60AEF273645C32BBBA9B3588770BD7083D6984E7E04",
+  "rawImportXML": "D401E2B181BE9A5FC1E5E2FEAB388D1364DBF1A64A83C8212905FA2421B1933C",
+  "normalizedImportXML": "1072A089293134D82BF752B4042AB5F35B35ACC7F430031E1F169F9E93B90DD0",
+  "code": "15315A6FFD285685C9CF7B2087D07483EB56CB35C81F5A982C463FA729F18B17",
+  "normalizedBindings": "CDE5B03958B711256B80578B9EE5EE5B0724A55DA636372FA6B4585DE5FD1EF4",
+  "frame": {
+    "init_scope_depth": "4",
+    "max_scope_depth": "5",
+    "max_regs": "15",
+    "max_stack": "8"
+  },
+  "flags": "0",
+  "sourceFreshExportMatchesInspectedReference": true,
+  "sourceOutsideCalcUnchanged": true,
+  "noCameraMembers": true,
+  "noActivation": true,
+  "noExceptions": true,
+  "noTimers": true,
+  "nativeInstructionProof": {
+    "passed": true,
+    "nativeInstructions": 541,
+    "removedCandidateRanges": [
+      [
+        2,
+        155
+      ],
+      [
+        230,
+        1064
+      ],
+      [
+        1409,
+        1488
+      ]
+    ],
+    "branchRedirects": {
+      "230": 1064,
+      "1409": 1488
+    },
+    "originalTemporaryRegister": 2,
+    "candidateTemporaryRegister": 14,
+    "allNativeBranchesPreserved": true,
+    "normalizedXMLSHA256": "1072A089293134D82BF752B4042AB5F35B35ACC7F430031E1F169F9E93B90DD0",
+    "normalizedBindingsSHA256": "CDE5B03958B711256B80578B9EE5EE5B0724A55DA636372FA6B4585DE5FD1EF4"
+  },
+  "namespaceProof": {
+    "rawImportSHA256": "D401E2B181BE9A5FC1E5E2FEAB388D1364DBF1A64A83C8212905FA2421B1933C",
+    "normalizedImportSHA256": "1072A089293134D82BF752B4042AB5F35B35ACC7F430031E1F169F9E93B90DD0",
+    "codeSHA256": "15315A6FFD285685C9CF7B2087D07483EB56CB35C81F5A982C463FA729F18B17",
+    "changedNamespaceSet": 182,
+    "originalEquivalentSet": 164,
+    "before": [
+      1,
+      421,
+      14,
+      36,
+      867,
+      62,
+      846,
+      866
+    ],
+    "after": [
+      1,
+      421,
+      14,
+      36,
+      62,
+      846
+    ],
+    "removedUnusedPrivateIdentities": [
+      866,
+      867
+    ],
+    "cameraPrivateTraits": 0,
+    "allOtherXMLNodesUnchanged": true,
+    "codeBytesUnchanged": true,
+    "originalPoolPrefixUnchanged": true,
+    "normalizationReversible": true,
+    "dynamicNames": [
+      "",
+      "camera",
+      "constructor",
+      "isFinite",
+      "lastPlayerX",
+      "lastPlayerY",
+      "loc",
+      "lookActive",
+      "scale",
+      "screenX",
+      "screenY",
+      "version"
+    ]
+  },
+  "reviewedBranches": {
+    "keyZoom": "155..230 native, entry key capture only at92..104",
+    "context": "230..1064 guarded plain-Object state; finite band, identity/zoom/teleport/look reset",
+    "nativeLookAndCamRun": "1064..1409 native; camRun branches past Y selection",
+    "newY": "1409..1488 direct reset or old-ovy clamped to player-scaled-Y +/- safe band",
+    "nativeFallbackAndTail": "1488..2194 native smoothing/clamps/quake/RNG/display/sceneTick/Snd/cel/fade"
+  },
+  "reviewedLocals": {
+    "2": "entry keyZoom",
+    "3": "carrier",
+    "4": "API",
+    "5": "state",
+    "6": "use band",
+    "7": "hard reset",
+    "8": "look/camRun active",
+    "9": "scale",
+    "10": "foot anchor",
+    "11": "body height",
+    "12": "band",
+    "13": "margin",
+    "14": "original native chained-assignment temporary"
+  },
+  "auditSHA256": "64EF475F19F7B8DA277B1F3E8212787DF82C3CF0E5364149F021DEAB5E0126AD",
+  "runtimePassed": false,
+  "performanceEligible": false,
+  "deployed": false
+}

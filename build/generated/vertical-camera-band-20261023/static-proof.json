@@ -1,0 +1,21 @@
+{
+  "version": "vertical-camera-band-1",
+  "stage": "static-source-only",
+  "sourceReferenceSHA256": "4EB7D9B9E96B1CFF61A92A8297DC537CE1D488E051EF1236672F926CEA9A22A2",
+  "candidateSourceSHA256": "392218D33CAD0A9ACB1C5237281B407A513E6360DD8E8454A8260C24598A4C70",
+  "base": "80CFD8CF3138EE59CBF6EDA0A1824A9EC960F413BD95E4B90D41DD0322B4FD3D",
+  "baseXML": "B92260A7A0DFA80EB129C60AEF273645C32BBBA9B3588770BD7083D6984E7E04",
+  "target": "fe.inter.Camera::0:1:calc",
+  "reversibleCalcTransform": true,
+  "methodOutsideUnchanged": true,
+  "compiled": false,
+  "freshCurrentHostExportStillRequired": true,
+  "actualImportPins": null,
+  "state": "Only the existing carrier nativeAPI verticalCameraState; no Camera class members",
+  "conditions": [
+    "large scene/player/positive finite scale and body/usable band",
+    "first or camera/loc/scale/screen change -> direct Y reset",
+    "keyZoom, prior look/camRun, XY jump above half-screen -> direct Y reset",
+    "all native look/camRun/quake/clamp/sceneTick/Snd/cel branches retained"
+  ]
+}
