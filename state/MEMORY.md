@@ -1,6 +1,6 @@
 # ContinuousScene — 当前快照
 
-更新：2026-10-25镜头目标active、未完成；RGB最大差2/255、alpha不变授权继续，真实战斗明显提速与功能正常仍为部署前提。叶部件r1精确目标sleg20_53在pip暖场中缺失，0样本/0像素/不写cache，AE71EE22 inconclusive已归档e784743，停止不换目标。其实际hidden窗口证据触发window-visibility-native r1：同私有desktop内false/true/true/false，EAD18FDE探针，1200帧/26项/74109ms完整通过，result7026DB47。隐藏均61.553/P9580、可见61.962/P9582，两对差+.693/+.123ms；敌射395/456、预绘6/6块47/43片，小差不足主因，停止追加。全1200visible准确，焦点/暂停/尺寸/quality/fps等均不变，末恢复false，全部切换/长帧保留。仅私有桌面显隐敏感性，不当用户桌面呈现或GPU成本结论。526正式/528隔离/13runtime保持，自有AIR112256及登记已释放，已向RC/RV告知。正式A796/CS7F1F/RV638E/RC78C未改，无本轮部署。下一步仅只读评估现成OS级CPU/线程采样是否能补足AS3采样的原生渲染盲点；本机wpr存在且无录制、xperf未发现，解析工具是否具备待核，不先造解析器/不盲启动全系统录制。纯地形、direct/cpu、分页候选等旧路线仍停止，近原版目标未达。
+更新：2026-10-25镜头目标active、未完成；RGB最大差2/255、alpha不变授权继续，真实战斗明显提速与功能正常仍为部署前提。叶部件r1精确目标sleg20_53在pip暖场中缺失，0样本/0像素/不写cache，AE71EE22 inconclusive已归档e784743，停止不换目标。其实际hidden窗口证据触发window-visibility-native r1：同私有desktop内false/true/true/false，EAD18FDE探针，1200帧/26项/74109ms完整通过，result7026DB47，已归档bdb2fc3。隐藏均61.553/P9580、可见61.962/P9582，两对差+.693/+.123ms；敌射395/456、预绘6/6块47/43片，小差不足主因，停止追加。全1200visible准确，焦点/暂停/尺寸/quality/fps等均不变，末恢复false，全部切换/长帧保留。仅私有桌面显隐敏感性，不当用户桌面呈现或GPU成本结论。526正式/528隔离/13runtime保持，自有AIR112256及登记已释放，已向RC/RV告知。正式A796/CS7F1F/RV638E/RC78C未改，无本轮部署。OS级采样可行性已只读核查：有wpr/tracerpt/typeperf/logman/dotnet，WPR未录制；已查PATH/常见安装目录/安装登记未见WPA/WPAExporter/xperf/PerfView，已有NuGet TraceEvent3.1.13仅库无现成分析程序。未安装/下载/录制，不盲采大日志或自造ETL解析器。若继续此路线，应先证实可用的线程/模块分析闭环；即使补齐工具，无AIR符号也未必定位具体原生函数，更不能直接当GPU时间。纯地形、direct/cpu、分页等旧路线仍停止，近原版目标未达。
 
 ## 1. 模组与体验
 

@@ -6,7 +6,7 @@ window-visibility-native-20261025从准确29AF仅Main+新helper共86源派生EAD
 
 隐藏600帧均61.553/中59/P9580、可见600帧61.962/59/82，正反两对差+.693/+.123ms，敌395/456、夹具弹密度可见稍高，预绘6/6块47/43片。均值差很小且自然战斗混杂，停止显隐路线，不将其当主要成本或部署方案。首显示36ms、其余切换2/0/1ms与所有长帧保留；窗口读取总34ms也未扣除。全1200实际visible准确，其余active/applicationActiveWindowMatches/onPause均false，Stage2032×1084/HIGH/30、normal/direct和bounds全程稳定，末恢复false/pending0/errors空。每窗600 RENDER事件不代表用户桌面呈现；私有桌面可见仍不等于真实用户桌面，不能外推全部历史测试或GPU后端。526正式/528隔离/13runtime输入保持，无部署，原README/代码冻结，详见RESULTS.md。
 
-下一条只读可行性调查是现成OS线程/CPU采样：系统wpr存在且status未录制，xperf未找到；尚未启动录制、安装工具或写新解析器。需要先确认可用解析工具与新增信息，不能把[render]栈标签或剩余墙钟直接称GPU/GC成本。目标仍active。
+下一条只读可行性调查已结束：有wpr/tracerpt/typeperf/logman/dotnet，wpr -status为未录制；已查PATH、常见Windows Performance Toolkit目录与安装登记未见WPA/WPAExporter/xperf/PerfView。存在NuGet TraceEvent3.1.13库/依赖，没有现成分析程序；CS与相关共享记录未见旧ETW/WPR实测。尚未启动录制、安装/下载工具或写新解析器，先不盲采。若补齐工具，OS采样可补线程/模块CPU及调度等待信息，但缺AIR符号未必还原具体渲染函数；不能把[render]标签或剩余墙钟直接称GPU/GC成本。目标仍active。
 
 ## 2026-10-25 叶部件资格未满足，补得实际窗口隐藏证据
 
