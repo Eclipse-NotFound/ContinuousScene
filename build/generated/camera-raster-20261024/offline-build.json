@@ -1,0 +1,18 @@
+{
+  "complete": true,
+  "compiled": true,
+  "launchedAir": false,
+  "deployed": false,
+  "gameplayAcceptance": false,
+  "performanceEligible": false,
+  "probeBuildPath": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-raster-20261024\\probe-builds\\probe-source\\853bd6ac5a0b419db21bea201a463e32\\probe-build.json",
+  "probeSHA256": "679A8111D8CB874448E128223C7426FD6AC7C4B62B277F2F001A0052A020189F",
+  "inputsUnchanged": true,
+  "formalInputCount": 526,
+  "sourceFileCount": 86,
+  "helperSHA256": "88A44A8AAFDC64C1FCF51F453264BD4FDB4CEA546673610A1587D62622DF2B9B",
+  "mainSHA256": "CA8C7216964069F831B1C4F1BBAB272132935F9BDA236A2DDC857CD3FBE9DBDF",
+  "compilerLogSHA256": "56549C17ADFA12FDC76083153318E83C862A07B8920816A0B54FCC255F31679D",
+  "probeBuildSHA256": "DB702809BB0090B450E2BD29AE9862E472779253E221CA16CF8C0C3776124380",
+  "scope": "Offline diagnostic build only; no AIR launch, no visual or performance acceptance."
+}
