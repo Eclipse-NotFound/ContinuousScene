@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "base": "ABE2B65EDF3D0E4E0FA8ECA76A60E577D40E47F20B9ACECEBEC7730849A2602A",
+  "candidate": "A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7",
+  "preservedRawTags": 5038,
+  "targets": [
+    "fe.graph.Grafon::0:1:sceneUpdateEntityColor",
+    "fe.graph.Grafon::0:1:sceneEntitySameColor"
+  ]
+}

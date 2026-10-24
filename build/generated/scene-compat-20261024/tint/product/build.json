@@ -1,0 +1,30 @@
+{
+  "version": "scene-player-region-tint-2",
+  "base": "ABE2B65EDF3D0E4E0FA8ECA76A60E577D40E47F20B9ACECEBEC7730849A2602A",
+  "baseXML": "EE33CE0282C1DFBA7BF7AE03D1E7646383DCCF79EA1252F9792A57344E1208CF",
+  "target": "fe.graph.Grafon::0:1:sceneUpdateEntityColor",
+  "targets": [
+    "fe.graph.Grafon::0:1:sceneUpdateEntityColor",
+    "fe.graph.Grafon::0:1:sceneEntitySameColor"
+  ],
+  "productionCandidate": true,
+  "diagnosticOnly": false,
+  "performanceEligible": false,
+  "deployed": false,
+  "candidate": "A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7",
+  "candidateXML": "1D2642C7D55D1F97121738E6AE84996A140EBFEFF686E6706C88CEF82A7338DA",
+  "audit": "0A24C942735D105956DAC367B8097A34E1DA57F747403080493C917B61F5CF83",
+  "sourceInputs": {
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\scene-compat-20261024\\tint\\product\\build.py": "6409E5ED6331940307DD68E828660E2D1772E96DD053BECBA175E32559535D1F",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\scene-compat-20261024\\tint\\product\\audit.py": "9EE0D843F018BD9033D14F624004AD3516F9F269EC4348F033FC1D4CCA45A859",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\scene-compat-20261024\\tint\\product\\resume.py": "C737BD7CEA0D795EB4D1FF80E2812AC576EE8247232AD18EE489D5F4706E7B42",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\enemy-speed.py": "C5799740FD4DAB5BC2322B0E48055B215C554FBDEBF138EFB72575D9F9CB5221",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\motion-test.py": "2371AF3E3AB4C6ADC99BC67C949BA6182F3767114A722B65A3EFB7FD5A18CDC6",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\profile-vision.py": "6A707A8959C101325535B3DE65CB5E1A1B4CA0E18798F6614D8AE35B1A567151",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\bullet-segments-audit.py": "FDE9CD32AB29F28F173DA0829CD311D0EEA00A6AAE3B89B430BBCF28682D8264",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\stationary-threat-audit.py": "6137863C167A2F09A7BA35DBC933E789213246302CF15E5C5048516AA1B758A2",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\native-crop-audit.py": "AC4383A6FA899EE62CAA54282AE6F31E5DDB83CEBABFC65A920EA5954F0F46DE"
+  },
+  "exactPredicateProof": "9AB2E34123C1DA1E912EA177BEB4B3BF2F000D4477C7F48927386A3DC87870A4",
+  "resumeProvenance": "44097B7892D32294C5E19502C72DAE1FE0608DD89984316D34C67A460221B15D"
+}

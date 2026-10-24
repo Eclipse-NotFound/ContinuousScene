@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "auditTarget": "fe.graph.Grafon::0:1:sceneUpdateEntityColor",
+  "auditTargets": [
+    "fe.graph.Grafon::0:1:sceneUpdateEntityColor",
+    "fe.graph.Grafon::0:1:sceneEntitySameColor"
+  ],
+  "actualChangedBodies": [
+    "fe.graph.Grafon::0:1:sceneUpdateEntityColor",
+    "fe.graph.Grafon::0:1:sceneEntitySameColor"
+  ],
+  "allowedChangedMethods": [
+    "fe.graph.Grafon::0:1:sceneUpdateEntityColor",
+    "fe.graph.Grafon::0:1:sceneEntitySameColor"
+  ],
+  "unchangedMethodBodies": 5769,
+  "unchangedClassLayouts": 1016,
+  "addedFields": [],
+  "addedMethods": [],
+  "methodAndClassIndicesPreserved": true,
+  "originalConstantPoolPreserved": true,
+  "nonABCSWFEnvelopePreserved": true,
+  "baseSHA256": "ABE2B65EDF3D0E4E0FA8ECA76A60E577D40E47F20B9ACECEBEC7730849A2602A",
+  "baseXMLSHA256": "EE33CE0282C1DFBA7BF7AE03D1E7646383DCCF79EA1252F9792A57344E1208CF",
+  "candidateSHA256": "A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7",
+  "candidateXMLSHA256": "1D2642C7D55D1F97121738E6AE84996A140EBFEFF686E6706C88CEF82A7338DA",
+  "wrapperSHA256": "9EE0D843F018BD9033D14F624004AD3516F9F269EC4348F033FC1D4CCA45A859",
+  "importedClassCopied": false,
+  "preservedOriginalLayout": true,
+  "constructorsPreserved": true,
+  "exactInsertedBytes": "2a110c000029d1603066a40a669202ac76",
+  "insertionOffset": 561,
+  "newMethods": 0,
+  "newFields": 0,
+  "originalBranchesPreserved": true,
+  "originalPrivateIdentitiesPreserved": true,
+  "version": "scene-player-region-tint-2"
+}

@@ -1,0 +1,16 @@
+{
+  "base": "ABE2B65EDF3D0E4E0FA8ECA76A60E577D40E47F20B9ACECEBEC7730849A2602A",
+  "baseXML": "EE33CE0282C1DFBA7BF7AE03D1E7646383DCCF79EA1252F9792A57344E1208CF",
+  "target": "fe.graph.Grafon::0:1:sceneUpdateEntityColor",
+  "oldCodeSHA256": "A7FF5C61DDB953A4225DEDD7B384BA48BCFBE84A17DA492DD36B46A2F6BCB28F",
+  "newCodeSHA256": "ED7F91C6C3A9E9CA747000879F91738014464A64F8B4EBCF93E43A44D04C26AF",
+  "insertedBytes": "2a110c000029d1603066a40a669202ac76",
+  "point": 561,
+  "targets": [
+    "fe.graph.Grafon::0:1:sceneUpdateEntityColor",
+    "fe.graph.Grafon::0:1:sceneEntitySameColor"
+  ],
+  "sourceEquivalent": "Player levit exemption + exact DisplayObject color normalization fallback",
+  "newConstants": 0,
+  "newPrivateIdentities": 0
+}

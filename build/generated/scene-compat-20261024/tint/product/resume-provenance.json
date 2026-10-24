@@ -1,0 +1,28 @@
+{
+  "reason": "Initial build stopped before final export: availableCommit 4204359680 < 4 GiB; existing candidate retained",
+  "capturedAfterMemoryStop": true,
+  "sourceInputs": {
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\scene-compat-20261024\\tint\\product\\build.py": "6409E5ED6331940307DD68E828660E2D1772E96DD053BECBA175E32559535D1F",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\scene-compat-20261024\\tint\\product\\audit.py": "9EE0D843F018BD9033D14F624004AD3516F9F269EC4348F033FC1D4CCA45A859",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\scene-compat-20261024\\tint\\product\\resume.py": "C737BD7CEA0D795EB4D1FF80E2812AC576EE8247232AD18EE489D5F4706E7B42",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\enemy-speed.py": "C5799740FD4DAB5BC2322B0E48055B215C554FBDEBF138EFB72575D9F9CB5221",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\motion-test.py": "2371AF3E3AB4C6ADC99BC67C949BA6182F3767114A722B65A3EFB7FD5A18CDC6",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\profile-vision.py": "6A707A8959C101325535B3DE65CB5E1A1B4CA0E18798F6614D8AE35B1A567151",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\bullet-segments-audit.py": "FDE9CD32AB29F28F173DA0829CD311D0EEA00A6AAE3B89B430BBCF28682D8264",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\stationary-threat-audit.py": "6137863C167A2F09A7BA35DBC933E789213246302CF15E5C5048516AA1B758A2",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\native-crop-audit.py": "AC4383A6FA899EE62CAA54282AE6F31E5DDB83CEBABFC65A920EA5954F0F46DE"
+  },
+  "frozenOutputs": {
+    "retained.xml": "5E6C74ED49155141F86DE94BB8D8D0095498E4D118F8F59D14C6F9EC0202AF98",
+    "serialized.swf": "D4DF01F64CEA3D3D7BA9A7407FF4A3F7D9CBA9DA47824E03C77C161C909F66B2",
+    "serialized.xml": "B77EB14EE5E73B2EAA456DACF97D06CF4FC5B93EC0615B9D2F62C9BCAAAA45BA",
+    "pfe.swf": "A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7",
+    "splice.json": "07B7664C3FA51287BDF628AA72C933610C2F542268C65BE76ECC9352F0533822",
+    "predicate-proof.json": "9AB2E34123C1DA1E912EA177BEB4B3BF2F000D4477C7F48927386A3DC87870A4"
+  },
+  "memoryBefore": {
+    "load": 80,
+    "availablePhysical": 6624100352,
+    "availableCommit": 4381011968
+  }
+}

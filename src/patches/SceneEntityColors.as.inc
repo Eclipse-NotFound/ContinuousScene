@@ -32,7 +32,9 @@
          previous.region = region;
          if(original === desired) { previous.base = desired; return; }
          var highlighted:Boolean = World.w.shineObjs && World.w.gui != null && World.w.gui.celObj === target;
-         var displayOwned:Boolean = target.vis != null && target.levit == 0 && !highlighted
+         // Player hover owns inner filters, not the root tint. Telekinetically
+         // held non-player objects still keep their temporary root color.
+         var displayOwned:Boolean = target.vis != null && (target.levit == 0 || target === World.w.gg) && !highlighted
             && this.sceneEntitySameColor(target.vis.transform.colorTransform,original);
          target.cTransform = desired;
          previous.base = desired;
@@ -54,7 +56,21 @@
       private function sceneEntitySameColor(a:ColorTransform, b:ColorTransform) : Boolean
       {
          if(a == null || b == null) return false;
-         // transform.colorTransform returns a value copy, not the stored object.
+         // Keep the exact fast path; a display transform is a value copy and
+         // AIR also quantizes its components when storing the logical tint.
+         if(a.redMultiplier == b.redMultiplier && a.greenMultiplier == b.greenMultiplier
+            && a.blueMultiplier == b.blueMultiplier && a.alphaMultiplier == b.alphaMultiplier
+            && a.redOffset == b.redOffset && a.greenOffset == b.greenOffset
+            && a.blueOffset == b.blueOffset && a.alphaOffset == b.alphaOffset) return true;
+         if(!isFinite(b.redMultiplier) || !isFinite(b.greenMultiplier)
+            || !isFinite(b.blueMultiplier) || !isFinite(b.alphaMultiplier)
+            || !isFinite(b.redOffset) || !isFinite(b.greenOffset)
+            || !isFinite(b.blueOffset) || !isFinite(b.alphaOffset)) return false;
+         // Normalize through the runtime itself, without an epsilon that could
+         // claim another effect's color. This Sprite never enters the display tree.
+         var normalizer:Sprite = new Sprite();
+         normalizer.transform.colorTransform = b;
+         b = normalizer.transform.colorTransform;
          return a.redMultiplier == b.redMultiplier && a.greenMultiplier == b.greenMultiplier
             && a.blueMultiplier == b.blueMultiplier && a.alphaMultiplier == b.alphaMultiplier
             && a.redOffset == b.redOffset && a.greenOffset == b.greenOffset
