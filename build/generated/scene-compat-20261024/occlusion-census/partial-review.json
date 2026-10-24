@@ -1,0 +1,84 @@
+{
+  "version": "occlusion-census-partial-review-1",
+  "originalRunPassed": false,
+  "complete": false,
+  "hostSHA256": "A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7",
+  "probeSHA256": "B3F7C5B80238A1FEF70D25EBDAF2118A69C9144CE40B604075DAED04DE4370C6",
+  "completedSegments": 3,
+  "validSnapshots": 33,
+  "expectedFullSnapshots": 44,
+  "range": {
+    "roots": {
+      "min": 244,
+      "max": 261,
+      "mean": 252.27272727272728
+    },
+    "eligible": {
+      "min": 156,
+      "max": 166,
+      "mean": 161.72727272727272
+    },
+    "occluded": {
+      "min": 134,
+      "max": 139,
+      "mean": 136.0909090909091
+    },
+    "onScreenOccluded": {
+      "min": 1,
+      "max": 4,
+      "mean": 2.212121212121212
+    },
+    "onScreenOccludedArea": {
+      "min": 4930,
+      "max": 16614.545,
+      "mean": 8948.222954545454
+    },
+    "elapsedMs": {
+      "min": 4,
+      "max": 12,
+      "mean": 6.303030303030303
+    },
+    "pixelsRead": {
+      "min": 6687,
+      "max": 6867,
+      "mean": 6770.575757575758
+    }
+  },
+  "totalObservationMs": 208,
+  "onScreenMaxFraction": 0.0075428499179184694,
+  "skipped": {
+    "empty-or-nonfinite-bounds": 1287,
+    "outside-light-buffer": 51,
+    "already-hidden": 928,
+    "blend": 488,
+    "not-fully-opaque-black": 846,
+    "filters": 234
+  },
+  "inputsUnchanged": true,
+  "sourceVerified": true,
+  "performanceEligible": false,
+  "deployed": false,
+  "disposition": "Stop production pursuit on this evidence: small observed on-screen coverage and no measured gain. Not a universal impossibility claim.",
+  "limitations": [
+    "33 snapshots from three complete segments only; failed full run and original error preserved.",
+    "Display roots and sum of bounding-rectangle areas are not unique enemy counts or exact covered-pixel union.",
+    "No stage drawing or world mutation; 4-12ms read cost per snapshot contaminates frame timings.",
+    "No candidate culling was implemented or timed."
+  ],
+  "evidence": {
+    "storage\\result.json": "3874584849A5E0F60F829E97F00451247D92E3795B4E47B29517360E379C03A0",
+    "runner-failure.json": "76A1E68A52776110062CC526584CF28587D03BF847ED24884DA405CAA6C42892",
+    "runner-inputs.json": "B64222043AD05E76A31F6052854D68B26BA36F71E22F5C303344A1DCF4E8EC46",
+    "inputs.json": "060DA10B1BC2FEA7EEAC5C76826504D481739269C2CD2AD1F33C83F619DD313D",
+    "probe-build.json": "1AC2805325B9F65CA58C13B9D861F73074987464DCD06020871808C30E99FD4C",
+    "process-policy.json": "2564DFF91EE5BE8643986715A0C6FE48B19E9B24A7E01E2819DE8D1862B11483"
+  },
+  "viewport": {
+    "cameraWidth": 2032,
+    "stageWidth": 2032,
+    "cameraHeight": 1084,
+    "zoom": 1,
+    "stageHeight": 1084
+  },
+  "reviewCorrection": "Independent review: actual Stage viewport 2032x1084 replaces outer window option 2048x1123 in denominator only. Original runtime evidence unchanged."
+}
