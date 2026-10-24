@@ -1,6 +1,6 @@
 # ContinuousScene — 当前快照
 
-更新：2026-10-25镜头目标active、未完成。恢复实测后裁块无稳定收益，已停止；原尺寸atlas成本诊断移动37.0417→31.075ms，两对同向，但视觉RGB2未过旧RGB1。pow2首轮通过，随后同场同帧旧/新都RGB2，已否定补尺寸修复并停止。用户现明确接受RGB2/alpha0继续候选验证，仍须真实战斗明显提速且功能正常才部署；原failed不改写。当前原尺寸motion-only r1完整960帧通过：移动41.05→31.5ms，两对同向，static28.32→28.85；首建213ms保留，RGB1/alpha0、恢复精确。新camera-atlas-motion-combat-20261025-r1已登记等待真实1200帧交火，尚无新战斗结果。正式A796/RV BF4A未由本任务改动，原实际战斗57.33/34.35ms基线仍未接近目标。
+更新：2026-10-25镜头目标active、未完成。恢复实测后裁块无稳定收益，已停止；原尺寸atlas成本诊断移动37.0417→31.075ms，两对同向，但视觉RGB2未过旧RGB1。pow2首轮通过，随后同场同帧旧/新都RGB2，已否定补尺寸修复并停止。用户现明确接受RGB2/alpha0继续候选验证，仍须真实战斗明显提速且功能正常才部署；原failed不改写。当前原尺寸motion-only r1完整960帧通过：移动41.05→31.5ms，两对同向，static28.32→28.85；首建213ms保留，RGB1/alpha0、恢复精确。真实motion-combat r1在第三段击退越平台失败，仅600完整帧，A63.923→B60.617ms为单对小幅线索；B重建301/145ms、109.375MiB，不能部署。正静态筛新原版场地；几何守卫仅离线。正式A796/RV BF4A未由本任务改动，原实际战斗57.33/34.35ms基线仍未接近目标。
 
 ## 1. 模组与体验
 
@@ -37,7 +37,7 @@ CS编辑器0.9.0已于10月20日安装并复验25+22项：Editor7344、EditorToo
 
 ## 4. 当前任务进展与停点
 
-same-frame size-compare-r1（B1FE87）前三view旧/新均RGB1，第四旧/新均560像素/maxRGB2，alpha0、两次restore全0，玩家/计数不变，20/20释放；旧标准failed保留，pow2修复假设否定。新RGB2授权后回原C0E4物理尺寸准备motion-only：仅实际vx/vy/scale变化才呈现合图，静止保留native显示但缓存保留；首造/全部同步逻辑仍在，尚不能宣称解决首次或战斗。helper像素update第三参force=true并断言presented，计时2参+逐帧actual presented门禁。presentation_transform 2A4D350、探针6BBCE1，r1已实测960帧31134ms，实际呈现0/0/0/119/120/1/0/0；五view均RGB1/alpha0、恢复0、15/15释放，八计数/玩家不变。移动两对37.1167→31.0417及44.9833→31.9583；首B213ms、其他138/228ms尖峰全保留，仍只暂停诊断。后续motion-combat r1仅Main+Atlas两源/85文件，真实4×300，已登记等待；逐帧actual/previous呈现、世界坐标/quake、copy/rebuild和终态释放门禁齐全。Camera vx/vy为int，world小数来自震动/缩放；旧0.8+quake大色差仍未解决，RGB2授权不覆盖。
+same-frame size-compare-r1（B1FE87）前三view旧/新均RGB1，第四旧/新均560像素/maxRGB2，alpha0、两次restore全0，玩家/计数不变，20/20释放；旧标准failed保留，pow2修复假设否定。新RGB2授权后回原C0E4物理尺寸准备motion-only：仅实际vx/vy/scale变化才呈现合图，静止保留native显示但缓存保留；首造/全部同步逻辑仍在，尚不能宣称解决首次或战斗。helper像素update第三参force=true并断言presented，计时2参+逐帧actual presented门禁。presentation_transform 2A4D350、探针6BBCE1，r1已实测960帧31134ms，实际呈现0/0/0/119/120/1/0/0；五view均RGB1/alpha0、恢复0、15/15释放，八计数/玩家不变。移动两对37.1167→31.0417及44.9833→31.9583；首B213ms、其他138/228ms尖峰全保留，仍只暂停诊断。后续motion-combat r1仅Main+Atlas两源/85文件，真实4×300计划只完成前600帧：第三段X4302.160<safe4305，失败保留。完整A/B均63.923/60.617ms、敌511/557、预绘0/1块，294/300 B呈现；两重建301/145ms、109.375MiB。第三段171条probeTiming不拼完整帧，终态清理全0。场地已全图扫描，最长1120仅多80，初始两侧敌后全聚右侧，不能盲重跑；现静态筛Rooms原版宽平台并核新场地。geometry guarded 642B4A仅可逆纯变换、未构建/运行。逐帧actual/previous呈现、世界坐标/quake、copy/rebuild和终态释放门禁齐全。Camera vx/vy为int，world小数来自震动/缩放；旧0.8+quake大色差仍未解决，RGB2授权不覆盖。
 
 pow2-r1（543030探针）完整960帧31744ms，五视口RGB1/alpha0、恢复0、15/15释放，预绘等八计数零变。移动两对均值35.783→34.333和45.425→35.842；第一对P9543→48变差，第二对65→46，静止新版本31.596ms比原生24.979慢，首建图348ms。四层物理存储前2view256MiB/后3view128MiB。此为不同随机世界，不能和旧r1跨轮归因像素修复。camera-atlas-size-compare正在准备同帧native/旧atlas/restore/pow2/restore，以旧失败新通过的实际反例决定是否继续；内存和静止退化未解决，不部署。
 
