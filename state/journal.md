@@ -1,5 +1,13 @@
 # 开发日志
 
+## 2026-10-25 私有桌面显隐实测完整，未解释主要卡顿
+
+window-visibility-native-20261025从准确29AF仅Main+新helper共86源派生EAD18FDE；7处唯一锚点可逆，nativeWindow.visible是唯一运行改写，切换在caseBegin/连续钟开始之后，末态closeProbeTiming后恢复。helper6BC5/patch2871/runnerB39B与13runtime闭包独立审查，r1注册f983ab89等待RV/RC当前轮完成后运行，自有AIR112256已退出并通知双方释放，不追加批次。1200帧/26项、连续54927→129036=74109ms，result7026DB47；无缺块/强制补绘/内存中止/其他AIR。
+
+隐藏600帧均61.553/中59/P9580、可见600帧61.962/59/82，正反两对差+.693/+.123ms，敌395/456、夹具弹密度可见稍高，预绘6/6块47/43片。均值差很小且自然战斗混杂，停止显隐路线，不将其当主要成本或部署方案。首显示36ms、其余切换2/0/1ms与所有长帧保留；窗口读取总34ms也未扣除。全1200实际visible准确，其余active/applicationActiveWindowMatches/onPause均false，Stage2032×1084/HIGH/30、normal/direct和bounds全程稳定，末恢复false/pending0/errors空。每窗600 RENDER事件不代表用户桌面呈现；私有桌面可见仍不等于真实用户桌面，不能外推全部历史测试或GPU后端。526正式/528隔离/13runtime输入保持，无部署，原README/代码冻结，详见RESULTS.md。
+
+下一条只读可行性调查是现成OS线程/CPU采样：系统wpr存在且status未录制，xperf未找到；尚未启动录制、安装工具或写新解析器。需要先确认可用解析工具与新增信息，不能把[render]栈标签或剩余墙钟直接称GPU/GC成本。目标仍active。
+
 ## 2026-10-25 叶部件资格未满足，补得实际窗口隐藏证据
 
 player-leaf-cache-20261025 只从准确29AF/85源派生Main+helper共86源，9F8419E6探针；helper C6BE/patch F3B5/runner3B1D均独立复核，初次纯静态锚点不唯一与not-qualified缺final census摘要问题在首次运行前修正，不改原失败口径。注册r1/AIR111968实际暖场后护甲均pip，扫描121节点，指定sleg20_53缺失，按协议即停：0观察/0像素/0缓存写入/0临时位图，8个准备检查不当完整验收。原始result AE71EE22、inventory C6838631，summary保留inconclusive/rawOK=false，不能声称缓存有效或提速。该对象路线结束，不换符号、不调阈值、不追加重跑。
