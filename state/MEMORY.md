@@ -1,6 +1,6 @@
 # ContinuousScene — 当前快照
 
-更新：2026-10-25镜头目标active、未完成；RGB最大差2/255、alpha不变授权继续，实际战斗明显提速与功能正常仍为部署前提。两轮分页真实战斗停止生产推进；CA08纯地形分层已完成并提交4da74b3，背景67.018→隐藏64.780ms仅小差，前景62.352→63.520无观察改善，分别1200帧/26项、全部隐藏恢复与绑定释放。随后准确29AF全原生可见direct/cpu两臂亦各1200帧/26项：均67.796→69.182、中63→66、P9596→88；CPU敌射1176→523且活动更少、预绘更多，未达可靠提速，不推进模式变更、不追加第三臂。526正式输入、528隔离输入、13运行时文件及归一描述均跨轮核对；两轮result A2BC381B/70DA9604，详见native-render-mode-20261025/RESULTS.md，README保留测试前冻结文本。正式A796/CS7F1F/RV638E/RC78C不变，无本轮部署；自有AIR/登记全部清理，已向RV通知资源释放。仅保留新只读假设：整gg.vis缓存已测失败，但装备单帧叶符号sleg20_53未测；一次旧快照不足证明自然动作中的存续、复杂度或像素资格，下一步最多先测准确叶的稳定性与像素，不停止动画、不预认收益。scenePreloadRegions revision配方仍仅源码，近原版目标未达。
+更新：2026-10-25镜头目标active、未完成；RGB最大差2/255、alpha不变授权继续，实际战斗明显提速与功能正常仍为部署前提。player-leaf-cache r1已实际运行，精确29AF→86源/9F8419探针，在pip装备下扫描121节点未找到sleg20_53，按预定规则0样本/不比较像素/不写cache，结果AE71EE22、inconclusive，停止该叶方向不换目标重试。新窗口getter阳性证据：初末visible=false/active=false/normal/direct，Stage2032×1084/HIGH/30，无读取错误；只证明本轮实际隐藏，不抹掉旧RENDER事件或把所有历史数据作废。该轮526正式/528隔离输入不变，自有AIR111968已退出，已向RV释放；正式A796/CS7F1F/RV638E/RC78C未改。下一步正在准备window-visibility-native-20261025，只在同一私有桌面内ABBA切换owned NativeWindow.visible，全部切换/长帧保留，观察焦点/暂停/尺寸混杂；不activate、不切桌面，不当用户桌面性能验收。纯地形和direct/cpu前轮均未显出稳定主要收益，停止原路线，详见各RESULTS。scenePreloadRegions revision仍仅源码，近原版目标未达。
 
 ## 1. 模组与体验
 

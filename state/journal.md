@@ -1,5 +1,11 @@
 # 开发日志
 
+## 2026-10-25 叶部件资格未满足，补得实际窗口隐藏证据
+
+player-leaf-cache-20261025 只从准确29AF/85源派生Main+helper共86源，9F8419E6探针；helper C6BE/patch F3B5/runner3B1D均独立复核，初次纯静态锚点不唯一与not-qualified缺final census摘要问题在首次运行前修正，不改原失败口径。注册r1/AIR111968实际暖场后护甲均pip，扫描121节点，指定sleg20_53缺失，按协议即停：0观察/0像素/0缓存写入/0临时位图，8个准备检查不当完整验收。原始result AE71EE22、inventory C6838631，summary保留inconclusive/rawOK=false，不能声称缓存有效或提速。该对象路线结束，不换符号、不调阈值、不追加重跑。
+
+初末窗口getter无错误：visible=false、active=false、applicationActiveWindowMatches=false、normal/direct，窗口2048×1123，Stage2032×1084/HIGH/30。它明确本轮为隐藏状态；不是叶失败原因，也不是无内部渲染/全部旧相对比较失效的证据。正式526与隔离528输入保持，自有进程已退出、登记结束；已向RV协调释放与新发现。新window-visibility-native仅准备，打算同一private desktop内false/true/true/false，原生输入/AI/物理和连续时钟保留，终态恢复visible。不调用activate/focus/SwitchDesktop；需要记录其他窗口状态的混杂，仅作环境敏感性诊断，不当正式游玩优化。无本轮部署。
+
 ## 2026-10-25 direct/cpu 全原生战斗完成，停止模式改动
 
 native-render-mode-20261025/run.py 01C4E836仅在本地run_owned函数副本的描述写入和清理核对处加两锚点，原代码逐字可反向；复用准确29AF/85源/9837原回执，从真实probePath.parent验证相邻compile.log。rcnative不访问RC API，不隐藏画面或合图，无新增逐帧观察。原保护、登记、私有桌面、唯一存储和清理保留。最终实际描述只有ID/mode不同，2048×1123一致；归一SHA同C0938…71017，526正式/528隔离/13runtime/25runner输入跨轮相同。
