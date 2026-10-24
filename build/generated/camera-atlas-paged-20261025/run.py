@@ -13,7 +13,7 @@ from xml.sax.saxutils import escape
 
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
-VERSION = 'camera-atlas-paged-1'
+VERSION = 'camera-atlas-paged-2'
 
 
 def load(name, path):
@@ -137,7 +137,9 @@ def options(name):
 
 
 def verify_trial(trial, cleanup):
-    assert trial['version'] == 'camera-atlas-paged-trial-1'
+    assert trial['version'] == 'camera-atlas-paged-trial-2'
+    assert 1 <= len(trial['preparePasses']) <= 12
+    assert trial['preparePasses'][-1]['quiet'] and all(v == 0 for v in trial['preparePasses'][-1]['delta'].values())
     assert trial['pixelTolerance'] == dict(maxRGB=2, maxAlpha=0, restoreExact=True)
     assert trial['complete'] and trial['passed'] and trial['errors'] == []
     assert cleanup == trial['cleanup'] and cleanup['restored'] and cleanup['errors'] == []

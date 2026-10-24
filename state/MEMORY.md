@@ -1,6 +1,6 @@
 # ContinuousScene — 当前快照
 
-更新：2026-10-25镜头目标active、未完成。恢复实测后裁块无稳定收益，已停止；原尺寸atlas成本诊断移动37.0417→31.075ms，两对同向，但视觉RGB2未过旧RGB1。pow2首轮通过，随后同场同帧旧/新都RGB2，已否定补尺寸修复并停止。用户现明确接受RGB2/alpha0继续候选验证，仍须真实战斗明显提速且功能正常才部署；原failed不改写。当前原尺寸motion-only r1完整960帧通过：移动41.05→31.5ms，两对同向，static28.32→28.85；首建213ms保留，RGB1/alpha0、恢复精确。真实motion-combat r1在第三段击退越平台失败，仅600完整帧，A63.923→B60.617ms为单对小幅线索；B重建301/145ms、109.375MiB，不能部署。正静态筛新原版场地；几何守卫仅离线。正式A796/RV BF4A未由本任务改动，原实际战斗57.33/34.35ms基线仍未接近目标。
+更新：2026-10-25镜头目标active、未完成。用户明确接受RGB最大差2/255且alpha不变，仍须真实战斗明显提速与功能正常才部署；旧failed不回填。原尺寸motion-only暂停对照移动41.05→31.5ms、静止28.32→28.85，首建213ms；真实战斗r1第三段击退越平台，仅600帧A63.923/B60.617ms，重建301/145ms，不能部署。新固定1280世界页/8页封顶候选r1的960帧全部跑完、像素RGB1/alpha0和几何回退通过，但计时原生仍新增16驻留/19重绘/52预绘分片，归因门禁失败。r2六遍预绘后960帧/八原生计数全零，移动43.4792→35.8875ms、两对同向；静止25.52→28.04且仍有长帧，仅暂停归因。固定池复用与新SMG实战配方正在独立准备。正式宿主A796/CS7F1F未由本任务改动；RV负责人已独立部署0.33.10/638E，本轮新测试按准确回执冻结，旧证据不重标。近原版目标仍未达。
 
 ## 1. 模组与体验
 
@@ -28,7 +28,8 @@
 - CS0.9.0：7F1F2961C6E299D949423591F3C65C610C2EAEFA7FC72E8A583A402770D6B51F。
 - RC由负责人独立更新为0.2.24-roomfix5：78C052AEA963F1689B705AE1E14D274916AE1A1F7E81933390CAF8D1A88F4699。installed-smoke.json记录ed2fa23d99单实例启动通过；recovery-room-user-deploy-01/deployment.json的smoke_status仍pending、performance_qualified=false，本侧不代改。旧DF0F/aura1性能证据不重标。
 - ModLoader现为2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2，2.5.0/FrameRecorder1.0.0安装回执verified，telemetry enabled:true。此更新由负责人完成；本轮TDFC r6开始按新依赖冻结，旧BD71环境配对仍是历史组合。
-- TDFC7ACD、LAD8ADB、WB1411；RV负责人现已独立部署0.33.9-effect-load，BF4AC9CD87272B03FAE7EC22EE67D045F037362F412EE801CAD3F9BA9FE3AFEF。effect-load-v3-output/deployment/receipt.json记录PASS与独立启动清理。新镜头组件r3、跳跃r2和TDFC LOS战斗实际使用的是历史0DBE/0.33.8，不重标成BF4A；更早6DBB亦保留原标签。RV负责人测得自身更新函数约20%/6%改善，但完整战斗帧没有一致显著改善，不计作本任务近原版已达。
+- RV负责人2026-10-25已独立部署0.33.10-render-cache：638E2D408E2CF46683C41114F75773829A1B4417D74BFFE9D08855A4FE343710，build/combat-render-output/deployment/receipt.json为PASS；本轮paged r1起采用此组合，未把其收益计作CS合图效果。
+- 历史TDFC7ACD、LAD8ADB、WB1411；RV负责人此前独立部署0.33.9-effect-load，BF4AC9CD87272B03FAE7EC22EE67D045F037362F412EE801CAD3F9BA9FE3AFEF。effect-load-v3-output/deployment/receipt.json记录PASS与独立启动清理。新镜头组件r3、跳跃r2和TDFC LOS战斗实际使用的是历史0DBE/0.33.8，不重标成BF4A；更早6DBB亦保留原标签。RV负责人测得自身更新函数约20%/6%改善，但完整战斗帧没有一致显著改善，不计作本任务近原版已达。
 - 前轮offline1已测生产输入与部署回执保留：../RConnect/build/m52/recovery-offline-production-01、../RConnect/build/m52/recovery-offline-deploy-01/deployment.json；当时状态deployed-smoke-passed，回执SHA256 7DB4BDC4F9BF9317A96EC51DB3076A5B8F0D49BBC9254692142BE92F7065EE86，不作为当前aura1部署回执。
 
 历史EB365基于准确574D冻结源，仅三类和版本变化；未联网时跳过两组弹道/身体效果历史采集。首次host/join尝试即永久恢复采集（直到进程重启）；null、异常、非严格true均保守回退。保持墙面、感知、实际呈现、失效刷新和联网路径；生产包无诊断开关。其旧对照与门禁保留历史标签，不跨组合计算新收益。诊断88CC不得部署。
@@ -36,6 +37,8 @@
 CS编辑器0.9.0已于10月20日安装并复验25+22项：Editor7344、EditorTools02F5、CS7F1F，168固定箱体逐件对应。192×50研发部样例，地图编辑器.vbs→大地图，应用maps/active.xml后重新进入读取；nativeEnabled独立。当前性能任务不重建编辑器。
 
 ## 4. 当前任务进展与停点
+
+固定页候选见build/generated/camera-atlas-paged-20261025，r1配方5192969，探针92AA0134。5view跨页保缓存RGB1/alpha0/restore0，两种force几何回退全等，19截图/27页/108位图全释放，峰8页/200MiB；实际11个key、淘汰与回访复用均真。960帧32857ms，但原生warm发生在全部移动窗，A移动55.108/40.458与B38.125/42.842方向不一，不归因提速。r2探针F73FC719，六遍750次/34336ms后预绘稳定；960帧31903ms、逐帧八计数全零，像素/回退/资源通过。移动两对38.675→34.9583、48.2833→36.8167ms，合并约17.46%；静止25.52→28.04。首B115ms含work83/6页，后235/264/315ms仅work4/2/0，不能归GC，不能称实战收益。计时两B移动仍各新建6页/150MiB，分页不等于已消除分配停顿。
 
 same-frame size-compare-r1（B1FE87）前三view旧/新均RGB1，第四旧/新均560像素/maxRGB2，alpha0、两次restore全0，玩家/计数不变，20/20释放；旧标准failed保留，pow2修复假设否定。新RGB2授权后回原C0E4物理尺寸准备motion-only：仅实际vx/vy/scale变化才呈现合图，静止保留native显示但缓存保留；首造/全部同步逻辑仍在，尚不能宣称解决首次或战斗。helper像素update第三参force=true并断言presented，计时2参+逐帧actual presented门禁。presentation_transform 2A4D350、探针6BBCE1，r1已实测960帧31134ms，实际呈现0/0/0/119/120/1/0/0；五view均RGB1/alpha0、恢复0、15/15释放，八计数/玩家不变。移动两对37.1167→31.0417及44.9833→31.9583；首B213ms、其他138/228ms尖峰全保留，仍只暂停诊断。后续motion-combat r1仅Main+Atlas两源/85文件，真实4×300计划只完成前600帧：第三段X4302.160<safe4305，失败保留。完整A/B均63.923/60.617ms、敌511/557、预绘0/1块，294/300 B呈现；两重建301/145ms、109.375MiB。第三段171条probeTiming不拼完整帧，终态清理全0。场地已全图扫描，最长1120仅多80，初始两侧敌后全聚右侧，不能盲重跑；现静态筛Rooms原版宽平台并核新场地。geometry guarded 642B4A仅可逆纯变换、未构建/运行。逐帧actual/previous呈现、世界坐标/quake、copy/rebuild和终态释放门禁齐全。Camera vx/vy为int，world小数来自震动/缩放；旧0.8+quake大色差仍未解决，RGB2授权不覆盖。
 

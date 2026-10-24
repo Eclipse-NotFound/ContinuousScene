@@ -4,7 +4,7 @@ import shutil
 import importlib.util
 import hashlib
 
-VERSION = 'camera-atlas-paged-1'
+VERSION = 'camera-atlas-paged-2'
 HERE = Path(__file__).resolve().parent
 HELPER = HERE / 'tests/SceneCameraRasterTrial.as'
 CHANGED = ['ContinuousSceneMotionProbe.as', 'SceneRasterPresentation.as', 'tests/SceneCameraRasterTrial.as']

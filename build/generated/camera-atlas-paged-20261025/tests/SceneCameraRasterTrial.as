@@ -39,6 +39,8 @@ package tests {
         private var beginAt:int=0;
         private var prepareAt:int=0;
         private var pixelAt:int=0;
+        private var preparePass:int=0;
+        private var prepareBaseline:Object;
         private var pending:Object;
         private var row:Object;
         private var closed:Boolean=false;
@@ -48,7 +50,7 @@ package tests {
         public function begin(w:*,p:*):Object {
             if(report!=null)throw new Error("Camera raster trial is single-use");
             beginAt=getTimer();
-            report={version:"camera-atlas-paged-trial-1",diagnosticOnly:true,performanceEligible:false,
+            report={version:"camera-atlas-paged-trial-2",diagnosticOnly:true,performanceEligible:false,
                 terminalOnly:true,complete:false,passed:false,pixelsValid:false,errors:[],pixels:[],fallbackPixels:[],windows:[],
                 pixelTolerance:{maxRGB:2,maxAlpha:0,restoreExact:true},
                 framesMs:[],sampleAtMs:[],prepareMs:0,prepareWorkMs:0,pixelMs:0,
@@ -96,6 +98,7 @@ package tests {
                 report.views=views;report.route=route;
                 prepareRoute=views.concat(route);prepareAt=getTimer();
                 report.prepareStart=snapshot();
+                prepareBaseline=counters();report.preparePasses=[];
             } catch(error:Error) {fail(error);}
             return report;
         }
@@ -113,8 +116,22 @@ package tests {
                     if(grafon.sceneViewReady()) {++cursor;retries=0;} else if(++retries>300)throw new Error("Native viewport did not finish preparing");
                     report.prepareWorkMs+=getTimer()-workAt;
                     if(cursor==prepareRoute.length) {
-                        report.prepareMs=getTimer()-prepareAt;report.prepareEnd=snapshot();
-                        phase=1;cursor=0;pixelAt=getTimer();
+                        var preparationEnd:Object=counters(),quiet:Boolean=true,changes:Object={};
+                        for each(var preparationKey:String in ["sceneRedraws","sceneDrawMs","sceneResident","sceneEvictions","sceneMisses","sceneWarmCount","sceneWarmSlices","sceneWarmForced"]) {
+                            if(preparationKey in preparationEnd && preparationKey in prepareBaseline) {
+                                changes[preparationKey]=Number(preparationEnd[preparationKey])-Number(prepareBaseline[preparationKey]);
+                                if(changes[preparationKey]!=0)quiet=false;
+                            }
+                        }
+                        ++preparePass;report.preparePasses.push({pass:preparePass,quiet:quiet,delta:changes});
+                        cursor=0;
+                        if(quiet) {
+                            report.prepareMs=getTimer()-prepareAt;report.prepareEnd=snapshot();
+                            phase=1;pixelAt=getTimer();
+                        } else {
+                            require(preparePass<12,"Native route did not settle within 12 complete preparation passes");
+                            prepareBaseline=preparationEnd;
+                        }
                     }
                 } else if(phase==1) {
                     pixelCase(views[cursor],cursor);++cursor;
