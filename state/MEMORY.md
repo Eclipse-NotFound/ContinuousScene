@@ -1,6 +1,6 @@
 # ContinuousScene — 当前快照
 
-更新：2026-10-24 颜色兼容修复已部署A796，candidate与installed各20项通过；战斗性能继续排查。用户确认同一大图换区后角色颜色不更新、RV开启明显更卡。颜色量化及玩家悬浮双缺陷已修复，不作为性能改善。镜头可见/隐藏对照均完成，但隐藏后差距不稳定且今日整体变慢，正用原冻结战斗探针核对环境与CPU占用。详见knowledge/experiments/scene-compat-20261024.md和scene-tint-20261024.md；近原版目标仍未完成。
+更新：2026-10-24 颜色兼容修复A796已部署，candidate与installed各20项通过。最新TDFC视线候选组件38对全等，真实1200帧ABBA均61.3067/60.4717ms，但火力与预绘混杂、收益不足，不部署；正式TDFC仍7ACD。此前同冻结探针environment-control大场景71.479/普通44.585ms的差距保留，不能跨RC/ModLoader更新组合归因。用户反馈RV开启明显更卡，近原版战斗目标仍未完成。详见knowledge/experiments/scene-compat-20261024.md和scene-tint-20261024.md。
 
 ## 1. 模组与体验
 
@@ -25,7 +25,8 @@
 
 - root pfe.swf：A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7；state/scene-tint-deployment-20261024.json为verified，candidate-r1/installed-r1各20项通过。精确ABE2上仅Grafon.sceneUpdateEntityColor/sceneEntitySameColor变化，5769其他方法体、1016类/初始化器与素材保留。ABE2纵向缓冲和80CF遮挡格复用均继续保留；没有增加生产计时/诊断开关。
 - CS0.9.0：7F1F2961C6E299D949423591F3C65C610C2EAEFA7FC72E8A583A402770D6B51F。
-- RC0.2.24-aura1：DF0FA0E2CA952E77E5132E75D71E73558DC919C7B8CDEBA5DA05FC9E94DC01E7。
+- RC由负责人独立更新为0.2.24-roomfix5：78C052AEA963F1689B705AE1E14D274916AE1A1F7E81933390CAF8D1A88F4699。installed-smoke.json记录ed2fa23d99单实例启动通过；recovery-room-user-deploy-01/deployment.json的smoke_status仍pending、performance_qualified=false，本侧不代改。旧DF0F/aura1性能证据不重标。
+- ModLoader现为2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2，2.5.0/FrameRecorder1.0.0安装回执verified，telemetry enabled:true。此更新由负责人完成；本轮TDFC r6开始按新依赖冻结，旧BD71环境配对仍是历史组合。
 - TDFC7ACD、LAD8ADB、WB1411；RV由其负责人独立更新为0DBE0D7A95B8E496FB393D7FCD75F88D60C34A1D0FABB33266B122E3FA04F2BF（0.33.8）。新镜头候选组件r3、跳跃r2起及战斗使用这一依赖。旧RV6DBB的jump-baseline-r1不混入新版本对照；每轮仍核对实际依赖。
 - 前轮offline1已测生产输入与部署回执保留：../RConnect/build/m52/recovery-offline-production-01、../RConnect/build/m52/recovery-offline-deploy-01/deployment.json；当时状态deployed-smoke-passed，回执SHA256 7DB4BDC4F9BF9317A96EC51DB3076A5B8F0D49BBC9254692142BE92F7065EE86，不作为当前aura1部署回执。
 
@@ -35,15 +36,19 @@ CS编辑器0.9.0已于10月20日安装并复验25+22项：Editor7344、EditorToo
 
 ## 4. 当前任务进展与停点
 
+最新性能停点：TDFC单条视线空格复用r6组件38对全等并恢复；combat-r2同进程ABBA完成1200帧/26项，A/B均61.3067/60.4717ms。玩家全轮400（A/B各200）、敌1010/904，A预绘4块23slices而B为0；B实际8129calls/101166hits/44804lookups。收益不足且负载混杂，不部署；正式A796/7ACD保持。所有AIR前失败与旧依赖证据保留，详见scene-compat-20261024.md末节。checkShelf单行Y条件前置仍只读静态方案，未构建或取得收益。
+
 最新闭环：两方法颜色修复A796已按本机持续授权部署，实际安装文件组件20项通过；三组组件和精确字节码审计见scene-tint-20261024.md。备份build/backups/scene-tint-20261024-110720-c26a0e46/pfe_before_ContinuousScene_tint_20261024.swf为ABE2，仅在正式仍为本候选时可回滚。原始r1比较器失败、内存预检中止和登记工具临时错误均保留。组件直接调用真实方法，不宣称完整跨区行走或长时间游玩验证。
 
-camera-no-world-r1已完整1200帧通过；A/B/B/A均137.743/96.917/109.747/83.680ms，隐藏后跟随均110.712/中82，固定103.332/中86，末A反而最快。敌1769射高于可见1254，不能把跨轮差额当渲染净成本。世界可见性与镜头状态完整恢复，计时177块/预绘计数不变。前日/今日可见/隐藏的脚本墙钟均22.60/41.63/62.30ms，进程全程CPU约1.639/1.236/.529个核（含启动、未对齐测量），尚不能区分调度/计算/负载变化。新增telemetry.json对应尚未部署ModLoader2.5，当前2.4无记录器，不是已证原因。下一步原39A冻结探针environment-control，仅增加两次UTC时钟与进程CPU采样对齐，不能读取当前src混入外部WIP。
+environment-control场景/普通房已各完成1200帧，精确同D972探针与全部输入，地形/路线/视口四项匹配。来源是B7ED收据冻结的39A原测试源，仅增加两次UTC/getTimer内存锚点，无cameraHold或新177块预备。当前A796上大图均71.479/中66/P95 109，普通44.585/41/65ms；脚本墙钟27.260/11.823ms、区间外余量44.232/32.759ms。大图敌1883射/平均夹具弹6.644、普通1316/3.999，初始世界单位151/11，不是等人口因果实验。进程CPU与测量阶段对齐覆盖99.626%/98.303%，均2.001/1.716核；全线程统计不代表主线程或GPU。大图驻留129→137、计时预绘8块/36 slices/521ms，misses/forced0；普通无预绘。近原版未达，不能把今日约107ms全归环境，也不能只归镜头；根任务继续核查TDFC单条视线重复取格的小候选，尚无新性能部署。
 
-2026-10-24本轮：camera-combat-20261024-r1完整4×300跟随/固定/固定/跟随，跟随均122.18/中101，固定均92.735/中81ms；四段玩家各100射，敌430/329/198/297，火力混杂。观察helper均<.31ms；计时resident177/预绘计数不变。4060ms尖峰中1400在nativeBand、2652在所包围脚本区间外，原因未知，不称GPU/GC。新camera-no-world副本只隐藏世界父层、保留原生逻辑，尚在安排实测；不得作为产品安装。准确原输入ABE2/CS7F1F/RCDF0F/RV0DBE。
+camera-no-world-r1已完整1200帧通过；A/B/B/A均137.743/96.917/109.747/83.680ms，隐藏后跟随均110.712/中82，固定103.332/中86，末A反而最快。敌1769射高于可见1254，不能把跨轮差额当渲染净成本。世界可见性与镜头状态完整恢复，计时177块/预绘计数不变。前日/今日可见/隐藏脚本墙钟均22.60/41.63/62.30ms，旧全程CPU含启动而未对齐，不能直接和environment-control的测量期统计比较。三轮实际ModLoader均BD71/2.4，无帧记录器；新增telemetry.json不是已证原因。后续若负责人发布新版仍按实际冻结输入核验，不假设版本永远不变。
 
-颜色基线r1暴露AIR乘数量化：原生green .8/1.16实际显示 .796875/1.15625，sceneEntitySameColor误当外部颜色而拒绝普通跨区更新；另玩家自主悬浮levit1也跳过显示更新。r1测试比较本身亦错，失败保留。r2真实Sprite规范化期望后baseline-r2通过20项，分别重现两缺陷、箱体真实dropTeleObj及外部色保护。隔离候选在build/generated/scene-compat-20261024/tint/product：两个方法定向字节码改动，玩家豁免levit门控；SameColor原八分量快速路径失败后经未入树Sprite实际setter/getter规范化b再严格比较，先拒绝非有限值。源码/分支/栈独立审查已过，已完成拼接，仍需最终SWF导出/严格审计、candidate组件、发布门禁、安装后实际文件组件。首次build在最后导出前因可提交4204359680低于自设4GiB停下；resume一次登记表临时WinError5、再一次可提交3797348352停下。原生游戏运行保护不降。另共享test_registry曾短暂SyntaxError，已读AST恢复；不改ModLoader工具，不绕登记。
+2026-10-24本轮：camera-combat-20261024-r1完整4×300跟随/固定/固定/跟随，跟随均122.18/中101，固定均92.735/中81ms；四段玩家各100射，敌430/329/198/297，火力混杂。观察helper均<.31ms；计时resident177/预绘计数不变。4060ms尖峰中1400在nativeBand、2652在所包围脚本区间外，原因未知，不称GPU/GC。随后隐藏世界诊断也已完成，结果如上；两者均不得作为产品安装。它们的准确原输入为ABE2/CS7F1F/RCDF0F/RV0DBE，后续environment-control才使用A796。
 
-RV0DBE只读发现current每帧整图遮挡扫描、全单位/物件遍历，classic全图记忆维护/约7.41MiB雾层复制；射线与显示本来已有局部范围，不能重推“只画视野内”。RV负责人正在D43密集特效优化，未混入或归功本任务；遮罩交接静态风险组件只准备未运行，因用户澄清主要是性能而暂停。未改RV生产源码/包。所有本轮源/辅助均在scene-compat-20261024目录，foreign SceneRenderChecks与Alicorn不动。
+颜色基线r1暴露AIR乘数量化：原生green .8/1.16实际显示 .796875/1.15625，sceneEntitySameColor误当外部颜色而拒绝普通跨区更新；另玩家自主悬浮levit1也跳过显示更新。r1测试比较本身亦错，失败保留。r2真实Sprite规范化期望后baseline-r2通过20项，分别重现两缺陷、箱体真实dropTeleObj及外部色保护。build/generated/scene-compat-20261024/tint/product的两个定向方法已完成最终导出、严格审计、candidate与installed各20项组件及发布门禁，A796回执verified；源同步和记录里程碑已提交1eafc99。玩家豁免levit门控，SameColor原快速路径失败后用未入树Sprite实际setter/getter规范化b再严格比较，先拒绝非有限值。早期两次提交余量不足、登记表临时WinError5与短暂SyntaxError完整保留；没有降原生运行保护、绕登记或修改ModLoader工具。
+
+RV0DBE启用路径只读发现current每帧整图遮挡扫描、全单位/物件遍历，classic全图记忆维护/约7.41MiB雾层复制；射线与显示本来已有局部范围，不能重推“只画视野内”。根任务后续已核：RV关闭且字典清空后不再每帧遍历全图，原生findCel也不全图搜索目标，不继续把这两项当成本轮关闭RV负载的原因。RV负责人正在D43密集特效优化，未混入或归功本任务；遮罩交接静态风险组件只准备未运行，因用户澄清主要是性能而暂停。未改RV生产源码/包。所有本轮源/辅助均在scene-compat-20261024目录，foreign SceneRenderChecks与Alicorn不动。
 
 最新真实跳跃工作见knowledge/experiments/vertical-motion-20261023.md。r1首跳含原生水平惯性，第二跳为纯Y；r2补dx=0/左右键释放后仍45.78/44.04ms，静止约33ms。所有测量窗无新块/缺块补绘，纯Y每窗3次150px跳跃、镜头跨度149px。native-r1平台floor120导致原生向上换房，0样本，保留失败不当CS故障。固定镜头ABBA诊断720帧合并A44.1958/B35.2208ms、约20.3%差异；仅诊断，不当产品收益。growth-r2被自设1.5GiB进程预算拒绝；核实系统提交余量14GiB后，r3诊断预算2GiB并新增4GiB提交/2GiB物理预检，512MiB运行保护不变。r3完整1440帧，驻留124→155、private +72.08MB，跳跃43.271→41.521ms，没有复现随此增长恶化，不能当真实探索验证。
 
@@ -104,17 +109,17 @@ fog-last-blocker 38C7已严格审核并通过89对（原86+负visi两对+弱水�
 
 ## 6. 下一步、构建与回退
 
-最新ABE2部署回执state/vertical-camera-band-deployment-20261023.json为verified。2026-10-24 00:00备份80CF至build/backups/vertical-camera-band-20261024-000000-9ee00a9c/pfe_before_vertical_camera_band.swf后定向安装；524其他依赖保持，安装后65/0、56个实际calc案例通过，结果SHAF8CC27E86C17FA27802C21ACA4DA447E062EE09FBD4DA17E69B817CBA3E32E38。回滚使用vertical-camera-band-20261023/release.py rollback，仅当当前仍是ABE2时恢复80CF；遇第三方宿主变化中止。此前80CF→BEFC备份只属历史，不能直接覆盖ABE2。RC负责人已获准确新SHA及回执。未重新构建整个Camera类/CS，也没有并入外部天角兽候选。后续所有性能实验须以实际ABE2重新冻结准入；旧80CF驱动不能直接当新基线。
+当前以A796及state/scene-tint-deployment-20261024.json的verified回执为准；environment-control场景/普通房同探针配对已完成。上一镜头里程碑ABE2的state/vertical-camera-band-deployment-20261023.json仍保留verified历史：2026-10-24 00:00备份80CF至build/backups/vertical-camera-band-20261024-000000-9ee00a9c/pfe_before_vertical_camera_band.swf，524依赖保持，安装后65/0、56个calc案例通过，结果SHAF8CC27E86C17FA27802C21ACA4DA447E062EE09FBD4DA17E69B817CBA3E32E38。其rollback只适用于正式仍ABE2时，不能覆盖现在A796。后续实验必须保留当前宿主全部已验证改动并重新冻结输入，不能直接使用旧80CF/ABE2部署或回退入口，也不能混入外部天角兽候选。
 
 80CF按release gate 2026-10-19.1完成本机部署；持续授权无需重复确认。state/fog-last-blocker-deployment-20261023.json状态verified，实际pfe指纹与回执一致；安装后fog-blocker-product-20261023-installed-native-r1为51/0，结果SHA73C7B1804B411E7C1260DAD0A1D6E1EC91AC6FD37A773DC6901EF673D0FD7B99。备份为build/backups/fog-last-blocker-20261023-184722/pfe_before_ContinuousScene_fog_last_blocker_20261023.swf（BEFC），回退前须核当前仍是本次80CF，不能覆盖后续他人改动。
 
-近原版目标仍未完成。2026-10-23用户已接受测试近乎看不出的色差，要求明显提速后再考虑部署；本轮以RGB≤1/alpha0保守验收，图章draw/copyPixels均失败，前景副本虽像素通过但2400帧仅小幅改善，全部不部署。原失败与冻结源保持，不再重跑同一路线来挑好结果。下一轮需新的高占比证据：活动屏外单位的动画与枪口位置/出膛顺序耦合，不能整段跳过；仅body blit可研究但SATS/死亡截图与先blit后推进帧的时序必须保留，尚未测该项成本。sceneApply全驻留粗排除也是小候选，上界不足约1ms/帧，先不扩建索引。当前安装为ABE2；前轮RC首次联机及安装冒烟历史已完成，无需重跑无关联网项目。原版墙面候选不并入，不复活旧配方。
+近原版目标仍未完成。2026-10-23用户已接受测试近乎看不出的色差，要求明显提速后再考虑部署；本轮以RGB≤1/alpha0保守验收，图章draw/copyPixels均失败，前景副本虽像素通过但2400帧仅小幅改善，全部不部署。原失败与冻结源保持，不再重跑同一路线来挑好结果。下一轮需新的高占比证据：活动屏外单位的动画与枪口位置/出膛顺序耦合，不能整段跳过；仅body blit可研究但SATS/死亡截图与先blit后推进帧的时序必须保留，尚未测该项成本。sceneApply全驻留粗排除也是小候选，上界不足约1ms/帧，先不扩建索引。当前安装为A796；根任务正静态审查TDFC单条视线重复取格候选，尚无该候选实测或性能验收。前轮RC首次联机及安装冒烟历史已完成，无需重跑无关联网项目。原版墙面候选不并入，不复活旧配方。
 
 RC前轮历史回滚点：../RConnect/build/m52/recovery-offline-deploy-01/RConnectMod.before.swf（574D2B51490AE8B25A1396555600F56A301F8A20AE50104C0E35CF2796441AFE）。当前已是负责人后续DF0F版本，不能直接套用旧EB365回滚；如需回退由RC负责人核对当前版本与对应备份，用户配置与存档保持。
 
-历史撤回基线：state/afternoon-recovery-20261021.json verified，51项安装后检查。BEFC来源build/backups/sats-20261021-154054/pfe.swf，回退前5432另存build/backups/afternoon-recovery-20261021-222045。旧SATS/impact回执已rolled-back-by-user；当前正式已前进至80CF，不能再把BEFC当作当前安装。
+历史撤回基线：state/afternoon-recovery-20261021.json verified，51项安装后检查。BEFC来源build/backups/sats-20261021-154054/pfe.swf，回退前5432另存build/backups/afternoon-recovery-20261021-222045。旧SATS/impact回执已rolled-back-by-user；当前正式已前进至A796，不能再把BEFC当作当前安装。
 
-旧性能驱动（包括build/rc-native-combat-run.py及各BEFC诊断/对照）绑定历史BEFC基线，未来不能直接运行其部署/回退路径覆盖80CF；新工作须明确保留当前宿主改动并重新冻结输入。历史probe build/generated/rc-native-combat-20261023/probe-source/3fa568cbe2464a5ca40d6ccb37705e87保持。不要用旧motion整包覆盖CS0.9.0或后续修改；motion-host incremental→motion-fog --rays→motion-direction不是当前发布入口。foreign SceneRenderChecks WIP继续不触碰、不提交。
+旧性能驱动（包括build/rc-native-combat-run.py及各BEFC诊断/对照）绑定历史BEFC基线，未来不能直接运行其部署/回退路径覆盖A796；新工作须明确保留当前宿主改动并重新冻结输入。历史probe build/generated/rc-native-combat-20261023/probe-source/3fa568cbe2464a5ca40d6ccb37705e87保持。不要用旧motion整包覆盖CS0.9.0或后续修改；motion-host incremental→motion-fog --rays→motion-direction不是当前发布入口。foreign SceneRenderChecks WIP继续不触碰、不提交。
 
 ## 7. 证据与深入入口
 

@@ -1,0 +1,8 @@
+{
+  "version": "tdfc-los-combat-approved-source-1",
+  "receiptSHA256": "B7ED1EAB8BEE0DC1024D6EF0A56A965F311B97E8CED9A9F32A2BCDE35B35FF13",
+  "probeSHA256": "39A1497BE832282CAC25E2A508A954432F9F31B15A2FBE5A650AB8C4D9C97E9E",
+  "sourceFileCount": 85,
+  "allowedChanges": ["ContinuousSceneMotionProbe.as"],
+  "currentSharedSourceAllowed": false
+}
