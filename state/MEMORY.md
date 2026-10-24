@@ -1,6 +1,8 @@
 # ContinuousScene — 当前快照
 
-更新：2026-10-25镜头目标active、未完成；RGB最大差2/255、alpha不变授权继续，真实战斗明显提速与功能正常仍为部署前提。叶部件r1精确目标sleg20_53在pip暖场中缺失，0样本/0像素/不写cache，AE71EE22 inconclusive已归档e784743，停止不换目标。其实际hidden窗口证据触发window-visibility-native r1：同私有desktop内false/true/true/false，EAD18FDE探针，1200帧/26项/74109ms完整通过，result7026DB47，已归档bdb2fc3。隐藏均61.553/P9580、可见61.962/P9582，两对差+.693/+.123ms；敌射395/456、预绘6/6块47/43片，小差不足主因，停止追加。全1200visible准确，焦点/暂停/尺寸/quality/fps等均不变，末恢复false，全部切换/长帧保留。仅私有桌面显隐敏感性，不当用户桌面呈现或GPU成本结论。526正式/528隔离/13runtime保持，自有AIR112256及登记已释放，已向RC/RV告知。正式A796/CS7F1F/RV638E/RC78C未改，无本轮部署。OS级采样可行性已只读核查：有wpr/tracerpt/typeperf/logman/dotnet，WPR未录制；已查PATH/常见安装目录/安装登记未见WPA/WPAExporter/xperf/PerfView，已有NuGet TraceEvent3.1.13仅库无现成分析程序。未安装/下载/录制，不盲采大日志或自造ETL解析器。若继续此路线，应先证实可用的线程/模块分析闭环；即使补齐工具，无AIR符号也未必定位具体原生函数，更不能直接当GPU时间。纯地形、direct/cpu、分页等旧路线仍停止，近原版目标未达。
+更新：2026-10-25镜头目标active，未达近原版，不部署新候选。最新thread-cpu-native-r1准确29AF仅Main3处时钟追加，CFD85A18，1200/26、74638ms、result6C4D7368完整并独立复算；正式526/隔离528/runtime13不变。进程74.36s对应153.828CPU秒=2.069核；线程69.969s内窗口创建线程.729核，7个无窗口线程合计1.300核，尚无职责/函数/等待归因。22次查询共3728ms（枚举3667ms），观察扰动显著；3个退出身份和计时外2次无效均保留，不与旧FPS比较。AIR118596已退出、登记释放，已通知RC/RV。build/generated/thread-cpu-native-20261025/RESULTS.md为详细证据。线程计时无对照不追加同款重跑；准备HIGH/LOW质量敏感性对照，仅独立描述符allowLowQuality，绝不降画质部署。另只读发现NativeSceneActivity.engaged同Location永久锁存，正核对原版战斗退出条件，不先改追击规则。
+
+窗口显隐r1（EAD18FDE，result7026DB47）1200/26/74109ms，隐藏61.553/可见61.962ms，两对差+.693/.123ms，无主要收益，停止。叶sleg20_53目标缺失、0样本/0像素，AE71EE22 inconclusive保留停止。纯地形/direct-cpu/分页等旧路线保持停止。现有正式A796/CS7F1F/RV638E/RC78C未改。原生ETW离线消费器native-cpu-profile已真TraceEvent3.1.13 API冒烟，无真实ETL；普通及sandbox外进程都非管理员，未录制/安装/下载。不能把回调外约40ms或无窗口线程直接命名GPU/渲染。
 
 ## 1. 模组与体验
 

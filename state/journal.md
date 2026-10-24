@@ -1,5 +1,13 @@
 # 开发日志
 
+## 2026-10-25 原生战斗逐线程CPU诊断完成，继续定位镜头成本
+
+准确29AF只在Main加首末/四case时钟锚，85源、三处可逆追加，CFD85A18；新thread_cpu只查询拥有的AIR线程和私有桌面窗口映射，未暂停线程/改优先级。API冒烟的空桌面FALSE0不回填；实际AIR有窗口映射阳性。Toolhelp实测约150ms，故每3次原processCPU采样才查询线程；完整采样耗时保留，非生产遥测。r1的1200间隔/26项、74638ms和逐线程累计获独立复核，玩家/敌400/329实射，后段火力下降，不能当提速。
+
+时钟漂移1ms，67个进程区间74.36s/153.828CPU秒，21个线程区间69.969s/144.141CPU秒；window创建TID58336约.729核，七个无窗口线程共1.300核，仅证多线程计算。22查询3728ms（枚举3667ms）不可忽略，不从整帧扣除；计时外2个invalid及区间内3个退出身份保留，覆盖有缺口，不称全CPU或GPU归因。result6C4D7368/process-policy01738547；详细表与指纹在build/generated/thread-cpu-native-20261025/RESULTS.md。正式526/隔离528/runtime13保持，最低commit6.47GB，AIR118596已退出并通知RC/RV释放，不追加本批。无部署。
+
+本轮还准备native-cpu-profile离线ETL消费器，真实TraceEvent3.1.13程序集/API冒烟通过，actualEtlRead=false；不录制/下载/安装。普通及sandbox外均非管理员，未启动WPR。下一步质量HIGH/LOW诊断正在新目录准备，需allowLowQuality独立描述符，仅测试质量敏感性，像素变化不能部署；并行只读发现NativeSceneActivity.engaged无退出分支，待核原版战斗记忆/追击安全释放条件，尚未修改生产。目标仍active。
+
 ## 2026-10-25 私有桌面显隐实测完整，未解释主要卡顿
 
 window-visibility-native-20261025从准确29AF仅Main+新helper共86源派生EAD18FDE；7处唯一锚点可逆，nativeWindow.visible是唯一运行改写，切换在caseBegin/连续钟开始之后，末态closeProbeTiming后恢复。helper6BC5/patch2871/runnerB39B与13runtime闭包独立审查，r1注册f983ab89等待RV/RC当前轮完成后运行，自有AIR112256已退出并通知双方释放，不追加批次。1200帧/26项、连续54927→129036=74109ms，result7026DB47；无缺块/强制补绘/内存中止/其他AIR。
