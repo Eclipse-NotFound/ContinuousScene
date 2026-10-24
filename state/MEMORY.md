@@ -1,6 +1,6 @@
 # ContinuousScene — 当前快照
 
-更新：2026-10-24 颜色兼容修复A796已部署，candidate与installed各20项通过。最新TDFC视线候选组件38对全等，真实1200帧ABBA均61.3067/60.4717ms，但火力与预绘混杂、收益不足，不部署；正式TDFC仍7ACD。此前同冻结探针environment-control大场景71.479/普通44.585ms的差距保留，不能跨RC/ModLoader更新组合归因。用户反馈RV开启明显更卡，近原版战斗目标仍未完成。详见knowledge/experiments/scene-compat-20261024.md和scene-tint-20261024.md。
+更新：2026-10-24 正式A796颜色修复保持；RV负责人另已部署BF4A，未显示整帧一致改善。AIR956条CPU出现次数只作调用线索，原混合时间门禁失败保留。炮塔、FocusManager和弹壳stop三路停止、不部署；弹壳局部像素通过但真实候选两次击退越平台，未获完整性能验收。当前同39A探针/模组组合基线：大场景1200帧均57.33ms，正常房1200帧均34.35ms；normal封装误要求26而失败，正确21项由独立后验核准，原失败不改写。正在准备仅只读黑雾遮挡数量诊断，不改角色可见性/机制。近原版目标仍未完成。详见knowledge/experiments/scene-compat-20261024.md。
 
 ## 1. 模组与体验
 
@@ -27,7 +27,7 @@
 - CS0.9.0：7F1F2961C6E299D949423591F3C65C610C2EAEFA7FC72E8A583A402770D6B51F。
 - RC由负责人独立更新为0.2.24-roomfix5：78C052AEA963F1689B705AE1E14D274916AE1A1F7E81933390CAF8D1A88F4699。installed-smoke.json记录ed2fa23d99单实例启动通过；recovery-room-user-deploy-01/deployment.json的smoke_status仍pending、performance_qualified=false，本侧不代改。旧DF0F/aura1性能证据不重标。
 - ModLoader现为2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2，2.5.0/FrameRecorder1.0.0安装回执verified，telemetry enabled:true。此更新由负责人完成；本轮TDFC r6开始按新依赖冻结，旧BD71环境配对仍是历史组合。
-- TDFC7ACD、LAD8ADB、WB1411；RV由其负责人独立更新为0DBE0D7A95B8E496FB393D7FCD75F88D60C34A1D0FABB33266B122E3FA04F2BF（0.33.8）。新镜头候选组件r3、跳跃r2起及战斗使用这一依赖。旧RV6DBB的jump-baseline-r1不混入新版本对照；每轮仍核对实际依赖。
+- TDFC7ACD、LAD8ADB、WB1411；RV负责人现已独立部署0.33.9-effect-load，BF4AC9CD87272B03FAE7EC22EE67D045F037362F412EE801CAD3F9BA9FE3AFEF。effect-load-v3-output/deployment/receipt.json记录PASS与独立启动清理。新镜头组件r3、跳跃r2和TDFC LOS战斗实际使用的是历史0DBE/0.33.8，不重标成BF4A；更早6DBB亦保留原标签。RV负责人测得自身更新函数约20%/6%改善，但完整战斗帧没有一致显著改善，不计作本任务近原版已达。
 - 前轮offline1已测生产输入与部署回执保留：../RConnect/build/m52/recovery-offline-production-01、../RConnect/build/m52/recovery-offline-deploy-01/deployment.json；当时状态deployed-smoke-passed，回执SHA256 7DB4BDC4F9BF9317A96EC51DB3076A5B8F0D49BBC9254692142BE92F7065EE86，不作为当前aura1部署回执。
 
 历史EB365基于准确574D冻结源，仅三类和版本变化；未联网时跳过两组弹道/身体效果历史采集。首次host/join尝试即永久恢复采集（直到进程重启）；null、异常、非严格true均保守回退。保持墙面、感知、实际呈现、失效刷新和联网路径；生产包无诊断开关。其旧对照与门禁保留历史标签，不跨组合计算新收益。诊断88CC不得部署。
@@ -36,7 +36,11 @@ CS编辑器0.9.0已于10月20日安装并复验25+22项：Editor7344、EditorToo
 
 ## 4. 当前任务进展与停点
 
-最新性能停点：TDFC单条视线空格复用r6组件38对全等并恢复；combat-r2同进程ABBA完成1200帧/26项，A/B均61.3067/60.4717ms。玩家全轮400（A/B各200）、敌1010/904，A预绘4块23slices而B为0；B实际8129calls/101166hits/44804lookups。收益不足且负载混杂，不部署；正式A796/7ACD保持。所有AIR前失败与旧依赖证据保留，详见scene-compat-20261024.md末节。checkShelf单行Y条件前置仍只读静态方案，未构建或取得收益。
+最新性能停点：sampler-capability实际AIR成功；combat-sampler-v1超过十万记录上限且角色越平台，失败保留。v2/v3各完成1200帧26项，但混合时间顺序失败；v3独立review确认956条CPU样本各自时间与索引严格递增，仅允许栈名称出现次数。顶层[render]/[pre-render]/[execute-queued]205/157/93，含FocusManager39、Turret.animate80，祖先栈可能只是排空全局动画队列，不是分配发起者。turret-timeline组件38组像素/引用一致、每侧141构造事件，未做跨帧，candidateEligible=false；停止炮塔简单选帧guard。focus-control v1/v2因错误空焦点假设而0样本失败；v3实际1200帧26项/44快照/67,492ms连续守恒，A/B均57/55.4867ms、敌740/699、预绘43/1slices，末两段仅差.9ms；整体关闭收益不够且混杂，停止不部署。公共恢复末态通过，唯一焦点循环和35ms重建保留计时。正式A796/CS7F1F/TDFC7ACD不变。
+
+待查窄线索：v3 Part.initVis45次中40次来自Weapon.shoot→gilza；实际visualGilza symbol2927一帧/shape2926无自身帧脚本，却每发new后gotoAndStop(1)。shell-timeline仅准备新鲜本地副本goto1/stop的同步及至少一个真实ENTER_FRAME对照；shell-stop-candidate仅静态准确ABC单方法方案。保留RNG消费，不称已消除全局execute-queued工作，不复活整套炮塔/停止动画/池化方案；未获性能收益不得安装。
+
+TDFC单条视线复用r6组件38对全等，但combat-r2 A/B均61.3067/60.4717ms，A预绘4块23slices、敌1010/904；收益不足不部署。checkShelf单行Y前置与tdfc-retreat-lazy均仅静态方案，未编译测益，不因现成源码就重复推进。所有诊断新源从B7ED/39A的85文件冻结闭包派生，不使用当前活源重建，保留其他会话WIP。
 
 最新闭环：两方法颜色修复A796已按本机持续授权部署，实际安装文件组件20项通过；三组组件和精确字节码审计见scene-tint-20261024.md。备份build/backups/scene-tint-20261024-110720-c26a0e46/pfe_before_ContinuousScene_tint_20261024.swf为ABE2，仅在正式仍为本候选时可回滚。原始r1比较器失败、内存预检中止和登记工具临时错误均保留。组件直接调用真实方法，不宣称完整跨区行走或长时间游玩验证。
 

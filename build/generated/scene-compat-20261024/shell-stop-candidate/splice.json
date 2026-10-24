@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "base": "A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7",
+  "candidate": "50D6D718A95891DFC1B64503FE1E7A12E9BCFA5C960BCC5A93668BEC8DD800BD",
+  "donor": "3398B90A66F4C1F24508617C189CCF63005189D628A50BC5DD287C1630D7B431",
+  "donorXML": "9982109BE337C9DFDBF33209F5D88DB2EFE06504EAFFCE2AE18DDBD35CE1637B",
+  "targetABCIndex": 0,
+  "targetTagIndex": 332,
+  "preservedRawTags": 5038,
+  "finalExportAndAuditRequired": true,
+  "unchangedMethodBodies": 5770,
+  "unchangedClassLayouts": 1016,
+  "actualChangedBodies": [
+    "fe.graph.Part::0:1:initVis"
+  ],
+  "otherABCXMLPreserved": true,
+  "originalConstantPoolPrefixBytesPreserved": true,
+  "addedStringIndex": 8161,
+  "addedPublicQNameIndex": 9705,
+  "newConstants": 2,
+  "newNamespaces": 0
+}

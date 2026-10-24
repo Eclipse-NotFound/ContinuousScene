@@ -1,0 +1,107 @@
+[
+  {
+    "label": "Shell exact stage",
+    "command": [
+      "C:\\Users\\hello\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-B",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\scene-compat-20261024\\shell-stop-candidate\\product.py",
+      "stage"
+    ],
+    "pid": 34852,
+    "exitCode": 0,
+    "memoryBefore": {
+      "load": 81,
+      "availablePhysical": 6184181760,
+      "availableCommit": 6406938624
+    }
+  },
+  {
+    "label": "Shell FFDec -xml2swf",
+    "command": [
+      "D:\\Program Files\\Adobe Animate 2024\\jre\\bin\\java.exe",
+      "-Xmx512m",
+      "-jar",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\ffdec\\ffdec-cli.jar",
+      "-xml2swf",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\scene-compat-20261024\\shell-stop-candidate\\retained.xml",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\scene-compat-20261024\\shell-stop-candidate\\serialized.swf"
+    ],
+    "pid": 107852,
+    "exitCode": 0,
+    "memoryBefore": {
+      "load": 82,
+      "availablePhysical": 5873401856,
+      "availableCommit": 5893206016
+    }
+  },
+  {
+    "label": "Shell FFDec -swf2xml",
+    "command": [
+      "D:\\Program Files\\Adobe Animate 2024\\jre\\bin\\java.exe",
+      "-Xmx512m",
+      "-jar",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\ffdec\\ffdec-cli.jar",
+      "-swf2xml",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\scene-compat-20261024\\shell-stop-candidate\\serialized.swf",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\scene-compat-20261024\\shell-stop-candidate\\serialized.xml"
+    ],
+    "pid": 16820,
+    "exitCode": 0,
+    "memoryBefore": {
+      "load": 84,
+      "availablePhysical": 5352603648,
+      "availableCommit": 5016662016
+    }
+  },
+  {
+    "label": "Shell exact splice",
+    "command": [
+      "C:\\Users\\hello\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-B",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\scene-compat-20261024\\shell-stop-candidate\\product.py",
+      "splice"
+    ],
+    "pid": 40932,
+    "exitCode": 0,
+    "memoryBefore": {
+      "load": 81,
+      "availablePhysical": 6301798400,
+      "availableCommit": 6458781696
+    }
+  },
+  {
+    "label": "Shell FFDec -swf2xml",
+    "command": [
+      "D:\\Program Files\\Adobe Animate 2024\\jre\\bin\\java.exe",
+      "-Xmx512m",
+      "-jar",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\ffdec\\ffdec-cli.jar",
+      "-swf2xml",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\scene-compat-20261024\\shell-stop-candidate\\pfe.swf",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\scene-compat-20261024\\shell-stop-candidate\\pfe.xml"
+    ],
+    "pid": 129844,
+    "exitCode": 0,
+    "memoryBefore": {
+      "load": 82,
+      "availablePhysical": 5835644928,
+      "availableCommit": 5803356160
+    }
+  },
+  {
+    "label": "Shell exact audit",
+    "command": [
+      "C:\\Users\\hello\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-B",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\scene-compat-20261024\\shell-stop-candidate\\product.py",
+      "audit"
+    ],
+    "pid": 4924,
+    "exitCode": 0,
+    "memoryBefore": {
+      "load": 81,
+      "availablePhysical": 6211530752,
+      "availableCommit": 6336753664
+    }
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "version": "shell-stop-candidate-1",
+  "base": "A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7",
+  "baseXML": "1D2642C7D55D1F97121738E6AE84996A140EBFEFF686E6706C88CEF82A7338DA",
+  "target": "fe.graph.Part::0:1:initVis",
+  "retainedXML": "8EBD15C7E28AB42C4177DD538E0BB3FCBD0C702CFA42056DEB7FC872B1EF53F5",
+  "staticProofSHA256": "571147F4D6AB8560E70981F46A423ACF7195253D9940B5C7CE030CA191F9969D",
+  "unchangedMethodBodies": 5770,
+  "unchangedClassLayouts": 1016,
+  "actualChangedBodies": [
+    "fe.graph.Part::0:1:initVis"
+  ],
+  "otherABCXMLPreserved": true
+}

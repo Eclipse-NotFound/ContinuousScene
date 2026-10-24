@@ -1,0 +1,140 @@
+{
+  "version": "shell-stop-combat-review-1",
+  "originalNormalRunnerGatePassed": false,
+  "sourceSHA256": "75FABE9C41006349BB7E1DF1EC0D40ED5007D68CB5BFA47796A10B842CE1A288",
+  "installedInputsStillMatch": true,
+  "sameFormalInputs": true,
+  "sameFrozenProbe": true,
+  "sameNormalizedTerrainAndViewport": true,
+  "runs": [
+    {
+      "name": "shell-stop-20261024-baseline-r1",
+      "mode": "scene",
+      "completeNativeWorkload": true,
+      "originalRunnerGatePassed": true,
+      "hostSHA256": "A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7",
+      "completeSegments": 4,
+      "error": null,
+      "evidence": {
+        "storage\\result.json": "8B8CBDCD43F9FB98A06B54CD7CED2A91BD91B6FB5FB89C89EE9E33EF096C788F",
+        "summary.json": "5D35A66BCC0F597F24F1A1C881F7B08043EA286FAC7FFC36535E6E6F2942F64F",
+        "runner-inputs.json": "EA7C8DB5C806F677EEABCEEC44011D1634C38E85212AA0FEEC32EB9936CF2054",
+        "inputs.json": "119A4779E374A29D554E60CB43E692405980ECFF7D00D5502DFCFD8BA1BFDC63",
+        "process-policy.json": "067CC77FF48AA25191D50D28FF35C7637008A84FFFE88BB37FA881F7FC6F2A95",
+        "probe-build.json": "B7ED1EAB8BEE0DC1024D6EF0A56A965F311B97E8CED9A9F32A2BCDE35B35FF13"
+      },
+      "acceptedDataBoundary": "Full native workload and continuous frame data only; no candidate benefit acceptance",
+      "checks": 26,
+      "continuous": {
+        "startedAtMs": 87028,
+        "endedAtMs": 155825,
+        "count": 1200,
+        "totalMs": 68797,
+        "metrics": {
+          "count": 1200,
+          "median": 52.0,
+          "mean": 57.33083333333333,
+          "p95": 77,
+          "maximum": 817,
+          "over100": 25
+        }
+      },
+      "qualification": {
+        "actualSprint": true,
+        "concurrentFixtureBullets": true,
+        "observedNativePlayerBullets": true,
+        "playerShotFrames": 400,
+        "enemyShotFrames": 1048,
+        "passed": true
+      }
+    },
+    {
+      "name": "shell-stop-20261024-candidate-r1",
+      "mode": "scene",
+      "completeNativeWorkload": false,
+      "originalRunnerGatePassed": false,
+      "hostSHA256": "50D6D718A95891DFC1B64503FE1E7A12E9BCFA5C960BCC5A93668BEC8DD800BD",
+      "completeSegments": 3,
+      "error": "Native input left the verified full platform; no position reset: {\"route\":{\"margin\":80,\"endX\":4880,\"leftEnemyGap\":200,\"enemyBodyMargin\":40,\"rightEnemyGap\":240,\"enemiesMoved\":true,\"hashScope\":\"Full two-sided actor platform including player braking margin and actor body widths; collision coordinates normalized per tile/floor\",\"actualEnemyGap\":200,\"floorY\":4120,\"playerX\":4680,\"nativeSightLines\":30,\"turnMarginRange\":{\"left\":4600,\"right\":4960},\"cells\":104,\"hash\":1184115388,\"verifiedBounds\":{\"left\":4280,\"bottom\":4120,\"right\":5320,\"top\":4000},\"originalEnemies\":[{\"y\":4119,\"x\":4840},{\"y\":4119,\"x\":4920},{\"y\":4119,\"x\":5000},{\"y\":4119,\"x\":5080},{\"y\":4119,\"x\":5160},{\"y\":4119,\"x\":5240}],\"originalPlayerX\":4320,\"originalFreeSpan\":{\"left\":4280,\"right\":5320,\"floor\":4120},\"safeCenterRange\":{\"left\":4305,\"right\":5295},\"terrainVerified\":true,\"enemies\":[{\"y\":4119,\"x\":4320},{\"y\":4119,\"x\":4400},{\"y\":4119,\"x\":4480},{\"y\":4119,\"x\":5120},{\"y\":4119,\"x\":5200},{\"y\":4119,\"x\":5280}],\"reason\":\"Keep the 200 px input turn targets; allow native knockback throughout the independently verified full platform, including the full body width\",\"bodyHalfWidth\":25},\"dy\":0,\"dx\":-13.782745679631589,\"X\":4303.635340808236,\"Y\":4120}\nError: Native input left the verified full platform; no position reset: {\"route\":{\"margin\":80,\"endX\":4880,\"leftEnemyGap\":200,\"enemyBodyMargin\":40,\"rightEnemyGap\":240,\"enemiesMoved\":true,\"hashScope\":\"Full two-sided actor platform including player braking margin and actor body widths; collision coordinates normalized per tile/floor\",\"actualEnemyGap\":200,\"floorY\":4120,\"playerX\":4680,\"nativeSightLines\":30,\"turnMarginRange\":{\"left\":4600,\"right\":4960},\"cells\":104,\"hash\":1184115388,\"verifiedBounds\":{\"left\":4280,\"bottom\":4120,\"right\":5320,\"top\":4000},\"originalEnemies\":[{\"y\":4119,\"x\":4840},{\"y\":4119,\"x\":4920},{\"y\":4119,\"x\":5000},{\"y\":4119,\"x\":5080},{\"y\":4119,\"x\":5160},{\"y\":4119,\"x\":5240}],\"originalPlayerX\":4320,\"originalFreeSpan\":{\"left\":4280,\"right\":5320,\"floor\":4120},\"safeCenterRange\":{\"left\":4305,\"right\":5295},\"terrainVerified\":true,\"enemies\":[{\"y\":4119,\"x\":4320},{\"y\":4119,\"x\":4400},{\"y\":4119,\"x\":4480},{\"y\":4119,\"x\":5120},{\"y\":4119,\"x\":5200},{\"y\":4119,\"x\":5280}],\"reason\":\"Keep the 200 px input turn targets; allow native knockback throughout the independently verified full platform, including the full body width\",\"bodyHalfWidth\":25},\"dy\":0,\"dx\":-13.782745679631589,\"X\":4303.635340808236,\"Y\":4120}\n\tat ContinuousSceneMotionProbe$/nativeMotionState()\n\tat ContinuousSceneMotionProbe$/recordNativeMotion()\n\tat ContinuousSceneMotionProbe$/tick()",
+      "evidence": {
+        "storage\\result.json": "9410FF0FB7D434FD4575E2AD902FF84D7925B3154EBFFDC2AB277A14DE5DB63E",
+        "summary.json": "56BE37613541C94AD3C5F7B6C904D72B50391264DDBE1A6A2D0C68077F101CED",
+        "runner-inputs.json": "351C0650AC1AFCB4F7135CE1C71E737B790801B777581E149B7C2A065BDA749C",
+        "inputs.json": "464D45B424C0E7B25E93448A5DFBEAC1154108F6A5559359F4D0A4B492BFB4F0",
+        "process-policy.json": "A766EAE4DE92108CA350FC6B150FB4789769E2D83EE68BD2BE0CE3ECA7A4BA47",
+        "probe-build.json": "B7ED1EAB8BEE0DC1024D6EF0A56A965F311B97E8CED9A9F32A2BCDE35B35FF13"
+      },
+      "acceptedDataBoundary": "Failure and partial observations only; excluded from complete performance comparison",
+      "partialFrames": 900
+    },
+    {
+      "name": "shell-stop-20261024-candidate-r2",
+      "mode": "scene",
+      "completeNativeWorkload": false,
+      "originalRunnerGatePassed": false,
+      "hostSHA256": "50D6D718A95891DFC1B64503FE1E7A12E9BCFA5C960BCC5A93668BEC8DD800BD",
+      "completeSegments": 0,
+      "error": "Native input left the verified full platform; no position reset: {\"dy\":1.0778067410255008,\"Y\":4120,\"dx\":-33.15304125459838,\"X\":4286.219875443463,\"route\":{\"enemyBodyMargin\":40,\"playerX\":4680,\"actualEnemyGap\":200,\"verifiedBounds\":{\"left\":4280,\"bottom\":4120,\"right\":5320,\"top\":4000},\"enemies\":[{\"y\":4119,\"x\":4320},{\"y\":4119,\"x\":4400},{\"y\":4119,\"x\":4480},{\"y\":4119,\"x\":5120},{\"y\":4119,\"x\":5200},{\"y\":4119,\"x\":5280}],\"hashScope\":\"Full two-sided actor platform including player braking margin and actor body widths; collision coordinates normalized per tile/floor\",\"leftEnemyGap\":200,\"nativeSightLines\":30,\"floorY\":4120,\"bodyHalfWidth\":25,\"endX\":4880,\"margin\":80,\"hash\":1184115388,\"originalPlayerX\":4320,\"turnMarginRange\":{\"left\":4600,\"right\":4960},\"terrainVerified\":true,\"safeCenterRange\":{\"left\":4305,\"right\":5295},\"rightEnemyGap\":240,\"originalEnemies\":[{\"y\":4119,\"x\":4840},{\"y\":4119,\"x\":4920},{\"y\":4119,\"x\":5000},{\"y\":4119,\"x\":5080},{\"y\":4119,\"x\":5160},{\"y\":4119,\"x\":5240}],\"originalFreeSpan\":{\"left\":4280,\"right\":5320,\"floor\":4120},\"cells\":104,\"reason\":\"Keep the 200 px input turn targets; allow native knockback throughout the independently verified full platform, including the full body width\",\"enemiesMoved\":true}}\nError: Native input left the verified full platform; no position reset: {\"dy\":1.0778067410255008,\"Y\":4120,\"dx\":-33.15304125459838,\"X\":4286.219875443463,\"route\":{\"enemyBodyMargin\":40,\"playerX\":4680,\"actualEnemyGap\":200,\"verifiedBounds\":{\"left\":4280,\"bottom\":4120,\"right\":5320,\"top\":4000},\"enemies\":[{\"y\":4119,\"x\":4320},{\"y\":4119,\"x\":4400},{\"y\":4119,\"x\":4480},{\"y\":4119,\"x\":5120},{\"y\":4119,\"x\":5200},{\"y\":4119,\"x\":5280}],\"hashScope\":\"Full two-sided actor platform including player braking margin and actor body widths; collision coordinates normalized per tile/floor\",\"leftEnemyGap\":200,\"nativeSightLines\":30,\"floorY\":4120,\"bodyHalfWidth\":25,\"endX\":4880,\"margin\":80,\"hash\":1184115388,\"originalPlayerX\":4320,\"turnMarginRange\":{\"left\":4600,\"right\":4960},\"terrainVerified\":true,\"safeCenterRange\":{\"left\":4305,\"right\":5295},\"rightEnemyGap\":240,\"originalEnemies\":[{\"y\":4119,\"x\":4840},{\"y\":4119,\"x\":4920},{\"y\":4119,\"x\":5000},{\"y\":4119,\"x\":5080},{\"y\":4119,\"x\":5160},{\"y\":4119,\"x\":5240}],\"originalFreeSpan\":{\"left\":4280,\"right\":5320,\"floor\":4120},\"cells\":104,\"reason\":\"Keep the 200 px input turn targets; allow native knockback throughout the independently verified full platform, including the full body width\",\"enemiesMoved\":true}}\n\tat ContinuousSceneMotionProbe$/nativeMotionState()\n\tat ContinuousSceneMotionProbe$/recordNativeMotion()\n\tat ContinuousSceneMotionProbe$/tick()",
+      "evidence": {
+        "storage\\result.json": "45CB61AAFA3172BEA528CDDC35C6EF44213AC2B845D617C5E8C067FA15911634",
+        "summary.json": "A940B153A6C20AD8B11E1332BED8868EF9071919172E76C913E579B491B49AA3",
+        "runner-inputs.json": "B955FA02A48F4AF35D1281E4CE61A66E17E221F077DE7E9377D86F378DF88498",
+        "inputs.json": "464D45B424C0E7B25E93448A5DFBEAC1154108F6A5559359F4D0A4B492BFB4F0",
+        "process-policy.json": "B25014EB9317E7E470F9B9083FCBE57D0802529406E4172EB7BA15EFFFE687CA",
+        "probe-build.json": "B7ED1EAB8BEE0DC1024D6EF0A56A965F311B97E8CED9A9F32A2BCDE35B35FF13"
+      },
+      "acceptedDataBoundary": "Failure and partial observations only; excluded from complete performance comparison",
+      "partialFrames": 0
+    },
+    {
+      "name": "shell-stop-20261024-normal-baseline-r1",
+      "mode": "normal",
+      "completeNativeWorkload": true,
+      "originalRunnerGatePassed": false,
+      "hostSHA256": "A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7",
+      "completeSegments": 4,
+      "error": null,
+      "evidence": {
+        "storage\\result.json": "B007E2DD5545C4D9DA138F4B373DFD46FBE1A6095CEDC7B1D9EEB9AC2E11232F",
+        "summary.json": "4A52BF92007022D10C3F6F4801447D93A340381532E7DDD2CBBEC66B49FC7E2A",
+        "runner-inputs.json": "3C7186CDDD57D3C984060F072A19951346E5CC1452B9ADF19A75027AD2A174AA",
+        "inputs.json": "119A4779E374A29D554E60CB43E692405980ECFF7D00D5502DFCFD8BA1BFDC63",
+        "process-policy.json": "DF23741EEAC228D4DA2CD5CD618E80217AB6DAB78944F661E7B15FE40CF01507",
+        "probe-build.json": "B7ED1EAB8BEE0DC1024D6EF0A56A965F311B97E8CED9A9F32A2BCDE35B35FF13"
+      },
+      "wrapperCorrection": "Normal mode omits four scene exit/arrow checks and one scene chunk-size check; 21 is the expected count. Original failed receipt stays unchanged.",
+      "acceptedDataBoundary": "Full native workload and continuous frame data only; no candidate benefit acceptance",
+      "checks": 21,
+      "continuous": {
+        "startedAtMs": 35613,
+        "endedAtMs": 76835,
+        "count": 1200,
+        "totalMs": 41222,
+        "metrics": {
+          "count": 1200,
+          "median": 33.0,
+          "mean": 34.35166666666667,
+          "p95": 43,
+          "maximum": 162,
+          "over100": 3
+        }
+      },
+      "qualification": {
+        "actualSprint": true,
+        "concurrentFixtureBullets": true,
+        "observedNativePlayerBullets": true,
+        "playerShotFrames": 400,
+        "enemyShotFrames": 2102,
+        "passed": true
+      }
+    }
+  ],
+  "candidatePerformanceAccepted": false,
+  "deployed": false,
+  "disposition": "Stop shell candidate: no complete valid candidate comparison; two native route failures retained, cause not established.",
+  "limitations": [
+    "Scene and normal modes differ in population and active enemies; their gap is not a single-function causal cost.",
+    "The original failed normal runner is not relabeled; only its independently checked raw workload is accepted here.",
+    "No partial candidate windows are used to claim a speedup or deterministic regression."
+  ]
+}

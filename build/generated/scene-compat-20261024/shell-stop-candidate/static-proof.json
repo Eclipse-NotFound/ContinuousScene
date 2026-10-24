@@ -1,0 +1,128 @@
+{
+  "version": "shell-stop-static-1",
+  "target": "fe.graph.Part::0:1:initVis",
+  "hostSHA256": "A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7",
+  "xmlSHA256": "1D2642C7D55D1F97121738E6AE84996A140EBFEFF686E6706C88CEF82A7338DA",
+  "hostHashSource": "tint/product/build.json; XML rehashed here",
+  "binaryReadByThisDraft": false,
+  "compiled": false,
+  "runtimeTested": false,
+  "performanceEligible": false,
+  "deploymentEligible": false,
+  "originalBodySHA256": "CE0CF29C6E495601FFD28CA4E480054ACABF28892B0BFAF385D74BE00F8F8D2C",
+  "originalFrame": {
+    "type": "MethodBody",
+    "init_scope_depth": "5",
+    "max_regs": "2",
+    "max_scope_depth": "6",
+    "max_stack": "4",
+    "method_info": "963"
+  },
+  "existingQNames": {
+    "World": 48,
+    "w": 1316,
+    "grafon": 279,
+    "sceneLarge": 8844,
+    "vClass": 2240,
+    "isAnim": 2241,
+    "vis": 187,
+    "stop": 4819,
+    "totalFrames": 6208,
+    "currentFrame": 7257,
+    "gotoAndStop": 4780
+  },
+  "classDefinition": {
+    "abc": 1,
+    "classIndex": 586,
+    "instance": {
+      "type": "InstanceInfo",
+      "flags": "8",
+      "iinit_index": "2242",
+      "name_index": "731",
+      "protectedNS": "595",
+      "super_index": "4"
+    },
+    "static": {
+      "type": "ClassInfo",
+      "cinit_index": "2241"
+    },
+    "binding": {
+      "script": 586,
+      "trait": {
+        "type": "TraitClass",
+        "bytes": "db050401ca04",
+        "class_info": "586",
+        "deleted": "false",
+        "fileOffset": "15064518",
+        "kindFlags": "0",
+        "kindType": "4",
+        "name_index": "731",
+        "slot_id": "1"
+      }
+    },
+    "constructor": {
+      "type": "MethodBody",
+      "codeBytes": "d030d0490047",
+      "init_scope_depth": "10",
+      "max_regs": "1",
+      "max_scope_depth": "11",
+      "max_stack": "1",
+      "method_info": "2242"
+    },
+    "classInitializer": {
+      "type": "MethodBody",
+      "codeBytes": "d03047",
+      "init_scope_depth": "9",
+      "max_regs": "1",
+      "max_scope_depth": "10",
+      "max_stack": "1",
+      "method_info": "2241"
+    }
+  },
+  "appendOnlyPoolEntries": [
+    {
+      "pool": "constant_string",
+      "index": 8161,
+      "value": "visualGilza"
+    },
+    {
+      "pool": "constant_multiname",
+      "index": 9705,
+      "kind": 7,
+      "name_index": 8161,
+      "namespace_index": 1
+    }
+  ],
+  "originalIndicesUnchanged": true,
+  "originalPoolEntriesUnchanged": true,
+  "candidateCodeBytes": "d030d066c011120f00005ebb01d04ac0110068bb011001000047d12400147f000060bb0160f02460f02446cd250060bb0166c030a22401a046db0d012a24011a550000d066c11124001a4b0000d066c01160e94b1a400000603066a40a2a123100006697022a12290000668c45261a26000060bb0166c03024011a1a000060bb0166d93824011a0e0000294fd325001009000029100000004fac25011064000060bb01d12a24011a550000d066c11124001a4b0000d066c01160e94b1a400000603066a40a2a123100006697022a12290000668c45261a26000060bb0166c03024011a1a000060bb0166d93824011a0e0000294fd325001009000029100000004fac2501d066c1112400140b000060bb012661d22510380000d066c11124021423000060bb0160f02460f02446cd250060bb0166c030a246db0d012401a04ffb3401100b000060bb01d12401a04ffb340160bb0160b60161cb1c60bb0160b70161cc1c60bb01d066c51161b12747",
+  "candidateBodySHA256": "551E744D6A6A0036AD514D9C989E2E70274C289E274891C29E2C7EA61D3EEA05",
+  "insertionRanges": [
+    [
+      60,
+      152
+    ],
+    [
+      164,
+      256
+    ]
+  ],
+  "originalInstructionsProjectedExactly": true,
+  "originalRandomExpressionsAndCallsPreserved": true,
+  "stack": {
+    "peak": 4,
+    "fallbackStack": 2,
+    "continuationStack": 0,
+    "changedFrameAttributes": [],
+    "localsAdded": 0,
+    "closuresAdded": 0
+  },
+  "artifactBoundary": "Static bytes in JSON only; no candidate XML or binary exists from this script",
+  "stillRequired": [
+    "actual runtime class-domain binding and component checks",
+    "global animation queue/event timing equivalence",
+    "strict all-other-ABC/body/class/initializer/non-ABC-envelope audit after serialization",
+    "real combat benefit without visual or gameplay regression"
+  ],
+  "draftSHA256": "79D533FC73169200E0BD5495CC681724CD1C35B40CE946B4F538F807160101A2"
+}

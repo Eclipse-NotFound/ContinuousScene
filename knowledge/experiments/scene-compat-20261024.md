@@ -198,3 +198,54 @@ B两段实际eligible调用3888+4241=8129，命中45989+55177=101166，实际取
 **结论与尚未验证：**组件等价和真实缓存命中已成立，但整帧改善小且有火力/预绘混杂，收益不足，候选不部署。当前正式仍A796宿主/7ACD TDFC；根任务本轮只部署颜色修复，近原版战斗目标未完成。组件参考仍是同候选中的旧分支，不能把两个分支相等本身称为重新构建后与正式二进制完全等价。
 
 剩余较窄、尚未实测的方向是原生`Unit.checkShelf`：冻结原生代码每次for-in遍历loc.objs，现有Y范围判断位于可见/承台/悬浮和X条件之后。把同一Y条件前置只是减少不相关物件的字段判定，仍遍历全表；不应先称为大头或已有收益。若继续，先用所有活动单位的实际调用次数、枚举数量与包含时间确认占比，不能只按玩家本轮6个airborne帧推断所有单位调用。该单行方案尚未构建、测试或部署；不重启已经否定的贴花stamp、隐藏远处实体、停止动画或地形缓存路线。
+
+
+## 实际AIR的调用栈采样能力与首次战斗尝试
+
+先行 `sampler-capability` 只加载独立小SWF，实际adl64/runtime、debug=false/optimize=true、私有桌面和独立存储。r1因旧Flex不接受`++out.counts[kind]`编译失败，修为显式Number赋值后r2完成200ms已命名热循环：222条CPU样本，全部含knownHotLoop，new/delete/unknown均0，暂停和停止完成。原始结果SHA为42D539971AD4535CCC567036E66F019E5C1ADE3FFC5591BA6F74BD9E094CAC56。此能力证明不涉及游戏机制或性能收益，没有改mm.cfg、PreloadSwf或安装分析器。
+
+游戏采样基于B7ED/39A冻结85文件，仅MotionProbe添加可逆挂点和一个helper。实际宿主A796、CS7F1F、RC78C、TDFC7ACD、ModLoader2050和最新RVBF4A原样复制；不重编宿主和正式模组。BF4A是RV负责人独立部署的0.33.9-effect-load，回执为PASS，不把他提供的局部约20%/6%改善算成本轮整体战斗收益。历史TDFC LOS测量仍是0DBE，不能重标。
+
+`combat-sampler-20261024-scene-r1`的探针为B1E915F1E0FA66E77F8A9D555827F91F78100BA07B8D19DFE0D5847539758C68。每段末60次主要更新采样；前两窗分别累计719823和713632条记录，超过预设100000上限，未枚举iterator、未输出CPU栈。不能称这些记录为CPU样本或用它们排名热点。第三段age280玩家X4299.1098越出已核验left4305，dx=-29.7256、Y4120，实际原因未捕获；无强制位置重置，raw.ok=false，仅2个完整战斗段。所有源、日志、raw和失败保留，不记作有效画像。
+
+进程无其他AIR，启动可提交9,593,556,992 bytes、最低7,657,205,760 bytes；没有内存中止。终态采样器stopped/callbackCleared均true、active=false。该轮不满足完整4窗，也没有可归因CPU栈，不能用于FPS/近原版验收。下一独立版本只缩为各段最后5次主要更新，维持100000上限及原4×300真实战斗；结果待实测。
+
+### 五帧采样v2/v3：得到调用线索，原混合时间门禁仍失败
+
+`combat-sampler-v2-20261024-scene-r1`完成原生1200帧与26项工作负载断言，但四窗的混合样本时间顺序均不单调，sampler.valid=false，运行器退出1。分别得到333/209/224/216条CPU样本；总记录57685/50778/53920/54656均未触及十万上限。首窗有81条包含Turret.animate的[sweep]栈，采样本身会增加对象分配，不能把这次回收全归炮塔或当作真实净耗时。
+
+独立v3只在暂停采样后记录各类型时间与CPU原始索引，不扩大活跃采样窗口。`combat-sampler-v3-20261024-scene-r1`同样完成1200帧/26项；CPU样本234/204/255/263，共956。每类时间各自均有限、正值、递增，混合流却有9–17次倒退，均为CPU条目跟在new/delete之后，最大1000/1000/1642/1000微秒。因此原sampler.valid=false及退出1保留，未回写成通过。独立`cpu-occurrence-review.json`核对全部CPU时间、索引、计数、栈汇总和清理后，只接受这20次主要更新内的CPU出现次数；不接受混合流顺序，不用于毫秒、调用次数或FPS验收。
+
+这956条的栈顶包括[render]205、[pre-render]157、[execute-queued]93、BitmapData.draw56、[reap]51、Location.lighting38；包含FocusManager的链39条，包含Turret.animate的链80条。包含链彼此重叠，不能相加成耗时份额，也不能把祖先方法当成工作实际发起者。Turret的gotoAndStop可能执行全局已排队帧脚本；其后代出现sleg3_52（角色装备）与voda_98（停止动画），所以不直接判定炮塔自身反复重建。原版图像绘制和排队动画工作值得继续核查，但这些原生标记不是GPU计时。
+
+### 炮塔同步选帧组件：未支持简单去重方案
+
+`turret-timeline-20261024-components-r1`使用实际宿主素材Class创建离线克隆，13个真实炮塔均为turel_puha_1262。38组外层选帧、内部播放/停止与边界比较，像素差为0，树状态相等、对象引用变化为0。86个临时克隆停止、152个位图释放，选定真实单位/World暂停状态恢复；没有推进原生物理或AI，性能samples=0。
+
+两侧均出现141个FRAME_CONSTRUCTED事件。同步克隆在同一进程中共享排队帧脚本执行，不能把事件相等解释为独立跨帧等价或全世界隐含状态不变；timelineAdvanceVerified/candidateEligible/performanceEligible均false。当前证据不支持通过跳过炮塔重复gotoAndStop解决对象重建，停止该候选，不改正式炮塔代码。
+
+### FocusManager整体关闭上界：r1被错误的测试假设拦下
+
+`focus-control-20261024-scene-r1`准备完成、入图5119ms、0战斗样本时，因“焦点必须为空”条件失败退出；尚未调用deactivate，cleanup.attempted=false/restored=true。原生World.step在控制台与Pip未打开时每帧设置swfStage.focus=swfStage（只读参考World.as:1254），故不能要求舞台焦点为null。后续独立v2将严格接受原生Stage焦点并保持其身份，不主动清空焦点，仍拒绝UI控件焦点和默认按钮。旧v1与失败结果不修改；这不是游戏性能失败样本。
+
+v2同样在0样本被lastFocus条件拦下；真实值为stage.focus=Stage、lastFocus=Stage、两个默认按钮null，未关闭管理器。独立v3按真实状态限定form===Stage，关闭后lastFocus原生置null；从B恢复A用公开activate后Stage.focus=null→setFocus(Stage)，要求自然FOCUS_IN恢复，不写私有字段。这个短暂焦点循环只在隔离测试发生，成本保留，原两次失败不重标。
+
+`focus-control-v3-20261024-scene-r1`完成1200帧/26项，44个模式快照及独立Python检查通过。A/B/B/A均56.8067/54.6833/56.2900/57.1933ms；玩家每段100射、敌318/275/424/422，预绘块7/1/0/1。A/B均57.0/55.4867ms、中54/53、P95 73/72、最大156/163，敌740/699，玩家各200。约1.51ms小差额混有负载变化，关闭整个子系统仍不能解释主要卡顿，停止该方向，不构建或部署焦点管理补丁。
+
+唯一B→A循环1次、切换35ms包含在连续时间，最终activated/Stage焦点/lastFocus/空默认按钮恢复，cleanup.error=null。该恢复只保证当前树功能登记，字典和监听顺序不是逐字回滚。启动可提交13,049,872,384、最低11,092,332,544 bytes，无其他AIR或内存中止。正式A796/CS7F1F/TDFC7ACD以及依赖保持；详见focus-control-v3/README.md与准确冻结回执。
+
+下一窄线索来自v3的45条Part.initVis包含栈，其中40条直接沿Weapon.shoot→Emitter.cast；原生武器emitShell是gilza，AllData定义visualGilza且anim默认0，弹壳寿命20–29tick。准确宿主导出的symbol2927只有1帧、放置shape2926和ShowFrame，无该素材自身帧脚本。它仍每次new Part/new MovieClip并gotoAndStop(1)。这些证据只证明反复创建/选帧发生，不证明冗余goto能节省全局队列开销，也不证明池化与RV/RC引用语义兼容；当前仅作下一步审查，不是已验证优化。
+
+### 单帧弹壳：局部验证通过，准确宿主候选完成
+
+`shell-timeline-20261024-components-r2` 完成三对新鲜 visualGilza 的即时与真实帧后检查。各克隆收到一次 ENTER_FRAME，每对两次捕获各65536像素全等、引用稳定；6克隆停止移除、12位图释放，原暂停与世界引用恢复。r1仅旧Flex编译类型失败，尚未启动AIR。根代理和独立复核均接受局部边界；游戏暂停且两侧共享队列，不能证明真实武器时序或全局工作消失。准确散列与旧summary模板措辞修正见 `shell-timeline/README.md`，原结果不改写。
+
+`shell-stop-candidate` 按已冻结字节计划，完成stage→FFDec序列化→原包仅拼回ABC0→最终导出复审。候选 `50D6D718A95891DFC1B64503FE1E7A12E9BCFA5C960BCC5A93668BEC8DD800BD` 只改 Part.initVis；原方法182→366字节，原69条指令和随机抽取保留。仅当前大场景、精确visualGilza类、isAnim=0、已选第1帧且实际current/total=1时用stop；其余原生goto路径不变。
+
+ABC0只追加一个字符串和一个公开QName，旧常量原编码前缀逐字保持；其余5770方法、1016类布局和初始化器一致，ABC1及所有非目标原始SWF标签逐字保持。审计散列 `2B605A06CF9582DC19FE681B047A7EEAB637F6473654FABBC561B08120FD342F`。正式A796前后保持，没有部署；真实性能与全局队列时序仍未验收，不能称该候选已可发布。用户释放内存后重新预检可提交5.5GiB且无其他AIR，继续安排同输入真实战斗对照。
+
+弹壳候选后续两轮分别在第四段、第一段被原生击退推出平台，只有900/0完整采样帧，均失败保留，不验收收益、不部署，也不据此单独判定候选造成回归。准确输入50D6，无内存中止；正式A796不变。停止继续重跑这个窄候选，详见 `shell-stop-candidate/README.md`。
+
+当前组合下补齐基线：scene baseline-r1完整1200帧/26项，均57.3308、中52、P95 77ms，玩家400/敌1048；normal baseline-r1原生1200帧/21项、均34.3517、中33、P95 43ms，玩家400/敌2102。normal运行器错误硬要求26而退出1；原39A代码明确另5项只适用大场景，两名独立复核及根review.py后验核准正常房原生数据，原failed/summary不修改。双方同528隔离输入闭包（模式描述文件不同）、同39A与归一化地形/视口；正式526项仍与开测前一致。完整原始指纹、数据边界和限制见 `combat-review.json`，差距不当单一函数成本。
+
+静态复查未支持重启前景副本/背景合并：旧前景复制helper的总额外成本仅约0.21–0.36ms/帧，没有十几毫秒隐藏收益的证据；背景合并只覆盖相邻两层，更广合并会跨对象层改变遮挡。另弹痕约两倍paint可能来自320块的40px重叠边缘，测试地板Y4120正落相邻缓冲重叠带，不能直接删第二次绘制。下一仅只读调查为屏内、被原生全黑雾完全覆盖的角色根数量；不改其visible/alpha，因为原生/RC/RV确有机制读取和所有权。尚无该方向实测或候选。
