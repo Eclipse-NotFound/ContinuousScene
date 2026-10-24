@@ -11,5 +11,8 @@
   "syntaxResult": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-crop-20261025\\syntax-builds\\c36a9c8fbe9d47699fa67992ef8430e2\\result.json",
   "syntaxResultSHA256": "D2EAB85F401696525DC20F13A4C0A8F96B25166E1937DBB3C8B96CBA27AA462A",
   "firstCompileFailure": "syntax-builds/1172c3c83035499e87b868375dff4963/compile.log",
-  "firstCompileFailureReason": "Harness put two externally visible definitions in one AS3 file; corrected by separate World.as stub. Original failure retained."
+  "firstCompileFailureReason": "Harness put two externally visible definitions in one AS3 file; corrected by separate World.as stub. Original failure retained.",
+  "productionAdvance": false,
+  "prototypeDiagnosis": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\camera-raster-tolerance-20261025-r1\\aggregate-review.json",
+  "prototypeDiagnosisConclusion": "Underlying tilecrop presenter showed no consistent gain. Guarded candidate itself has not been assembled or timed."
 }
