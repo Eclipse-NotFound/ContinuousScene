@@ -1,0 +1,36 @@
+{
+  "version": "environment-control-1",
+  "staticOnly": true,
+  "compiled": false,
+  "AIRStarted": false,
+  "pythonAST": true,
+  "seedReceiptSHA256": "B7ED1EAB8BEE0DC1024D6EF0A56A965F311B97E8CED9A9F32A2BCDE35B35FF13",
+  "seedProbeSHA256": "39A1497BE832282CAC25E2A508A954432F9F31B15A2FBE5A650AB8C4D9C97E9E",
+  "seedSourceFiles": 85,
+  "changedFiles": [
+    "ContinuousSceneMotionProbe.as"
+  ],
+  "additiveSourceProjection": true,
+  "clockReadAdditions": 2,
+  "newPerFrameBranches": 0,
+  "negativeCases": [
+    "0:missing",
+    "0:duplicate",
+    "1:missing",
+    "1:duplicate",
+    "double-transform",
+    "UTC-step-rejected"
+  ],
+  "clockAlignmentSynthetic": {
+    "wholeIntervals": 3,
+    "elapsedMs": 3000,
+    "processCpuMs": 1500
+  },
+  "deploymentStatus": "verified",
+  "expectedInstalledHost": "A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7",
+  "files": {
+    "probe_patch.py": "682DA68C52529C62DEC1AC0BC2481E9014A4642E30A7D2C1B76733B3DDF3A463",
+    "README.md": "8F7FCBE8309541246F2C2EA692FEF02CA4694FE527924052F4E37A2B39EE3CC6",
+    "run.py": "58A9D7225832FCF443498DADB80A108E1275B121810A526C823D56507B648A7C"
+  }
+}
