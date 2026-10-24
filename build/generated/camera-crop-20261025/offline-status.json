@@ -1,0 +1,15 @@
+{
+  "preparedMethods": 6,
+  "syntaxCompiled": true,
+  "compiledHost": false,
+  "launchedAir": false,
+  "deployed": false,
+  "performanceEligible": false,
+  "helperSHA256": "16395920C580DB63FC56A5713CFDE252B2F951494D7A1FE9443BEC9758BEDF23",
+  "preparation": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-crop-20261025\\prepared\\c7b27d86dbc54f0ea29b8ac403f66c1b\\preparation.json",
+  "preparationSHA256": "557CC266989ECD1EDEB564648B92B13594CE3E6F395A0C365854F476F7168E6C",
+  "syntaxResult": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-crop-20261025\\syntax-builds\\c36a9c8fbe9d47699fa67992ef8430e2\\result.json",
+  "syntaxResultSHA256": "D2EAB85F401696525DC20F13A4C0A8F96B25166E1937DBB3C8B96CBA27AA462A",
+  "firstCompileFailure": "syntax-builds/1172c3c83035499e87b868375dff4963/compile.log",
+  "firstCompileFailureReason": "Harness put two externally visible definitions in one AS3 file; corrected by separate World.as stub. Original failure retained."
+}
