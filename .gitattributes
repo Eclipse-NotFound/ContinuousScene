@@ -13,3 +13,7 @@ build/generated/mouse-world-native-v2-20261025/** -text whitespace=cr-at-eol
 build/generated/mouse-world-native-v3-20261025/** -text whitespace=cr-at-eol
 build/generated/mouse-world-native-v4-20261025/** -text whitespace=cr-at-eol
 build/generated/activity-camera-range-20261025/** -text whitespace=cr-at-eol
+build/generated/camera-world-motion-20261025/** -text whitespace=cr-at-eol
+build/generated/camera-world-motion-v2-20261025/** -text whitespace=cr-at-eol
+build/generated/camera-axis-motion-20261025/** -text whitespace=cr-at-eol
+build/generated/camera-scroll-cache-20261025/** -text whitespace=cr-at-eol
