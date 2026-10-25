@@ -1,5 +1,7 @@
 # ContinuousScene — 当前快照
 
+最新停点2026-10-25：static-box-census-r1已完成1200/26，603准确Box、207固定、89非门、8无交互，最后8全因lurk非零排除，0结构合格/0未知；仅3条ID样例为niche1。停止固定Box摘树，不扩大白名单。603数组/链共同身份、0独有，已修正shared-knowledge/world-objects/facts/object-containers.md的过强不入链说法，旧实验保留。终态41ms在计时外，均50.6933ms无优化臂不是收益；44脚本/10夹具/13runtime/526正式/86源保持，AIR18080退出。详见build/generated/static-box-census-20261025/RESULTS.md。下一步仅准备owned-mouse-capability-20261025：旧mousetree的真实Stage鼠标始终(0,0)，没有覆盖指针位于场景中时的底层选择；只限新建私有桌面自有AIR，少量WM_MOUSEMOVE+真实事件读回，不激活窗口、不改全局鼠标、不用Ghost。能力未运行、无新部署，镜头目标active。
+
 最新2026-10-25：活跃线程IP实测完成1200/26、134份IP/124入窗、68批CPU计数。忙线程62份中AIR未命名39、未知8、等待10、临界区4、GDI1，不能从位置次数推CPU占比或渲染/GPU瓶颈。均52.8617ms无成对基线，不是收益或退化；进程约2.184核，134暂停均恢复，总15.72ms。独立复核43脚本/7夹具/13runtime/526正式/85冻结源保持，AIR10512退出、登记释放。详见build/generated/owned-native-stack-20261025/IP-RESULTS.md。停止扩展同类低频原生采样，正准备只读静态Box终态清点，尚无摘树候选/收益/新部署。参考Box死亡与Location链缺口已经精确调用授权补读关闭，准确宿主和素材事件资格仍待核。镜头目标active。
 
 更新：2026-10-25镜头目标仍active，未达近原版，无新部署。本轮stage-quality-native-r2完成1200/26，实际HIGH/LOW/LOW/HIGH各300、恢复正确，均57.8383/53.4133ms，但火力365/303、预绘63/43不同；差4.425ms不作生产收益。原生线程查询20次3185ms扰动保留；r1描述符单行锚点失败仍保留。详见build/generated/stage-quality-native-20261025/RESULTS.md；不降画质，不重复此诊断。
