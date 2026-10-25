@@ -1,5 +1,7 @@
 # ContinuousScene — 当前快照
 
+最新2026-10-25：owned-native-stack-air-r2完成1200/26和120份真实IP（108在战斗窗），均45.4675ms没有成对基线，不是提速。48线程轮转使忙8条各仅2–3份；缓存78模块缺表，调用链降级，只采用真实RIP+CPU。进程约2.314核。AIR36936已退出，526正式/42脚本/7夹具/13runtime/85源保持，无新部署。详见build/generated/owned-native-stack-20261025/RESULTS.md；正在准备air-ip-only聚焦忙线程，尚未运行。STATIC-DETACH-PLAN仅方案，补充源码读取被钩子拒绝未绕过。目标仍active。
+
 更新：2026-10-25镜头目标仍active，未达近原版，无新部署。本轮stage-quality-native-r2完成1200/26，实际HIGH/LOW/LOW/HIGH各300、恢复正确，均57.8383/53.4133ms，但火力365/303、预绘63/43不同；差4.425ms不作生产收益。原生线程查询20次3185ms扰动保留；r1描述符单行锚点失败仍保留。详见build/generated/stage-quality-native-20261025/RESULTS.md；不降画质，不重复此诊断。
 
 活动锁存候选已准备并编译，未部署：build/generated/activity-release-20261025/STATUS.md为入口。当前CS source-v3（只准确Raider/Merc/Slaver、独立lease、旧wake永久、释放后每次复核原生警戒、避免参战者额外弹体扫描），access-v2/extern-v2拒绝rapid<=0；TDFC候选v2基于正式7ACD保存brain/冷却/报告及队形，pending两端到原deliver前暂保活。不得合入live AuthoritySession/B190。首编CS初稿AF64有再次alarma遗漏，已弃用不可运行；新的产品形状编译BA20与带只读观察B0E1分开保留。

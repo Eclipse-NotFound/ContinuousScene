@@ -1,0 +1,11 @@
+{
+  "fromSHA256": "1ee970f4ab667d662e711c42d16bd6e7680892afa4e18d0510193dcde46f188e",
+  "toSHA256": "50211888bd0573646bb7be8a125c58a70600ecf6569f18489f41b89b18de01a6",
+  "removedExactBlocks": [
+    "USER.GetThreadDesktop.argtypes, USER.GetThreadDesktop.restype = [U32], PTR\n",
+    "            if \"desktop\" in thread:\n                desktop = USER.GetThreadDesktop(thread[\"tid\"])\n                N.checked(desktop, \"recheck owned thread desktop\")\n                if desktop_name(desktop) != self.identity[\"desktop\"]:\n                    raise RuntimeError(\"selected owned thread changed desktop\")\n",
+    "                    desktop = USER.GetThreadDesktop(tid)\n                    N.checked(desktop, \"GetThreadDesktop for owned thread\")\n                    t[\"desktop\"] = desktop_name(desktop)\n                    if t[\"desktop\"] != self.identity[\"desktop\"]:\n                        raise RuntimeError(\"owned thread not on launch private desktop\")\n"
+  ],
+  "reason": "r1 GetThreadDesktop WinError5; no retry or alternative read of rejected thread desktop metadata. All owned handle/PID/creation/parent/launch checks retained. No desktop rights changed.",
+  "threadDesktopVerified": false
+}
