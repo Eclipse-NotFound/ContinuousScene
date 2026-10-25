@@ -1,5 +1,9 @@
 # ContinuousScene — 当前快照
 
+当前执行范围（2026-10-25晚，优先于下方历史停点）：用户在mouse-world-v4预检发现正式游戏后明确选择“保留游戏，先准备候选”。不再启动AIR、做游戏性能对照或部署，也不关闭用户窗口。mouse-world-v4源已冻结并独立复审，r1在编译/启动前停止，0消息/0样本，见该目录RESULTS.md。activity-camera-range-20261025已完成源码与离线检查：原7F1F六类仅改两类并增加898D预测视口helper，5组战斗/弹体/45tick/wake原段逐字保持，不叠加activity-release；条件性数学适配313800结果0违例，同时保留晚到quake/玩家瞬移/scale越界反例。29AF探针85→86精确可逆，最终准备9d862774；源未编译、未跑游戏，隔离运行器尚待接入。详细停点见该目录RESULTS.md。近原版目标未达，无新部署。
+
+最新停点2026-10-25晚续：terrain-v2-r1完成1200/26，原生56.185ms/摘树56.055ms，差仅0.13ms且两对−1.073/+0.813反向；停止路线、不部署。最多336节点离树，计时716摘/还、终态再332，进入恢复380，107+16追加且0Drop；终态2032×1084三图精确一致，3图释放，221ms在计时外。正式526保持，AIR16324退出，v2/RESULTS.md完整。mouse-world v1/v2/v3均0性能样本：v1窗口前置失败0消息；v2一消息但Python5秒先杀、缺result；v3等待20秒取得原AS失败详情：实际world命中且direct Stage1016,542正确，event.stage1016,539偏3被原±1拒绝，原可见性false/设置true/结束恢复，AIR53824退出。v3/RESULTS.md保存边界。准备v4分离直接坐标与派生event观测，不扩大原容差、不猜偏差原因；尚未编译/运行。近原版目标仍active，无新部署。
+
 最新停点2026-10-25晚：owned-mouse-capability-v4完成独立私有AIR三目标真实WM_MOUSEMOVE事件、实际Stage坐标及事件后Timer读回；AIR34600正常退出，22运行输入保持。前三版失败保留（文档根name、客户区尺寸、记录文件读取替换冲突），v4用不可变编号观察文件，能力通过不等于游戏/性能通过。详见build/generated/owned-mouse-capability-v4-20261025/RESULTS.md。正在准备mouse-world-native-20261025真实29AF战斗内单次中心消息、实际坐标恒定、鼠标树ABBA；未编译/运行。native-terrain-detach-r1编译056C8CF0成功但第一A第74次update发现正常surface数量变化，初始109/436，detaches=held=0，0完整段/无像素或收益，AIR49264退出、526正式保持。r1结果完整保留，v2只在新目录准备原生尾部追加/Drop兼容。无新部署、近原版目标仍active；其他会话WIP不动。
 
 最新停点2026-10-25：static-box-census-r1已完成1200/26，603准确Box、207固定、89非门、8无交互，最后8全因lurk非零排除，0结构合格/0未知；仅3条ID样例为niche1。停止固定Box摘树，不扩大白名单。603数组/链共同身份、0独有，已修正shared-knowledge/world-objects/facts/object-containers.md的过强不入链说法，旧实验保留。终态41ms在计时外，均50.6933ms无优化臂不是收益；44脚本/10夹具/13runtime/526正式/86源保持，AIR18080退出。详见build/generated/static-box-census-20261025/RESULTS.md。下一步仅准备owned-mouse-capability-20261025：旧mousetree的真实Stage鼠标始终(0,0)，没有覆盖指针位于场景中时的底层选择；只限新建私有桌面自有AIR，少量WM_MOUSEMOVE+真实事件读回，不激活窗口、不改全局鼠标、不用Ghost。能力未运行、无新部署，镜头目标active。

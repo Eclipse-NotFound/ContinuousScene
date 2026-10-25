@@ -7,3 +7,9 @@ build/generated/combat-near-native-20261023/logic-profile-audit/fog-last-blocker
 build/generated/combat-near-native-20261023/logic-profile-audit/decal-stamp-tolerance/** -text whitespace=cr-at-eol
 build/generated/combat-near-native-20261023/logic-profile-audit/decal-stamp-copy-pixels/** -text whitespace=cr-at-eol
 build/generated/combat-near-native-20261023/logic-profile-audit/front-shadow/** -text whitespace=cr-at-eol
+build/generated/native-terrain-detach-v2-20261025/** -text whitespace=cr-at-eol
+build/generated/mouse-world-native-20261025/** -text whitespace=cr-at-eol
+build/generated/mouse-world-native-v2-20261025/** -text whitespace=cr-at-eol
+build/generated/mouse-world-native-v3-20261025/** -text whitespace=cr-at-eol
+build/generated/mouse-world-native-v4-20261025/** -text whitespace=cr-at-eol
+build/generated/activity-camera-range-20261025/** -text whitespace=cr-at-eol
