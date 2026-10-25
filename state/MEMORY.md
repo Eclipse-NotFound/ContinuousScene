@@ -1,6 +1,6 @@
 # ContinuousScene — 当前快照
 
-最新2026-10-25：owned-native-stack-air-r2完成1200/26和120份真实IP（108在战斗窗），均45.4675ms没有成对基线，不是提速。48线程轮转使忙8条各仅2–3份；缓存78模块缺表，调用链降级，只采用真实RIP+CPU。进程约2.314核。AIR36936已退出，526正式/42脚本/7夹具/13runtime/85源保持，无新部署。详见build/generated/owned-native-stack-20261025/RESULTS.md；正在准备air-ip-only聚焦忙线程，尚未运行。STATIC-DETACH-PLAN仅方案，补充源码读取被钩子拒绝未绕过。目标仍active。
+最新2026-10-25：活跃线程IP实测完成1200/26、134份IP/124入窗、68批CPU计数。忙线程62份中AIR未命名39、未知8、等待10、临界区4、GDI1，不能从位置次数推CPU占比或渲染/GPU瓶颈。均52.8617ms无成对基线，不是收益或退化；进程约2.184核，134暂停均恢复，总15.72ms。独立复核43脚本/7夹具/13runtime/526正式/85冻结源保持，AIR10512退出、登记释放。详见build/generated/owned-native-stack-20261025/IP-RESULTS.md。停止扩展同类低频原生采样，正准备只读静态Box终态清点，尚无摘树候选/收益/新部署。参考Box死亡与Location链缺口已经精确调用授权补读关闭，准确宿主和素材事件资格仍待核。镜头目标active。
 
 更新：2026-10-25镜头目标仍active，未达近原版，无新部署。本轮stage-quality-native-r2完成1200/26，实际HIGH/LOW/LOW/HIGH各300、恢复正确，均57.8383/53.4133ms，但火力365/303、预绘63/43不同；差4.425ms不作生产收益。原生线程查询20次3185ms扰动保留；r1描述符单行锚点失败仍保留。详见build/generated/stage-quality-native-20261025/RESULTS.md；不降画质，不重复此诊断。
 
