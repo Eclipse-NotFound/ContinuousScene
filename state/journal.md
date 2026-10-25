@@ -1,5 +1,12 @@
 # 开发日志
 
+## 2026-10-25 画质敏感性与活动状态候选，仍未取得镜头优化验收
+
+- 画质r2实际HLLH共1200/26，67秒连续守恒，六Class无关。HIGH/LOW均57.8383/53.4133ms，两对同向但火力/预绘/弹体负载变化；LOW历史栅格可留到HIGH且线程观察共3185ms，不能降画质部署或报7.65%净收益。r1在AIR前描述符格式锚点失败保留；实际r2namespace30接受allowLowQuality且恢复/清理通过。详见stage-quality-native-20261025/RESULTS.md，resultA13F894E。
+- 首次确认CS engaged永久锁与TDFC lastSeen>=0历史记忆唤醒，准备精确7F1F/7ACD隔离候选，未改live其他任务。独立审查拦下再报警冻结、额外威胁遍历及rapid<=0误判，当前source-v3/access-v2/tdfc-candidate-v2已修；同包原生字段外部存根绑定经实际字节码核对，局部activation槽单列，未嵌入原生类。
+- 实测activity-release-native-r1的1200/26通过，原生6Class身份严格相等、30个闲置阳性。末态released0，12个engaged只有近处6Raider及6未知家族，没有实际解除锁收益证据。均52.0567/中50/P95 69仅单候选，不能当优化；生命周期验证不完整。result670214F8、AIR31196已退出/登记释放，安装526保持，无部署。入口activity-release-20261025/STATUS.md，原生产BA20、只读观察B0E1分别留证。
+- 继续原镜头目标，不把活动兼容当更小的替代目标。停止重复同一固定战斗找阳性；下一条是owned-native-stack-20261025的自有Python原生线程位置能力准备，禁止既有/用户进程、符号联网、注入或把等待样本当CPU百分比。尚无AIR调用栈证据。MEMORY已接续。
+
 ## 2026-10-25 原生战斗逐线程CPU诊断完成，继续定位镜头成本
 
 准确29AF只在Main加首末/四case时钟锚，85源、三处可逆追加，CFD85A18；新thread_cpu只查询拥有的AIR线程和私有桌面窗口映射，未暂停线程/改优先级。API冒烟的空桌面FALSE0不回填；实际AIR有窗口映射阳性。Toolhelp实测约150ms，故每3次原processCPU采样才查询线程；完整采样耗时保留，非生产遥测。r1的1200间隔/26项、74638ms和逐线程累计获独立复核，玩家/敌400/329实射，后段火力下降，不能当提速。

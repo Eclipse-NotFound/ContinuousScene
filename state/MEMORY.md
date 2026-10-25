@@ -1,6 +1,10 @@
 # ContinuousScene — 当前快照
 
-更新：2026-10-25镜头目标active，未达近原版，不部署新候选。最新thread-cpu-native-r1准确29AF仅Main3处时钟追加，CFD85A18，1200/26、74638ms、result6C4D7368完整并独立复算；正式526/隔离528/runtime13不变。进程74.36s对应153.828CPU秒=2.069核；线程69.969s内窗口创建线程.729核，7个无窗口线程合计1.300核，尚无职责/函数/等待归因。22次查询共3728ms（枚举3667ms），观察扰动显著；3个退出身份和计时外2次无效均保留，不与旧FPS比较。AIR118596已退出、登记释放，已通知RC/RV。build/generated/thread-cpu-native-20261025/RESULTS.md为详细证据。线程计时无对照不追加同款重跑；准备HIGH/LOW质量敏感性对照，仅独立描述符allowLowQuality，绝不降画质部署。另只读发现NativeSceneActivity.engaged同Location永久锁存，正核对原版战斗退出条件，不先改追击规则。
+更新：2026-10-25镜头目标仍active，未达近原版，无新部署。本轮stage-quality-native-r2完成1200/26，实际HIGH/LOW/LOW/HIGH各300、恢复正确，均57.8383/53.4133ms，但火力365/303、预绘63/43不同；差4.425ms不作生产收益。原生线程查询20次3185ms扰动保留；r1描述符单行锚点失败仍保留。详见build/generated/stage-quality-native-20261025/RESULTS.md；不降画质，不重复此诊断。
+
+活动锁存候选已准备并编译，未部署：build/generated/activity-release-20261025/STATUS.md为入口。当前CS source-v3（只准确Raider/Merc/Slaver、独立lease、旧wake永久、释放后每次复核原生警戒、避免参战者额外弹体扫描），access-v2/extern-v2拒绝rapid<=0；TDFC候选v2基于正式7ACD保存brain/冷却/报告及队形，pending两端到原deliver前暂保活。不得合入live AuthoritySession/B190。首编CS初稿AF64有再次alarma遗漏，已弃用不可运行；新的产品形状编译BA20与带只读观察B0E1分开保留。
+
+真实activity-release-native-r1（AIR31196已退出）1200/26且原生冲刺/双方实弹通过；6个真实宿主Class相等、30个实敌闲置判据true。末态released0、没有engaged且mayRest者，12个engaged仅6个近处测试Raider和6未知家族，无释放收益证据。单轮52.0567ms不能和带线程观察旧轮比；报告/手雷/再次报警/醒来视野生命周期仍未验，不部署，不反复同一固定战斗挑结果。正式526/运行库13守恒，result670214F8。后续优先镜头主成本的原生线程执行位置归因；正准备owned-native-stack-20261025仅新建自有Python worker的能力冒烟，尚未在AIR采样，不用管理员ETW、不下载符号。
 
 窗口显隐r1（EAD18FDE，result7026DB47）1200/26/74109ms，隐藏61.553/可见61.962ms，两对差+.693/.123ms，无主要收益，停止。叶sleg20_53目标缺失、0样本/0像素，AE71EE22 inconclusive保留停止。纯地形/direct-cpu/分页等旧路线保持停止。现有正式A796/CS7F1F/RV638E/RC78C未改。原生ETW离线消费器native-cpu-profile已真TraceEvent3.1.13 API冒烟，无真实ETL；普通及sandbox外进程都非管理员，未录制/安装/下载。不能把回调外约40ms或无窗口线程直接命名GPU/渲染。
 
