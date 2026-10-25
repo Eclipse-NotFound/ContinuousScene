@@ -1,5 +1,11 @@
 # 开发日志
 
+## 2026-10-25 自有鼠标能力通过，地形静态驻留诊断失败保留
+
+- 鼠标v4 cbbb25c5完成3条各一次native消息、正确target0/1/2与真实Stage/后Timer读回，exit0、原句柄关闭；22运行输入及构建前后记录保持。前三轮v1/v2/v3未通过各保留，不把正确第一条事件补成全通过。v4无全局光标/焦点/桌面操作。报告及复审SWF重读被护栏阻止的限制均见v4/RESULTS.md；构建和实际runner已做二进制前后守恒，独立报告未绕过阻止。该结果仅输入能力，不含任何FPS收益。
+- native-terrain-detach-r1已编译并实跑：初始109surface/436Bitmap，第一A第74次update出现正常新增图块，严格static-resident拒绝。0完整段、0detaches/held/pending、未跑终态像素；284ms仅helper诊断开销。原始result A5B691B4、summary544EEF6F，正式526/运行库13保持，AIR49264退出。报告native-terrain-detach-20261025/RESULTS.md。下一版必须处理原生append/Drop，不能停预绘或修剪失败帧。
+- 当前两条后续均仅准备：准确29AF真实鼠标位置下的mousetree ABBA；支持原生增删的terrain v2。没有新部署或已解决声明；目标继续，外部WIP和既有正式版本保留。
+
 ## 2026-10-25 固定Box清点为零，停止摘树并更正容器概括
 
 - 准确29AF夹具上只新增Main视口记录和终态helper，21751A27探针完整1200/26；603Box经wall/门/交互/lurk筛选归零，0未知字段。1204逆变换视口与+320并集独立重算全等；41ms清点在最后帧之后，25ms视口观察留在计时内。均50.6933ms无候选收益；result9ADD22B3，报告build/generated/static-box-census-20261025/RESULTS.md。
