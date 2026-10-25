@@ -1,0 +1,102 @@
+{
+  "version": "activity-lease-1",
+  "preparedOnly": true,
+  "productionBinaryRead": false,
+  "declaredFormalCsSHA256": "7F1F2961C6E299D949423591F3C65C610C2EAEFA7FC72E8A583A402770D6B51F",
+  "historicalSourceDirectory": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\activity-telemetry-20261022\\original-source",
+  "manifestPath": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\large-map\\source-manifest.json",
+  "manifestSHA256": "832319A1E57B5EEFEAB25818DDB07F726D6FA0A46B8CFDDF68DFC8927F426A95",
+  "prepareScriptSHA256": "9102FDCFF610A474B95050F68EB82633379A17B43CCD43D32CD72DEAC8FDD03C",
+  "originalSHA256": {
+    "ContinuousSceneDoc.as": "2FBFFE1895829A6D8DC866A170C92CDBF000DC99B1A08DFE92F0891432C2C462",
+    "ContinuousSceneMod.as": "D97C62521892DBF46DBAC9D38BFE6CB721FB49D0F8FEA5CFEA4B5E796851C450",
+    "NativeSceneActivity.as": "01182FACDFB7AFBA7A03CCFF1C3C28E14219E8FE654118149C50FCF7261AC0F7",
+    "NativeSceneAdapter.as": "6541C722618DEC9BB637BA6082A950CC4A01029B1EB01B65D992516D1D7B90C3",
+    "NativeSceneWalls.as": "DB9F65FC20DDE979E36E203E78EE58FA8A5C75C0B268BE9B0A24111276BA06EF",
+    "SingleSceneDocument.as": "5A9AAD9936C5FE49D2B6606353A64974F0380460139EC375292ECF7CA79413DF"
+  },
+  "candidateSHA256": {
+    "ContinuousSceneDoc.as": "2FBFFE1895829A6D8DC866A170C92CDBF000DC99B1A08DFE92F0891432C2C462",
+    "ContinuousSceneMod.as": "639E62B1B8004EA711CABC5EEADA839CE7FCEAE68F507E1A709BCFF283AF5266",
+    "NativeSceneActivity.as": "9A6DCA752DDDBC1BD22299F51A93A15A120C399821E1F73F2DB60A6190EAA529",
+    "NativeSceneAdapter.as": "6541C722618DEC9BB637BA6082A950CC4A01029B1EB01B65D992516D1D7B90C3",
+    "NativeSceneWalls.as": "DB9F65FC20DDE979E36E203E78EE58FA8A5C75C0B268BE9B0A24111276BA06EF",
+    "SingleSceneDocument.as": "5A9AAD9936C5FE49D2B6606353A64974F0380460139EC375292ECF7CA79413DF"
+  },
+  "reverseSHA256": {
+    "ContinuousSceneDoc.as": "2FBFFE1895829A6D8DC866A170C92CDBF000DC99B1A08DFE92F0891432C2C462",
+    "ContinuousSceneMod.as": "D97C62521892DBF46DBAC9D38BFE6CB721FB49D0F8FEA5CFEA4B5E796851C450",
+    "NativeSceneActivity.as": "01182FACDFB7AFBA7A03CCFF1C3C28E14219E8FE654118149C50FCF7261AC0F7",
+    "NativeSceneAdapter.as": "6541C722618DEC9BB637BA6082A950CC4A01029B1EB01B65D992516D1D7B90C3",
+    "NativeSceneWalls.as": "DB9F65FC20DDE979E36E203E78EE58FA8A5C75C0B268BE9B0A24111276BA06EF",
+    "SingleSceneDocument.as": "5A9AAD9936C5FE49D2B6606353A64974F0380460139EC375292ECF7CA79413DF"
+  },
+  "reverseByteExact": true,
+  "historicalClassCount": 6,
+  "changed": [
+    "ContinuousSceneMod.as",
+    "NativeSceneActivity.as"
+  ],
+  "unchanged": [
+    "ContinuousSceneDoc.as",
+    "NativeSceneAdapter.as",
+    "NativeSceneWalls.as",
+    "SingleSceneDocument.as"
+  ],
+  "requiredExternalHelper": "fe.unit.NativeSceneIdleAccess.mayRest(u):Boolean, strict true only; unknown/error must return false",
+  "helperSourceIncluded": false,
+  "helperRequiresIndependentReview": true,
+  "sourceSemantics": {
+    "legacyWakePermanent": true,
+    "leaseDoesNotSetEngaged": true,
+    "leaseDoesNotExtendNativeGrace": true,
+    "graceNeverRenewsItself": true,
+    "originalProtectionExpressionPreservedExceptSeparatedEngaged": true,
+    "originalProjectileRectangleUnchanged": true,
+    "releaseRequiresAllProtectionFalse": true,
+    "newEngagementBlocksReleaseSameFrame": true,
+    "releasedIdleRevalidatedEveryTick": true,
+    "noDiagnosticHotPathCounters": true
+  },
+  "staticTimingModel": {
+    "passed": true,
+    "kind": "Python policy model only",
+    "cases": [
+      "released-engagement-keeps-existing-grace-without-renewing",
+      "existing-protection-pause-disabled",
+      "existing-protection-player",
+      "existing-protection-npc",
+      "existing-protection-boss",
+      "existing-protection-fraction",
+      "existing-protection-not-alive",
+      "existing-protection-damaged",
+      "existing-protection-stun",
+      "existing-protection-bind",
+      "existing-protection-levitation",
+      "existing-protection-emergency",
+      "existing-protection-effects",
+      "existing-protection-moving-interaction",
+      "existing-protection-player-distance",
+      "existing-protection-viewport",
+      "existing-protection-projectile",
+      "fresh-engagement-new-damage",
+      "fresh-engagement-target",
+      "fresh-engagement-cut",
+      "fresh-engagement-poison",
+      "idle-reader-must-return-strict-true",
+      "legacy-external-wake-is-permanent",
+      "unengaged-lease-has-no-extra-grace-or-latch",
+      "leases-only-extend-and-always-resume",
+      "engaged-lease-expiry-retains-last-native-grace",
+      "invalid-lease-does-not-mutate",
+      "native-alarm-after-release-grace",
+      "native-alarm-after-release-sleep"
+    ],
+    "count": 29,
+    "actualAS3Run": false,
+    "helperSemanticsNotValidated": true
+  },
+  "compiled": false,
+  "runtimeTested": false,
+  "deployed": false
+}

@@ -1,0 +1,86 @@
+--- 7F1F/ContinuousSceneMod.as
++++ candidate/ContinuousSceneMod.as
+@@ -41,7 +41,8 @@
+                 moveOffset:NativeSceneAdapter.moveOffset,reward:NativeSceneAdapter.reward,
+                 takeXP:NativeSceneAdapter.takeXP,detecting:NativeSceneAdapter.detecting,
+                 activity:NativeSceneActivity.update,sleeping:NativeSceneActivity.sleeping,
+-                wake:NativeSceneActivity.wake,activityStats:NativeSceneActivity.stats};
++                wake:NativeSceneActivity.wake,activityStats:NativeSceneActivity.stats,
++                activityLease:NativeSceneActivity.activityLease,activityLeaseVersion:NativeSceneActivity.activityLeaseVersion};
+             main.addChild(carrier); log("v"+VERSION+" loaded");
+             main.stage.addEventListener(Event.ENTER_FRAME,onFrame,false,-200,true);
+         }
+--- 7F1F/NativeSceneActivity.as
++++ candidate/NativeSceneActivity.as
+@@ -3,6 +3,7 @@
+     import flash.display.MovieClip;
+     import flash.utils.Dictionary;
+     import flash.utils.getDefinitionByName;
++    import fe.unit.NativeSceneIdleAccess;
+ 
+     /** Sidecar scheduling only: never changes collision flags or unit arrays. */
+     public class NativeSceneActivity {
+@@ -29,19 +30,37 @@
+             for each(var u:* in loc.units) {
+                 if(!u)continue;
+                 var r:Object=s.records[u];
+-                if(!r)s.records[u]=r={hp:u.hp,engaged:false,until:0,clips:[]};
+-                if(u.hp<r.hp || u.celUnit!=null || u.cut>0 || u.poison>0)r.engaged=true;
++                if(!r)s.records[u]=r={hp:u.hp,engaged:false,until:0,clips:[],leaseUntil:0,externalWake:false,released:false};
++                var freshEngagement:Boolean=u.hp<r.hp || u.celUnit!=null || u.cut>0 || u.poison>0;
++                if(freshEngagement)r.engaged=true;
++                var nativeIdle:*=null;
++                if(r.released) {
++                    nativeIdle=NativeSceneIdleAccess.mayRest(u);
++                    if(nativeIdle!==true){r.engaged=true;r.released=false;}
++                }
+                 r.hp=u.hp;
+                 var active:Boolean=!w.grafon.scenePauseDistant || u===loc.gg || u.player || u.npc || u.boss
+-                    || u.fraction<=0 || u.fraction>=100 || u.fraction==loc.gg.fraction || u.sost!=1 || r.engaged
++                    || u.fraction<=0 || u.fraction>=100 || u.fraction==loc.gg.fraction || u.sost!=1
+                     || u.hp<u.maxhp || u.stun>0 || u.bind!=null || u.levit || u.t_emerg>0 || u.effects.length>0
+                     || (u.inter && u.inter.isMove)
+                     || (Math.abs(u.X-loc.gg.X)<1900 && Math.abs(u.Y-loc.gg.Y)<1300)
+                     || (u.X+u.scX>=left && u.X-u.scX<=right && u.Y>=top && u.Y-u.scY<=bottom);
++                var mayRelease:Boolean=false;
++                if(r.engaged && !active) {
++                    mayRelease=!freshEngagement && !r.externalWake && r.leaseUntil<=s.tick;
++                    if(mayRelease) {
++                        if(nativeIdle===null)nativeIdle=NativeSceneIdleAccess.mayRest(u);
++                        mayRelease=nativeIdle===true;
++                    }
++                    if(!mayRelease)active=true;
++                }
+                 if(!active)for each(var threat:Object in threats)
+                     if(u.X>=threat.l && u.X<=threat.r && u.Y>=threat.t && u.Y-u.scY<=threat.b){active=true;break;}
++                // Only genuine release candidates need the projectile scan.
++                if(mayRelease && !active){r.engaged=false;r.released=true;}
++                active=active || r.engaged;
+                 if(active)r.until=s.tick+45;
+-                active=active || s.tick<r.until;
++                active=active || s.tick<r.until || s.tick<r.leaseUntil;
+                 if(active) {resume(r);delete s.sleeping[u];++s.awake;}
+                 else {
+                     if(!s.sleeping[u]) {
+@@ -60,8 +79,20 @@
+         public static function wake(u:*):void {
+             if(!u || !rooms[u.loc])return;
+             var s:Object=rooms[u.loc],r:Object=s.records[u];
+-            if(r){r.engaged=true;resume(r);}
++            if(r){r.externalWake=true;r.engaged=true;r.released=false;resume(r);}
+             delete s.sleeping[u];
++        }
++        public static function activityLeaseVersion():String {return "activity-lease-1";}
++        public static function activityLease(u:*,frames:int=45):Boolean {
++            if(!u || frames<=0 || frames>45)return false;
++            var s:Object=rooms[u.loc];
++            if(!s)return false;
++            var r:Object=s.records[u];
++            if(!r)return false;
++            var deadline:Number=Number(s.tick)+frames;
++            if(deadline>r.leaseUntil)r.leaseUntil=deadline;
++            resume(r);delete s.sleeping[u];
++            return true;
+         }
+         private static function freeze(parent:DisplayObjectContainer,clips:Array):void {
+             if(!parent)return;
