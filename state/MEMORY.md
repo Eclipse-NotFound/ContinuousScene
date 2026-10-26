@@ -66,7 +66,10 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 - 远处静态根路线四轮：72ff3ac5筛947根后首次原生预备改变边界，0写入/0计时；641f180f把筛选移到预备后，首视角精确，但visualBloat0在下一视角改变边界，0计时；两个原始清理审计失败保留。5e968e0e排除全部多帧子树，遮罩盘点#1009，0筛选/0计时，清理通过。
 - d3162bd8加空节点保护、mask只读一次和错误路径后完成480/9，274单帧远处根、55截图精确/释放、15审计、计时零全树扫描。原生33.646→隐藏35.063ms，两个配对均更慢，停止不部署。跳过810多帧/615滤镜；本次16261节点盘点未遇空节点，前轮#1009原因仍未确认。
 - a5e0f915六物件层alpha/visible诊断960/9、75截图释放：原生33.892、alpha0为29.733、visible=false为26.813、同时26.763ms。两组visible配对少6.91/7.25ms，仍287ms长帧。物件层只解释部分，剩余不是直接可命名的地形/GPU耗时；不能部署缺失角色的画面。
-- 当前所有自有AIR均已退出、登记器占用0。本批6游戏运行的526正式/13运行库/86冻结源及脚本逐项复核通过，详见camera-world-alpha-visible-20261027/batch-review.json；3次失败不改判。未改正式安装，前批里程碑90254b7；foreign WIP排除，占用以实时检查为准。
+- 前6轮归因/静态根试验已提交a140d73；526正式/13运行库/86冻结源及脚本复核通过，camera-world-alpha-visible-20261027/batch-review.json保留3次失败。
+- a54fdd7f世界窗口滚动（world位置0，scrollRect按-vx/-vy），首视角5174像素不同、maxRGB3/alpha0，只有(1021,605)一像素达到3；恢复精确但超2门槛，0计时、11截图释放、清理通过。不缓存模式不合格，缓存模式尚未执行。
+- c5a95e8c单独试原计划缓存模式，在启用候选前就被自然基线保护拦下：水平/垂直1px精确，120px双轴返回103像素/RGB76。0候选检查/0计时，9截图释放、清理通过；不能判断缓存候选成败。一水平预备并非所有暂停姿态都足够，未原样重试挑通过。
+- 所有自有AIR退出；后2轮526正式/13运行库/冻结源及脚本复核保持，详见camera-world-scroll-20261027/batch-review.json。无新部署；foreign WIP仍排除，实际占用以实时检查为准。
 
 ## 5. 已知限制与停止路线
 
@@ -80,6 +83,7 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 远景缓存、视口条带、明暗裁剪、静态地形GPU、透明边缘裁剪均无收益，停止原样重跑。首次截图不稳定已由纯原生镜头往返复现；固定自然预备后仍须三次精确原生往返与候选恢复，不能改变门槛或把旧失败改判。
 世界父层alpha/visible差异已确认；六物件层停止显示约少7ms，仍约26.8ms，未消除剩余开销。274合格远处单帧根隐藏倒退约4.2%，停止原样重试；多帧停止状态不是静态证明，首个具体变化是visualBloat0。接续检查世界容器与剩余背景/地形/原生明暗的组合处理，先核既有无收益GPU/背景缓存/条带/裁剪路线，不能仅改名称复试。暂停归因不能代表无敌人实玩；有效新候选最终还需无敌人和实战移动。原生trace的text名称仍无权威定义，不叫文字或纹理耗时。入口继续mainMenuOff，固定自然预备不改变像素门槛。
+新增窗口滚动不缓存模式RGB3不合格；缓存模式未执行，先解决原生120px返回偶发不稳定并保存该返回图，不能把下一次恰好通过当修复。若拓展预备范围，固定路径/次数、独立自然精确检查，保留旧失败。原型仍先执行原生cam.calc再复位world位置，不能宣称完全消除祖先矩阵写入。build/cache/current-swf/scripts/fe/inter/Camera.as是旧参考（无新sceneTick），不可用作当前A796的补丁源。当前宿主实际方法需另作精确指纹核验。
 合图只保留为候选。后续需要新的高占比证据或足够收益，不以重复相同实战取最优数值放行。
 通过实际门禁才本机部署、备份、安装后复验；当前没有合格的新包。仍以A796正式指纹为准，不运行旧BEFC/80CF/ABE2/afternoon的无条件回退。
 外置记忆/报告只追加证据，旧失败和冻结收据不可改写。自己的里程碑可提交，foreign WIP排除。
@@ -87,6 +91,7 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 ## 7. 深入入口
 
 - build/generated/camera-world-alpha-visible-20261027/RESULTS.md、verify_batch.py、batch-review.json；camera-far-{static-visibility,static-warm,singleframe,maskguard}-20261027/RESULTS.md；camera-object-alpha-visible-20261027/RESULTS.md。
+- build/generated/camera-world-scroll-20261027/RESULTS.md、verify_batch.py、batch-review.json；camera-world-scroll-cached-20261027/RESULTS.md。
 - build/generated/camera-atlas-pool-{idle,idle-v2,empty,merged}-20261026/RESULTS.md
 - build/generated/camera-atlas-merged-combat-20261026/RESULTS.md
 - build/generated/camera-{display,backdrop}-contribution-20261026/RESULTS.md

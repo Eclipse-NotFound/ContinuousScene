@@ -73,3 +73,5 @@ build/generated/camera-far-static-warm-20261027/** -text whitespace=cr-at-eol,-b
 build/generated/camera-far-singleframe-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
 build/generated/camera-far-maskguard-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
 build/generated/camera-object-alpha-visible-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-world-scroll-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-world-scroll-cached-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
