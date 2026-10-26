@@ -36,7 +36,7 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 ## 4. 当前实测停点（2026-10-27）
 
-本轮7次隔离运行，正式文件未变；完整world绘制终于出现**固定画面上限收益**，尚未成为合格产品。
+前轮7次＋本轮3次隔离运行，正式文件未变；完整world绘制出现**固定画面上限收益**，局部动态成本仍未解决，尚未成为合格产品。
 
 - wholeworld初轮25f57170：立即停止22个显式时间轴，预备后24个轴仍变帧；65图释放/0计时/恢复失败。late 99c35ff8：延后停止，遍历空节点，65图释放/0计时/清理通过。nullslots f22d6e66：7444节点/1670多帧，本轮空槽0；24个isPlaying=false的osn/Bloodwing子轴仍变化；7纹理/8临时图/65像素图释放，恢复失败。旧失败均保留，未证明空槽根因。
 - observed 3c3ad63c：8间隔实看帧变化，停止47（24隐式），无变化；首视角92738像素差异，604像素RGB≥3、最大112/alpha0/精确恢复，0计时。80像素图/8临时图/7纹理释放。已看完整PNG，发光边缘颜色差异，具体混合原因未证实。
@@ -45,6 +45,10 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 - settle的13视角全visualAccepted=false，RGB92–253/alpha0，原生恢复精确；18组自然基线通过。第5视角实看无明显地形缺失，RGB≥3为2509像素，发光线/伤害数字附近不同，28像素≥200。不仅是1/255舍入；数字像素位置差异原因未明。260像素检查图、8临时图、7纹理释放，43播放者恢复，八项计时预绘计数零变化。
 - **viewport-refresh 712c32f2完整960/9**：每GPU区间重新draw整个当前视口并上传，原生裁剪保留，计时不分配。原生移动30.988→GPU移动41.333ms，配对+10.808/+9.883ms，约33.4%倒退，停止此实现。480计时重绘24.5ms/次、上传2.9417ms/次。原生/GPU静止13.183/40.604ms；13像素刷新＋480计时=493、上传495、copies494。2纹理/2CPU图/260像素图释放，47播放者恢复。画面仍不合格，非实战，不部署。
 - 两份独立复核：wholeworld-settle/verify_runs.py→runs-review.json（前6轮）、viewport-refresh/verify_run.py→run-review.json。每轮526正式/13运行库/86源/脚本保持。AIR58696/68948/64972/65440/30136/41748/21864均退出；实际占用再即时查询。cost/verify_runs.py是未运行的冗余草稿，不作为证据、不提交（删除失败未转路处理）。
+- **region-refresh 8aeeac0b完整960/9**：固定所有预备视口交集中的512平方区域，每GPU间隔重画/上传，并以不透明背景清除旧区域再合成。原生移动30.7375→GPU26.0667ms，配对−4.6333/−4.7083，改善15.20%；静止11.6958→26.1208。480次CPU重画11.8875ms/次、上传0.4229；仅一块区域已消耗大部分收益。首PNG实看为密集敌人/数字/地板，133848像素非透明，并非空区。13组RGB77–137/alpha0仍拒绝；原生自然/恢复精确。9CPU/8纹理/260像素图释放，493刷新/501上传/501copies，49播放者恢复（26隐式）。
+- **region-items a4b28765超时失败**：试按层序逐对象画区域，只有351区间：原生静止120/移动120/GPU静止111，未到GPU移动，不能作完整配对。GPU静止均770.378ms，已采111更新重画756.315ms/次，其中draw745.640、筛选6.811；每次查询2368、剔除1671、仍draw697。还有一次已执行但未采间隔的更新，独立审核明确保留；不延长/重跑。首区域419像素不同、maxRGB29/alpha32；不合格。13像素/18自然组原生恢复精确，10CPU/8纹理/260图释放，41播放者恢复；生命周期125刷新/133上传/134copies，清理通过。
+- **item-profile 95db1be6完成短剖析，0帧率区间**：首区域707次draw共974ms，578根几何界在区外（844ms）。474个带DropShadowFilter的箱子/家具/门共689ms；105 Bitmap带scrollRect共157ms，93个几何界在区外。是失败候选的过度保守剔除和重复draw成本，**不是原生舞台根因证明，几何界也不含滤镜外延**。13整图RGB255仍拒绝；恢复精确。10CPU/8纹理/260图释放，42播放者恢复（23隐式），13刷新/21上传/22copies。
+- 新三目录各有RESULTS、verify_run.py→run-review.json，全部正式526/运行13/冻结86源与输入保持；AIR31808/52276/23204均退出，最后登记为空。新候选均不部署；整个任务仍未完成。
 
 ## 5. 已知边界与停止路线
 
@@ -59,14 +63,15 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 ## 6. 下一步（目标保持活动）
 
-1. 完整固定世界呈现已有可用代价上限证据；整视口逐帧重绘明确太慢。下一步先测**有界局部更新**，确认CPU重绘是否随变化区域明显下降，再考虑完整动态绘制结构。不要把只刷某个假定区域当真实动态正确性；旧位置/新位置、子弹尾迹、图块新生/销毁、弹痕和门变化都要保留。
-2. 画质问题未解决：混合/发光与伤害数字有大于RGB2差异。需具体定位层和对象，不能改口成可忽略误差；GPU readback尚未证明Windows窗口呈现。完整固定图不是产品，不直接部署。
-3. 能够保持动画后，再做有敌人/无敌人的真实输入镜头移动对照；全部区间保留。当前原生近原版基线需同尺寸/同路线，旧2032固定cam(56,42)不是运动基线，不能复用作收益分母。
-4. 通过实际门禁才备份、本机部署、安装复验；A796/CS0.9.0已安装版本保持。继续测试前查共享占用，不清理他人游戏。
+1. 完整固定世界有59%上限收益，但整视口刷新倒退、单块512刷新仅15%，逐对象draw更严重倒退，均不得原样重跑。短剖析已指出候选把大量远处DropShadow物件与scrollRect Bitmap逐个画进小区域；下一步研究**可靠效果边界的批量剔除＋一次整树绘制**，或复用原有Bitmap，减少重复原生draw。先验证边界和成本，不能仅凭几何界删除阴影。旧far-singleframe明确未覆盖带滤镜根，但其无收益证据仍保留，不混为同一已证实原因。
+2. 仍无完整动态追踪。区域交集/样式资格缓存依赖冻结动画，仅诊断；不能把固定区域当真实动态覆盖。旧/新位置、弹体尾迹、新生/销毁图块、弹痕、门和特效变化都须保留；先证明动态成本与正确性，再谈部署。
+3. 画质问题未解决：混合/发光与伤害数字有大于RGB2差异；逐对象区域还出现alpha32，不能忽略透明度变化。需具体定位层和对象；GPU readback尚未证明Windows窗口呈现。完整固定图不是产品，不直接部署。
+4. 能够保持动画后，再做有敌人/无敌人的真实输入镜头移动对照；全部区间保留。当前原生近原版基线需同尺寸/同路线，旧2032固定cam(56,42)不是运动基线，不能复用作收益分母。
+5. 通过实际门禁才备份、本机部署、安装复验；A796/CS0.9.0已安装版本保持。继续测试前查共享占用，不清理他人游戏。
 
 ## 7. 接续入口
 
-- 本轮：build/generated/camera-stage3d-wholeworld{,-late,-nullslots,-observed,-cost,-settle}-20261027/ 与camera-stage3d-viewport-refresh-20261027/的prepare.py、probe_patch.py、run.py、README/RESULTS；对应knowledge/experiments/evidence/*-r1为原始证据。
+- 最新：build/generated/camera-stage3d-{region-refresh,region-items,item-profile}-20261027/的prepare/probe_patch/run、README/RESULTS、verify_run。前轮wholeworld{,-late,-nullslots,-observed,-cost,-settle}与viewport-refresh同根；对应knowledge/experiments/evidence/*-r1为原始证据。所有运行过的生成配方冻结，不原地改后重跑；后续另起目录。
 - 新旧完整停点归档：state/MEMORY-history-20261027-wholeworld.md；更早MEMORY-history-20261026-2340.md、MEMORY-history-20261023-0818.md。journal顶部本轮和前轮链。
 - 85源种子receipt：knowledge/experiments/evidence/camera-atlas-paged-combat-20261025-r1/probe-build.json（983727AE）；frozen f298932b38e24919991997c68e0a8b8a，probe29AF。新变体86源。lineage入口camera-terrain-layers-20261025/lineage.py只允许登记器8B35→E9F5这一变更。
 - 隔离调用沿各run.py，先prepare.py生成并校验源码；共享登记game、独立桌面、唯一ID/存储、≥4GiB提交和≥2GiB物理内存。Python在用户.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe，Java在D:/Program Files/Adobe Animate 2024/jre/bin/java.exe，Flex/SWC/ffdec在Sandevistan/build/tools。

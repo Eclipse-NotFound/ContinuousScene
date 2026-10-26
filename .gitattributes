@@ -90,3 +90,6 @@ build/generated/camera-stage3d-wholeworld-observed-20261027/** -text whitespace=
 build/generated/camera-stage3d-wholeworld-cost-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
 build/generated/camera-stage3d-wholeworld-settle-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
 build/generated/camera-stage3d-viewport-refresh-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-stage3d-region-refresh-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-stage3d-region-items-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-stage3d-item-profile-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
