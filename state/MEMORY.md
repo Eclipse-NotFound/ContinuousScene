@@ -36,7 +36,7 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 ## 4. 当前实测停点（2026-10-27）
 
-前轮7次＋本轮3次隔离运行，正式文件未变；完整world绘制出现**固定画面上限收益**，局部动态成本仍未解决，尚未成为合格产品。
+前三批7＋3＋3次隔离运行，正式文件未变；完整world绘制有**固定画面上限收益**，局部动态成本仍未解决，原生GPU模式本轮也未显示优势，尚未成为合格产品。
 
 - wholeworld初轮25f57170：立即停止22个显式时间轴，预备后24个轴仍变帧；65图释放/0计时/恢复失败。late 99c35ff8：延后停止，遍历空节点，65图释放/0计时/清理通过。nullslots f22d6e66：7444节点/1670多帧，本轮空槽0；24个isPlaying=false的osn/Bloodwing子轴仍变化；7纹理/8临时图/65像素图释放，恢复失败。旧失败均保留，未证明空槽根因。
 - observed 3c3ad63c：8间隔实看帧变化，停止47（24隐式），无变化；首视角92738像素差异，604像素RGB≥3、最大112/alpha0/精确恢复，0计时。80像素图/8临时图/7纹理释放。已看完整PNG，发光边缘颜色差异，具体混合原因未证实。
@@ -49,6 +49,9 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 - **region-items a4b28765超时失败**：试按层序逐对象画区域，只有351区间：原生静止120/移动120/GPU静止111，未到GPU移动，不能作完整配对。GPU静止均770.378ms，已采111更新重画756.315ms/次，其中draw745.640、筛选6.811；每次查询2368、剔除1671、仍draw697。还有一次已执行但未采间隔的更新，独立审核明确保留；不延长/重跑。首区域419像素不同、maxRGB29/alpha32；不合格。13像素/18自然组原生恢复精确，10CPU/8纹理/260图释放，41播放者恢复；生命周期125刷新/133上传/134copies，清理通过。
 - **item-profile 95db1be6完成短剖析，0帧率区间**：首区域707次draw共974ms，578根几何界在区外（844ms）。474个带DropShadowFilter的箱子/家具/门共689ms；105 Bitmap带scrollRect共157ms，93个几何界在区外。是失败候选的过度保守剔除和重复draw成本，**不是原生舞台根因证明，几何界也不含滤镜外延**。13整图RGB255仍拒绝；恢复精确。10CPU/8纹理/260图释放，42播放者恢复（23隐式），13刷新/21上传/22copies。
 - 新三目录各有RESULTS、verify_run.py→run-review.json，全部正式526/运行13/冻结86源与输入保持；AIR31808/52276/23204均退出，最后登记为空。新候选均不部署；整个任务仍未完成。
+- **region-prune ede79fe6完整960/9**：按原生generateFilterRect计算保守效果外延，单位平移/反射、无遮罩/scrollRect；仅同步draw期间隐藏475阴影根、finally恢复。13区域与原生RGBA完全相等。仍31.4667→26.6542ms，配对−4.0333/−5.5917；CPU区域更新13.1458ms/次、上传0.3979，没有突破此前约26ms。与旧不同运行不能精确归因剔除净差。扫描1678/不支持163，预备32ms；479临时范围图＋10常规图、8纹理、260像素图释放，234175隐藏/恢复平衡，44播放者恢复（27隐式）。不扩大此每帧剔除路线，未部署。
+- **native-direct/gpu 39a87632同探针EE82**：原生窗口模式隔离对照，各960区间，1280×720/1倍/相同房间与逐帧镜头坐标，两边实际mainMenuOff；旧room-axis基线没移除菜单，不能直接比旧数字。direct静/横/纵/组合17.7208/20.7833/20.2417/22.1125ms，gpu20.4083/23.2750/21.6042/23.2917；实际模式报告正确但未见优势。**世界149/155单位，玩家初始x不同，Flash时间轴活动，不是纯模式因果比较，也未证明底层硬件路径**。软件截图重复相同不证明GPU窗口/滤镜正确，未部署。测试描述符精确存档、runtime原字节B0375AD1恢复。
+- 最新两目录region-prune与native-gpu的RESULTS/verify_run或verify_pair完成独立审核：526正式/13运行库/86源、全部输入与2880区间；AIR31884/33656/31736退出，最后登记空。A796/7F1F正式安装保持，根目标未完成。
 
 ## 5. 已知边界与停止路线
 
@@ -63,7 +66,7 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 ## 6. 下一步（目标保持活动）
 
-1. 完整固定世界有59%上限收益，但整视口刷新倒退、单块512刷新仅15%，逐对象draw更严重倒退，均不得原样重跑。短剖析已指出候选把大量远处DropShadow物件与scrollRect Bitmap逐个画进小区域；下一步研究**可靠效果边界的批量剔除＋一次整树绘制**，或复用原有Bitmap，减少重复原生draw。先验证边界和成本，不能仅凭几何界删除阴影。旧far-singleframe明确未覆盖带滤镜根，但其无收益证据仍保留，不混为同一已证实原因。
+1. 停止继续微调每帧完整/局部draw：固定世界59%上限、完整视口倒退、512区仅15%、逐对象draw严重倒退、475阴影根批量剔除仍约26ms。下一步检查**复用游戏已有Bitmap及按实际变化失效的缓存**，减少每帧重新栅格化，而不只缩小绘制区域。先追清可复用图像、变化时机与混合/层序，再做正常动画原型；不要直接启动未经证据支持的全显示树重写。原生GPU模式未显示优势，当前不推进配置切换；若重评须固定世界快照和真实窗口取证。
 2. 仍无完整动态追踪。区域交集/样式资格缓存依赖冻结动画，仅诊断；不能把固定区域当真实动态覆盖。旧/新位置、弹体尾迹、新生/销毁图块、弹痕、门和特效变化都须保留；先证明动态成本与正确性，再谈部署。
 3. 画质问题未解决：混合/发光与伤害数字有大于RGB2差异；逐对象区域还出现alpha32，不能忽略透明度变化。需具体定位层和对象；GPU readback尚未证明Windows窗口呈现。完整固定图不是产品，不直接部署。
 4. 能够保持动画后，再做有敌人/无敌人的真实输入镜头移动对照；全部区间保留。当前原生近原版基线需同尺寸/同路线，旧2032固定cam(56,42)不是运动基线，不能复用作收益分母。
@@ -71,7 +74,7 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 ## 7. 接续入口
 
-- 最新：build/generated/camera-stage3d-{region-refresh,region-items,item-profile}-20261027/的prepare/probe_patch/run、README/RESULTS、verify_run。前轮wholeworld{,-late,-nullslots,-observed,-cost,-settle}与viewport-refresh同根；对应knowledge/experiments/evidence/*-r1为原始证据。所有运行过的生成配方冻结，不原地改后重跑；后续另起目录。
+- 最新：build/generated/camera-stage3d-region-prune-20261027与camera-native-gpu-20261027的prepare/probe_patch/run、README/RESULTS、verify_run/verify_pair。再前region-refresh/region-items/item-profile、wholeworld{,-late,-nullslots,-observed,-cost,-settle}、viewport-refresh同根；对应knowledge/experiments/evidence/*-r1为原始证据。所有运行过的生成配方冻结，不原地改后重跑；后续另起目录。
 - 新旧完整停点归档：state/MEMORY-history-20261027-wholeworld.md；更早MEMORY-history-20261026-2340.md、MEMORY-history-20261023-0818.md。journal顶部本轮和前轮链。
 - 85源种子receipt：knowledge/experiments/evidence/camera-atlas-paged-combat-20261025-r1/probe-build.json（983727AE）；frozen f298932b38e24919991997c68e0a8b8a，probe29AF。新变体86源。lineage入口camera-terrain-layers-20261025/lineage.py只允许登记器8B35→E9F5这一变更。
 - 隔离调用沿各run.py，先prepare.py生成并校验源码；共享登记game、独立桌面、唯一ID/存储、≥4GiB提交和≥2GiB物理内存。Python在用户.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe，Java在D:/Program Files/Adobe Animate 2024/jre/bin/java.exe，Flex/SWC/ffdec在Sandevistan/build/tools。
