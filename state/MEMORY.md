@@ -1,193 +1,75 @@
 # ContinuousScene — 当前快照
 
-最新停点（2026-10-26晚，优先覆盖下文运行状态）：pool实战r1/r2均480/26、零计时位图分配，平均53.1417→47.7083/49.225→47.4542ms，但两轮不稳定、第一轮配对相反；准备344/275ms，逻辑像素容量200MiB，长帧仍160/221ms。AIR65176/44888退出，不部署。pool-paused-v1在init被旧战斗门控拒绝、菜单600秒所有者超时，0样本，AIR54020按finally清理；原失败保留。v2只限定战斗门控为非presentationCheck，完整960/9通过，AIR33024退出；移动30.5667→27.425ms，两对同向，静止19.3958→21.2375变慢；五视口RGB1/alpha0/恢复0、两几何回退精确、19截图释放、64池位图分两轮全释放、27逻辑页/11淘汰和回访真。计时无物理分配，八地形计数不变，但跨页220ms帧准备185ms仍在。
-
-最新stage-cost-r1只为同35956ECD池增加四段观察，冻结b46de033，实际960/9、资源/像素/输入守恒、AIR67816退出。移动28.475→24.9458ms为带观察对照；本轮没复现185ms，原生镜头均.35/最大2ms，合图呈现均1.258/最大7ms，守卫/快照很低。合图148ms长帧准备3ms，原生静止140ms准备0；不能由此命名GPU/GC或认定已解决。没有存活自有AIR，新产品未部署，目标active。下一步先减少静止状态约.84ms的无用合图扫描，再验恢复移动时弹痕更新、SATS/缩放及完整兼容；实战结果仍不够稳定，不能以暂停收益放行。各RESULTS.md为入口。git里程碑0cb94a7已保存前批证据；src/tests/SceneRenderChecks.as仍属他人WIP。
-
-当前停点（2026-10-26，覆盖下方历史运行/等待）：共享登记器修复已获明确授权并提交ModLoader08957b4，15项回归通过。terrain-layers-r1完整960帧，原生35.2875/全地形隐藏29.5583ms，仅归因；backdrop-cache-r1真实960帧但汇总误用4父层断言，独立校正摘要保留原failed，原生移动35.6208/缓存38.5875ms，停止不部署。详见两目录RESULTS.md。
-
-camera-atlas-short-combat-20261026-r1/r2均完整480帧/26检查，冻结10c85dfb，85源只把旧探针四段300改120并更新版本；武器、6敌、原生冲刺/击退/碰撞完全保留。两轮原生→合图55.9208→51.5458、57.4375→51.7542ms，四对同向，真实镜头变化每窗115–118次；初造150MiB仍有281/212ms尖峰。两轮全部输入守恒、清理通过、AIR52400/38440退出。仅约8–10%线索，非近原版完成、非视觉/长时验收，不部署。
-
-后继budget-r1也完整480/26，实际24分配帧/23准备帧、每次一图，均51.4→45.9208ms但两对相反，最大291ms仍在准备期间。单张分配帧自身55/43/58ms，不推断回调外成本为GC/GPU。停止分帧分配作为修复，不部署。pool候选35956ECD改为计时前预留200MiB、运行仅借还复用；其A诊断保留不可见池不更新像素，普通关闭仍完整释放，必须单独验加载和像素。源已准备，camera-atlas-pool-20261026-r1正在共享登记等待/构建，exec50815。当前无新产品部署，目标active。
-
-登记修复细节：系统复用PID自行退出后原recover释放11d714；必要CIM回退源E9F51CB7，首轮临时清理错误保留，没有关闭系统/玩家进程。新lineage.py只允许旧工具8B35→E9F5精确变化，85源/探针/旧收据/其他输入保持。无新的产品部署。用户核心仍是镜头移动，不以删敌人或降画质冒充改善。
-
-最新停点（2026-10-25 23:35以后，覆盖下方历史“正在运行”）：用户明确以镜头移动（不论敌人是否出现）为核心，目标active。camera-axis-trace-r1已完整960帧/961原生锚点/3361341条记录，两次流式解析完整，原生与getTimer全程差-1.087ms；五视口精确、10图释放、八计数逐帧不变、输入守恒、AIR46520正常退出。带记录时静止/横/纵/组合37.504/90.313/77.442/85.733ms，paintbits各10.043/41.881/37.078/43.758ms。支持继续查原生画面绘制，不是GPU证明或正常游玩性能，分类嵌套不可相加。TCP reset而非FIN如实保留；全部标记/完整流/正常退出满足资格。临时.telemetry.cfg已删除，已通知RC (2)释放时段。无新部署。下一步camera-terrain-layers四种可逆地形父层显隐、全部相同移动路线；r1编译通过但CreateDesktop拒绝访问，0 AIR。r2按原授权提权复用构建并在共享登记等待，exec18145；不关闭任何他人窗口。
-
-原生telemetry能力v1失败保留；独立v2实际120帧/3400条/1432绘制span、20校准通过。首次游戏axis-telemetry-r2因180秒记录时限在769帧中断且无sendMetric标记，3257097完整记录+尾部截断，不能当完整结论。AIR.dll只读信息指出子SWF EnableTelemetry被忽略。准备的测试宿主tag93写入及精确grant均被hook拒绝，两条未执行；camera-axis-telemetry-v2/STATUS.md明确禁止转路重试。后来trace路线不改任何宿主字节已通过。RC2C49/animfix1由负责人部署，核verified.json(5446D95A)，旧78C证据不重标。camera-bitmap-fill-r1完整960帧但0.46%且两对反向、静止更慢，已停止；README已纠正vendor的BSD/Apache许可区别。所有正式文件不变。
-
-当前执行范围（2026-10-25晚，优先于下方历史停点）：用户已重新明确“可以进行测试”，并强调“以镜头移动场景（不论敌人是否出现）为核心”。恢复登记后的隔离测试；不关闭用户或其他任务的窗口。活动范围候选保留但暂不优先，不用减少敌人演算冒充解决镜头问题。mouse-world-v4-r2实际完成1200帧/30检查，A59.613/B57.807ms仅约3%，敌火力482/337不同，不能认定主要原因，不部署。AIR46000退出、正式526和运行库13保持，见RESULTS-R2.md。正在运行camera-world-motion固定暂停场景的可见/隐藏×静止/移动归因：先沿路预绘至八计数稳定，960帧正反序；不是产品方案或真实无敌人游玩验收。近原版目标未达，无新部署。
-
-最新实测覆盖上句运行中状态：camera-world-motion v1/v2因显隐后武器局部像素不恢复均0计时、状态清理通过，原失败及六PNG保留，停止显隐控制。camera-axis-motion-r1已完成960帧36532ms：静止29.821、横41.304、纵37.125、组合43.967ms，正反序全同向；八原生计数逐帧零变化，五组原生重复图全等/10张释放，原30fps/试验120fps恢复，AIR51420退出。支持镜头运动本身有开销，不能称GPU归因或产品收益。RESULTS.md为入口。
-
-最新候选camera-scroll-cache r1登记等满300秒、未构建；按既有授权协调两个RC会话后r2完整960帧32967ms，五视口RGB1/alpha0/恢复0、15图释放、八计数逐帧不变、正式526及runtime13保持。原生移动36.750→缓存43.438ms，两对均变慢，约18.2%倒退；静止28.013→29.163。停止四父层原生scrollRect+cacheAsBitmap路线，不部署；实际内部缓存分配未知，不凭请求true推已复用。AIR50680已退出、登记036044结束，已通知RC恢复时段。目标active，近原版未达；本轮没有存活的自有AIR。下一步继续镜头呈现主成本，可查不同显示表示（如共享原生像素的批量纹理填充），仅假设，未实现，不重复已失败显隐/滚动缓存或改敌人数代替修镜头。
-
-保留候选activity-camera-range-20261025：原7F1F六类仅改两类并增加898D预测视口helper，5组战斗/弹体/45tick/wake原段逐字保持，不叠加activity-release；条件性数学适配313800结果0违例，同时保留晚到quake/玩家瞬移/scale越界反例。29AF探针85→86精确可逆，最终准备9d862774；源未编译、未跑游戏，隔离运行器尚待接入。详细停点见该目录RESULTS.md。
-
-最新停点2026-10-25晚续：terrain-v2-r1完成1200/26，原生56.185ms/摘树56.055ms，差仅0.13ms且两对−1.073/+0.813反向；停止路线、不部署。最多336节点离树，计时716摘/还、终态再332，进入恢复380，107+16追加且0Drop；终态2032×1084三图精确一致，3图释放，221ms在计时外。正式526保持，AIR16324退出，v2/RESULTS.md完整。mouse-world v1/v2/v3均0性能样本：v1窗口前置失败0消息；v2一消息但Python5秒先杀、缺result；v3等待20秒取得原AS失败详情：实际world命中且direct Stage1016,542正确，event.stage1016,539偏3被原±1拒绝，原可见性false/设置true/结束恢复，AIR53824退出。v3/RESULTS.md保存边界。准备v4分离直接坐标与派生event观测，不扩大原容差、不猜偏差原因；尚未编译/运行。近原版目标仍active，无新部署。
-
-最新停点2026-10-25晚：owned-mouse-capability-v4完成独立私有AIR三目标真实WM_MOUSEMOVE事件、实际Stage坐标及事件后Timer读回；AIR34600正常退出，22运行输入保持。前三版失败保留（文档根name、客户区尺寸、记录文件读取替换冲突），v4用不可变编号观察文件，能力通过不等于游戏/性能通过。详见build/generated/owned-mouse-capability-v4-20261025/RESULTS.md。正在准备mouse-world-native-20261025真实29AF战斗内单次中心消息、实际坐标恒定、鼠标树ABBA；未编译/运行。native-terrain-detach-r1编译056C8CF0成功但第一A第74次update发现正常surface数量变化，初始109/436，detaches=held=0，0完整段/无像素或收益，AIR49264退出、526正式保持。r1结果完整保留，v2只在新目录准备原生尾部追加/Drop兼容。无新部署、近原版目标仍active；其他会话WIP不动。
-
-最新停点2026-10-25：static-box-census-r1已完成1200/26，603准确Box、207固定、89非门、8无交互，最后8全因lurk非零排除，0结构合格/0未知；仅3条ID样例为niche1。停止固定Box摘树，不扩大白名单。603数组/链共同身份、0独有，已修正shared-knowledge/world-objects/facts/object-containers.md的过强不入链说法，旧实验保留。终态41ms在计时外，均50.6933ms无优化臂不是收益；44脚本/10夹具/13runtime/526正式/86源保持，AIR18080退出。详见build/generated/static-box-census-20261025/RESULTS.md。下一步仅准备owned-mouse-capability-20261025：旧mousetree的真实Stage鼠标始终(0,0)，没有覆盖指针位于场景中时的底层选择；只限新建私有桌面自有AIR，少量WM_MOUSEMOVE+真实事件读回，不激活窗口、不改全局鼠标、不用Ghost。能力未运行、无新部署，镜头目标active。
-
-最新2026-10-25：活跃线程IP实测完成1200/26、134份IP/124入窗、68批CPU计数。忙线程62份中AIR未命名39、未知8、等待10、临界区4、GDI1，不能从位置次数推CPU占比或渲染/GPU瓶颈。均52.8617ms无成对基线，不是收益或退化；进程约2.184核，134暂停均恢复，总15.72ms。独立复核43脚本/7夹具/13runtime/526正式/85冻结源保持，AIR10512退出、登记释放。详见build/generated/owned-native-stack-20261025/IP-RESULTS.md。停止扩展同类低频原生采样，正准备只读静态Box终态清点，尚无摘树候选/收益/新部署。参考Box死亡与Location链缺口已经精确调用授权补读关闭，准确宿主和素材事件资格仍待核。镜头目标active。
-
-更新：2026-10-25镜头目标仍active，未达近原版，无新部署。本轮stage-quality-native-r2完成1200/26，实际HIGH/LOW/LOW/HIGH各300、恢复正确，均57.8383/53.4133ms，但火力365/303、预绘63/43不同；差4.425ms不作生产收益。原生线程查询20次3185ms扰动保留；r1描述符单行锚点失败仍保留。详见build/generated/stage-quality-native-20261025/RESULTS.md；不降画质，不重复此诊断。
-
-活动锁存候选已准备并编译，未部署：build/generated/activity-release-20261025/STATUS.md为入口。当前CS source-v3（只准确Raider/Merc/Slaver、独立lease、旧wake永久、释放后每次复核原生警戒、避免参战者额外弹体扫描），access-v2/extern-v2拒绝rapid<=0；TDFC候选v2基于正式7ACD保存brain/冷却/报告及队形，pending两端到原deliver前暂保活。不得合入live AuthoritySession/B190。首编CS初稿AF64有再次alarma遗漏，已弃用不可运行；新的产品形状编译BA20与带只读观察B0E1分开保留。
-
-真实activity-release-native-r1（AIR31196已退出）1200/26且原生冲刺/双方实弹通过；6个真实宿主Class相等、30个实敌闲置判据true。末态released0、没有engaged且mayRest者，12个engaged仅6个近处测试Raider和6未知家族，无释放收益证据。单轮52.0567ms不能和带线程观察旧轮比；报告/手雷/再次报警/醒来视野生命周期仍未验，不部署，不反复同一固定战斗挑结果。正式526/运行库13守恒，result670214F8。后续优先镜头主成本的原生线程执行位置归因；正准备owned-native-stack-20261025仅新建自有Python worker的能力冒烟，尚未在AIR采样，不用管理员ETW、不下载符号。
-
-窗口显隐r1（EAD18FDE，result7026DB47）1200/26/74109ms，隐藏61.553/可见61.962ms，两对差+.693/.123ms，无主要收益，停止。叶sleg20_53目标缺失、0样本/0像素，AE71EE22 inconclusive保留停止。纯地形/direct-cpu/分页等旧路线保持停止。现有正式A796/CS7F1F/RV638E/RC78C未改。原生ETW离线消费器native-cpu-profile已真TraceEvent3.1.13 API冒烟，无真实ETL；普通及sandbox外进程都非管理员，未录制/安装/下载。不能把回调外约40ms或无窗口线程直接命名GPU/渲染。
-
-## 1. 模组与体验
-
-连续大场景把多个原版房间合成一个 Location；全图碰撞、敌人、物品预先生成，镜头与弹体可连续跨房。画面按视野提前分批绘制，远处未参战敌人暂缓行动，追击者和飞行弹体保持运行。CS0.9.0另支持可编辑的单一大地图，原版房间仅作样例素材。入口类 ContinuousSceneMod；正式文件 release/ContinuousSceneMod.swf。
-
-原版任务由设置“以连续大场景载入原版地图”控制，下一次生成/读档生效；基地、后室和挑战保留原入口。普通返回/重新出发/随机图读档分别遵循原版保留、重置和回基地规则。内部相邻房间三角标记已移除，保留地图外沿和真正出口。
-
-## 2. 用户约定与职责边界
-
-- 2026-10-25用户明确接受RGB最大差2/255、alpha不变继续候选验证；实际战斗明显提速与功能正常仍是部署前提。先前RGB1失败保留，不回填通过。无需再为同范围重复询问。
-- 当前性能任务用户进一步要求多实体、密集子弹、高速移动战斗接近原版；前轮约15%改善不代表新目标完成。2026-10-23检测到玩家重开游戏后，用户再次答复现在保存并退出。不要重复问已授权事项。
-- 保持原画面、战斗机制及跨房连续性。已允许视野预绘与远处未参战敌人暂缓行动。
-- 新反馈是跳跃明显卡顿、探索越深越明显，用户尚未试回起点比较。已明确接受纵向镜头缓冲及测试：普通跳跃少移动，持续升降仍连续跟随；这项镜头手感变化无需再问。
-- 必要兼容授权包括 RV、WallBlend、LAD、TDFC、RConnect；RC协调已明确授权。RC负责人会话01a086bb-378c-7f60-b8e1-50d90ffa0996集中维护、构建和部署RC，本侧不并行覆盖它。
-- 性能根会话01a13816-367b-7261-8e11-ca9152565dd9。所有游戏测试登记、唯一AIR ID、私有桌面、独立存储；不写真实APPDATA/pfe，不关闭用户或其他任务的进程，不用Ghost。
-- 用户已要求撤回10月21日下午配方：绝不重新安装7D42/5432宿主或旧整包配方。
-- 另一会话天角兽候选仅源码：1bf0e7b、src/patches/SceneAlicornAlerts.as.inc，不构建、测试、接入或部署。候选仅发送者X±960/Y±500（含边界），穿墙/跨旧房可通知；不擅改瞬移/支援人数/记忆。
-- src/tests/SceneRenderChecks.as 是其他会话WIP，不恢复、不提交。无AGENT_SCOPE.md文件，未自行创建受保护薄壳。
-
-## 3. 当前安装与候选
-
-当前正式宿主在用户要求回退后的BEFC上保留已验证的遮挡格复用，并新增用户接受的纵向镜头缓冲；CS保持7F1F。RC和RV由各自负责人独立更新，不计作本轮算法改善的收益：
-
-- root pfe.swf：A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7；state/scene-tint-deployment-20261024.json为verified，candidate-r1/installed-r1各20项通过。精确ABE2上仅Grafon.sceneUpdateEntityColor/sceneEntitySameColor变化，5769其他方法体、1016类/初始化器与素材保留。ABE2纵向缓冲和80CF遮挡格复用均继续保留；没有增加生产计时/诊断开关。
-- CS0.9.0：7F1F2961C6E299D949423591F3C65C610C2EAEFA7FC72E8A583A402770D6B51F。
-- RC由负责人独立更新为0.2.24-animfix1：2C49DFD05D524085EA43FB8FFA537D1A9359FEBD52FB13D6A19FAAE6E2563621。build/m52/a-live-animation-deploy-01/verified.json（5446D95AAA1552622CF1E691BBDE5C962875897014CF5C06A452A95037ACBC3B）status=verified，安装后691c5ccdb4。camera-axis-telemetry r2起按新输入；早前78C/roomfix5、DF0F/aura1证据保留原标签，不把RC更新当本侧优化收益。
-- ModLoader现为2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2，2.5.0/FrameRecorder1.0.0安装回执verified，telemetry enabled:true。此更新由负责人完成；本轮TDFC r6开始按新依赖冻结，旧BD71环境配对仍是历史组合。
-- RV负责人2026-10-25已独立部署0.33.10-render-cache：638E2D408E2CF46683C41114F75773829A1B4417D74BFFE9D08855A4FE343710，build/combat-render-output/deployment/receipt.json为PASS；本轮paged r1起采用此组合，未把其收益计作CS合图效果。
-- 历史TDFC7ACD、LAD8ADB、WB1411；RV负责人此前独立部署0.33.9-effect-load，BF4AC9CD87272B03FAE7EC22EE67D045F037362F412EE801CAD3F9BA9FE3AFEF。effect-load-v3-output/deployment/receipt.json记录PASS与独立启动清理。新镜头组件r3、跳跃r2和TDFC LOS战斗实际使用的是历史0DBE/0.33.8，不重标成BF4A；更早6DBB亦保留原标签。RV负责人测得自身更新函数约20%/6%改善，但完整战斗帧没有一致显著改善，不计作本任务近原版已达。
-- 前轮offline1已测生产输入与部署回执保留：../RConnect/build/m52/recovery-offline-production-01、../RConnect/build/m52/recovery-offline-deploy-01/deployment.json；当时状态deployed-smoke-passed，回执SHA256 7DB4BDC4F9BF9317A96EC51DB3076A5B8F0D49BBC9254692142BE92F7065EE86，不作为当前aura1部署回执。
-
-历史EB365基于准确574D冻结源，仅三类和版本变化；未联网时跳过两组弹道/身体效果历史采集。首次host/join尝试即永久恢复采集（直到进程重启）；null、异常、非严格true均保守回退。保持墙面、感知、实际呈现、失效刷新和联网路径；生产包无诊断开关。其旧对照与门禁保留历史标签，不跨组合计算新收益。诊断88CC不得部署。
-
-CS编辑器0.9.0已于10月20日安装并复验25+22项：Editor7344、EditorTools02F5、CS7F1F，168固定箱体逐件对应。192×50研发部样例，地图编辑器.vbs→大地图，应用maps/active.xml后重新进入读取；nativeEnabled独立。当前性能任务不重建编辑器。
-
-## 4. 当前任务进展与停点
-
-固定页候选见build/generated/camera-atlas-paged-20261025，r1配方5192969，探针92AA0134。5view跨页保缓存RGB1/alpha0/restore0，两种force几何回退全等，19截图/27页/108位图全释放，峰8页/200MiB；实际11个key、淘汰与回访复用均真。960帧32857ms，但原生warm发生在全部移动窗，A移动55.108/40.458与B38.125/42.842方向不一，不归因提速。r2探针F73FC719，六遍750次/34336ms后预绘稳定；960帧31903ms、逐帧八计数全零，像素/回退/资源通过。移动两对38.675→34.9583、48.2833→36.8167ms，合并约17.46%；静止25.52→28.04。首B115ms含work83/6页，后235/264/315ms仅work4/2/0，不能归GC，不能称实战收益。计时两B移动仍各新建6页/150MiB，分页不等于已消除分配停顿。
-
-same-frame size-compare-r1（B1FE87）前三view旧/新均RGB1，第四旧/新均560像素/maxRGB2，alpha0、两次restore全0，玩家/计数不变，20/20释放；旧标准failed保留，pow2修复假设否定。新RGB2授权后回原C0E4物理尺寸准备motion-only：仅实际vx/vy/scale变化才呈现合图，静止保留native显示但缓存保留；首造/全部同步逻辑仍在，尚不能宣称解决首次或战斗。helper像素update第三参force=true并断言presented，计时2参+逐帧actual presented门禁。presentation_transform 2A4D350、探针6BBCE1，r1已实测960帧31134ms，实际呈现0/0/0/119/120/1/0/0；五view均RGB1/alpha0、恢复0、15/15释放，八计数/玩家不变。移动两对37.1167→31.0417及44.9833→31.9583；首B213ms、其他138/228ms尖峰全保留，仍只暂停诊断。后续motion-combat r1仅Main+Atlas两源/85文件，真实4×300计划只完成前600帧：第三段X4302.160<safe4305，失败保留。完整A/B均63.923/60.617ms、敌511/557、预绘0/1块，294/300 B呈现；两重建301/145ms、109.375MiB。第三段171条probeTiming不拼完整帧，终态清理全0。场地已全图扫描，最长1120仅多80，初始两侧敌后全聚右侧，不能盲重跑；现静态筛Rooms原版宽平台并核新场地。geometry guarded 642B4A仅可逆纯变换、未构建/运行。逐帧actual/previous呈现、世界坐标/quake、copy/rebuild和终态释放门禁齐全。Camera vx/vy为int，world小数来自震动/缩放；旧0.8+quake大色差仍未解决，RGB2授权不覆盖。
-
-pow2-r1（543030探针）完整960帧31744ms，五视口RGB1/alpha0、恢复0、15/15释放，预绘等八计数零变。移动两对均值35.783→34.333和45.425→35.842；第一对P9543→48变差，第二对65→46，静止新版本31.596ms比原生24.979慢，首建图348ms。四层物理存储前2view256MiB/后3view128MiB。此为不同随机世界，不能和旧r1跨轮归因像素修复。camera-atlas-size-compare正在准备同帧native/旧atlas/restore/pow2/restore，以旧失败新通过的实际反例决定是否继续；内存和静止退化未解决，不部署。
-
-独立成本诊断camera-atlas-cost-20261025-r1（E68CE探针）保留RGB1、alpha0和精确恢复门禁；只允许RGB超差后继续计时，顶层ok=false/唯一camera-raster-visual失败/登记failed不变，timingComplete单列。完整960帧30788ms，五视口中四个RGB2、一个RGB1，alpha全0，全部恢复零差，15/15释放；八计数全零增量。每模式240原帧，native移动37.0417/中35/P9545，atlas31.075/30/38；两对37.933→30.992、36.15→31.158同向，首次146ms构建和原生181ms尖峰均保留。static29.179→30.988；只支持当前暂停整数条件继续查像素。移动窗0重建/0复制，尚不能外推长距离或开火。旧atlas变体没试过右/下透明补尺寸至2幂；这只是尺寸敏感性新假设，不是已证GPU机制。
-
-2026-10-25恢复实测：旧strict r2首视口600像素RGB差1/alpha0，恢复零差，3/3截图释放，未计时。独立容差版701E源仍基于B7ED/39A冻结闭包，五视口532–823像素RGB1/alpha0、恢复全部精确，15/15释放；完整960帧总32397ms，预绘/驻留等八计数全不变、玩家不变。合并每模式240原始样本：native-static29.4667/中28/P9542，crop-static30.2125/28/45，native-moving37.4958/37/47，crop-moving37.8125/35/53；191ms尖峰保留，两个移动窗口方向相反，不能凭中位改善声称加速。guarded crop仅语法候选，未宿主组装或部署，停止推进。
-
-现有SceneRasterPresentation C0E4在相同暂停整数条件下另测camera-atlas-20261025-r1，探针8E14312、入图5388ms。前三视口RGB1，第4视口1078像素不同/maxRGB2，alpha全0、恢复全0、12/12释放；无windows/frames/samples，不作性能结论。原526输入与528隔离输入核对通过。旧atlas/rows原始复制无损但显示合并已出现max2，不重试补gutter/横条/延迟scrollRect。原生屏外根隐藏、摘树与缓存也已有无稳定收益反证，不能仅凭全图对象数量重复开展。源与证据在camera-atlas-20261025及同名evidence目录。
-
-2026-10-25离线候选准备：camera-crop-20261025以冻结75157仅抽六方法；逐方法Compare确认与实际A796一致，未整类重编旧源、未回退tint/lighting。helper163959提供单位整数/仅320资格、可见休眠副本、原生操作层同步/批量强制同步、SATS原图及候选错误计数回退。prepared/c7b27d86dbc54f0ea29b8ac403f66c1b；动态语法检查syntax-builds/c36a9c8fbe9d47699fa67992ef8430e2通过，首轮World桩同文件失败保留。原游戏/画面/性能均未跑，动态字段检查不能当封闭宿主集成验证。受保护RV/滤镜组合和640仍原路径，未解决全部目标。镜头诊断暂停后原生World仍有Camera/GUI/Pip/SATS，helper又调用Camera，不能称纯渲染成本。后续先实际验证679A归因收益，才组装实际宿主候选并验全部未改方法/兼容/战斗。
-
-2026-10-25镜头专项：旧tilecrop两次正向线索与后继nativecrop的像素失败已重新分清，不再与front-shadow混为一条路线。先限定整数平移测呈现成本，未承诺降低缩放/震动画面标准。诊断phase97保存并恢复Camera/显示/暂停/帧率等，Flash时间轴与其他回调仍活跃，结果只归因不当战斗验收。冻结probe-build位于camera-raster-20261024/probe-builds/probe-source/853bd6ac5a0b419db21bea201a463e32；主源CA8C/helper88A4/探针679A。用户保留B190 player-1/player-2窗口（当时88248/91064，后续须核身份，不能只凭旧PID）；只离线准备，不结束玩家实例。恢复实测后才决定是否推进生产裁块/即时同步及原显示回退，当前没有新生产修改。
-
-最新性能停点：sampler-capability实际AIR成功；combat-sampler-v1超过十万记录上限且角色越平台，失败保留。v2/v3各完成1200帧26项，但混合时间顺序失败；v3独立review确认956条CPU样本各自时间与索引严格递增，仅允许栈名称出现次数。顶层[render]/[pre-render]/[execute-queued]205/157/93，含FocusManager39、Turret.animate80，祖先栈可能只是排空全局动画队列，不是分配发起者。turret-timeline组件38组像素/引用一致、每侧141构造事件，未做跨帧，candidateEligible=false；停止炮塔简单选帧guard。focus-control v1/v2因错误空焦点假设而0样本失败；v3实际1200帧26项/44快照/67,492ms连续守恒，A/B均57/55.4867ms、敌740/699、预绘43/1slices，末两段仅差.9ms；整体关闭收益不够且混杂，停止不部署。公共恢复末态通过，唯一焦点循环和35ms重建保留计时。正式A796/CS7F1F/TDFC7ACD不变。
-
-弹壳线索已结束：45条Part.initVis包含栈中40条来自Weapon.shoot→gilza。单帧素材局部三对即时及真实ENTER_FRAME像素/引用通过；精确单方法50D6产物保留RNG及全部其他方法/素材。真实候选两轮分别900/0完整帧后击退越平台，没有完整性能验收，停止且不部署。正式A796的后续黑雾观测也在第四段击退越界，不能单凭候选失败断定其有回归。黑雾33快照均valid，屏内仅1–4显示根、面积和最大16614.545/2032×1084约0.7543%；只读扫描总208ms扰动计时，不作FPS。原始失败、冻结输入和独立审查见occlusion-census/README.md与partial-review.json。
-
-TDFC单条视线复用r6组件38对全等，但combat-r2 A/B均61.3067/60.4717ms，A预绘4块23slices、敌1010/904；收益不足不部署。checkShelf单行Y前置与tdfc-retreat-lazy均仅静态方案，未编译测益，不因现成源码就重复推进。所有诊断新源从B7ED/39A的85文件冻结闭包派生，不使用当前活源重建，保留其他会话WIP。
-
-最新闭环：两方法颜色修复A796已按本机持续授权部署，实际安装文件组件20项通过；三组组件和精确字节码审计见scene-tint-20261024.md。备份build/backups/scene-tint-20261024-110720-c26a0e46/pfe_before_ContinuousScene_tint_20261024.swf为ABE2，仅在正式仍为本候选时可回滚。原始r1比较器失败、内存预检中止和登记工具临时错误均保留。组件直接调用真实方法，不宣称完整跨区行走或长时间游玩验证。
-
-environment-control场景/普通房已各完成1200帧，精确同D972探针与全部输入，地形/路线/视口四项匹配。来源是B7ED收据冻结的39A原测试源，仅增加两次UTC/getTimer内存锚点，无cameraHold或新177块预备。当前A796上大图均71.479/中66/P95 109，普通44.585/41/65ms；脚本墙钟27.260/11.823ms、区间外余量44.232/32.759ms。大图敌1883射/平均夹具弹6.644、普通1316/3.999，初始世界单位151/11，不是等人口因果实验。进程CPU与测量阶段对齐覆盖99.626%/98.303%，均2.001/1.716核；全线程统计不代表主线程或GPU。大图驻留129→137、计时预绘8块/36 slices/521ms，misses/forced0；普通无预绘。近原版未达，不能把今日约107ms全归环境，也不能只归镜头；根任务继续核查TDFC单条视线重复取格的小候选，尚无新性能部署。
-
-camera-no-world-r1已完整1200帧通过；A/B/B/A均137.743/96.917/109.747/83.680ms，隐藏后跟随均110.712/中82，固定103.332/中86，末A反而最快。敌1769射高于可见1254，不能把跨轮差额当渲染净成本。世界可见性与镜头状态完整恢复，计时177块/预绘计数不变。前日/今日可见/隐藏脚本墙钟均22.60/41.63/62.30ms，旧全程CPU含启动而未对齐，不能直接和environment-control的测量期统计比较。三轮实际ModLoader均BD71/2.4，无帧记录器；新增telemetry.json不是已证原因。后续若负责人发布新版仍按实际冻结输入核验，不假设版本永远不变。
-
-2026-10-24本轮：camera-combat-20261024-r1完整4×300跟随/固定/固定/跟随，跟随均122.18/中101，固定均92.735/中81ms；四段玩家各100射，敌430/329/198/297，火力混杂。观察helper均<.31ms；计时resident177/预绘计数不变。4060ms尖峰中1400在nativeBand、2652在所包围脚本区间外，原因未知，不称GPU/GC。随后隐藏世界诊断也已完成，结果如上；两者均不得作为产品安装。它们的准确原输入为ABE2/CS7F1F/RCDF0F/RV0DBE，后续environment-control才使用A796。
-
-颜色基线r1暴露AIR乘数量化：原生green .8/1.16实际显示 .796875/1.15625，sceneEntitySameColor误当外部颜色而拒绝普通跨区更新；另玩家自主悬浮levit1也跳过显示更新。r1测试比较本身亦错，失败保留。r2真实Sprite规范化期望后baseline-r2通过20项，分别重现两缺陷、箱体真实dropTeleObj及外部色保护。build/generated/scene-compat-20261024/tint/product的两个定向方法已完成最终导出、严格审计、candidate与installed各20项组件及发布门禁，A796回执verified；源同步和记录里程碑已提交1eafc99。玩家豁免levit门控，SameColor原快速路径失败后用未入树Sprite实际setter/getter规范化b再严格比较，先拒绝非有限值。早期两次提交余量不足、登记表临时WinError5与短暂SyntaxError完整保留；没有降原生运行保护、绕登记或修改ModLoader工具。
-
-RV0DBE启用路径只读发现current每帧整图遮挡扫描、全单位/物件遍历，classic全图记忆维护/约7.41MiB雾层复制；射线与显示本来已有局部范围，不能重推“只画视野内”。根任务后续已核：RV关闭且字典清空后不再每帧遍历全图，原生findCel也不全图搜索目标，不继续把这两项当成本轮关闭RV负载的原因。RV负责人正在D43密集特效优化，未混入或归功本任务；遮罩交接静态风险组件只准备未运行，因用户澄清主要是性能而暂停。未改RV生产源码/包。所有本轮源/辅助均在scene-compat-20261024目录，foreign SceneRenderChecks与Alicorn不动。
-
-最新真实跳跃工作见knowledge/experiments/vertical-motion-20261023.md。r1首跳含原生水平惯性，第二跳为纯Y；r2补dx=0/左右键释放后仍45.78/44.04ms，静止约33ms。所有测量窗无新块/缺块补绘，纯Y每窗3次150px跳跃、镜头跨度149px。native-r1平台floor120导致原生向上换房，0样本，保留失败不当CS故障。固定镜头ABBA诊断720帧合并A44.1958/B35.2208ms、约20.3%差异；仅诊断，不当产品收益。growth-r2被自设1.5GiB进程预算拒绝；核实系统提交余量14GiB后，r3诊断预算2GiB并新增4GiB提交/2GiB物理预检，512MiB运行保护不变。r3完整1440帧，驻留124→155、private +72.08MB，跳跃43.271→41.521ms，没有复现随此增长恶化，不能当真实探索验证。
-
-用户接受的真实缓冲候选在build/generated/vertical-camera-band-20261023，仅Camera.calc定向方法；动态nativeAPI.verticalCameraState存唯一上下文，不加Camera字段。正常跟随半带≤160px、按screenY与完整碰撞高度缩小，带外硬跟随；缩放/loc/camera/屏幕变化、传送与退出观察时重新定位，原观察/camRun/边界/震屏/sceneTick等保留。ABE2B65EDF3D0E4E0FA8ECA76A60E577D40E47F20B9ACECEBEC7730849A2602A已构建，严格保留5770个其他方法、1016类/初始化器与原素材；组件r3共65项/56次实际calc通过。前两轮组件失败分别是探针public静态访问命名空间和DisplayObject小数坐标量化期望，已保留，不改候选迁就断言。真实跳跃三轮每轮720帧/12次150px跳跃：A49.3958、B37.8708、反向A46.0417ms，B镜头不随普通跳跃移动；自然活动28/25/28，不能称精确净提升。普通房/缩放/观察/传送等为组件覆盖，不冒充完整玩法。vertical-activity-20261023的engaged只读观察仍未运行。
-
-密集战斗四轮完整1200帧：A1 61.3308/中58/P9583，B1 66.87/63/95，反向A2 67.7975/63/99，B3 60.9883/57/84ms。A合并均64.5642、B63.9292，中位均60；AI活动/火力/预绘不同，约1%差距不算战斗收益。首B活动49.35比首A40.15多9.2，B3火力低于A2；无持续回退信号，限定放行已验证的跳跃改善。B2完成900帧后实际角色离开平台，原因为何未捕获，不能称已证击退；失败完整保留。release-qualification.json绑定全部8组完整证据及不完整B2，check通过，deploy已完成实际安装65/0验证。总体性能未接近原版，不将此发布作为战斗问题解决。
-
-本轮先前部署80CF的小幅算法改善，ABE2继续保留它，近原版目标仍在进行。此前BEFC低干扰denseV2真实Shift/六LMG/玩家ASSR共探针1200帧：原版均35.573/中34/P9547，大场景均63.253/中59/P9594，双方实射400/2009和400/1109。路线/地形/视口相同，大场景火力更低仍慢；不称近原版。V1原房2659ms尖峰已定位探针startCase2591ms，V2移除段边重复设置/整报告写入，未扣帧伪造速度。
-
-背景长ABBA无收益；短ABBA表面6.24%改善但敌方火力和预绘更少，尚不稳。571次完整扫描无不透明块，停止该缓存。区域合成缓存049DE诊断1200帧目标calls/rebuilds全0，排除本负载热点，不生产构建。详细结果见knowledge/experiments/dense-combat-near-native-20261023.md。
-
-349F单方法Location诊断：大场景总15.7–19.0ms/帧，单位4.1–5.1、子弹3.3–5.2、玩家2.5–3.0、原生lighting2.5；600箱子仅.2–.3。原版同负载总6.5–7.7、单位2.0–2.8、子弹1.3–1.9、lighting.55–.61。B8C子弹分段：hitTile包含1.35–3.25ms/帧，单位遍历.28–.64。RC owner19FF诊断1200帧墙采集仅.37–.46ms/帧，0重建/0compare，不是主因，已回报owner。
-
-后续decal3401诊断1200帧：outer7.4–7.85ms/次、scenePaint2.89–3.19ms/次，素材准备仅.055–.088，降低素材缓存优先级。普通房该轮900帧后真实击退越平台，完整失败保留。休眠显示根缓存短ABBA均63.708→64.468ms，没有稳定净收益，停止。lighting2整数循环BCCF六组组件状态/像素一致，但真实战斗900帧仅16次调用（原4次10ms，新12次12ms），第16窗击退越平台终止；它不解释2.5ms/帧视野成本，停止。clipRect历史已测无稳定收益，不重启。随后CS只读stats快照已完成，见下文；V2原world已记录retDark=false、240×125、lDist1=600/lDist2=2000。未缩范围，这些诊断均未部署。
-
-Location首两轮因系统可提交余量约.4GB中止，未产终态不作有效样本。用户已正常关闭暂不用程序，余量恢复7.16GB后上述分组实测完成；不重复要求退出，不降低512MiB运行保护。全部新驱动/审计在build/generated/combat-near-native-20261023，准确宿主/探针各自独立，不叠加诊断。
-
-只读activity-spatial-20261023-scene-r1已完整1200帧/26项/44快照：159单位、活动均47.16、屏外26，缩为视口+320或玩家±900×700的数量上界均13.86，但搜索状态未观察，不能直接休眠；当前宽限内立即可减0。正式调度不改。
-
-上述fog-terminal已实测并停止：84组/30000格状态像素全等，真实20×60/90项通过但均63.343→64.007ms，视野每次2.743→3.027ms，496810次实际提前拒绝也无净收益，不部署。activity-internal已完整1200帧/26项/44快照，实际域身份一致；无当前目标的Merc仍有state2/3和正警戒值，不能一律暂停。已核平静Raider家族均4.41个只是缩范围上界，engaged/宽限仍保留。
-
-fog-bitmap-lock首次try/finally导入将整个lighting变为67 activation槽，停止保留。独立inline 4A84严格单方法审计与84对像素/状态通过；真实20×60/90项A58.163/B59.793ms、P95 70/75，仍无净收益，停止。A594次调用仅472写像素，B590次1401写、104对称lock/unlock，写入稀少。无生产构建，不再补此诊断的异常清理。
-
-decal-stamp-proof历史停止：r1旧Flex要求显式终末return；r2实际擦除像素不等；r3普通paint的alpha变换差10个RGB像素；r4限定alpha保持后bullet_tre第5帧仍差7个RGB像素（最大通道差1），未进入跨块检查。原失败证据完整保留。用户随后接受测试微小色差，新decal-stamp-tolerance-r2在当前80CF完成172项（1482ms）：153全等、158在每通道RGB≤1/alpha0内、14超界，全部alpha一致；重复32次可出现RGB差2，相邻块最大4。超界53个目标像素，12个alpha255且RGB差2，不能以低alpha反归一解释为≤1。2580/2580临时图释放、宿主引用及525安装输入保持。r1仅比较工具的alpha-only边界哨兵失败、0实际case；r2改为getVector全ARGB扫描并通过4项哨兵。copyPixels独立变体r1（1200ms）172项除耗时外完全相同，仍14超界；两路均停止，未计战斗性能、未生产化。全结果在各新目录RESULTS.md/README.md；可复用比较方法已归档KB-000111修订1。
-
-front-shadow保持原400px前景及原生弹痕算法，只在帧尾复制变更块给同尺寸显示副本。pixels-r1/r2均未进入候选：r2证实早期落地150帧但周边预绘约500帧，随后击退越平台。r3在六名测试敌人创建前用原生sceneTick同步准备测试视野，7833ms单列、不作加载收益；30帧双方10/52射，50次实际同步，四组整屏像素全等，177副本全部释放。冻结探针9E58、helperFB44、patchDBD0、runner5681，均仅隔离使用。
-
-front-shadow-short-r1/r2同探针各20×60、90项通过，实际原生高速移动、六敌LMG+玩家ASSR，玩家各400次，无预绘/缺块/新块/清理异常。r1 A/B均65.0567/63.2633ms、中61/61、P95 90/81，敌882/863；r2均64.010/61.505ms、中61/59、P95 85/78，敌815/887。各五块均值四好一坏，原生AI/速度/同时弹体负载不同；仅小幅改善倾向，不称显著或接近原版，不部署。副本常驻约108MiB，r1B仅56/693次revision是重复合并上界且混有其他层；仍保留全部原生矢量draw。完成两轮后不扩建此诊断设施、不反复同样短测。
-
-fog-last-blocker 38C7已严格审核并通过89对（原86+负visi两对+弱水），不叠加terminal/lock。历史EB365组合真实两轮20×60/90项A/B均61.463/60.572、63.228/61.418ms，10块7块改善；lighting每调用2.694→2.038、2.743→1.975ms。已观察到可重复的函数收益和小幅整帧改善，仍非近原版。独立无计数生产80CF仅在sceneLarge&&bounded&&interiorRay生效；BEFC基线和80CF同冻结探针各91对原生legacy/typed全图状态与像素一致并恢复。生产组件不测缓存命中，另两对sceneLarge=false仅验证标志旁路，不是原版房玩法验收。新生产对照统一RC DF0F/RV6DBB组合，80CF已部署，详见第6节。opacity-call-cache的101对通过，但真实A/B均64.24/64.1083ms，几乎不变，停止该方向。被钩子误拦的stamp驱动源码写入已按此前授权登记10分钟精确补丁完成，未关闭护栏。
-
-80CF生产对照完整保留：baseline-r2均65.795/中63/P95 91，candidate-r1均60.415/中56/P95 80，但敌方出膛1875→1063、活动均46.75→41.55；candidate-r2均56.1975/中54/P95 75、敌方1622。反向baseline-r4已完成1200帧，均58.2075/中56/P95 75、敌方1806；与candidate-r2比较仍有火力/预绘混杂，不报精确净百分比。普通房双1200帧A35.520833/中34/P95 49/max188/敌1651，B34.1925/中33/P95 43/max132/敌1767；旁路未见回退，也不把这个差值当作未启用算法的收益。各完整轮玩家400次。首候选820ms长帧未落在现有计时脚本段，原因未定；baseline-r1预热超过1200帧仍未稳定、0样本，baseline-r3第二段前原生击退越平台、仅1段完成，两次失败保留。
-
-测试工具修正：motion-test.py air_pids改Toolhelp32直接按名称枚举，避免沙箱OpenProcess拒绝被误当无AIR；首次后台桌面权限失败0e722d...已核对本轮进程退出并恢复登记。实际游戏测试需允许私有桌面启动的执行权限；不杀玩家游戏。
-
-真实战斗已获得可重复约15%改善，联网门禁、精确部署和安装冒烟全部完成。原574D与EB365各1200帧、90项PASS，原生按键/物理/真实双方开火、同地形及路线：平均69.615→58.866ms，中位64→54，P95 96→80，>100ms帧51→32；五块均值/中位都改善。两轮诊断ABBA另有十块同向支持。收益范围是未尝试联网的单人游玩，测量时LAD/RV/WB关闭，不是所有配置或联网性能保证。
-
-玩家各400射，敌810→884；人口、种类略有差，节点候选少约1.1%，不报纯净单函数因果值。中间三块双方预绘分片均0，仍改善。最大帧306→473ms，候选473ms发生段内nativeBand443ms，不能剔除或断言无未完成预绘，具体来源未定。不称整体近原版或所有尖峰消失。
-
-已完成单实例资格：生命周期7a10b4a47f为56/0、12阶段；真实采集回退f6eece7606为86/0、6阶段（原生喷火弹跨帧历史）。这些不是首次真实双人接入/对侧显示验证；不扩展为修复RC旧四项问题或多人性能承诺。
-
-内存余量已恢复到原双实例6GiB以上，无须重复追问或降低保护。已实际跑：
-- 5589fa431d / native-03：driver02在AIR虚拟app:/父目录为空失败，未联网。
-- 622039485c / native-04：driver03路径通过，原版rbl没有28格双向射击走廊，未联网；清理全过，安装保持。
-- 9b2366ad51/d87d5871bf：实际站位通过；附件正常将200发调整到72/90容量，夹具过早保存耗弹基线，已改为真实attack前一次记录。
-- c6c9757ebc：首次联机、两向实弹与最终像素、冻结/解除全完成，但host在join退出后继续检查房间而报终态竞态；原FAIL保留。
-- 最终driver07/native08/d0048aff49：两端各39/0、首次attempt各1、hello/welcome、十项coverage全true、finishing确认及所有清理通过。result.json SHA256 C103B58822FBE0547AB226907E0D138633D0A782A5FA4217EC4117356BE6C066；根独立核对，候选仍准确EB365、测试前后22安装项不变。联网功能门禁完成，不再追加无关场景。
-
-前轮RC负责人完成安装及实际release输入的无诊断驱动冒烟ae58b8049b，原runner/登记PASS。根与子代理独立核对两端新版初始化、tick200、join welcome/unitsync、日志散列和清理；当时22项安装仅RC变化，source/installed同EB365、备份574D。前轮“真实战斗明显下降并部署复验”目标已达到，不把旧资源阻塞当当前状态，也不冒充整体近原版；当前安装与后续任务见第3、6节。
-
-## 5. 已知限制与拒绝路线
-
-- 宽屏战斗、高速移动和偶发长帧仍有差距；本轮不声称所有地图2–5秒、全效果近原版或SATS延迟已解决。
-- 旧stableMotion逐帧Y/速度重置未真实落地；旧此类数据只作同夹具诊断，不能当原生移动验收。现用native-input-motion-3真实按键。
-- atlas像素不等、远处显示根停动画/移树、空地形、bulletblend、Unit.blit复用等未证稳定安全收益，不安装。睡眠小白名单真实对照反而更慢，停止路线。
-- 已确认旧compact实验曾被0.8.2配方误带入，但准确对照关闭更慢，不能因历史误带入就直接部署关闭。
-- 全剧情、所有机关、联机、512×256最大尺寸与长时运行未全面验证。天角兽原生报警范围会随合图扩大，独立源码候选边界见第2节。
-
-## 6. 下一步、构建与回退
-
-当前以A796及state/scene-tint-deployment-20261024.json的verified回执为准；environment-control场景/普通房同探针配对已完成。上一镜头里程碑ABE2的state/vertical-camera-band-deployment-20261023.json仍保留verified历史：2026-10-24 00:00备份80CF至build/backups/vertical-camera-band-20261024-000000-9ee00a9c/pfe_before_vertical_camera_band.swf，524依赖保持，安装后65/0、56个calc案例通过，结果SHAF8CC27E86C17FA27802C21ACA4DA447E062EE09FBD4DA17E69B817CBA3E32E38。其rollback只适用于正式仍ABE2时，不能覆盖现在A796。后续实验必须保留当前宿主全部已验证改动并重新冻结输入，不能直接使用旧80CF/ABE2部署或回退入口，也不能混入外部天角兽候选。
-
-80CF按release gate 2026-10-19.1完成本机部署；持续授权无需重复确认。state/fog-last-blocker-deployment-20261023.json状态verified，实际pfe指纹与回执一致；安装后fog-blocker-product-20261023-installed-native-r1为51/0，结果SHA73C7B1804B411E7C1260DAD0A1D6E1EC91AC6FD37A773DC6901EF673D0FD7B99。备份为build/backups/fog-last-blocker-20261023-184722/pfe_before_ContinuousScene_fog_last_blocker_20261023.swf（BEFC），回退前须核当前仍是本次80CF，不能覆盖后续他人改动。
-
-近原版目标仍未完成。2026-10-23用户已接受测试近乎看不出的色差，要求明显提速后再考虑部署；本轮以RGB≤1/alpha0保守验收，图章draw/copyPixels均失败，前景副本虽像素通过但2400帧仅小幅改善，全部不部署。原失败与冻结源保持，不再重跑同一路线来挑好结果。下一轮需新的高占比证据：活动屏外单位的动画与枪口位置/出膛顺序耦合，不能整段跳过；仅body blit可研究但SATS/死亡截图与先blit后推进帧的时序必须保留，尚未测该项成本。sceneApply全驻留粗排除也是小候选，上界不足约1ms/帧，先不扩建索引。当前安装为A796；TDFC单条视线候选已完成组件与真实战斗，但收益不足，停止不部署。当前57.33/34.35ms同组合差距仍在；后续需要新的高占比证据，不能重复已否定路线。前轮RC首次联机及安装冒烟历史已完成，无需重跑无关联网项目。原版墙面候选不并入，不复活旧配方。
-
-RC前轮历史回滚点：../RConnect/build/m52/recovery-offline-deploy-01/RConnectMod.before.swf（574D2B51490AE8B25A1396555600F56A301F8A20AE50104C0E35CF2796441AFE）。当前已是负责人后续DF0F版本，不能直接套用旧EB365回滚；如需回退由RC负责人核对当前版本与对应备份，用户配置与存档保持。
-
-历史撤回基线：state/afternoon-recovery-20261021.json verified，51项安装后检查。BEFC来源build/backups/sats-20261021-154054/pfe.swf，回退前5432另存build/backups/afternoon-recovery-20261021-222045。旧SATS/impact回执已rolled-back-by-user；当前正式已前进至A796，不能再把BEFC当作当前安装。
-
-旧性能驱动（包括build/rc-native-combat-run.py及各BEFC诊断/对照）绑定历史BEFC基线，未来不能直接运行其部署/回退路径覆盖A796；新工作须明确保留当前宿主改动并重新冻结输入。历史probe build/generated/rc-native-combat-20261023/probe-source/3fa568cbe2464a5ca40d6ccb37705e87保持。不要用旧motion整包覆盖CS0.9.0或后续修改；motion-host incremental→motion-fog --rays→motion-direction不是当前发布入口。foreign SceneRenderChecks WIP继续不触碰、不提交。
-
-## 7. 证据与深入入口
-
-- knowledge/experiments/dense-combat-near-native-20261023.md：当前近原版任务、80CF生产组件/普通房与大场景对照/部署复验，含混杂因素及失败样本。
-- knowledge/experiments/combat-stable-driver-20261022.md：当前真实性修正、归因、有效收益及失败路线。
-- knowledge/experiments/evidence/rc-native-20261023-baseline-r1 与 candidate-r1：准确生产包1200帧对照。
-- ../RConnect/build/m52/recovery-offline-{production-01,lifecycle-native-03,collector-native-01,first-connect-*}：候选、功能及首次接入证据。
-- knowledge/experiments/afternoon-recovery-20261021.md、combat-recovery-followup-20261021.md：回退及此前11组无收益对照。
-- design/single-map-authoring.md、state/deployment-v090.json：独立编辑器状态。
-- design/alicorn-alert-range-candidate.md、knowledge/experiments/alicorn-alert-static-20261021.md：仅源码的另一任务。
-- journal.md、MEMORY-history-20261023-0818.md：完整历史。旧0.8/0.8.2性能数、依赖与发布回执是历史，不当当前组合结论。
+## 1. 模组与目标
+
+全图碰撞、敌人、物品预先生成，画面按视野提前绘制，镜头与弹体连续跨房。远处未参战敌人可暂缓，追击者与飞行弹体保持。CS0.9.0另支持可编辑单一地图；原版地图连续模式由设置开关控制。
+当前根任务未完成：**解决镜头移动时卡顿，不论敌人是否出现，目标接近原版**。不以暂停世界的帧率冒充实际游玩性能，也不以减少敌人代替镜头修复。
+
+## 2. 用户约定与职责
+
+- 性能根会话01a13816-367b-7261-8e11-ca9152565dd9；中文简洁进度。已允许继续实测，正常测试自行登记/等待，不重复询问已授权事项。
+- 已允许必要RV、WB、LAD、TDFC、RC兼容；RC协调已授权，RC由负责人01a086bb-378c-7f60-b8e1-50d90ffa0996集中部署，不并行覆盖。
+- 新增明确授权：ModLoader共享测试登记器的CIM创建时间回退修复；已完成，见第3节。其他跨模组写入不自动获准。
+- 已接受RGB最大2/255、alpha不变的候选验证；**实战明显提速和功能正常仍是部署前提**。本机通过门禁后直接部署，无需再确认。
+- 已接受视野预绘、远处未参战敌人暂缓与纵向镜头缓冲；保留游戏机制和连续跨房。
+- 每次游戏测试使用共享game登记、唯一AIR ID/存储、私有桌面、4GB可用提交内存预检；不关闭玩家/外国测试进程，不写真实APPDATA/pfe，不用Ghost。
+- 当前会话精确调用、≤10分钟的构建/验证授权仍有效；按既有保护流程逐条登记，不关闭护栏。
+- 无AGENT_SCOPE.md；未擅自创建。src/tests/SceneRenderChecks.as是他人WIP，不恢复/提交。
+- SceneAlicornAlerts.as.inc仅源码候选，不构建、接入或部署。用户撤回的10月21日下午7D42/5432配方不得复活。
+
+## 3. 当前安装与最近验证
+
+正式文件本轮未变；新增优化均未部署。526正式文件与13运行库输入在完成的各轮保持。
+
+| 文件 | 当前SHA256 |
+|---|---|
+| root pfe.swf | A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7 |
+| CS0.9.0 | 7F1F2961C6E299D949423591F3C65C610C2EAEFA7FC72E8A583A402770D6B51F |
+| TDFC0.6.4-scene2 | 7ACD45193109267DBBF875240528048AD6F1D09FA3B8B36BAA6F98EBB5FDDCE5 |
+| ModLoader2.5.0 | 2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2 |
+| RV0.33.10 | 638E2D408E2CF46683C41114F75773829A1B4417D74BFFE9D08855A4FE343710 |
+| RC0.2.24-animfix1 | 2C49DFD05D524085EA43FB8FFA537D1A9359FEBD52FB13D6A19FAAE6E2563621 |
+
+LAD8ADB/WB1411保持。RC当前回执../RConnect/build/m52/a-live-animation-deploy-01/verified.json（5446D95A），不能把旧RC收益当当前候选收益。
+A796颜色修复回执state/scene-tint-deployment-20261024.json verified；保留此前ABE2纵向镜头缓冲/80CF遮挡格复用。任何新宿主应精确保留当前其他方法与素材，不能整包覆盖编辑器CS0.9.0。
+ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB75420C507F6DB1D96BE6B1430374B0B7A797607FF4438A695A717809E；仅普通查询拒绝5时CIM只读核创建时间，不确定仍保留占用。lineage.py只允许旧8B35→E9F5这一变化。
+
+## 4. 当前实验停点（2026-10-26深夜）
+
+- 现有固定池35956，8页×4层×1280²=200MiB，计时前分配，计时不分配；清理全部释放。
+- idle候选6651：静止恢复原生并跳过无用同步，移动恢复同步。v1墙面夹具看不到弹痕，完整计时后功能失败；v2改为实际屏幕内可见外墙，960/9通过，原生击墙158像素/破墙2208像素；静止/恢复精确、移动RGB1alpha0。移动30.7292→29.6417ms，仍205ms无工作长帧。不部署。
+- empty候选65F4：只有透明外包矩形证明中心完全空时才跳过复制/显示。960/9通过，移动31.7458→28.9458ms，两个配对同向；1588透明检测、632省略复制。固定200MiB不减。仅暂停归因。
+- merged候选BC0B：守卫两背景父层相邻、中性和无外部效果，按原顺序合成页背景，前景/水不变；不合格回原生。960/9、36截图和64位图释放、跨页/击墙/破墙/父层alpha回退通过。移动31.6875→26.8417ms约15.3%，不代表实战。
+- **merged实战两轮**同冻结4ef9354c，均480/27、六真实SMG10敌人/原生冲刺和碰撞，镜头各窗115–119变化。原生→候选47.0125→44.1958ms、46.2125→44.9833ms；第二轮一对更慢，P95 58→62，长帧156/196仍有。敌火力/预绘不同，收益不稳定，不部署，不重跑同夹具挑好结果。
+- 实战终态单视口三图均通过RGB≤2/alpha0/精确恢复，3图释放；未覆盖所有效果和生命周期。合图候选仅保留。
+- display-contribution：对象父层alpha恢复后1567像素不同/maxRGB227，计时0帧；停止对象隐藏路线，原失败保留。
+- backdrop-contribution：仅远景alpha可精确恢复，960/9、15截图释放。原生34.6375/远景隐藏39.5479ms，四对均更慢；不能去掉远景或推定GPU机制。
+- camera-backdrop-raster-r1已完成960/9，冻结22c7adc3，五视口/透明度/清理通过。移动33.6708→33.3167ms仅约1%，静止21.7→22.5625更慢；停止远景缓存，不部署。AIR4072退出，无自有AIR存活。
+- 此前完成的八轮AIR均退出。仅以登记器/本轮进程证据确认当前占用，不靠旧PID猜测。
+
+## 5. 已知限制与停止路线
+
+近原版、全地图2–5秒、所有效果/联机/SATS/长时稳定未全面达到。本轮世界暂停测试仍有Flash时间轴/回调，不是无敌人的真实游玩。
+原生axis-trace支持镜头运动有显著绘制开销，但重型追踪不是正常FPS，也不证明GPU/GC。stage-cost中相机均.35ms，合图1.26ms；148/140ms长帧准备仅3/0ms，不能命名余量来源。
+已停止无稳定收益或像素失败：native cacheAsBitmap远景、scrollRect父缓存、bitmapfill、整树/对象层隐藏、terrain-detach、静态Box摘树、整段远处动画跳过、qualityLOW、鼠标树、活动范围、预算逐帧分配、旧全图合图等。完整边界与原始失败见历史及各RESULTS，不重复换名字试同一路线。
+三处旧工具拒绝（Monstrik原始读取、合并Weapon/UnitVisual读取+截图、host tag93补丁/grant）未执行；不转路绕过。trace路线不修改宿主已通过。
+当前完整战斗用native-input-motion-3真实输入；早期逐帧Y/速度固定的stableMotion仅诊断。旧34.35/57.33ms原版对照为历史不同组合，不能直接当今日候选差值。
+
+## 6. 下一步与部署约束
+
+远景屏幕缓存无明显收益，已停止。新假设为地形每层视口大小缓存、随镜头平移旧像素并只补新露出的条带；不是旧父层scrollRect/cacheAsBitmap或AIR direct/cpu模式。尚未实现，须先严格像素与移动对照验证，不因猜测部署。
+合图只保留为候选。后续需要新的高占比证据或足够收益，不以重复相同实战取最优数值放行。
+通过实际门禁才本机部署、备份、安装后复验；当前没有合格的新包。仍以A796正式指纹为准，不运行旧BEFC/80CF/ABE2/afternoon的无条件回退。
+外置记忆/报告只追加证据，旧失败和冻结收据不可改写。自己的里程碑可提交，foreign WIP排除。
+
+## 7. 深入入口
+
+- build/generated/camera-atlas-pool-{idle,idle-v2,empty,merged}-20261026/RESULTS.md
+- build/generated/camera-atlas-merged-combat-20261026/RESULTS.md
+- build/generated/camera-{display,backdrop}-contribution-20261026/RESULTS.md
+- build/generated/camera-backdrop-raster-20261026/README.md（新候选）
+- 对应knowledge/experiments/evidence/<实验名>-rN内result/summary/process-policy/probe-build是原始证据。
+- build/generated/camera-terrain-layers-20261025/lineage.py；camera-atlas-paged-combat-20261025-r1/probe-build.json为85源冻结种子983727AE，探针29AF。
+- journal.md；MEMORY-history-20261026-2340.md保存重写前全文，历史更早MEMORY-history-20261023-0818.md仍在。
+- .agents/skills/remains-{auto-testing,runtime-debug,mod-build,release-gate,mod-memory}/SKILL.md，ModLoader/docs/TEST-REGISTRY.md。
+- design/single-map-authoring.md、state/deployment-v090.json为独立编辑器；state/afternoon-recovery-20261021.json为历史回退，当前不套用。
