@@ -52,3 +52,7 @@ build/generated/camera-stage3d-background-20261027/** -text whitespace=cr-at-eol
 build/generated/camera-stage3d-pixels-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
 build/generated/camera-stage3d-entry-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
 build/generated/camera-display-pixels-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-display-state-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-display-settled-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-alpha-trim-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-lower-objects-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
