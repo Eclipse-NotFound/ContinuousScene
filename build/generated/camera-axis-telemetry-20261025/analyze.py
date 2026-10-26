@@ -1,0 +1,61 @@
+"""Native telemetry spans aligned by custom per-frame anchors, never summed nested."""
+from collections import defaultdict
+import math
+import statistics
+
+def metric(values):
+    xs=sorted(values);return dict(count=len(xs),mean=statistics.mean(xs),median=statistics.median(xs),p95=xs[math.ceil(len(xs)*.95)-1],maximum=max(xs))
+
+def union_length(items):
+    if not items:return 0
+    items=sorted(items);total=0;start,end=items[0]
+    for a,b in items[1:]:
+        if a>end:total+=end-start;start,end=a,b
+        else:end=max(end,b)
+    return total+end-start
+
+def analyze(records,raw):
+    trial=raw['cameraRaster'];frames=[p for p in records if p['name']=='remains.camera.frame']
+    ends=[p for p in records if p['name']=='remains.camera.end']
+    assert len(frames)==960 and len(ends)==1
+    assert [p['value']['frame'] for p in frames]==list(range(960)) and ends[0]['value']['frame']==960
+    app_ids={p['value']['appId'] for p in frames+ends};assert len(app_ids)==1
+    anchors=frames+ends
+    assert all(anchors[i+1]['atUs']>anchors[i]['atUs'] for i in range(960))
+    intervals=[(anchors[i]['atUs'],anchors[i+1]['atUs']) for i in range(960)]
+    # Require native/us and getTimer/ms span clocks to agree over the full test;
+    # individual getTimer readings are coarse, and anchor writes have small cost.
+    duration=(intervals[-1][1]-intervals[0][0])/1000
+    assert abs(duration-trial['timingElapsedMs'])<20,(duration,trial['timingElapsedMs'])
+    spans=[]
+    for p in records:
+        if p.get('span',0)<=0 or not p['name'].startswith('.'):continue
+        a,b=p['atUs']-p['span'],p['atUs']
+        if b>intervals[0][0] and a<intervals[-1][1]:spans.append((a,b,p['name']))
+    assert any(name=='.rend.screen' for a,b,name in spans)
+    assert any(name=='.rend.paintbits' for a,b,name in spans)
+    rows=[]
+    for segment in range(8):
+        window=trial['windows'][segment];idx=segment*120
+        assert all(p['value']['segment']==segment and p['value']['condition']==window['condition'] for p in frames[idx:idx+120])
+        start,end=intervals[idx][0],intervals[idx+119][1]
+        by_name=defaultdict(list);by_category=defaultdict(list)
+        for a,b,name in spans:
+            if b<=start or a>=end:continue
+            clipped=(max(a,start),min(b,end));by_name[name].append(clipped)
+            category='render' if name.startswith('.rend.') else 'script' if name.startswith('.as.') else 'gc' if name.startswith(('.gc.','.memprotect.')) else 'other'
+            by_category[category].append(clipped)
+        rows.append(dict(index=segment,mode=window['mode'],frame=metric(window['framesMs']),nativeIntervalMs=(end-start)/1000,
+            categoriesUnionPerFrameMs={k:union_length(v)/120000 for k,v in by_category.items()},
+            nativeSpansUnionPerFrameMs={k:union_length(v)/120000 for k,v in sorted(by_name.items())}))
+    arms={}
+    for mode in sorted({row['mode'] for row in rows}):
+        selected=[row for row in rows if row['mode']==mode]
+        keys={k for row in selected for k in row['nativeSpansUnionPerFrameMs']}
+        arms[mode]=dict(frameMeanMs=statistics.mean(row['frame']['mean'] for row in selected),
+            nativeSpansUnionPerFrameMs={k:statistics.mean(row['nativeSpansUnionPerFrameMs'].get(k,0) for row in selected) for k in sorted(keys)},
+            categoriesUnionPerFrameMs={k:statistics.mean(row['categoriesUnionPerFrameMs'].get(k,0) for row in selected) for k in ('render','script','gc','other')})
+    return dict(complete=True,frames=960,nativeIntervalMs=duration,clockDifferenceMs=duration-trial['timingElapsedMs'],rows=rows,arms=arms,
+        limits=['Native category/name intervals are individually unioned, including boundary-clipped spans; categories can overlap and must not be added.',
+                'Paused native camera diagnostic with telemetry overhead; not optimized gameplay or enemy-free gameplay.',
+                'Private desktop presentation/swap durations do not by themselves establish user-desktop GPU cost.'])

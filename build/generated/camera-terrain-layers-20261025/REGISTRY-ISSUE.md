@@ -1,0 +1,9 @@
+# 共享登记误保留：PID已被系统进程复用
+
+2026-10-26接续：用户已明确授权修复ModLoader。系统复用进程已自行退出，先用原recover恢复11d714；未强制关闭或手写数据库。正式工具现加入保守CIM回退，15项回归通过（首轮临时清理WinError145保留，完整复跑通过），ModLoader提交08957b4，新源E9F51CB7。下方为此前候选准备的历史状态；正式实现保留两个原生token的完整精度，不完全等同旧C18D候选。记录见ModLoader/knowledge/experiments/test-registry-2026-10-26/README.md。镜头层测试已重新编译，使用lineage.py精确记录唯一工具更新，不重标旧证据。
+
+首轮r1在创建私有桌面失败，未执行CreateProcess、没有AIR。原编译PID63256记录token134374159796693439；23:38:25同PID已对应MoUsoCoreWorker.exe，CIM能读创建时间。原运行器61004已不存在。OpenProcess正常查询及更小的0x1000查询都返回拒绝访问，现有recover按unknown保守保留，因此后续r2等满300秒暂缓。
+
+当前未修改ModLoader工具、没有手写SQLite或改变登记状态、未停止系统进程。拟增加仅在原生进程查询被拒绝时的只读CIM创建时间回退：取不到唯一创建时间仍unknown；Win32_Process微秒精度与原FILETIME统一到微秒再比较，不能直接比较不同精度字符串而误释放同一进程。原PID确实改变身份才能释放。具体候选在registry-fallback-candidate.py，仅自有目录，不接入运行器。
+
+跨ModLoader源码写入需要按GOVERNANCE §7扩充授权。首轮失败证据与原recover两次拒绝均保留。若系统进程自行退出，先用原共享recover恢复即可，无须安装候选。

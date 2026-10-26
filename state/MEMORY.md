@@ -1,5 +1,17 @@
 # ContinuousScene — 当前快照
 
+当前停点（2026-10-26，覆盖下方历史运行/等待）：共享登记器修复已获明确授权并提交ModLoader08957b4，15项回归通过。terrain-layers-r1完整960帧，原生35.2875/全地形隐藏29.5583ms，仅归因；backdrop-cache-r1真实960帧但汇总误用4父层断言，独立校正摘要保留原failed，原生移动35.6208/缓存38.5875ms，停止不部署。详见两目录RESULTS.md。
+
+camera-atlas-short-combat-20261026-r1/r2均完整480帧/26检查，冻结10c85dfb，85源只把旧探针四段300改120并更新版本；武器、6敌、原生冲刺/击退/碰撞完全保留。两轮原生→合图55.9208→51.5458、57.4375→51.7542ms，四对同向，真实镜头变化每窗115–118次；初造150MiB仍有281/212ms尖峰。两轮全部输入守恒、清理通过、AIR52400/38440退出。仅约8–10%线索，非近原版完成、非视觉/长时验收，不部署。
+
+后继budget-r1也完整480/26，实际24分配帧/23准备帧、每次一图，均51.4→45.9208ms但两对相反，最大291ms仍在准备期间。单张分配帧自身55/43/58ms，不推断回调外成本为GC/GPU。停止分帧分配作为修复，不部署。pool候选35956ECD改为计时前预留200MiB、运行仅借还复用；其A诊断保留不可见池不更新像素，普通关闭仍完整释放，必须单独验加载和像素。源已准备，camera-atlas-pool-20261026-r1正在共享登记等待/构建，exec50815。当前无新产品部署，目标active。
+
+登记修复细节：系统复用PID自行退出后原recover释放11d714；必要CIM回退源E9F51CB7，首轮临时清理错误保留，没有关闭系统/玩家进程。新lineage.py只允许旧工具8B35→E9F5精确变化，85源/探针/旧收据/其他输入保持。无新的产品部署。用户核心仍是镜头移动，不以删敌人或降画质冒充改善。
+
+最新停点（2026-10-25 23:35以后，覆盖下方历史“正在运行”）：用户明确以镜头移动（不论敌人是否出现）为核心，目标active。camera-axis-trace-r1已完整960帧/961原生锚点/3361341条记录，两次流式解析完整，原生与getTimer全程差-1.087ms；五视口精确、10图释放、八计数逐帧不变、输入守恒、AIR46520正常退出。带记录时静止/横/纵/组合37.504/90.313/77.442/85.733ms，paintbits各10.043/41.881/37.078/43.758ms。支持继续查原生画面绘制，不是GPU证明或正常游玩性能，分类嵌套不可相加。TCP reset而非FIN如实保留；全部标记/完整流/正常退出满足资格。临时.telemetry.cfg已删除，已通知RC (2)释放时段。无新部署。下一步camera-terrain-layers四种可逆地形父层显隐、全部相同移动路线；r1编译通过但CreateDesktop拒绝访问，0 AIR。r2按原授权提权复用构建并在共享登记等待，exec18145；不关闭任何他人窗口。
+
+原生telemetry能力v1失败保留；独立v2实际120帧/3400条/1432绘制span、20校准通过。首次游戏axis-telemetry-r2因180秒记录时限在769帧中断且无sendMetric标记，3257097完整记录+尾部截断，不能当完整结论。AIR.dll只读信息指出子SWF EnableTelemetry被忽略。准备的测试宿主tag93写入及精确grant均被hook拒绝，两条未执行；camera-axis-telemetry-v2/STATUS.md明确禁止转路重试。后来trace路线不改任何宿主字节已通过。RC2C49/animfix1由负责人部署，核verified.json(5446D95A)，旧78C证据不重标。camera-bitmap-fill-r1完整960帧但0.46%且两对反向、静止更慢，已停止；README已纠正vendor的BSD/Apache许可区别。所有正式文件不变。
+
 当前执行范围（2026-10-25晚，优先于下方历史停点）：用户已重新明确“可以进行测试”，并强调“以镜头移动场景（不论敌人是否出现）为核心”。恢复登记后的隔离测试；不关闭用户或其他任务的窗口。活动范围候选保留但暂不优先，不用减少敌人演算冒充解决镜头问题。mouse-world-v4-r2实际完成1200帧/30检查，A59.613/B57.807ms仅约3%，敌火力482/337不同，不能认定主要原因，不部署。AIR46000退出、正式526和运行库13保持，见RESULTS-R2.md。正在运行camera-world-motion固定暂停场景的可见/隐藏×静止/移动归因：先沿路预绘至八计数稳定，960帧正反序；不是产品方案或真实无敌人游玩验收。近原版目标未达，无新部署。
 
 最新实测覆盖上句运行中状态：camera-world-motion v1/v2因显隐后武器局部像素不恢复均0计时、状态清理通过，原失败及六PNG保留，停止显隐控制。camera-axis-motion-r1已完成960帧36532ms：静止29.821、横41.304、纵37.125、组合43.967ms，正反序全同向；八原生计数逐帧零变化，五组原生重复图全等/10张释放，原30fps/试验120fps恢复，AIR51420退出。支持镜头运动本身有开销，不能称GPU归因或产品收益。RESULTS.md为入口。
@@ -48,7 +60,7 @@
 
 - root pfe.swf：A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7；state/scene-tint-deployment-20261024.json为verified，candidate-r1/installed-r1各20项通过。精确ABE2上仅Grafon.sceneUpdateEntityColor/sceneEntitySameColor变化，5769其他方法体、1016类/初始化器与素材保留。ABE2纵向缓冲和80CF遮挡格复用均继续保留；没有增加生产计时/诊断开关。
 - CS0.9.0：7F1F2961C6E299D949423591F3C65C610C2EAEFA7FC72E8A583A402770D6B51F。
-- RC由负责人独立更新为0.2.24-roomfix5：78C052AEA963F1689B705AE1E14D274916AE1A1F7E81933390CAF8D1A88F4699。installed-smoke.json记录ed2fa23d99单实例启动通过；recovery-room-user-deploy-01/deployment.json的smoke_status仍pending、performance_qualified=false，本侧不代改。旧DF0F/aura1性能证据不重标。
+- RC由负责人独立更新为0.2.24-animfix1：2C49DFD05D524085EA43FB8FFA537D1A9359FEBD52FB13D6A19FAAE6E2563621。build/m52/a-live-animation-deploy-01/verified.json（5446D95AAA1552622CF1E691BBDE5C962875897014CF5C06A452A95037ACBC3B）status=verified，安装后691c5ccdb4。camera-axis-telemetry r2起按新输入；早前78C/roomfix5、DF0F/aura1证据保留原标签，不把RC更新当本侧优化收益。
 - ModLoader现为2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2，2.5.0/FrameRecorder1.0.0安装回执verified，telemetry enabled:true。此更新由负责人完成；本轮TDFC r6开始按新依赖冻结，旧BD71环境配对仍是历史组合。
 - RV负责人2026-10-25已独立部署0.33.10-render-cache：638E2D408E2CF46683C41114F75773829A1B4417D74BFFE9D08855A4FE343710，build/combat-render-output/deployment/receipt.json为PASS；本轮paged r1起采用此组合，未把其收益计作CS合图效果。
 - 历史TDFC7ACD、LAD8ADB、WB1411；RV负责人此前独立部署0.33.9-effect-load，BF4AC9CD87272B03FAE7EC22EE67D045F037362F412EE801CAD3F9BA9FE3AFEF。effect-load-v3-output/deployment/receipt.json记录PASS与独立启动清理。新镜头组件r3、跳跃r2和TDFC LOS战斗实际使用的是历史0DBE/0.33.8，不重标成BF4A；更早6DBB亦保留原标签。RV负责人测得自身更新函数约20%/6%改善，但完整战斗帧没有一致显著改善，不计作本任务近原版已达。
