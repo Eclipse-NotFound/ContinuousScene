@@ -28,3 +28,6 @@ build/generated/camera-backdrop-cache-20261026/** -text whitespace=cr-at-eol
 build/generated/camera-atlas-short-combat-20261026/** -text whitespace=cr-at-eol
 build/generated/camera-atlas-budget-20261026/** -text whitespace=cr-at-eol
 build/generated/camera-atlas-pool-20261026/** -text whitespace=cr-at-eol
+build/generated/camera-atlas-pool-paused-20261026/** -text whitespace=cr-at-eol
+build/generated/camera-atlas-pool-paused-v2-20261026/** -text whitespace=cr-at-eol
+build/generated/camera-atlas-pool-stage-cost-20261026/** -text whitespace=cr-at-eol
