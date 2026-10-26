@@ -70,6 +70,13 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 - a54fdd7f世界窗口滚动（world位置0，scrollRect按-vx/-vy），首视角5174像素不同、maxRGB3/alpha0，只有(1021,605)一像素达到3；恢复精确但超2门槛，0计时、11截图释放、清理通过。不缓存模式不合格，缓存模式尚未执行。
 - c5a95e8c单独试原计划缓存模式，在启用候选前就被自然基线保护拦下：水平/垂直1px精确，120px双轴返回103像素/RGB76。0候选检查/0计时，9截图释放、清理通过；不能判断缓存候选成败。一水平预备并非所有暂停姿态都足够，未原样重试挑通过。
 - 所有自有AIR退出；后2轮526正式/13运行库/冻结源及脚本复核保持，详见camera-world-scroll-20261027/batch-review.json。无新部署；foreign WIP仍排除，实际占用以实时检查为准。
+- 固定完整偏移预备routewarm 1dc1ea97首视角三次自然返回精确后，缓存模式8377像素/maxRGB92、alpha0/恢复精确失败；0计时/15图释放。实际完整图无明显缺块位移，较大差异集中角色附近，原因未明。旧一横向预备失败未改判。
+- 无缓存代价诊断e742a252明确保留visualAccepted=false（五视角RGB3），允许归因但不放宽RGB2标准；121个部分样本因下一入口world坐标变化停止，75图释放。旧错误字符串“Terrain changed”实际检查显示属性，不是地形像素。
+- 帧相位1845a30f完整480区间：最新EXIT_FRAME状态正确，240次下一ENTER_FRAME入口world x/y被写回cam.vx/vy。原摘要误假设480次EXIT_FRAME，实际1281而失败；独立只读review核480份保留最新状态，未保留中间回调不可证明，原失败保留。驱动直接ENTER_FRAME无定时器/跳样。33.108→33.396ms无收益，RGB3不合格，75图释放。
+- A796精确单方法诊断宿主06FC：仅Camera.calc两个world坐标setter在scrollRect非空时跳过。5770其他方法/1016类/常量池/私有身份/原素材保持；SATS、sceneTick、镜头数学保留，未部署。其calc原body已核与vertical-camera-band保留body相同，不能用旧cache/Camera.as覆盖。
+- 06FC不缓存4b54c43d与缓存5613a3f4各480/9、240次原生calc后位置0、下一入口重定位0。均值33.288→33.550、34.304→39.300ms，四个配对均更慢，停止整world滚动/缓存；不缓存一视角RGB3，缓存五视角RGB114/89/129/107/80，alpha0/精确恢复，均不合格。各75图释放，监听清除；各2203/1762 EXIT_FRAME回调不叫物理帧数。独立runs-review保持526/13/86及实际候选输入。
+- 远处地形摘除b93c4e8d：暂停预备后121surface，204不可见Bitmap首视角摘除/恢复精确；第二视角后台仍新增surface，0计时。28图释放、408次挂载变化全恢复，terrainRestored=true但完整cleanup.restored=false保留，不能说全通过。
+- 接续a99d7694支持仅经所有权/完整旧前缀验证的原生尾部追加，固定摘除集合200Bitmap（4层各50）；识别4surface/16新节点，15审计/2400挂载变化，75图精确并释放、480/9通过、计时八项预绘计数零变化。32.075→33.038ms，两对都慢，停止；不为无收益诊断扩展Drop生产支持。526/13/86独立复核保持。AIR11340/37692/59940/44664/67628/61468/58928均已退出，无部署。
 
 ## 5. 已知限制与停止路线
 
@@ -83,7 +90,8 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 远景缓存、视口条带、明暗裁剪、静态地形GPU、透明边缘裁剪均无收益，停止原样重跑。首次截图不稳定已由纯原生镜头往返复现；固定自然预备后仍须三次精确原生往返与候选恢复，不能改变门槛或把旧失败改判。
 世界父层alpha/visible差异已确认；六物件层停止显示约少7ms，仍约26.8ms，未消除剩余开销。274合格远处单帧根隐藏倒退约4.2%，停止原样重试；多帧停止状态不是静态证明，首个具体变化是visualBloat0。接续检查世界容器与剩余背景/地形/原生明暗的组合处理，先核既有无收益GPU/背景缓存/条带/裁剪路线，不能仅改名称复试。暂停归因不能代表无敌人实玩；有效新候选最终还需无敌人和实战移动。原生trace的text名称仍无权威定义，不叫文字或纹理耗时。入口继续mainMenuOff，固定自然预备不改变像素门槛。
-新增窗口滚动不缓存模式RGB3不合格；缓存模式未执行，先解决原生120px返回偶发不稳定并保存该返回图，不能把下一次恰好通过当修复。若拓展预备范围，固定路径/次数、独立自然精确检查，保留旧失败。原型仍先执行原生cam.calc再复位world位置，不能宣称完全消除祖先矩阵写入。build/cache/current-swf/scripts/fe/inter/Camera.as是旧参考（无新sceneTick），不可用作当前A796的补丁源。当前宿主实际方法需另作精确指纹核验。
+整world窗口滚动已补上真正的宿主坐标写入抑制仍无收益，缓存还更慢，停止。远处不可见地形摘树也已测无收益；旧实战static-resident失败与本轮暂停后的新增失败均保留。暂停/一遍预备安静不证明后台不会继续新增，后续必须按身份/顺序处理正常生命周期，不增加等待挑通过。
+接续需要新的高占比路径：已做GPU背景和静态地形局部替换，仍保留原生对象/前景或水；没有做“整个world呈现全部转到GPU”的代价上限对照。可先检查现有stage3d helper，再准备完整world的固定画面呈现原型，区分混合CPU/GPU合成开销；必须明确若冻结时间轴只测可行性上限，不是实际敌人动画/战斗收益。先验图、相同动作/状态对照、真实窗口呈现证据，不能把整图静态快照当产品，不能重复扩大已无收益的局部地形GPU方案。此新项尚未实现/构建/运行。
 合图只保留为候选。后续需要新的高占比证据或足够收益，不以重复相同实战取最优数值放行。
 通过实际门禁才本机部署、备份、安装后复验；当前没有合格的新包。仍以A796正式指纹为准，不运行旧BEFC/80CF/ABE2/afternoon的无条件回退。
 外置记忆/报告只追加证据，旧失败和冻结收据不可改写。自己的里程碑可提交，foreign WIP排除。
@@ -92,6 +100,8 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 - build/generated/camera-world-alpha-visible-20261027/RESULTS.md、verify_batch.py、batch-review.json；camera-far-{static-visibility,static-warm,singleframe,maskguard}-20261027/RESULTS.md；camera-object-alpha-visible-20261027/RESULTS.md。
 - build/generated/camera-world-scroll-20261027/RESULTS.md、verify_batch.py、batch-review.json；camera-world-scroll-cached-20261027/RESULTS.md。
+- build/generated/camera-world-scroll-{routewarm,cost,phases,native,native-cached}-20261027/RESULTS.md；phases/verify_batch.py、native/verify_runs.py及各复核JSON。
+- build/generated/camera-far-terrain-{detach,append}-20261027/RESULTS.md；append/verify_runs.py、runs-review.json。原native-terrain-detach-20261025失败仍保留。
 - build/generated/camera-atlas-pool-{idle,idle-v2,empty,merged}-20261026/RESULTS.md
 - build/generated/camera-atlas-merged-combat-20261026/RESULTS.md
 - build/generated/camera-{display,backdrop}-contribution-20261026/RESULTS.md
