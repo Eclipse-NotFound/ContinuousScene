@@ -82,3 +82,11 @@ build/generated/camera-world-scroll-native-20261027/** -text whitespace=cr-at-eo
 build/generated/camera-world-scroll-native-cached-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
 build/generated/camera-far-terrain-detach-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
 build/generated/camera-far-terrain-append-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+
+build/generated/camera-stage3d-wholeworld-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-stage3d-wholeworld-late-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-stage3d-wholeworld-nullslots-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-stage3d-wholeworld-observed-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-stage3d-wholeworld-cost-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-stage3d-wholeworld-settle-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-stage3d-viewport-refresh-20261027/** -text whitespace=cr-at-eol,-blank-at-eof

@@ -34,80 +34,41 @@ LAD8ADB/WB1411保持。RC当前回执../RConnect/build/m52/a-live-animation-depl
 A796颜色修复回执state/scene-tint-deployment-20261024.json verified；保留此前ABE2纵向镜头缓冲/80CF遮挡格复用。任何新宿主应精确保留当前其他方法与素材，不能整包覆盖编辑器CS0.9.0。
 ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB75420C507F6DB1D96BE6B1430374B0B7A797607FF4438A695A717809E；仅普通查询拒绝5时CIM只读核创建时间，不确定仍保留占用。lineage.py只允许旧8B35→E9F5这一变化。
 
-## 4. 当前实验停点（2026-10-27）
+## 4. 当前实测停点（2026-10-27）
 
-- 现有固定池35956，8页×4层×1280²=200MiB，计时前分配，计时不分配；清理全部释放。
-- idle候选6651：静止恢复原生并跳过无用同步，移动恢复同步。v1墙面夹具看不到弹痕，完整计时后功能失败；v2改为实际屏幕内可见外墙，960/9通过，原生击墙158像素/破墙2208像素；静止/恢复精确、移动RGB1alpha0。移动30.7292→29.6417ms，仍205ms无工作长帧。不部署。
-- empty候选65F4：只有透明外包矩形证明中心完全空时才跳过复制/显示。960/9通过，移动31.7458→28.9458ms，两个配对同向；1588透明检测、632省略复制。固定200MiB不减。仅暂停归因。
-- merged候选BC0B：守卫两背景父层相邻、中性和无外部效果，按原顺序合成页背景，前景/水不变；不合格回原生。960/9、36截图和64位图释放、跨页/击墙/破墙/父层alpha回退通过。移动31.6875→26.8417ms约15.3%，不代表实战。
-- **merged实战两轮**同冻结4ef9354c，均480/27、六真实SMG10敌人/原生冲刺和碰撞，镜头各窗115–119变化。原生→候选47.0125→44.1958ms、46.2125→44.9833ms；第二轮一对更慢，P95 58→62，长帧156/196仍有。敌火力/预绘不同，收益不稳定，不部署，不重跑同夹具挑好结果。
-- 实战终态单视口三图均通过RGB≤2/alpha0/精确恢复，3图释放；未覆盖所有效果和生命周期。合图候选仅保留。
-- display-contribution：对象父层alpha恢复后1567像素不同/maxRGB227，计时0帧；停止对象隐藏路线，原失败保留。
-- backdrop-contribution：仅远景alpha可精确恢复，960/9、15截图释放。原生34.6375/远景隐藏39.5479ms，四对均更慢；不能去掉远景或推定GPU机制。
-- camera-backdrop-raster-r1已完成960/9，冻结22c7adc3，五视口/透明度/清理通过。移动33.6708→33.3167ms仅约1%，静止21.7→22.5625更慢；停止远景缓存，不部署。AIR4072退出，无自有AIR存活。
-- viewport-scroll原r1首视口maxRGB6失败（0计时）；同呈现器留图变体13视角RGB1/恢复精确、960/9完成，但移动42.12→43.07ms、静止27.93→42.60更差。clean只取消六类无变化写入，960/9通过但移动35.57→41.33ms仍倒退16%；停止条带缓存，原视觉失败未关闭。不部署。
-- 原版旧宽屏基线已直接核对四段镜头恒(56,42)，所以不是相同移动负载。room-axis-v1在1280×720仍默认适配2/3，被1倍资格检查拒绝，0计时；v2保存状态后调用原生zoom0并恢复。
-- **同房间真正轴向对照v2**：同冻结414f1e09/probe2EF3、同房间hash3340386727/走廊3092338540、每帧轨迹只差3840/4000原点，独立pair-review全部通过。各960帧，原版静止/横/纵/组合10.454/13.583/12.675/13.813ms，大图18.704/20.588/22.65/24.617ms。静止已多8.25ms，额外组合移动差2.554ms。单位9/153、时间轴仍活跃，不是同全部人口或实际游玩FPS。
-- room-axis-bands大图960/9，f00bae05：脚本每窗1.44–1.62ms，事件间隙静止约15.8、组合20.1–23.5ms；每帧三段精确相加。不能把间隙命名GPU/纯绘制。AIR53044退出。
-- native-light-crop只裁原生全图明暗位图显示范围；v1因internal访问失败0修改。v2公开visLight子节点匹配public lightBmp，冻结35cb78c9，960/9通过，13视角逐像素精确/39截图释放；移动34.1583→35.4125ms慢3.67%，P95 41→47，无收益，停止不部署。AIR51820退出。
-- 独立Stage3D能力已通过，runs/ae7d3b886f854967ac6f2514a862f58c：AIR51.1.3.3返回DirectX9Ex/baseline，256²清屏读回RGB1alpha0，1位图/Context释放与退出通过，526/13输入保持。仅能力，不是游戏收益。
-- camera-stage3d-background e3bf12ec首视角maxRGB232失败0计时；留图变体cbff2106发现GPU纯地图正常，但合成被残留主菜单遮住。旧夹具仅mm.active=false未调用原生mainMenuOff；不能把此状态当普通游戏绝对性能。
-- camera-stage3d-entry 7de6eed8先调用原生mainMenuOff并核验菜单节点移除。960/9、13视口RGB≤2/alpha0/恢复精确、39截图/81纹理/Context释放通过。原生静止/移动21.8333/33.1875ms，GPU22.7667/33.5208ms，无收益，停止。计时GPU工作约1.2ms，原生约0.2ms；最大120/107ms保留。AIR31020退出；未做窗口真实混合验收或实际战斗，无新部署。
-- camera-display-pixels 4ee1990a只补旧对象alpha恢复异常PNG并修正入口，仍恢复失败0计时：2180像素/maxRGB88/alpha0，主要差异在角色/碎片附近；具体节点/混合/缓存原因未明。5截图释放，数值状态恢复但像素门槛未过。AIR35080退出；旧报告PNG说法已注明原helper未保存，当前实际图像与离线分析保留。
-- 新节点取证6849b5e0：连续原生截图精确相同，六对象层恢复仍4028像素/maxRGB218。11快照各2022根/928范围内节点，首次draw前后167节点仅concatMatrix变动；首次draw后与最终恢复已记录公开状态完全相同，未证明内部缓存相同。6截图释放，0计时。三帧实际呈现变体981b46e1仍1898像素/maxRGB255失败，排除单纯等待三帧即可解决；两轮状态不同，不把像素数量差当改善。
-- 透明地形边缘裁剪4d75556b：不分配/复制位图，只缩原生scrollRect；13视口RGB≤2/alpha0/恢复精确，960/9、39截图释放。移动33.129→36.629ms慢10.56%，P95 44→45，最大53→110；首视点显示矩形面积约减56.56%仍无收益，停止不部署。每帧核对约1.2–1.3ms，不能当生产净成本。
-- 底部物件层单独归因3c1b07c4：只对visObjs[0]/[1]沿原alpha方式控制，五视口15次恢复精确、960/9通过、35截图释放。原生/去0层/去1层/去两层均值31.592/30.883/32.442/31.125ms；合并仅约0.467ms且配对有反向，未支持主要瓶颈。角色/上层恢复失败未因此关闭。
-- 续批角色0b98dc8b/上层5f613dce分别恢复3393/RGB137、1074/RGB255失败，各3截图、0计时。独立二维合成16例却全精确，85位图释放。3D合成只备源码未编译/运行，3D原因未被证明，不据此推进。
-- 原生往返v1/v2在可选盘点空引用处提前退出，0截图；v3 9276b33d分离盘点错误后发现：首次纯水平1px往返改变1219像素/RGB247，后续水平、垂直及120px返回图全部同一新图。11截图释放，0计时。892已读节点相同但3节点读取错误；不能宣称全状态相同。
-- 固定一次原生预备+三次精确自然往返后，8a9491bd角色/上层归因960/9通过、5视口75截图释放。移动原生33.567、角色透明29.958、上层透明34.558、两者28.742ms；角色约3.6ms，两者约4.8ms。恢复阈值未改，旧失败保持，不是产品或冷启动验收。
-- 全地形GPU d1e99f09因父层样式守卫退出，0计时（水原生alpha0.6）。保留水的静态地形d7432500完成960/9，13视口自然/原生恢复精确、143截图/121纹理/Context释放，但移动31.50→35.058ms倒退。摘要因旧parents硬编码3而失败；独立review保留失败、只核其他条件，不伪造运行时计数。停止扩大GPU地形方案。
-- 原生明暗/地图父层8200f709：固定自然预备后960/9、75截图释放。移动32.363→仅明暗透明30.125、地图透明22.388ms；明暗约2.2ms、地图显示约10ms。198ms长帧保留；剩余开销不能直接命名脚本/GPU，alpha0仍保留显示树与时间轴。
-- c16c3bab地图alpha/visible诊断960/9、75截图释放：同路线原生32.579、alpha0为21.858、visible=false为13.788、同时为13.425ms。精确自然往返及恢复通过；关闭地图不是产品，回调可观察visible，不叫纯渲染开销。
-- 远处静态根路线四轮：72ff3ac5筛947根后首次原生预备改变边界，0写入/0计时；641f180f把筛选移到预备后，首视角精确，但visualBloat0在下一视角改变边界，0计时；两个原始清理审计失败保留。5e968e0e排除全部多帧子树，遮罩盘点#1009，0筛选/0计时，清理通过。
-- d3162bd8加空节点保护、mask只读一次和错误路径后完成480/9，274单帧远处根、55截图精确/释放、15审计、计时零全树扫描。原生33.646→隐藏35.063ms，两个配对均更慢，停止不部署。跳过810多帧/615滤镜；本次16261节点盘点未遇空节点，前轮#1009原因仍未确认。
-- a5e0f915六物件层alpha/visible诊断960/9、75截图释放：原生33.892、alpha0为29.733、visible=false为26.813、同时26.763ms。两组visible配对少6.91/7.25ms，仍287ms长帧。物件层只解释部分，剩余不是直接可命名的地形/GPU耗时；不能部署缺失角色的画面。
-- 前6轮归因/静态根试验已提交a140d73；526正式/13运行库/86冻结源及脚本复核通过，camera-world-alpha-visible-20261027/batch-review.json保留3次失败。
-- a54fdd7f世界窗口滚动（world位置0，scrollRect按-vx/-vy），首视角5174像素不同、maxRGB3/alpha0，只有(1021,605)一像素达到3；恢复精确但超2门槛，0计时、11截图释放、清理通过。不缓存模式不合格，缓存模式尚未执行。
-- c5a95e8c单独试原计划缓存模式，在启用候选前就被自然基线保护拦下：水平/垂直1px精确，120px双轴返回103像素/RGB76。0候选检查/0计时，9截图释放、清理通过；不能判断缓存候选成败。一水平预备并非所有暂停姿态都足够，未原样重试挑通过。
-- 所有自有AIR退出；后2轮526正式/13运行库/冻结源及脚本复核保持，详见camera-world-scroll-20261027/batch-review.json。无新部署；foreign WIP仍排除，实际占用以实时检查为准。
-- 固定完整偏移预备routewarm 1dc1ea97首视角三次自然返回精确后，缓存模式8377像素/maxRGB92、alpha0/恢复精确失败；0计时/15图释放。实际完整图无明显缺块位移，较大差异集中角色附近，原因未明。旧一横向预备失败未改判。
-- 无缓存代价诊断e742a252明确保留visualAccepted=false（五视角RGB3），允许归因但不放宽RGB2标准；121个部分样本因下一入口world坐标变化停止，75图释放。旧错误字符串“Terrain changed”实际检查显示属性，不是地形像素。
-- 帧相位1845a30f完整480区间：最新EXIT_FRAME状态正确，240次下一ENTER_FRAME入口world x/y被写回cam.vx/vy。原摘要误假设480次EXIT_FRAME，实际1281而失败；独立只读review核480份保留最新状态，未保留中间回调不可证明，原失败保留。驱动直接ENTER_FRAME无定时器/跳样。33.108→33.396ms无收益，RGB3不合格，75图释放。
-- A796精确单方法诊断宿主06FC：仅Camera.calc两个world坐标setter在scrollRect非空时跳过。5770其他方法/1016类/常量池/私有身份/原素材保持；SATS、sceneTick、镜头数学保留，未部署。其calc原body已核与vertical-camera-band保留body相同，不能用旧cache/Camera.as覆盖。
-- 06FC不缓存4b54c43d与缓存5613a3f4各480/9、240次原生calc后位置0、下一入口重定位0。均值33.288→33.550、34.304→39.300ms，四个配对均更慢，停止整world滚动/缓存；不缓存一视角RGB3，缓存五视角RGB114/89/129/107/80，alpha0/精确恢复，均不合格。各75图释放，监听清除；各2203/1762 EXIT_FRAME回调不叫物理帧数。独立runs-review保持526/13/86及实际候选输入。
-- 远处地形摘除b93c4e8d：暂停预备后121surface，204不可见Bitmap首视角摘除/恢复精确；第二视角后台仍新增surface，0计时。28图释放、408次挂载变化全恢复，terrainRestored=true但完整cleanup.restored=false保留，不能说全通过。
-- 接续a99d7694支持仅经所有权/完整旧前缀验证的原生尾部追加，固定摘除集合200Bitmap（4层各50）；识别4surface/16新节点，15审计/2400挂载变化，75图精确并释放、480/9通过、计时八项预绘计数零变化。32.075→33.038ms，两对都慢，停止；不为无收益诊断扩展Drop生产支持。526/13/86独立复核保持。AIR11340/37692/59940/44664/67628/61468/58928均已退出，无部署。
+本轮7次隔离运行，正式文件未变；完整world绘制终于出现**固定画面上限收益**，尚未成为合格产品。
 
-## 5. 已知限制与停止路线
+- wholeworld初轮25f57170：立即停止22个显式时间轴，预备后24个轴仍变帧；65图释放/0计时/恢复失败。late 99c35ff8：延后停止，遍历空节点，65图释放/0计时/清理通过。nullslots f22d6e66：7444节点/1670多帧，本轮空槽0；24个isPlaying=false的osn/Bloodwing子轴仍变化；7纹理/8临时图/65像素图释放，恢复失败。旧失败均保留，未证明空槽根因。
+- observed 3c3ad63c：8间隔实看帧变化，停止47（24隐式），无变化；首视角92738像素差异，604像素RGB≥3、最大112/alpha0/精确恢复，0计时。80像素图/8临时图/7纹理释放。已看完整PNG，发光边缘颜色差异，具体混合原因未证实。
+- cost 666d6fb8：明确允许画面不合格的归因计时（visualAccepted=false，**不放宽RGB2部署门槛**），但两个pfe_fla::bloat_bulk_896在下一间隔从55→3并重新播放。源已核frame55 gotoAndPlay(2)、frame1随机gotoAndPlay。0计时，47中45恢复，外部改动的2个未覆盖，恢复失败保留。
+- **settle 08eb4372完整960/9**：固定一次已知帧脚本消化＋下一间隔核验；实际drain0，分支重停没有得到动态验证。固定43播放者（25隐式）；7纹理22,626,944字节，整个2392×1444区域预先捕获。原生静止11.229/移动29.658ms，GPU静止11.125/移动12.092ms；两移动配对−16.892/−18.242ms，约59.2%。原生移动多18.429ms，GPU只多0.967ms。中位数29→11，P95 36→16，但106/130ms长帧仍在，不能说卡顿已解决。
+- settle的13视角全visualAccepted=false，RGB92–253/alpha0，原生恢复精确；18组自然基线通过。第5视角实看无明显地形缺失，RGB≥3为2509像素，发光线/伤害数字附近不同，28像素≥200。不仅是1/255舍入；数字像素位置差异原因未明。260像素检查图、8临时图、7纹理释放，43播放者恢复，八项计时预绘计数零变化。
+- **viewport-refresh 712c32f2完整960/9**：每GPU区间重新draw整个当前视口并上传，原生裁剪保留，计时不分配。原生移动30.988→GPU移动41.333ms，配对+10.808/+9.883ms，约33.4%倒退，停止此实现。480计时重绘24.5ms/次、上传2.9417ms/次。原生/GPU静止13.183/40.604ms；13像素刷新＋480计时=493、上传495、copies494。2纹理/2CPU图/260像素图释放，47播放者恢复。画面仍不合格，非实战，不部署。
+- 两份独立复核：wholeworld-settle/verify_runs.py→runs-review.json（前6轮）、viewport-refresh/verify_run.py→run-review.json。每轮526正式/13运行库/86源/脚本保持。AIR58696/68948/64972/65440/30136/41748/21864均退出；实际占用再即时查询。cost/verify_runs.py是未运行的冗余草稿，不作为证据、不提交（删除失败未转路处理）。
 
-近原版、全地图2–5秒、所有效果/联机/SATS/长时稳定未全面达到。本轮世界暂停测试仍有Flash时间轴/回调，不是无敌人的真实游玩。
-原生axis-trace支持镜头运动有显著绘制开销，但重型追踪不是正常FPS，也不证明GPU/GC。stage-cost中相机均.35ms，合图1.26ms；148/140ms长帧准备仅3/0ms，不能命名余量来源。
-已停止无稳定收益或像素失败：native cacheAsBitmap远景、scrollRect父缓存、bitmapfill、整树/对象层隐藏、terrain-detach、静态Box摘树、整段远处动画跳过、qualityLOW、鼠标树、活动范围、预算逐帧分配、旧全图合图等。完整边界与原始失败见历史及各RESULTS，不重复换名字试同一路线。
-三处旧工具拒绝（Monstrik原始读取、合并Weapon/UnitVisual读取+截图、host tag93补丁/grant）未执行；不转路绕过。新增合并PNG枚举/Pt参考读取被保护钩子拒绝；Pt读取未重试，仅继续自己的PNG检查。trace路线不修改宿主已通过。
-当前完整战斗用native-input-motion-3真实输入；早期逐帧Y/速度固定的stableMotion仅诊断。旧34.35/57.33ms原版对照为历史不同组合，不能直接当今日候选差值。
+## 5. 已知边界与停止路线
 
-## 6. 下一步与部署约束
+- 上述是暂停模拟、固定动画、预备路线的ENTER_FRAME间隔，**不是无敌人实玩/真实战斗/物理呈现数**。visibility可能被回调观察，不直接叫纯GPU成本。实际敌人AI、子弹/动态画面、RV、Windows真实混合呈现、SATS及长时生命周期未验。
+- 8间隔观测后只停止显式播放/实际变帧者；隐式活动者清理用play，isPlaying可从false变true，不宣称内部播放状态原样恢复。只用于终结式隔离实例，不能复制进产品。帧脚本固定drain仅允许已核bloat_bulk_896的1/55帧；成功轮未触发，不能声称该分支已验证。
+- 完整截图/像素图有冷首次差异；固定全偏移原生预备后，仍检查三次独立精确自然往返，不循环拍到通过。mainMenuOff必须真实调用。GPU读回再叠Stage.draw不能当OS窗口截图。
+- 已停止：远景缓存约1%混合；视口条带clean慢16%；原生明暗裁剪慢3.7%；透明边缘裁剪慢10.6%；GPU仅背景无收益；静态地形GPU慢11.3%；远处单帧根隐藏慢4.2%；远处不可见地形摘树慢3%；整world scrollRect真正抑制Camera写入后仍无收益，cacheAsBitmap慢14.6%。不换名重跑。
+- merged合图暂停移动约15%，实际战斗只约6%/3%且第二轮配对反向/P95变差，保留候选不部署。整world alpha/visible与六对象层隐藏只作归因，不是产品。旧CPU text trace语义未明，不命名为文字或纹理耗时。
+- 世界暂停不能保证后台不再新增surface；只读见新节点应按身份/顺序处理，不强摘/复活旧图块。多帧isPlaying=false不是静态证明。完整旧试验链见新归档，避免重走失败。
+- 原Monstrik读取、合并Weapon/UnitVisual读取+截图、host tag93补丁/grant、CIM CPU查询、合并PNG枚举/Pt读取被拒绝，禁止转路重试。当前Camera旧缓存缺正式补丁，不可拿build/cache/current-swf/scripts/fe/inter/Camera.as覆盖A796。
+- 全地图2–5秒、近原版动态游玩及所有兼容目标仍未完整达到。此前用户撤回的afternoon配方不得复活，旧本体回退不能无条件套用。
 
-远景缓存、视口条带、明暗裁剪、静态地形GPU、透明边缘裁剪均无收益，停止原样重跑。首次截图不稳定已由纯原生镜头往返复现；固定自然预备后仍须三次精确原生往返与候选恢复，不能改变门槛或把旧失败改判。
-世界父层alpha/visible差异已确认；六物件层停止显示约少7ms，仍约26.8ms，未消除剩余开销。274合格远处单帧根隐藏倒退约4.2%，停止原样重试；多帧停止状态不是静态证明，首个具体变化是visualBloat0。接续检查世界容器与剩余背景/地形/原生明暗的组合处理，先核既有无收益GPU/背景缓存/条带/裁剪路线，不能仅改名称复试。暂停归因不能代表无敌人实玩；有效新候选最终还需无敌人和实战移动。原生trace的text名称仍无权威定义，不叫文字或纹理耗时。入口继续mainMenuOff，固定自然预备不改变像素门槛。
-整world窗口滚动已补上真正的宿主坐标写入抑制仍无收益，缓存还更慢，停止。远处不可见地形摘树也已测无收益；旧实战static-resident失败与本轮暂停后的新增失败均保留。暂停/一遍预备安静不证明后台不会继续新增，后续必须按身份/顺序处理正常生命周期，不增加等待挑通过。
-接续需要新的高占比路径：已做GPU背景和静态地形局部替换，仍保留原生对象/前景或水；没有做“整个world呈现全部转到GPU”的代价上限对照。可先检查现有stage3d helper，再准备完整world的固定画面呈现原型，区分混合CPU/GPU合成开销；必须明确若冻结时间轴只测可行性上限，不是实际敌人动画/战斗收益。先验图、相同动作/状态对照、真实窗口呈现证据，不能把整图静态快照当产品，不能重复扩大已无收益的局部地形GPU方案。此新项尚未实现/构建/运行。
-合图只保留为候选。后续需要新的高占比证据或足够收益，不以重复相同实战取最优数值放行。
-通过实际门禁才本机部署、备份、安装后复验；当前没有合格的新包。仍以A796正式指纹为准，不运行旧BEFC/80CF/ABE2/afternoon的无条件回退。
-外置记忆/报告只追加证据，旧失败和冻结收据不可改写。自己的里程碑可提交，foreign WIP排除。
+## 6. 下一步（目标保持活动）
 
-## 7. 深入入口
+1. 完整固定世界呈现已有可用代价上限证据；整视口逐帧重绘明确太慢。下一步先测**有界局部更新**，确认CPU重绘是否随变化区域明显下降，再考虑完整动态绘制结构。不要把只刷某个假定区域当真实动态正确性；旧位置/新位置、子弹尾迹、图块新生/销毁、弹痕和门变化都要保留。
+2. 画质问题未解决：混合/发光与伤害数字有大于RGB2差异。需具体定位层和对象，不能改口成可忽略误差；GPU readback尚未证明Windows窗口呈现。完整固定图不是产品，不直接部署。
+3. 能够保持动画后，再做有敌人/无敌人的真实输入镜头移动对照；全部区间保留。当前原生近原版基线需同尺寸/同路线，旧2032固定cam(56,42)不是运动基线，不能复用作收益分母。
+4. 通过实际门禁才备份、本机部署、安装复验；A796/CS0.9.0已安装版本保持。继续测试前查共享占用，不清理他人游戏。
 
-- build/generated/camera-world-alpha-visible-20261027/RESULTS.md、verify_batch.py、batch-review.json；camera-far-{static-visibility,static-warm,singleframe,maskguard}-20261027/RESULTS.md；camera-object-alpha-visible-20261027/RESULTS.md。
-- build/generated/camera-world-scroll-20261027/RESULTS.md、verify_batch.py、batch-review.json；camera-world-scroll-cached-20261027/RESULTS.md。
-- build/generated/camera-world-scroll-{routewarm,cost,phases,native,native-cached}-20261027/RESULTS.md；phases/verify_batch.py、native/verify_runs.py及各复核JSON。
-- build/generated/camera-far-terrain-{detach,append}-20261027/RESULTS.md；append/verify_runs.py、runs-review.json。原native-terrain-detach-20261025失败仍保留。
-- build/generated/camera-atlas-pool-{idle,idle-v2,empty,merged}-20261026/RESULTS.md
-- build/generated/camera-atlas-merged-combat-20261026/RESULTS.md
-- build/generated/camera-{display,backdrop}-contribution-20261026/RESULTS.md
-- build/generated/camera-backdrop-raster-20261026/README.md（新候选）
-- 对应knowledge/experiments/evidence/<实验名>-rN内result/summary/process-policy/probe-build是原始证据。
-- build/generated/camera-terrain-layers-20261025/lineage.py；camera-atlas-paged-combat-20261025-r1/probe-build.json为85源冻结种子983727AE，探针29AF。
-- journal.md；MEMORY-history-20261026-2340.md保存重写前全文，历史更早MEMORY-history-20261023-0818.md仍在。
-- .agents/skills/remains-{auto-testing,runtime-debug,mod-build,release-gate,mod-memory}/SKILL.md，ModLoader/docs/TEST-REGISTRY.md。
-- design/single-map-authoring.md、state/deployment-v090.json为独立编辑器；state/afternoon-recovery-20261021.json为历史回退，当前不套用。
+## 7. 接续入口
+
+- 本轮：build/generated/camera-stage3d-wholeworld{,-late,-nullslots,-observed,-cost,-settle}-20261027/ 与camera-stage3d-viewport-refresh-20261027/的prepare.py、probe_patch.py、run.py、README/RESULTS；对应knowledge/experiments/evidence/*-r1为原始证据。
+- 新旧完整停点归档：state/MEMORY-history-20261027-wholeworld.md；更早MEMORY-history-20261026-2340.md、MEMORY-history-20261023-0818.md。journal顶部本轮和前轮链。
+- 85源种子receipt：knowledge/experiments/evidence/camera-atlas-paged-combat-20261025-r1/probe-build.json（983727AE）；frozen f298932b38e24919991997c68e0a8b8a，probe29AF。新变体86源。lineage入口camera-terrain-layers-20261025/lineage.py只允许登记器8B35→E9F5这一变更。
+- 隔离调用沿各run.py，先prepare.py生成并校验源码；共享登记game、独立桌面、唯一ID/存储、≥4GiB提交和≥2GiB物理内存。Python在用户.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe，Java在D:/Program Files/Adobe Animate 2024/jre/bin/java.exe，Flex/SWC/ffdec在Sandevistan/build/tools。
+- 本轮按已获授权逐条使用会话01a13816精确调用短时grant；未关闭任何保护。工具说明见.agents/skills/remains-{auto-testing,runtime-debug,mod-build,mod-memory,release-gate}/SKILL.md与ModLoader/docs/TEST-REGISTRY.md。
+- design/single-map-authoring.md、state/deployment-v090.json为独立编辑器发布；state/scene-tint-deployment-20261024.json为正式A796染色修复。
