@@ -34,20 +34,17 @@ LAD8ADB/WB1411保持。RC当前回执../RConnect/build/m52/a-live-animation-depl
 A796颜色修复回执state/scene-tint-deployment-20261024.json verified；保留此前ABE2纵向镜头缓冲/80CF遮挡格复用。任何新宿主应精确保留当前其他方法与素材，不能整包覆盖编辑器CS0.9.0。
 ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB75420C507F6DB1D96BE6B1430374B0B7A797607FF4438A695A717809E；仅普通查询拒绝5时CIM只读核创建时间，不确定仍保留占用。lineage.py只允许旧8B35→E9F5这一变化。
 
-## 4. 最新实测（2026-10-27 大视口地形归因，仍无部署）
+## 4. 最新停点（2026-10-27 持续合图候选，仅准备）
 
-本批前HEAD08dd9a4；五目录/五冻结程序/五次AIR，报告camera-visible-components-20261027/RESULTS.md。统一verify_batch独立核526正式/13运行库/86或87源；batch-review9EC414B0。原始失败不改绿，性能目标未完成。
+本批前HEAD e825ada。两目录camera-persistent-atlas-20261027与camera-persistent-atlas-checks-20261027，后者RESULTS.md记录；**未编译、未启动AIR、未部署，无性能结论**。
 
-- visible-tree-audit第一遍完整15680节点/155单位，显式BitmapData176.1MB，最大1920×1000；四外围缓存边框显示宽9700/高5000，不能等同内部位图尺寸。第二遍45个未定位空子槽、13080节点不完整，0计时；不得忽略后称完整。
-- Unit.as允许读取结果：initBlit由素材blitId配置，没有近远切换证据；此前“远敌人变位图”仅推测，撤回。未重试被拒绝的UnitVisual等源读取。
-- border-cache1280×720，四cacheAsBitmap原生/关闭1920区间，静15.971→16.879、横22.508→21.517、纵21.850→21.054、组合19.813→22.596ms。48关闭/恢复，五视角精确，20图释放；无综合收益，不部署。
-- visible-components1920×1080：6720区间155823ms，七隐藏控制与完整画面相邻AB/BA。地形隐藏六移动配对均下降（横29.133→20.533/26.7→20.05，纵25.067→18.65/24→21.683，斜24.817→19.267/28.667→20.283）。原生所在Stage区间约2.6–3.1ms，主要差异在帧间，不能叫纯GPU。原生光照隐藏无稳定移动收益。
-- **该图层轮原汇总失败**：错误假设EXIT_FRAME每区间一次，实际15738次/每窗116–190。独立review_failed_summary核完整时钟/坐标/分段守恒，但无逐区间事件ID，不能称呈现前全覆盖。保留validPerformanceRun=false，只作诊断线索；未改冻结summary或测试登记。五原生图覆盖46.5%–52.3%，首图已看；35次恢复精确、80图释放。
-- opaque-tiles全400×400 alpha255：448张仅1张合格（cx1/cy14/layer1），1920区间全屏外，原可见资格门槛失败，不能评价性能。准备7ms/640000B，一分配一释放；不根据偶然帧率差计算收益。
-- empty-native-tiles全透明Bitmap暂置bitmapData=null，保留原nativeBuffers/visible/crop/父级/顺序。464扫描/162选中，每帧35–53张按cull可见；准备51ms，无自有位图，1944解除/恢复。1920×1080、1920区间，静15.65→16.625、横24.275→26.1875、纵24.0708→22.9208、斜26.4667→25.6708；移动24.9375→24.9264仅0.045%，停止。五图maxRGB1/alpha0，恢复精确，20图释放。
-- 五程序依次6087397E/D644AD5E/E60AD817/FE627217/A3F9C8B6；AIR31828/49712/54524/49284/30500均退出，最后进程/登记空。正式文件未改、foreign SceneRenderChecks未动、无新权限拒绝。
-- 都是活跃模拟的无敌人隔离夹具、原生脚本相机、120fps诊断；非自然跳跃/真实战斗/物理呈现。1920首图和候选图已查看；当前开阔视点不覆盖密集内景。未调用Ghost或跨对话消息。
-- 上批near-group真实可见移动仅0.58%、旧active-quiet-axis/bands黑区代表性纠正继续有效，详见新归档第4节；不得复活13–15对18–19ms为正常原版/大场景差距。
+- 旧合图每帧恢复/隐藏原图并重建sceneSurfaces索引；新诊断候选保持绑定，按四父层ADDED/REMOVED与resident/redraws/evictions更新集合，按整数格视口更新预期可见性；源身份与revision仍逐页检查。页1280/8页/4层与合成公式保持，不是重复调页大小。
+- 初始runner仅一次-r1，在编译前内存预检失败（提交2877861888B）。原始runner-failure.json保留，无probe-build或游戏进程。其后只读内存检查，无失败重跑。
+- 后继加入16状态真实Flash生命周期/像素夹具：跨格/页、像素revision、同数量对象替换、未知背景子对象激活、SATS/显式原生回退、清理移除事件。132源位图/34截图需释放，候选RGB≤2/alpha0，原生恢复精确。前景/水面有内容。**仅断言设计，尚未执行**。
+- 后继显式隐藏非请求页，两个呈现器分开清理；预定1920×1080、2880完整间隔、三臂正反（当前大场景原生/旧合图/持续合图）。原生一词不等于普通房间基准。两套各200MiB计时前分配，成本单列。
+- offline_review.py通过Python语法/生成一致性/85源种子/89预期源与526正式/13运行输入核对。offline-review.json DB4E5C6A：提交3316633600B、物理6999646208B、AIR空。它不证明AS3可编译或运行正确。
+- 已向用户异步请求正常释放约2GB内存；尚无回复。**本轮首次因同一内存条件停住**，非连续三轮，不标blocked。所有编译/测试仍沿4GiB提交/2GiB物理保护。共享登记最后空；未绕护栏、未结束外部进程、未改foreign WIP。
+- 前批五次运行详见新归档第4节与camera-visible-components-20261027/RESULTS.md：有内容地形是主要线索，边框缓存/空白图块均无有效收益，opaque全屏外不得评价。保留原失败/代表性纠正，不复活已停止路线。
 
 ## 5. 已知边界与停止路线
 
@@ -60,15 +57,16 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 - 原Monstrik读取、合并Weapon/UnitVisual读取+截图、host tag93补丁/grant、CIM CPU查询、合并PNG枚举/Pt读取被拒绝，禁止转路重试。当前Camera旧缓存缺正式补丁，不可拿build/cache/current-swf/scripts/fe/inter/Camera.as覆盖A796。
 - 全地图2–5秒、近原版动态游玩及所有兼容目标仍未完整达到。此前用户撤回的afternoon配方不得复活，旧本体回退不能无条件套用。
 
-## 6. 下一步（保持活动）
+## 6. 下一步（目标仍未完成）
 
-1. 目标仍未解决。最新1920可见诊断指向有内容的地形绘制/合成；四边缓存、空透明省略均不值得继续微调，整不透明格式在当前路线无覆盖。不要重跑筛最好结果，不把关地形当优化。
-2. 先核既有页图集/合图和GPU失败链。旧合图实际战斗只有小幅混合收益，逐帧全表属性校验有约1–3ms开销；只有找到明确的更新通知/身份契约，才考虑按变化维护，不能直接删校验或据暂停数据部署。A796源码准确保留、CS0.9编辑器保留，禁止旧host覆盖。
-3. 补更密集内景、实际原生帧率与有效原版参考。旧Y600黑区不可复用；所有新路线核完整PNG和实际相机/角色坐标。原版单房相机边界可能限制纵移，不能拿不同内容称严格同负载。
-4. 若重用EXIT_FRAME检查，按每次提交的序号记录，不假设一事件一帧；已有15738是回调数，不能当呈现数。最新原失败仍保留，不需要仅为改绿重跑全套图层诊断。
-5. 自然跳跃、高速实战、RV/SATS/跨区色彩与长期资源仍待验。候选要有真实净收益、RGB≤2/alpha0和生命周期通过；当前没有可部署性能更新。
+1. 内存释放后核独占占用，再运行camera-persistent-atlas-checks-20261027/run.py --mode scene --name 新名字 --compile-probe --registry-wait 60。尚无可复用编译回执。维持会话精确调用授权、私有桌面、唯一存储和内存预检，不降低门槛。
+2. 先通过16状态Flash夹具，再核三臂完整计时/像素/资源；失败保留原配方另开后继。若有稳定净收益，再进入真实镜头移动战斗与RV/SATS/破坏/长期资源。当前外部修改既有Bitmap几何无通知，未解决前不能产品部署。
+3. 目标核心仍是镜头，不论敌人是否出现。当前原生臂是大场景既有渲染，仍须有效普通房间参考与密集内景；旧Y600黑区无代表性，不将120fps诊断叫实玩FPS。
+4. 新收益不足则停止此路线，不挑最好结果。此前地形隐藏仅归因，不能作为优化；旧EXIT_FRAME每区间一次假设错误，若再用须按提交序号记录。
 
 ## 7. 接续入口
+
+- 当前两目录camera-persistent-atlas{,-checks}-20261027；checks/RESULTS.md、offline_review.py与offline-review.json DB4E5C6A。完整前快照MEMORY-history-20261027-before-persistent-atlas.md。旧配方仅内存预检失败，后继未调用runner；新源已准备，未编译。
 
 - 最新五目录camera-visible-tree-audit、camera-border-cache、camera-visible-components、camera-opaque-tiles、camera-empty-native-tiles（均-20261027）。各prepare/probe_patch/run/helper配方冻结；components/RESULTS.md总报告、verify_batch.py与review_failed_summary.py后验复核，batch-review9EC414B0。原始evidence同名-r1。前快照MEMORY-history-20261027-before-visible-components.md。
 - 上批camera-active-quiet-{axis,bands}、camera-native-{near,visible}-groups-20261027；visible-groups/RESULTS.md与bands/verify_batch.py保留六轮及黑区纠正。原报告不能用新结论覆盖。

@@ -1,5 +1,14 @@
 # 开发日志
 
+## 2026-10-27 持续合图候选准备完成，内存预检停止，未构建或部署
+
+- 新建camera-persistent-atlas与camera-persistent-atlas-checks两配方，均-20261027。减少逐帧原图显示切换/索引重建，保留源revision/身份检查；事件通知只管理集合。实际收益未知。
+- 首次runner在编译前提交内存2877861888B未过4GiB，保留-r1失败。后续仅检查内存/代码，未编译、未AIR；已向用户请求释放内存，未重复请求。首次目标轮内存停点，未标blocked。
+- 后继预备16状态真实Flash夹具，132源位图/34截图及精确恢复；尚未执行。三臂2880间隔预案、非请求页隐藏、两呈现器独立清理。89预期源码。
+- offline_review.py成功：526正式/13运行输入一致、Python/生成来源核对，报告DB4E5C6A，提交3316633600B/AIR空。不能称编译或性能通过。报告checks/RESULTS.md；前快照MEMORY-history-20261027-before-persistent-atlas.md。
+- 正式安装、foreign SceneRenderChecks、其他模组不改；无新保护拒绝。内存达标后先编译/夹具/三臂，收益确切才进入真实镜头战斗与兼容验收，目标继续。
+
+
 ## 2026-10-27 可见大视口归因与透明图块对照，无可部署收益
 
 - 五次AIR，526正式/13运行库/86或87冻结源全部复核。报告camera-visible-components-20261027/RESULTS.md，统一review9EC414B0；前快照MEMORY-history-20261027-before-visible-components.md。正式与foreign WIP不改。

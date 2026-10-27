@@ -136,3 +136,6 @@ build/generated/camera-border-cache-20261027/** -text whitespace=cr-at-eol,-blan
 build/generated/camera-visible-components-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 build/generated/camera-opaque-tiles-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 build/generated/camera-empty-native-tiles-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+
+build/generated/camera-persistent-atlas-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-persistent-atlas-checks-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
