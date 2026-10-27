@@ -95,3 +95,6 @@ build/generated/camera-stage3d-region-items-20261027/** -text whitespace=cr-at-e
 build/generated/camera-stage3d-item-profile-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
 build/generated/camera-stage3d-region-prune-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
 build/generated/camera-native-gpu-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-layer-dirty-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-layer-tiles-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-layer-region-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
