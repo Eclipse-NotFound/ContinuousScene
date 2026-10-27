@@ -27,4 +27,6 @@
 
 01:12只读核对GlobalMemoryStatusEx与GetPerformanceInfo，进程可分配和系统提交余量均为2165501952B、差为0；系统提交58551513088B，上限60717015040B，物理可用11766386688B。本次没有发现进程限制导致内存误报，不能据此降低门槛或保证别的时间点没有约束。结构字段含义依据微软[MEMORYSTATUSEX](https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/ns-sysinfoapi-memorystatusex)与[PERFORMANCE_INFORMATION](https://learn.microsoft.com/en-us/windows/win32/api/psapi/ns-psapi-performance_information)，未改系统设置。
 
+后续回读新增限制：两轮timingStart的sceneResident分别133/117、sceneRedraws为136/124，已经准备的画面集合不同，尽管各轮计时内增量均为零。原均值不作为纯因果结果。后继camera-environment-paired-20261028在同一实例内切换原字节表达式与F15缓存表达式，减少跨次生成差异；旧回执、配方和均值不改。
+
 已按用户一次授权向实验对话01a17835-6129-7440-9bcc-0382b03fef3b请求10分钟自然批次间窗口。对方明确无法安全提供：队列会自动续批，改冻结脚本或强制挂起不符合既定实验要求。窗口从未开始，本任务未再次发协调请求、未干预实验。继续仅在保护条件满足时测试；下一步cache-r2、base-r2恢复对照及相同探针normal参考，保持全部原始失败和等待回执。

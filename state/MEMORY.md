@@ -46,6 +46,10 @@ ModLoader08957b4已提交登记器修复，15测试通过，原E9F51仅普通查
 
 随后300秒等待再次到期，receipt499f715c/SHA3FBE8FA5，末次可分配1633095680B；没有AIR、没有cache-r2运行目录、当前无自有运行句柄。仍不部署，下一次沿同名与同2F7B探针继续，不重复请求一般释放内存或改保护线。
 
+自动接续新增camera-environment-paired-20261028：发现前两轮timingStart图块数量133/117不同，改为同一实例内原始/缓存路径16×120正反对照。宿主仅增加诊断选择分支，原始51字节及F15缓存274字节分别原样保留；静态栈/分支通过，整宿主未编译。新helper5D8E2084、85源/114配方/77夹具静态通过，1921/1920、双150环境情形/20位图与恢复均待实测。先build.py再本配方run.py，不能部署诊断宿主；当前F15和正式版不改。详见新配方RESULTS。
+
+本回合paired构建前300秒等待已到期，receipt在native-once/readiness/486466b0…json、SHABC253BDA，末次提交3579019264B；没有Java/AIR/宿主产物，当前无句柄。等待不是编译或测试成功。恢复后本回合为第二回合：静态准备有新进展，但同一资源条件仍阻止候选验证；下一回合若第三次重现且已无可做的必要独立工作，应按blocked审计停止空转，不伪造更多进度或降低门槛。
+
 本轮接续86b7057；前快照MEMORY-history-20261027-before-resource-policy.md。正式安装未改，镜头卡顿仍待解决。
 
 - fog-history-normal-r3已完成，复用D4B5DBE6/614be80b探针，AIR37804退出，960区间和五张原图检查通过。进入前普通房间本地360格已探索、大场景为0；重置后两模式1200格visi/target/opacity/mask/water在五视角及计时两端全部精确相同，全部960镜头坐标仅偏移(5760,3000)。前轮上下遮罩差异可由夹具探索历史解释，不是已证产品错误。随机装饰与灯光仍不同，不称全图像素等价。
@@ -73,9 +77,9 @@ ModLoader08957b4已提交登记器修复，15测试通过，原E9F51仅普通查
 
 ## 6. 下一步（目标仍未完成）
 
-此前quiet阶段曾连续三回合因内存不足标blocked；用户恢复后根目标active，本回合已实际完成新驱动两轮AIR，属于新进展，不能沿旧累计直接再次标blocked。当前重复测量仍受外部负载影响，5GiB稳定等待及原4GiB启动、512MiB运行中止线保持。已授权的一次协调请求被对方基于实验规则拒绝，不能假定窗口开始或中断实验。
+此前quiet阶段曾连续三回合因内存不足标blocked；用户恢复后根目标active，恢复首回合实际完成新驱动两轮AIR。本次自动接续完成同图配方静态准备，但构建等待仍因内存到期。5GiB稳定等待及原4GiB启动、512MiB运行中止线保持。一次协调请求已被对方基于实验规则拒绝，不能假定窗口开始或中断实验；当前无自有运行进程。
 
-1. 新native-once同2F7B探针接续cache-r2、base-r2恢复对照（run_variant.py --host cache/base --probe-build …/probe-source/9b56efbf40d4450db686e7c684e78139/probe-build.json --wait-ready-seconds 180或300），verify_runs.py核全时钟/坐标/输入。同探针normal参考由run.py --mode normal --room-x 3 --room-y 3运行；不将旧驱动数字直接算产品收益。
+1. 优先新paired同实例对照：build.py --wait-ready-seconds 300构建诊断宿主，随后run.py --mode scene --room-x 3 --room-y 3 --name camera-environment-paired-20261028-r1 --compile-probe --wait-ready-seconds 300，verify_run.py核所有区间与实际模式。准备已做，尚未运行；不改执行过的配方。native-once的cache-r2/base-r2仍可作正式F15跨实例复测；同2F7B normal参考待补，旧驱动不得混算。
 2. keycache分配消除和150环境情形已验证；实际帧率重复、普通场景/战斗兼容仍待。若复测没有明显稳定收益，不部署性能版本，停止该分支帧率宣称。旧quiet启动前失败均保留，非必要不回到旧测量驱动。
 3. 原合图内景仅4.37%、横移变慢；旧战斗13%不能推广。RV/current仅3.7%/1.6%，保留候选；鼠标/裁剪/GPU等停止路线不换名重做。Camera原生vx/vy为int，不能未验证就宣称亚像素导致卡顿。
 4. RV只读源接口仍为隔离候选，classic/WB/SATS/地形破坏/往返/缩放/几何失效未验；原807像素恢复失败未解释。SceneAlicornAlerts、撤回afternoon、foreign SceneRenderChecks不动。
