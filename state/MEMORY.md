@@ -36,19 +36,20 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 ## 4. 最新实测（2026-10-27）
 
-上一批已提交a79fdc6。旧完整停点已存state/MEMORY-history-20261027-before-live-layers.md。本批三个新候选保持Flash动画，但游戏模拟仍暂停，均未部署。
+此前提交e563e6a；本批前的快照存state/MEMORY-history-20261027-before-actor-cache.md。7轮角色缓存实验均未部署，根目标仍未达成。完整结果见build/generated/camera-actor-atlas-checks-20261027/RESULTS.md。
 
-- layer-dirty 448ed0d2：9层组只在时间轴变化时更新；960区间/9检查。原生静/动23.3375/35.7208ms，缓存47.1500/42.6792；移动两对+8.20/+5.72ms。只有角色组重画480次，更新10067ms（20.973/区间，含上传1826），19177帧变化，无计时分配。13全图RGB132/alpha0拒绝，自然/恢复精确。30CPU图/29纹理/260像素图释放、6910隐藏/恢复。AIR66260，入口4991ms。
-- layer-dirty首原生/候选全图已实看，没有整块地形/角色缺失；1975像素RGB≥3、153≥64，最大点(1113,600)从(245,197,150)变(245,146,18)。混合或缓存组合只是待查假设，不能当画质通过。
-- layer-tiles bd8ebe9d：按变化角色旧/新范围刷新512块，首7块64ms/上传2ms。完整角色层oracle失败，1364像素RGB128/alpha24，0帧率区间。两完整PNG已看，差异在角色/光晕边缘，具体原因未证。42CPU图/34纹理/79像素图释放、246隐藏/恢复，清理通过。AIR64548，入口5122ms。visualAccepted初始true不是通过，trial.passed=false，原失败保留。
-- layer-region fccbb003：固定整图坐标，一次draw中性角色层，clip限定写入后copy到块；独立完整参照仍由world绘制。13角色层oracle RGBA精确，960/9完成。原生静/动25.2042/33.9792ms，缓存34.2750/34.9708，配对+0.967/+1.017ms，无净收益。480次draw4219ms（8.790/次），2397块更新5685ms（11.844/区间，含上传953）；20614帧变化，无计时分配，最多5块，均dirty约143万像素。
-- layer-region全图仍13次RGB121–184/alpha0拒绝，自然/恢复精确。局部正确不代表合成正确；同时改源层和坐标，不单独归因其中一个。41CPU图/33纹理/260像素图释放，302隐藏/恢复，CPU峰90,024,776B/GPU71,203,144B。AIR9832，入口5030ms。
-- 三目录RESULTS/verify_run→run-review均核526正式/13运行库/86冻结源、工具输入和完整时间戳。AIR66260/64548/9832退出，最后登记空。正式版本保持，根目标继续。
-- 旧关键边界：完整冻结world29.658→12.092ms只有上限且画质不合格；整视口重画41.333ms、512区26.067ms、逐对象约770ms、475阴影根剔除26.65ms；原生GPU模式未显示优势。完整旧失败保留在归档，不重复调块尺寸或边距。
+- actor-sprites 09bb573e：原生Bitmap简单链只读借用，其余按原父层逐根draw；960区间，移动34.2458→57.4625ms，两对+23.375/+23.058。3835次角色draw11283ms，另有效果层4552ms；2744次计时分配/释放。全图RGB4–5/alpha0仍拒绝，角色层RGB36/alpha31。两角色PNG已实看，无整只角色缺失但不能算通过。
+- actor-direct 34266ac2：稳定缓冲、直接draw无根效果对象，计时分配0；960，31.8667→57.9917ms，两对+26.600/+25.650。直接draw8831ms，另有效果层5572ms；全图RGB179、角色层RGB255/alpha217，拒绝。
+- actor-frames 6df604a6与checked bc7e9a75均准备阶段#1009、0计时。checked栈定位只读nestedBlends，group1/root12，根空槽0。scan修只读清点的空子节点后完成；不是已证实的根槽故障。两失败轮visualAccepted=true只是未触达初始值。
+- frames-scan bca7f23a：960，33.9500→38.6792ms，两对+5.100/+4.358。24MiB姿态池命中3065/未命中1441/淘汰1438；draw5571ms、刷新9137ms。计时前13+后5全图RGB73–102/alpha0拒绝，角色层RGB255/alpha38。清点跳过22空子节点。停止此池策略，不靠扩大容量或容差继续。
+- actor-atlas e3307761：把变化根同步放入不重叠区一次draw，finally恢复矩阵/可见性；960，32.8000→32.4417ms，仅约1%，两对−0.517/−0.200。480次draw3629ms、3834个变化根，计时分配0；全图RGB97–252/alpha0、角色层RGB255/alpha64拒绝。
+- atlas-checks 5d81f4a6：同一世界12段/1440区间，原生动32.9250ms，GPU检查35.8042，默认异步36.5833。异步相对检查两对+0.133/+1.425，无提速证据。实际debug设置逐帧核验；18全图RGB131–142/alpha0拒绝。原生/候选首完整PNG已实看，主体仍在，不能当画面通过。文档确说检查使clear/drawTriangles同步，但本机结果不能凭文档推翻。
+- 每轮独立verify_actor_runs核526正式/13运行库/86源、所有工具输入、时间戳、资源与恢复。7个AIR69108/67500/29284/57916/37636/27184/34184退出，最后登记空。所有图像/纹理/context释放，atlas/checks各3960/9353次矩阵恢复。正式安装不变。
+- GPU读回叠native UI不是OS窗口；暂停模拟、保留动画也不是正常战斗。不同轮敌人/动画随机差异，不用跨轮均值归因。未覆盖正常AI、移动弹体、RV、SATS与生命周期。
 
 ## 5. 已知边界与停止路线
 
-- 旧wholeworld实验暂停模拟并固定动画；本轮layer实验保持Flash动画、仍暂停模拟。都是预备路线的ENTER_FRAME间隔，**不是无敌人实玩/真实战斗/物理呈现数**。visibility可能被回调观察，不直接叫纯GPU成本。实际AI、子弹、RV、Windows真实混合呈现、SATS及长时生命周期未验。
+- 旧wholeworld实验暂停模拟并固定动画；上一批layer实验保持Flash动画、仍暂停模拟。都是预备路线的ENTER_FRAME间隔，**不是无敌人实玩/真实战斗/物理呈现数**。visibility可能被回调观察，不直接叫纯GPU成本。实际AI、子弹、RV、Windows真实混合呈现、SATS及长时生命周期未验。
 - 8间隔观测后只停止显式播放/实际变帧者；隐式活动者清理用play，isPlaying可从false变true，不宣称内部播放状态原样恢复。只用于终结式隔离实例，不能复制进产品。帧脚本固定drain仅允许已核bloat_bulk_896的1/55帧；成功轮未触发，不能声称该分支已验证。
 - 完整截图/像素图有冷首次差异；固定全偏移原生预备后，仍检查三次独立精确自然往返，不循环拍到通过。mainMenuOff必须真实调用。GPU读回再叠Stage.draw不能当OS窗口截图。
 - 已停止：远景缓存约1%混合；视口条带clean慢16%；原生明暗裁剪慢3.7%；透明边缘裁剪慢10.6%；GPU仅背景无收益；静态地形GPU慢11.3%；远处单帧根隐藏慢4.2%；远处不可见地形摘树慢3%；整world scrollRect真正抑制Camera写入后仍无收益，cacheAsBitmap慢14.6%。不换名重跑。
@@ -59,15 +60,16 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 ## 6. 下一步（保持活动）
 
-1. 当前方案仍要重新栅格化角色层，停止继续每帧draw调参。下一条应直接复用已有Bitmap/帧图像，先小范围验证身份、是否原地改写像素、颜色/滤镜/旋转/裁剪与层序，再扩展正常动画；不直接重写整个显示树。
-2. 旧world-layers-20261022-route200-r1/storage/result.json清点：135单位主体中78个Bitmap节点，119主体离屏、16在屏；玩家53 Shape/0 Bitmap，87附件根/0 Bitmap。只是旧样本线索，当前比例和更新语义未验，不能凭位图身份假定内容不变。
-3. 最新只追踪时间轴帧变化；任意位图像素写入、脚本变换、AI/真实弹体、门、场景生命周期尚未接入。含地形组若重画还需处理原生视野裁剪。局部oracle通过不代表GPU合成通过，发光/角色附近大色差仍要定位，不放宽RGB2/alpha0。
-4. 小范围可复用后再验有/无敌人真实镜头输入、正常AI/子弹、OS窗口、跨区颜色、RV、SATS和长期释放。通过实际门禁才备份部署复验；本轮三个候选都不部署。
+1. 本批逐根、固定缓冲、姿态池、合批和调试开关都未提供可部署收益，停止继续调小图尺寸、池容量、padding或放宽像素阈值。可以保留借用Bitmap与完整恢复的实现经验，但不能把成功编译/少draw/高命中率当优化成功。
+2. 回到原生绘制路径寻找结构性开销，优先读旧层归因和本批记录，不重复已失败剔除/包装器路线。根与测试descriptor都为direct；原生auto尚未实测。若探索模式差，先固定世界状态并安排实际窗口证据，旧native-gpu两轮敌人数不同只能参考。
+3. 任一新路线先在同一世界核镜头静/动，再进入真实AI/子弹/高速移动和无敌人路线；最终要求RGB2/alpha0、原生功能、RV、SATS、跨区颜色与长期资源释放，通过后才备份部署。当前根目标继续，不能报告已接近原版。
 
 ## 7. 接续入口
 
-- 本轮最新：build/generated/camera-layer-{dirty,tiles,region}-20261027；原始evidence同名-r1。各prepare/probe_patch/run、呈现器、RESULTS、verify_run均保留，已运行配方冻结，后续新目录。完整旧停点state/MEMORY-history-20261027-before-live-layers.md。
-- 当前三轮没有stop/play/goto；第5节旧冻结播放限制只适用于之前wholeworld实验。KB-000108已回读：像素和几何失效分别跟踪，收益须另测。
+- 本批7目录camera-actor-{sprites,direct,frames,frames-checked,frames-scan,atlas,atlas-checks}-20261027。总结果在atlas-checks/RESULTS.md，统一独立脚本在frames/verify_actor_runs.py，7份run-review.json；原始evidence同名-r1。所有运行配方冻结，后续新目录。
+- 本批前完整快照MEMORY-history-20261027-before-actor-cache.md；下列上一批入口继续有效。首轮简单Bitmap只覆盖1–3个当前可借用根，不能将旧census的78节点误当本轮全部已直接复用。
+- 上一批：build/generated/camera-layer-{dirty,tiles,region}-20261027；原始evidence同名-r1。各prepare/probe_patch/run、呈现器、RESULTS、verify_run均保留，已运行配方冻结，后续新目录。完整旧停点state/MEMORY-history-20261027-before-live-layers.md。
+- 上一批三轮没有stop/play/goto；第5节旧冻结播放限制只适用于之前wholeworld实验。KB-000108已回读：像素和几何失效分别跟踪，收益须另测。
 - 上一批：build/generated/camera-stage3d-region-prune-20261027与camera-native-gpu-20261027的prepare/probe_patch/run、README/RESULTS、verify_run/verify_pair。再前region-refresh/region-items/item-profile、wholeworld{,-late,-nullslots,-observed,-cost,-settle}、viewport-refresh同根；对应knowledge/experiments/evidence/*-r1为原始证据。所有运行过的生成配方冻结，不原地改后重跑；后续另起目录。
 - 新旧完整停点归档：state/MEMORY-history-20261027-wholeworld.md；更早MEMORY-history-20261026-2340.md、MEMORY-history-20261023-0818.md。journal顶部本轮和前轮链。
 - 85源种子receipt：knowledge/experiments/evidence/camera-atlas-paged-combat-20261025-r1/probe-build.json（983727AE）；frozen f298932b38e24919991997c68e0a8b8a，probe29AF。新变体86源。lineage入口camera-terrain-layers-20261025/lineage.py只允许登记器8B35→E9F5这一变更。

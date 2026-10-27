@@ -98,3 +98,12 @@ build/generated/camera-native-gpu-20261027/** -text whitespace=cr-at-eol,-blank-
 build/generated/camera-layer-dirty-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
 build/generated/camera-layer-tiles-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
 build/generated/camera-layer-region-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+
+# Frozen generated experiments retain the exact compiled input bytes.
+build/generated/camera-actor-sprites-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-actor-direct-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-actor-frames-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-actor-frames-checked-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-actor-frames-scan-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-actor-atlas-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-actor-atlas-checks-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
