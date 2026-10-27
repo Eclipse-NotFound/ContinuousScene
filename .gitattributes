@@ -163,3 +163,4 @@ build/generated/camera-visible-allocation-stacks-20261027/** -text whitespace=cr
 build/generated/camera-environment-clamp-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 build/generated/camera-environment-keycache-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 build/generated/camera-environment-quiet-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-native-once-20261028/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
