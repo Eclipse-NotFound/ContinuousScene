@@ -48,7 +48,7 @@ ModLoader08957b4已提交登记器修复，15测试通过，原E9F51仅普通查
 - clamp单方法候选887B仅去Math.max，实际AIR41192分配65312→64752，不足1%，停止、未部署。新keycache候选F15B8CE88A500382CA23FF5D387D67997FDB5AE900B78DB09FAF505A014239CA从A796重新开始，缓存区域字符串且每次仍查当前byCell。audit F0A8EE4F核其余5770体/1016类/素材不变。
 - keycache-allocation-r1 AIR70744完成，复用原87源59165645探针：同40区间环境分配降为0，总分配约下降40%。独立allocation-review DC3B6B17。只能证明分配，尚不能称镜头提速或部署合格。
 - quiet新86源098F3644/冻结ef6149a0：关闭采样，准备阶段150种区域/边界/特殊数/改原点/同键替换检查共3000字段断言。base-r1 AIR39060通过，环境恢复、全部960时钟/坐标通过；移动720区间21.8458ms、中位21/P95 29/max103，保留全部长帧。base-review7E595DC7。
-- quiet-cache-r1在AIR前余量2696175616B触发4GiB保护，无游戏。只读定位另一个实验Python83808约6.76GiB，非本任务、未终止；用户选择处理其内存占用。恢复后交替原/候选测试，防背景负载变化误归因；下次cache-r2，同一ef6149a0探针。仍保持4GiB提交/2GiB物理线。
+- quiet-cache-r1在AIR前余量2696175616B触发4GiB保护，无游戏。只读定位另一个实验Python83808约6.76GiB，非本任务、未终止；用户选择处理其内存占用。cache-r2完成528文件准备后余量4307689472→4062212096B，再次在AIR前停止；后续2931191808B，无owned进程。恢复后交替原/候选测试，防背景负载变化误归因；下次cache-r3，同一ef6149a0探针。仍保持4GiB提交/2GiB物理线。配方/证据提交6567c4d。
 
 ## 5. 已知边界与停止路线
 
@@ -63,7 +63,7 @@ ModLoader08957b4已提交登记器修复，15测试通过，原E9F51仅普通查
 
 ## 6. 下一步（目标仍未完成）
 
-1. 先恢复quiet候选对照：run_variant.py --host cache --name camera-environment-quiet-20261027-cache-r2 --probe-build同目录probe-builds/probe-source/ef6149a0dbf649ff960aea4dd817f246/probe-build.json；随后按证据交替base/cache复测。verify_runs.py独立核原始数据和全部960坐标，不能丢弃长帧或拿环境变化当收益。cache-r1是启动前内存失败，保留。
+1. 先恢复quiet候选对照：run_variant.py --host cache --name camera-environment-quiet-20261027-cache-r3 --probe-build同目录probe-builds/probe-source/ef6149a0dbf649ff960aea4dd817f246/probe-build.json；随后按证据交替base/cache复测。verify_runs.py独立核原始数据和全部960坐标，不能丢弃长帧或拿环境变化当收益。cache-r1/r2都是启动前内存失败，保留；目前无运行句柄，勿轮询旧session。
 2. keycache候选分配证据充分，但无采样实际提速、候选150环境行为、普通场景/战斗兼容还未完成，不部署。若实测不明显，则停止此分支的帧率宣称，按新的具体证据继续；EnsureUpcoming有夹具额外calc开销，勿重复归因。
 3. 原合图内景仅4.37%、横移变慢；旧战斗13%不能推广。RV/current仅3.7%/1.6%，保留候选；鼠标/裁剪/GPU等停止路线不换名重做。Camera原生vx/vy为int，不能未验证就宣称亚像素导致卡顿。
 4. RV只读源接口仍为隔离候选，classic/WB/SATS/地形破坏/往返/缩放/几何失效未验；原807像素恢复失败未解释。SceneAlicornAlerts、撤回afternoon、foreign SceneRenderChecks不动。
