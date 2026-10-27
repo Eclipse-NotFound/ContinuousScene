@@ -34,19 +34,20 @@ LAD8ADB/WB1411保持。RC当前回执../RConnect/build/m52/a-live-animation-depl
 A796颜色修复回执state/scene-tint-deployment-20261024.json verified；保留此前ABE2纵向镜头缓冲/80CF遮挡格复用。任何新宿主应精确保留当前其他方法与素材，不能整包覆盖编辑器CS0.9.0。
 ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB75420C507F6DB1D96BE6B1430374B0B7A797607FF4438A695A717809E；仅普通查询拒绝5时CIM只读核创建时间，不确定仍保留占用。lineage.py只允许旧8B35→E9F5这一变化。
 
-## 4. 最新实测（2026-10-27 可见镜头基准纠正）
+## 4. 最新实测（2026-10-27 大视口地形归因，仍无部署）
 
-本批前HEAD43a389d；四目录/四冻结程序/六次AIR全部完成，无部署。报告build/generated/camera-native-visible-groups-20261027/RESULTS.md；独立verify_batch在camera-active-quiet-bands-20261027，核526正式/13运行库/86或87源及完整区间。
+本批前HEAD08dd9a4；五目录/五冻结程序/五次AIR，报告camera-visible-components-20261027/RESULTS.md。统一verify_batch独立核526正式/13运行库/86或87源；batch-review9EC414B0。原始失败不改绿，性能目标未完成。
 
-- **重要范围纠正**：active-quiet-axis与bands四轮虽真正mainMenuOff、模拟活跃、同种子/同图/相机960坐标精确匹配，但镜头局部Y600位于角色平台Y120下方。后续near-groups同路线PNG实际查看几乎全黑；前四轮未存全图，不能作为正常可见原版/大场景基准。原始结果保持，复核标representativeViewVerified=false。不要引用13–15对18–19ms作为实际游玩差距。
-- bands完整间隔四项守恒，黑区大场景原生所在Stage区间约3ms，移动帧间14.7–16.1ms；帧间含Flash/渲染/运行库/调度，非纯GPU。仅对黑区路线成立，不据此给实际画面函数定责。源码MainMenu在Stage默认0调用World.step。
-- near-groups原生相邻Box/Bonus分组cacheAsBitmap，36根/9组；1920区间、五视角精确像素/504移入恢复通过，但实际画面黑，不能判定屏内收益。
-- **visible-groups校正**：同分组类字节，中心改为玩家实际位置，脚点全1920样本在视野内；五图非黑占比60.5%–73.4%，第一原生/候选完整PNG已查看，角色/平台/建筑背景可见。保持onPause=false，无测量中瞬移；仍是手动原生相机路线，不是自然跳跃。
-- 校正轮15根（13 Box/2 Bonus）/5组，估算688756B。原生→缓存静止16.2875→15.9125、横20.0167→19.7542、纵20.5333→20.8167、斜19.3917→19.0208ms。移动合并仅约0.58%，多组配对反向，**停止微调这项小组缓存，不部署**。
-- 五视角软件Stage.draw原生重复/候选/恢复全部RGBA精确，20图释放、210移入/210恢复、5容器清空脱离。计时地形绘制计数零增长。未验原生破坏/开门/藏身/念力/移除，当前候选遇到所有者变化会中止，不能直接产品化。
-- 四程序：axis a93c74c7/4F99F89D（AIR60064/74032）；bands 4ac0b99d/9B7E51A2（62660/66480）；near 19f17e43/1D8E03BD（66840）；visible 85e8165b/81911E66（62876）。有效可见轮result04A3E40E，统一batch-review121667E8。前三配方的原结果保留黑区限制。
-- 所有游戏均共享登记、独立桌面/存储、原内存保护，非物理呈现FPS验收。敌对单位仅从终结式隔离夹具移除，非产品降敌人数方案。无新保护拒绝、无跨模组改动；foreign SceneRenderChecks不动。
-- 前一批真实水平战斗range49.292→48.232约2.15%、window更慢等结论仍有效；完整前状态在MEMORY-history-20261027-before-active-quiet.md与range/RESULTS.md。本次黑区纠正不自动否定之前已查看实际画面的其他路线。
+- visible-tree-audit第一遍完整15680节点/155单位，显式BitmapData176.1MB，最大1920×1000；四外围缓存边框显示宽9700/高5000，不能等同内部位图尺寸。第二遍45个未定位空子槽、13080节点不完整，0计时；不得忽略后称完整。
+- Unit.as允许读取结果：initBlit由素材blitId配置，没有近远切换证据；此前“远敌人变位图”仅推测，撤回。未重试被拒绝的UnitVisual等源读取。
+- border-cache1280×720，四cacheAsBitmap原生/关闭1920区间，静15.971→16.879、横22.508→21.517、纵21.850→21.054、组合19.813→22.596ms。48关闭/恢复，五视角精确，20图释放；无综合收益，不部署。
+- visible-components1920×1080：6720区间155823ms，七隐藏控制与完整画面相邻AB/BA。地形隐藏六移动配对均下降（横29.133→20.533/26.7→20.05，纵25.067→18.65/24→21.683，斜24.817→19.267/28.667→20.283）。原生所在Stage区间约2.6–3.1ms，主要差异在帧间，不能叫纯GPU。原生光照隐藏无稳定移动收益。
+- **该图层轮原汇总失败**：错误假设EXIT_FRAME每区间一次，实际15738次/每窗116–190。独立review_failed_summary核完整时钟/坐标/分段守恒，但无逐区间事件ID，不能称呈现前全覆盖。保留validPerformanceRun=false，只作诊断线索；未改冻结summary或测试登记。五原生图覆盖46.5%–52.3%，首图已看；35次恢复精确、80图释放。
+- opaque-tiles全400×400 alpha255：448张仅1张合格（cx1/cy14/layer1），1920区间全屏外，原可见资格门槛失败，不能评价性能。准备7ms/640000B，一分配一释放；不根据偶然帧率差计算收益。
+- empty-native-tiles全透明Bitmap暂置bitmapData=null，保留原nativeBuffers/visible/crop/父级/顺序。464扫描/162选中，每帧35–53张按cull可见；准备51ms，无自有位图，1944解除/恢复。1920×1080、1920区间，静15.65→16.625、横24.275→26.1875、纵24.0708→22.9208、斜26.4667→25.6708；移动24.9375→24.9264仅0.045%，停止。五图maxRGB1/alpha0，恢复精确，20图释放。
+- 五程序依次6087397E/D644AD5E/E60AD817/FE627217/A3F9C8B6；AIR31828/49712/54524/49284/30500均退出，最后进程/登记空。正式文件未改、foreign SceneRenderChecks未动、无新权限拒绝。
+- 都是活跃模拟的无敌人隔离夹具、原生脚本相机、120fps诊断；非自然跳跃/真实战斗/物理呈现。1920首图和候选图已查看；当前开阔视点不覆盖密集内景。未调用Ghost或跨对话消息。
+- 上批near-group真实可见移动仅0.58%、旧active-quiet-axis/bands黑区代表性纠正继续有效，详见新归档第4节；不得复活13–15对18–19ms为正常原版/大场景差距。
 
 ## 5. 已知边界与停止路线
 
@@ -61,12 +62,16 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 ## 6. 下一步（保持活动）
 
-1. 目标仍未解决。继续以实际可见的镜头移动为核心，不能将黑区、暂停模拟、单次平均或关闭效果的数字当近原版。先核保留图像和实际镜头/角色坐标，再解释计时。
-2. 近景小组缓存仅0.58%混合，屏外暂存实战仅约2%；均不部署、不盲目微调参数。已有GPU/整world/条带/背景/角色图集失败链仍查第5/7节与历史，避免换名重跑。
-3. 原版参考必须有真实可见内容并尊重单房相机边缘；旧Y600路线不能继续。可复用visible-groups的角色居中原生相机/覆盖率/保存PNG门槛；不同绘制内容不能宣称严格同负载。实际敌人与弹体路线已有native-input框架，任何新方向要最终在那里验证。
-4. 当前有效可见轮仅无敌人手动镜头、1280×720/zoom1。自然跳跃/高速输入、有敌人实战、RV/SATS/跨区颜色、长期资源及Windows实际呈现仍缺；候选须明确实战净收益、像素RGB2/alpha0与原生生命周期通过才能部署。
+1. 目标仍未解决。最新1920可见诊断指向有内容的地形绘制/合成；四边缓存、空透明省略均不值得继续微调，整不透明格式在当前路线无覆盖。不要重跑筛最好结果，不把关地形当优化。
+2. 先核既有页图集/合图和GPU失败链。旧合图实际战斗只有小幅混合收益，逐帧全表属性校验有约1–3ms开销；只有找到明确的更新通知/身份契约，才考虑按变化维护，不能直接删校验或据暂停数据部署。A796源码准确保留、CS0.9编辑器保留，禁止旧host覆盖。
+3. 补更密集内景、实际原生帧率与有效原版参考。旧Y600黑区不可复用；所有新路线核完整PNG和实际相机/角色坐标。原版单房相机边界可能限制纵移，不能拿不同内容称严格同负载。
+4. 若重用EXIT_FRAME检查，按每次提交的序号记录，不假设一事件一帧；已有15738是回调数，不能当呈现数。最新原失败仍保留，不需要仅为改绿重跑全套图层诊断。
+5. 自然跳跃、高速实战、RV/SATS/跨区色彩与长期资源仍待验。候选要有真实净收益、RGB≤2/alpha0和生命周期通过；当前没有可部署性能更新。
 
 ## 7. 接续入口
+
+- 最新五目录camera-visible-tree-audit、camera-border-cache、camera-visible-components、camera-opaque-tiles、camera-empty-native-tiles（均-20261027）。各prepare/probe_patch/run/helper配方冻结；components/RESULTS.md总报告、verify_batch.py与review_failed_summary.py后验复核，batch-review9EC414B0。原始evidence同名-r1。前快照MEMORY-history-20261027-before-visible-components.md。
+- 上批camera-active-quiet-{axis,bands}、camera-native-{near,visible}-groups-20261027；visible-groups/RESULTS.md与bands/verify_batch.py保留六轮及黑区纠正。原报告不能用新结论覆盖。
 
 - 本批七目录camera-live-parking{,-return,-window,-math,-groups,-safe-groups,-range}-20261027。range/RESULTS.md总报告，range/movement_audit.py核实际水平位移；groups/review_runs.py可核失败的完整1200区间，math/review_batch.py可核内存中止。已运行配方全部冻结；后继新目录。
 - 本批前快照MEMORY-history-20261027-before-live-parking.md。没有新部署。共同86源来自原29AF种子，仅驱动和测试helper改变；不触碰正式CS编辑器或SceneAlicornAlerts候选。无新共享事实/技能修改。
