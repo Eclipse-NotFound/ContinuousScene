@@ -34,17 +34,19 @@ LAD8ADB/WB1411保持。RC当前回执../RConnect/build/m52/a-live-animation-depl
 A796颜色修复回执state/scene-tint-deployment-20261024.json verified；保留此前ABE2纵向镜头缓冲/80CF遮挡格复用。任何新宿主应精确保留当前其他方法与素材，不能整包覆盖编辑器CS0.9.0。
 ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB75420C507F6DB1D96BE6B1430374B0B7A797607FF4438A695A717809E；仅普通查询拒绝5时CIM只读核创建时间，不确定仍保留占用。lineage.py只允许旧8B35→E9F5这一变化。
 
-## 4. 最新实测（2026-10-27 可见内景参考，未部署）
+## 4. 最新实测（2026-10-27 探索历史与调用栈准备，未部署）
 
-前阶段aafadc0持续合图/RV结果见MEMORY-history-20261027-before-visible-reference.md。本批camera-visible-room-{reference,scout,atlas}-20261027，总报告atlas/RESULTS.md。四次AIR，另一次预检中止，无正式修改。
+本轮接续2f5ef0f，camera-visible-room-fog-history-20261027/RESULTS.md。前快照MEMORY-history-20261027-before-fog-sampling.md（4CE52FF4）。目标仍未解决。
 
-- reference normal-r1：2,3房间指定中层平台不存在，碰撞检查拒绝，0计时间隔，AIR59228。失败保留。
-- scout扫描真实平台，选3,3房间局部(940,640)，三格地面/120px净空/物件验证，一次放置，不改地形或计时中玩家位置。同字节9cc011c9探针先scene后normal，各960全镜头坐标仅差(5760,3000)，地形哈希3026506315，角色始终屏内且镜头未钳制。AIR72668/47188。
-- 两模式原图实看，非黑覆盖原版75–81%、场景49–52%。随机装饰和探索遮罩范围不同，不能称像素等价或纯因果比较；遮罩差异原因未定位。原版静/横/纵/组合13.992/17.929/15.679/16.625ms，场景20.442/24.654/28.938/28.467ms。
-- 主循环所在Stage区段约2.5–3.0 / 3.1–4.0ms，差距主要在Stage间，含Flash回调/绘制/运行库/调度，非独占GPU时间。1280×720、120fps诊断，不是自然跳跃/实战/实际显示器FPS。
-- atlas用fullpage类原字节7373939B，同一内景1920区间移动22.4569→21.4750ms，仅4.37%；横22.275→22.746变慢，纵22.058→21.146，组合23.038→20.533。六移动配对四好二坏，不部署，旧战斗13%不能推广到所有内景。
-- 五视角49/27/37/61/24像素RGB1、alpha0，原生重复/恢复精确；20截图和32缓存图释放。200MiB预分配238ms，测量无新增分配，原生预绘零增长，候选PNG实看。probe16FB58A3/resultA2CC41CB/frozen8d1e6df3/AIR53408。
-- atlas-r1余量4206452736B<4GiB，编译前中止；自然恢复后r2成功，未降低门槛。scout/verify_batch.py复核前三轮及全坐标review0A312FDD；atlas/verify_run.py精确重放reviewE2C14761。526正式/13运行库/86或87冻结源和实际加载保持。四AIR已退出，无新权限拒绝或待答问题。
+- fog-history只在夹具准备时清零探索状态，再由原生循环在3,3局部(940,640)计算，地形/视距/计时中角色位置不变。用于解释前轮两模式上下遮罩不同，尚未证明是产品错误。
+- scene-r2完成960区间与五张可见原图检查；准备前本地1200格均未探索，计时始末273格visi>0、总和213.79811964446526，每格visi/target/opac/mask/water两端全等。端点相同不证明中间无任何位图写入。
+- 本轮静/横/纵/组合30.388/60.846/31.179/35.171ms，有29个>100ms区间、最大1068ms；波动很大，不作稳定性能基准或与前轮比较归因。Stage间不是纯GPU；私有桌面120fps不是实玩显示帧率。
+- probe D4B5DBE6、result F6ADC369，冻结614be80bce8f45bbaff44c1d41d4d900，AIR77000退出。verify_runs.py→scene-review D4CFA81B，核526正式/13runtime/86源和完整时钟。
+- scene-r1可分配4266745856B在编译前停止；normal-r1从4859768832B降到3303354368B，normal-r2从4500684800B降到3895889920B，均在AIR前停止，无游戏数据。下一次normal-r3复用同一probe-build并指定--room-x 3 --room-y 3；普通房间对照未完成，探索历史假设仍未证实。新增失败复核scene-review-v2 C2F73741，原scene-review不改。
+- 用户再次选择释放内存继续。GlobalMemoryStatusEx与GetPerformanceInfo一致：总提交59628703744B、已用56757882880B、余2870820864B，物理空闲19228917760B；稍后余量1583534080B。测试程序导入PrivateUsage约19.1MB，不能推断完整准备无峰值。不关闭用户程序，不下调4GiB保护。
+- 复核前轮atlas原始workMs：候选比native仅多0.08–0.31ms，copies162/rebuilds4/bindingRefreshes1/allocations32均零增长。缓存维护不是十多毫秒差距的解释，停止继续微调。
+- camera-preparation-memory-20261027/audit.py专查准备阶段自身内存，不开AIR/编译器，仍占game登记；r1初始3333734400B被门槛拦下、stages为空。尚无准备阶段内存曲线，下次新名称r2；不据此认定测试程序导致系统下降。
+- camera-visible-room-sampling-20261027已准备、未构建/AIR，预期87源。复用v3受限采样，八窗各age115–119五区间；按CPU自身单调时钟验收出现次数，原混合流倒序仍保留。仅调用栈诊断，不FPS验收。prepare源/生成物逐字和Python解析通过；summary/verify_run已准备。
 
 ## 5. 已知边界与停止路线
 
@@ -59,14 +61,16 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 ## 6. 下一步（目标仍未完成）
 
-1. 后续使用scout的3,3真实内景和有效普通房间参考，别复用旧Y600黑区。两模式探索遮罩差异尚未解释；先只读核对变化来源，不能直接叫缺块或删除遮罩。
-2. 1280页旧战斗约13%，但新内景4.37%且横移变慢，RV/current仅3.7%/1.6%。暂停扩大/微调页缓存；有明确新失效/更新证据再改，不换名重复已停路线。任务仍是镜头移动有无敌人都流畅。
-3. Stage间时间不是纯GPU。旧mouse-world-native-v4实测仅约3%且负载不同（journal 2026-10-25、RESULTS-R2.md），不是未经尝试的新方向。
-4. 旧RV只读地形接口仍为隔离候选，classic/WB/SATS/地形破坏/地图往返/缩放/任意几何失效未验；WB陌生背景节点回原生，不称完整兼容。自然跳跃两轮原平台越界失败，不继续调同一短平台凑通过。
-5. 旧RV终局807像素恢复差异后轮未重现，原因未证实；后轮成功不覆盖失败。所有运行配方冻结；SceneAlicornAlerts/撤回afternoon/foreign SceneRenderChecks不动。
-6. 共享登记、私有桌面、4GiB提交+2GiB物理预检保持；未结束ended为null，用not ended查。内存偶发跌线时做独立工作、复核再新登记，不降门槛、不结束用户程序。根目标active，不标complete或因性能难题标blocked。
+1. 无其他AIR且实际≥4GiB提交/2GiB物理后，先补fog-history普通房间normal-r3，复用614be80b…/probe-build.json，--room-x 3 --room-y 3。不得复用已失败normal-r1/r2名；配方已冻结，不原地改。
+2. fog-history/verify_runs.py --scene camera-visible-room-fog-history-20261027-scene-r2 --normal 新正常轮 --out 新回执，比较1200本地格和全部960镜头坐标，实际查看PNG。随机装饰/房间外内容不同；局部mask等价也不是全图像素等价。
+3. 运行新sampling-r1（首次--compile-probe），再verify_run。仅八窗40区间的CPU出现计数，不把原生标记叫GPU耗时或采样数字叫FPS；保留全部混合流时间诊断与分配开销。不同于旧战斗稀疏画像，此轮固定可见平台、无敌人和四镜头方向。
+4. 原1280页合图内景仅4.37%、横移变慢；旧战斗约13%不能推广。RV/current仅3.7%/1.6%，保留候选不部署。旧鼠标3%/裁剪/GPU等停止路线不换名重做，有新具体栈/更新证据才重审。
+5. RV只读源接口仍是隔离候选，classic/WB/SATS/地形破坏/往返/缩放/任意几何失效未验；原807像素恢复失败没复现，不能抹去。SceneAlicornAlerts、撤回afternoon和foreign SceneRenderChecks不动。
+6. 共享登记/私有桌面/内存保护保持。当前有一次真实AIR进展，不因后续内存不足直接标blocked；连续目标轮三次完全无进展且同外部条件才按目标规则处理，不能把困难当完成。
 
 ## 7. 接续入口
+
+- 本批fog-history/RESULTS.md、verify_runs.py与scene-review D4CFA81B；sampling/prepare.py、run.py、summary.py、verify_run.py（尚未构建）。原始evidence为fog-history-scene-r{1,2}及normal-r{1,2}。旧快照MEMORY-history-20261027-before-fog-sampling.md。
 
 - 最新camera-visible-room-{reference,scout,atlas}-20261027：atlas/RESULTS.md总报告，scout/verify_batch.py、atlas/verify_run.py；evidence为reference-normal-r1、scout-{scene,normal}-r1、atlas-scene-r{1,2}。atlas-r1仅预检中止，其余四AIR回执保留。前快照MEMORY-history-20261027-before-visible-reference.md。
 

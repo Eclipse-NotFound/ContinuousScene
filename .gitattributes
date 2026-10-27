@@ -153,3 +153,7 @@ build/generated/camera-visible-room-reference-20261027/** -text whitespace=cr-at
 build/generated/camera-visible-room-scout-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 build/generated/camera-visible-room-atlas-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 state/MEMORY-history-20261027-before-visible-reference.md -text whitespace=cr-at-eol
+build/generated/camera-visible-room-fog-history-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-visible-room-sampling-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+state/MEMORY-history-20261027-before-fog-sampling.md -text whitespace=cr-at-eol
+build/generated/camera-preparation-memory-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
