@@ -13,6 +13,11 @@ def metric(values):
 def verify(name):
     folder=E/name;r=read(folder/'runner-inputs.json');b=read(folder/'probe-build.json');raw=read(folder/'storage/result.json');assert not (folder/'runner-failure.json').exists()
     assert len(r['baseline'])==526 and len(r['runtimeInputs'])==13 and len(b['frozenSourceSHA256'])==86
+    if 'readinessReceipt' in r:
+        ready=r['readinessReceipt'];assert ready['ready'] and sha(Path(ready['path']))==ready['sha256']
+        sample=read(Path(ready['path']));assert sample['ready'] and sample['stableChecks']>=3 and not sample['launchedAir']
+        recent=sample['samples'][-3:];assert len(recent)==3 and recent[-1]['elapsed']-recent[0]['elapsed']>=9.9
+        assert all(s['good'] and not s['air'] and s['memory']['availableCommit']>=5*1024**3 and s['memory']['availablePhysical']>=2*1024**3 for s in recent)
     for key in ['baseline','runtimeInputs']:
         for p,d in r[key].items():assert sha(ROOT/p)==d,(key,p)
     for key in ['runnerInputs','compilerInputs','fixtureInputs']:

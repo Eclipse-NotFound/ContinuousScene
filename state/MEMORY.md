@@ -36,9 +36,15 @@ ModLoader08957b4已提交登记器修复，15测试通过，原E9F51仅普通查
 
 ## 4. 最新实测与准备（环境索引分配已消除，镜头收益待对照）
 
-2026-10-28新增camera-native-once-20261028：旧quiet每帧额外calc，新脚本计时前Stage优先级500只设置目标，原生0更新、观察器-1000逐帧核X/Y/vx/vy/矩阵；保留960区间，961计划/960捕获/零额外调用/移除监听器均为待实测断言。85源种子、526正式/105配方/71夹具静态核对通过；生成helper EC96356E，未编译/AIR。正式与F15候选未改，不能把去掉夹具开销当产品提升。
+2026-10-28 camera-native-once-20261028已编译并完成base-r1与cache-r1：新脚本Stage优先级500只设目标、原生0更新、-1000核实际坐标。两轮均961计划/960捕获/零额外调用/监听器移除，150环境情形×20字段通过，全部960镜头坐标相同。86源冻结9b56efbf40d4450db686e7c684e78139，probe 2F7B7E1B；AIR24656/70412已退出。正式与F15未改，不能把去掉旧quiet额外calc当产品提升。
 
-用户已明确批准一次10分钟协调，已发送给实验对话01a17835-6129-7440-9bcc-0382b03fef3b（标题原文：ttps://github.com/winddramon/Tidal-Fansub https://www.kaggl…），要求当前批次自然结束、且不影响实验规则时暂缓新批次10分钟；不终止进程。送达尚非窗口确认，只读wait_threads/必要时read_thread。未经确认不假定实验已暂停。此前DSH只查连接/会话元数据，未发消息或改变状态；实际实验在Codex此线程。
+移动720区间均值26.5667→24.5278ms，P95 36→32ms、最大129→124ms，观察约7.7%。但两轮最小提交余量569774080/787353600B接近512MiB中止线，静止也明显变化，不能排除背景波动或声称因果收益。主循环所在Stage段移动仅约降低0.23ms，主要差异在帧间混合区间。pair-review A5471DA2；详见本配方RESULTS。候选环境功能通过，但未满足性能部署依据。
+
+用户一次10分钟协调已发给实验对话01a17835-6129-7440-9bcc-0382b03fef3b（标题原文：ttps://github.com/winddramon/Tidal-Fansub https://www.kaggl…）。对方已回复不能安全提供：队列自动续批，改冻结脚本或强制挂起没有安全依据。窗口未开始，不重复发送或干预。此前DSH仅元数据读取。内存检查GlobalMemoryStatusEx与GetPerformanceInfo在01:12均余2165501952B，未发现进程限制导致误报，不降低保护。
+
+启动前新增有界等待：三次间隔5秒均≥5GiB提交/2GiB物理且无AIR后再走原4GiB预检。cache-r2第一次180秒等待超时，ready=false、无AIR/无运行目录，receipt096eab73/SHA6CDA3A58保留；可同名新等待复测。已运行配方冻结，RESULTS/MEMORY/journal可继续追加。
+
+随后300秒等待再次到期，receipt499f715c/SHA3FBE8FA5，末次可分配1633095680B；没有AIR、没有cache-r2运行目录、当前无自有运行句柄。仍不部署，下一次沿同名与同2F7B探针继续，不重复请求一般释放内存或改保护线。
 
 本轮接续86b7057；前快照MEMORY-history-20261027-before-resource-policy.md。正式安装未改，镜头卡顿仍待解决。
 
@@ -67,11 +73,10 @@ ModLoader08957b4已提交登记器修复，15测试通过，原E9F51仅普通查
 
 ## 6. 下一步（目标仍未完成）
 
-阻塞审计已满足并由update_goal确认blocked：用户回合及两次自动接续连续3回合受同一可分配内存不足阻塞候选实测。最新57628也已结束；曾恢复5490036736B，但cache-r3初始预检已降3970215936B，仍无AIR，失败保留。此前同一外部实验自动更换83808→57628批次；用户说自行处理，未授权对此实验跨对话发消息，未干预进程。四轮成功实测系统余量下降1.78–2.11GB，不是AIR私有峰值，仍无依据降低4GiB线。需外部实验暂缓新批次、可分配余量稳定恢复后接续；用户恢复目标时重新开始阻塞审计。
+此前quiet阶段曾连续三回合因内存不足标blocked；用户恢复后根目标active，本回合已实际完成新驱动两轮AIR，属于新进展，不能沿旧累计直接再次标blocked。当前重复测量仍受外部负载影响，5GiB稳定等待及原4GiB启动、512MiB运行中止线保持。已授权的一次协调请求被对方基于实验规则拒绝，不能假定窗口开始或中断实验。
 
-1. 优先使用新native-once配方：先run.py --mode scene --room-x 3 --room-y 3 --name camera-native-once-20261028-base-r1 --compile-probe --registry-wait 300，取得新冻结探针后run_variant.py --host cache/base --probe-build该新回执；verify_runs.py核所有时钟/960本地镜头坐标和额外调用零。必要时同字节normal参考。新驱动尚未运行，失败要保留；不拿旧quiet驱动与新驱动直接算产品收益。
-2. 旧quiet r1/r2/r3均启动前内存失败保留，若仅需补旧证据下一名cache-r4、ef6149a0探针。当前无运行句柄；先等已授权协调的实际窗口，并保持原内存/登记保护。
-2. keycache候选分配证据充分，但无采样实际提速、候选150环境行为、普通场景/战斗兼容还未完成，不部署。若实测不明显，则停止此分支的帧率宣称，按新的具体证据继续；EnsureUpcoming有夹具额外calc开销，勿重复归因。
+1. 新native-once同2F7B探针接续cache-r2、base-r2恢复对照（run_variant.py --host cache/base --probe-build …/probe-source/9b56efbf40d4450db686e7c684e78139/probe-build.json --wait-ready-seconds 180或300），verify_runs.py核全时钟/坐标/输入。同探针normal参考由run.py --mode normal --room-x 3 --room-y 3运行；不将旧驱动数字直接算产品收益。
+2. keycache分配消除和150环境情形已验证；实际帧率重复、普通场景/战斗兼容仍待。若复测没有明显稳定收益，不部署性能版本，停止该分支帧率宣称。旧quiet启动前失败均保留，非必要不回到旧测量驱动。
 3. 原合图内景仅4.37%、横移变慢；旧战斗13%不能推广。RV/current仅3.7%/1.6%，保留候选；鼠标/裁剪/GPU等停止路线不换名重做。Camera原生vx/vy为int，不能未验证就宣称亚像素导致卡顿。
 4. RV只读源接口仍为隔离候选，classic/WB/SATS/地形破坏/往返/缩放/几何失效未验；原807像素恢复失败未解释。SceneAlicornAlerts、撤回afternoon、foreign SceneRenderChecks不动。
 5. 本轮已有普通房间AIR和内存审计进展；不因稍后的占用或内存不足直接标blocked。继续解决镜头主线，当前无可部署的新性能修复。

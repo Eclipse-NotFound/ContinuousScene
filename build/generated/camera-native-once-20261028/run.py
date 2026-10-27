@@ -9,6 +9,7 @@ import shutil
 import statistics
 import sys
 import traceback
+import time
 import uuid
 
 sys.dont_write_bytecode = True
@@ -116,16 +117,43 @@ summary_module=load('active_quiet_summary',HERE/'summary.py')
 summarize=summary_module.summarize
 
 
+def wait_ready(seconds):
+    assert 0<=seconds<=300
+    if not seconds:return None
+    started=time.monotonic();deadline=started+seconds;samples=[];stable=0;reported=-30
+    while True:
+        elapsed=time.monotonic()-started;memory=m.memory_status();air=m.air_pids()
+        good=memory['availableCommit']>=5*1024**3 and memory['availablePhysical']>=2*1024**3 and not air
+        stable=stable+1 if good else 0
+        samples.append(dict(elapsed=elapsed,memory=memory,air=air,good=good))
+        if stable>=3 or time.monotonic()>=deadline:
+            value=dict(ready=stable>=3,samples=samples,stableChecks=stable,waitLimitSeconds=seconds,
+                requiredCommit=5*1024**3,requiredPhysical=2*1024**3,launchedAir=False)
+            path=HERE/'readiness'/(uuid.uuid4().hex+'.json');path.parent.mkdir(exist_ok=True)
+            r.save(path,value)
+            receipt=dict(path=str(path),sha256=r.sha(path),ready=value['ready'])
+            print(json.dumps(dict(readiness=receipt,lastMemory=memory)),flush=True)
+            return receipt
+        if elapsed-reported>=30:
+            print(json.dumps(dict(waitingForStableMemory=True,elapsed=round(elapsed),memory=memory,air=air)),flush=True)
+            reported=elapsed
+        time.sleep(min(5,max(0,deadline-time.monotonic())))
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--mode',required=True,choices=['normal','scene']);parser.add_argument('--name',required=True);parser.add_argument('--registry-wait',type=int,default=300)
     parser.add_argument('--room-x',type=int,default=2);parser.add_argument('--room-y',type=int,default=3)
+    parser.add_argument('--wait-ready-seconds',type=int,default=0)
     group=parser.add_mutually_exclusive_group(required=True)
     group.add_argument('--compile-probe',action='store_true');group.add_argument('--probe-build',type=Path)
     args=parser.parse_args()
     assert __debug__ and args.name and all(c in 'abcdefghijklmnopqrstuvwxyz0123456789-' for c in args.name)
     folder=r.E/args.name;assert not folder.exists(),'Keep prior evidence'
+    readiness=wait_ready(args.wait_ready_seconds)
+    if readiness is not None and not readiness['ready']:return
     record=dict(version=VERSION,options=options(args.name,args.mode,args.room_x,args.room_y),diagnosticOnly=True,deployed=False)
+    if readiness is not None:record['readinessReceipt']=readiness
     with m.Registration(owner='ContinuousScene / visible ordinary room reference / 01a13816',purpose=args.name,
             run_dir=m.RUNTIME,evidence=folder,resource='game',wait=args.registry_wait) as lease:
         try:

@@ -82,7 +82,39 @@ def helper_source():
     return s
 
 def runner_source():
-    return base.runner_source().replace(base.VERSION,VERSION)
+    s=base.runner_source().replace(base.VERSION,VERSION)
+    s=one(s,'import traceback\n','import traceback\nimport time\n')
+    s=one(s,'def main():', '''def wait_ready(seconds):
+    assert 0<=seconds<=300
+    if not seconds:return None
+    started=time.monotonic();deadline=started+seconds;samples=[];stable=0;reported=-30
+    while True:
+        elapsed=time.monotonic()-started;memory=m.memory_status();air=m.air_pids()
+        good=memory['availableCommit']>=5*1024**3 and memory['availablePhysical']>=2*1024**3 and not air
+        stable=stable+1 if good else 0
+        samples.append(dict(elapsed=elapsed,memory=memory,air=air,good=good))
+        if stable>=3 or time.monotonic()>=deadline:
+            value=dict(ready=stable>=3,samples=samples,stableChecks=stable,waitLimitSeconds=seconds,
+                requiredCommit=5*1024**3,requiredPhysical=2*1024**3,launchedAir=False)
+            path=HERE/'readiness'/(uuid.uuid4().hex+'.json');path.parent.mkdir(exist_ok=True)
+            r.save(path,value)
+            receipt=dict(path=str(path),sha256=r.sha(path),ready=value['ready'])
+            print(json.dumps(dict(readiness=receipt,lastMemory=memory)),flush=True)
+            return receipt
+        if elapsed-reported>=30:
+            print(json.dumps(dict(waitingForStableMemory=True,elapsed=round(elapsed),memory=memory,air=air)),flush=True)
+            reported=elapsed
+        time.sleep(min(5,max(0,deadline-time.monotonic())))
+
+
+def main():''')
+    s=one(s,"    parser.add_argument('--room-x',type=int,default=2);parser.add_argument('--room-y',type=int,default=3)",
+        "    parser.add_argument('--room-x',type=int,default=2);parser.add_argument('--room-y',type=int,default=3)\n    parser.add_argument('--wait-ready-seconds',type=int,default=0)")
+    s=one(s,"    folder=r.E/args.name;assert not folder.exists(),'Keep prior evidence'",
+        "    folder=r.E/args.name;assert not folder.exists(),'Keep prior evidence'\n    readiness=wait_ready(args.wait_ready_seconds)\n    if readiness is not None and not readiness['ready']:return")
+    s=one(s,'    with m.Registration(owner=',
+        "    if readiness is not None:record['readinessReceipt']=readiness\n    with m.Registration(owner=")
+    return s
 
 if __name__=='__main__':
     (HERE/'tests').mkdir(exist_ok=True)

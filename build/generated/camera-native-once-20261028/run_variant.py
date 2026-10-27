@@ -12,10 +12,13 @@ PROBE=None
 def inputs():return dict(source.runner_inputs(),**{str(p):r.sha(p) for p in [HERE/'run_variant.py',CANDIDATE/'source-equivalent.as.inc',CANDIDATE.parent/'camera-environment-clamp-20261027/audit.py',CANDIDATE/'build.py',CANDIDATE/'audit.py',HERE/'README.md',CANDIDATE/'build.json',CANDIDATE/'audit-proof.json',PROBE]})
 def main():
     global PROBE
-    parser=argparse.ArgumentParser();parser.add_argument('--name',required=True);parser.add_argument('--host',choices=['base','cache'],required=True);parser.add_argument('--probe-build',type=Path,required=True);args=parser.parse_args();PROBE=args.probe_build.resolve()
+    parser=argparse.ArgumentParser();parser.add_argument('--name',required=True);parser.add_argument('--host',choices=['base','cache'],required=True);parser.add_argument('--probe-build',type=Path,required=True);parser.add_argument('--wait-ready-seconds',type=int,default=0);args=parser.parse_args();PROBE=args.probe_build.resolve()
     assert args.name and all(c in 'abcdefghijklmnopqrstuvwxyz0123456789-' for c in args.name)
     folder=r.E/args.name;assert not folder.exists()
+    readiness=source.wait_ready(args.wait_ready_seconds)
+    if readiness is not None and not readiness['ready']:return
     record=dict(version='scene-native-once-variant-1',hostVariant=args.host,diagnosticOnly=True,deployed=False)
+    if readiness is not None:record['readinessReceipt']=readiness
     with m.Registration(owner='ContinuousScene / environment allocations / 01a13816',purpose=args.name,run_dir=m.RUNTIME,evidence=folder,resource='game',wait=300) as lease:
         try:
             assert not m.air_pids();memory=source.control.memory_gate()
