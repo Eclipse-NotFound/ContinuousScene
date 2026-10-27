@@ -1,3 +1,17 @@
+## 2026-10-27 — 环境键缓存消除65312次分配，无采样候选等待内存
+
+- 短窗CPU/分配采样定位sceneNativeEnvironment：65312次/40区间。clamp不足1%无效；keycache候选F15B从A796只改一方法，audit F0A8核其余5770方法/1016类/素材不变。实际AIR70744复用同探针，环境分配降0、总分配约降40%，allocation-review DC3B6B17；未称帧率改善、未部署。
+- 无采样86源098F/ef6149a0的base-r1通过：150情形×20环境字段/完整960时钟，移动均值21.8458ms，base-review7E595DC7。cache-r1在AIR前2.70GB提交余量失败；只读确认另一个实验Python83808约6.76GiB，未中断。用户选择处理其占用，随后需交替当前/候选避免背景负载误归因。
+- 共享启动器ECE3/资源86D/登记器E3由ModLoader负责人修改；精确回读新链。policy-normal原末检因唯一UTF-8变动失败，后验5539957F核实际证据，不改原失败记录。正式526/13运行保持。
+- 源配方分五新目录sampling-policy/allocation-stacks/environment-clamp/environment-keycache/environment-quiet，均20261027；结果见各RESULTS。foreign SceneRenderChecks未动。镜头根目标仍未达到。
+
+## 2026-10-27 — 探索历史配对完成，接续共享启动策略后的镜头采样
+
+- fog-history-normal-r3完成960区间，AIR37804退出。1200格局部遮罩及全部960镜头坐标配对通过，pair-review B5DC4EA1；先前黑区差异来自夹具进入前探索历史，不据此修产品。随机装饰仍异，大场景scene-r2尖峰保留，不作稳定均值比较。
+- preparation-memory-r2八阶段完成，主Python私有内存峰值约44MiB，未见GB积累；无Java/AIR，回执ABC25564。旧玩家记录无相机/产品指纹，不能作当前镜头证据。
+- sampling-scene-r1在编译前因共享启动器漂移失败，无Java/AIR。后继policy配方只读接入ECE3ED08/86D5F280策略并记录实际回读，87源、采样行为保持。已静态准备，scene-r1登记等待；保护门槛不变，无部署。
+- 记忆归档MEMORY-history-20261027-before-resource-policy.md；旧配方/失败证据冻结，foreign SceneRenderChecks不动。
+
 ## 2026-10-27 — 补记：第二次普通房间启动前中止
 
 - 用户再次释放内存后，normal-r2仍在副本准备后的二次预检4500684800→3895889920B中止，没有AIR；原失败保持。追加复核scene-review-v2 C2F73741，目标房间对照仍未完成，下次normal-r3。

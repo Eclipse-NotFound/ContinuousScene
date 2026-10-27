@@ -32,21 +32,23 @@
 
 LAD8ADB/WB1411保持。RC当前回执../RConnect/build/m52/a-live-animation-deploy-01/verified.json（5446D95A），不能把旧RC收益当当前候选收益。
 A796颜色修复回执state/scene-tint-deployment-20261024.json verified；保留此前ABE2纵向镜头缓冲/80CF遮挡格复用。任何新宿主应精确保留当前其他方法与素材，不能整包覆盖编辑器CS0.9.0。
-ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB75420C507F6DB1D96BE6B1430374B0B7A797607FF4438A695A717809E；仅普通查询拒绝5时CIM只读核创建时间，不确定仍保留占用。lineage.py只允许旧8B35→E9F5这一变化。
+ModLoader08957b4已提交登记器修复，15测试通过，原E9F51仅普通查询拒绝5时CIM只读核创建时间，不确定保留占用。其负责人随后独立加入UTF-8解码，当前E3E43581D677D26C83B7E887C64669634CCC8D901AEFA5A826E1CFED8A5F0CF0；反向唯一解码行逐字恢复E9F51。新启动器ECE3ED08与资源模块86D5F280在owned suspended子进程设置normal CPU/memory priority5/HighQoS再恢复；实测回执记录实际策略，不改变全局或外国进程。本任务未写这些工具，新配方精确接受新指纹，旧配方冻结。
 
-## 4. 最新实测（2026-10-27 探索历史与调用栈准备，未部署）
+## 4. 最新实测（2026-10-27 环境索引分配已消除，镜头收益待对照）
 
-本轮接续2f5ef0f，camera-visible-room-fog-history-20261027/RESULTS.md。前快照MEMORY-history-20261027-before-fog-sampling.md（4CE52FF4）。目标仍未解决。
+本轮接续86b7057；前快照MEMORY-history-20261027-before-resource-policy.md。正式安装未改，镜头卡顿仍待解决。
 
-- fog-history只在夹具准备时清零探索状态，再由原生循环在3,3局部(940,640)计算，地形/视距/计时中角色位置不变。用于解释前轮两模式上下遮罩不同，尚未证明是产品错误。
-- scene-r2完成960区间与五张可见原图检查；准备前本地1200格均未探索，计时始末273格visi>0、总和213.79811964446526，每格visi/target/opac/mask/water两端全等。端点相同不证明中间无任何位图写入。
-- 本轮静/横/纵/组合30.388/60.846/31.179/35.171ms，有29个>100ms区间、最大1068ms；波动很大，不作稳定性能基准或与前轮比较归因。Stage间不是纯GPU；私有桌面120fps不是实玩显示帧率。
-- probe D4B5DBE6、result F6ADC369，冻结614be80bce8f45bbaff44c1d41d4d900，AIR77000退出。verify_runs.py→scene-review D4CFA81B，核526正式/13runtime/86源和完整时钟。
-- scene-r1可分配4266745856B在编译前停止；normal-r1从4859768832B降到3303354368B，normal-r2从4500684800B降到3895889920B，均在AIR前停止，无游戏数据。下一次normal-r3复用同一probe-build并指定--room-x 3 --room-y 3；普通房间对照未完成，探索历史假设仍未证实。新增失败复核scene-review-v2 C2F73741，原scene-review不改。
-- 用户再次选择释放内存继续。GlobalMemoryStatusEx与GetPerformanceInfo一致：总提交59628703744B、已用56757882880B、余2870820864B，物理空闲19228917760B；稍后余量1583534080B。测试程序导入PrivateUsage约19.1MB，不能推断完整准备无峰值。不关闭用户程序，不下调4GiB保护。
-- 复核前轮atlas原始workMs：候选比native仅多0.08–0.31ms，copies162/rebuilds4/bindingRefreshes1/allocations32均零增长。缓存维护不是十多毫秒差距的解释，停止继续微调。
-- camera-preparation-memory-20261027/audit.py专查准备阶段自身内存，不开AIR/编译器，仍占game登记；r1初始3333734400B被门槛拦下、stages为空。尚无准备阶段内存曲线，下次新名称r2；不据此认定测试程序导致系统下降。
-- camera-visible-room-sampling-20261027已准备、未构建/AIR，预期87源。复用v3受限采样，八窗各age115–119五区间；按CPU自身单调时钟验收出现次数，原混合流倒序仍保留。仅调用栈诊断，不FPS验收。prepare源/生成物逐字和Python解析通过；summary/verify_run已准备。
+- fog-history-normal-r3已完成，复用D4B5DBE6/614be80b探针，AIR37804退出，960区间和五张原图检查通过。进入前普通房间本地360格已探索、大场景为0；重置后两模式1200格visi/target/opacity/mask/water在五视角及计时两端全部精确相同，全部960镜头坐标仅偏移(5760,3000)。前轮上下遮罩差异可由夹具探索历史解释，不是已证产品错误。随机装饰与灯光仍不同，不称全图像素等价。
+- pair-review.json B5DC4EA1已独立核526正式/13runtime/86源和全部时钟；核验在共享启动器后续修改之前完成，旧回执不改。普通房间静/横/纵/组合12.933/17.283/17.583/17.471ms，最大97ms；大场景scene-r2仍有29个>100ms/最大1068ms，不能以两轮均值作稳定性能比较。
+- preparation-memory-r2成功完成8阶段含实际副本准备，约7.91s，无Java/AIR。主Python私有内存25,858,048→26,066,944B，峰值46,145,536B；提交余量4,695,973,888→4,645,535,744B。未见本次主进程积累GB，不推论所有子进程瞬时峰值。回执ABC25564，r1失败保留。
+- 只读检查玩家旧frame-recorder：2026-10-25 19:08–19:13，共300样本，无相机坐标/产品指纹，不能用角色坐标替代镜头运动。原样副本和review C6E125C7留camera-live-recorder-review-20261027，不作为当前归因。
+- sampling-scene-r1在编译前因共享air_test_process.py变动停止，无Java/AIR。原配方冻结。ModLoader任务更新私有桌面启动资源策略，非本任务写入；新配方camera-visible-room-sampling-policy-20261027精确接受启动器ECE3ED08、资源模块86D5F280，并保留登记器E9F51修复。实际启动策略另入回执；不修改旧lineage或放宽任意漂移。
+- policy场景18420/普通55324均实际完成；普通房间原运行末检因登记器E9F51→E3E43581失败，保留原失败。allocation-stacks/review_prior.py仅允许逐字反向唯一编码行，复核其余输入/87源/实际运行，5539957F是后验诊断，不改原运行通过状态。
+- allocation-stacks-scene-r1 AIR77008完成：40采样区间sceneNativeEnvironment分配65312，全由Location.step调用。EnsureUpcoming22312，其中原生Camera.calc13264、夹具额外calc9048；不能全当真实游戏开销。CPU采样含render/sweep标记，不能直接解释为GPU毫秒。独立review F14FE11E。
+- clamp单方法候选887B仅去Math.max，实际AIR41192分配65312→64752，不足1%，停止、未部署。新keycache候选F15B8CE88A500382CA23FF5D387D67997FDB5AE900B78DB09FAF505A014239CA从A796重新开始，缓存区域字符串且每次仍查当前byCell。audit F0A8EE4F核其余5770体/1016类/素材不变。
+- keycache-allocation-r1 AIR70744完成，复用原87源59165645探针：同40区间环境分配降为0，总分配约下降40%。独立allocation-review DC3B6B17。只能证明分配，尚不能称镜头提速或部署合格。
+- quiet新86源098F3644/冻结ef6149a0：关闭采样，准备阶段150种区域/边界/特殊数/改原点/同键替换检查共3000字段断言。base-r1 AIR39060通过，环境恢复、全部960时钟/坐标通过；移动720区间21.8458ms、中位21/P95 29/max103，保留全部长帧。base-review7E595DC7。
+- quiet-cache-r1在AIR前余量2696175616B触发4GiB保护，无游戏。只读定位另一个实验Python83808约6.76GiB，非本任务、未终止；用户选择处理其内存占用。恢复后交替原/候选测试，防背景负载变化误归因；下次cache-r2，同一ef6149a0探针。仍保持4GiB提交/2GiB物理线。
 
 ## 5. 已知边界与停止路线
 
@@ -61,16 +63,15 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 ## 6. 下一步（目标仍未完成）
 
-1. 无其他AIR且实际≥4GiB提交/2GiB物理后，先补fog-history普通房间normal-r3，复用614be80b…/probe-build.json，--room-x 3 --room-y 3。不得复用已失败normal-r1/r2名；配方已冻结，不原地改。
-2. fog-history/verify_runs.py --scene camera-visible-room-fog-history-20261027-scene-r2 --normal 新正常轮 --out 新回执，比较1200本地格和全部960镜头坐标，实际查看PNG。随机装饰/房间外内容不同；局部mask等价也不是全图像素等价。
-3. 运行新sampling-r1（首次--compile-probe），再verify_run。仅八窗40区间的CPU出现计数，不把原生标记叫GPU耗时或采样数字叫FPS；保留全部混合流时间诊断与分配开销。不同于旧战斗稀疏画像，此轮固定可见平台、无敌人和四镜头方向。
-4. 原1280页合图内景仅4.37%、横移变慢；旧战斗约13%不能推广。RV/current仅3.7%/1.6%，保留候选不部署。旧鼠标3%/裁剪/GPU等停止路线不换名重做，有新具体栈/更新证据才重审。
-5. RV只读源接口仍是隔离候选，classic/WB/SATS/地形破坏/往返/缩放/任意几何失效未验；原807像素恢复失败没复现，不能抹去。SceneAlicornAlerts、撤回afternoon和foreign SceneRenderChecks不动。
-6. 共享登记/私有桌面/内存保护保持。当前有一次真实AIR进展，不因后续内存不足直接标blocked；连续目标轮三次完全无进展且同外部条件才按目标规则处理，不能把困难当完成。
+1. 先恢复quiet候选对照：run_variant.py --host cache --name camera-environment-quiet-20261027-cache-r2 --probe-build同目录probe-builds/probe-source/ef6149a0dbf649ff960aea4dd817f246/probe-build.json；随后按证据交替base/cache复测。verify_runs.py独立核原始数据和全部960坐标，不能丢弃长帧或拿环境变化当收益。cache-r1是启动前内存失败，保留。
+2. keycache候选分配证据充分，但无采样实际提速、候选150环境行为、普通场景/战斗兼容还未完成，不部署。若实测不明显，则停止此分支的帧率宣称，按新的具体证据继续；EnsureUpcoming有夹具额外calc开销，勿重复归因。
+3. 原合图内景仅4.37%、横移变慢；旧战斗13%不能推广。RV/current仅3.7%/1.6%，保留候选；鼠标/裁剪/GPU等停止路线不换名重做。Camera原生vx/vy为int，不能未验证就宣称亚像素导致卡顿。
+4. RV只读源接口仍为隔离候选，classic/WB/SATS/地形破坏/往返/缩放/几何失效未验；原807像素恢复失败未解释。SceneAlicornAlerts、撤回afternoon、foreign SceneRenderChecks不动。
+5. 本轮已有普通房间AIR和内存审计进展；不因稍后的占用或内存不足直接标blocked。继续解决镜头主线，当前无可部署的新性能修复。
 
 ## 7. 接续入口
 
-- 本批fog-history/RESULTS.md、verify_runs.py与scene-review D4CFA81B；sampling/prepare.py、run.py、summary.py、verify_run.py（尚未构建）。原始evidence为fog-history-scene-r{1,2}及normal-r{1,2}。旧快照MEMORY-history-20261027-before-fog-sampling.md。
+- 本批fog-history/RESULTS.md与pair-review B5DC4EA1；normal-r3已完成。preparation-memory-r2 ABC25564。旧sampling-scene-r1仅输入漂移失败，新policy配方正在接续。旧快照before-resource-policy.md及before-fog-sampling.md保留。
 
 - 最新camera-visible-room-{reference,scout,atlas}-20261027：atlas/RESULTS.md总报告，scout/verify_batch.py、atlas/verify_run.py；evidence为reference-normal-r1、scout-{scene,normal}-r1、atlas-scene-r{1,2}。atlas-r1仅预检中止，其余四AIR回执保留。前快照MEMORY-history-20261027-before-visible-reference.md。
 
