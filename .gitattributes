@@ -120,3 +120,10 @@ build/generated/camera-native-static-cache-20261027/** -text whitespace=cr-at-eo
 build/generated/camera-far-live-detach-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
 # Preserve this frozen compiler input's indented empty line byte-for-byte.
 build/generated/camera-native-static-cache-20261027/tests/SceneCameraRasterTrial.as -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-live-parking-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-live-parking-return-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-live-parking-window-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-live-parking-math-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-live-parking-groups-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-live-parking-safe-groups-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-live-parking-range-20261027/** -text whitespace=cr-at-eol,-blank-at-eof

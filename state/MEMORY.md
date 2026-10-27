@@ -34,19 +34,21 @@ LAD8ADB/WB1411保持。RC当前回执../RConnect/build/m52/a-live-animation-depl
 A796颜色修复回执state/scene-tint-deployment-20261024.json verified；保留此前ABE2纵向镜头缓冲/80CF遮挡格复用。任何新宿主应精确保留当前其他方法与素材，不能整包覆盖编辑器CS0.9.0。
 ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB75420C507F6DB1D96BE6B1430374B0B7A797607FF4438A695A717809E；仅普通查询拒绝5时CIM只读核创建时间，不确定仍保留占用。lineage.py只允许旧8B35→E9F5这一变化。
 
-## 4. 最新实测（2026-10-27 屏外高覆盖与原生缓存）
+## 4. 最新实测（2026-10-27 实际水平镜头与交战）
 
-本批前HEAD67214dd，旧快照MEMORY-history-20261027-before-far-live.md。五次AIR、一次编译失败，正式未改。完整报告build/generated/camera-far-live-detach-20261027/RESULTS.md。
+本批前HEAD73f4fa3，旧快照MEMORY-history-20261027-before-live-parking.md。七目录、一次编译失败/八次AIR，正式未改；总报告build/generated/camera-live-parking-range-20261027/RESULTS.md。
 
-- far-live-visibility aad3a030/C86B26EB：旧水平预热在原生纵移往返差36像素/RGB78，尚未选根、0计时、7图释放、清理通过。后继沿已验证的固定完整偏移预热，仍三次独立精确返回，不重试到成功。
-- far-live-warm fc17dc65/F8BBBA32：选1189根，第一视角通过、第二视角资格变化，0计时/28图释放。可见性恢复，但资格审计失败，原cleanup.restored=false保留。
-- far-live-cohort 7908bdff：AS3动态字符串键前置自减编译错误，未启动AIR；counts仅改显式int赋值。独立compile-review核526正式/13运行库/86源及脚本，原失败保留。
-- far-live-counts edb7c70f/2EE930D4：1170根（554滤镜/991多帧，有重叠），960区间原生静20.579/动33.896，隐藏静26.017/动38.008ms；移动两对+4.517/+3.708，约慢12.1%。10视角精确/150图+边界探针释放，25740写入/26审计，停止隐藏方案。完整首组原生/候选PNG已看。
-- native-static-cache 3f841ade/A90AE739：1964根中1392已有缓存、281多帧、168隐藏；路线内合格静态矢量根0，7个可缓存根全在路线外。0开关写入/0计时/13图释放、清理通过；不是缓存性能结论，不盲目换目标重跑。
-- far-live-detach da814b43/83072C25：暂摘1203根，960区间静20.613→20.971、动34.325→31.921ms（约7%），移动两对−3.017/−1.792，P95 43→39、最大104→161。静止两对方向相反；收益有限且长帧未解决，只有新线索，未部署。
-- detach包括560滤镜/1020多帧；343次边界变化、46次根帧变化观测。13233摘下/13233放回、六层兄弟顺序恢复、10组像素精确、150图+边界探针释放；完整候选PNG已看。移出显示树可能影响原生事件/帧调度，不称纯矩阵成本，不声称所有动画时序不变。两有效轮随机对象不同，不能跨轮直接比较隐藏与摘树。
-- counts/detach计时前排除不稳定根分支均未触发，不宣称该分支运行通过。五轮各verify_run独立核526正式/13运行库/86源和时间守恒。AIR59784/71668/49352/71384/61700退出，最终登记空；正式与foreign SceneRenderChecks不变。
-- 上批native窗口/画质/上层特效详见旧快照及camera-native-effects-overlay-20261027/RESULTS.md：auto同世界明显更慢；desktop MEDIUM/LOW实际全HIGH；上层原生+GPU下层仅4.4%且静止倒退/像素失败，均未部署。该批已提交67214dd。
+- 暂停摘树7%线索进入真实战斗后未得到明显提速。完整窗口均原生输入跑动、六SMG射手/玩家assr、20×60连续区间，2032×1084/zoom1、LAD/RV/WB关闭；不同轮随机对象不同，只各轮内比较。
+- window e509fcf4/74E83D09/AIR59916：1327根，最多1086暂存；原生47.258→候选49.658ms，管理0.183/5.875ms，平均慢约5.1%。单视角软件像素精确、原生Location.remObj不复活、清理通过。
+- math e5087010/100CC091/AIR61480：1200区间47.443→51.292ms，管理4.182ms，仍慢；终结式新旧坐标审计失败，未保存最大差，不归因于舍入。像素/移除未执行，根恢复通过。此路线停止。
+- range 9d760a10/389A5495/AIR21036：82组、活动48–51组/最多840图像，管理降至0.913ms；49.292→48.232ms仅约2.15%，6对较快/4对较慢，P95 69→64，最大138→151。软件像素0差/原生Box移除不复活/清理通过；收益不足，不部署，不继续盲目细调屏外管理。
+- range实际玩家400/敌人885开火帧，每窗口相机X跨度206–276px；独立movement_audit确认三完整轮实际水平相机/角色位移，所有Y相机固定。不是无敌人/跳跃纵移/RV/SATS/完整原版基准验收。report.nativeInputMotion.measurement为空占位，实际记录在每窗口nativeInputMotion。
+- 保留失败：首live-parking a8a87358编译try/finally返回错误；return 2668ea6a/2EB7 r1在index13/age40后监控347s/1445s空档超时，无最终结果/清理证明；r2晚显示窗口后allStat2，0暂存，清理通过。早显示窗口后成功轮无焦点事件；失焦因果仅有源码支持，不是失败轮事件实证。
+- math r1 AIR46488预热phase3/age259、候选未开始，可用提交11.75GB→5MB触发原保护，只停止自有测试；无最终清理证明。后余量恢复到17.8GB才用同冻结SWF复测。
+- groups da3a1467/177070F8/AIR61324与safe-groups 5a31a6a2/38741C23/AIR69812分别读取玩家不存在的公开lurkBox/lurk而失败；各1原生窗口、0暂存、清理通过。前述对旧代码的字段解释错误，不能再猜玩家有这些字段。range仅用已确认X/Y/teleObj，保留玩家1024px周边和镜头提前区。
+- window/range检查是计时后单视角Stage软件像素，3图+边界探针释放；未保存PNG/目视窗口，不是全路线GPU呈现。Location.remObj验证不是全部伤害死亡/门/藏身/拾取路径。
+- 独立审查：window/review_batch、math/review_batch、groups/review_runs、range/movement_audit；526正式/13运行库/86源闭包和完整区间守恒通过。具体失败保持失败；初次超时与内存中止不补造清理成功。
+- 本批新增保护拒绝：联合rg读取UnitPlayer.as与SceneObjectCulling.as的lurk字段被PreToolUse拦截；未换路径/工具重试。后继按已运行的数据范围完成候选。先前拒绝边界继续。
 
 ## 5. 已知边界与停止路线
 
@@ -61,11 +63,14 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 ## 6. 下一步（保持活动）
 
-1. 摘树仅暂停诊断7%线索，尚无可部署修复。先核真实世界对直接父节点的依赖、原生移除路径、重新入屏/死亡/物品销毁/门/念力/藏身/RV，再决定是否做动态候选；不能把固定暂停控制器直接接入产品。需继续覆盖无敌人/有敌人镜头移动和高速纵移，不用静止收益替代移动目标。
-2. 不扩大重复隐藏1170根（慢12%）、已缓存静态根、原生auto、无效画质或上层缓存边界。旧静态根隐藏/地形摘树/少数睡眠敌人摘树均已有反证；本批摘树覆盖1203不同对象是新线索，不能混作此前已验证产品。
-3. 实际战斗明显提速、无回退、RGB2/alpha0、原生功能、RV、SATS、跨区颜色及长期资源通过后才部署。当前没有接近原版证据，根目标继续。
+1. 目标仍未解决。暂停摘树7%不能当实战收益；逐根暂存更慢，区域暂存总收益约2%且混合，停止把屏外管理当主要修复。转向屏内绘制，具体新机制先核证据，再做独立候选；不能复活旧wrapper/actor缓存失败路线。
+2. 补真正原版模式、无敌人和纵向镜头基准。当前2032×1084/zoom1接近1920×1000单房尺寸，原版对照须核实际镜头位移而非按键请求；旧未mainMenuOff的原版基准无效。当前完整实测全部水平相机，不能称跳跃问题已验证。
+3. 任何可部署方案还须明显实战收益、无回退、像素RGB2/alpha0、原生门/藏身/念力/死亡/拾取、RV/SATS/跨区颜色及长期资源通过。range滤镜外延取整组收集边界，移除外侧节点后内部强滤镜成为边界、动态滤镜扩大尚未保证；1024px提前区不是通用正确性证明。
 
 ## 7. 接续入口
+
+- 本批七目录camera-live-parking{,-return,-window,-math,-groups,-safe-groups,-range}-20261027。range/RESULTS.md总报告，range/movement_audit.py核实际水平位移；groups/review_runs.py可核失败的完整1200区间，math/review_batch.py可核内存中止。已运行配方全部冻结；后继新目录。
+- 本批前快照MEMORY-history-20261027-before-live-parking.md。没有新部署。共同86源来自原29AF种子，仅驱动和测试helper改变；不触碰正式CS编辑器或SceneAlicornAlerts候选。无新共享事实/技能修改。
 
 - 本批camera-far-live-{visibility,warm,cohort,counts,detach}-20261027与camera-native-static-cache-20261027，各prepare/probe_patch/run/helper和verify_run；cohort仅编译失败。总报告detach/RESULTS.md；原始evidence同名-r1，配方冻结，后继新目录。Git -text保存编译原字节。
 - 本批前快照MEMORY-history-20261027-before-far-live.md。正式未改、没有新部署。本轮读取src/SceneObjectCulling.as仅确认旧逐对象wrapper路线及念力/藏身限制；不复活该已失败实现。
