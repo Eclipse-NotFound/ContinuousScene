@@ -34,18 +34,18 @@ LAD8ADB/WB1411保持。RC当前回执../RConnect/build/m52/a-live-animation-depl
 A796颜色修复回执state/scene-tint-deployment-20261024.json verified；保留此前ABE2纵向镜头缓冲/80CF遮挡格复用。任何新宿主应精确保留当前其他方法与素材，不能整包覆盖编辑器CS0.9.0。
 ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB75420C507F6DB1D96BE6B1430374B0B7A797607FF4438A695A717809E；仅普通查询拒绝5时CIM只读核创建时间，不确定仍保留占用。lineage.py只允许旧8B35→E9F5这一变化。
 
-## 4. 最新实测（2026-10-27）
+## 4. 最新实测（2026-10-27 原生窗口与特效层）
 
-此前提交e563e6a；本批前的快照存state/MEMORY-history-20261027-before-actor-cache.md。7轮角色缓存实验均未部署，根目标仍未达成。完整结果见build/generated/camera-actor-atlas-checks-20261027/RESULTS.md。
+本批前HEAD02c10a7，旧快照MEMORY-history-20261027-before-native-windows.md。五次新运行，正式未改；总报告build/generated/camera-native-effects-overlay-20261027/RESULTS.md。
 
-- actor-sprites 09bb573e：原生Bitmap简单链只读借用，其余按原父层逐根draw；960区间，移动34.2458→57.4625ms，两对+23.375/+23.058。3835次角色draw11283ms，另有效果层4552ms；2744次计时分配/释放。全图RGB4–5/alpha0仍拒绝，角色层RGB36/alpha31。两角色PNG已实看，无整只角色缺失但不能算通过。
-- actor-direct 34266ac2：稳定缓冲、直接draw无根效果对象，计时分配0；960，31.8667→57.9917ms，两对+26.600/+25.650。直接draw8831ms，另有效果层5572ms；全图RGB179、角色层RGB255/alpha217，拒绝。
-- actor-frames 6df604a6与checked bc7e9a75均准备阶段#1009、0计时。checked栈定位只读nestedBlends，group1/root12，根空槽0。scan修只读清点的空子节点后完成；不是已证实的根槽故障。两失败轮visualAccepted=true只是未触达初始值。
-- frames-scan bca7f23a：960，33.9500→38.6792ms，两对+5.100/+4.358。24MiB姿态池命中3065/未命中1441/淘汰1438；draw5571ms、刷新9137ms。计时前13+后5全图RGB73–102/alpha0拒绝，角色层RGB255/alpha38。清点跳过22空子节点。停止此池策略，不靠扩大容量或容差继续。
-- actor-atlas e3307761：把变化根同步放入不重叠区一次draw，finally恢复矩阵/可见性；960，32.8000→32.4417ms，仅约1%，两对−0.517/−0.200。480次draw3629ms、3834个变化根，计时分配0；全图RGB97–252/alpha0、角色层RGB255/alpha64拒绝。
-- atlas-checks 5d81f4a6：同一世界12段/1440区间，原生动32.9250ms，GPU检查35.8042，默认异步36.5833。异步相对检查两对+0.133/+1.425，无提速证据。实际debug设置逐帧核验；18全图RGB131–142/alpha0拒绝。原生/候选首完整PNG已实看，主体仍在，不能当画面通过。文档确说检查使clear/drawTriangles同步，但本机结果不能凭文档推翻。
-- 每轮独立verify_actor_runs核526正式/13运行库/86源、所有工具输入、时间戳、资源与恢复。7个AIR69108/67500/29284/57916/37636/27184/34184退出，最后登记空。所有图像/纹理/context释放，atlas/checks各3960/9353次矩阵恢复。正式安装不变。
-- GPU读回叠native UI不是OS窗口；暂停模拟、保留动画也不是正常战斗。不同轮敌人/动画随机差异，不用跨轮均值归因。未覆盖正常AI、移动弹体、RV、SATS与生命周期。
+- 原生同世界窗口对照：window-switch 5a929aa9首图差2217像素/RGB78，0计时，close同帧检查失败；window-audit 06ccce09仅转移预热仍差2232/RGB255，0计时，异步关闭2窗口通过。完整PNG已看，三份新direct/auto/返回相同，差异限角色区域；原失败保持。
+- window-draw-warm e2707a70为各窗口固定实际draw一次，再做五视角各三次精确往返，95图释放后完成1440区间。原direct静23.833/动33.7375、新direct24.0417/34.0375、auto23.5/42.6583ms。auto两对比原direct慢8.5/9.3417ms，比新direct慢8.05/9.1917ms；不采用。64次窗口转移、两新窗口关闭、原Stage/World.swfStage/根顺序与矩阵恢复。软件图不是OS窗口。
+- native-quality 5c7d344d完成1440，但每帧实际quality都HIGH，MEDIUM/LOW请求被桌面AIR忽略；汇总器拒绝错误分组。五组图全等/25图释放。官方仅支持HIGH/BEST，不能当低画质性能测试；已记录shared-knowledge/rendering/facts/desktop-stage-quality-limit.md，未改正式画质。
+- native-effects-overlay d5aaa840让visObjs[4]起七层保持原生，下方九层GPU缓存，root始终可见、不重挂父节点。960区间移动31.8583→30.4625ms，仅4.4%，两对−0.7/−2.0917；静止22.2542→29.7417明显回退，P95移动都37。计时无上层重画/无分配，角色480draw3584ms，2397块刷新4979ms（含上传887ms），仍10.373ms/候选区间。
+- overlay 13次完整角色层oracle RGBA全等，全图RGB71–125/alpha0全拒绝，原生恢复精确；完整native/candidate首图已看。40CPU图/30纹理/260像素图释放，157次临时可见性写入恢复，内存峰87,650,336/68,828,704B。少一次重画不等于足够净收益，不部署。
+- 五轮独立核526正式/13运行库/86源及脚本、构建输入。AIR66232/51180/69852/59464/15376均结束，最终占用空。新probe前8：694BFE6F/52322E24/514EE3D4/796719A7/06A9BAB1；各目录run-review.json与原evidence保留。
+- A796产品pfe.xml（1D2642C7）只读解码：sceneTick调用sceneEnsure/sceneCullSurfaces，无每帧setZoom；源inc旧代码不能当正式行为。原生Camera X/Y/vx/vy是int，不做无证据取整优化。
+- 上批七轮actor缓存已完整存旧快照与camera-actor-atlas-checks-20261027/RESULTS.md：sprites/direct严重倒退、帧池更慢、atlas仅1%、关GPU错误检查也无净收益。不要复活参数微调路线。
 
 ## 5. 已知边界与停止路线
 
@@ -60,11 +60,14 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 ## 6. 下一步（保持活动）
 
-1. 本批逐根、固定缓冲、姿态池、合批和调试开关都未提供可部署收益，停止继续调小图尺寸、池容量、padding或放宽像素阈值。可以保留借用Bitmap与完整恢复的实现经验，但不能把成功编译/少draw/高命中率当优化成功。
-2. 回到原生绘制路径寻找结构性开销，优先读旧层归因和本批记录，不重复已失败剔除/包装器路线。根与测试descriptor都为direct；原生auto尚未实测。若探索模式差，先固定世界状态并安排实际窗口证据，旧native-gpu两轮敌人数不同只能参考。
-3. 任一新路线先在同一世界核镜头静/动，再进入真实AI/子弹/高速移动和无敌人路线；最终要求RGB2/alpha0、原生功能、RV、SATS、跨区颜色与长期资源释放，通过后才备份部署。当前根目标继续，不能报告已接近原版。
+1. auto已有同世界反证，MEDIUM/LOW在desktop无效；保留上层原生仅4.4%移动且静止倒退。停止这三条路线，不继续调窗口、画质标签或上层缓存边界。已知当前模式不是凭配置名可改善的瓶颈。
+2. 下一新假说可先核此前屏外筛选的真实覆盖：camera-far-maskguard仅274单帧无滤镜根，排除了615滤镜/810多帧（各数限该旧样本）。未据此证明全部屏外对象无开销；但全物件层隐藏只解释部分，不能把扩大剔除预先叫修复。先做保留原图/精确恢复的窄归因，再决定是否值得生产生命周期改动；不重复已失败静态根/远处地形路线。
+3. 必须继续以镜头静/动总耗时为准，不用压低一段工作替代净收益；候选再进入真实AI/弹体/高速移动、无敌人路线，要求RGB2/alpha0、原生功能、RV、SATS、跨区颜色、长期资源均通过后部署。当前没有接近原版证据，根目标继续。
 
 ## 7. 接续入口
+
+- 本批camera-native-{window-switch,window-audit,window-draw-warm,quality,effects-overlay}-20261027；各prepare/probe_patch/run、AS3 helper、verify及run-review。window-audit/verify_runs核前两失败，其余各verify_run。原始证据同名-r1。所有运行配方冻结，后续新目录；五目录Git -text保留编译原字节。
+- 本批前记忆MEMORY-history-20261027-before-native-windows.md。总报告effects-overlay/RESULTS.md；runtime属性无效事实已入共享游戏知识，无全局技能修改。
 
 - 本批7目录camera-actor-{sprites,direct,frames,frames-checked,frames-scan,atlas,atlas-checks}-20261027。总结果在atlas-checks/RESULTS.md，统一独立脚本在frames/verify_actor_runs.py，7份run-review.json；原始evidence同名-r1。所有运行配方冻结，后续新目录。
 - 本批前完整快照MEMORY-history-20261027-before-actor-cache.md；下列上一批入口继续有效。首轮简单Bitmap只覆盖1–3个当前可借用根，不能将旧census的78节点误当本轮全部已直接复用。

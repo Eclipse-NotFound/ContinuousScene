@@ -1,5 +1,13 @@
 # 开发日志
 
+## 2026-10-27 原生auto更慢，保留上层特效仅小幅移动收益且静止倒退
+
+- 同世界窗口路线先两轮像素失败，固定转移后draw一次再三次精确往返，第三轮e2707a70完成1440区间；原direct移动33.7375、新direct34.0375、auto42.6583ms，auto两对慢8.5/9.3417ms。95图释放，两个新窗口异步关闭，原Stage/根顺序恢复。原两次失败保留。
+- native-quality 5c7d344d实际1440区间全HIGH；桌面AIR忽略MEDIUM/LOW，汇总器拒绝错误分组，未降正式画质。文档与实测核对后记shared-knowledge/rendering/facts/desktop-stage-quality-limit.md。
+- 新native-effects-overlay d5aaa840保留七个上层为原生、缓存九个下层；960区间移动31.858→30.463仅4.4%，静止22.254→29.742回退。480角色draw3584ms/2397块刷新4979ms，无上层重画或计时分配。13角色oracle精确但全图RGB71–125拒绝，40CPU/30纹理/260图释放，157临时写入恢复。未部署。
+- 五轮全部独立输入/资源/时间戳核对，测试实例退出、登记空，正式526文件与13运行库保持。完整报告camera-native-effects-overlay-20261027/RESULTS.md；旧快照MEMORY-history-20261027-before-native-windows.md，foreign SceneRenderChecks未碰。
+- 根目标仍活动，停止auto/无效画质/上层边界微调。下一步核屏外滤镜/动画根是否属于旧静态筛选漏测，先做窄归因；不能把原生移动或世界暂停测试当实战验收。
+
 ## 2026-10-27 角色图像缓存七轮验证，仍未获得可部署的镜头提速
 
 - sprites移动34.246→57.463ms、direct31.867→57.992ms，均倒退；后者消除计时分配仍无收益。frames/checked两轮0计时失败，异常栈定位只读nestedBlends中的空子节点；scan修正清点后33.950→38.679ms，姿态池3065命中/1441未中/1438淘汰，仍慢。
