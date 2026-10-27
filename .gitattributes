@@ -139,3 +139,6 @@ build/generated/camera-empty-native-tiles-20261027/** -text whitespace=cr-at-eol
 
 build/generated/camera-persistent-atlas-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 build/generated/camera-persistent-atlas-checks-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-persistent-fullpage-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-persistent-combat-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-persistent-combat-imports-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol

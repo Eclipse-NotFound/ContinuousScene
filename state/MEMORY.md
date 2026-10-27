@@ -34,17 +34,18 @@ LAD8ADB/WB1411保持。RC当前回执../RConnect/build/m52/a-live-animation-depl
 A796颜色修复回执state/scene-tint-deployment-20261024.json verified；保留此前ABE2纵向镜头缓冲/80CF遮挡格复用。任何新宿主应精确保留当前其他方法与素材，不能整包覆盖编辑器CS0.9.0。
 ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB75420C507F6DB1D96BE6B1430374B0B7A797607FF4438A695A717809E；仅普通查询拒绝5时CIM只读核创建时间，不确定仍保留占用。lineage.py只允许旧8B35→E9F5这一变化。
 
-## 4. 最新停点（2026-10-27 持续合图候选，仅准备）
+## 4. 最新实测（2026-10-27 持续合图，仍未部署）
 
-本批前HEAD e825ada。两目录camera-persistent-atlas-20261027与camera-persistent-atlas-checks-20261027，后者RESULTS.md记录；**未编译、未启动AIR、未部署，无性能结论**。
+准备阶段已提交99665df；后续新增fullpage/combat/combat-imports三配方和三次AIR。完整报告camera-persistent-fullpage-20261027/RESULTS.md。用户已回复释放内存，实际门槛达标后继续，不再等待该问题。
 
-- 旧合图每帧恢复/隐藏原图并重建sceneSurfaces索引；新诊断候选保持绑定，按四父层ADDED/REMOVED与resident/redraws/evictions更新集合，按整数格视口更新预期可见性；源身份与revision仍逐页检查。页1280/8页/4层与合成公式保持，不是重复调页大小。
-- 初始runner仅一次-r1，在编译前内存预检失败（提交2877861888B）。原始runner-failure.json保留，无probe-build或游戏进程。其后只读内存检查，无失败重跑。
-- 后继加入16状态真实Flash生命周期/像素夹具：跨格/页、像素revision、同数量对象替换、未知背景子对象激活、SATS/显式原生回退、清理移除事件。132源位图/34截图需释放，候选RGB≤2/alpha0，原生恢复精确。前景/水面有内容。**仅断言设计，尚未执行**。
-- 后继显式隐藏非请求页，两个呈现器分开清理；预定1920×1080、2880完整间隔、三臂正反（当前大场景原生/旧合图/持续合图）。原生一词不等于普通房间基准。两套各200MiB计时前分配，成本单列。
-- offline_review.py通过Python语法/生成一致性/85源种子/89预期源与526正式/13运行输入核对。offline-review.json DB4E5C6A：提交3316633600B、物理6999646208B、AIR空。它不证明AS3可编译或运行正确。
-- 已向用户异步请求正常释放约2GB内存；尚无回复。**本轮首次因同一内存条件停住**，非连续三轮，不标blocked。所有编译/测试仍沿4GiB提交/2GiB物理保护。共享登记最后空；未绕护栏、未结束外部进程、未改foreign WIP。
-- 前批五次运行详见新归档第4节与camera-visible-components-20261027/RESULTS.md：有内容地形是主要线索，边框缓存/空白图块均无有效收益，opaque全屏外不得评价。保留原失败/代表性纠正，不复活已停止路线。
+- checks：89源，probe314AE2E6/frozen52ff2b70/resultF4668346/AIR28268。1920×1080、活跃无敌人/120fps、2880完整区间。移动720/臂native27.853、旧合图25.600、持续绑定23.833ms（约14.4%）。横纵改善，组合26.200→26.546反而略慢。
+- fullpage：89源，probeFB11B95D/frozenfc4dd02e/resultFB196E34/AIR66000。相同2880区间，移动native28.585/bound22.647/fullpage22.028ms；保留所有驻留格像素，格跨视口不再重复复制，内容按源/revision更新。强制显示静止17.063/18.913/22.246ms，存在静止额外开销，不只报移动收益。
+- 两轮16状态真实Flash夹具均通过，132源图/34截图释放；五实际视角各30截图释放，RGB≤1/alpha0，恢复精确。稳定帧无重绑/复制，跨格13复制可增加5–9ms辅助工作，但174ms尖峰主要帧间。每套200MiB/32张，准备单列，最终零资源；首轮准备307ms。
+- combat-r1编译失败，仅缺getQualifiedClassName导入；原冻结99b75b04保留。imports补导入：86源，probe6D90BB3D/frozen421d93c5/result11C49524/AIR12612。实际30fps设置、2032×1084、六SMG敌人、原生冲刺/开火、480完整区间；实际移除菜单并早显私有窗口，无激活事件。
+- 战斗native49.721→fullpage45.888ms约7.7%，P95 62→63，四段46.917/47.283/44.492/52.525，一对反向。160玩家/276敌人开火帧，X跨度230/265/269/256，Y固定。终局RGB最大1/alpha0、恢复精确、3截图与32缓存释放。**尚无稳定明显战斗改善，不部署。**
+- imports原汇总因内部VERSION仍是旧常量而失败，原配方/失败/登记不改。review_failure.py仅修该验证常量，保留全部其余条件后480区间/负载/像素/资源均通过，review839341D8；不得称原汇总成功。无需仅为改绿重跑。
+- quiet verify_runs独立复核526正式/13运行/冻结源与计时，quiet-review76FD97F9；战斗同样复核闭包。三AIR均退出、最后登记空。正式/foreign WIP不动，无新权限拒绝。
+- 原初内存失败保留，已解除，不是当前阻塞。所有测量私有桌面，非物理呈现；native为现有大场景，非有效普通房间严格同负载基准；自然纵移/RV/长期资源仍缺。图片已实际查看。
 
 ## 5. 已知边界与停止路线
 
@@ -59,14 +60,16 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 ## 6. 下一步（目标仍未完成）
 
-1. 内存释放后核独占占用，再运行camera-persistent-atlas-checks-20261027/run.py --mode scene --name 新名字 --compile-probe --registry-wait 60。尚无可复用编译回执。维持会话精确调用授权、私有桌面、唯一存储和内存预检，不降低门槛。
-2. 先通过16状态Flash夹具，再核三臂完整计时/像素/资源；失败保留原配方另开后继。若有稳定净收益，再进入真实镜头移动战斗与RV/SATS/破坏/长期资源。当前外部修改既有Bitmap几何无通知，未解决前不能产品部署。
-3. 目标核心仍是镜头，不论敌人是否出现。当前原生臂是大场景既有渲染，仍须有效普通房间参考与密集内景；旧Y600黑区无代表性，不将120fps诊断叫实玩FPS。
-4. 新收益不足则停止此路线，不挑最好结果。此前地形隐藏仅归因，不能作为优化；旧EXIT_FRAME每区间一次假设错误，若再用须按提交序号记录。
+1. 候选fullpage无敌人镜头有收益，但实际战斗只有约7.7%且一对反向/P95略差。下一轮增加短周期交替次数（例如20×60），沿相同原生冲刺/开火，保留全部样本/轨迹/负载，核清波动；这是未解对照问题，不挑单次最好成绩。不要再重复暂停/隐藏地形路线。
+2. 后继另开目录，不能原地改冻结配方。战斗summary除了base.VERSION还须正确设置base.scope['VERSION']；当前原失败保留，review_failure仅后验修常量。现有runtime编译可复用算法，不必重做已通过的16状态夹具。
+3. 有稳定收益后再进行自然纵移、有效原版房间参考、密集内景和RV/SATS/地形破坏/长时资源。外部修改既有Bitmap几何的通知契约仍未解决，不能将诊断类直接部署。
+4. 用户已释放内存，当前无待答问题；继续按独立登记/私有桌面/4GiB提交/2GiB物理和会话精确调用授权。根任务活动，不标complete或blocked。
 
 ## 7. 接续入口
 
-- 当前两目录camera-persistent-atlas{,-checks}-20261027；checks/RESULTS.md、offline_review.py与offline-review.json DB4E5C6A。完整前快照MEMORY-history-20261027-before-persistent-atlas.md。旧配方仅内存预检失败，后继未调用runner；新源已准备，未编译。
+- 最新fullpage/RESULTS.md总报告；fullpage/verify_runs.py --phase quiet与quiet-review76FD97F9；combat-imports/review_failure.py与review839341D8。五配方camera-persistent-atlas、atlas-checks、fullpage、combat、combat-imports（20261027），原始evidence同名-r1。前快照MEMORY-history-20261027-before-persistent-runtime.md。
+
+- 准备阶段两目录camera-persistent-atlas{,-checks}-20261027；当时offline-review DB4E5C6A尚未构建。后续checks已经实测，当前结果见最新总报告；前快照MEMORY-history-20261027-before-persistent-atlas.md保留准备历史。
 
 - 最新五目录camera-visible-tree-audit、camera-border-cache、camera-visible-components、camera-opaque-tiles、camera-empty-native-tiles（均-20261027）。各prepare/probe_patch/run/helper配方冻结；components/RESULTS.md总报告、verify_batch.py与review_failed_summary.py后验复核，batch-review9EC414B0。原始evidence同名-r1。前快照MEMORY-history-20261027-before-visible-components.md。
 - 上批camera-active-quiet-{axis,bands}、camera-native-{near,visible}-groups-20261027；visible-groups/RESULTS.md与bands/verify_batch.py保留六轮及黑区纠正。原报告不能用新结论覆盖。
