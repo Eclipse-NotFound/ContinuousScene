@@ -112,3 +112,11 @@ build/generated/camera-native-window-audit-20261027/** -text whitespace=cr-at-eo
 build/generated/camera-native-window-draw-warm-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
 build/generated/camera-native-quality-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
 build/generated/camera-native-effects-overlay-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-far-live-visibility-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-far-live-warm-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-far-live-cohort-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-far-live-counts-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-native-static-cache-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-far-live-detach-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+# Preserve this frozen compiler input's indented empty line byte-for-byte.
+build/generated/camera-native-static-cache-20261027/tests/SceneCameraRasterTrial.as -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol

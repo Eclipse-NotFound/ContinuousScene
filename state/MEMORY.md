@@ -34,18 +34,19 @@ LAD8ADB/WB1411保持。RC当前回执../RConnect/build/m52/a-live-animation-depl
 A796颜色修复回执state/scene-tint-deployment-20261024.json verified；保留此前ABE2纵向镜头缓冲/80CF遮挡格复用。任何新宿主应精确保留当前其他方法与素材，不能整包覆盖编辑器CS0.9.0。
 ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB75420C507F6DB1D96BE6B1430374B0B7A797607FF4438A695A717809E；仅普通查询拒绝5时CIM只读核创建时间，不确定仍保留占用。lineage.py只允许旧8B35→E9F5这一变化。
 
-## 4. 最新实测（2026-10-27 原生窗口与特效层）
+## 4. 最新实测（2026-10-27 屏外高覆盖与原生缓存）
 
-本批前HEAD02c10a7，旧快照MEMORY-history-20261027-before-native-windows.md。五次新运行，正式未改；总报告build/generated/camera-native-effects-overlay-20261027/RESULTS.md。
+本批前HEAD67214dd，旧快照MEMORY-history-20261027-before-far-live.md。五次AIR、一次编译失败，正式未改。完整报告build/generated/camera-far-live-detach-20261027/RESULTS.md。
 
-- 原生同世界窗口对照：window-switch 5a929aa9首图差2217像素/RGB78，0计时，close同帧检查失败；window-audit 06ccce09仅转移预热仍差2232/RGB255，0计时，异步关闭2窗口通过。完整PNG已看，三份新direct/auto/返回相同，差异限角色区域；原失败保持。
-- window-draw-warm e2707a70为各窗口固定实际draw一次，再做五视角各三次精确往返，95图释放后完成1440区间。原direct静23.833/动33.7375、新direct24.0417/34.0375、auto23.5/42.6583ms。auto两对比原direct慢8.5/9.3417ms，比新direct慢8.05/9.1917ms；不采用。64次窗口转移、两新窗口关闭、原Stage/World.swfStage/根顺序与矩阵恢复。软件图不是OS窗口。
-- native-quality 5c7d344d完成1440，但每帧实际quality都HIGH，MEDIUM/LOW请求被桌面AIR忽略；汇总器拒绝错误分组。五组图全等/25图释放。官方仅支持HIGH/BEST，不能当低画质性能测试；已记录shared-knowledge/rendering/facts/desktop-stage-quality-limit.md，未改正式画质。
-- native-effects-overlay d5aaa840让visObjs[4]起七层保持原生，下方九层GPU缓存，root始终可见、不重挂父节点。960区间移动31.8583→30.4625ms，仅4.4%，两对−0.7/−2.0917；静止22.2542→29.7417明显回退，P95移动都37。计时无上层重画/无分配，角色480draw3584ms，2397块刷新4979ms（含上传887ms），仍10.373ms/候选区间。
-- overlay 13次完整角色层oracle RGBA全等，全图RGB71–125/alpha0全拒绝，原生恢复精确；完整native/candidate首图已看。40CPU图/30纹理/260像素图释放，157次临时可见性写入恢复，内存峰87,650,336/68,828,704B。少一次重画不等于足够净收益，不部署。
-- 五轮独立核526正式/13运行库/86源及脚本、构建输入。AIR66232/51180/69852/59464/15376均结束，最终占用空。新probe前8：694BFE6F/52322E24/514EE3D4/796719A7/06A9BAB1；各目录run-review.json与原evidence保留。
-- A796产品pfe.xml（1D2642C7）只读解码：sceneTick调用sceneEnsure/sceneCullSurfaces，无每帧setZoom；源inc旧代码不能当正式行为。原生Camera X/Y/vx/vy是int，不做无证据取整优化。
-- 上批七轮actor缓存已完整存旧快照与camera-actor-atlas-checks-20261027/RESULTS.md：sprites/direct严重倒退、帧池更慢、atlas仅1%、关GPU错误检查也无净收益。不要复活参数微调路线。
+- far-live-visibility aad3a030/C86B26EB：旧水平预热在原生纵移往返差36像素/RGB78，尚未选根、0计时、7图释放、清理通过。后继沿已验证的固定完整偏移预热，仍三次独立精确返回，不重试到成功。
+- far-live-warm fc17dc65/F8BBBA32：选1189根，第一视角通过、第二视角资格变化，0计时/28图释放。可见性恢复，但资格审计失败，原cleanup.restored=false保留。
+- far-live-cohort 7908bdff：AS3动态字符串键前置自减编译错误，未启动AIR；counts仅改显式int赋值。独立compile-review核526正式/13运行库/86源及脚本，原失败保留。
+- far-live-counts edb7c70f/2EE930D4：1170根（554滤镜/991多帧，有重叠），960区间原生静20.579/动33.896，隐藏静26.017/动38.008ms；移动两对+4.517/+3.708，约慢12.1%。10视角精确/150图+边界探针释放，25740写入/26审计，停止隐藏方案。完整首组原生/候选PNG已看。
+- native-static-cache 3f841ade/A90AE739：1964根中1392已有缓存、281多帧、168隐藏；路线内合格静态矢量根0，7个可缓存根全在路线外。0开关写入/0计时/13图释放、清理通过；不是缓存性能结论，不盲目换目标重跑。
+- far-live-detach da814b43/83072C25：暂摘1203根，960区间静20.613→20.971、动34.325→31.921ms（约7%），移动两对−3.017/−1.792，P95 43→39、最大104→161。静止两对方向相反；收益有限且长帧未解决，只有新线索，未部署。
+- detach包括560滤镜/1020多帧；343次边界变化、46次根帧变化观测。13233摘下/13233放回、六层兄弟顺序恢复、10组像素精确、150图+边界探针释放；完整候选PNG已看。移出显示树可能影响原生事件/帧调度，不称纯矩阵成本，不声称所有动画时序不变。两有效轮随机对象不同，不能跨轮直接比较隐藏与摘树。
+- counts/detach计时前排除不稳定根分支均未触发，不宣称该分支运行通过。五轮各verify_run独立核526正式/13运行库/86源和时间守恒。AIR59784/71668/49352/71384/61700退出，最终登记空；正式与foreign SceneRenderChecks不变。
+- 上批native窗口/画质/上层特效详见旧快照及camera-native-effects-overlay-20261027/RESULTS.md：auto同世界明显更慢；desktop MEDIUM/LOW实际全HIGH；上层原生+GPU下层仅4.4%且静止倒退/像素失败，均未部署。该批已提交67214dd。
 
 ## 5. 已知边界与停止路线
 
@@ -60,11 +61,14 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 ## 6. 下一步（保持活动）
 
-1. auto已有同世界反证，MEDIUM/LOW在desktop无效；保留上层原生仅4.4%移动且静止倒退。停止这三条路线，不继续调窗口、画质标签或上层缓存边界。已知当前模式不是凭配置名可改善的瓶颈。
-2. 下一新假说可先核此前屏外筛选的真实覆盖：camera-far-maskguard仅274单帧无滤镜根，排除了615滤镜/810多帧（各数限该旧样本）。未据此证明全部屏外对象无开销；但全物件层隐藏只解释部分，不能把扩大剔除预先叫修复。先做保留原图/精确恢复的窄归因，再决定是否值得生产生命周期改动；不重复已失败静态根/远处地形路线。
-3. 必须继续以镜头静/动总耗时为准，不用压低一段工作替代净收益；候选再进入真实AI/弹体/高速移动、无敌人路线，要求RGB2/alpha0、原生功能、RV、SATS、跨区颜色、长期资源均通过后部署。当前没有接近原版证据，根目标继续。
+1. 摘树仅暂停诊断7%线索，尚无可部署修复。先核真实世界对直接父节点的依赖、原生移除路径、重新入屏/死亡/物品销毁/门/念力/藏身/RV，再决定是否做动态候选；不能把固定暂停控制器直接接入产品。需继续覆盖无敌人/有敌人镜头移动和高速纵移，不用静止收益替代移动目标。
+2. 不扩大重复隐藏1170根（慢12%）、已缓存静态根、原生auto、无效画质或上层缓存边界。旧静态根隐藏/地形摘树/少数睡眠敌人摘树均已有反证；本批摘树覆盖1203不同对象是新线索，不能混作此前已验证产品。
+3. 实际战斗明显提速、无回退、RGB2/alpha0、原生功能、RV、SATS、跨区颜色及长期资源通过后才部署。当前没有接近原版证据，根目标继续。
 
 ## 7. 接续入口
+
+- 本批camera-far-live-{visibility,warm,cohort,counts,detach}-20261027与camera-native-static-cache-20261027，各prepare/probe_patch/run/helper和verify_run；cohort仅编译失败。总报告detach/RESULTS.md；原始evidence同名-r1，配方冻结，后继新目录。Git -text保存编译原字节。
+- 本批前快照MEMORY-history-20261027-before-far-live.md。正式未改、没有新部署。本轮读取src/SceneObjectCulling.as仅确认旧逐对象wrapper路线及念力/藏身限制；不复活该已失败实现。
 
 - 本批camera-native-{window-switch,window-audit,window-draw-warm,quality,effects-overlay}-20261027；各prepare/probe_patch/run、AS3 helper、verify及run-review。window-audit/verify_runs核前两失败，其余各verify_run。原始证据同名-r1。所有运行配方冻结，后续新目录；五目录Git -text保留编译原字节。
 - 本批前记忆MEMORY-history-20261027-before-native-windows.md。总报告effects-overlay/RESULTS.md；runtime属性无效事实已入共享游戏知识，无全局技能修改。
