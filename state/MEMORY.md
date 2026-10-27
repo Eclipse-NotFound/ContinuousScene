@@ -34,18 +34,17 @@ LAD8ADB/WB1411保持。RC当前回执../RConnect/build/m52/a-live-animation-depl
 A796颜色修复回执state/scene-tint-deployment-20261024.json verified；保留此前ABE2纵向镜头缓冲/80CF遮挡格复用。任何新宿主应精确保留当前其他方法与素材，不能整包覆盖编辑器CS0.9.0。
 ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB75420C507F6DB1D96BE6B1430374B0B7A797607FF4438A695A717809E；仅普通查询拒绝5时CIM只读核创建时间，不确定仍保留占用。lineage.py只允许旧8B35→E9F5这一变化。
 
-## 4. 最新实测（2026-10-27 多轮战斗/读取兼容，未部署）
+## 4. 最新实测（2026-10-27 可见内景参考，未部署）
 
-前阶段fbbbe7f。最新七配方repeated/jump/jump-steer/pagesize/readers/rv/rv-pixels均在build/generated/camera-persistent-<名称>-20261027；完整报告rv-pixels/RESULTS.md。用户内存回复已落实，实际预检约10–12GB可用提交，非当前阻塞。
+前阶段aafadc0持续合图/RV结果见MEMORY-history-20261027-before-visible-reference.md。本批camera-visible-room-{reference,scout,atlas}-20261027，总报告atlas/RESULTS.md。四次AIR，另一次预检中止，无正式修改。
 
-- repeated：20×60真实横向冲刺/六SMG/玩家开火，原绘制61.950→1280整页54.045ms，约12.76%，十对九对改善；P95 87→78，>100ms9→10，尖峰仍在。实际400/943玩家/敌人开火帧，Y固定。200MiB准备318ms。1129差异像素RGB1/alpha0，恢复/资源通过。review E6689604；probe ABD683AF，result4812B44E，AIR52952。已查看真实PNG。
-- jump：真实跳跃输入每90帧按4帧，原生受击/空中惯性越原已核平台，9完整窗口后失败。jump-steer预看地面4/空中30帧，暖场越左界，0窗口失败。未修改物理或放宽边界；不当性能验收，不继续同平台盲调转向。
-- pagesize：活跃无敌人/脚本原生镜头/2880区间，移动native28.136/1280页23.806/2560页22.846ms。较大页仅约4%，反向纵移/组合变慢，内存200→400MiB，不采用。196源/34截图/16状态/5真实视角通过，RGB≤1/alpha0。不要重启此加大页路线。
-- readers纯功能92源：明确旧RV D44读取显示树，在原始地形改变而合图未同步时读旧像素。新增只读nativeTerrainSources接口，原图列表按本帧视口和显示顺序返回，不切换可见性。四态旧法仅第二态差1600像素，新法全部精确，12图释放；原16缓存状态/5实际视角也通过。仅在CS隔离复制RV类，未修改正式RV。前五轮统一review 9EF4773E；每轮全部526正式/13运行/冻结源和实际加载复核。
-- rv完整current候选：正式D44冻结六源→CS内派生候选，只有源提供/读取选择与诊断接口；只替换隔离运行目录RV，记录显式候选SHA。1200读取/583提供，真实1200间隔95.710→92.180ms仅3.69%。终局原图→候选1555像素、→恢复807像素，最大99/alpha0，全部>2在x1404–1461/y610–642小型实体，原汇总失败保留。probe498E2CDE/result104F6923/RV44C14F35，AIR30584。PNG已查看。
-- rv-pixels只改终局为固定7图：原生初次/第二/第三、合图/恢复、再合图/恢复。原生重复与两次恢复精确，两个合图均991像素RGB2/alpha0，7图释放，全部1200间隔/负载/完整RV通过。**本轮初次也相同，未重现旧807像素，不能说已证明首次绘制是原因。**均值107.898→106.187ms仅1.59%，十对五对改善，>100ms325→342，不部署。1200读取/588提供，400/1061玩家/敌人开火帧。probeDA395BCC/result720CD517/RVC349BD3B，AIR66852。RV两候选六源一致、独立编译SHA不同，不称同字节。
-- RV两轮verify_runs.py独立review BF3779496C10128B530280FCAC3FBA8A6E2561563BBECEF908A68D06F9248C28；第一原失败不改绿，第二实际通过。两轮正式RV仍638E、其他526/13输入不变。当前全视觉性能目标仍未达。
-- 七轮都是私有桌面，不是物理帧率；native是当前大场景，非普通房间有效同负载基准。旧fbbbe7f三轮及汇总常量失败详见前快照与fullpage/RESULTS.md，不重跑改绿。
+- reference normal-r1：2,3房间指定中层平台不存在，碰撞检查拒绝，0计时间隔，AIR59228。失败保留。
+- scout扫描真实平台，选3,3房间局部(940,640)，三格地面/120px净空/物件验证，一次放置，不改地形或计时中玩家位置。同字节9cc011c9探针先scene后normal，各960全镜头坐标仅差(5760,3000)，地形哈希3026506315，角色始终屏内且镜头未钳制。AIR72668/47188。
+- 两模式原图实看，非黑覆盖原版75–81%、场景49–52%。随机装饰和探索遮罩范围不同，不能称像素等价或纯因果比较；遮罩差异原因未定位。原版静/横/纵/组合13.992/17.929/15.679/16.625ms，场景20.442/24.654/28.938/28.467ms。
+- 主循环所在Stage区段约2.5–3.0 / 3.1–4.0ms，差距主要在Stage间，含Flash回调/绘制/运行库/调度，非独占GPU时间。1280×720、120fps诊断，不是自然跳跃/实战/实际显示器FPS。
+- atlas用fullpage类原字节7373939B，同一内景1920区间移动22.4569→21.4750ms，仅4.37%；横22.275→22.746变慢，纵22.058→21.146，组合23.038→20.533。六移动配对四好二坏，不部署，旧战斗13%不能推广到所有内景。
+- 五视角49/27/37/61/24像素RGB1、alpha0，原生重复/恢复精确；20截图和32缓存图释放。200MiB预分配238ms，测量无新增分配，原生预绘零增长，候选PNG实看。probe16FB58A3/resultA2CC41CB/frozen8d1e6df3/AIR53408。
+- atlas-r1余量4206452736B<4GiB，编译前中止；自然恢复后r2成功，未降低门槛。scout/verify_batch.py复核前三轮及全坐标review0A312FDD；atlas/verify_run.py精确重放reviewE2C14761。526正式/13运行库/86或87冻结源和实际加载保持。四AIR已退出，无新权限拒绝或待答问题。
 
 ## 5. 已知边界与停止路线
 
@@ -60,14 +59,16 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 ## 6. 下一步（目标仍未完成）
 
-1. 持续1280页在RV关闭真实横向战斗约13%且9/10配对改善，但RV/current下仅3.7%/1.6%，不满足整体接近原版。不要再加大页/重复暂停隐藏路线。优先区分静止与镜头移动的显示成本、RV额外计算；没有足够证据时不跳过敌人或删除视觉效果。
-2. RV新版只读地形接口已由Flash正反控制与完整current流程证实被调用；仍是隔离候选，不在正式CS/RV。完整功能还缺classic/WB/SATS/地形破坏/地图往返/缩放及任意图块几何失效。WB有独立前/背景叠层，当前背景陌生子节点会回退原生；不能称WB性能兼容已完成。
-3. 两个自然跳跃试验均原生受击/惯性越固定平台，保留失败。下次需先准备适合自然纵移的真实路线及碰撞验证，不能继续调同一短平台或放宽界限凑通过。原脚本轴对照不是自然跳跃证据。
-4. 第二RV轮Y固定、X往返，objectsScanned约1073–1087未持续增加；后段优先级1000→-50区段约50→65ms，包含RV等回调，不能叫纯World或凭此证明探索累积。D44源码hideEnemies/hideWorldEffects全loc.units/对象链扫描，没有原生sleep接口调用，是否热点尚未测；先量实际分段再决定兼容改法，不凭猜测跳过遮罩。
-5. 前轮终局807像素自身恢复差异没有在后继重现，原因仍未确证。固定7图新轮严格通过不覆盖旧失败，也不意味着所有战斗帧正确；保留两轮原图。
-6. 用户已释放内存，无待答问题；继续独立登记/私有桌面/4GiB提交+2GiB物理门槛。登记未结束ended为null，状态查询用null/空值或state，别用ended==空字符串；真正驱动始终通过登记锁及AIR独立检查。根目标active，不标complete或blocked。
+1. 后续使用scout的3,3真实内景和有效普通房间参考，别复用旧Y600黑区。两模式探索遮罩差异尚未解释；先只读核对变化来源，不能直接叫缺块或删除遮罩。
+2. 1280页旧战斗约13%，但新内景4.37%且横移变慢，RV/current仅3.7%/1.6%。暂停扩大/微调页缓存；有明确新失效/更新证据再改，不换名重复已停路线。任务仍是镜头移动有无敌人都流畅。
+3. Stage间时间不是纯GPU。旧mouse-world-native-v4实测仅约3%且负载不同（journal 2026-10-25、RESULTS-R2.md），不是未经尝试的新方向。
+4. 旧RV只读地形接口仍为隔离候选，classic/WB/SATS/地形破坏/地图往返/缩放/任意几何失效未验；WB陌生背景节点回原生，不称完整兼容。自然跳跃两轮原平台越界失败，不继续调同一短平台凑通过。
+5. 旧RV终局807像素恢复差异后轮未重现，原因未证实；后轮成功不覆盖失败。所有运行配方冻结；SceneAlicornAlerts/撤回afternoon/foreign SceneRenderChecks不动。
+6. 共享登记、私有桌面、4GiB提交+2GiB物理预检保持；未结束ended为null，用not ended查。内存偶发跌线时做独立工作、复核再新登记，不降门槛、不结束用户程序。根目标active，不标complete或因性能难题标blocked。
 
 ## 7. 接续入口
+
+- 最新camera-visible-room-{reference,scout,atlas}-20261027：atlas/RESULTS.md总报告，scout/verify_batch.py、atlas/verify_run.py；evidence为reference-normal-r1、scout-{scene,normal}-r1、atlas-scene-r{1,2}。atlas-r1仅预检中止，其余四AIR回执保留。前快照MEMORY-history-20261027-before-visible-reference.md。
 
 - 本批七配方和原始evidence同名-r1；rv-pixels/RESULTS.md总报告。前五轮readers/verify_batch.py→9EF4773E；两RV轮rv-pixels/verify_runs.py→BF377949；repeated/verify_run.py→E6689604。所有已运行配方冻结，后继新目录。前快照MEMORY-history-20261027-before-persistent-rv.md。
 - RV派生仅在CS目录的rv-src/rv-builds，正式RV来源必须是其build/combat-render-output/production-final2/src六源，并核原build.json。不要用包含authority的当前src替代。RV当前运行层入口通过RVExplorationAPI.api.terrainReadStats记录验证；CS nativeAPI.terrainSources只在测试期挂载并移除。
