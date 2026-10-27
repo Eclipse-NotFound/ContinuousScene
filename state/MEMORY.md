@@ -34,18 +34,18 @@ LAD8ADB/WB1411保持。RC当前回执../RConnect/build/m52/a-live-animation-depl
 A796颜色修复回执state/scene-tint-deployment-20261024.json verified；保留此前ABE2纵向镜头缓冲/80CF遮挡格复用。任何新宿主应精确保留当前其他方法与素材，不能整包覆盖编辑器CS0.9.0。
 ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB75420C507F6DB1D96BE6B1430374B0B7A797607FF4438A695A717809E；仅普通查询拒绝5时CIM只读核创建时间，不确定仍保留占用。lineage.py只允许旧8B35→E9F5这一变化。
 
-## 4. 最新实测（2026-10-27 持续合图，仍未部署）
+## 4. 最新实测（2026-10-27 多轮战斗/读取兼容，未部署）
 
-准备阶段已提交99665df；后续新增fullpage/combat/combat-imports三配方和三次AIR。完整报告camera-persistent-fullpage-20261027/RESULTS.md。用户已回复释放内存，实际门槛达标后继续，不再等待该问题。
+前阶段fbbbe7f。最新七配方repeated/jump/jump-steer/pagesize/readers/rv/rv-pixels均在build/generated/camera-persistent-<名称>-20261027；完整报告rv-pixels/RESULTS.md。用户内存回复已落实，实际预检约10–12GB可用提交，非当前阻塞。
 
-- checks：89源，probe314AE2E6/frozen52ff2b70/resultF4668346/AIR28268。1920×1080、活跃无敌人/120fps、2880完整区间。移动720/臂native27.853、旧合图25.600、持续绑定23.833ms（约14.4%）。横纵改善，组合26.200→26.546反而略慢。
-- fullpage：89源，probeFB11B95D/frozenfc4dd02e/resultFB196E34/AIR66000。相同2880区间，移动native28.585/bound22.647/fullpage22.028ms；保留所有驻留格像素，格跨视口不再重复复制，内容按源/revision更新。强制显示静止17.063/18.913/22.246ms，存在静止额外开销，不只报移动收益。
-- 两轮16状态真实Flash夹具均通过，132源图/34截图释放；五实际视角各30截图释放，RGB≤1/alpha0，恢复精确。稳定帧无重绑/复制，跨格13复制可增加5–9ms辅助工作，但174ms尖峰主要帧间。每套200MiB/32张，准备单列，最终零资源；首轮准备307ms。
-- combat-r1编译失败，仅缺getQualifiedClassName导入；原冻结99b75b04保留。imports补导入：86源，probe6D90BB3D/frozen421d93c5/result11C49524/AIR12612。实际30fps设置、2032×1084、六SMG敌人、原生冲刺/开火、480完整区间；实际移除菜单并早显私有窗口，无激活事件。
-- 战斗native49.721→fullpage45.888ms约7.7%，P95 62→63，四段46.917/47.283/44.492/52.525，一对反向。160玩家/276敌人开火帧，X跨度230/265/269/256，Y固定。终局RGB最大1/alpha0、恢复精确、3截图与32缓存释放。**尚无稳定明显战斗改善，不部署。**
-- imports原汇总因内部VERSION仍是旧常量而失败，原配方/失败/登记不改。review_failure.py仅修该验证常量，保留全部其余条件后480区间/负载/像素/资源均通过，review839341D8；不得称原汇总成功。无需仅为改绿重跑。
-- quiet verify_runs独立复核526正式/13运行/冻结源与计时，quiet-review76FD97F9；战斗同样复核闭包。三AIR均退出、最后登记空。正式/foreign WIP不动，无新权限拒绝。
-- 原初内存失败保留，已解除，不是当前阻塞。所有测量私有桌面，非物理呈现；native为现有大场景，非有效普通房间严格同负载基准；自然纵移/RV/长期资源仍缺。图片已实际查看。
+- repeated：20×60真实横向冲刺/六SMG/玩家开火，原绘制61.950→1280整页54.045ms，约12.76%，十对九对改善；P95 87→78，>100ms9→10，尖峰仍在。实际400/943玩家/敌人开火帧，Y固定。200MiB准备318ms。1129差异像素RGB1/alpha0，恢复/资源通过。review E6689604；probe ABD683AF，result4812B44E，AIR52952。已查看真实PNG。
+- jump：真实跳跃输入每90帧按4帧，原生受击/空中惯性越原已核平台，9完整窗口后失败。jump-steer预看地面4/空中30帧，暖场越左界，0窗口失败。未修改物理或放宽边界；不当性能验收，不继续同平台盲调转向。
+- pagesize：活跃无敌人/脚本原生镜头/2880区间，移动native28.136/1280页23.806/2560页22.846ms。较大页仅约4%，反向纵移/组合变慢，内存200→400MiB，不采用。196源/34截图/16状态/5真实视角通过，RGB≤1/alpha0。不要重启此加大页路线。
+- readers纯功能92源：明确旧RV D44读取显示树，在原始地形改变而合图未同步时读旧像素。新增只读nativeTerrainSources接口，原图列表按本帧视口和显示顺序返回，不切换可见性。四态旧法仅第二态差1600像素，新法全部精确，12图释放；原16缓存状态/5实际视角也通过。仅在CS隔离复制RV类，未修改正式RV。前五轮统一review 9EF4773E；每轮全部526正式/13运行/冻结源和实际加载复核。
+- rv完整current候选：正式D44冻结六源→CS内派生候选，只有源提供/读取选择与诊断接口；只替换隔离运行目录RV，记录显式候选SHA。1200读取/583提供，真实1200间隔95.710→92.180ms仅3.69%。终局原图→候选1555像素、→恢复807像素，最大99/alpha0，全部>2在x1404–1461/y610–642小型实体，原汇总失败保留。probe498E2CDE/result104F6923/RV44C14F35，AIR30584。PNG已查看。
+- rv-pixels只改终局为固定7图：原生初次/第二/第三、合图/恢复、再合图/恢复。原生重复与两次恢复精确，两个合图均991像素RGB2/alpha0，7图释放，全部1200间隔/负载/完整RV通过。**本轮初次也相同，未重现旧807像素，不能说已证明首次绘制是原因。**均值107.898→106.187ms仅1.59%，十对五对改善，>100ms325→342，不部署。1200读取/588提供，400/1061玩家/敌人开火帧。probeDA395BCC/result720CD517/RVC349BD3B，AIR66852。RV两候选六源一致、独立编译SHA不同，不称同字节。
+- RV两轮verify_runs.py独立review BF3779496C10128B530280FCAC3FBA8A6E2561563BBECEF908A68D06F9248C28；第一原失败不改绿，第二实际通过。两轮正式RV仍638E、其他526/13输入不变。当前全视觉性能目标仍未达。
+- 七轮都是私有桌面，不是物理帧率；native是当前大场景，非普通房间有效同负载基准。旧fbbbe7f三轮及汇总常量失败详见前快照与fullpage/RESULTS.md，不重跑改绿。
 
 ## 5. 已知边界与停止路线
 
@@ -60,14 +60,19 @@ ModLoader08957b4已提交登记器修复，15测试通过。工具SHA E9F51CB754
 
 ## 6. 下一步（目标仍未完成）
 
-1. 候选fullpage无敌人镜头有收益，但实际战斗只有约7.7%且一对反向/P95略差。下一轮增加短周期交替次数（例如20×60），沿相同原生冲刺/开火，保留全部样本/轨迹/负载，核清波动；这是未解对照问题，不挑单次最好成绩。不要再重复暂停/隐藏地形路线。
-2. 后继另开目录，不能原地改冻结配方。战斗summary除了base.VERSION还须正确设置base.scope['VERSION']；当前原失败保留，review_failure仅后验修常量。现有runtime编译可复用算法，不必重做已通过的16状态夹具。
-3. 有稳定收益后再进行自然纵移、有效原版房间参考、密集内景和RV/SATS/地形破坏/长时资源。外部修改既有Bitmap几何的通知契约仍未解决，不能将诊断类直接部署。
-4. 用户已释放内存，当前无待答问题；继续按独立登记/私有桌面/4GiB提交/2GiB物理和会话精确调用授权。根任务活动，不标complete或blocked。
+1. 持续1280页在RV关闭真实横向战斗约13%且9/10配对改善，但RV/current下仅3.7%/1.6%，不满足整体接近原版。不要再加大页/重复暂停隐藏路线。优先区分静止与镜头移动的显示成本、RV额外计算；没有足够证据时不跳过敌人或删除视觉效果。
+2. RV新版只读地形接口已由Flash正反控制与完整current流程证实被调用；仍是隔离候选，不在正式CS/RV。完整功能还缺classic/WB/SATS/地形破坏/地图往返/缩放及任意图块几何失效。WB有独立前/背景叠层，当前背景陌生子节点会回退原生；不能称WB性能兼容已完成。
+3. 两个自然跳跃试验均原生受击/惯性越固定平台，保留失败。下次需先准备适合自然纵移的真实路线及碰撞验证，不能继续调同一短平台或放宽界限凑通过。原脚本轴对照不是自然跳跃证据。
+4. 第二RV轮Y固定、X往返，objectsScanned约1073–1087未持续增加；后段优先级1000→-50区段约50→65ms，包含RV等回调，不能叫纯World或凭此证明探索累积。D44源码hideEnemies/hideWorldEffects全loc.units/对象链扫描，没有原生sleep接口调用，是否热点尚未测；先量实际分段再决定兼容改法，不凭猜测跳过遮罩。
+5. 前轮终局807像素自身恢复差异没有在后继重现，原因仍未确证。固定7图新轮严格通过不覆盖旧失败，也不意味着所有战斗帧正确；保留两轮原图。
+6. 用户已释放内存，无待答问题；继续独立登记/私有桌面/4GiB提交+2GiB物理门槛。登记未结束ended为null，状态查询用null/空值或state，别用ended==空字符串；真正驱动始终通过登记锁及AIR独立检查。根目标active，不标complete或blocked。
 
 ## 7. 接续入口
 
-- 最新fullpage/RESULTS.md总报告；fullpage/verify_runs.py --phase quiet与quiet-review76FD97F9；combat-imports/review_failure.py与review839341D8。五配方camera-persistent-atlas、atlas-checks、fullpage、combat、combat-imports（20261027），原始evidence同名-r1。前快照MEMORY-history-20261027-before-persistent-runtime.md。
+- 本批七配方和原始evidence同名-r1；rv-pixels/RESULTS.md总报告。前五轮readers/verify_batch.py→9EF4773E；两RV轮rv-pixels/verify_runs.py→BF377949；repeated/verify_run.py→E6689604。所有已运行配方冻结，后继新目录。前快照MEMORY-history-20261027-before-persistent-rv.md。
+- RV派生仅在CS目录的rv-src/rv-builds，正式RV来源必须是其build/combat-render-output/production-final2/src六源，并核原build.json。不要用包含authority的当前src替代。RV当前运行层入口通过RVExplorationAPI.api.terrainReadStats记录验证；CS nativeAPI.terrainSources只在测试期挂载并移除。
+
+- 前批fullpage/RESULTS.md总报告；fullpage/verify_runs.py --phase quiet与quiet-review76FD97F9；combat-imports/review_failure.py与review839341D8。五配方camera-persistent-atlas、atlas-checks、fullpage、combat、combat-imports（20261027），原始evidence同名-r1。前快照MEMORY-history-20261027-before-persistent-runtime.md。
 
 - 准备阶段两目录camera-persistent-atlas{,-checks}-20261027；当时offline-review DB4E5C6A尚未构建。后续checks已经实测，当前结果见最新总报告；前快照MEMORY-history-20261027-before-persistent-atlas.md保留准备历史。
 
