@@ -127,3 +127,7 @@ build/generated/camera-live-parking-math-20261027/** -text whitespace=cr-at-eol,
 build/generated/camera-live-parking-groups-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
 build/generated/camera-live-parking-safe-groups-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
 build/generated/camera-live-parking-range-20261027/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-active-quiet-axis-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-active-quiet-bands-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-native-near-groups-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-native-visible-groups-20261027/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
