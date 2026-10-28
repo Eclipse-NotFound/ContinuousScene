@@ -1,0 +1,238 @@
+{
+  "version": "scene-environment-paired-python-direct-abc-2",
+  "method": "python-direct-abc",
+  "base": "4E5FAB45D6F5A2634C83BE5E7EAF387443F9FB4E56B945CD2BF54880F1F73C75",
+  "candidate": "51C90D997A759E783024CB43F8957D0B97F1241B1C41C064F9ADE12125135115",
+  "audit": "1E208398B719665CE1AAC3C7BD2A66765C12FF550FF0EF223E863139F4FD32AD",
+  "sourceInputs": {
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-environment-paired-binary-20261028\\build.py": "C3D99C9818346FA165641C9AC71CE3A4CF677AD0BC89056B89000AC2321E2A68",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-environment-paired-binary-20261028\\raw_abc.py": "CBC35923B367D144F7990EA60651896E9ACE0C3A60131130A61113F30ADC05E7",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-environment-paired-binary-20261028\\resources.py": "7FF04127E211536745776DB10C9AFB1ABE173050196424AB0EDA676D65F8FFB0",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-environment-paired-binary-20261028\\README.md": "62B2E1DC1911A8AD12E08D6C02213D770BA8ED2684EAAB5A1C9B688C93118D78",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-environment-paired-20261028\\audit.py": "96F1C76BC74F708778A34FD61F9EFCAC5CF41492CDB9F5397FFBDBD8F2CCB7FF",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\native-crop-audit.py": "AC4383A6FA899EE62CAA54282AE6F31E5DDB83CEBABFC65A920EA5954F0F46DE",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-environment-keycache-20261027\\stage-proof.json": "E10FE316EFE4BD41B0F50693B4A625626D4008754AB940614E2E916ECFDEF88C",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\alicorn-20261028-121734-7ee3b24f\\pfe.swf": "A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\state\\alicorn-alert-deployment-20261028.json": "2B2CBB6A7D79DC8CBB8FF52FD94CA3B9B7E5445B7BEFF251703B1056B5AB6BB3",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\alicorn-alerts-20261028\\audit.json": "73AB8EDA0701CBF492C249F86C76F700765A5CF7110F4F78662F5265322C49EB"
+  },
+  "diagnosticOnly": true,
+  "deployed": false,
+  "runtimeVerified": false,
+  "performanceEligible": false,
+  "xmlAudit": false,
+  "ffdecUsed": false,
+  "baselineEvolution": {
+    "priorHostSHA256": "A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7",
+    "currentHostSHA256": "4E5FAB45D6F5A2634C83BE5E7EAF387443F9FB4E56B945CD2BF54880F1F73C75",
+    "deploymentReceiptSHA256": "2B2CBB6A7D79DC8CBB8FF52FD94CA3B9B7E5445B7BEFF251703B1056B5AB6BB3",
+    "publishedAuditSHA256": "73AB8EDA0701CBF492C249F86C76F700765A5CF7110F4F78662F5265322C49EB",
+    "independentRawABCAudit": true,
+    "changedMethods": [
+      {
+        "method": 1940,
+        "name": "fe.unit.UnitAlicorn::0:1:budilo",
+        "oldCodeSHA256": "C8862A5495CEB880B1ECCF906F560D2EC486878F49F132C924A6077DBE8A429E",
+        "currentCodeSHA256": "3BD0F1501F9C4E84BC668FF619FDEEBBC990E66FFE88AD4AF2318279161540D4",
+        "currentBodySHA256": "7B417C43CE141254E96A40E7F8D25286087DE64C4D67493E041286327B79F9CD",
+        "oldCodeBytes": 125,
+        "currentCodeBytes": 417
+      },
+      {
+        "method": 1941,
+        "name": "fe.unit.UnitAlicorn::0:1:telepat",
+        "oldCodeSHA256": "2C502B47B60B794403B018D826F7E3750EADB0EE34AEA3E88DD231F0E11ECFDD",
+        "currentCodeSHA256": "FD89E841DB33C2CFBEA9A7702E019C4AA1CF0B8A875AF080C907624CBF7B0EF6",
+        "currentBodySHA256": "CA17D37E01F6EA55BF6E7E46FEBABA83F5FF3D39EB263DE338F482FC7ED9BB2F",
+        "oldCodeBytes": 106,
+        "currentCodeBytes": 467
+      },
+      {
+        "method": 1943,
+        "name": "fe.unit.UnitAlicorn::0:1:alarma",
+        "oldCodeSHA256": "5471AB2BD7B53946AAE1E1C0CF2CEAE30085D44C027B6BB11230FA9532D211A9",
+        "currentCodeSHA256": "52FC6A34BAF43B67126B9A95CCBB2EA4E2DB448B81C71377D73145DEF1E43664",
+        "currentBodySHA256": "35C34A900DFE3A6693E07395B441E8E8FCB25915F85B1A1AE21380DDC9F465EA",
+        "oldCodeBytes": 126,
+        "currentCodeBytes": 324
+      },
+      {
+        "method": 1945,
+        "name": "fe.unit.UnitAlicorn::0:1:setNull",
+        "oldCodeSHA256": "3323232F10E01DD5433267A1969F2474A3F5B9A5649AD5B497D212248625B646",
+        "currentCodeSHA256": "5674FA21741DE4BDFD902446E5C00EA93A21430E636E8880AB2304E6E9C7EE71",
+        "currentBodySHA256": "22EF970E5A6369DBD2B661B1C6B7326D187E51F567153F9FBB2CD2E149600C3E",
+        "oldCodeBytes": 51,
+        "currentCodeBytes": 223
+      },
+      {
+        "method": 1947,
+        "name": "fe.unit.UnitAlicorn::0:1:control",
+        "oldCodeSHA256": "D5ACD559FD28CDC3EDF63627DCABA0BC00DEF3C0BAB2DE1C4188D6B005081D8A",
+        "currentCodeSHA256": "451EACFFAEF4EAB60D3B87D4473E6EAED48D7F28AA2C495E9474687D2C04B2CB",
+        "currentBodySHA256": "AAEF6EB8B8A8E6E3D8E196F0F3B4C66624E96B8AD426071B78586F92E08DEE1C",
+        "oldCodeBytes": 4460,
+        "currentCodeBytes": 4622
+      }
+    ],
+    "changedMethodInfo": [
+      {
+        "method": 1940,
+        "oldHex": "01000f0008011703",
+        "currentHex": "01000fe13f08011703",
+        "parameterReturnAndDefaultsPreserved": true,
+        "debugNameAdded": true,
+        "needActivationAdded": false
+      },
+      {
+        "method": 1941,
+        "oldHex": "00000000",
+        "currentHex": "0000e73f00",
+        "parameterReturnAndDefaultsPreserved": true,
+        "debugNameAdded": true,
+        "needActivationAdded": false
+      },
+      {
+        "method": 1943,
+        "oldHex": "02000f0f00080202030203",
+        "currentHex": "02000f0fe93f080202030203",
+        "parameterReturnAndDefaultsPreserved": true,
+        "debugNameAdded": true,
+        "needActivationAdded": false
+      },
+      {
+        "method": 1945,
+        "oldHex": "0100010008010a0a",
+        "currentHex": "010001ec3f08010a0a",
+        "parameterReturnAndDefaultsPreserved": true,
+        "debugNameAdded": true,
+        "needActivationAdded": false
+      },
+      {
+        "method": 1947,
+        "oldHex": "00000000",
+        "currentHex": "0000ea3f02",
+        "parameterReturnAndDefaultsPreserved": true,
+        "debugNameAdded": true,
+        "needActivationAdded": true
+      }
+    ],
+    "unchangedBodies": 5766,
+    "unchangedClasses": 1016,
+    "originalConstantPoolPrefix": true,
+    "appendedPools": [
+      {
+        "pool": "string",
+        "oldCount": 8161,
+        "newCount": 8173,
+        "appendedBytes": 234,
+        "appendedSHA256": "8E947C96323E759F97006E5BB26B77A51244E1793EAB19A1F06B056C9C32268C"
+      },
+      {
+        "pool": "nsset",
+        "oldCount": 183,
+        "newCount": 185,
+        "appendedBytes": 42,
+        "appendedSHA256": "4B1A9EF062F90B4AAE884875C75FAE614CEF10B4AF0DD154056D6B227073920F"
+      },
+      {
+        "pool": "multiname",
+        "oldCount": 9705,
+        "newCount": 9717,
+        "appendedBytes": 53,
+        "appendedSHA256": "D9E62650A82F9FB6B9A6F8C6196D9EF4E2C8ADF117849E92284735E47EFA2F86"
+      }
+    ],
+    "appendedStrings": [
+      "fe.unit:UnitAlicorn/budilo",
+      "sceneGraph",
+      "sceneBounded",
+      "sceneHalfWidth",
+      "sceneHalfHeight",
+      "alicornAllow",
+      "fe.unit:UnitAlicorn/telepat",
+      "alicornReceive",
+      "fe.unit:UnitAlicorn/alarma",
+      "fe.unit:UnitAlicorn/control",
+      "alicornClear",
+      "fe.unit:UnitAlicorn/setNull"
+    ],
+    "inverseRestoredEntirePriorABC": true,
+    "priorABCSHA256": "77945AB3D1EB1B85477E96A185C01A4F52026255875627748973038C6B4F4E33",
+    "recoveredPriorABCSHA256": "77945AB3D1EB1B85477E96A185C01A4F52026255875627748973038C6B4F4E33",
+    "secondaryABCExact": true,
+    "otherRawTagsExact": true,
+    "grafonCodeBytes": 205,
+    "grafonCodeSHA256": "BF4AF7FF4B66C3C999EF16A7293A090CB12A6B66C4B7F680620E5F4F241DC934",
+    "currentAlicornMethodsMustRemainByteExact": true
+  },
+  "currentAlicornMethodsPreserved": 5,
+  "cacheAlgorithmOrigin": {
+    "baseSHA256": "A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7",
+    "stageProofSHA256": "E10FE316EFE4BD41B0F50693B4A625626D4008754AB940614E2E916ECFDEF88C",
+    "historicalMethodSHA256": "6C6AB14A63B7F978C175AEA3358F49086A2E2FF51699A0FC9A4D5EDB856825C3",
+    "oldQName": 9705,
+    "currentQName": 9717,
+    "onlyCacheQNameRelocated": true,
+    "historicalCachedKeySHA256": "EB89BB4EFDDD1E3970C3ACD9BE0B17C18D0E7E0A092D3675F8DB3B98599E683F",
+    "currentCachedKeySHA256": "B11CD7F9F3D8FEFD27AFB7640B0C3924BAF1760979407EA12FCE0EE8E49A151C"
+  },
+  "resources": {
+    "minimumAvailableCommit": 805306368,
+    "ownProcessMemoryLimit": 536870912,
+    "ownJobLimitApplied": true,
+    "jobPeakProcessMemoryUsed": 88756224,
+    "samples": [
+      {
+        "phase": "before-job-limit",
+        "availableCommit": 2679459840,
+        "availablePhysical": 8421830656,
+        "privateBytes": 14966784,
+        "peakPagefileUsage": 14966784,
+        "workingSetBytes": 23257088
+      },
+      {
+        "phase": "job-limit-applied",
+        "availableCommit": 2679459840,
+        "availablePhysical": 8421416960,
+        "privateBytes": 14966784,
+        "peakPagefileUsage": 14966784,
+        "workingSetBytes": 23261184
+      },
+      {
+        "phase": "original-parsed",
+        "availableCommit": 2613694464,
+        "availablePhysical": 8366682112,
+        "privateBytes": 41037824,
+        "peakPagefileUsage": 46387200,
+        "workingSetBytes": 49471488
+      },
+      {
+        "phase": "baseline-evolution-audited",
+        "availableCommit": 2711732224,
+        "availablePhysical": 8429514752,
+        "privateBytes": 48508928,
+        "peakPagefileUsage": 74121216,
+        "workingSetBytes": 55758848
+      },
+      {
+        "phase": "candidate-audited-in-memory",
+        "availableCommit": 2690408448,
+        "availablePhysical": 8406814720,
+        "privateBytes": 57901056,
+        "peakPagefileUsage": 74121216,
+        "workingSetBytes": 66461696
+      },
+      {
+        "phase": "candidate-readback",
+        "availableCommit": 2651570176,
+        "availablePhysical": 8364335104,
+        "privateBytes": 73539584,
+        "peakPagefileUsage": 88756224,
+        "workingSetBytes": 81965056
+      }
+    ],
+    "gameMemoryGateChanged": false,
+    "foreignProcessesChanged": false
+  }
+}

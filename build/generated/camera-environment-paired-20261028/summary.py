@@ -84,4 +84,5 @@ def summarize(raw):
     return dict(version=VERSION,complete=True,diagnosticOnly=True,performanceEligible=False,gameplayAcceptance=False,deployed=False,
         rows=rows,arms=arms,pairs=pairs,moving=moving,timingBands=timing_bands,elapsedMs=sum(all_dt),pixels=t['pixels'],cleanup=clean,
         nativeEnvironmentChecks=t['nativeEnvironmentChecks'],environmentChecks=t['environmentChecks'],nativeCameraScheduling={k:t[k] for k in ['nativeSchedules','nativeCaptures','helperTimedCalcCalls']},
-        limits=t['limits'],bandLimit='Inclusive Stage bands and mixed between-Stage time; no exclusive GPU or function timing.')
+        limits=t['limits'],timingBandsGrouping='Outgoing interval mode, including every transition interval.',
+        bandLimit='Inclusive Stage bands grouped by outgoing interval. At mode boundaries, native/currentOtherStage already execute the incoming mode; these groups are not per-mode native costs. Between-Stage time is mixed, not exclusive GPU or function timing.')

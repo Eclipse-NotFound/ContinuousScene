@@ -80,6 +80,7 @@ def runner_source():
             assert host_build['base']==baseline['pfe.swf'] and host_build['diagnosticOnly'] and host_audit['diagnosticOnly']
             assert host_build['audit']==r.sha(HERE/'audit-proof.json') and host_audit['passed']
             assert host_audit['changed']==['fe.graph.Grafon::0:1:sceneNativeEnvironment'] and host_audit['unchangedBodies']==5770
+            assert host_audit['unchangedClasses']==1016 and host_build['deployed'] is False and host_audit['deployed'] is False
             assert host_build['candidate']==host_audit['candidateSHA256']==r.sha(HERE/'pfe.swf')
             host_inputs={str(HERE/p):r.sha(HERE/p) for p in ['build.json','audit-proof.json','pfe.swf']}
             expected=dict(baseline);expected['pfe.swf']=host_build['candidate']
@@ -92,6 +93,51 @@ def runner_source():
         '            verify_probe(path,baseline,scripts,compiler,fixture)\n            assert host_inputs=={p:r.sha(Path(p)) for p in host_inputs}\n            if not')
     s=one(s,"lease.note='960 native camera axis intervals, active quiet world; no deployment'",
         "lease.note='1920 same-instance native/cached intervals, selector restored; diagnostic host not deployed'")
+    s=one(s,"    parser.add_argument('--wait-ready-seconds',type=int,default=0)",
+        "    parser.add_argument('--wait-ready-seconds',type=int,default=0)\n    parser.add_argument('--host-root',type=Path,default=HERE)")
+    s=one(s,'    args=parser.parse_args()', '''    args=parser.parse_args()
+    host_root=args.host_root.resolve()
+    assert host_root in [HERE, HERE.parent/'camera-environment-paired-binary-20261028'], 'Unreviewed host producer' ''')
+    for name in ['build.json','audit-proof.json','pfe.swf']:
+        s=s.replace("HERE/'"+name+"'", "host_root/'"+name+"'")
+    s=one(s,"host_inputs={str(HERE/p):r.sha(HERE/p) for p in ['build.json','audit-proof.json','pfe.swf']}",
+        "host_inputs={str(host_root/p):r.sha(host_root/p) for p in ['build.json','audit-proof.json','pfe.swf']}\n            host_inputs.update(host_build['sourceInputs'])\n            assert host_inputs=={p:r.sha(Path(p)) for p in host_inputs}")
+    s=one(s,'record.update(baseline=baseline,expectedRuntime=expected,hostInputs=host_inputs,',
+        'record.update(baseline=baseline,expectedRuntime=expected,hostRoot=str(host_root),hostProducer=host_build[\'version\'],hostInputs=host_inputs,')
+    s=one(s,"PINS['mods/Rconnect/release/RConnectMod.swf']=RC_CURRENT", '''PINS['mods/Rconnect/release/RConnectMod.swf']=RC_CURRENT
+DEPLOY_RECEIPT=HERE.parents[2]/'state/alicorn-alert-deployment-20261028.json'
+PINS['pfe.swf']='4E5FAB45D6F5A2634C83BE5E7EAF387443F9FB4E56B945CD2BF54880F1F73C75'
+PINS['mods/ContinuousScene/release/ContinuousSceneMod.swf']='9A5E24E13AF2E2E211FAEAC038697D2CA2641CD6482766048BC3B9B4A506AA31' ''')
+    s=one(s,'def runner_inputs():', '''def runner_inputs():
+    assert r.sha(DEPLOY_RECEIPT)=='2B2CBB6A7D79DC8CBB8FF52FD94CA3B9B7E5445B7BEFF251703B1056B5AB6BB3'
+    deployed=r.read(DEPLOY_RECEIPT)
+    assert deployed['installedReadbackPassed'] and deployed['verification']['ok']
+    assert deployed['host']==PINS['pfe.swf'] and deployed['mod']==PINS['mods/ContinuousScene/release/ContinuousSceneMod.swf']''')
+    s=one(s,"HERE/'source-equivalent.as.inc', RC_RECEIPT,", "HERE/'source-equivalent.as.inc', RC_RECEIPT, DEPLOY_RECEIPT,")
+    s=one(s,'m.HiddenProcess=recorded_hidden_process', '''SILENCE_SOURCE=HERE.parent/'camera-live-current-silent-20261028/silence.py'
+silence=load('paired_native_audio_settings',SILENCE_SOURCE)
+NATIVE_SILENCE=[]''')
+    s=one(s,'def recorded_hidden_process(*args,**kwargs):\n    process=original_hidden_process(*args,**kwargs)', '''def recorded_hidden_process(lease,*args,**kwargs):
+    try:
+        assert len(args)==1 and len(args[0])==4
+        NATIVE_SILENCE.append(silence.seed(args[0][-1],m.RUNTIME))
+        control.memory_gate()
+    except BaseException:
+        # before_launch ran, but the constructor below has not been called.
+        # Constructor failures retain the registry's conservative uncertainty.
+        lease.child_stopped()
+        raise
+    process=original_hidden_process(*args,**kwargs)''')
+    s=one(s,'RC_RECEIPT, DEPLOY_RECEIPT,','RC_RECEIPT, DEPLOY_RECEIPT, SILENCE_SOURCE,')
+    s=one(s,"            run_error=None\n            try:m.run_owned(m.parse_args(record['options']),lease)", '''            run_error=None
+            previous_hidden_process=m.HiddenProcess
+            def game_hidden_process(*args,**kwargs):
+                return recorded_hidden_process(lease,*args,**kwargs)
+            m.HiddenProcess=game_hidden_process
+            try:m.run_owned(m.parse_args(record['options']),lease)''')
+    s=one(s,"            finally:\n                record['startupResourcePolicies']=STARTUP_POLICIES", "            finally:\n                m.HiddenProcess=previous_hidden_process\n                record['startupResourcePolicies']=STARTUP_POLICIES")
+    s=one(s,"record['startupResourcePolicies']=STARTUP_POLICIES", "record['startupResourcePolicies']=STARTUP_POLICIES\n                record['nativeSilence']=NATIVE_SILENCE")
+    s=one(s,"record['nativeSilence']=NATIVE_SILENCE", "record['nativeSilence']=NATIVE_SILENCE\n                record['nativeSilenceSource']=dict(path=str(SILENCE_SOURCE),sha256=scripts[str(SILENCE_SOURCE)])")
     return s
 
 def prepare():

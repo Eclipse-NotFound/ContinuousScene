@@ -20,6 +20,11 @@ def main():
     for field in ['runnerInputs','compilerInputs','fixtureInputs','hostInputs']:
         for path,digest in record[field].items():assert sha(Path(path))==digest,(field,path)
     driver=load('paired_retained_driver',HERE/'run.py')
+    silence_source=HERE.parent/'camera-live-current-silent-20261028/silence.py'
+    assert driver.SILENCE_SOURCE==silence_source and Path(driver.silence.__file__)==silence_source
+    assert record['nativeSilenceSource']==dict(path=str(silence_source),sha256=sha(silence_source))
+    assert record['runnerInputs'][str(silence_source)]==sha(silence_source)
+    assert probe['runnerInputs'][str(silence_source)]==sha(silence_source)
     verified=driver.verify_probe(Path(record['probeBuildPath']),record['baseline'],record['runnerInputs'],record['compilerInputs'],record['fixtureInputs'])
     assert verified==probe and record['probeSHA256']==probe['probeSHA256']
     if 'readinessReceipt' in record:
@@ -33,15 +38,25 @@ def main():
     for path,digest in expected.items():
         if path not in ['application.xml','mods/loader-manifest.txt']:assert actual[path]==digest,path
     assert actual[driver.base.PROBE_PATH]==probe['probeSHA256']
-    host=read(HERE/'build.json');audit=read(HERE/'audit-proof.json')
+    host_root=Path(record['hostRoot'])
+    assert host_root in [HERE,HERE.parent/'camera-environment-paired-binary-20261028']
+    host=read(host_root/'build.json');audit=read(host_root/'audit-proof.json')
+    assert record['hostProducer']==host['version']
     assert host['diagnosticOnly'] and audit['diagnosticOnly'] and not host['deployed'] and not audit['deployed']
-    assert host['candidate']==audit['candidateSHA256']==expected['pfe.swf']==sha(HERE/'pfe.swf')
-    assert host['audit']==sha(HERE/'audit-proof.json') and audit['passed'] and audit['unchangedBodies']==5770 and audit['unchangedClasses']==1016
+    assert host['candidate']==audit['candidateSHA256']==expected['pfe.swf']==sha(host_root/'pfe.swf')
+    assert host['audit']==sha(host_root/'audit-proof.json') and audit['passed'] and audit['unchangedBodies']==5770 and audit['unchangedClasses']==1016
     assert audit['changed']==['fe.graph.Grafon::0:1:sceneNativeEnvironment']
     for path,digest in host['sourceInputs'].items():assert sha(Path(path))==digest,path
     policy=read(folder/'process-policy.json');loader=read(folder/'loader-check.json')
     assert policy['desktopPolicy']=='private' and not policy['performanceEligible']
     assert not any(policy.get(k) for k in ['otherAirProcessIds','memoryAbort','runFailure'])
+    assert len(record['nativeSilence'])==1
+    seeded=record['nativeSilence'][0]
+    assert seeded['applicationID']==policy['appId'] and seeded['writeOnce'] and seeded['decodedAfterWrite']
+    assert seeded['nativeSndOnly'] and seeded['allAudioMuted'] is False
+    assert seeded['sha256']=='12CC4E62A459EAFDA8463F800F8E1E8388CC392AC6A5BDD882D14C572435B257'
+    native_audio=driver.silence.verify_retained(folder/'storage/#SharedObjects/pfe.swf/config.sol')
+    assert native_audio==seeded['snd']
     assert len(loader['sessions'])==1 and all(loader['loaded'].values())
     assert record['memoryBeforeAir']['availableCommit']>=4*1024**3 and record['memoryBeforeAir']['availablePhysical']>=2*1024**3
     startup=record['startupResourcePolicies'];assert len(startup)==1 and startup[0]['pid']==policy['pid']
@@ -52,7 +67,7 @@ def main():
     assert summary==read(folder/'summary.json')
     result=dict(verified=True,name=args.name,diagnosticOnly=True,deployed=False,pid=policy['pid'],hostSHA256=expected['pfe.swf'],
         probeSHA256=probe['probeSHA256'],resultSHA256=summary['resultSHA256'],moving=summary['moving'],arms=summary['arms'],pairs=summary['pairs'],
-        nativeCameraScheduling=summary['nativeCameraScheduling'],minimumAvailableCommit=policy['minimumAvailableCommit'],
+        nativeCameraScheduling=summary['nativeCameraScheduling'],minimumAvailableCommit=policy['minimumAvailableCommit'],nativeAudioSettings=native_audio,
         limitation='Same-instance quiet active simulation; common selector and all intervals retained, no real combat or monitor-FPS acceptance.')
     result['movingMeanChangePercent']=(summary['moving']['cached']['mean']/summary['moving']['native']['mean']-1)*100
     args.out.write_text(json.dumps(result,indent=2),'utf-8')
