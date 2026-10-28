@@ -1,0 +1,252 @@
+{
+  "installed": true,
+  "installedAt": "2026-10-28T14:55:29.467179+00:00",
+  "token": "20261028-225528-7ef578cb234b",
+  "version": "0.9.2",
+  "host": "A80ED32BEE50C612CB46EA1E581C8CA9C81072E0B9E6EE1A51E5BACEFBDCBA19",
+  "mod": "380DEC3068938B3E3BA1F2C8DB25A6B3D5FC229E8526E8FC03CA23795961E111",
+  "priorHost": "B84F24280B3C676F4068E1CDC5A6EBEE89988F62BCF7A44D4DD71A4771360184",
+  "priorMod": "9A5E24E13AF2E2E211FAEAC038697D2CA2641CD6482766048BC3B9B4A506AA31",
+  "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\sats-visible-20261028-225528-7ef578cb234b",
+  "targets": [
+    {
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\src\\SatsVisibleGuard.as",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\sats-visible-release-20261028\\frozen-product-src\\SatsVisibleGuard.as",
+      "old": null,
+      "new": "ECC6B835238C57666E3D09798E0A021A62C5C2C9092F32F63060E7A9FFB95007",
+      "staged": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\src\\SatsVisibleGuard.as.sats-visible-20261028-225528-7ef578cb234b.tmp",
+      "createdByThisRun": true,
+      "installed": true
+    },
+    {
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\src\\ContinuousSceneMod.as",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\sats-visible-release-20261028\\frozen-product-src\\ContinuousSceneMod.as",
+      "old": "ED2CEC86A45907D057DE1E45957A518425E1F6E159200C899F0E22FFB3B08784",
+      "new": "F8A2753A57E874125D6A5C0AE5040A23B9AD68FD7C473D1CE18265E5D9647651",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\sats-visible-20261028-225528-7ef578cb234b\\ContinuousSceneMod.as",
+      "staged": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\src\\ContinuousSceneMod.as.sats-visible-20261028-225528-7ef578cb234b.tmp",
+      "installed": true
+    },
+    {
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\release\\ContinuousSceneMod.swf",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\sats-visible-release-20261028\\ContinuousSceneMod.swf",
+      "old": "9A5E24E13AF2E2E211FAEAC038697D2CA2641CD6482766048BC3B9B4A506AA31",
+      "new": "380DEC3068938B3E3BA1F2C8DB25A6B3D5FC229E8526E8FC03CA23795961E111",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\sats-visible-20261028-225528-7ef578cb234b\\ContinuousSceneMod.swf",
+      "staged": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\release\\ContinuousSceneMod.swf.sats-visible-20261028-225528-7ef578cb234b.tmp",
+      "installed": true
+    },
+    {
+      "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\pfe.swf",
+      "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\sats-visible-release-20261028\\pfe.swf",
+      "old": "B84F24280B3C676F4068E1CDC5A6EBEE89988F62BCF7A44D4DD71A4771360184",
+      "new": "A80ED32BEE50C612CB46EA1E581C8CA9C81072E0B9E6EE1A51E5BACEFBDCBA19",
+      "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\backups\\sats-visible-20261028-225528-7ef578cb234b\\pfe.swf",
+      "staged": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\pfe.swf.sats-visible-20261028-225528-7ef578cb234b.tmp",
+      "installed": true
+    }
+  ],
+  "verification": {
+    "verified": true,
+    "version": "0.9.2",
+    "productPair": {
+      "host": "A80ED32BEE50C612CB46EA1E581C8CA9C81072E0B9E6EE1A51E5BACEFBDCBA19",
+      "product": "380DEC3068938B3E3BA1F2C8DB25A6B3D5FC229E8526E8FC03CA23795961E111",
+      "hostAudit": "2CD7E9D9EB1E57DBBAF6D9EBEAD6B874B00B3AEF2B08712BBBBB76BCF334FAC5",
+      "productBuild": "BC659DC94AE06FC5EE7278FE8426614163BE7B68379FA2473DEFD530F346B43C"
+    },
+    "sourceFingerprints": {
+      "entryOld": "ED2CEC86A45907D057DE1E45957A518425E1F6E159200C899F0E22FFB3B08784",
+      "entryNew": "F8A2753A57E874125D6A5C0AE5040A23B9AD68FD7C473D1CE18265E5D9647651",
+      "guardNew": "ECC6B835238C57666E3D09798E0A021A62C5C2C9092F32F63060E7A9FFB95007"
+    },
+    "originalHost": "B84F24280B3C676F4068E1CDC5A6EBEE89988F62BCF7A44D4DD71A4771360184",
+    "originalMod": "9A5E24E13AF2E2E211FAEAC038697D2CA2641CD6482766048BC3B9B4A506AA31",
+    "functional": {
+      "pid": 67780,
+      "pair": {
+        "host": "A80ED32BEE50C612CB46EA1E581C8CA9C81072E0B9E6EE1A51E5BACEFBDCBA19",
+        "product": "380DEC3068938B3E3BA1F2C8DB25A6B3D5FC229E8526E8FC03CA23795961E111",
+        "hostAudit": "2CD7E9D9EB1E57DBBAF6D9EBEAD6B874B00B3AEF2B08712BBBBB76BCF334FAC5",
+        "productBuild": "BC659DC94AE06FC5EE7278FE8426614163BE7B68379FA2473DEFD530F346B43C"
+      },
+      "nativeVScenarios": 7,
+      "pixelCases": 14,
+      "lifecycle": {
+        "clearedAllOldEntries": true,
+        "oldCopies": 28,
+        "statsAfterClear": {
+          "opens": 11,
+          "clears": 4,
+          "captures": 298,
+          "refreshes": 23,
+          "closes": 14,
+          "captureMs": 3093,
+          "attached": 29
+        },
+        "sameGrafon": true,
+        "sameLocation": true,
+        "disposedAllOldPixels": true,
+        "path": "same Grafon.drawLoc(currentLocation) -> sceneOpen -> sceneClear",
+        "statsBefore": {
+          "opens": 11,
+          "clears": 3,
+          "captures": 298,
+          "refreshes": 23,
+          "closes": 14,
+          "captureMs": 3093,
+          "attached": 29
+        },
+        "statsAfterExposure": {
+          "opens": 12,
+          "clears": 4,
+          "captures": 326,
+          "refreshes": 25,
+          "closes": 14,
+          "captureMs": 3379,
+          "attached": 29
+        },
+        "statsAfterClose": {
+          "opens": 12,
+          "clears": 4,
+          "captures": 326,
+          "refreshes": 26,
+          "closes": 15,
+          "captureMs": 3379,
+          "attached": 29
+        }
+      },
+      "assertions": 336,
+      "performanceClaim": "Functional product verification only"
+    },
+    "satsOpeningEvidence": {
+      "kind": "Historical V2 same-world component ABBA and six native V openings; not frame-rate acceptance",
+      "host": "C3B45958ABB3611077ACC1AC3EEF015A14DB7235BB5782CB4876BFE929B4075A",
+      "probe": "054767DFA12DD7C66AA8F52F5BAFC600267609A6F2C9CE85737D596E69E5CDAE",
+      "pid": 31852,
+      "nativeOffMs": [
+        842,
+        891,
+        713
+      ],
+      "nativeOnMs": [
+        144,
+        235,
+        184
+      ],
+      "abba": [
+        {
+          "resident": 109,
+          "approach": "legacy",
+          "ms": 860
+        },
+        {
+          "resident": 109,
+          "approach": "candidate",
+          "ms": 166
+        },
+        {
+          "resident": 109,
+          "approach": "candidate",
+          "ms": 148
+        },
+        {
+          "resident": 109,
+          "approach": "legacy",
+          "ms": 933
+        }
+      ],
+      "componentMeanReduction": 0.8248745119910764,
+      "algorithmBridge": {
+        "trialGuard": "73F6CC367F07E4E92837E7632F4132A3D1C710B79C8DC8617370325D4DA0547E",
+        "productGuard": "ECC6B835238C57666E3D09798E0A021A62C5C2C9092F32F63060E7A9FFB95007",
+        "unchangedCaptureAndViewAlgorithm": true,
+        "addedLifecycleClear": true,
+        "addedStatsObservation": true
+      },
+      "cameraStutterResolved": false
+    },
+    "preservedHost": {
+      "otherMainBodies": 3281,
+      "classesInChangedABC": 350,
+      "rawTags": 5038,
+      "boundaryFix": true,
+      "loader": true,
+      "originalInstructions": true
+    },
+    "unchangedRuntimeInputs": {
+      "DLC/pfe.swf": "C4611F035C0C18E3849C7359096EB5A1F2CDF289ED975C9D93D8784140059855",
+      "DLC/pfeUI.swf": "96E393958BF00FD475455AFB8E8239FC53C26F18236B9EEB554F901EBE2FA8B5",
+      "application.xml": "70DD3B085E5F6C66C03693CF68CE5E93A4E4136DD745D40D1A5B2A49863BA236",
+      "mods/AddictionSystem/release/AddictionSystemMod.swf": "5A4D9A405777867826061BB50178DF931591987EA0737580BD0AA8A89458B9B3",
+      "mods/ContinuousScene/release/scene.xml": "1CEA74E218A55894D432E12CDFC544952D37CFFF5FF55B256B1B970573EB7A9E",
+      "mods/FirearmAttachments/release/FirearmAttachmentsMod.swf": "B3304596EB7E08796F9DE2CF02E1E7CCCFF10E188D26FEDFA960AA6370D2A4B9",
+      "mods/LightAndDarkness/atmosphere.json": "2F6B4141510CCAB293A6040296909EE46971CB9F116586D2E18042D37AC765AA",
+      "mods/LightAndDarkness/release/LightAndDarknessMod.swf": "8ADBA6914DF5AADA4DF12A646B6C22DF4B95B9630A55DD05CA7F713621C7E3EF",
+      "mods/ModLoader/release/ModLoaderMod.swf": "2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2",
+      "mods/ModLoader/supported-mods.txt": "7FB288494055CB49F20AAEF494EADC0405C0B1D55C3FA5BA798CADCA890ABCFE",
+      "mods/MoreSkills&Weapons/release/MoreSkillsWeaponsMod.swf": "526A6FD09297FB4F502236076B4252BF97BB50D2F77000B13763CF118546AB71",
+      "mods/PermanentInjury/release/PermanentInjuryMod.swf": "D4F6A096EE06F8869FFFB316801C6325DF26F54260A34666AC17EC24AD8BD083",
+      "mods/PermanentInjury/release/config.json": "F506D9AB772FF81ACAB7B300DA4F8DDDAFD19DFA44EB08FA9DB0C2E815DC64D0",
+      "mods/RModifier/config/barks/previous.json": "2A07DD695A298BF4060C6F9F87C6613C2C86A77934BF26A98925714F2E773C48",
+      "mods/RModifier/config/barks/recovery.json": "9C71CD848010AF81964FF79810EAB30796A13B3792EE4C06D55B72ED55F142F8",
+      "mods/RModifier/config/installation.json": "FDC3B799BE54AF5DFBCC538F2F1B8A4699EEEAE1DA709F58767E65A2763BC84B",
+      "mods/RModifier/config/loot-recovery.json": "427A884A18104A5CB9B3BBAC30798A73E7DFBF1D8B6C648EEC6E8372DC227C27",
+      "mods/RModifier/config/maps/recovery.json": "45AD1EE9B3E308F02534674F3BA61F1970EF033746EB5BB73D330DDEE2CE9918",
+      "mods/RModifier/config/migration.json": "E34ADD270DB8A9B8E0329A787A916B9B6545254B19E1FFEFFAAD89DEC6DE60D1",
+      "mods/RModifier/config/native-maps/preferences.json": "84FCA1805F6E12A1C1100E3D94D29867B6681BA953CFA08302C9AFDE7EBD351D",
+      "mods/RModifier/config/native-maps/recovery.json": "2026FE2C2EB6D1396C2AAC33C819B0C2A74BE0C8217EEF8C9D289C4DCBDB7654",
+      "mods/RModifier/config/view.json": "3643E94558BD6F7E07FA4C8EAB40DB8227807078FDEC3527C457F8F357C74506",
+      "mods/RModifier/release/LootEditorMod.swf": "4F1D6CF19979F4EA4960F8CCD8377C1D3CAC490BED9949866885357D073C8625",
+      "mods/RandomRooms/release/RandomRoomsMod.swf": "3F8789C62F9B2EF8EFC082597F672A2FEA230A0D7FCE3BE90C04EFD9582E5145",
+      "mods/Rconnect/release/RConnectMod.swf": "EB6D11E6F20068F76D44D180BC5F579C14BA359CAA46E4706D0506B0D4ABC127",
+      "mods/Rconnect/release/config.txt": "5CA72017F1F811B5F8A2B1F18F6CB8B2C24239E2240716C4059CBC073913FC0A",
+      "mods/RealisticVision/release/RealisticVisionMod.swf": "638E2D408E2CF46683C41114F75773829A1B4417D74BFFE9D08855A4FE343710",
+      "mods/RealisticVision/release/config.txt": "5136EE1923A77F5F10EAB1B3994B64CBD67B09D687A7E829FB1E81D2E79A3C7F",
+      "mods/Sandevistan/release/SandevistanMod.swf": "CEC6A3061CB90380579D8A95AA1254E0328BD0DAE6E239FC4CA5205D6CCCF942",
+      "mods/Sandevistan/release/config.txt": "D91C4C2889ABA19B1BCFB356885921B0605A50188B270A9E7619D2116E7EBDC3",
+      "mods/TDFC/release/TDFCMod.swf": "7ACD45193109267DBBF875240528048AD6F1D09FA3B8B36BAA6F98EBB5FDDCE5",
+      "mods/WallBlend/release/WallBlendMod.swf": "14112DA06214BCA51C6875D2527E73246DCB4C985CAADDA719EB4F77F1C0920D",
+      "mods/WallBlend/release/config.json": "16BB3A56A74195DE6D4589CEBDE88E80C378956C776FFCDE1C848F0ED7D48A89",
+      "mods/loader-manifest.txt": "33DE189E1209FDD397E811A52E9AC67FF0DEDAEEAE5CFEFF4B7D15D4536EB133"
+    },
+    "excludedTestInputs": {
+      "mods/ContinuousSceneMotion/release/ContinuousSceneMotionMod.swf": "Isolated diagnostic probe, never deployed",
+      "mods/ModLoader/release/telemetry.json": "Isolated loader telemetry controls, not production configuration"
+    },
+    "evidence": {
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\sats-visible-release-20261028\\host-audit.json": "2CD7E9D9EB1E57DBBAF6D9EBEAD6B874B00B3AEF2B08712BBBBB76BCF334FAC5",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\sats-visible-release-20261028\\product-build.json": "BC659DC94AE06FC5EE7278FE8426614163BE7B68379FA2473DEFD530F346B43C",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\sats-visible-release-20261028\\verify_deploy.py": "C66F0940C7EA98E19AA0498A3D5D38B34E6CFD6AC635EFB5234E4A30C1F0AE4B",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\sats-visible-product-checks-v3-20261028-r1\\sats-product-inputs.json": "9CA087B4838A03A147F1053E6938C4A6214E41E611248CCA6ABFA97D9B2D7D13",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\sats-visible-product-checks-v3-20261028-r1\\storage\\result.json": "03DC93E1A895525B8E2242019CF7C7C75EF1E4C35748979E31C0994B751AA906",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\sats-visible-product-checks-v3-20261028-r1\\inputs.json": "DC9112D6BB3EB7833773F5AC6D3F787281FC8A1A4C61E9B2F9BDD9162F13F08D",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\sats-visible-product-checks-v3-20261028-r1\\loader-check.json": "420CB0D9E09F22A41793846C0FC6BB0FDE74A8C1198D32AFA141D9CFE8093C8E",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\sats-visible-product-checks-v3-20261028-r1\\process-policy.json": "C0ECF7671351D4A9C3BCA79CDC2DC7B2C628EA70F5FCE5B6D91D02222B8057B2",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\sats-visible-product-checks-v3-20261028\\probe-build.json": "7C3D157E8587D701383DDB0D7F7654D7C266F705E29525C2551E5462FDD29B08",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\camera-sats-visible-trial-v2-20261028-r1\\camera-sats-inputs.json": "1A1FA5F6718E6CFFB4B5A0FED2908D5223F71AB6A1F6CCB13310CE18EF85B1F0",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\camera-sats-visible-trial-v2-20261028-r1\\storage\\result.json": "8BD2F1BD96F9881B59C1AE0638EC7212F65E8B9B152CBE585EFB8B5F4DDB6DEC",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\camera-sats-visible-trial-v2-20261028-r1\\inputs.json": "EECE39B59F4FB4FE7B622A768D8B91B90FD6F2DE8EB613D41C9C9D2585E8FEAA",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\camera-sats-visible-trial-v2-20261028-r1\\loader-check.json": "00CB34FF0759CDA9BFA18F141E403105CAA9C8BB1F9930D1C451B3EADB1934AE",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\camera-sats-visible-trial-v2-20261028-r1\\process-policy.json": "92567864B3429066E7397CCC02BCB2A7A16909F789FD034CA042D9FFBC90B124",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-sats-visible-trial-v2-20261028\\probe-build.json": "AEE6C134FFFC272118F3D15AC1096A250A39E086E78DD2904C6233240F837396"
+    },
+    "scope": "SATS snapshot opening and lifecycle only; overall camera/performance goal remains incomplete",
+    "playerStorageTouched": false,
+    "configurationsToWrite": [],
+    "filesToChange": [
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\pfe.swf",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\release\\ContinuousSceneMod.swf",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\src\\ContinuousSceneMod.as",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\src\\SatsVisibleGuard.as"
+    ]
+  },
+  "verificationSHA256": "74241FC112F7C77D6252B7187A6CA0C48FC110114D4F678B2435A09AC05BA280",
+  "installedReadbackPassed": true,
+  "playerStorageTouched": false,
+  "playerProcessesTouched": false,
+  "configurationsChanged": false,
+  "otherModsChanged": false,
+  "validationReuse": "Same functionally tested V3 host/product pair and pinned runtime dependencies; no loading-chain/configuration changes.",
+  "limitation": "SATS opening/lifecycle fix only; camera motion performance goal remains incomplete."
+}

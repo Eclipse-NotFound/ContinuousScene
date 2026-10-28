@@ -2,11 +2,11 @@
 
 ## 1. 模组与当前任务
 
-全图碰撞、敌人、物品预生成，画面按视野准备，镜头与弹体连续跨房；远处未参战敌人可暂缓。CS0.9.1另含单地图编辑及天角兽局部报警/接力概率，原版连续模式由设置开关控制。
+全图碰撞、敌人、物品预生成，画面按视野准备，镜头与弹体连续跨房；远处未参战敌人可暂缓。当前CS0.9.2另含单地图编辑、天角兽局部报警/接力概率及SATS按视野截图，原版连续模式由设置开关控制。
 
-性能任务仍未完成。用户最新反馈：镜头移动明显卡；镜头固定时玩家动作偶发卡；活动敌人/弹体出现时严重卡。目标是接近原版的实际动态游玩，不能用暂停世界、静止无敌对对象或删敌人的数字冒充。历史goal的blocked状态不代表当前工具状态：2026-10-28 12:40 get_goal实际返回null，本轮没有创建/更新goal。
+性能任务仍未完成。用户最新明确优先镜头移动，并补充V开启SATS延迟；此前也报告固定镜头偶发卡、活动敌人/弹体严重卡。SATS已通过产品检查并部署，镜头问题仍未解决。目标是接近原版的实际动态游玩，不能用暂停世界、静止无敌对对象或删敌人的数字冒充。历史goal的blocked状态不代表当前工具状态：2026-10-28 12:40 get_goal实际返回null，本轮没有创建/更新goal。
 
-随后用户报告马哈顿废墟载入 `Unit.run #1010 / Error unit 鼹鼠`。本轮优先完成该故障：两侧边缘确定性复现、四处列读取守护、六次普通/连续进入和144正常运动状态一致，通过后已部署 B84F。战斗性能目标仍未完成，详见 unit-prestep-boundary-20261028.md。
+此前用户报告马哈顿废墟载入 `Unit.run #1010 / Error unit 鼹鼠`。已完成两侧边缘确定性复现、四处列读取守护、六次普通/连续进入和144正常运动状态一致，修复先部署B84F、现保留于A80。详见 unit-prestep-boundary-20261028.md。
 
 ## 2. 约定与权限
 
@@ -22,23 +22,27 @@
 
 ## 3. 当前正式安装
 
-天角兽任务已提交2e828d8；RC负责人随后部署0.2.24-animfix2/F14A44E7（回执125F9222）。本轮只将根宿主4E5F更新为B84F，修复原生单位预跑边界读取；没有安装未验性能候选，CS0.9.1及其他运行依赖保持。
+天角兽任务2e828d8及B84F原生单位预跑边界修复保留。22:55已从B84F/CS0.9.1升级到A80ED32B/CS0.9.2：仅接入通过验证的SATS视野截图与释放修复，没有部署镜头性能候选。RC此前F14A44E7属于历史，本次部署回执锁定并保留负责人已更新的EB6D11E6，不将该变化归于本任务。
 
 | 文件 | SHA256 |
 |---|---|
-| 根pfe.swf | B84F24280B3C676F4068E1CDC5A6EBEE89988F62BCF7A44D4DD71A4771360184 |
-| CS0.9.1 | 9A5E24E13AF2E2E211FAEAC038697D2CA2641CD6482766048BC3B9B4A506AA31 |
+| 根pfe.swf | A80ED32BEE50C612CB46EA1E581C8CA9C81072E0B9E6EE1A51E5BACEFBDCBA19 |
+| CS0.9.2 | 380DEC3068938B3E3BA1F2C8DB25A6B3D5FC229E8526E8FC03CA23795961E111 |
 | TDFC | 7ACD45193109267DBBF875240528048AD6F1D09FA3B8B36BAA6F98EBB5FDDCE5 |
 | ModLoader2.5 | 2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2 |
 | RV | 638E2D408E2CF46683C41114F75773829A1B4417D74BFFE9D08855A4FE343710 |
-| RC | F14A44E74AC98EC480875203D4D714ACFBC496141980E5A1D7B0DE0C7AD222FB |
+| RC | EB6D11E6F20068F76D44D180BC5F579C14BA359CAA46E4706D0506B0D4ABC127 |
 
-LAD8ADB/WB1411保持；本次隔离功能输入528文件。最新回执state/unit-boundary-deployment-20261028.json；备份build/backups/unit-boundary-20261028-183436-e481f4a8/pfe.swf（4E5F）。旧alicorn回执state/alicorn-alert-deployment-20261028.json、备份build/backups/alicorn-20261028-121734-7ee3b24f仍留历史。31项局部报警/概率/设置验证属于另一任务，不是性能验收。A796染色/纵向缓冲/遮挡格复用和4E5F天角兽方法全部保留。
+LAD8ADB/WB1411保持；用户配置和其他模组未改。最新回执state/sats-visible-deployment-20261028.json，installed及最终回读均true；备份build/backups/sats-visible-20261028-225528-7ef578cb234b保存B84F宿主、9A5E产品、旧ContinuousSceneMod.as。本次同步src/ContinuousSceneMod.as及新增src/SatsVisibleGuard.as，未碰外来测试源码。旧unit-boundary回执/备份（4E5F）及alicorn回执/备份仍留历史；其528输入、31项局部报警检查不是本次性能验收。A796染色/纵向缓冲/遮挡格复用、4E5F天角兽和B84F边界修复全部保留。
 共享工具：air_test_process ECE3ED08、test_resources 86D5F280、test_registry E3E43581；资源只设自有子进程normal CPU、memory5、HighQoS，不能改全局或外部进程。
 
 ## 4. 本轮实际进展与证据
 
-详细记录：knowledge/experiments/camera-live-reassessment-20261028.md。
+最新记录：knowledge/experiments/camera-sats-current-20261028.md；此前真实战斗记录camera-live-reassessment-20261028.md及下列历史数字保留。
+
+SATS里程碑：同图原生V顺序ABBAAB，原路径开启842/891/713ms，候选144/235/184ms，截图84/94/95→16/16/16；这是开启耗时，不是整游戏FPS。实际A80/380产品AIR67780退出0，336断言、7次V、视觉全关/全开14像素用例零差异、同Grafon/Location重建28旧副本全部释放，普通模式回退及目标/AP恢复通过。四个宿主方法窄改，其余原始方法/tag保留。初版F64检查器跨域取类1065（1断言、0V）的失败保留；后继只增加统计观察入口，未把失败改称通过。门禁/部署均已回读，无需重跑全矩阵。
+
+镜头停点：旧纯镜头静26.256/横31.183/纵31.822ms（各360间隔）无新增绘制，但后查路线在setZoom同回调读取旧Camera坐标，中心961/2880而玩家1441.8/4320；旧scale未存不能倒填，不能当正确玩家路线验收。keycache v2与已等自然帧修正坐标的v3均六轮预热不收敛、0计时间隔，原因待分析，不宣称收益。自有宽窗口鼠标检查虽消息入队，但原生Stage坐标/世界子节点命中未达到阳性，0样本；不排除热点，也不换路径重试。
 
 新增载入故障里程碑：unit-prestep-boundary-20261028.md。当前宿主Unit.run(method1159)四处垂直列读取在横向墙体修正后可能列越界，受控原生molerat左右边界都复现1010；只加列存在判断，保留1719原指令、其他方法/loader/资源，host-audit46F4BE99。base-r2 AIR83976预期异常通过；fixed-r1 AIR51056边界恢复+马哈顿stage4 seed4077752896普通/连续各3次通过。normal-regression-v2 base/fixed AIR80632/48636各153断言、12动作×12帧严格一致。均已退出；有玩家AIR并行，所有回执明确非性能证据。boundary base-r1未启动，normal-regression v1读取protected shX1导致探针1069，失败原件保留。build/generated/unit-prestep-boundary-20261028/{build_host.py,verify.py,deploy.py,verification.json}为本次可核对入口。已按相同依赖同一产物部署并回读，无需重跑整套矩阵。
 
@@ -65,15 +69,16 @@ A796/4E5F实际sceneTick无每帧setZoom，不能用陈旧Grafon/Camera源码整
 
 ## 6. 下一步
 
-马哈顿载入修复已交付；后续性能测量必须保留B84F边界修复，不能用仍钉4E5F/A796的旧诊断宿主覆盖。须为所选性能方案建立新基线回执，旧性能结果继续保留原始指纹。本轮资源已恢复（功能测试最低约11GB提交），不再沿旧“内存不足”结论空等；登记仍协调其他agent，玩家并行仅允许功能判断。无自有运行进程。
+SATS和马哈顿载入修复已交付；后续镜头性能测量必须保留当前A80ED32B/380DEC30及既有边界/天角兽改动，不能用钉B84F、4E5F或A796的冻结诊断宿主覆盖。先分析keycache预热不收敛，在正常原生帧更新缩放后建立正确路线，取得有效窗口再比较；不能把预热失败或旧路线数字当优化结论。旧性能结果保留原始指纹，旧tail/activity-range也仅是待验路线，不自动成为新优先任务。
 
-当前RC2普通/大场景参照已完成；下一步尾段tail采样或activity-range同局候选仍待实测，先核资源与冻结输入，再核窗口覆盖/阳性/恢复，不能只优化相机或微小分配。资源适配只改离线编译自身占用，不降低AIR的4GiB/2GiB启动及512MiB运行保护；不把无PID失败算采样进展。
+按用户要求以镜头移动为核心，同时保持正常世界运行；最终需覆盖实际窗口、自然纵移/长探索及必要视觉组合。本轮资源曾恢复，不沿旧“内存不足”结论空等；登记协调其他agent，玩家并行仅允许功能判断。资源适配只改离线编译自身占用，不降低AIR的4GiB/2GiB启动及512MiB运行保护；不把无PID或0样本失败算性能进展。
 paired诊断宿主已建成，不再重跑FFDec或改已构建输入。当前通过--host-root指向binary目录；probe尚未编译，使用原生1921计划/1920捕获/零额外calc，150×20双环境断言和20位图/恢复待运行。该宿主绝不能部署。
-若缓存没有稳定动态收益，停止性能宣称；F15等旧宿主不能直接覆盖B84F。近原版体验、2–5秒全场景加载、完整RV/长探索等仍未全面达到。
+若缓存没有稳定动态收益，停止性能宣称；F15等旧宿主不能直接覆盖当前A80。近原版体验、2–5秒全场景加载、完整RV/长探索等仍未全面达到。
 不要重复泛泛要求用户释放内存、反复空转等待或自动打断外部实验。当前工具没有goal对象，不沿历史blocked计数自行操作不存在的goal。
 
 ## 7. 深入入口
 
+- 最新镜头/SATS：camera-sats-current-20261028.md；evidence/sats-visible-product-checks-v3-20261028-r1；build/generated/sats-visible-release-20261028/{verification.json,host-audit.json,product-build.json}；state/sats-visible-deployment-20261028.json。keycache v2/v3失败目录与鼠标RESULTS保持原件。
 - 本轮详情见camera-live-reassessment-20261028.md；当前参照evidence/camera-dense-reference-rc2-20261028-{normal,scene}-r1/summary.json；tail/build.json、runs；activity-range-current/BUILD-RUN.md；binary/RESULTS.md、audit-proof.json；live/verify_run与paired/RESULTS.md。
 - 之前完整快照MEMORY-history-20261028-before-live-reassessment.md保留全部停止路线、源码种子和历史入口；journal顶部按时间接续。
 - 原生单次镜头旧证据camera-native-once-20261028：base-r1 AIR24656、cache-r1 AIR70412已退出；2F7B探针、冻结源9b56efbf、pair-review A5471DA2，所有原始输入冻结。

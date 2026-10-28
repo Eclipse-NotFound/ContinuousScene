@@ -1,0 +1,122 @@
+{
+  "passed": true,
+  "base": "B84F24280B3C676F4068E1CDC5A6EBEE89988F62BCF7A44D4DD71A4771360184",
+  "methods": [
+    {
+      "method": 3231,
+      "name": "sceneSats",
+      "oldCodeSHA256": "69BF23AA7AC530656672D08F1E561D944E1366845A980A07A6119E8DA671BBF9",
+      "newCodeSHA256": "92F31C034C49FBD41CDEA26CD89A75C2D7DC5069714797FC26F6402F2667384D",
+      "oldBytes": 663,
+      "newBytes": 681,
+      "originalInstructionCount": 318,
+      "unchangedOriginalInstructions": true,
+      "exceptionOffsetsRelocated": 2,
+      "unchangedTraits": true,
+      "maxStack": 10,
+      "hookBytes": "d02ced3fd02401560246d846021201000047"
+    },
+    {
+      "method": 3219,
+      "name": "sceneTick",
+      "oldCodeSHA256": "DEFB11339BB22D7D55790C3E822B8451355EFA6101F6B0C17166711D3D69BF76",
+      "newCodeSHA256": "EC49069DEB696D09394C860D21AA95A52DD9A4CD879414C1A722459E81B0AFCF",
+      "oldBytes": 117,
+      "newBytes": 141,
+      "originalInstructionCount": 60,
+      "unchangedOriginalInstructions": true,
+      "exceptionOffsetsRelocated": 0,
+      "unchangedTraits": true,
+      "maxStack": 6,
+      "hookBytes": "d066f00c66d31c120d0000d02ced3fd0240056024fd84602"
+    },
+    {
+      "method": 3282,
+      "name": "onSats",
+      "oldCodeSHA256": "50C3A93BEACD1ED41B19F27122408535897F0DE595D8F3C635220BF7226CD092",
+      "newCodeSHA256": "BF7ABB713DAF0453CE311405338EFEEC73D8CBDE8730AE545FE18EDD35C27E9B",
+      "oldBytes": 31,
+      "newBytes": 49,
+      "originalInstructionCount": 15,
+      "unchangedOriginalInstructions": true,
+      "exceptionOffsetsRelocated": 0,
+      "unchangedTraits": true,
+      "maxStack": 4,
+      "hookBytes": "d1110d0000d02ced3fd0240256024fd84602"
+    },
+    {
+      "method": 3209,
+      "name": "sceneClear",
+      "oldCodeSHA256": "448E962DFEC38BE8AFC9011CDDEECE8DCC4A8E990683CDD4112A1B7BC699ECB2",
+      "newCodeSHA256": "C403F4D642806BC55644E5525E085047D118C9122E4604F4135659850E4CA480",
+      "oldBytes": 196,
+      "newBytes": 209,
+      "originalInstructionCount": 96,
+      "unchangedOriginalInstructions": true,
+      "exceptionOffsetsRelocated": 0,
+      "unchangedTraits": true,
+      "maxStack": 5,
+      "hookBytes": "d02ced3fd0240356024fd84602"
+    }
+  ],
+  "sourceInputs": {
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\sats-visible-release-20261028\\build_host.py": "D6D196C01C9C8E30059288D088E8A506EB9DA18E44C153062CA90EB0D8152B83",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\sats-visible-release-20261028\\SatsVisibleGuard.as": "ECC6B835238C57666E3D09798E0A021A62C5C2C9092F32F63060E7A9FFB95007",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\sats-visible-final-20261028\\host-audit.json": "1B62ED327FC490B8C9846ECD7322BA8D076444B84B43F8A237F503743B107965",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-environment-paired-binary-20261028\\build.py": "C3D99C9818346FA165641C9AC71CE3A4CF677AD0BC89056B89000AC2321E2A68",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-environment-paired-binary-20261028\\raw_abc.py": "CBC35923B367D144F7990EA60651896E9ACE0C3A60131130A61113F30ADC05E7",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-environment-paired-binary-20261028\\resources.py": "7FF04127E211536745776DB10C9AFB1ABE173050196424AB0EDA676D65F8FFB0",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\native-crop-audit.py": "AC4383A6FA899EE62CAA54282AE6F31E5DDB83CEBABFC65A920EA5954F0F46DE"
+  },
+  "handlerAction": "satsVisibleV3",
+  "addedStringIndex": 8173,
+  "unchangedOtherMainBodies": 3281,
+  "unchangedClasses": 350,
+  "exactInverseRestoresABC": true,
+  "unitBoundaryFixPreserved": true,
+  "loaderPreserved": true,
+  "runtimeVerified": false,
+  "performanceEligible": false,
+  "requiresExplicitHandlerInstall": true,
+  "sceneClearHookBeforeNativeDrop": true,
+  "closeMode": 2,
+  "sceneClearMode": 3,
+  "note": "Without V3 handler original SATS path remains; V2 trial evidence does not validate the new scene-clear lifecycle or product carrier.",
+  "candidate": "A80ED32BEE50C612CB46EA1E581C8CA9C81072E0B9E6EE1A51E5BACEFBDCBA19",
+  "preservedRawTags": 5038,
+  "identicalFrozenHost": "A80ED32BEE50C612CB46EA1E581C8CA9C81072E0B9E6EE1A51E5BACEFBDCBA19",
+  "resources": {
+    "minimumAvailableCommit": 805306368,
+    "ownProcessMemoryLimit": 536870912,
+    "ownJobLimitApplied": true,
+    "jobPeakProcessMemoryUsed": 89718784,
+    "samples": [
+      {
+        "phase": "before-job-limit",
+        "availableCommit": 9812766720,
+        "availablePhysical": 7886831616,
+        "privateBytes": 14008320,
+        "peakPagefileUsage": 15151104,
+        "workingSetBytes": 24113152
+      },
+      {
+        "phase": "job-limit-applied",
+        "availableCommit": 9812766720,
+        "availablePhysical": 7886831616,
+        "privateBytes": 14008320,
+        "peakPagefileUsage": 15151104,
+        "workingSetBytes": 24117248
+      },
+      {
+        "phase": "finished",
+        "availableCommit": 9763745792,
+        "availablePhysical": 7840714752,
+        "privateBytes": 74498048,
+        "peakPagefileUsage": 89718784,
+        "workingSetBytes": 84680704
+      }
+    ],
+    "gameMemoryGateChanged": false,
+    "foreignProcessesChanged": false
+  }
+}
