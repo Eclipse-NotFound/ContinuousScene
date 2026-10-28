@@ -2,9 +2,9 @@
 
 ## 1. 模组与当前任务
 
-全图碰撞、敌人、物品预生成，画面按视野准备，镜头与弹体连续跨房；远处未参战敌人可暂缓。当前CS0.9.2另含单地图编辑、天角兽局部报警/接力概率及SATS按视野截图，原版连续模式由设置开关控制。
+全图碰撞、敌人、物品预生成，画面按视野准备，镜头与弹体连续跨房；远处未参战敌人可暂缓。当前CS0.9.3另含单地图编辑、天角兽局部报警/接力概率、SATS按视野截图及有条件的地形呈现复用，原版连续模式由设置开关控制。
 
-性能任务仍未完成。用户最新明确优先镜头移动，并补充V开启SATS延迟；此前也报告固定镜头偶发卡、活动敌人/弹体严重卡。SATS已通过产品检查并部署，镜头问题仍未解决。目标是接近原版的实际动态游玩，不能用暂停世界、静止无敌对对象或删敌人的数字冒充。历史goal的blocked状态不代表当前工具状态：2026-10-28 12:40 get_goal实际返回null，本轮没有创建/更新goal。
+性能任务仍未完成。用户明确优先镜头移动，并补充V开启SATS延迟；入口为普通游戏／模组启动器。SATS已修复部署；2026-10-29 02:58又部署有限镜头优化，真实产品横移约11.7%、纵移约9.7%、原生移动交战约6%平均间隔改善，但长停顿仍有，不宣称近原版或完整解决。不能用暂停世界、删敌或探针局部helper数字冒充真实产品收益。当前没有goal对象。
 
 此前用户报告马哈顿废墟载入 `Unit.run #1010 / Error unit 鼹鼠`。已完成两侧边缘确定性复现、四处列读取守护、六次普通/连续进入和144正常运动状态一致，修复先部署B84F、现保留于A80。详见 unit-prestep-boundary-20261028.md。
 
@@ -22,27 +22,55 @@
 
 ## 3. 当前正式安装
 
-天角兽任务2e828d8及B84F原生单位预跑边界修复保留。22:55已从B84F/CS0.9.1升级到A80ED32B/CS0.9.2：仅接入通过验证的SATS视野截图与释放修复，没有部署镜头性能候选。RC此前F14A44E7属于历史，本次部署回执锁定并保留负责人已更新的EB6D11E6，不将该变化归于本任务。
+天角兽任务2e828d8、A796染色/纵向缓冲、B84F预跑边界和180d46f的SATS修复均保留。2026-10-29 02:58:52已安装CS0.9.3及WB0.5.10-scene；根宿主A80、DLC、配置和其它模组不变，RC239252DF仍归负责人。新回执state/camera-presentation-deployment-20261029.json为installed/readback通过；备份build/backups/camera-presentation-20261029-025849-fe3f35922315。旧SATS回执描述旧380产品，不能当当前正式产品。
 
 | 文件 | SHA256 |
 |---|---|
 | 根pfe.swf | A80ED32BEE50C612CB46EA1E581C8CA9C81072E0B9E6EE1A51E5BACEFBDCBA19 |
-| CS0.9.2 | 380DEC3068938B3E3BA1F2C8DB25A6B3D5FC229E8526E8FC03CA23795961E111 |
+| CS0.9.3 | D8A68A4C128E196FD69B50D1CC7F0FFA72669751FB2FCB85D629F30FE622E677 |
+| WB0.5.10-scene | FE3E7A84753F6F3614440F69F8725E6E8639AEE4755ACF878AAFCFEDB95AC2E6 |
 | TDFC | 7ACD45193109267DBBF875240528048AD6F1D09FA3B8B36BAA6F98EBB5FDDCE5 |
 | ModLoader2.5 | 2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2 |
 | RV | 638E2D408E2CF46683C41114F75773829A1B4417D74BFFE9D08855A4FE343710 |
-| RC | EB6D11E6F20068F76D44D180BC5F579C14BA359CAA46E4706D0506B0D4ABC127 |
+| RC（10月29日最新测试冻结输入；非本任务部署） | 239252DF5EA24EC6DA5005BD80BFEB31A91E393D6B2BFE7B1FD7B371CD4E618C |
 
-LAD8ADB/WB1411保持；用户配置和其他模组未改。最新回执state/sats-visible-deployment-20261028.json，installed及最终回读均true；备份build/backups/sats-visible-20261028-225528-7ef578cb234b保存B84F宿主、9A5E产品、旧ContinuousSceneMod.as。本次同步src/ContinuousSceneMod.as及新增src/SatsVisibleGuard.as，未碰外来测试源码。旧unit-boundary回执/备份（4E5F）及alicorn回执/备份仍留历史；其528输入、31项局部报警检查不是本次性能验收。A796染色/纵向缓冲/遮挡格复用、4E5F天角兽和B84F边界修复全部保留。
+最新安装只同步CS四源（入口/SATS清理钩子及新增SceneEventBitmapFill、ScenePresentationCoordinator）和CS/WB两份产物。WB沿准确13源生产配方，仅增加启用前同步恢复钩子；其HEAD仍不是完整生产源，不直接构建覆盖。准确源位于build/generated/camera-event-fill-product-20261029/{frozen-product-src,wallblend/frozen-product-src}。旧0.9.2/0.5.9为380/141，备份保留。LAD8ADB及其它配置未改，外来SceneRenderChecks.as未碰。
 共享工具：air_test_process ECE3ED08、test_resources 86D5F280、test_registry E3E43581；资源只设自有子进程normal CPU、memory5、HighQoS，不能改全局或外部进程。
 
 ## 4. 本轮实际进展与证据
 
 最新记录：knowledge/experiments/camera-sats-current-20261028.md；此前真实战斗记录camera-live-reassessment-20261028.md及下列历史数字保留。
 
+**真实产品部署证据（2026-10-29）：**
+- product-live-r1（AIR90840/225D32EC）：1200完整间隔、26断言，600候选全部呈现；A同产品disabled平均54.2817→B51.05ms（5.95%），P9569→65，但最大164→170、>100ms 2→4。A/B敌射711/856、冲刺283/200、awake45.36/44.303，负载不等同，不称纯因果百分比；玩家、六敌人及平台身体框全程在视口。
+- product-camera-r1（AIR71820/54E5DA8）：2160完整间隔、28断言，静23.3→21.7278、横34.7222→30.675、纵33.6528→30.3778ms；P9533→31/45→39/41→35。静/纵>50ms 1→3/3→4仍保留。五视角像素全0，原生30/测试120fps，预热42.422秒不是载入验收。玩家481.8/4320、中心1216/4320，全2161逻辑点在视口，无逐帧身体框或自然跳跃证据。
+- product-checks-v3-r1（AIR21012/B60366A7）：1213断言、7次原生V、14SATS像素用例通过；产品同状态像素0。V180/225/293ms为不同大图条件，不能混作同场A/B。RV/LAD自然帧回退、WB同步恢复、同Grafon清理、普通房间回退均通过，48节点/2348alpha平衡。真实窗口0.5/0.8缩放明确zoom-or-shake，恢复原窗后自然启用。
+
+呈现仅在native320、scale1、无震屏、RV enabled/wallbright、WB、LAD全关闭且注册表可识别时启用；否则原生回退。效果开启只验证兼容回退，不声称性能改善。SATS开前、场景清理及WB同步启用前先恢复原位图；借用原生像素、不拥有副本，纯像素revision复用Graphics命令，结构变化仍重建。helper9D8F3A6F，coordinator C98FC0E2。
+
+功能失败保留：checks-r1是原生resize打开pip使allStat2，等待120帧失败；v2误读PipBuck内部vis/page且finish再次抛1069，没有result。AIR88440凭登记/创建时间/父进程/唯一appID精确结束，原runner清理并记录failed。v3改用公开World.vpip及PipBuck.active/currentPage，三次都观察新菜单后只调用一次原生onoff(-1)，下一自然帧allStat1；不直接写暂停标志，不把world-inactive冒作缩放阳性。
+
+额外product-memory-r1（1325E7BF/AIR88968）1200/26通过，仅诊断：三getter合计读取均19.2875ms、最少15ms，明显扰动，不能用于性能验收或把增加的长帧归于产品。全部内存下降和长帧已保留，尚无调用栈证明GC。旧完整live六长帧中四次在nativeBand、两次主要在Stage之外；各窗totalScript不能直接按本窗序号配nativeBand，需展开299+300+300+300对应全局0..1198。
+
+上述证据在knowledge/experiments/evidence/camera-event-fill-<相应后缀>-20261029-r1，产品/门禁在build/generated/camera-event-fill-product-20261029。**旧verify_products及runner锁安装前380/141，现在会正确拒绝；新试验须显式按新部署回执定基线，不能放宽旧断言或覆盖旧证据。** 下述v1/v2及其它旧试验为历史，不表示当前仍未部署。
+
+历史首轮动态结果（2026-10-29，后继产品见上文）：camera-event-fill-live-20261029-r1，A80/380、实际RC239252DF、探针C8025771，AIR41048；1200完整原生跟随/六LMG+ASSR冲刺间隔与26断言通过，玩家/六敌人身体框全程在视口，600候选帧全部启用。原均50.503→49.948ms仅1.10%，P95 63→64、最大149→157；两对1.88%/0.30%，不满足明显提速、不部署。玩家开火各200、敌人794/875、敌弹均4.715/5.802、冲刺111/92帧，保留自然负载差异。helper均0.422ms/最大9，revision592/commands254，最终清理通过；无其他AIR，最低提交9,307,856,896B。原目标未完成。
+
+此前同图纯镜头event-bitmap-fill-r1横15.34%/纵7.92%正收益、五视角像素零差异，仅证明邻近地形呈现；玩家逻辑点静/横全在画外底边80px、纵仅128/720在内，无bodybounds，撤回“宽视口路线玩家始终可见”表述。不得用其11.80%移动合计替代上述真实战斗1.10%。两份RESULTS及旧驱动/回执冻结。
+
+像素复用v2组件：pixel-checks旧r1因原生选点changed=0失败，0计时/原件保留；v3保留helper9D8F、原生有界选点首次成功，屏幕912/516的16×16两色各256像素变化，prime后同一命令连续更新，候选RGB0/alpha0、恢复精确。AIR6496退出0，419组件/15外层断言，7fallback、树事件、55图释放均通过，raw ADA61CFF/review E8ADD640；仅同步BitmapData.draw语义，非自然Stage或性能证明。
+
+v2 live-r1已完成：AIR39012退出0、3B9444CB、1200间隔/26断言独立核验。A53.767→B49.130ms表面8.62%，P95 68→66/max192→150，但>100ms 2→4；敌方1038/775、敌弹6.672/4.633、冲刺129/86，不能归因成纯收益。600候选全启用，helper0.205ms/rebuild36/pixelOnly530/201帧，清理通过，最低提交9,208,688,640B，无其他AIR。后继BAAB独立复核报告记录54.050→50.265ms（7.00%），候选弹量/冲刺较多但醒着单位较少，六预定分箱均正向；结合两顺序支持有限收益，仍不声称精确因果百分比或近原版。见pixel-live-baab/RESULTS.md。当时进入产品生命周期/兼容候选准备；后继产品现已部署，见本节顶部。
+
+节点缓存独立路线已停止：node-cache-camera-r1，AIR67216、44CAE0F1，2160完整间隔/28断言；横34.761→32.722、纵32.686→30.861ms约5.9%/5.6%，静20.081→21.547退7.3%；横纵P95变差、>50ms分别3→11/3→9。五图RGB≤1/alpha0，清理通过；本轮玩家1441.8/4320，2160逻辑投影全在内（未逐帧身体框），不能套旧画外结论。77驻留/预绘计数稳定，但lastDirtyCount有2→0→2；暖图50.834秒非载入验收。旧live-r1因883帧平台超界5px失败不排名，不缩路线重试、不测combo，不与v2纯像素复用混同。完整结果见node-cache-camera/RESULTS.md。
+
 SATS里程碑：同图原生V顺序ABBAAB，原路径开启842/891/713ms，候选144/235/184ms，截图84/94/95→16/16/16；这是开启耗时，不是整游戏FPS。实际A80/380产品AIR67780退出0，336断言、7次V、视觉全关/全开14像素用例零差异、同Grafon/Location重建28旧副本全部释放，普通模式回退及目标/AP恢复通过。四个宿主方法窄改，其余原始方法/tag保留。初版F64检查器跨域取类1065（1断言、0V）的失败保留；后继只增加统计观察入口，未把失败改称通过。门禁/部署均已回读，无需重跑全矩阵。
 
-镜头停点：旧纯镜头静26.256/横31.183/纵31.822ms（各360间隔）无新增绘制，但后查路线在setZoom同回调读取旧Camera坐标，中心961/2880而玩家1441.8/4320；旧scale未存不能倒填，不能当正确玩家路线验收。keycache v2与已等自然帧修正坐标的v3均六轮预热不收敛、0计时间隔，原因待分析，不宣称收益。自有宽窗口鼠标检查虽消息入队，但原生Stage坐标/世界子节点命中未达到阳性，0样本；不排除热点，也不换路径重试。
+镜头历史限制：旧纯镜头静26.256/横31.183/纵31.822ms（各360间隔）无新增绘制，但路线在setZoom同回调读取旧Camera坐标，中心961/2880而玩家1441.8/4320；旧scale未存不能倒填，不能当正确玩家路线验收。keycache v2/v3均六轮预热失败、0计时间隔，不能宣称缓存收益。自有宽窗口鼠标检查未达到原生Stage坐标/世界子节点命中阳性，0样本，不排除热点、不换路径重试。
+
+尾段有效证据：camera-nearplayer-tail-20261028-r3，正式A80/380+RC EB6，AIR83080退出0，2160完整区间/18断言/12CPU尾段窗独立核验通过。缩放后等自然帧，中心840/4320经范围夹取仍含玩家481.8/4320；六轮准备44.371秒后计时图块warm/draw零增长，dirtyCount变化2，不是所有绘图零工作。静/横/纵21.972/29.593/29.126ms，Stage7.047/7.129/7.388ms，仅诊断。CPU样本26/50/53，移动增量主要为原生pre-render/render，不能换算GPU耗时。RC单人UI/refresh少量栈已依既有授权发负责人协调，未断言主因。r1/r2启动前占用失败0PID；r3持登记等待3次空闲检查2.078秒成功，无其他AIR，最低提交10.66GB。
+
+前一定位：camera-nearplayer-layer-split-20261028-r1于10月29日完成，AIR76296、2160区间/22断言、独立review有效。2032×1084，A完整/B暂隐4地形/C暂隐6对象按ABCCBA；静/横/纵A20.096/32.896/36.908ms，B22.958/28.117/27.042，C16.208/25.133/26.013。地形与对象都涉及移动呈现开销，但隐藏画面只作归因，不能称优化收益，条件差不可相加。10层2161次状态检查与最终恢复通过、计时无图块warm/draw增长，保留17边界/4条件切换及110ms长帧；无其他AIR、最低提交9.75GB。其后事件驱动候选与已安装产品的实际结果见本节开头。
 
 新增载入故障里程碑：unit-prestep-boundary-20261028.md。当前宿主Unit.run(method1159)四处垂直列读取在横向墙体修正后可能列越界，受控原生molerat左右边界都复现1010；只加列存在判断，保留1719原指令、其他方法/loader/资源，host-audit46F4BE99。base-r2 AIR83976预期异常通过；fixed-r1 AIR51056边界恢复+马哈顿stage4 seed4077752896普通/连续各3次通过。normal-regression-v2 base/fixed AIR80632/48636各153断言、12动作×12帧严格一致。均已退出；有玩家AIR并行，所有回执明确非性能证据。boundary base-r1未启动，normal-regression v1读取protected shX1导致探针1069，失败原件保留。build/generated/unit-prestep-boundary-20261028/{build_host.py,verify.py,deploy.py,verification.json}为本次可核对入口。已按相同依赖同一产物部署并回读，无需重跑整套矩阵。
 
@@ -65,11 +93,12 @@ NativeSceneActivity的engaged永久锁尚未被针对性证伪。旧range第13�
 
 已停止的具体呈现方案不换名重做：farparking确实管理Box1202/Bonus125个vis/shad显示根，不是Box对象数或仅睡眠敌人；range每个候选帧至少711个Box根已移出显示父层，整帧仅约2.15%且四对反向。range的frameChanges=0是未更新默认字段，不是时间线不变证据；严格静态Box普查603经资格筛选剩0，未到屏外判断。内景合图4.37%且横向反退；RV后继约1.59%；视口条带、透明裁剪、GPU地形、wholeworld缓存等详见历史快照。暂停角色缓存不是动态渲染全部无效的证明。lighting2旧热点已由80CF解决，decal准备只约0.06ms而绘图约3ms，旧图章/副本路线已停止。
 A796/4E5F实际sceneTick无每帧setZoom，不能用陈旧Grafon/Camera源码整包覆盖。
+SATS整数格批量draw再copyPixels已由旧33C1实测否定：7组像素失败，RGB最大3/alpha2；本轮只读复核，未重新生成/运行。当前全源可见性不同仍不足证明会消除旧误差，保留A80/380逐格方案。
 曾被拒的Monstrik、合并Weapon/UnitVisual+截图、UnitPlayer/SceneObjectCulling组合、Pt+PNG枚举、tag93遥测补丁、CIM CPU查询不转路重试；本轮更细FA2B DoABC类标签枚举亦被保护拒绝并停止。未请求新授权，兼容结论仅用其他已允许来源。
 
 ## 6. 下一步
 
-SATS和马哈顿载入修复已交付；后续镜头性能测量必须保留当前A80ED32B/380DEC30及既有边界/天角兽改动，不能用钉B84F、4E5F或A796的冻结诊断宿主覆盖。先分析keycache预热不收敛，在正常原生帧更新缩放后建立正确路线，取得有效窗口再比较；不能把预热失败或旧路线数字当优化结论。旧性能结果保留原始指纹，旧tail/activity-range也仅是待验路线，不自动成为新优先任务。
+SATS、马哈顿载入修复及有限镜头优化已交付；接续必须按A80/D8A/FE3新基线，不覆盖既有边界/天角兽改动。未解决的是实际长停顿、自然纵移/长探索、效果开启下的性能。若继续内存方向，先分别测getter成本，不能再把已证均19ms的三getter放每帧；内存下降不独自证明GC，应由相同长帧中的有界调用栈确认。透明Box阴影只读census配方仍未运行，不误认已有阳性。node-cache路线已停止，不再缩路线重试或做combo；隐藏图层不是产品方案，不把归因数字当收益。
 
 按用户要求以镜头移动为核心，同时保持正常世界运行；最终需覆盖实际窗口、自然纵移/长探索及必要视觉组合。本轮资源曾恢复，不沿旧“内存不足”结论空等；登记协调其他agent，玩家并行仅允许功能判断。资源适配只改离线编译自身占用，不降低AIR的4GiB/2GiB启动及512MiB运行保护；不把无PID或0样本失败算性能进展。
 paired诊断宿主已建成，不再重跑FFDec或改已构建输入。当前通过--host-root指向binary目录；probe尚未编译，使用原生1921计划/1920捕获/零额外calc，150×20双环境断言和20位图/恢复待运行。该宿主绝不能部署。
@@ -78,7 +107,10 @@ paired诊断宿主已建成，不再重跑FFDec或改已构建输入。当前通
 
 ## 7. 深入入口
 
-- 最新镜头/SATS：camera-sats-current-20261028.md；evidence/sats-visible-product-checks-v3-20261028-r1；build/generated/sats-visible-release-20261028/{verification.json,host-audit.json,product-build.json}；state/sats-visible-deployment-20261028.json。keycache v2/v3失败目录与鼠标RESULTS保持原件。
+- 最新镜头/SATS：camera-sats-current-20261028.md；evidence/camera-nearplayer-layer-split-20261028-r1/{camera-layer-review.json,storage/result.json,process-policy.json}；evidence/camera-nearplayer-tail-20261028-r3/{camera-tail-review.json,camera-nearplayer-tail-inputs.json,camera-air-wait-result.json}；evidence/sats-visible-product-checks-v3-20261028-r1；build/generated/sats-visible-release-20261028/{verification.json,host-audit.json,product-build.json}；state/sats-visible-deployment-20261028.json。keycache v2/v3失败目录与鼠标RESULTS保持原件。
+- 当前event-fill：state/camera-presentation-deployment-20261029.json；build/generated/camera-event-fill-product-20261029/{verification.json,verify_deploy.py,product-build.json}；evidence/camera-event-fill-product-{live,camera,checks-v3,memory}-20261029-r1/RESULTS.md。前3项是本次产品证据，memory仅观察且高开销。v1/v2实验和反序结果仍在旧目录，不能取代当前产品结果。
+- 停止node-cache：build/generated/camera-event-fill-node-cache-camera-20261029/RESULTS.md及同名evidence后缀-r1；失败live见camera-event-fill-node-cache-20261029/RESULTS.md。不与9D8F纯像素复用混同。
+- v2像素组件：build/generated/camera-event-fill-pixel-checks-v3-20261029/RESULTS.md及同名evidence后缀-r1；旧pixel-checks-r1失败原件保留。组件通过不等于动态收益。
 - 本轮详情见camera-live-reassessment-20261028.md；当前参照evidence/camera-dense-reference-rc2-20261028-{normal,scene}-r1/summary.json；tail/build.json、runs；activity-range-current/BUILD-RUN.md；binary/RESULTS.md、audit-proof.json；live/verify_run与paired/RESULTS.md。
 - 之前完整快照MEMORY-history-20261028-before-live-reassessment.md保留全部停止路线、源码种子和历史入口；journal顶部按时间接续。
 - 原生单次镜头旧证据camera-native-once-20261028：base-r1 AIR24656、cache-r1 AIR70412已退出；2F7B探针、冻结源9b56efbf、pair-review A5471DA2，所有原始输入冻结。

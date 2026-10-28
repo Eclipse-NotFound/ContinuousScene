@@ -14,7 +14,7 @@ package {
 
     /** Production entry only: no new game, test enemies, movement or save-slot writes. */
     public class ContinuousSceneMod {
-        public static const VERSION:String="0.9.2";
+        public static const VERSION:String="0.9.3";
         private static const LAND:String="continuous_scene";
         private static var main:*, w:*, worldClass:Class, gameData:Class;
         private static var pool:XML, definition:XML;
@@ -47,6 +47,7 @@ package {
                 alicornClear:SceneAlicornAlerts.clear};
             main.addChild(carrier); log("v"+VERSION+" loaded");
             SatsVisibleGuard.install(main);
+            ScenePresentationCoordinator.install(main);
             main.stage.addEventListener(Event.ENTER_FRAME,onFrame,false,-200,true);
         }
         private static function log(message:String):void {
@@ -94,11 +95,13 @@ package {
                     act.allroom=pool; act.loaded=true; w.game.lands[LAND]=act;
                 }
                 refresh();
+                ScenePresentationCoordinator.update(w);
                 if(getTimer()>nextLog) {
                     nextLog=getTimer()+30000;
                     log("heartbeat land="+(w.game?w.game.curLandId:"menu"));
                 }
             } catch(error:Error) {
+                try {ScenePresentationCoordinator.clear("entry-error");} catch(ignorePresentation:Error) {}
                 failed=true; carrier["sceneAPI"].ready=false;
                 if(button && button.parent) button.parent.removeChild(button);
                 log("ERROR "+error.message+" "+error.getStackTrace());

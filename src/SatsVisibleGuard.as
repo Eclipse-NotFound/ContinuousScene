@@ -28,6 +28,7 @@ package {
         // A scene reset cleans even when disabled or already outside a large map.
         // Target selection and all snapshot capture semantics remain native.
         public static function handle(g:*,mode:int):Boolean {
+            if(mode==1 || mode==3)ScenePresentationCoordinator.clear(mode==1?"sats-open":"scene-clear");
             if(mode==3){clear(g);stats.clears++;return true;}
             if(mode==2){clear(g);stats.closes++;return true;}
             if(!enabled || !g.sceneLarge)return false;
