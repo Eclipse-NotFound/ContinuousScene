@@ -1,0 +1,89 @@
+{
+  "version": "camera-activity-range-current-1",
+  "sourceManifestSHA256": "5EAA844B49B7BF475AF7302968DED8D42357A80345FF1AE80B4FCA5A7C5B6230",
+  "sourceManifest": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-activity-range-current-20261028\\source-manifest.json",
+  "seedReceipt": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\vertical-camera-band-20261023-combat-candidate-r3\\probe-build.json",
+  "seedReceiptSHA256": "B7ED1EAB8BEE0DC1024D6EF0A56A965F311B97E8CED9A9F32A2BCDE35B35FF13",
+  "compilerInputs": {
+    "D:\\Program Files\\Adobe Animate 2024\\jre\\bin\\java.exe": "7AF63D805FF76068B8C347EB7D9A0B59F514459AC3FEEC4C2460BE2D74B6C600",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\flexsdk\\lib\\mxmlc.jar": "CC07D749E376715E650271A9875289E49D94234902FFF5E5FAE287C478C8557B",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\airsdk\\frameworks\\libs\\air\\airglobal.swc": "E0F81FDB2029D2BB16E6987C8D85D4EBA5EEDFA3A23ED6E7F780BF6EB67B0546"
+  },
+  "scriptInputs": {
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-activity-range-current-20261028\\build.py": "E18169492E85D54934628C0FD38D9F5A2F0BF39BC246D873AD9D740A8877B419",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-activity-range-current-20261028\\run.py": "305DC300E1175369F5242CFCC4F37D58EDBBE937D6B0B10D1C4371C10F30B20B",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-activity-range-current-20261028\\verify_run.py": "AD4D5F098A5B28882465C88414F57D9C07BE8FC6A537B9F17644A1EE53ED541B",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-activity-range-current-20261028\\BUILD-RUN.md": "92ED2026277DA3CCE8EF80AE4C1FC649B4756D203AAEF2CFEA6464C02483EE5C"
+  },
+  "referencePins": {
+    "prepared.json": "B9A31F67F16863C3A27F56F47B38E8AD0E6A57D02263136E2E2F628AAF6F18EC",
+    "run.py": "5A7428773E9015E904DFFD6BC81CDBFA588EDBCAFBC6CF1AEBF35B4D0690BE65",
+    "verify_run.py": "B8FFA411DEA7F308DFA8D85B37938894DBFBB9BD8C42BC7510D4A0DB19E1DB58",
+    "verify_reuse.py": "354F1B3EDB332B9D156F04DD4491170424015E1F5ED9088D4001D03C29E516E1"
+  },
+  "reusedOriginalCompilation": false,
+  "diagnosticOnly": true,
+  "compiled": true,
+  "airRun": false,
+  "deployed": false,
+  "heapLimitMiB": 512,
+  "processMemoryLimitApplied": false,
+  "compilerPreflightCommitGiB": 2,
+  "compilerPreflightPhysicalGiB": 1,
+  "outputs": {
+    "carrier": {
+      "path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-activity-range-current-20261028\\builds\\r1\\ContinuousSceneMod.swf",
+      "sha256": "D90F01DF6FE2C9777AD19C50A9A941634D4FFFA9F18DB5BAF2680F14EA947189",
+      "command": [
+        "D:\\Program Files\\Adobe Animate 2024\\jre\\bin\\java.exe",
+        "-Xmx512m",
+        "-Dfile.encoding=UTF-8",
+        "-jar",
+        "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\flexsdk\\lib\\mxmlc.jar",
+        "+flexlib=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\flexsdk\\frameworks",
+        "-load-config=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-activity-range-current-20261028\\builds\\r1\\carrier.xml",
+        "-swf-version=32",
+        "-static-link-runtime-shared-libraries=true",
+        "-output=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-activity-range-current-20261028\\builds\\r1\\ContinuousSceneMod.swf",
+        "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-activity-range-current-20261028\\source-candidate\\ContinuousSceneDoc.as"
+      ],
+      "configSHA256": "27D1A995374FEBED7F593AAAA0D0597012C1BFB11791E6F49E88EDE56CAB71C5",
+      "logSHA256": "5241DAE3F8CFEF99F0E761932D16E9D7CBF237552122140741BAB1211FA4973F",
+      "memoryBefore": {
+        "load": 68,
+        "availablePhysical": 10687488000,
+        "availableCommit": 2301825024
+      },
+      "minimumAvailableCommit": 1592053760,
+      "exitCode": 0,
+      "bytes": 19549
+    },
+    "probe": {
+      "path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-activity-range-current-20261028\\builds\\r1\\ContinuousSceneProbe.swf",
+      "sha256": "5019EC84CBD4467BAE9C7AF8B5555C4A28CFB09AE2895BD2792A77C8400B703A",
+      "command": [
+        "D:\\Program Files\\Adobe Animate 2024\\jre\\bin\\java.exe",
+        "-Xmx512m",
+        "-Dfile.encoding=UTF-8",
+        "-jar",
+        "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\flexsdk\\lib\\mxmlc.jar",
+        "+flexlib=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\flexsdk\\frameworks",
+        "-load-config=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-activity-range-current-20261028\\builds\\r1\\probe.xml",
+        "-swf-version=32",
+        "-static-link-runtime-shared-libraries=true",
+        "-output=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-activity-range-current-20261028\\builds\\r1\\ContinuousSceneProbe.swf",
+        "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-activity-range-current-20261028\\probe-source\\ContinuousSceneProbeDoc.as"
+      ],
+      "configSHA256": "765ED839CB8A6147E58745F6BEEC13732B98E459872F2F1AA094559B06248FBB",
+      "logSHA256": "F3E4038333E49A51F82B129F3A68906145F4ABD61BD1737DAC7C3D350E52C94A",
+      "memoryBefore": {
+        "load": 68,
+        "availablePhysical": 10699026432,
+        "availableCommit": 2306822144
+      },
+      "minimumAvailableCommit": 1553408000,
+      "exitCode": 0,
+      "bytes": 173991
+    }
+  }
+}

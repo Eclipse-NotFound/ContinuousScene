@@ -1,0 +1,13 @@
+[
+  "D:/Program Files/Adobe Animate 2024/jre/bin/java.exe",
+  "-Xmx512m",
+  "-Dfile.encoding=UTF-8",
+  "-jar",
+  "D:/Program Files/Steam/steamapps/common/Remains/mods/Sandevistan/build/tools/flexsdk/lib/mxmlc.jar",
+  "+flexlib=D:/Program Files/Steam/steamapps/common/Remains/mods/Sandevistan/build/tools/flexsdk/frameworks",
+  "-load-config=D:/Program Files/Steam/steamapps/common/Remains/mods/ContinuousScene/build/generated/camera-tail-sampling-20261028/compiler.xml",
+  "-swf-version=32",
+  "-static-link-runtime-shared-libraries=true",
+  "-output=D:/Program Files/Steam/steamapps/common/Remains/mods/ContinuousScene/build/generated/camera-tail-sampling-20261028/ContinuousSceneTailSamplerMod.swf",
+  "D:/Program Files/Steam/steamapps/common/Remains/mods/ContinuousScene/build/generated/camera-tail-sampling-20261028/TailSamplerDoc.as"
+]

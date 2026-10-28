@@ -1,0 +1,43 @@
+{
+  "command": [
+    "D:/Program Files/Adobe Animate 2024/jre/bin/java.exe",
+    "-Xmx512m",
+    "-Dfile.encoding=UTF-8",
+    "-jar",
+    "D:/Program Files/Steam/steamapps/common/Remains/mods/Sandevistan/build/tools/flexsdk/lib/mxmlc.jar",
+    "+flexlib=D:/Program Files/Steam/steamapps/common/Remains/mods/Sandevistan/build/tools/flexsdk/frameworks",
+    "-load-config=D:/Program Files/Steam/steamapps/common/Remains/mods/ContinuousScene/build/generated/camera-tail-sampling-20261028/compiler.xml",
+    "-swf-version=32",
+    "-static-link-runtime-shared-libraries=true",
+    "-output=D:/Program Files/Steam/steamapps/common/Remains/mods/ContinuousScene/build/generated/camera-tail-sampling-20261028/ContinuousSceneTailSamplerMod.swf",
+    "D:/Program Files/Steam/steamapps/common/Remains/mods/ContinuousScene/build/generated/camera-tail-sampling-20261028/TailSamplerDoc.as"
+  ],
+  "sourceInputs": {
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-tail-sampling-20261028\\build.py": "E1D7CD3CD2E9E378A6FFE8452264A659387EC9FEC0386C200A9746D879D26906",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-tail-sampling-20261028\\ContinuousSceneTailSamplerMod.as": "97EC772F8D5C9C2AD3838E846E091AB34BE670B1E8FA2E6E2C637E4AB81086D2",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-tail-sampling-20261028\\TailSamplerDoc.as": "CA7ED4626150D8D68DE2D282470633126914DDDD4DE85CC87D985B00B6C8655E",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-tail-sampling-20261028\\compiler.xml": "8D902D21564BAB53D04D233180DD1C5EE304BD4DA5CE32451E5F66057E174563",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-tail-sampling-20261028\\compile-command.json": "1B0EA79F85F9CBBAF65AF400FA702ACC8FBFEBFB0F21FF45BBAE99E81E19D859",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-tail-sampling-20261028\\README.md": "841DF5B92F45B1892BE8754B11F00D35A8892CE81A5E34917211B439DBDD529D"
+  },
+  "directCompilerInputs": {
+    "D:\\Program Files\\Adobe Animate 2024\\jre\\bin\\java.exe": "7AF63D805FF76068B8C347EB7D9A0B59F514459AC3FEEC4C2460BE2D74B6C600",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\flexsdk\\lib\\mxmlc.jar": "CC07D749E376715E650271A9875289E49D94234902FFF5E5FAE287C478C8557B",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\airsdk\\frameworks\\libs\\air\\airglobal.swc": "E0F81FDB2029D2BB16E6987C8D85D4EBA5EEDFA3A23ED6E7F780BF6EB67B0546"
+  },
+  "diagnosticOnly": true,
+  "deployed": false,
+  "runtimeVerified": false,
+  "heapLimitMiB": 512,
+  "processMemoryLimitApplied": false,
+  "complete": true,
+  "memoryBefore": {
+    "availableCommit": 5128814592,
+    "availablePhysical": 11887857664
+  },
+  "pid": 69572,
+  "exitCode": 0,
+  "outputSHA256": "07CFFC4F48993CA50201EF84DBAA9299E5C1FBA9C78B255F4D2E9A6A47C921EC",
+  "outputBytes": 5136,
+  "elapsedSeconds": 1.6400000000139698
+}

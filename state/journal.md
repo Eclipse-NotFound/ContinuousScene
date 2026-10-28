@@ -1,3 +1,11 @@
+## 2026-10-28 — 当前RC2普通/连续真实参照完成，尾段与活动范围仍待实测
+
+- RC负责人部署0.2.24-animfix2，正式SHA256 F14A44E74AC98EC480875203D4D714ACFBC496141980E5A1D7B0DE0C7AD222FB；其余正式输入保持。本性能回合无新部署，不覆盖他人更新。
+- camera-dense-reference-rc2-20261028-normal-r1/scene-r1各1200原生六LMG/ASSR冲刺间隔通过独立核验，AIR56856/67024退出。普通均35.510833ms/中位34/P95 46/最大123，大场景59.570ms/中位58/P95 75/最大167；Stage监听段10.53211/20.20517ms（各1199条），native带9.05833/18.85917ms。计时无新warm，scene常驻130块、普通0。体验参照保留自然群体差异，不称纯渲染/GPU因果；旧RC固定镜头55.492ms仍为有效历史。
+- 尾段addon已编译07CFFC4F48993CA50201EF84DBAA9299E5C1FBA9C78B255F4D2E9A6A47C921EC；r1在AIR前资源保护失败，无PID、无样本。camera-activity-range-current-20261028最小build/run准备完成，未编译、未AIR；永久参战锁不变。后续资源适配只针对离线编译，不降低AIR4GiB/2GiB预检与512MiB运行保护。
+- 纠正停止路线范围：farparking实际含Box1202/Bonus125个显示根，不能当对象数或仅睡眠敌人；range每候选帧至少711个Box根移出父层，收益仅2.15%且四对反向。frameChanges=0是未更新默认值；严格静态资格普查剩0，未测到屏外阶段。不重启同一路候选。
+- 证据见knowledge/experiments/camera-live-reassessment-20261028.md、对应两份summary与tail构建/失败回执；接续tail或activity-range实测。权限、拒绝路径及foreign SceneRenderChecks全部保留。本次仅更新MEMORY/journal，未git提交。
+
 ## 2026-10-28 — 新正式组合下真实战斗复现，固定镜头仍持续偏慢
 
 - 用户继续报告镜头、角色动作与活动敌人/子弹卡顿。保留另一任务已部署的4E5F/CS9A5E；本性能回合没有部署。低内存纯Python诊断宿主51C90D99构建成功，5770其他方法体/1016类/5038标签与当前报警修复保持，未获运行时/性能资格。

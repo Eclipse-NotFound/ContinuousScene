@@ -170,3 +170,7 @@ build/generated/camera-live-current-20261028/** -text whitespace=cr-at-eol,-blan
 build/generated/camera-live-current-silent-20261028/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 build/generated/camera-dense-reference-current-20261028/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 state/MEMORY-history-20261028-before-live-reassessment.md -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-dense-reference-rc2-20261028/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-tail-sampling-20261028/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-activity-range-current-20261028/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-benchmark-wait-20261028/** -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
