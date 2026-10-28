@@ -1,0 +1,101 @@
+{
+  "ok": true,
+  "base": "4E5FAB45D6F5A2634C83BE5E7EAF387443F9FB4E56B945CD2BF54880F1F73C75",
+  "candidate": "B84F24280B3C676F4068E1CDC5A6EBEE89988F62BCF7A44D4DD71A4771360184",
+  "mod": "9A5E24E13AF2E2E211FAEAC038697D2CA2641CD6482766048BC3B9B4A506AA31",
+  "runs": [
+    {
+      "name": "unit-prestep-boundary-20261028-base-r2",
+      "path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\unit-prestep-boundary-20261028-base-r2",
+      "checks": 4,
+      "pid": 83976,
+      "appId": "pfe-modsettings-continuous-motion-0866386b8890460ab79d87faf4bbbf31",
+      "host": "4E5FAB45D6F5A2634C83BE5E7EAF387443F9FB4E56B945CD2BF54880F1F73C75",
+      "probe": "68486CB04C7B2B47324051B210B7DAE7225888195A5BA0210463D9CCC136DF25",
+      "foreignAir": [
+        80640,
+        89504
+      ],
+      "performanceEligible": false,
+      "files": {
+        "storage/result.json": "B9577B5149ADFF9B776A54F98A8A595D6B0215280AA1073AA12FA36A97C9AE01",
+        "process-policy.json": "7202BF4A1F4A50F4193C4AC92BDD16B9A12F79CC203095C2A8727D94E4033C25",
+        "inputs.json": "D4C102B4E8737E0706006C7506006EBB01D507DEE52CCAAE4C9B7E64F63D0A12",
+        "loader-check.json": "B2C5B1643D8C66CC132006ED2ABDFC8E2DA9196DB155626897ECACFF5E1FD2D6",
+        "boundary-inputs.json": "6E1D53CEBE1484D5CA5B2F3B6553884F224AD03A427D5289E2161DF1A909235F"
+      }
+    },
+    {
+      "name": "unit-prestep-boundary-20261028-fixed-r1",
+      "path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\unit-prestep-boundary-20261028-fixed-r1",
+      "checks": 12,
+      "pid": 51056,
+      "appId": "pfe-modsettings-continuous-motion-383f2559bd04427e9b358ad54b2a7110",
+      "host": "B84F24280B3C676F4068E1CDC5A6EBEE89988F62BCF7A44D4DD71A4771360184",
+      "probe": "68486CB04C7B2B47324051B210B7DAE7225888195A5BA0210463D9CCC136DF25",
+      "foreignAir": [
+        80640,
+        89504
+      ],
+      "performanceEligible": false,
+      "files": {
+        "storage/result.json": "264F598081F49EF028788521EA1DB32D2E75AEE658C236033CDDB5DC040C0A41",
+        "process-policy.json": "CC074D4E6DE52E1E780B814444A939C3A60FE6456F6349AC9937DE8DBC41B5E4",
+        "inputs.json": "159AC67098C4C1D7F94E298ADABD7E979AF28341CE9D5CFD8C837C237C984F0A",
+        "loader-check.json": "126F7F059DC29F8CE9909E1F0A8948FE14E1CDB41F21DEE2B3FE17FB1EC51764",
+        "boundary-inputs.json": "579CC1482C37EADFFFE1B5BFBD2777AA337B87F9A8358437A3513200EA3EFFF5"
+      }
+    },
+    {
+      "name": "unit-run-regression-v2-20261028-base-r1",
+      "path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\unit-run-regression-v2-20261028-base-r1",
+      "checks": 153,
+      "pid": 80632,
+      "appId": "pfe-modsettings-continuous-motion-a011fd6cc94148a987c3ca8dfdb99c72",
+      "host": "4E5FAB45D6F5A2634C83BE5E7EAF387443F9FB4E56B945CD2BF54880F1F73C75",
+      "probe": "1D979D84478D340CFB77EDB649370EB6AE97AA68434BC88B62B2F021E7BB6253",
+      "foreignAir": [
+        80640,
+        89504
+      ],
+      "performanceEligible": false,
+      "files": {
+        "storage/result.json": "71433393F4810A8CEF0598C501D81F610ED551D4C21B19DB1C87F8B3DC2D51FA",
+        "process-policy.json": "0DABA05661DE8887C7FB57C4C892CF61A38190991C108D9670C0489AF140D5EE",
+        "inputs.json": "C4FF3268A42FE1981C9C8FA12F466C3921CFB09C169412D74195772EA1D81D28",
+        "loader-check.json": "3882724A9DD0101A846C871EF81528A628A7E74F4FDF12C5321E70014D05E3D3",
+        "boundary-inputs.json": "6E39A5821215A43855D0E7CEF4198150EE0D74B29D8C4F925ED509D093B22230"
+      }
+    },
+    {
+      "name": "unit-run-regression-v2-20261028-fixed-r1",
+      "path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\unit-run-regression-v2-20261028-fixed-r1",
+      "checks": 153,
+      "pid": 48636,
+      "appId": "pfe-modsettings-continuous-motion-17c994c026994554ae9a80dfee793f00",
+      "host": "B84F24280B3C676F4068E1CDC5A6EBEE89988F62BCF7A44D4DD71A4771360184",
+      "probe": "1D979D84478D340CFB77EDB649370EB6AE97AA68434BC88B62B2F021E7BB6253",
+      "foreignAir": [
+        80640,
+        89504
+      ],
+      "performanceEligible": false,
+      "files": {
+        "storage/result.json": "9D62E260C5989727D1F48512C67FD01B55A6B0A5BCB0CBB8B0B6EB9EAD2DCBCA",
+        "process-policy.json": "C4E9A47E45E92C558027BA3D5C1ABD35C151166F6795D9D3B2D9BC717C9D39E2",
+        "inputs.json": "3C5A9B1C0189E7572AE608C7D70A7EA3F4E8256FEE5645291FDDCEB399A99FBB",
+        "loader-check.json": "A0052B7271899EECD9A4A97CA8A4B1E71242E1CE8F5EB389F83D05EAF6318688",
+        "boundary-inputs.json": "12C368D1F0335173E911AA0E84D8693626F726A8B03D8FA71ACD1CEB1473715F"
+      }
+    }
+  ],
+  "deterministicFailuresReproduced": 2,
+  "boundaryRecoveryPassed": 2,
+  "manhattanEntries": 6,
+  "normalCases": 12,
+  "normalStatesEqual": 144,
+  "normalAssertions": 153,
+  "auditSHA256": "46F4BE9925500E9A5FB92AE34AA1F5DA589655459F1CEED2CF367F14BC052DDC",
+  "performanceClaim": false,
+  "limitations": "Controlled native boundary reproduction plus six entries; not every random seed, not a frame-rate test."
+}

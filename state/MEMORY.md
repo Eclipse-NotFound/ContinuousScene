@@ -6,6 +6,8 @@
 
 性能任务仍未完成。用户最新反馈：镜头移动明显卡；镜头固定时玩家动作偶发卡；活动敌人/弹体出现时严重卡。目标是接近原版的实际动态游玩，不能用暂停世界、静止无敌对对象或删敌人的数字冒充。历史goal的blocked状态不代表当前工具状态：2026-10-28 12:40 get_goal实际返回null，本轮没有创建/更新goal。
 
+随后用户报告马哈顿废墟载入 `Unit.run #1010 / Error unit 鼹鼠`。本轮优先完成该故障：两侧边缘确定性复现、四处列读取守护、六次普通/连续进入和144正常运动状态一致，通过后已部署 B84F。战斗性能目标仍未完成，详见 unit-prestep-boundary-20261028.md。
+
 ## 2. 约定与权限
 
 - 中文简洁进度；性能会话01a13816-367b-7261-8e11-ca9152565dd9。已允许实测；通过相应门禁后可本机部署，不重复确认。
@@ -20,23 +22,25 @@
 
 ## 3. 当前正式安装
 
-天角兽任务已提交2e828d8；RC负责人随后部署0.2.24-animfix2/F14A44E7（回执125F9222），其余正式输入保持。本性能回合没有部署任何文件。
+天角兽任务已提交2e828d8；RC负责人随后部署0.2.24-animfix2/F14A44E7（回执125F9222）。本轮只将根宿主4E5F更新为B84F，修复原生单位预跑边界读取；没有安装未验性能候选，CS0.9.1及其他运行依赖保持。
 
 | 文件 | SHA256 |
 |---|---|
-| 根pfe.swf | 4E5FAB45D6F5A2634C83BE5E7EAF387443F9FB4E56B945CD2BF54880F1F73C75 |
+| 根pfe.swf | B84F24280B3C676F4068E1CDC5A6EBEE89988F62BCF7A44D4DD71A4771360184 |
 | CS0.9.1 | 9A5E24E13AF2E2E211FAEAC038697D2CA2641CD6482766048BC3B9B4A506AA31 |
 | TDFC | 7ACD45193109267DBBF875240528048AD6F1D09FA3B8B36BAA6F98EBB5FDDCE5 |
 | ModLoader2.5 | 2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2 |
 | RV | 638E2D408E2CF46683C41114F75773829A1B4417D74BFFE9D08855A4FE343710 |
 | RC | F14A44E74AC98EC480875203D4D714ACFBC496141980E5A1D7B0DE0C7AD222FB |
 
-LAD8ADB/WB1411保持；526正式文件/13运行输入。alicorn部署回执state/alicorn-alert-deployment-20261028.json，SHA2B2CBB6A；备份build/backups/alicorn-20261028-121734-7ee3b24f。31项局部报警/概率/设置验证属于另一任务，不是性能验收。A796染色/纵向缓冲/遮挡格复用全部保留。
+LAD8ADB/WB1411保持；本次隔离功能输入528文件。最新回执state/unit-boundary-deployment-20261028.json；备份build/backups/unit-boundary-20261028-183436-e481f4a8/pfe.swf（4E5F）。旧alicorn回执state/alicorn-alert-deployment-20261028.json、备份build/backups/alicorn-20261028-121734-7ee3b24f仍留历史。31项局部报警/概率/设置验证属于另一任务，不是性能验收。A796染色/纵向缓冲/遮挡格复用和4E5F天角兽方法全部保留。
 共享工具：air_test_process ECE3ED08、test_resources 86D5F280、test_registry E3E43581；资源只设自有子进程normal CPU、memory5、HighQoS，不能改全局或外部进程。
 
 ## 4. 本轮实际进展与证据
 
 详细记录：knowledge/experiments/camera-live-reassessment-20261028.md。
+
+新增载入故障里程碑：unit-prestep-boundary-20261028.md。当前宿主Unit.run(method1159)四处垂直列读取在横向墙体修正后可能列越界，受控原生molerat左右边界都复现1010；只加列存在判断，保留1719原指令、其他方法/loader/资源，host-audit46F4BE99。base-r2 AIR83976预期异常通过；fixed-r1 AIR51056边界恢复+马哈顿stage4 seed4077752896普通/连续各3次通过。normal-regression-v2 base/fixed AIR80632/48636各153断言、12动作×12帧严格一致。均已退出；有玩家AIR并行，所有回执明确非性能证据。boundary base-r1未启动，normal-regression v1读取protected shX1导致探针1069，失败原件保留。build/generated/unit-prestep-boundary-20261028/{build_host.py,verify.py,deploy.py,verification.json}为本次可核对入口。已按相同依赖同一产物部署并回读，无需重跑整套矩阵。
 
 1. 复核旧F15：环境分配65312→0有效；native-once跨实例移动26.5667→24.5278ms（约7.7%）不是稳定收益。静止也降约4.04ms、驻留133/117不同、内存接近中止线。旧结果不改，不称镜头或战斗修复。
 2. 新纯Python构建已真正通过：build/generated/camera-environment-paired-binary-20261028。诊断宿主51C90D997A759E783024CB43F8957D0B97F1241B1C41C064F9ADE12125135115；audit 1E208398。约1.59秒、自有峰值88,756,224B，未用Java/XML/AIR。
@@ -61,9 +65,11 @@ A796/4E5F实际sceneTick无每帧setZoom，不能用陈旧Grafon/Camera源码整
 
 ## 6. 下一步
 
+马哈顿载入修复已交付；后续性能测量必须保留B84F边界修复，不能用仍钉4E5F/A796的旧诊断宿主覆盖。须为所选性能方案建立新基线回执，旧性能结果继续保留原始指纹。本轮资源已恢复（功能测试最低约11GB提交），不再沿旧“内存不足”结论空等；登记仍协调其他agent，玩家并行仅允许功能判断。无自有运行进程。
+
 当前RC2普通/大场景参照已完成；下一步尾段tail采样或activity-range同局候选仍待实测，先核资源与冻结输入，再核窗口覆盖/阳性/恢复，不能只优化相机或微小分配。资源适配只改离线编译自身占用，不降低AIR的4GiB/2GiB启动及512MiB运行保护；不把无PID失败算采样进展。
 paired诊断宿主已建成，不再重跑FFDec或改已构建输入。当前通过--host-root指向binary目录；probe尚未编译，使用原生1921计划/1920捕获/零额外calc，150×20双环境断言和20位图/恢复待运行。该宿主绝不能部署。
-若缓存没有稳定动态收益，停止性能宣称；当前正式F15旧宿主也不能直接覆盖4E5F。近原版体验、2–5秒全场景加载、完整RV/长探索等仍未全面达到。
+若缓存没有稳定动态收益，停止性能宣称；F15等旧宿主不能直接覆盖B84F。近原版体验、2–5秒全场景加载、完整RV/长探索等仍未全面达到。
 不要重复泛泛要求用户释放内存、反复空转等待或自动打断外部实验。当前工具没有goal对象，不沿历史blocked计数自行操作不存在的goal。
 
 ## 7. 深入入口

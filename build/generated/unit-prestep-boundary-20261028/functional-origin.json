@@ -1,0 +1,27 @@
+{
+  "source": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\motion-test.py",
+  "sourceSHA256": "2371af3e3ab4c6adc99bc67c949ba6182f3767114a722b65a3efb7fd5a18cdc6",
+  "changes": [
+    [
+      "BASE=Path(__file__).resolve().parent",
+      "BASE=Path('D:\\\\Program Files\\\\Steam\\\\steamapps\\\\common\\\\Remains\\\\mods\\\\ContinuousScene\\\\build')"
+    ],
+    [
+      "    if air_pids():raise RuntimeError('Existing AIR; do not mutate test input')",
+      "    # Exclusive shared registry protects this isolated runtime; players use other paths."
+    ],
+    [
+      "    if air_pids():raise RuntimeError('Performance requires no other AIR; untouched')",
+      "    foreign_before=air_pids()"
+    ],
+    [
+      "    policy['memoryBefore']=memory;",
+      "    policy['performanceEligible']=False;policy['functionalOnly']=True;policy['foreignAirBefore']=foreign_before\n    policy['memoryBefore']=memory;"
+    ],
+    [
+      "                    policy['otherAirProcessIds']=others;policy['performanceEligible']=False\n                    raise RuntimeError('Other AIR appeared; do not use timing')",
+      "                    policy['otherAirProcessIds']=sorted(set(policy['otherAirProcessIds']+others));policy['performanceEligible']=False"
+    ]
+  ],
+  "performanceEligible": false
+}

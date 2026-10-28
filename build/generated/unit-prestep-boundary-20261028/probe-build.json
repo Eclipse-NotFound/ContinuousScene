@@ -1,0 +1,23 @@
+{
+  "command": [
+    "D:/Program Files/Adobe Animate 2024/jre/bin/java.exe",
+    "-Xmx512m",
+    "-Dfile.encoding=UTF-8",
+    "-jar",
+    "D:/Program Files/Steam/steamapps/common/Remains/mods/Sandevistan/build/tools/flexsdk/lib/mxmlc.jar",
+    "+flexlib=D:/Program Files/Steam/steamapps/common/Remains/mods/Sandevistan/build/tools/flexsdk/frameworks",
+    "-load-config=D:/Program Files/Steam/steamapps/common/Remains/mods/ContinuousScene/build/generated/unit-prestep-boundary-20261028/compiler.xml",
+    "-swf-version=32",
+    "-static-link-runtime-shared-libraries=true",
+    "-output=D:/Program Files/Steam/steamapps/common/Remains/mods/ContinuousScene/build/generated/unit-prestep-boundary-20261028/ContinuousSceneMotionMod.swf",
+    "D:/Program Files/Steam/steamapps/common/Remains/mods/ContinuousScene/build/generated/unit-prestep-boundary-20261028/ProbeDoc.as"
+  ],
+  "inputs": {
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\unit-prestep-boundary-20261028\\build_probe.py": "AABB5CF595F508FEFD5009D61EDDBD4B7B6E77F5A1DF02F626A7462B71E1A5BD",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\unit-prestep-boundary-20261028\\ContinuousSceneMotionMod.as": "311F2B63A46413FCC05F24D6455934F340BB452F8F0AB56E8D300D361A93825D",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\unit-prestep-boundary-20261028\\ProbeDoc.as": "79611E4AEB24A2F1C5B9C3474782C8E0D98CB5BE6F114E7104A0C2C371683A3D",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\unit-prestep-boundary-20261028\\compiler.xml": "006A0F6A5DCC30AA443C3D752F3537B16C4A007C431AFD29FB3C94DE55B3804D"
+  },
+  "compiled": true,
+  "outputSHA256": "68486CB04C7B2B47324051B210B7DAE7225888195A5BA0210463D9CCC136DF25"
+}

@@ -1,0 +1,7 @@
+正在加载配置文件“D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\unit-run-regression-20261028\compiler.xml”
+D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\unit-run-regression-20261028\ProbeDoc.as(1): 列: 53 警告: 没有为类 ProbeDoc 指定构造函数。
+
+package { import flash.display.Sprite; public class ProbeDoc extends Sprite { private var keep:Class=ContinuousSceneMotionMod; } }
+                                                    ^
+
+D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\unit-run-regression-20261028\ContinuousSceneMotionMod.swf（3622 字节）

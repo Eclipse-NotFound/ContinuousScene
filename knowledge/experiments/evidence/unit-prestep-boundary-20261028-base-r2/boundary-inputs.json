@@ -1,0 +1,42 @@
+{
+  "name": "unit-prestep-boundary-20261028-base-r2",
+  "host": "4E5FAB45D6F5A2634C83BE5E7EAF387443F9FB4E56B945CD2BF54880F1F73C75",
+  "probe": "68486CB04C7B2B47324051B210B7DAE7225888195A5BA0210463D9CCC136DF25",
+  "plan": {
+    "expectError": true,
+    "rounds": 0
+  },
+  "diagnosticOnly": true,
+  "silence": {
+    "applicationID": "pfe-modsettings-continuous-motion-0866386b8890460ab79d87faf4bbbf31",
+    "descriptor": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\runtime\\pfe-modsettings-continuous-motion-0866386b8890460ab79d87faf4bbbf31.xml",
+    "descriptorSHA256": "BA7C8AA9251537899473A8D1FB00018E9519ACC998A8BB0C0DA26702E5292B65",
+    "path": "C:\\Users\\hello\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Roaming\\pfe-modsettings-continuous-motion-0866386b8890460ab79d87faf4bbbf31\\Local Store\\#SharedObjects\\pfe.swf\\config.sol",
+    "sha256": "12CC4E62A459EAFDA8463F800F8E1E8388CC392AC6A5BDD882D14C572435B257",
+    "byteLength": 99,
+    "snd": {
+      "globalVol": 0.0,
+      "stepVol": 0.0,
+      "musicVol": 0.0
+    },
+    "nadv": 1,
+    "writeOnce": true,
+    "decodedAfterWrite": true,
+    "requestedStorageRoot": "C:\\Users\\hello\\AppData\\Roaming\\pfe-modsettings-continuous-motion-0866386b8890460ab79d87faf4bbbf31",
+    "resolvedStorageRoot": "C:\\Users\\hello\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Roaming\\pfe-modsettings-continuous-motion-0866386b8890460ab79d87faf4bbbf31",
+    "appDataRedirected": true,
+    "nativeSndOnly": true,
+    "allAudioMuted": false,
+    "gameReadConfirmed": false,
+    "storageResolution": "exactObservedCodexVirtualization",
+    "packageFamilyName": null,
+    "packageIdentityAPI": {
+      "available": false,
+      "probeResult": 15700,
+      "readResult": null,
+      "family": null,
+      "reason": "APPMODEL_ERROR_NO_PACKAGE"
+    },
+    "exactObservedCodexVirtualization": true
+  }
+}

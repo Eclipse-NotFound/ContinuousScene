@@ -1,0 +1,90 @@
+{
+  "guards": [
+    {
+      "start": 2443,
+      "end": 2454,
+      "nullTarget": 2473
+    },
+    {
+      "start": 2619,
+      "end": 2630,
+      "nullTarget": 2655
+    },
+    {
+      "start": 3085,
+      "end": 3096,
+      "nullTarget": 3118
+    },
+    {
+      "start": 3691,
+      "end": 3702,
+      "nullTarget": 3721
+    }
+  ],
+  "originalInstructionsPreserved": 1719,
+  "existingBranchesRelocated": true,
+  "addedInstructions": 20,
+  "inBoundsExtraInstructionsPerLookup": 2,
+  "localStackProof": "Both paths preserve one operand; dup peaks at two <= existing max_stack 5",
+  "baseSHA256": "4E5FAB45D6F5A2634C83BE5E7EAF387443F9FB4E56B945CD2BF54880F1F73C75",
+  "method": "fe.unit.Unit::0:1:run",
+  "methodIndex": 1159,
+  "onlyMethodChanged": true,
+  "unchangedBodiesInMainABC": 3284,
+  "unchangedClassesInMainABC": 350,
+  "unchangedConstantsAndSignatures": true,
+  "exactInverseRestoresABC": true,
+  "oldCodeSHA256": "D08BF3C434778103A0B790E617B2AA484D35B741B009D1D476A877055AD9A0D8",
+  "newCodeSHA256": "7E3C3C53F08578B9283224D142C5572044F027918A48B7E3C250C63C959D99F2",
+  "oldCodeBytes": 3864,
+  "newCodeBytes": 3908,
+  "sourceInputs": {
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\unit-prestep-boundary-20261028\\build_host.py": "89BAF88374FAB58056297879A8616D5BBE0AAC6622FFD1D26E8F817CA61FD176",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-environment-paired-binary-20261028\\build.py": "C3D99C9818346FA165641C9AC71CE3A4CF677AD0BC89056B89000AC2321E2A68",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-environment-paired-binary-20261028\\raw_abc.py": "CBC35923B367D144F7990EA60651896E9ACE0C3A60131130A61113F30ADC05E7",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-environment-paired-binary-20261028\\resources.py": "7FF04127E211536745776DB10C9AFB1ABE173050196424AB0EDA676D65F8FFB0",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\native-crop-audit.py": "AC4383A6FA899EE62CAA54282AE6F31E5DDB83CEBABFC65A920EA5954F0F46DE"
+  },
+  "passed": true,
+  "runtimeVerified": false,
+  "performanceClaim": false,
+  "implementation": "python-direct-abc; no class recompile",
+  "maxStackUnchanged": 5,
+  "candidateSHA256": "B84F24280B3C676F4068E1CDC5A6EBEE89988F62BCF7A44D4DD71A4771360184",
+  "preservedRawTags": 5038,
+  "candidateReadbackExact": true,
+  "resources": {
+    "minimumAvailableCommit": 805306368,
+    "ownProcessMemoryLimit": 536870912,
+    "ownJobLimitApplied": true,
+    "jobPeakProcessMemoryUsed": 89776128,
+    "samples": [
+      {
+        "phase": "before-job-limit",
+        "availableCommit": 13351428096,
+        "availablePhysical": 8105177088,
+        "privateBytes": 14196736,
+        "peakPagefileUsage": 15638528,
+        "workingSetBytes": 23904256
+      },
+      {
+        "phase": "job-limit-applied",
+        "availableCommit": 13351428096,
+        "availablePhysical": 8105177088,
+        "privateBytes": 14196736,
+        "peakPagefileUsage": 15638528,
+        "workingSetBytes": 23908352
+      },
+      {
+        "phase": "audit-complete",
+        "availableCommit": 13298356224,
+        "availablePhysical": 8079437824,
+        "privateBytes": 58916864,
+        "peakPagefileUsage": 58916864,
+        "workingSetBytes": 68534272
+      }
+    ],
+    "gameMemoryGateChanged": false,
+    "foreignProcessesChanged": false
+  }
+}

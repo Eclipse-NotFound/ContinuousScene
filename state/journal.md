@@ -1,3 +1,11 @@
+## 2026-10-28 — 马哈顿载入鼹鼠 Unit.run #1010 修复并部署
+
+- 用户确认地图为马哈顿废墟。受控原生鼹鼠在普通48×25房间两侧边缘墙体分别触发同一Unit.run #1010：横向墙体修正使X1=-15或X2=1935，后续垂直读取列不存在。不是先假定合并坐标错误，也没有吞错/删除单位。
+- 仅守护Unit.run四处列读取，有效路径每查格增加dup/iftrue两指令；主ABC其他3284体及全部5038其他原始标签保持、完整ABC可逆、原1719指令仅重定位分支。未重新编译Unit类，现有天角兽/染色/镜头和loader保留。
+- base-r2实际左右两侧复现；候选fixed-r1恢复并完成马哈顿第五阶段普通/大场景各3次进入。正常轨迹v2两轮各153断言，12动作×12帧144状态完全相等。玩家并行但私有存储/桌面静音，明确无帧率资格；全部自有进程退出。v1 protected shX1读取是探针错误，原失败和后继分开保留。
+- 部署根pfe.swf：4E5FAB45→B84F24280B3C676F4068E1CDC5A6EBEE89988F62BCF7A44D4DD71A4771360184；CS9A5E及其他SWF/名单/描述符不变。备份build/backups/unit-boundary-20261028-183436-e481f4a8，回执state/unit-boundary-deployment-20261028.json，详细报告knowledge/experiments/unit-prestep-boundary-20261028.md。正常重启生效，未动玩家存档/进程。
+- 性能仍未达到近原版，本轮无性能候选部署；后续须保留B84F并重核旧夹具基线。foreign SceneRenderChecks仍不提交。公共机制另存physics-collision/discoveries/unit-run-boundary-column-1010.md。
+
 ## 2026-10-28 — 活动范围候选编译完成，后续诊断资源受阻
 
 - 已审查并实际编译当前0.9.1范围载体D90F01DF、六LMG探针5019EC84，两个exit0，精确回执在camera-activity-range-current-20261028/builds/r1。离线编译独立2GiB/1GiB门与512MiB堆上限；AIR门槛不变。后验只证明Stage -1000时点，不扩称全帧安全。

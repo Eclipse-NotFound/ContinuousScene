@@ -1,0 +1,134 @@
+{
+  "appId": "pfe-modsettings-continuous-motion-0866386b8890460ab79d87faf4bbbf31",
+  "desktopPolicy": "private",
+  "performanceEligible": false,
+  "otherAirProcessIds": [
+    80640,
+    89504
+  ],
+  "functionalOnly": true,
+  "foreignAirBefore": [
+    80640,
+    89504
+  ],
+  "memoryBefore": {
+    "load": 77,
+    "availablePhysical": 7635210240,
+    "availableCommit": 14126878720
+  },
+  "minimumAvailableCommit": 12980408320,
+  "pid": 83976,
+  "desktop": "RemainsTest-a2874b3635314b16952b1f3065cfe802",
+  "ownedProcessCpuSamples": [
+    {
+      "elapsed": 1.0,
+      "kernelMs": 187.5,
+      "userMs": 203.125
+    },
+    {
+      "elapsed": 2.014999999955762,
+      "kernelMs": 187.5,
+      "userMs": 218.75
+    },
+    {
+      "elapsed": 3.0469999999622814,
+      "kernelMs": 312.5,
+      "userMs": 312.5
+    },
+    {
+      "elapsed": 4.061999999976251,
+      "kernelMs": 531.25,
+      "userMs": 921.875
+    },
+    {
+      "elapsed": 5.0939999999827705,
+      "kernelMs": 531.25,
+      "userMs": 921.875
+    },
+    {
+      "elapsed": 6.125,
+      "kernelMs": 531.25,
+      "userMs": 937.5
+    },
+    {
+      "elapsed": 7.139999999955762,
+      "kernelMs": 531.25,
+      "userMs": 937.5
+    },
+    {
+      "elapsed": 8.171999999962281,
+      "kernelMs": 609.375,
+      "userMs": 1125.0
+    },
+    {
+      "elapsed": 9.202999999979511,
+      "kernelMs": 1375.0,
+      "userMs": 1484.375
+    },
+    {
+      "elapsed": 10.21899999998277,
+      "kernelMs": 2046.875,
+      "userMs": 1796.875
+    },
+    {
+      "elapsed": 11.25,
+      "kernelMs": 2687.5,
+      "userMs": 2156.25
+    },
+    {
+      "elapsed": 12.280999999959022,
+      "kernelMs": 3015.625,
+      "userMs": 2734.375
+    },
+    {
+      "elapsed": 13.296999999962281,
+      "kernelMs": 3390.625,
+      "userMs": 3421.875
+    },
+    {
+      "elapsed": 14.327999999979511,
+      "kernelMs": 3453.125,
+      "userMs": 4312.5
+    },
+    {
+      "elapsed": 15.34399999998277,
+      "kernelMs": 3484.375,
+      "userMs": 5218.75
+    },
+    {
+      "elapsed": 16.375,
+      "kernelMs": 3562.5,
+      "userMs": 6109.375
+    },
+    {
+      "elapsed": 17.389999999955762,
+      "kernelMs": 3890.625,
+      "userMs": 7250.0
+    },
+    {
+      "elapsed": 18.42199999996228,
+      "kernelMs": 4031.25,
+      "userMs": 7968.75
+    },
+    {
+      "elapsed": 19.45299999997951,
+      "kernelMs": 4468.75,
+      "userMs": 9015.625
+    },
+    {
+      "elapsed": 20.46899999998277,
+      "kernelMs": 4656.25,
+      "userMs": 11046.875
+    },
+    {
+      "elapsed": 21.5,
+      "kernelMs": 4921.875,
+      "userMs": 11921.875
+    },
+    {
+      "elapsed": 22.514999999955762,
+      "kernelMs": 4968.75,
+      "userMs": 11921.875
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "command": [
+    "D:/Program Files/Adobe Animate 2024/jre/bin/java.exe",
+    "-Xmx512m",
+    "-Dfile.encoding=UTF-8",
+    "-jar",
+    "D:/Program Files/Steam/steamapps/common/Remains/mods/Sandevistan/build/tools/flexsdk/lib/mxmlc.jar",
+    "+flexlib=D:/Program Files/Steam/steamapps/common/Remains/mods/Sandevistan/build/tools/flexsdk/frameworks",
+    "-load-config=D:/Program Files/Steam/steamapps/common/Remains/mods/ContinuousScene/build/generated/unit-run-regression-v2-20261028/compiler.xml",
+    "-swf-version=32",
+    "-static-link-runtime-shared-libraries=true",
+    "-output=D:/Program Files/Steam/steamapps/common/Remains/mods/ContinuousScene/build/generated/unit-run-regression-v2-20261028/ContinuousSceneMotionMod.swf",
+    "D:/Program Files/Steam/steamapps/common/Remains/mods/ContinuousScene/build/generated/unit-run-regression-v2-20261028/ProbeDoc.as"
+  ],
+  "inputs": {
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\unit-run-regression-v2-20261028\\build_probe.py": "AABB5CF595F508FEFD5009D61EDDBD4B7B6E77F5A1DF02F626A7462B71E1A5BD",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\unit-run-regression-v2-20261028\\ContinuousSceneMotionMod.as": "39F2A6FECA0093D2750E8011E2B635F52B018F8E3FCC68961688C6582232C340",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\unit-run-regression-v2-20261028\\ProbeDoc.as": "79611E4AEB24A2F1C5B9C3474782C8E0D98CB5BE6F114E7104A0C2C371683A3D",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\unit-run-regression-v2-20261028\\compiler.xml": "D81561784B41EDA6F85E53C598AA4C591BF15B5A184105484A2BA5BCC396BCD7"
+  },
+  "compiled": true,
+  "outputSHA256": "1D979D84478D340CFB77EDB649370EB6AE97AA68434BC88B62B2F021E7BB6253"
+}
