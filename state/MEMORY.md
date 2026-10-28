@@ -48,7 +48,7 @@ LAD8ADB/WB1411保持；526正式文件/13运行输入。alicorn部署回执state
 8. **当前RC2普通/大场景参照均完成并独立核验**：camera-dense-reference-rc2-20261028-normal-r1/scene-r1，AIR56856/67024已退出；复用dense-v2探针7F1F0B（不是同名产品7F1F），同原生六LMG/ASSR/200px冲刺，各1200完整间隔。normal均35.510833ms/中位34/P95 46/最大123；scene59.570ms/中位58/P95 75/最大167。Stage监听段10.53211/20.20517ms（各1199条），native带9.05833/18.85917ms（各1200条）。计时无新warm/slices/miss/forced/empty，scene常驻130块、普通0。不同自然群体/镜头边界仍保留，差24.059ms不是纯渲染或GPU因果；旧RC固定55.492ms仍是有效历史，不能冒充当前RC固定镜头数据。
 9. 尾段addon camera-tail-sampling-20261028已编译：07CFFC4F48993CA50201EF84DBAA9299E5C1FBA9C78B255F4D2E9A6A47C921EC，5136字节，仅flash依赖。r1在AIR创建前被4GiB资源门拦下，可用1,173,630,976B，无PID、无样本；编译成功不等于采样成功。四窗必须落入实际完整战斗区间，至少两窗CPU阳性且总计≥20才可归因，全轮诊断不验收帧率。
 10. camera-activity-range-current-20261028已实际编译：载体D90F01DF6FE2C9777AD19C50A9A941634D4FFFA9F18DB5BAF2680F14EA947189、探针5019EC84CBD4467BAE9C7AF8B5555C4A28CFB09AE2895BD2792A77C8400B703A，builds/r1/build.json。独立离线2GiB/1GiB预检、512MiB堆/180秒/512MiB运行线，最低提交1.55GB，双exit0。manifest5EAA844B，保留CS0.9.1天角兽与Activity保护，仅收窄未参战远处预激活区，不改永久参战锁。尚未AIR；B应用/oldNearOnlySleeping阳性、恢复、观察成本待验。后验仅到Stage -1000，不能保证其后所有显示广播无再写。FA2B及当前参照均不覆盖自然纵移/长探索/RV开启；没有新性能部署。
-11. 资源观察曾等到连续三次5GiB以上、末次8.78GB无AIR，但登记往返后tail-r2又在创建前以3,974,184,960B失败，无PID/样本。新有界等待入口准备把资源确认和一次调用连接，不降低AIR保护、不无限重试。
+11. 资源观察曾等到连续三次5GiB以上、末次8.78GB无AIR，但登记往返后tail-r2又在创建前以3,974,184,960B失败，无PID/样本。新camera-benchmark-wait入口22377B33已实际等180.016秒、36次检查，tail-r3等待回执notReady/未调用子runner：最高2,594,689,024B、最后2,083,602,432B。没有降低AIR保护或无限重试，全部自有进程退出。下次tail用新r4名称（r3等待回执保留）；range-r1尚未尝试。
 
 ## 5. 累积活动线索与停止路线
 

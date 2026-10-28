@@ -1,0 +1,436 @@
+{
+  "version": "camera-benchmark-wait-1",
+  "name": "camera-tail-sampling-20261028-r3",
+  "target": "tail",
+  "status": "notReady",
+  "readinessIsNotATest": true,
+  "rootSupervised": true,
+  "automaticRetry": false,
+  "inputSHA256": {
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-benchmark-wait-20261028\\run.py": "22377B33D96269B4ACAF3F57FF251D8F2D7D966FAB10F07A1791FB13F37BF0C4",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-tail-sampling-20261028\\run.py": "9DE3A6FFD0676C2E08FA04F3AA00F06AB3BCB875BF8A8B36238CC2304DE7A86B",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-tail-sampling-20261028\\build.json": "A1FDD927315FDB4F71458E106CB77E872FEC1BC94D6560ABAB39612514DC6003",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\motion-test.py": "2371AF3E3AB4C6ADC99BC67C949BA6182F3767114A722B65A3EFB7FD5A18CDC6",
+    "C:\\Users\\hello\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe": "CEABB31054D429F57CB3825775677EEAF0DB35FDABBC5FF6AEF661C037154B00"
+  },
+  "plannedCommand": [
+    "C:\\Users\\hello\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-tail-sampling-20261028\\run.py",
+    "--name",
+    "camera-tail-sampling-20261028-r3",
+    "--registry-wait",
+    "300"
+  ],
+  "childCommand": null,
+  "pid": null,
+  "exitCode": null,
+  "wrapperExitCode": 0,
+  "launched": false,
+  "ready": false,
+  "samples": [
+    {
+      "elapsed": 0.07800000000861473,
+      "memory": {
+        "load": 75,
+        "availablePhysical": 8185372672,
+        "availableCommit": 2326781952
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 5.14100000000326,
+      "memory": {
+        "load": 75,
+        "availablePhysical": 8185139200,
+        "availableCommit": 2362621952
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 10.203000000008615,
+      "memory": {
+        "load": 75,
+        "availablePhysical": 8180875264,
+        "availableCommit": 2358824960
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 15.26600000000326,
+      "memory": {
+        "load": 75,
+        "availablePhysical": 8320581632,
+        "availableCommit": 2531733504
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 20.312999999994645,
+      "memory": {
+        "load": 75,
+        "availablePhysical": 8357740544,
+        "availableCommit": 2490605568
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 25.375,
+      "memory": {
+        "load": 75,
+        "availablePhysical": 8380358656,
+        "availableCommit": 2517233664
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 30.42200000002049,
+      "memory": {
+        "load": 75,
+        "availablePhysical": 8407941120,
+        "availableCommit": 2594689024
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 35.51600000000326,
+      "memory": {
+        "load": 75,
+        "availablePhysical": 8394567680,
+        "availableCommit": 2576130048
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 40.578000000008615,
+      "memory": {
+        "load": 75,
+        "availablePhysical": 8360534016,
+        "availableCommit": 2509492224
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 45.625,
+      "memory": {
+        "load": 75,
+        "availablePhysical": 8373350400,
+        "availableCommit": 2533101568
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 50.67200000002049,
+      "memory": {
+        "load": 75,
+        "availablePhysical": 8349687808,
+        "availableCommit": 2431082496
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 55.735000000015134,
+      "memory": {
+        "load": 75,
+        "availablePhysical": 8342511616,
+        "availableCommit": 2562535424
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 60.78200000000652,
+      "memory": {
+        "load": 75,
+        "availablePhysical": 8297111552,
+        "availableCommit": 2497101824
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 65.84400000001187,
+      "memory": {
+        "load": 75,
+        "availablePhysical": 8202829824,
+        "availableCommit": 2325327872
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 70.90700000000652,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8032911360,
+        "availableCommit": 2322169856
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 75.95300000000861,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8006172672,
+        "availableCommit": 2351886336
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 81.0,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 7957671936,
+        "availableCommit": 2302545920
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 86.06299999999464,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8034865152,
+        "availableCommit": 2385522688
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 91.125,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8050204672,
+        "availableCommit": 2309885952
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 96.17200000002049,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8091291648,
+        "availableCommit": 2241736704
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 101.23500000001513,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8085483520,
+        "availableCommit": 2401042432
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 106.28200000000652,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8060796928,
+        "availableCommit": 2379243520
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 111.32800000000861,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8074465280,
+        "availableCommit": 2287296512
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 116.39100000000326,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8080359424,
+        "availableCommit": 2301898752
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 121.45300000000861,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8093548544,
+        "availableCommit": 2394218496
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 126.5,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8066609152,
+        "availableCommit": 2378436608
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 131.56299999999464,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8008101888,
+        "availableCommit": 2315083776
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 136.61000000001513,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8077885440,
+        "availableCommit": 2286030848
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 141.70300000000861,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8076152832,
+        "availableCommit": 2183749632
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 146.75,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8078139392,
+        "availableCommit": 2331828224
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 151.81299999999464,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8097943552,
+        "availableCommit": 2341339136
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 156.86000000001513,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8092315648,
+        "availableCommit": 2229952512
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 161.9220000000205,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 8063115264,
+        "availableCommit": 2191642624
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 167.07800000000861,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 7929262080,
+        "availableCommit": 2147000320
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 172.15700000000652,
+      "memory": {
+        "load": 77,
+        "availablePhysical": 7769010176,
+        "availableCommit": 1920360448
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    },
+    {
+      "elapsed": 177.20300000000861,
+      "memory": {
+        "load": 76,
+        "availablePhysical": 7929245696,
+        "availableCommit": 2083602432
+      },
+      "air": [],
+      "good": false,
+      "stable": 0
+    }
+  ],
+  "requiredCommit": 5368709120,
+  "requiredPhysical": 2147483648,
+  "intervalSeconds": 5,
+  "requiredStable": 3,
+  "maximumWaitSeconds": 180,
+  "startedAt": 1793170412.9956284,
+  "waitElapsedSeconds": 180.01600000000326
+}
