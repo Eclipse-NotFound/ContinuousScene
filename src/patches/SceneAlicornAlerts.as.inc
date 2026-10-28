@@ -1,10 +1,9 @@
-// SOURCE-ONLY CANDIDATE, 2026-10-21. Not compiled, tested or installed.
-// Replace only UnitAlicorn.budilo and UnitAlicorn.telepat method bodies.
-// No production include or build recipe references this file yet.
+// Native broadcast bodies, integrated by build/alicorn-alerts.py (2026-10-28).
+// The recipe also hooks native receipt, calm and explicit reset boundaries.
 // Approved shape: one native room centred on the sender's X/Y anchor.
 // Width 48*40 = 1920; height 25*40 = 1000. Edges are inclusive.
 // Applies to the active ContinuousScene renderer, including authored maps.
-// It intentionally preserves native relaying, pursuit and teleport rules.
+// Pursuit/teleport remain native. Both paths share one recipient relay decision.
 
       override public function budilo(param1:Number = 500) : *
       {
@@ -17,6 +16,7 @@
             && ("sceneLarge" in sceneGraph) && Boolean(sceneGraph["sceneLarge"]);
          var sceneHalfWidth:Number = World.cellsX * World.tileX / 2;
          var sceneHalfHeight:Number = World.cellsY * World.tileY / 2;
+         if(sceneBounded && sceneGraph["sceneNativeCall"]("alicornAllow",[this]) === false) return;
          if(celUnit == null)
          {
             celX = X;
@@ -46,6 +46,7 @@
             && ("sceneLarge" in sceneGraph) && Boolean(sceneGraph["sceneLarge"]);
          var sceneHalfWidth:Number = World.cellsX * World.tileX / 2;
          var sceneHalfHeight:Number = World.cellsY * World.tileY / 2;
+         if(sceneBounded && celUnit != null && sceneGraph["sceneNativeCall"]("alicornAllow",[this]) === false) return;
          for each(_loc1_ in loc.units)
          {
             if(_loc1_ != this && _loc1_.fraction == fraction && _loc1_.sost == 1 && !_loc1_.unres && _loc1_.celUnit == null)
@@ -55,6 +56,10 @@
                if(!sceneBounded || (Math.abs(_loc1_.X - X) <= sceneHalfWidth
                   && Math.abs(_loc1_.Y - Y) <= sceneHalfHeight))
                {
+                  // Target sharing bypasses alarma(). Record only a calm
+                  // recipient; an already independently alert unit keeps its role.
+                  if(sceneBounded && celUnit != null && _loc1_ is UnitAlicorn && _loc1_.aiSpok == 0)
+                     sceneGraph["sceneNativeCall"]("alicornReceive",[_loc1_]);
                   _loc1_.setCel(celUnit);
                }
             }

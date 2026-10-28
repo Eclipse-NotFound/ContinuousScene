@@ -1,0 +1,22 @@
+{
+  "phase": 0,
+  "errors": [],
+  "ok": true,
+  "checks": [
+    {
+      "ok": true,
+      "detail": "0.9.1",
+      "name": "loaded-version"
+    },
+    {
+      "ok": true,
+      "detail": null,
+      "name": "slider-contract"
+    },
+    {
+      "ok": true,
+      "detail": null,
+      "name": "preference-reloaded"
+    }
+  ]
+}

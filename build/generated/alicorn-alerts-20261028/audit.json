@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "base": "A796827173AF7D6FAB9885FB66ECC62182AB5335918A30C7CCE4C44914A238B7",
+  "host": "4E5FAB45D6F5A2634C83BE5E7EAF387443F9FB4E56B945CD2BF54880F1F73C75",
+  "methods": [
+    "fe.unit.UnitAlicorn::0:1:alarma",
+    "fe.unit.UnitAlicorn::0:1:budilo",
+    "fe.unit.UnitAlicorn::0:1:control",
+    "fe.unit.UnitAlicorn::0:1:setNull",
+    "fe.unit.UnitAlicorn::0:1:telepat"
+  ],
+  "unchangedBodies": 5766,
+  "allClassLayoutsPreserved": true,
+  "oldConstantsPreserved": true,
+  "otherTagsPreserved": true
+}

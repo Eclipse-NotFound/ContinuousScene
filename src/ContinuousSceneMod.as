@@ -14,7 +14,7 @@ package {
 
     /** Production entry only: no new game, test enemies, movement or save-slot writes. */
     public class ContinuousSceneMod {
-        public static const VERSION:String="0.9.0";
+        public static const VERSION:String="0.9.1";
         private static const LAND:String="continuous_scene";
         private static var main:*, w:*, worldClass:Class, gameData:Class;
         private static var pool:XML, definition:XML;
@@ -23,6 +23,7 @@ package {
         private static var nextLog:int=0;
         private static var centeredMap:*;
         public static var nativeEnabled:Boolean=false;
+        public static var alicornRelayPercent:int=0;
         private static var settingsAPI:*;
         private static var nextSettings:int=0;
         private static var fastTransition:Boolean=false;
@@ -41,7 +42,9 @@ package {
                 moveOffset:NativeSceneAdapter.moveOffset,reward:NativeSceneAdapter.reward,
                 takeXP:NativeSceneAdapter.takeXP,detecting:NativeSceneAdapter.detecting,
                 activity:NativeSceneActivity.update,sleeping:NativeSceneActivity.sleeping,
-                wake:NativeSceneActivity.wake,activityStats:NativeSceneActivity.stats};
+                wake:NativeSceneActivity.wake,activityStats:NativeSceneActivity.stats,
+                alicornAllow:SceneAlicornAlerts.allow,alicornReceive:SceneAlicornAlerts.receive,
+                alicornClear:SceneAlicornAlerts.clear};
             main.addChild(carrier); log("v"+VERSION+" loaded");
             main.stage.addEventListener(Event.ENTER_FRAME,onFrame,false,-200,true);
         }
@@ -211,15 +214,26 @@ package {
             var file:File=File.applicationStorageDirectory.resolvePath("ContinuousScene.preferences.json");
             if(!file.exists)return;
             var fs:FileStream=new FileStream();
-            try {fs.open(file,FileMode.READ);var data:Object=JSON.parse(fs.readUTFBytes(fs.bytesAvailable));nativeEnabled=data.nativeEnabled===true;}
-            catch(error:Error) {nativeEnabled=false;}
+            try {fs.open(file,FileMode.READ);var data:Object=JSON.parse(fs.readUTFBytes(fs.bytesAvailable));
+                nativeEnabled=data.nativeEnabled===true;alicornRelayPercent=normalizePercent(Number(data.alicornRelayPercent));}
+            catch(error:Error) {nativeEnabled=false;alicornRelayPercent=0;}
             finally {try {fs.close();}catch(ignore:Error) {}}
         }
         public static function setNativeEnabled(value:Boolean):void {
             nativeEnabled=value;
+            writePreference();
+        }
+        private static function normalizePercent(value:Number):int {
+            return isFinite(value)?int(Math.max(0,Math.min(100,Math.round(value)))):0;
+        }
+        public static function setAlicornRelayPercent(value:Number):void {
+            alicornRelayPercent=normalizePercent(value);
+            writePreference();
+        }
+        private static function writePreference():void {
             var fs:FileStream=new FileStream();
             var temp:File=File.applicationStorageDirectory.resolvePath("ContinuousScene.preferences.tmp");
-            try {fs.open(temp,FileMode.WRITE);fs.writeUTFBytes(JSON.stringify({nativeEnabled:value}));fs.close();
+            try {fs.open(temp,FileMode.WRITE);fs.writeUTFBytes(JSON.stringify({nativeEnabled:nativeEnabled,alicornRelayPercent:alicornRelayPercent}));fs.close();
                 temp.moveTo(File.applicationStorageDirectory.resolvePath("ContinuousScene.preferences.json"),true);}
             finally {try {fs.close();}catch(ignore:Error) {}}
         }
@@ -232,6 +246,10 @@ package {
                 key:"nativeEnabled",label:"以连续大场景载入原版地图",kind:"check",def:false,
                 hint:"开启后，原版任务生成的主地图合并为连续场景，镜头、敌人和子弹可以跨房。\n在下次生成地图或读取存档时生效；基地、门后的独立房间和挑战区域保留原版入口。地图刷新遵循原版任务规则。",
                 get:function():* {return nativeEnabled;},set:function(value:*):void {setNativeEnabled(Boolean(value));}
+            },{
+                key:"alicornRelayPercent",label:"天角兽接力报警概率",kind:"slider",def:0,min:0,max:100,step:1,suffix:"%",
+                hint:"仅影响连续大场景。每次报警覆盖以发送者为中心的一间原版房间范围，可跨旧房间边界。\n0%：接报者不再转发；100%：接力不限次数，每一跳仍受范围限制。\n每只接报天角兽在本轮警戒中只判定一次，重复接报或随后看见玩家不会重抽；原版警戒结束后可重新判定。修改对下次接报生效。",
+                get:function():* {return alicornRelayPercent;},set:function(value:*):void {setAlicornRelayPercent(Number(value));}
             }],null,"连续大场景 · 当前地图保持原有模式；设置自动保存。");
             settingsAPI=api;log("settings registered continuousscene");
         }
