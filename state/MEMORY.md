@@ -37,25 +37,20 @@
 最新安装只同步CS四源（入口/SATS清理钩子及新增SceneEventBitmapFill、ScenePresentationCoordinator）和CS/WB两份产物。WB沿准确13源生产配方，仅增加启用前同步恢复钩子；其HEAD仍不是完整生产源，不直接构建覆盖。准确源位于build/generated/camera-event-fill-product-20261029/{frozen-product-src,wallblend/frozen-product-src}。旧0.9.2/0.5.9为380/141，备份保留。LAD8ADB及其它配置未改，外来SceneRenderChecks.as未碰。
 共享工具：air_test_process ECE3ED08、test_resources 86D5F280、test_registry E3E43581；资源只设自有子进程normal CPU、memory5、HighQoS，不能改全局或外部进程。
 
-## 4. 最新接续：2026-10-29镜头实测，无新部署
+## 4. 最新接续：缩放覆盖与热态扫描，无新部署
 
-用户要求继续优化镜头表现。正式A80/D8A/FE3保持；七次隔离游戏均退出，无自有JVM/AIR或等待登记。主报告`knowledge/experiments/camera-motion-20261029.md`。本轮没有达到近原版，也没有候选可直接部署。
+用户要求继续深入优化，并确认大窗口与默认小窗口都明显卡顿。报告`knowledge/experiments/camera-scale-coverage-20261029.md`。正式A80/D8A/FE3回读保持；四次实际AIR及一次启动前失败均结束，无自有进程或等待。
 
-- frame-cost-r1（AIR12080/DA70F6D1）2160区间采48个短窗，1窗Sample count mismatch，整体采样验收失败照实保留。47有效窗支持移动增加原生pre-render/render；sceneNativeEnvironment分配87582/188846次，但数量不是字节或耗时。16次64–70MiB内存下降关联86–112ms；不能据相关就判所有尖峰为GC。getter隔离：totalMemoryNumber2161次共3ms/max2，privateMemory每次11–17ms，后者禁逐帧性能观察。
-- environment-current-r1（AIR39688/B6263E1D，诊断宿主9B73）同实例原/缓存键各静横纵360区间，环境两臂各150×20字段、五图RGB0/alpha0通过。横30.247→29.369ms（2.90%）、纵28.969→28.806（0.57%），正内存增量只降2.6%。**停止环境键候选，不部署**；旧F15跨进程7.7%不再作为更强证据。旧Math.max clamp已有失败，不重做。
-- turret-pose-r1（AIR88888/E9BAE774）13炮塔×120自然帧全部枪体/子对象身份保留、正确帧且停止播放；**未证实重复重建炮塔**。goto调用栈可能在执行全局待处理队列。
-- turret-guard-r1（AIR43360/CFEBC132，诊断宿主55F8）2160/28通过，仅同帧且停止时跳过goto。静23.100→23.936、横33.083→33.231、纵31.447→31.011ms；Stage观察带少约2ms但整帧不改善。**停止炮塔守护**，不做产品化/额外动画验收；原指令/其他5770方法体与1016类保持，诊断宿主禁止安装。
-- object-layers-v2-r1（AIR5600/D0CE79ED）2700完整区间采完后，旧末尾360计数断言失败（正确计划15组各180）；原ok=false及登记failed不改。独立completed-timing-review逐条验证可见掩码/时间/29边界/零新增绘制/恢复，明确fullRunPassed=false、timingEvidenceValid=true、未做末尾像素检查。全显静/横/纵23.256/32.089/31.461ms；暂隐visObjs[0]22.189/28.033/29.411；[1]24.117/30.850/30.594；[2]18.667/29.733/30.911；[3,4,5]21.406/31.878/30.283。隐藏只是归因，含阴影的[0]也包含其他物件，不能把差值全归阴影。v1只编译未运行；v2避免逐帧同值写visible。
-- shadow-current-r1（AIR81984/26E9FD60）旧未执行透明阴影普查在当前产品运行，9检查/19ms只读/0性能样本：596独立Box阴影，124个wall2+alpha0+滤镜+挂载visible，无别名/共用。
-- shadow-cull-r1（AIR47524/0927DF9E）当前产品+本地诊断helper，原生帧前恢复visible、帧后只隐藏透明且祖先效果中性目标。2160/28通过、124目标各B帧实用、视口包围重叠至少4个、五图RGB/alpha全0；134540次隐藏/恢复平衡，localHelperUpdates2166如实记录。静19.169→19.861、横29.133→29.692、纵29.147→28.167ms；横>50帧1→4。**停止透明阴影方案**，无稳定镜头收益，不移除恢复保护或扩到可见阴影追求数字。
+- 1280×720实际进入时isZoom2、scale2/3、原帧率30。当前呈现只支持scale1，旧.5/.8检查仅验证回退；这是适用覆盖缺口，不能解释大窗口卡顿或称唯一主因。
+- 缩放v1-r1独立APPDATA权限失败，未启动；r2 AIR79304在暖图玩家投影条件失败，候选updates0；像素专用v2 AIR20740允许镜头离开玩家，但根getter与concat量化差使资格回退。均无像素性能结论，原失败保留。
+- v3 AIR44040/56E0E91A实际完成10图：2/3五图RGB146–191、alpha255不合格；.5五图RGBA精确；.8在拼接矩阵资格处停止，未做候选图。独立partial-pixel-review验证原生重复/恢复、实际矩阵及4280次alpha/40节点清理平衡，不把整体失败改通过。根已查看PNG。**停止直接放宽缩放资格**，不继续放宽.8资格，不据.5图像证明性能或部署。
+- 完整预绘环memo：当前3259 C5D891D9/1655字节核实；诊断569B3CB5只加可选回调，保留5770方法/1016类/其它tag及逆编辑。全±2环阳性存在证明守字典/对象/尺寸/resident/evictions，无job/退出时原路径。诊断宿主禁止部署。
+- upcoming-r1 AIR38148/61ABBEF1：2160完整区间/28断言，168模拟缺格检查；逐2161观察验证A每帧0回调、B每帧1，1080调用=1076命中+4证明，266格读取、0miss。静23.203→22.472、横35.658→32.228、纵31.444→33.339ms；纵慢6.02%。横原路径最后一窗52.011ms/36长帧，保留不删，不作9.62%严格因果提速。**停止memo候选，不生产化**。
+- 上轮七次测试、环境键/炮塔/透明阴影等停止结论仍有效，详见camera-motion-20261029.md与本次归档MEMORY-history-20261029-before-scale-coverage.md，不重做。
 
-末尾Box.step/runVis只读核对不支持固定静止物件每帧重复写位置，未做setter/cache候选。RV磁盘config为enabled=1/current，仅是当前配置证据；本轮所有计时均隔离关闭RV/WB/LAD，不能声称覆盖开启效果时的体验。
-
-本轮三个优化候选停止；没有改生产src/release/根SWF，没有碰外来SceneRenderChecks。详细旧里程碑原快照归档`MEMORY-history-20261029-before-camera-motion.md`，不丢弃0.9.3产品、SATS、鼹鼠等既有证据。
+本轮图像是零计时组件实验，memo是120fps容量实验、玩家可离屏；五张开关图不执行upcoming，168项非真实冷态回归。不能当自然跳跃/30fps节奏/视觉全开或近原版验收。没有改生产src/release/根SWF、配置或真实存档，外来SceneRenderChecks保持。
 
 **已部署里程碑仍有效：**CS0.9.3真实product-camera横约11.7%/纵9.7%、product-live约6%平均差且有自然负载差异；长帧并未消失。1213产品检查、7原生V、14SATS像素用例通过。呈现仅scale1/native320/无震屏且RV enabled/wallbright、WB、LAD全关时启用，否则回原生；开效果只证明回退兼容。SATS早前同图开启842/891/713→144/235/184ms已安装，鼹鼠边缘预跑#1010也已修复。
-
-原始证据统一在`knowledge/experiments/evidence/<上述camera-前缀>-20261029-r1`。可直接回读本轮各generated目录的baseline/probe-build/work/verify或host-audit；输入冻结后不改旧校验器、原result或失败登记。旧安装前380/141验证器正确拒绝当前产品，不能放宽断言或用旧宿主覆盖A80。
 
 ## 5. 累积活动线索与停止路线
 
@@ -71,7 +66,7 @@ SATS整数格批量draw再copyPixels已由旧33C1实测否定：7组像素失败
 
 以镜头移动为核心，正常模拟、完整间隔、长帧和真实画面不能省略。最新证据仍指向可见地形/物件的原生合成成本；局部CPU、分配次数、透明节点数下降均未稳定转成整帧改善。不能据此宣称找到唯一根因、近原版或优化完成。
 
-后继若有新的可检验呈现假设，先与已停止路线及当前准确产品核对；不自动重做环境键、炮塔同帧守护、透明阴影、Math.max clamp、节点cache/combo、远景缓存、全世界缓存、旧Box摘树等。对象层细分的错误在计时后摘要，现有完整数据已独立核验，不为修报告重跑同一套2700区间。普通房间、自然纵移/长探索、效果开启与全图2–5秒加载仍未全面达标。
+后继若有新的可检验呈现假设，先与已停止路线及当前准确产品核对；不自动重做环境键、炮塔同帧守护、透明阴影、Math.max clamp、节点cache/combo、远景缓存、全世界缓存、旧Box摘树等；最新完整环memo和直接放宽非整数缩放资格也已停止。对象层细分的错误在计时后摘要，现有完整数据已独立核验，不为修报告重跑同一套2700区间。普通房间、自然纵移/长探索、效果开启与全图2–5秒加载仍未全面达标。
 
 旧活动范围候选只编译、未运行，其旧宿主/源码不等于当前A80/D8A，不是待补做债务。本轮透明阴影普查已运行，撤销旧“未运行”停点；其后继候选结果为不部署。不要恢复已撤回的下午配方或覆盖天角兽/染色/SATS/鼹鼠修复。
 
@@ -79,7 +74,8 @@ SATS整数格批量draw再copyPixels已由旧33C1实测否定：7组像素失败
 
 ## 7. 深入入口
 
-- 最新镜头接续：`knowledge/experiments/camera-motion-20261029.md`；各r1完整证据和独立失败计时复核；完整上一快照`state/MEMORY-history-20261029-before-camera-motion.md`。
+- 最新缩放/扫描：`knowledge/experiments/camera-scale-coverage-20261029.md`；scaled-v3的partial-pixel-review与upcoming的callback-observation-review保留整体失败/容量边界。
+- 上轮镜头接续：`knowledge/experiments/camera-motion-20261029.md`；各r1完整证据和独立失败计时复核；完整上一快照`state/MEMORY-history-20261029-before-camera-motion.md`。
 - 最新镜头/SATS：camera-sats-current-20261028.md；evidence/camera-nearplayer-layer-split-20261028-r1/{camera-layer-review.json,storage/result.json,process-policy.json}；evidence/camera-nearplayer-tail-20261028-r3/{camera-tail-review.json,camera-nearplayer-tail-inputs.json,camera-air-wait-result.json}；evidence/sats-visible-product-checks-v3-20261028-r1；build/generated/sats-visible-release-20261028/{verification.json,host-audit.json,product-build.json}；state/sats-visible-deployment-20261028.json。keycache v2/v3失败目录与鼠标RESULTS保持原件。
 - 当前event-fill：state/camera-presentation-deployment-20261029.json；build/generated/camera-event-fill-product-20261029/{verification.json,verify_deploy.py,product-build.json}；evidence/camera-event-fill-product-{live,camera,checks-v3,memory}-20261029-r1/RESULTS.md。前3项是本次产品证据，memory仅观察且高开销。v1/v2实验和反序结果仍在旧目录，不能取代当前产品结果。
 - 停止node-cache：build/generated/camera-event-fill-node-cache-camera-20261029/RESULTS.md及同名evidence后缀-r1；失败live见camera-event-fill-node-cache-20261029/RESULTS.md。不与9D8F纯像素复用混同。
