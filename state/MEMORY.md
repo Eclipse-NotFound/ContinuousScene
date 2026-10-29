@@ -22,7 +22,7 @@
 
 ## 3. 当前正式安装
 
-天角兽任务2e828d8、A796染色/纵向缓冲、B84F预跑边界和180d46f的SATS修复均保留。2026-10-29 02:58:52已安装CS0.9.3及WB0.5.10-scene；根宿主A80、DLC、配置和其它模组不变，RC239252DF仍归负责人。新回执state/camera-presentation-deployment-20261029.json为installed/readback通过；备份build/backups/camera-presentation-20261029-025849-fe3f35922315。旧SATS回执描述旧380产品，不能当当前正式产品。
+天角兽任务2e828d8、A796染色/纵向缓冲、B84F预跑边界和180d46f的SATS修复均保留。2026-10-29 02:58:52已安装CS0.9.3及WB0.5.10-scene；本任务未再改根宿主A80、DLC或配置，RV BD64与RC6906由其它任务更新并保留，RC仍归负责人。新回执state/camera-presentation-deployment-20261029.json为installed/readback通过；备份build/backups/camera-presentation-20261029-025849-fe3f35922315。旧SATS回执描述旧380产品，不能当当前正式产品。
 
 | 文件 | SHA256 |
 |---|---|
@@ -31,13 +31,21 @@
 | WB0.5.10-scene | FE3E7A84753F6F3614440F69F8725E6E8639AEE4755ACF878AAFCFEDB95AC2E6 |
 | TDFC | 7ACD45193109267DBBF875240528048AD6F1D09FA3B8B36BAA6F98EBB5FDDCE5 |
 | ModLoader2.5 | 2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2 |
-| RV | 638E2D408E2CF46683C41114F75773829A1B4417D74BFFE9D08855A4FE343710 |
-| RC（10月29日最新测试冻结输入；非本任务部署） | 239252DF5EA24EC6DA5005BD80BFEB31A91E393D6B2BFE7B1FD7B371CD4E618C |
+| RV（其他任务更新） | BD64B5BBFE5A07A0B5BFF38E4C344652E1DF526CFD5C308D63B607123CE4A9AD |
+| RC（其他任务更新；非本任务部署） | 690604878BD8707007A99E3AD14F8F5F3F55CDD4948C8DEBE6CC87363AFD38C9 |
 
 最新安装只同步CS四源（入口/SATS清理钩子及新增SceneEventBitmapFill、ScenePresentationCoordinator）和CS/WB两份产物。WB沿准确13源生产配方，仅增加启用前同步恢复钩子；其HEAD仍不是完整生产源，不直接构建覆盖。准确源位于build/generated/camera-event-fill-product-20261029/{frozen-product-src,wallblend/frozen-product-src}。旧0.9.2/0.5.9为380/141，备份保留。LAD8ADB及其它配置未改，外来SceneRenderChecks.as未碰。
 共享工具：air_test_process ECE3ED08、test_resources 86D5F280、test_registry E3E43581；资源只设自有子进程normal CPU、memory5、HighQoS，不能改全局或外部进程。
 
-## 4. 最新接续：缩放覆盖与热态扫描，无新部署
+## 4. 最新接续：三层缩放候选图像通过，启动环境阻止性能验收
+
+最新报告`knowledge/experiments/camera-pacing-phase-20261029.md`。A473当前产品30/120真实对照4320完整区间：30纵移汇总41.406→41.064ms，前后方向反转，不是稳定改善；120容量不能当正式30fps体验。局部相位F03/round全四层均2/3五图alpha最大2，已停止。分层切换诊断不能独自充当首次绘制合格。
+
+独立mask7候选37F397BA仅接管Front/Back/Back2，水层原生。FA568367纯首次绘制15图（2/3、.5、1各5）RGBA全精确、创建清理平衡；同布局但自然玩家位置/单位数不同，不跨轮宣称解释旧全部误差。后继A283两轮计时前因出生点贴下边缘无法同时满足±96纵移及玩家屏内而正确失败、0样本。新3686890F平台夹具已编译：只在测前把隔离玩家放到现有净空地板一次，正常站稳45帧，再测完整2160区间；没有地图/敌人修改，不假装全程未移位。尚未执行到AS层，没有性能收益、未集成生产。
+
+13:55后AIR在游戏代码前0xC0000142退出，r3证实创建时资源设置成功，退出后旧HighQoS回读失败只是次生表现。复用12:52已通过的6A2小样例同样失败；Python/user32私有桌面子进程正常。仅改自有TEMP仍失败（AIR93392），可提交余量11.73GB；当前WinSta0无RemainsTest残留。用户手动Remains.exe报临时路径访问被拒，原launcher.log停在09:16；非受限用户74556对真实Temp的新建/回读/自有清理成功，不改ACL。**用户确认已有Remains.vbs能进入游戏**，这是可用直接入口，原启动器尚未修复，不能将两种异常归成同一根因。
+
+用户仅额外允许一次约10秒可见小样例，已使用：AIR101344继承交互桌面、唯一存储、无游戏，15秒未创建存储后按预定上限清理，仅有测试退出码1，不能写成自然0xC0000142。可见也未成功，不支持“只在隐藏桌面失败”；该授权不延伸到全图可见测试。全部自有进程/登记结束，无后台任务。继续前先恢复有效运行环境，再测3686890F；不部署仅图像通过的候选。不改外来SceneRenderChecks及camera-light-warm-lead的.dshclaim。下述前轮缩放/屏外结论仍有效。
 
 2026-10-29 后续用户强调横纵镜头与卡顿相关，并要求攻击命中屏幕外和 RV 遮住的敌人。新增 `offscreen-hits-20261029.md`：A80/D8A 不改，两轮真实 Bullet 组件已证实屏外自然休眠敌人能受伤，下次调度唤醒；RV关闭20项、开启21项；实墙/到期阴性通过，其他119/111睡眠者未醒。短弹道在敌人附近生成，不是枪口全射程、光束、爆炸或AI后续动作验收。实际依赖 RV BD64（D56）/RC6906由其它任务更新，收尾仍为该值，不能恢复旧638/239。第三轮屏内RV隐藏候选 AE055F7F 已编译，首次运行启动前低于4GiB保护线失败，无AIR，补查仍约2–3GiB。
 
