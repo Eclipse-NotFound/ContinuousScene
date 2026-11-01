@@ -1,0 +1,225 @@
+{
+  "valid": 12,
+  "total": 12,
+  "errors": [],
+  "scope": "One-interval sampling with internal allocations enabled; not frame-performance evidence. Live object getSize sums are incomplete and may include shared resources, not total allocated bytes.",
+  "groups": {
+    "cpu": {
+      "native-render": 108,
+      "other": 76,
+      "turret-animation": 65,
+      "native-environment": 29,
+      "tdfc": 25,
+      "rconnect": 17,
+      "probe": 11,
+      "addiction": 2
+    },
+    "alloc": {
+      "turret-animation": 54373,
+      "empty-stack": 36018,
+      "native-environment": 33858,
+      "other": 32958,
+      "native-render": 20034,
+      "tdfc": 19207,
+      "addiction": 5268,
+      "rconnect": 3900,
+      "probe": 236
+    },
+    "liveSizes": {
+      "turret-animation": 3851608,
+      "tdfc": 624648,
+      "other": 59716,
+      "addiction": 9888,
+      "probe": 7968,
+      "rconnect": 7824
+    }
+  },
+  "top": {
+    "cpu": [
+      [
+        "[\"[render]\"]",
+        66
+      ],
+      [
+        "[\"[pre-render]\"]",
+        42
+      ],
+      [
+        "[\"fe.graph::Grafon/sceneNativeEnvironment\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        19
+      ],
+      [
+        "[\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        18
+      ],
+      [
+        "[\"global/flash.sampler::startSampling\",\"FrameCostProbe$/observe\",\"ContinuousSceneMotionMod$/after\",\"[enterFrameEvent]\"]",
+        11
+      ],
+      [
+        "[\"flash.display::Sprite/constructChildren\",\"flash.display::Sprite\",\"flash.display::MovieClip\",\"flash.display::Sprite/constructChildren\",\"flash.display::Sprite\",\"flash.display::MovieClip\",\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        9
+      ],
+      [
+        "[\"[reap]\",\"fe.graph::Grafon/sceneNativeEnvironment\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        9
+      ],
+      [
+        "[\"NativeSceneActivity$/update\",\"Function/http://adobe.com/AS3/2006/builtin::apply\",\"fe.graph::Grafon/sceneNativeCall\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        7
+      ],
+      [
+        "[\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        7
+      ],
+      [
+        "[\"[mark]\",\"flash.events::EventDispatcher/addEventListener\",\"fl.managers::FocusManager/addFocusables\",\"fl.managers::FocusManager/addedHandler\",\"flash.display::Sprite/constructChildren\",\"flash.display::Sprite\",\"flash.display::MovieClip\",\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        7
+      ],
+      [
+        "[\"fe.loc::Trap/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        6
+      ],
+      [
+        "[\"rconnect.game::GameBridge$/probe\",\"rconnect.game::WallImpactVisuals$/get\",\"rconnect.game::WallImpactVisuals/observe\",\"rconnect.game::GameBridge/onMirrorFrame\",\"[enterFrameEvent]\"]",
+        6
+      ],
+      [
+        "[\"flash.events::EventDispatcher/addEventListener\",\"fl.managers::FocusManager/addFocusables\",\"fl.managers::FocusManager/addedHandler\",\"flash.display::Sprite/constructChildren\",\"flash.display::Sprite\",\"flash.display::MovieClip\",\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        5
+      ],
+      [
+        "[\"fl.managers::FocusManager/removeFocusables\",\"fl.managers::FocusManager/removedHandler\"]",
+        5
+      ],
+      [
+        "[\"[reap]\",\"flash.events::EventDispatcher/addEventListener\",\"fl.managers::FocusManager/addFocusables\",\"fl.managers::FocusManager/addedHandler\",\"flash.display::Sprite/constructChildren\",\"flash.display::Sprite\",\"flash.display::MovieClip\",\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        5
+      ]
+    ],
+    "alloc": [
+      [
+        "[]",
+        36018
+      ],
+      [
+        "[\"fe.graph::Grafon/sceneNativeEnvironment\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        33858
+      ],
+      [
+        "[\"[pre-render]\"]",
+        20034
+      ],
+      [
+        "[\"flash.events::EventDispatcher/addEventListener\",\"fl.managers::FocusManager/addFocusables\",\"fl.managers::FocusManager/addedHandler\",\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        15312
+      ],
+      [
+        "[\"flash.events::EventDispatcher/addEventListener\",\"fl.managers::FocusManager/addFocusables\",\"fl.managers::FocusManager/addedHandler\",\"flash.display::Sprite/constructChildren\",\"flash.display::Sprite\",\"flash.display::MovieClip\",\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        11880
+      ],
+      [
+        "[\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        6219
+      ],
+      [
+        "[\"flash.display::Sprite/constructChildren\",\"flash.display::Sprite\",\"flash.display::MovieClip\",\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        5778
+      ],
+      [
+        "[\"NativeSceneActivity$/update\",\"Function/http://adobe.com/AS3/2006/builtin::apply\",\"fe.graph::Grafon/sceneNativeCall\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        5617
+      ],
+      [
+        "[\"flash.display::Sprite/constructChildren\",\"flash.display::Sprite\",\"flash.display::MovieClip\",\"flash.display::Sprite/constructChildren\",\"flash.display::Sprite\",\"flash.display::MovieClip\",\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        5400
+      ],
+      [
+        "[\"JSON$/stringifySpecializedToString\",\"JSON$/stringify\",\"addiction::Engine/json\",\"addiction::Runtime/persist\",\"addiction::Runtime/step\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        4896
+      ],
+      [
+        "[\"fe.graph::Grafon/sceneTick\",\"fe.inter::Camera/calc\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        4615
+      ],
+      [
+        "[\"GameBridge$/snapshot\",\"TdfcRuntime$/onFrame\",\"[enterFrameEvent]\"]",
+        4201
+      ],
+      [
+        "[\"fe.graph::Grafon/sceneEnsureUpcoming\",\"fe.graph::Grafon/sceneEnsure\",\"fe.graph::Grafon/sceneTick\",\"fe.inter::Camera/calc\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        3848
+      ],
+      [
+        "[\"flash.events::EventDispatcher/addEventListener\",\"fl.managers::FocusManager/addFocusables\",\"fl.managers::FocusManager/addFocusables\",\"fl.managers::FocusManager/addedHandler\",\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        3240
+      ],
+      [
+        "[\"JSON$/stringifySpecializedToString\",\"JSON$/stringify\",\"fa::Runtime/persist\",\"fa::Runtime/after\",\"[enterFrameEvent]\"]",
+        2676
+      ]
+    ],
+    "liveSizes": [
+      [
+        "[\"flash.events::EventDispatcher/addEventListener\",\"fl.managers::FocusManager/addFocusables\",\"fl.managers::FocusManager/addedHandler\",\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        1236096
+      ],
+      [
+        "[\"flash.events::EventDispatcher/addEventListener\",\"fl.managers::FocusManager/addFocusables\",\"fl.managers::FocusManager/addedHandler\",\"flash.display::Sprite/constructChildren\",\"flash.display::Sprite\",\"flash.display::MovieClip\",\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        959040
+      ],
+      [
+        "[\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        796808
+      ],
+      [
+        "[\"flash.display::Sprite/constructChildren\",\"flash.display::Sprite\",\"flash.display::MovieClip\",\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        631760
+      ],
+      [
+        "[\"GameBridge$/snapshot\",\"TdfcRuntime$/onFrame\",\"[enterFrameEvent]\"]",
+        481328
+      ],
+      [
+        "[\"flash.display::Sprite/constructChildren\",\"flash.display::Sprite\",\"flash.display::MovieClip\",\"flash.display::Sprite/constructChildren\",\"flash.display::Sprite\",\"flash.display::MovieClip\",\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        216000
+      ],
+      [
+        "[\"TacticalMind$/action\",\"TdfcRuntime$/onFrame\",\"[enterFrameEvent]\"]",
+        64240
+      ],
+      [
+        "[\"GameBridge$/sense\",\"TdfcRuntime$/onFrame\",\"[enterFrameEvent]\"]",
+        25536
+      ],
+      [
+        "[\"TdfcRuntime$/onFrame\",\"[enterFrameEvent]\"]",
+        20448
+      ],
+      [
+        "[\"String$/_split\",\"String/http://adobe.com/AS3/2006/builtin::split\",\"GameBridge$/cls\",\"GameBridge$/snapshot\",\"TdfcRuntime$/onFrame\",\"[enterFrameEvent]\"]",
+        17960
+      ],
+      [
+        "[\"TacticalMind$/action\",\"TacticalMind$/decide\",\"TdfcRuntime$/onFrame\",\"[enterFrameEvent]\"]",
+        14784
+      ],
+      [
+        "[\"flash.events::EventDispatcher/addEventListener\",\"fl.managers::FocusManager/addFocusables\",\"fl.managers::FocusManager/addedHandler\",\"flash.display::DisplayObjectContainer/addChild\",\"fe::Pt/addVisual\",\"fe.loc::Location/addObj\",\"fe.graph::Emitter/cast\",\"fe.unit::UnitVortex/control\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        12432
+      ],
+      [
+        "[\"fe.graph::Part/initBlit\",\"fe.graph::Emitter/cast\",\"fe.unit::UnitVortex/control\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        11396
+      ],
+      [
+        "[\"JSON$/stringifySpecializedToString\",\"JSON$/stringify\",\"addiction::Engine/json\",\"addiction::Runtime/persist\",\"addiction::Runtime/step\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+        9888
+      ],
+      [
+        "[\"InjuryCore$/factors\",\"PermanentInjuryMod$/refresh\",\"PermanentInjuryMod$/frame\",\"[enterFrameEvent]\"]",
+        6720
+      ]
+    ]
+  }
+}

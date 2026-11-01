@@ -1,0 +1,110 @@
+{
+  "recipe": {
+    "sources": {
+      "CameraProbePlatform.as": "C8DF64A764CDDCDFAC3D3CFDC740C99EA93572A5FCCC579C53B35DB9A995A0AF",
+      "compiler.xml": "6A41F8BA2BB70784B7CAF753E655E6D55247B30A46B58805633D8E39FBAF20C4",
+      "ContinuousSceneMotionMod.as": "C9FC887D3865D8FA8D33E5AB5E7190F226778ED38D6D4AB637712FC06471C144",
+      "ProbeDoc.as": "D2A1B5B56CBBA39E8ECE081506D8C52325D8AC58EECD9D99848F09F5FE0C4854",
+      "work.py": "777DB4A4B45B1EE9CC1ED4A71754AB8F1F048CE08E6224EFE3B0ADF685057531"
+    },
+    "formal": {
+      "pfe.swf": "CA94AF17ED56B273138789661BF725538E5CB7C161CF282AB8C4AA582F88B9B0",
+      "mods\\ContinuousScene\\release\\ContinuousSceneMod.swf": "D8A68A4C128E196FD69B50D1CC7F0FFA72669751FB2FCB85D629F30FE622E677",
+      "mods\\RealisticVision\\release\\RealisticVisionMod.swf": "AEA303149B0A5D5A3072C610B3E95F4AD78963EA22CE123C6A3414E73B9AA557",
+      "mods\\WallBlend\\release\\WallBlendMod.swf": "FE3E7A84753F6F3614440F69F8725E6E8639AEE4755ACF878AAFCFEDB95AC2E6",
+      "mods\\ModLoader\\release\\ModLoaderMod.swf": "2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2",
+      "mods\\RConnect\\release\\RConnectMod.swf": "690604878BD8707007A99E3AD14F8F5F3F55CDD4948C8DEBE6CC87363AFD38C9",
+      "mods\\TDFC\\release\\TDFCMod.swf": "7ACD45193109267DBBF875240528048AD6F1D09FA3B8B36BAA6F98EBB5FDDCE5"
+    },
+    "probe": "D6DE78C4B4A9811B0415BFDD50543923835CF46F91974F23C00DE470CB45D6D3",
+    "command": [
+      "D:/Program Files/Adobe Animate 2024/jre/bin/java.exe",
+      "-Xmx512m",
+      "-Dfile.encoding=UTF-8",
+      "-jar",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\flexsdk\\lib\\mxmlc.jar",
+      "+flexlib=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\flexsdk\\frameworks",
+      "-load-config=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-review-v5-20261101\\compiler.xml",
+      "-swf-version=32",
+      "-static-link-runtime-shared-libraries=true",
+      "-output=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-review-v5-20261101\\ContinuousSceneMotionMod.swf",
+      "-link-report=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-review-v5-20261101\\link.xml",
+      "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-review-v5-20261101\\ProbeDoc.as"
+    ]
+  },
+  "host": "CA94AF17ED56B273138789661BF725538E5CB7C161CF282AB8C4AA582F88B9B0",
+  "options": {
+    "defaultWindow": false,
+    "layers": true,
+    "legacyMenu": false,
+    "nativePresentation": false
+  },
+  "environmentBefore": {
+    "atMs": 1793513642842,
+    "memory": {
+      "load": 63,
+      "totalPhysical": 33879638016,
+      "availablePhysical": 12481933312,
+      "commitLimit": 58533253120,
+      "availableCommit": 14746656768
+    },
+    "air": {
+      "processes": [],
+      "unreadableProcessCount": 170,
+      "scope": "endpoints only; absence is not proof of an idle computer"
+    },
+    "runner": {
+      "cpuPriorityClass": 32,
+      "errors": [],
+      "memoryPriority": 5,
+      "powerThrottling": {
+        "controlMask": 0,
+        "stateMask": 0,
+        "highQoS": false
+      },
+      "inJob": true,
+      "innermostJobLimits": {
+        "flags": 10240,
+        "processCommitCap": null,
+        "jobCommitCap": null,
+        "workingSetCap": null,
+        "boundary": "current innermost job only; nested ancestors may impose further limits"
+      }
+    },
+    "warnings": []
+  },
+  "environmentAfter": {
+    "atMs": 1793513941162,
+    "memory": {
+      "load": 63,
+      "totalPhysical": 33879638016,
+      "availablePhysical": 12431495168,
+      "commitLimit": 58533253120,
+      "availableCommit": 14584430592
+    },
+    "air": {
+      "processes": [],
+      "unreadableProcessCount": 171,
+      "scope": "endpoints only; absence is not proof of an idle computer"
+    },
+    "runner": {
+      "cpuPriorityClass": 32,
+      "errors": [],
+      "memoryPriority": 5,
+      "powerThrottling": {
+        "controlMask": 0,
+        "stateMask": 0,
+        "highQoS": false
+      },
+      "inJob": true,
+      "innermostJobLimits": {
+        "flags": 10240,
+        "processCommitCap": null,
+        "jobCommitCap": null,
+        "workingSetCap": null,
+        "boundary": "current innermost job only; nested ancestors may impose further limits"
+      }
+    },
+    "warnings": []
+  }
+}
