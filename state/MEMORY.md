@@ -1,5 +1,9 @@
 # ContinuousScene — 当前快照
 
+<!-- envkey-cache-20261102 -->
+> 2026-11-02（五）**修复 A 终局：机制成功、帧收益不足，不部署**。`sceneNativeEnvironment` 逐单元格结果缓存候选 `029DAF34`（单方法替换、state.cellCache int 稀疏数组、双向兼容旧模组、类布局不变）：功能 27/27+16/16 通过；v14 归因复测**首要泵完全消失**（采样分配 382,817→344,613）；但 v13 四轮配对 GC 掉落仅 9→8（−11%）、长帧不一致、均值混合——**未达部署门禁**。再次验证"减分配≠减帧时"：~65MB 周期回收由总分配速率驱动（区域键仅占 ~10–15%），其余来自原生渲染（46k/窗）、炮塔/部件链、AddictionSystem JSON（外部）及中寿命对象。生产 A9B3/CS0.9.5 未动；候选与证据保留。GC 停顿要有意义改善须**组合削减多源**（B 键缓存+外部模组+原生侧）并先配对验证。构建含反编译残渣修复经验：宿主导出源的 §§findproperty/§§push 须改为等价可编译写法（仅目标方法移植，其余字节码不变）。报告 `envkey-cache-20261102.md`。
+<!-- /envkey-cache-20261102 -->
+
 <!-- gc-source-attribution-20261102 -->
 > 2026-11-02（四）**GC 周期回收来源已定位（v14 采样器 id 关联归因，生产栈实测）**：24 窗全有效、38.3 万新对象/15.7 万当窗死亡。**首要垃圾泵 = CS 自研宿主补丁 `Grafon.sceneNativeEnvironment`**——Location.step 每对象每帧调用（native_map_patch.py:32）拼区域键字符串，**~2,800 纯垃圾 String/帧、99.7% 即生即死、零留存**（~110–180KB/帧），量级足以主导 ~65MB 周期回收；与"隐藏世界仍 0.5MB/帧净增长"旧观察吻合。次要自研：sceneEnsureUpcoming 块键（~396/帧）、NativeSceneActivity 装箱（~530/帧，非回归）。外部泵：AddictionSystem 每单位每步 JSON/参数（~850/帧级）、RConnect NetHud（100%死）——移交各负责人。原生 [pre-render] 死亡率仅 13.3%，非周期回收主驱动。**修复方向 A–D 已列未实施**：A=sceneNativeEnvironment 单元格 int 缓存（宿主单方法替换，收益最大）、B=块键缓存、C=模组层数组复用、D=跨模组移交。报告 `gc-source-attribution-20261102.md`；证据 `gc-source-attrib-r5`（r1–r4 并行争用残迹）；探针/分析在 `camera-gc-source-v14-20261102`。本轮未部署、未改生产文件。
 <!-- /gc-source-attribution-20261102 -->
