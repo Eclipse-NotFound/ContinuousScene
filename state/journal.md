@@ -1,4 +1,12 @@
 
+## 2026-11-02（三）— 炮塔守卫 GC/长帧尾部配对测量：负结果，Phase 3 关闭
+
+- v13 探针（v12+每帧 System.totalMemory 字节）四轮配对（base A9B3 / cand 6AC6C692 交错、同布局种子 4077752896、CS0.9.5 全栈、独占 game、1115 采样/轮）：**GC 掉落 7–9 次/轮两臂无差、~65MB 周期大回收照旧、长帧无一致方向（r1 18vs5 更差、r2 11vs14 略好）、r1 均值 +11%**。叠加 10-31 旧两轮共 6 轮配对零收益 → **维持否定不部署**。
+- 机理修正：休眠炮塔不调 animate，醒着炮塔不足以驱动 GC 周期；"采样最大存活来源 ≠ 回收可削减来源"。GC 方向转往周期性大回收真实来源（原生渲染/display 基础设施），炮塔守卫不再投入。
+- 单位勘误记录：System.totalMemory 为字节；初版分析误按 KB，GC 阈值/换算已按字节重算（帧间隔统计不受影响）。
+- 玩家游戏期间后台编排器自动等待（未打扰），退出后自动完成四轮；登记/进程全部正常结束。报告 `turret-guard-gctail-20261102.md`；证据 `turret-gctail-{base,cand}-r{1,2}`。
+
+
 ## 2026-11-02（二）— 部署 CS 0.9.5 状态保真物体剔除（Phase 4）；Phase 3 候选备妥未部署
 
 - **Phase 4**：`SceneObjectCulling` 接入生产（透明包装 Sprite 只切包装层 visible，游戏独占对象自身 visible——UnitSpectre 正解）；SATS 截取挂起/恢复（SatsVisibleGuard.capture）；空边界安全；故障自禁用。`ContinuousSceneMod` 0.9.5：onFrame 调 update、nativeAPI 挂 objectCullingEnabled/Stats。

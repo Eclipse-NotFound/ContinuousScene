@@ -1,5 +1,9 @@
 # ContinuousScene — 当前快照
 
+<!-- turret-guard-gctail-20261102 -->
+> 2026-11-02（三）**Phase 3 终局：炮塔守卫 GC/长帧尾部配对测量为负结果，维持不部署**。v13 探针（每帧 totalMemory+dtMs）四轮配对（base/cand 交错、同布局种子、CS0.9.5 全栈、独占 game）：GC 掉落 7–9 次/轮两臂无差、单次 ~65MB 周期回收照旧、长帧 r1 更差 r2 略好无一致方向、r1 均值 +11%。叠加旧两轮共 6 轮零收益。机理修正：**炮塔同帧 gotoAndStop 不是 GC 周期的有效驱动**（休眠炮塔不调 animate；采样最大存活来源≠回收可削减来源）。该方向均值+GC/尾部均已测量关闭，GC 方向应转向周期性大回收的真实来源（原生渲染/display 基础设施）。报告 `turret-guard-gctail-20261102.md`；证据 `turret-gctail-{base,cand}-r{1,2}`；分析+探针在 `camera-lead-v13-gctail-20261102`。候选 6AC6C692 保留不部署。玩家游戏期间自动等待，未干扰。
+<!-- /turret-guard-gctail-20261102 -->
+
 <!-- object-culling-v095-20261102 -->
 > 2026-11-02（二）**已部署 CS 0.9.5 状态保真物体剔除（优化方案 Phase 4）**：正式宿主 A9B39CC7 不变；CS release → **1A66B1F4**（0.9.5 = 0.9.4 平滑唤醒 + 包装层剔除）。需重启游戏生效；回退=备份 `build/backups/ContinuousSceneMod-0.9.4-DF3B6812-before-culling-20261102-004010.swf` 覆盖 release，回执 `state/object-culling-deployment-20261102.json`；运行时开关 `nativeAPI.objectCullingEnabledSet(false)`。
 >
@@ -7,7 +11,7 @@
 >
 > 验证（均登记 game-coexist，A9B3 宿主 + 14 模组 + 探针）：mechanics 27/27（smooth-wake-v095-mechanics-r1）、issues 16/16 含三门/边界×3缩放/Bonus·Trap·CheckPoint·UnitTurret 固定视觉（smooth-wake-v095-issues-r1）；截图存档+程序化健全性通过（本会话模型不能读图，**像素级人工复核仍开放**）。无计时声明：剔除的帧收益未测量，不引用已回退 CA94 的 0.6ms 旧值。
 >
-> **Phase 3 候选已备未部署**：UnitTurret.animate 同帧守卫在 A9B3 重建为 `6AC6C692`（`build/generated/camera-turret-animate-20261102/`，仅该方法变化，类布局不变），候选宿主冒烟 27/27 含 10 炮塔 0 错位（turret-guard-v095-mechanics-r1）。**部署仍被旧否定结论的门禁挡住**：需按 iteration-review 要求补 GC 频率/长帧尾部配对测量（camera-lead 驱动，均值收益已被 r1/r2 否定不能单独推翻）。当前宿主 A9B3 的 `sceneCU` 空间碰撞与 Bullet 过滤不受影响。
+> **Phase 3 候选已备未部署**：UnitTurret.animate 同帧守卫在 A9B3 重建为 `6AC6C692`（`build/generated/camera-turret-animate-20261102/`，仅该方法变化，类布局不变），候选宿主冒烟 27/27 含 10 炮塔 0 错位（turret-guard-v095-mechanics-r1）。~~部署仍被旧否定结论的门禁挡住~~ **2026-11-02（三）GC/长帧尾部配对测量完成：负结果，维持不部署，方向关闭**（见顶部段落）。当前宿主 A9B3 的 `sceneCU` 空间碰撞与 Bullet 过滤不受影响。
 <!-- /object-culling-v095-20261102 -->
 
 <!-- smooth-wake-v094-20261102 -->
