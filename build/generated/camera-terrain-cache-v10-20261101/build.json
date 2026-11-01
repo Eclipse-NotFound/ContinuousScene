@@ -1,0 +1,34 @@
+{
+  "sources": {
+    "CameraProbePlatform.as": "C8DF64A764CDDCDFAC3D3CFDC740C99EA93572A5FCCC579C53B35DB9A995A0AF",
+    "compiler.xml": "413BFE691D1C2C3786760870CD43095EF78000D05007E141AFCCF25F516FC070",
+    "ContinuousSceneMotionMod.as": "AAA4DB7F16443EAD180D9A5A18045BFF00F2E6406B8B4A82B432A0D1610B418F",
+    "prepare.py": "FAB08C143BF19B931ECCFAA067159A8F645490C5F11FC8D8BA8F1C955210B637",
+    "ProbeDoc.as": "D2A1B5B56CBBA39E8ECE081506D8C52325D8AC58EECD9D99848F09F5FE0C4854",
+    "work.py": "0A3029E968EECB6C1DB7A2A62CBDA8EF74848C31F1632F794847500121416410"
+  },
+  "formal": {
+    "pfe.swf": "9D8662F6CF80E0AD20741EC2A4E7BEAD68446269EBB0ADB641C876DB68698B1D",
+    "mods\\ContinuousScene\\release\\ContinuousSceneMod.swf": "D8A68A4C128E196FD69B50D1CC7F0FFA72669751FB2FCB85D629F30FE622E677",
+    "mods\\RealisticVision\\release\\RealisticVisionMod.swf": "AEA303149B0A5D5A3072C610B3E95F4AD78963EA22CE123C6A3414E73B9AA557",
+    "mods\\WallBlend\\release\\WallBlendMod.swf": "FE3E7A84753F6F3614440F69F8725E6E8639AEE4755ACF878AAFCFEDB95AC2E6",
+    "mods\\ModLoader\\release\\ModLoaderMod.swf": "2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2",
+    "mods\\RConnect\\release\\RConnectMod.swf": "690604878BD8707007A99E3AD14F8F5F3F55CDD4948C8DEBE6CC87363AFD38C9",
+    "mods\\TDFC\\release\\TDFCMod.swf": "7ACD45193109267DBBF875240528048AD6F1D09FA3B8B36BAA6F98EBB5FDDCE5"
+  },
+  "probe": "D930E5DA2DC239DFAD68B8ECABE7F15CBFDE3977933EB6670FC22B81D3E795D1",
+  "command": [
+    "D:/Program Files/Adobe Animate 2024/jre/bin/java.exe",
+    "-Xmx512m",
+    "-Dfile.encoding=UTF-8",
+    "-jar",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\flexsdk\\lib\\mxmlc.jar",
+    "+flexlib=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\flexsdk\\frameworks",
+    "-load-config=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-terrain-cache-v10-20261101\\compiler.xml",
+    "-swf-version=32",
+    "-static-link-runtime-shared-libraries=true",
+    "-output=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-terrain-cache-v10-20261101\\ContinuousSceneMotionMod.swf",
+    "-link-report=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-terrain-cache-v10-20261101\\link.xml",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\camera-terrain-cache-v10-20261101\\ProbeDoc.as"
+  ]
+}

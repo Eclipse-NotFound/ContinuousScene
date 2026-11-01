@@ -1,0 +1,14 @@
+{
+  "rootHostSHA256": "9D8662F6CF80E0AD20741EC2A4E7BEAD68446269EBB0ADB641C876DB68698B1D",
+  "formalModCount": 14,
+  "formalModsUnchanged": true,
+  "ownActiveRegistryEntries": 0,
+  "preservedForeignFiles": 14,
+  "verifiedBuildSources": 48,
+  "frozenStagedFiles": 85,
+  "frozenStagedBytesExact": true,
+  "whitespaceCheckPassed": true,
+  "declaredWhitespaceExceptions": "Only frozen donor/pcode/phase source and failed compiler log",
+  "diagnosticIntervals": 15740,
+  "performanceTargetAchieved": false
+}

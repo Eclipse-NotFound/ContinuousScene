@@ -1,5 +1,14 @@
 # ContinuousScene — 当前快照
 
+<!-- camera-optimization-20261101 -->
+> 2026-11-01 后继优化已实测：正式宿主 **9D8662F6**（14:58从CA94只撤掉sceneTick无条件单位显隐，前三层A2/预绘预算保留）；CS **D8A68A4C**、WB **FE3E7A84**、RV **AEA30314**、RC **69060487**等14模组组合保持。回执：build/generated/camera-object-clip-v7-20261101/visibility-fix-deployment.json。原生UnitSpectre隐藏复验通过。这是显隐回归修复，不是已证实性能提升；重启生效。下方旧安装表与迭代条目是历史记录，当前以本段为准。
+>
+> 9次独立游戏运行，7次时序实验15740个有效间隔；所有自有实例/登记已结束。整层裁剪、物体缓存、炮塔guard、既有地形节点缓存均无稳定收益。旧局部phase在真实0.658333缩放alpha失败；禁止凭旧2/3测试放行。屏幕像素缓存v13两窗十图合格，但小窗28.018→27.202ms仅约2.9%且长停顿更多，大窗35.190→39.166ms更慢，停止、不部署。没有新性能候选进入正式文件。炮塔goto栈可能执行全局帧脚本，不等于炮塔重建；90帧片段与GC周期错位不能当P99收益。
+>
+> 远处活动范围旧候选缺少内部警戒/延后攻击保护，未运行或部署；保持追击和屏外命中。性能目标尚未达到近原版。详见 [本轮报告](../knowledge/experiments/camera-optimization-followup-20261101.md) 及 generated/camera-optimization-review-20261101/summary.json。后续不重复上述已停止路线；需要新的整帧成本证据，而不是扩大预绘预算或放宽画面要求。他人的SceneRenderChecks、既有状态和13份报告保持。
+<!-- /camera-optimization-20261101 -->
+
+
 > 2026-11-01 当前迭代审核：正式仍 CA94/D8A/FE3，RV实际为AEA30314；本轮未覆盖任何正式产物。新增单位显隐在原版UnitSpectre上复现 false→true，A80阴性对照保持false，第四层不能判“零视觉影响”。4轮12684间隔：补绘稳定后横纵移动仍增加呈现成本；大窗物体层隐藏4/4变快，光照层无稳定收益；35次>100ms中32次伴随明显堆回落。12/12分配采样又指向炮塔gotoAndStop/构造子显示对象/FocusManager链及TDFC快照。旧“纯镜头基本无成本、主要是战斗”的排他结论不再沿用。详见 [迭代审查](../knowledge/experiments/camera-iteration-review-20261101.md)。调查未等于修复：优先安全撤掉无条件显隐，再验证物体呈现、缩放地形和回收尾部；不直接复活旧质量/sleep/炮塔候选。所有本轮自有实例和登记已结束；他人 SceneRenderChecks、MEMORY/journal原修改与报告均保留。
 
 

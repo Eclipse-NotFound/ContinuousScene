@@ -1,0 +1,171 @@
+method
+                           name "fe.unit:UnitTurret/animate"
+                           flag NEED_ACTIVATION
+                           returns null
+                           
+                           body
+                              maxstack 3
+                              localcount 3
+                              initscopedepth 8
+                              maxscopedepth 13
+                              
+                              code
+                                 getlocal0
+                                 pushscope
+                                 debug 1, "+$activation", 0, 0
+                                 newactivation
+                                 dup
+                                 setlocal1
+                                 pushscope
+                        ofs000c:
+                                 getlex QName(PackageNamespace(""),"vis")
+                                 getproperty Multiname("osn",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getproperty Multiname("puha",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getproperty Multiname("currentFrame",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getlocal0
+                                 getproperty QName(PackageNamespace(""),"tr")
+                                 ifeq ofs0031
+                                 getlex QName(PackageNamespace(""),"vis")
+                                 getproperty Multiname("osn",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getproperty Multiname("puha",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getlocal0
+                                 getproperty QName(PackageNamespace(""),"tr")
+                                 callpropvoid Multiname("gotoAndStop",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")]), 1
+                        ofs0031:
+                                 getlex QName(PackageNamespace(""),"fixed")
+                                 dup
+                                 iffalse ofs003e
+                                 pop
+                                 getlex QName(PackageNamespace(""),"levit")
+                                 convert_b
+                        ofs003e:
+                                 iffalse ofs005c
+                                 getlex QName(PackageNamespace(""),"vis")
+                                 getproperty Multiname("osn",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getlex QName(PackageNamespace(""),"Math")
+                                 callproperty QName(PackageNamespace(""),"random"), 0
+                                 pushbyte 6
+                                 multiply
+                                 pushbyte 3
+                                 subtract
+                                 setproperty Multiname("rotation",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 jump ofs0076
+                        ofs005c:
+                                 getlex QName(PackageNamespace(""),"vis")
+                                 getproperty Multiname("osn",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getproperty Multiname("rotation",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 pushbyte 0
+                                 ifeq ofs0076
+                                 getlex QName(PackageNamespace(""),"vis")
+                                 getproperty Multiname("osn",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 pushbyte 0
+                                 setproperty Multiname("rotation",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                        ofs0076:
+                                 getlex QName(PackageNamespace(""),"vis")
+                                 getproperty Multiname("osn",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getproperty Multiname("currentFrame",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 pushbyte 1
+                                 ifne ofs011b
+                                 getlex QName(PackageNamespace(""),"vis")
+                                 getproperty Multiname("osn",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getproperty Multiname("puha",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getlex QName(PackageNamespace(""),"currentWeapon")
+                                 getproperty QName(PackageNamespace(""),"rot")
+                                 pushshort 180
+                                 multiply
+                                 getlex QName(PackageNamespace(""),"Math")
+                                 getproperty QName(PackageNamespace(""),"PI")
+                                 divide
+                                 setproperty Multiname("rotation",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getlex QName(PackageNamespace(""),"vis")
+                                 getproperty Multiname("osn",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getproperty Multiname("light",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getproperty Multiname("currentFrame",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getlex QName(PackageInternalNs("fe.unit"),"aiState")
+                                 pushbyte 1
+                                 add
+                                 ifeq ofs00cb
+                                 getlex QName(PackageNamespace(""),"vis")
+                                 getproperty Multiname("osn",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getproperty Multiname("light",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getlex QName(PackageInternalNs("fe.unit"),"aiState")
+                                 pushbyte 1
+                                 add
+                                 callpropvoid Multiname("gotoAndStop",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")]), 1
+                        ofs00cb:
+                                 getlex QName(PackageNamespace(""),"isShoot")
+                                 iffalse ofs00eb
+                                 findproperty QName(PackageNamespace(""),"isShoot")
+                                 pushfalse
+                                 setproperty QName(PackageNamespace(""),"isShoot")
+                                 getlex QName(PackageNamespace(""),"vis")
+                                 getproperty Multiname("osn",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getproperty Multiname("puha",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getproperty Multiname("puha",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 pushbyte 2
+                                 callpropvoid Multiname("gotoAndPlay",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")]), 1
+                        ofs00eb:
+                                 getlex QName(PackageInternalNs("fe.unit"),"aiState")
+                                 pushbyte 0
+                                 equals
+                                 convert_b
+                                 dup
+                                 convert_b
+                                 iffalse ofs00fe
+                                 pop
+                                 getlocal0
+                                 getproperty QName(PackageInternalNs("fe.unit"),"hidden")
+                                 convert_b
+                        ofs00fe:
+                                 dup
+                                 iffalse ofs0107
+                                 pop
+                                 getlex QName(PackageNamespace(""),"fixed")
+                        ofs0107:
+                                 iffalse ofs0117
+                                 getlex QName(PackageNamespace(""),"vis")
+                                 getproperty Multiname("osn",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 pushbyte 2
+                                 callpropvoid Multiname("gotoAndPlay",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")]), 1
+                        ofs0117:
+                                 jump ofs0143
+                        ofs011b:
+                                 getlex QName(PackageNamespace(""),"vis")
+                                 getproperty Multiname("osn",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 getproperty Multiname("currentFrame",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 pushbyte 6
+                                 equals
+                                 dup
+                                 iffalse ofs0133
+                                 pop
+                                 getlex QName(PackageInternalNs("fe.unit"),"aiState")
+                                 pushbyte 0
+                                 greaterthan
+                        ofs0133:
+                                 iffalse ofs0143
+                                 getlex QName(PackageNamespace(""),"vis")
+                                 getproperty Multiname("osn",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")])
+                                 pushbyte 7
+                                 callpropvoid Multiname("gotoAndPlay",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace("fe.unit"),PackageInternalNs("fe.unit"),PackageNamespace("fe"),StaticProtectedNs("fe.unit:Unit"),StaticProtectedNs("fe:Obj"),StaticProtectedNs("fe:Pt"),PrivateNamespace("fe.unit:UnitTurret"),ProtectedNamespace("fe.unit:UnitTurret"),StaticProtectedNs("fe.unit:UnitTurret"),PrivateNamespace("UnitTurret.as$107")]), 1
+                        ofs0143:
+                                 jump ofs0157
+                        ofs0147:
+                                 getlocal0
+                                 pushscope
+                                 getlocal1
+                                 pushscope
+                                 newcatch 0
+                                 dup
+                                 setlocal2
+                                 dup
+                                 pushscope
+                                 swap
+                                 setslot 1
+                                 popscope
+                                 kill 2
+                        ofs0157:
+                                 returnvoid
+                              end ; code
+                              try from ofs000c to ofs0143 target ofs0147 type null name QName(PackageNamespace(""),"err") end
+                           end ; body
+                        end ; method

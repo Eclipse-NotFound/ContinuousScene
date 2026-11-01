@@ -1,0 +1,1 @@
+package { import flash.display.Sprite; public class ProbeDoc extends Sprite { public function ProbeDoc(){ ContinuousSceneMotionMod; } } }

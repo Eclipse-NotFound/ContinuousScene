@@ -1,0 +1,22 @@
+{
+  "sessions": [
+    "run_1793516653288_126323"
+  ],
+  "loaded": {
+    "ModLoaderMod": true,
+    "SandevistanMod": true,
+    "RConnectMod": true,
+    "RealisticVisionMod": true,
+    "MoreSkillsWeaponsMod": true,
+    "TDFCMod": true,
+    "RandomRoomsMod": true,
+    "LootEditorMod": true,
+    "PermanentInjuryMod": true,
+    "ContinuousSceneMotionMod": true,
+    "AddictionSystemMod": true,
+    "ContinuousSceneMod": true,
+    "FirearmAttachmentsMod": true,
+    "LightAndDarknessMod": true,
+    "WallBlendMod": true
+  }
+}

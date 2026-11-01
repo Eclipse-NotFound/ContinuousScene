@@ -1,0 +1,845 @@
+{
+  "analysisVersion": 2,
+  "run": "camera-screen-cache-small-r2-20261101",
+  "ok": true,
+  "error": null,
+  "hidden": {
+    "before": false,
+    "after": false,
+    "className": "UnitSpectre"
+  },
+  "entry": {
+    "units": 132,
+    "scale": 0.6583333333333333,
+    "stageWidth": 1264,
+    "stageHeight": 681
+  },
+  "warmPasses": 19,
+  "blocks": [
+    {
+      "index": 0,
+      "axis": "x",
+      "mode": "full",
+      "fps": 120,
+      "frames": 270,
+      "n": 269,
+      "mean": 28.933,
+      "median": 27,
+      "p95": 39,
+      "p99": 43,
+      "max": 119,
+      "over50": 1,
+      "over100": 1,
+      "prePostMean": 8.52,
+      "memoryDrops": 1,
+      "dropOver100": 1,
+      "growthMiBPerPositiveInterval": 0.482,
+      "worldChanges": {
+        "sceneWarmCount": 0,
+        "sceneRedraws": 0,
+        "sceneMisses": 0,
+        "sceneEvictions": 0
+      },
+      "activity": {
+        "awake": 39,
+        "asleep": 93
+      }
+    },
+    {
+      "index": 1,
+      "axis": "x",
+      "mode": "fill",
+      "fps": 120,
+      "frames": 270,
+      "n": 269,
+      "mean": 27.361,
+      "median": 26,
+      "p95": 34,
+      "p99": 47,
+      "max": 110,
+      "over50": 3,
+      "over100": 2,
+      "prePostMean": 7.665,
+      "memoryDrops": 2,
+      "dropOver100": 2,
+      "growthMiBPerPositiveInterval": 0.51,
+      "worldChanges": {
+        "sceneWarmCount": 0,
+        "sceneRedraws": 0,
+        "sceneMisses": 0,
+        "sceneEvictions": 0
+      },
+      "activity": {
+        "awake": 37,
+        "asleep": 95
+      }
+    },
+    {
+      "index": 2,
+      "axis": "y",
+      "mode": "full",
+      "fps": 120,
+      "frames": 270,
+      "n": 269,
+      "mean": 27.643,
+      "median": 26,
+      "p95": 35,
+      "p99": 41,
+      "max": 129,
+      "over50": 1,
+      "over100": 1,
+      "prePostMean": 8.011,
+      "memoryDrops": 1,
+      "dropOver100": 1,
+      "growthMiBPerPositiveInterval": 0.544,
+      "worldChanges": {
+        "sceneWarmCount": 0,
+        "sceneRedraws": 0,
+        "sceneMisses": 0,
+        "sceneEvictions": 0
+      },
+      "activity": {
+        "awake": 37,
+        "asleep": 95
+      }
+    },
+    {
+      "index": 3,
+      "axis": "y",
+      "mode": "fill",
+      "fps": 120,
+      "frames": 270,
+      "n": 269,
+      "mean": 27.1,
+      "median": 26,
+      "p95": 34,
+      "p99": 44,
+      "max": 112,
+      "over50": 3,
+      "over100": 2,
+      "prePostMean": 8.041,
+      "memoryDrops": 2,
+      "dropOver100": 2,
+      "growthMiBPerPositiveInterval": 0.507,
+      "worldChanges": {
+        "sceneWarmCount": 0,
+        "sceneRedraws": 0,
+        "sceneMisses": 0,
+        "sceneEvictions": 0
+      },
+      "activity": {
+        "awake": 39,
+        "asleep": 93
+      }
+    },
+    {
+      "index": 4,
+      "axis": "y",
+      "mode": "full",
+      "fps": 120,
+      "frames": 270,
+      "n": 269,
+      "mean": 26.743,
+      "median": 26,
+      "p95": 35,
+      "p99": 40,
+      "max": 131,
+      "over50": 1,
+      "over100": 1,
+      "prePostMean": 8.238,
+      "memoryDrops": 1,
+      "dropOver100": 1,
+      "growthMiBPerPositiveInterval": 0.535,
+      "worldChanges": {
+        "sceneWarmCount": 0,
+        "sceneRedraws": 0,
+        "sceneMisses": 0,
+        "sceneEvictions": 0
+      },
+      "activity": {
+        "awake": 38,
+        "asleep": 94
+      }
+    },
+    {
+      "index": 5,
+      "axis": "y",
+      "mode": "fill",
+      "fps": 120,
+      "frames": 270,
+      "n": 269,
+      "mean": 26.349,
+      "median": 25,
+      "p95": 33,
+      "p99": 42,
+      "max": 110,
+      "over50": 3,
+      "over100": 1,
+      "prePostMean": 8.156,
+      "memoryDrops": 2,
+      "dropOver100": 1,
+      "growthMiBPerPositiveInterval": 0.483,
+      "worldChanges": {
+        "sceneWarmCount": 0,
+        "sceneRedraws": 0,
+        "sceneMisses": 0,
+        "sceneEvictions": 0
+      },
+      "activity": {
+        "awake": 38,
+        "asleep": 94
+      }
+    },
+    {
+      "index": 6,
+      "axis": "x",
+      "mode": "full",
+      "fps": 120,
+      "frames": 270,
+      "n": 269,
+      "mean": 28.751,
+      "median": 27,
+      "p95": 39,
+      "p99": 45,
+      "max": 123,
+      "over50": 2,
+      "over100": 1,
+      "prePostMean": 8.305,
+      "memoryDrops": 1,
+      "dropOver100": 1,
+      "growthMiBPerPositiveInterval": 0.703,
+      "worldChanges": {
+        "sceneWarmCount": 0,
+        "sceneRedraws": 0,
+        "sceneMisses": 0,
+        "sceneEvictions": 0
+      },
+      "activity": {
+        "awake": 38,
+        "asleep": 94
+      }
+    },
+    {
+      "index": 7,
+      "axis": "x",
+      "mode": "fill",
+      "fps": 120,
+      "frames": 270,
+      "n": 269,
+      "mean": 27.996,
+      "median": 26,
+      "p95": 37,
+      "p99": 50,
+      "max": 132,
+      "over50": 3,
+      "over100": 2,
+      "prePostMean": 8.178,
+      "memoryDrops": 1,
+      "dropOver100": 1,
+      "growthMiBPerPositiveInterval": 0.613,
+      "worldChanges": {
+        "sceneWarmCount": 0,
+        "sceneRedraws": 0,
+        "sceneMisses": 0,
+        "sceneEvictions": 0
+      },
+      "activity": {
+        "awake": 36,
+        "asleep": 96
+      }
+    }
+  ],
+  "groups": {
+    "full": {
+      "n": 1076,
+      "mean": 28.018,
+      "median": 27.0,
+      "p95": 38,
+      "p99": 43,
+      "max": 131,
+      "over50": 5,
+      "over100": 4,
+      "prePostMean": 8.269,
+      "memoryDrops": 4,
+      "dropOver100": 4,
+      "growthMiBPerPositiveInterval": 0.566
+    },
+    "fill": {
+      "n": 1076,
+      "mean": 27.202,
+      "median": 26.0,
+      "p95": 35,
+      "p99": 51,
+      "max": 132,
+      "over50": 12,
+      "over100": 7,
+      "prePostMean": 8.01,
+      "memoryDrops": 7,
+      "dropOver100": 6,
+      "growthMiBPerPositiveInterval": 0.529
+    }
+  },
+  "unitCensus": {
+    "fe.unit::Mine": 8,
+    "fe.unit::UnitBloat": 2,
+    "fe.unit::UnitTrigger": 9,
+    "fe.unit::UnitPet": 1,
+    "fe.unit::UnitPlayer": 1,
+    "fe.unit::UnitBat": 9,
+    "fe.unit::UnitBloatEmitter": 3,
+    "fe.unit::UnitZebra": 14,
+    "fe.unit::UnitMerc": 17,
+    "fe.unit::UnitMonstrik": 14,
+    "fe.unit::UnitTurret": 10,
+    "fe.unit::UnitAlicorn": 11,
+    "fe.unit::UnitSlaver": 8,
+    "fe.unit::UnitAnt": 2,
+    "fe.unit::UnitSlime": 2,
+    "fe.unit::UnitVortex": 15,
+    "fe.unit::UnitNPC": 1,
+    "fe.unit::UnitDamager": 5
+  },
+  "objectCensus": [
+    {
+      "classes": {
+        "vischest": 1,
+        "visterm1": 2,
+        "visbox": 1,
+        "visfilecab": 3,
+        "viscouch": 1,
+        "viscase": 2,
+        "viswoodbox": 3,
+        "visdoor1": 2,
+        "vismcrate2": 3,
+        "visdoor1a": 2,
+        "vistrapfspikes": 1,
+        "visexplbox": 2
+      },
+      "cachedInView": 23,
+      "total": 897,
+      "visibleInView": 23
+    },
+    {
+      "classes": {
+        "vischest": 1,
+        "vismcrate2": 3,
+        "viswoodbox": 3,
+        "visbox": 1,
+        "visfilecab": 3,
+        "viscouch": 1,
+        "visexplbox": 2,
+        "viscase": 2
+      },
+      "cachedInView": 16,
+      "total": 380,
+      "visibleInView": 16
+    },
+    {
+      "classes": {
+        "visr32": 1,
+        "visualPlayer": 1,
+        "visualGrifArm4": 1,
+        "flash.display::MovieClip": 3,
+        "visp308c": 1,
+        "visualGrifArm1": 1,
+        "vislassn": 1
+      },
+      "cachedInView": 1,
+      "total": 212,
+      "visibleInView": 9
+    },
+    {
+      "classes": {
+        "vistrapfspikes2": 1,
+        "visualBonus": 4
+      },
+      "cachedInView": 1,
+      "total": 318,
+      "visibleInView": 5
+    },
+    {
+      "classes": {},
+      "cachedInView": 0,
+      "total": 4,
+      "visibleInView": 0
+    },
+    {
+      "classes": {},
+      "cachedInView": 0,
+      "total": 0,
+      "visibleInView": 0
+    }
+  ],
+  "pixels": [
+    {
+      "offset": [
+        0,
+        0
+      ],
+      "difference": {
+        "maxRGB": 1,
+        "changed": 6,
+        "maxAlpha": 0
+      },
+      "stats": {
+        "maxUpdateMs": 41,
+        "width": 1792,
+        "lastError": "",
+        "lastFallback": "",
+        "matrices": [
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          }
+        ],
+        "height": 1216,
+        "internalErrors": 0,
+        "updateMs": 41,
+        "scale": 0.6583251953125,
+        "stripDraws": 0,
+        "updates": 1,
+        "cleanupErrors": 0,
+        "presented": true,
+        "shifts": 0,
+        "fullDraws": 3
+      }
+    },
+    {
+      "offset": [
+        120,
+        0
+      ],
+      "difference": {
+        "maxRGB": 1,
+        "changed": 6,
+        "maxAlpha": 0
+      },
+      "stats": {
+        "maxUpdateMs": 41,
+        "width": 1792,
+        "lastError": "",
+        "lastFallback": "",
+        "matrices": [
+          {
+            "tx": -392,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -392,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -392,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          }
+        ],
+        "height": 1216,
+        "internalErrors": 0,
+        "updateMs": 41,
+        "scale": 0.6583251953125,
+        "stripDraws": 0,
+        "updates": 2,
+        "cleanupErrors": 0,
+        "presented": true,
+        "shifts": 0,
+        "fullDraws": 3
+      }
+    },
+    {
+      "offset": [
+        -160,
+        0
+      ],
+      "difference": {
+        "maxRGB": 1,
+        "changed": 6,
+        "maxAlpha": 0
+      },
+      "stats": {
+        "maxUpdateMs": 41,
+        "width": 1792,
+        "lastError": "",
+        "lastFallback": "",
+        "matrices": [
+          {
+            "tx": -112,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -112,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -112,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          }
+        ],
+        "height": 1216,
+        "internalErrors": 0,
+        "updateMs": 41,
+        "scale": 0.6583251953125,
+        "stripDraws": 0,
+        "updates": 3,
+        "cleanupErrors": 0,
+        "presented": true,
+        "shifts": 0,
+        "fullDraws": 3
+      }
+    },
+    {
+      "offset": [
+        0,
+        96
+      ],
+      "difference": {
+        "maxRGB": 1,
+        "changed": 6,
+        "maxAlpha": 0
+      },
+      "stats": {
+        "maxUpdateMs": 41,
+        "width": 1792,
+        "lastError": "",
+        "lastFallback": "",
+        "matrices": [
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -397,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -397,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -397,
+            "d": 0.999994158744812
+          }
+        ],
+        "height": 1216,
+        "internalErrors": 0,
+        "updateMs": 41,
+        "scale": 0.6583251953125,
+        "stripDraws": 0,
+        "updates": 4,
+        "cleanupErrors": 0,
+        "presented": true,
+        "shifts": 0,
+        "fullDraws": 3
+      }
+    },
+    {
+      "offset": [
+        0,
+        -96
+      ],
+      "difference": {
+        "maxRGB": 1,
+        "changed": 6,
+        "maxAlpha": 0
+      },
+      "stats": {
+        "maxUpdateMs": 41,
+        "width": 1792,
+        "lastError": "",
+        "lastFallback": "",
+        "matrices": [
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -205,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -205,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -205,
+            "d": 0.999994158744812
+          }
+        ],
+        "height": 1216,
+        "internalErrors": 0,
+        "updateMs": 41,
+        "scale": 0.6583251953125,
+        "stripDraws": 0,
+        "updates": 5,
+        "cleanupErrors": 0,
+        "presented": true,
+        "shifts": 0,
+        "fullDraws": 3
+      }
+    },
+    {
+      "offset": [
+        340,
+        0
+      ],
+      "difference": {
+        "maxRGB": 1,
+        "changed": 6,
+        "maxAlpha": 0
+      },
+      "stats": {
+        "maxUpdateMs": 41,
+        "width": 1792,
+        "lastError": "",
+        "lastFallback": "",
+        "matrices": [
+          {
+            "tx": -292,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -292,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -292,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          }
+        ],
+        "height": 1216,
+        "internalErrors": 0,
+        "updateMs": 53,
+        "scale": 0.6583251953125,
+        "stripDraws": 3,
+        "updates": 6,
+        "cleanupErrors": 0,
+        "presented": true,
+        "shifts": 1,
+        "fullDraws": 3
+      }
+    },
+    {
+      "offset": [
+        -340,
+        0
+      ],
+      "difference": {
+        "maxRGB": 0,
+        "changed": 0,
+        "maxAlpha": 0
+      },
+      "stats": {
+        "maxUpdateMs": 41,
+        "width": 1792,
+        "lastError": "",
+        "lastFallback": "",
+        "matrices": [
+          {
+            "tx": -316,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -316,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -316,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          }
+        ],
+        "height": 1216,
+        "internalErrors": 0,
+        "updateMs": 68,
+        "scale": 0.6583251953125,
+        "stripDraws": 6,
+        "updates": 7,
+        "cleanupErrors": 0,
+        "presented": true,
+        "shifts": 2,
+        "fullDraws": 3
+      }
+    },
+    {
+      "offset": [
+        0,
+        280
+      ],
+      "difference": {
+        "maxRGB": 1,
+        "changed": 5,
+        "maxAlpha": 0
+      },
+      "stats": {
+        "maxUpdateMs": 41,
+        "width": 1792,
+        "lastError": "",
+        "lastFallback": "",
+        "matrices": [
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -261,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -261,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -261,
+            "d": 0.999994158744812
+          }
+        ],
+        "height": 1216,
+        "internalErrors": 0,
+        "updateMs": 88,
+        "scale": 0.6583251953125,
+        "stripDraws": 12,
+        "updates": 8,
+        "cleanupErrors": 0,
+        "presented": true,
+        "shifts": 3,
+        "fullDraws": 3
+      }
+    },
+    {
+      "offset": [
+        0,
+        -280
+      ],
+      "difference": {
+        "maxRGB": 1,
+        "changed": 5,
+        "maxAlpha": 0
+      },
+      "stats": {
+        "maxUpdateMs": 41,
+        "width": 1792,
+        "lastError": "",
+        "lastFallback": "",
+        "matrices": [
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -277,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -277,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -277,
+            "d": 0.999994158744812
+          }
+        ],
+        "height": 1216,
+        "internalErrors": 0,
+        "updateMs": 99,
+        "scale": 0.6583251953125,
+        "stripDraws": 15,
+        "updates": 9,
+        "cleanupErrors": 0,
+        "presented": true,
+        "shifts": 4,
+        "fullDraws": 3
+      }
+    },
+    {
+      "offset": [
+        0,
+        0
+      ],
+      "difference": {
+        "maxRGB": 1,
+        "changed": 6,
+        "maxAlpha": 0
+      },
+      "stats": {
+        "maxUpdateMs": 41,
+        "width": 1792,
+        "lastError": "",
+        "lastFallback": "",
+        "matrices": [
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          },
+          {
+            "tx": -272,
+            "a": 0.999994158744812,
+            "ty": -301,
+            "d": 0.999994158744812
+          }
+        ],
+        "height": 1216,
+        "internalErrors": 0,
+        "updateMs": 115,
+        "scale": 0.6583251953125,
+        "stripDraws": 15,
+        "updates": 10,
+        "cleanupErrors": 0,
+        "presented": true,
+        "shifts": 5,
+        "fullDraws": 6
+      }
+    }
+  ]
+}

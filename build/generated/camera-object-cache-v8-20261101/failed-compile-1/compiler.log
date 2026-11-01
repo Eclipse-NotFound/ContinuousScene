@@ -1,0 +1,11 @@
+正在加载配置文件“D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-object-cache-v8-20261101\compiler.xml”
+D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-object-cache-v8-20261101\ContinuousSceneMotionMod.as(122): 列: 33 错误: 找不到类型，或者它不是编译时常数: Rectangle。
+
+            var view:flash.geom.Rectangle=new flash.geom.Rectangle(-cam.vx/cam.scaleV,-cam.vy/cam.scaleV,cam.screenX/cam.scaleV,cam.screenY/cam.scaleV);
+                                ^
+
+D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-object-cache-v8-20261101\ContinuousSceneMotionMod.as(122): 列: 47 错误: 访问的属性 flash 未定义。
+
+            var view:flash.geom.Rectangle=new flash.geom.Rectangle(-cam.vx/cam.scaleV,-cam.vy/cam.scaleV,cam.screenX/cam.scaleV,cam.screenY/cam.scaleV);
+                                              ^
+

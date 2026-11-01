@@ -1,0 +1,2337 @@
+{
+  "runs": [
+    {
+      "name": "camera-object-clip-large-r1-20261101",
+      "ok": true,
+      "error": null,
+      "assertions": 20,
+      "failedAssertions": [],
+      "entry": {
+        "units": 137,
+        "scale": 1,
+        "stageWidth": 1904,
+        "stageHeight": 1041
+      },
+      "host": "9D8662F6CF80E0AD20741EC2A4E7BEAD68446269EBB0ADB641C876DB68698B1D",
+      "groups": {
+        "full": {
+          "n": 1432,
+          "mean": 32.638,
+          "p95": 44,
+          "p99": 60,
+          "maximum": 134,
+          "over100": 8
+        },
+        "objectClip": {
+          "n": 716,
+          "mean": 33.201,
+          "p95": 45,
+          "p99": 65,
+          "maximum": 135,
+          "over100": 4
+        },
+        "objectMask": {
+          "n": 716,
+          "mean": 33.627,
+          "p95": 44,
+          "p99": 54,
+          "maximum": 140,
+          "over100": 4
+        }
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "frames": 180,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 179,
+          "mean": 31.145,
+          "p95": 41,
+          "p99": 45,
+          "maximum": 121,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 1,
+          "frames": 180,
+          "mode": "objectClip",
+          "axis": "x",
+          "fps": 120,
+          "n": 179,
+          "mean": 32.922,
+          "p95": 42,
+          "p99": 49,
+          "maximum": 123,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 2,
+          "frames": 180,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 179,
+          "mean": 32.156,
+          "p95": 40,
+          "p99": 51,
+          "maximum": 126,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 3,
+          "frames": 180,
+          "mode": "objectClip",
+          "axis": "y",
+          "fps": 120,
+          "n": 179,
+          "mean": 34.821,
+          "p95": 57,
+          "p99": 70,
+          "maximum": 135,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 4,
+          "frames": 180,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 179,
+          "mean": 36.006,
+          "p95": 52,
+          "p99": 88,
+          "maximum": 134,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 5,
+          "frames": 180,
+          "mode": "objectMask",
+          "axis": "x",
+          "fps": 120,
+          "n": 179,
+          "mean": 33.905,
+          "p95": 44,
+          "p99": 49,
+          "maximum": 137,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 6,
+          "frames": 180,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 179,
+          "mean": 30.469,
+          "p95": 36,
+          "p99": 42,
+          "maximum": 121,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 7,
+          "frames": 180,
+          "mode": "objectMask",
+          "axis": "y",
+          "fps": 120,
+          "n": 179,
+          "mean": 34.413,
+          "p95": 49,
+          "p99": 59,
+          "maximum": 140,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 8,
+          "frames": 180,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 179,
+          "mean": 33.385,
+          "p95": 47,
+          "p99": 59,
+          "maximum": 131,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 9,
+          "frames": 180,
+          "mode": "objectMask",
+          "axis": "x",
+          "fps": 120,
+          "n": 179,
+          "mean": 33.95,
+          "p95": 42,
+          "p99": 45,
+          "maximum": 134,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 10,
+          "frames": 180,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 179,
+          "mean": 36.156,
+          "p95": 50,
+          "p99": 60,
+          "maximum": 126,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 11,
+          "frames": 180,
+          "mode": "objectMask",
+          "axis": "y",
+          "fps": 120,
+          "n": 179,
+          "mean": 32.24,
+          "p95": 39,
+          "p99": 47,
+          "maximum": 125,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 12,
+          "frames": 180,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 179,
+          "mean": 32.095,
+          "p95": 41,
+          "p99": 51,
+          "maximum": 120,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 13,
+          "frames": 180,
+          "mode": "objectClip",
+          "axis": "x",
+          "fps": 120,
+          "n": 179,
+          "mean": 35.168,
+          "p95": 44,
+          "p99": 52,
+          "maximum": 126,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 14,
+          "frames": 180,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 179,
+          "mean": 29.693,
+          "p95": 37,
+          "p99": 47,
+          "maximum": 132,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 15,
+          "frames": 180,
+          "mode": "objectClip",
+          "axis": "y",
+          "fps": 120,
+          "n": 179,
+          "mean": 29.894,
+          "p95": 36,
+          "p99": 48,
+          "maximum": 116,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        }
+      ],
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 12104589312,
+      "nativeHiddenActor": {
+        "className": "UnitSpectre",
+        "before": false,
+        "after": false
+      },
+      "rawSHA256": "E25E6C1C8F8E375FF64F8ED9FE28C4C92F3607DE2940B1E3BF4B74738749A2F5",
+      "recipeProbeSHA256": "D2010681ABFE298BE148D7F5097E0B35668DD2A4E7FCFBE31EBE76166CD05AEC"
+    },
+    {
+      "name": "camera-object-cache-guard-large-r1-20261101",
+      "ok": true,
+      "error": null,
+      "assertions": 20,
+      "failedAssertions": [],
+      "entry": {
+        "units": 131,
+        "scale": 1,
+        "stageWidth": 1904,
+        "stageHeight": 1041
+      },
+      "host": "48C71D7AB5D7CB66323BD663952B86634810F3B62DC21A78C4FB0E7D66DC1B39",
+      "groups": {
+        "full": {
+          "n": 1068,
+          "mean": 32.158,
+          "p95": 42,
+          "p99": 53,
+          "maximum": 146,
+          "over100": 4
+        },
+        "clipCache01": {
+          "n": 356,
+          "mean": 31.736,
+          "p95": 43,
+          "p99": 66,
+          "maximum": 139,
+          "over100": 3
+        },
+        "clipCache0": {
+          "n": 356,
+          "mean": 31.551,
+          "p95": 42,
+          "p99": 61,
+          "maximum": 145,
+          "over100": 4
+        },
+        "clipCache1": {
+          "n": 356,
+          "mean": 35.197,
+          "p95": 50,
+          "p99": 58,
+          "maximum": 72,
+          "over100": 0
+        }
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "frames": 90,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 30.494,
+          "p95": 37,
+          "p99": 42,
+          "maximum": 43,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 1,
+          "frames": 90,
+          "mode": "clipCache01",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 29.573,
+          "p95": 35,
+          "p99": 66,
+          "maximum": 117,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 2,
+          "frames": 90,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 31.528,
+          "p95": 39,
+          "p99": 42,
+          "maximum": 43,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 3,
+          "frames": 90,
+          "mode": "clipCache01",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 30.899,
+          "p95": 38,
+          "p99": 74,
+          "maximum": 139,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 4,
+          "frames": 90,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 33.921,
+          "p95": 44,
+          "p99": 47,
+          "maximum": 52,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 5,
+          "frames": 90,
+          "mode": "clipCache0",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 30.337,
+          "p95": 38,
+          "p99": 61,
+          "maximum": 142,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 6,
+          "frames": 90,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 30.461,
+          "p95": 38,
+          "p99": 42,
+          "maximum": 48,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 7,
+          "frames": 90,
+          "mode": "clipCache0",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 28.966,
+          "p95": 32,
+          "p99": 52,
+          "maximum": 116,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 8,
+          "frames": 90,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 29,
+          "p95": 33,
+          "p99": 36,
+          "maximum": 36,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 9,
+          "frames": 90,
+          "mode": "clipCache1",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 30.978,
+          "p95": 38,
+          "p99": 45,
+          "maximum": 46,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 10,
+          "frames": 90,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 36.034,
+          "p95": 53,
+          "p99": 71,
+          "maximum": 74,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 11,
+          "frames": 90,
+          "mode": "clipCache1",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 34.213,
+          "p95": 48,
+          "p99": 51,
+          "maximum": 55,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 12,
+          "frames": 90,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 35.719,
+          "p95": 50,
+          "p99": 110,
+          "maximum": 124,
+          "over100": 2,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 13,
+          "frames": 90,
+          "mode": "clipCache1",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 36.045,
+          "p95": 51,
+          "p99": 58,
+          "maximum": 58,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 14,
+          "frames": 90,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 34.483,
+          "p95": 41,
+          "p99": 47,
+          "maximum": 146,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 15,
+          "frames": 90,
+          "mode": "clipCache1",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 39.551,
+          "p95": 53,
+          "p99": 59,
+          "maximum": 72,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 16,
+          "frames": 90,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 33.404,
+          "p95": 43,
+          "p99": 57,
+          "maximum": 131,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 17,
+          "frames": 90,
+          "mode": "clipCache0",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 33.742,
+          "p95": 41,
+          "p99": 56,
+          "maximum": 128,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 18,
+          "frames": 90,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 30.438,
+          "p95": 36,
+          "p99": 38,
+          "maximum": 39,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 19,
+          "frames": 90,
+          "mode": "clipCache0",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 33.157,
+          "p95": 42,
+          "p99": 55,
+          "maximum": 145,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 20,
+          "frames": 90,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 30.169,
+          "p95": 36,
+          "p99": 37,
+          "maximum": 38,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 21,
+          "frames": 90,
+          "mode": "clipCache01",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 34.652,
+          "p95": 43,
+          "p99": 65,
+          "maximum": 137,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 22,
+          "frames": 90,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 30.247,
+          "p95": 37,
+          "p99": 37,
+          "maximum": 37,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 23,
+          "frames": 90,
+          "mode": "clipCache01",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 31.82,
+          "p95": 48,
+          "p99": 52,
+          "maximum": 64,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        }
+      ],
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 12200386560,
+      "nativeHiddenActor": {
+        "before": false,
+        "after": false,
+        "className": "UnitSpectre"
+      },
+      "rawSHA256": "C6DD36D7FF71C179B5601A8728DF0F49D9BF81585A01358A9F02F0C638E89A6B",
+      "recipeProbeSHA256": "1BD3DA3D9521AF5AD2D94B46DC960A06228F45BD5FC4E0B83621B504DB7A7679"
+    },
+    {
+      "name": "camera-object-cache-base-large-r1-20261101",
+      "ok": true,
+      "error": null,
+      "assertions": 19,
+      "failedAssertions": [],
+      "entry": {
+        "units": 130,
+        "scale": 1,
+        "stageWidth": 1904,
+        "stageHeight": 1041
+      },
+      "host": "9D8662F6CF80E0AD20741EC2A4E7BEAD68446269EBB0ADB641C876DB68698B1D",
+      "groups": {
+        "full": {
+          "n": 1068,
+          "mean": 31.277,
+          "p95": 40,
+          "p99": 113,
+          "maximum": 130,
+          "over100": 12
+        },
+        "clipCache01": {
+          "n": 356,
+          "mean": 31.739,
+          "p95": 46,
+          "p99": 58,
+          "maximum": 72,
+          "over100": 0
+        },
+        "clipCache0": {
+          "n": 356,
+          "mean": 29.978,
+          "p95": 41,
+          "p99": 48,
+          "maximum": 50,
+          "over100": 0
+        },
+        "clipCache1": {
+          "n": 356,
+          "mean": 29.368,
+          "p95": 39,
+          "p99": 48,
+          "maximum": 52,
+          "over100": 0
+        }
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "frames": 90,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 32.685,
+          "p95": 41,
+          "p99": 45,
+          "maximum": 125,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 1,
+          "frames": 90,
+          "mode": "clipCache01",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 28.944,
+          "p95": 36,
+          "p99": 43,
+          "maximum": 66,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 2,
+          "frames": 90,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 32.674,
+          "p95": 40,
+          "p99": 51,
+          "maximum": 120,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 3,
+          "frames": 90,
+          "mode": "clipCache01",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 30.483,
+          "p95": 41,
+          "p99": 46,
+          "maximum": 58,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 4,
+          "frames": 90,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 31.337,
+          "p95": 41,
+          "p99": 44,
+          "maximum": 127,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 5,
+          "frames": 90,
+          "mode": "clipCache0",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 32.427,
+          "p95": 45,
+          "p99": 49,
+          "maximum": 49,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 6,
+          "frames": 90,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 28.978,
+          "p95": 35,
+          "p99": 38,
+          "maximum": 119,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 7,
+          "frames": 90,
+          "mode": "clipCache0",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 28.82,
+          "p95": 36,
+          "p99": 44,
+          "maximum": 50,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 8,
+          "frames": 90,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 29.899,
+          "p95": 34,
+          "p99": 36,
+          "maximum": 113,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 9,
+          "frames": 90,
+          "mode": "clipCache1",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 30.809,
+          "p95": 41,
+          "p99": 48,
+          "maximum": 49,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 10,
+          "frames": 90,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 30.573,
+          "p95": 36,
+          "p99": 39,
+          "maximum": 115,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 11,
+          "frames": 90,
+          "mode": "clipCache1",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 29.337,
+          "p95": 38,
+          "p99": 44,
+          "maximum": 51,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 12,
+          "frames": 90,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 30.618,
+          "p95": 35,
+          "p99": 47,
+          "maximum": 125,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 13,
+          "frames": 90,
+          "mode": "clipCache1",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 29.225,
+          "p95": 36,
+          "p99": 52,
+          "maximum": 52,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 14,
+          "frames": 90,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 30.213,
+          "p95": 39,
+          "p99": 44,
+          "maximum": 117,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 15,
+          "frames": 90,
+          "mode": "clipCache1",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 28.101,
+          "p95": 33,
+          "p99": 37,
+          "maximum": 43,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 16,
+          "frames": 90,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 31.798,
+          "p95": 38,
+          "p99": 42,
+          "maximum": 115,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 17,
+          "frames": 90,
+          "mode": "clipCache0",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 29.045,
+          "p95": 34,
+          "p99": 44,
+          "maximum": 47,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 18,
+          "frames": 90,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 33.494,
+          "p95": 48,
+          "p99": 63,
+          "maximum": 130,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 19,
+          "frames": 90,
+          "mode": "clipCache0",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 29.618,
+          "p95": 39,
+          "p99": 46,
+          "maximum": 49,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 20,
+          "frames": 90,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 30.124,
+          "p95": 35,
+          "p99": 41,
+          "maximum": 124,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 21,
+          "frames": 90,
+          "mode": "clipCache01",
+          "axis": "x",
+          "fps": 120,
+          "n": 89,
+          "mean": 33.112,
+          "p95": 47,
+          "p99": 62,
+          "maximum": 72,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 22,
+          "frames": 90,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 32.933,
+          "p95": 39,
+          "p99": 55,
+          "maximum": 120,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 23,
+          "frames": 90,
+          "mode": "clipCache01",
+          "axis": "y",
+          "fps": 120,
+          "n": 89,
+          "mean": 34.416,
+          "p95": 50,
+          "p99": 56,
+          "maximum": 65,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        }
+      ],
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 12554510336,
+      "nativeHiddenActor": {
+        "before": false,
+        "after": false,
+        "className": "UnitSpectre"
+      },
+      "rawSHA256": "16DE58B0A7D2E4CA875CFD1441D67882FA93DA9632C06D216A3AF93345093837",
+      "recipeProbeSHA256": "1BD3DA3D9521AF5AD2D94B46DC960A06228F45BD5FC4E0B83621B504DB7A7679"
+    },
+    {
+      "name": "camera-scaled-fill-small-r1-20261101",
+      "ok": false,
+      "error": "fill-pixels-within-approved-limit: {\"maxRGB\":227,\"changed\":180967,\"maxAlpha\":255}\nError: fill-pixels-within-approved-limit: {\"maxRGB\":227,\"changed\":180967,\"maxAlpha\":255}\n\tat ContinuousSceneMotionMod$/assertThat()\n\tat ContinuousSceneMotionMod$/pixelCheck()\n\tat ContinuousSceneMotionMod$/makeSchedule()\n\tat ContinuousSceneMotionMod$/after()",
+      "assertions": 26,
+      "failedAssertions": [
+        {
+          "ok": false,
+          "detail": {
+            "maxRGB": 227,
+            "changed": 180967,
+            "maxAlpha": 255
+          },
+          "name": "fill-pixels-within-approved-limit"
+        }
+      ],
+      "entry": {
+        "units": 131,
+        "scale": 0.6583333333333333,
+        "stageWidth": 1264,
+        "stageHeight": 681
+      },
+      "host": "9D8662F6CF80E0AD20741EC2A4E7BEAD68446269EBB0ADB641C876DB68698B1D",
+      "groups": {},
+      "blocks": [],
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 12425498624,
+      "nativeHiddenActor": {
+        "before": false,
+        "className": "UnitSpectre",
+        "after": false
+      },
+      "rawSHA256": "5417C613E1C2F0BA34E0F3B4D27FEC43F24AB89474E6D810D349C8AE01D1B699",
+      "recipeProbeSHA256": "DD29FA3D4C95DD460EA56F189E9563C0B1603B6B07E7AC04FED79B50E5F8BE86"
+    },
+    {
+      "name": "camera-terrain-cache-large-r1-20261101",
+      "ok": true,
+      "error": null,
+      "assertions": 75,
+      "failedAssertions": [],
+      "entry": {
+        "units": 137,
+        "scale": 1,
+        "stageWidth": 1904,
+        "stageHeight": 1041
+      },
+      "host": "9D8662F6CF80E0AD20741EC2A4E7BEAD68446269EBB0ADB641C876DB68698B1D",
+      "groups": {
+        "full": {
+          "n": 1074,
+          "mean": 27.192,
+          "p95": 38,
+          "p99": 50,
+          "maximum": 131,
+          "over100": 5
+        },
+        "terrainCache": {
+          "n": 1074,
+          "mean": 27.75,
+          "p95": 38,
+          "p99": 58,
+          "maximum": 174,
+          "over100": 8
+        }
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "mode": "full",
+          "axis": "static",
+          "frames": 180,
+          "fps": 120,
+          "n": 179,
+          "mean": 23.179,
+          "p95": 31,
+          "p99": 35,
+          "maximum": 110,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 1,
+          "mode": "terrainCache",
+          "axis": "static",
+          "frames": 180,
+          "fps": 120,
+          "n": 179,
+          "mean": 22.804,
+          "p95": 28,
+          "p99": 39,
+          "maximum": 121,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 2,
+          "mode": "full",
+          "axis": "x",
+          "frames": 180,
+          "fps": 120,
+          "n": 179,
+          "mean": 31.184,
+          "p95": 40,
+          "p99": 48,
+          "maximum": 130,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 3,
+          "mode": "terrainCache",
+          "axis": "x",
+          "frames": 180,
+          "fps": 120,
+          "n": 179,
+          "mean": 32.246,
+          "p95": 40,
+          "p99": 58,
+          "maximum": 139,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 4,
+          "mode": "full",
+          "axis": "y",
+          "frames": 180,
+          "fps": 120,
+          "n": 179,
+          "mean": 31.894,
+          "p95": 45,
+          "p99": 64,
+          "maximum": 131,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 5,
+          "mode": "terrainCache",
+          "axis": "y",
+          "frames": 180,
+          "fps": 120,
+          "n": 179,
+          "mean": 30.564,
+          "p95": 39,
+          "p99": 57,
+          "maximum": 174,
+          "over100": 2,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 6,
+          "mode": "full",
+          "axis": "y",
+          "frames": 180,
+          "fps": 120,
+          "n": 179,
+          "mean": 28.039,
+          "p95": 36,
+          "p99": 43,
+          "maximum": 115,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 7,
+          "mode": "terrainCache",
+          "axis": "y",
+          "frames": 180,
+          "fps": 120,
+          "n": 179,
+          "mean": 28.19,
+          "p95": 36,
+          "p99": 58,
+          "maximum": 114,
+          "over100": 2,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 8,
+          "mode": "full",
+          "axis": "x",
+          "frames": 180,
+          "fps": 120,
+          "n": 179,
+          "mean": 28,
+          "p95": 35,
+          "p99": 46,
+          "maximum": 103,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 9,
+          "mode": "terrainCache",
+          "axis": "x",
+          "frames": 180,
+          "fps": 120,
+          "n": 179,
+          "mean": 28.855,
+          "p95": 37,
+          "p99": 56,
+          "maximum": 107,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 10,
+          "mode": "full",
+          "axis": "static",
+          "frames": 180,
+          "fps": 120,
+          "n": 179,
+          "mean": 20.855,
+          "p95": 26,
+          "p99": 30,
+          "maximum": 34,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 11,
+          "mode": "terrainCache",
+          "axis": "static",
+          "frames": 180,
+          "fps": 120,
+          "n": 179,
+          "mean": 23.838,
+          "p95": 33,
+          "p99": 58,
+          "maximum": 114,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        }
+      ],
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 12079333376,
+      "nativeHiddenActor": {
+        "before": false,
+        "after": false,
+        "className": "UnitSpectre"
+      },
+      "rawSHA256": "6DC1CD10386E8258D19DFDFE554A293DAED660137E5AA49DA32789FEDFEDA9C9",
+      "recipeProbeSHA256": "D930E5DA2DC239DFAD68B8ECABE7F15CBFDE3977933EB6670FC22B81D3E795D1"
+    },
+    {
+      "name": "camera-phase-search-small-r1-20261101",
+      "ok": true,
+      "error": null,
+      "assertions": 10,
+      "failedAssertions": [],
+      "entry": {
+        "units": 140,
+        "scale": 0.6583333333333333,
+        "stageWidth": 1264,
+        "stageHeight": 681
+      },
+      "host": "9D8662F6CF80E0AD20741EC2A4E7BEAD68446269EBB0ADB641C876DB68698B1D",
+      "groups": {},
+      "blocks": [],
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 12532563968,
+      "nativeHiddenActor": {
+        "after": false,
+        "before": false,
+        "className": "UnitSpectre"
+      },
+      "rawSHA256": "222288993E69CBC4C97795B6B957E3528D7937EFB213C166D402A323A2D20BE7",
+      "recipeProbeSHA256": "111C56A1FD8F9432E1C1C71A43AA19277197F7CDE1608CC2A600A0CDF51B2D39"
+    },
+    {
+      "name": "camera-screen-cache-small-r1-20261101",
+      "ok": true,
+      "error": null,
+      "assertions": 32,
+      "failedAssertions": [],
+      "entry": {
+        "units": 135,
+        "scale": 0.6583333333333333,
+        "stageWidth": 1264,
+        "stageHeight": 681
+      },
+      "host": "9D8662F6CF80E0AD20741EC2A4E7BEAD68446269EBB0ADB641C876DB68698B1D",
+      "groups": {
+        "full": {
+          "n": 1076,
+          "mean": 27.962,
+          "p95": 34,
+          "p99": 49,
+          "maximum": 118,
+          "over100": 6
+        },
+        "fill": {
+          "n": 1076,
+          "mean": 29.261,
+          "p95": 38,
+          "p99": 48,
+          "maximum": 131,
+          "over100": 5
+        }
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "axis": "x",
+          "mode": "full",
+          "fps": 120,
+          "frames": 270,
+          "n": 269,
+          "mean": 27.19,
+          "p95": 33,
+          "p99": 38,
+          "maximum": 104,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 1,
+          "axis": "x",
+          "mode": "fill",
+          "fps": 120,
+          "frames": 270,
+          "n": 269,
+          "mean": 28.413,
+          "p95": 36,
+          "p99": 39,
+          "maximum": 131,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 2,
+          "axis": "y",
+          "mode": "full",
+          "fps": 120,
+          "frames": 270,
+          "n": 269,
+          "mean": 28.751,
+          "p95": 36,
+          "p99": 47,
+          "maximum": 115,
+          "over100": 2,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 3,
+          "axis": "y",
+          "mode": "fill",
+          "fps": 120,
+          "frames": 270,
+          "n": 269,
+          "mean": 28.197,
+          "p95": 36,
+          "p99": 42,
+          "maximum": 101,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 4,
+          "axis": "y",
+          "mode": "full",
+          "fps": 120,
+          "frames": 270,
+          "n": 269,
+          "mean": 28.082,
+          "p95": 33,
+          "p99": 64,
+          "maximum": 115,
+          "over100": 2,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 5,
+          "axis": "y",
+          "mode": "fill",
+          "fps": 120,
+          "frames": 270,
+          "n": 269,
+          "mean": 30.309,
+          "p95": 41,
+          "p99": 47,
+          "maximum": 105,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 6,
+          "axis": "x",
+          "mode": "full",
+          "fps": 120,
+          "frames": 270,
+          "n": 269,
+          "mean": 27.825,
+          "p95": 34,
+          "p99": 40,
+          "maximum": 118,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 7,
+          "axis": "x",
+          "mode": "fill",
+          "fps": 120,
+          "frames": 270,
+          "n": 269,
+          "mean": 30.126,
+          "p95": 41,
+          "p99": 51,
+          "maximum": 126,
+          "over100": 2,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        }
+      ],
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 12533510144,
+      "nativeHiddenActor": {
+        "before": false,
+        "after": false,
+        "className": "UnitSpectre"
+      },
+      "rawSHA256": "867F5A4D6AF1F0198A079D555EE5BF6854BA3CD3CF7DABBAFCA90A864CD6D0E3",
+      "recipeProbeSHA256": "823B8BAFFD45381C1060B8C405042661E90765D5D6B2CD68C0774CE4E798EB1E"
+    },
+    {
+      "name": "camera-screen-cache-small-r2-20261101",
+      "ok": true,
+      "error": null,
+      "assertions": 42,
+      "failedAssertions": [],
+      "entry": {
+        "units": 132,
+        "scale": 0.6583333333333333,
+        "stageWidth": 1264,
+        "stageHeight": 681
+      },
+      "host": "9D8662F6CF80E0AD20741EC2A4E7BEAD68446269EBB0ADB641C876DB68698B1D",
+      "groups": {
+        "full": {
+          "n": 1076,
+          "mean": 28.018,
+          "p95": 38,
+          "p99": 43,
+          "maximum": 131,
+          "over100": 4
+        },
+        "fill": {
+          "n": 1076,
+          "mean": 27.202,
+          "p95": 35,
+          "p99": 51,
+          "maximum": 132,
+          "over100": 7
+        }
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "axis": "x",
+          "mode": "full",
+          "fps": 120,
+          "frames": 270,
+          "n": 269,
+          "mean": 28.933,
+          "p95": 39,
+          "p99": 43,
+          "maximum": 119,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 1,
+          "axis": "x",
+          "mode": "fill",
+          "fps": 120,
+          "frames": 270,
+          "n": 269,
+          "mean": 27.361,
+          "p95": 34,
+          "p99": 47,
+          "maximum": 110,
+          "over100": 2,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 2,
+          "axis": "y",
+          "mode": "full",
+          "fps": 120,
+          "frames": 270,
+          "n": 269,
+          "mean": 27.643,
+          "p95": 35,
+          "p99": 41,
+          "maximum": 129,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 3,
+          "axis": "y",
+          "mode": "fill",
+          "fps": 120,
+          "frames": 270,
+          "n": 269,
+          "mean": 27.1,
+          "p95": 34,
+          "p99": 44,
+          "maximum": 112,
+          "over100": 2,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 4,
+          "axis": "y",
+          "mode": "full",
+          "fps": 120,
+          "frames": 270,
+          "n": 269,
+          "mean": 26.743,
+          "p95": 35,
+          "p99": 40,
+          "maximum": 131,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 5,
+          "axis": "y",
+          "mode": "fill",
+          "fps": 120,
+          "frames": 270,
+          "n": 269,
+          "mean": 26.349,
+          "p95": 33,
+          "p99": 42,
+          "maximum": 110,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 6,
+          "axis": "x",
+          "mode": "full",
+          "fps": 120,
+          "frames": 270,
+          "n": 269,
+          "mean": 28.751,
+          "p95": 39,
+          "p99": 45,
+          "maximum": 123,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 7,
+          "axis": "x",
+          "mode": "fill",
+          "fps": 120,
+          "frames": 270,
+          "n": 269,
+          "mean": 27.996,
+          "p95": 37,
+          "p99": 50,
+          "maximum": 132,
+          "over100": 2,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        }
+      ],
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 12435042304,
+      "nativeHiddenActor": {
+        "before": false,
+        "after": false,
+        "className": "UnitSpectre"
+      },
+      "rawSHA256": "533A6514A1DBF6AE2D03C0F7B422EA0715D1B27281D492D7FB36C8A0C8D07259",
+      "recipeProbeSHA256": "29D10F26CED0B329DBC361E0E0C93E17744C5565E4167A0376F09EE28544B987"
+    },
+    {
+      "name": "camera-screen-cache-large-r1-20261101",
+      "ok": true,
+      "error": null,
+      "assertions": 45,
+      "failedAssertions": [],
+      "entry": {
+        "units": 138,
+        "scale": 1,
+        "stageWidth": 1904,
+        "stageHeight": 1041
+      },
+      "host": "9D8662F6CF80E0AD20741EC2A4E7BEAD68446269EBB0ADB641C876DB68698B1D",
+      "groups": {
+        "full": {
+          "n": 1076,
+          "mean": 35.19,
+          "p95": 49,
+          "p99": 61,
+          "maximum": 213,
+          "over100": 3
+        },
+        "fill": {
+          "n": 1076,
+          "mean": 39.166,
+          "p95": 52,
+          "p99": 86,
+          "maximum": 321,
+          "over100": 9
+        }
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "frames": 270,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 269,
+          "mean": 35.26,
+          "p95": 50,
+          "p99": 60,
+          "maximum": 79,
+          "over100": 0,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 1,
+          "frames": 270,
+          "mode": "fill",
+          "axis": "x",
+          "fps": 120,
+          "n": 269,
+          "mean": 41.398,
+          "p95": 55,
+          "p99": 79,
+          "maximum": 321,
+          "over100": 2,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 2,
+          "frames": 270,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 269,
+          "mean": 37.572,
+          "p95": 56,
+          "p99": 75,
+          "maximum": 213,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 3,
+          "frames": 270,
+          "mode": "fill",
+          "axis": "y",
+          "fps": 120,
+          "n": 269,
+          "mean": 37.323,
+          "p95": 48,
+          "p99": 54,
+          "maximum": 132,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 4,
+          "frames": 270,
+          "mode": "full",
+          "axis": "y",
+          "fps": 120,
+          "n": 269,
+          "mean": 33.981,
+          "p95": 44,
+          "p99": 52,
+          "maximum": 199,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 5,
+          "frames": 270,
+          "mode": "fill",
+          "axis": "y",
+          "fps": 120,
+          "n": 269,
+          "mean": 39.651,
+          "p95": 50,
+          "p99": 71,
+          "maximum": 205,
+          "over100": 2,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 6,
+          "frames": 270,
+          "mode": "full",
+          "axis": "x",
+          "fps": 120,
+          "n": 269,
+          "mean": 33.944,
+          "p95": 43,
+          "p99": 50,
+          "maximum": 174,
+          "over100": 1,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        },
+        {
+          "index": 7,
+          "frames": 270,
+          "mode": "fill",
+          "axis": "x",
+          "fps": 120,
+          "n": 269,
+          "mean": 38.294,
+          "p95": 54,
+          "p99": 111,
+          "maximum": 143,
+          "over100": 4,
+          "worldChanges": {
+            "sceneWarmCount": 0,
+            "sceneRedraws": 0,
+            "sceneMisses": 0,
+            "sceneEvictions": 0
+          }
+        }
+      ],
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 11788558336,
+      "nativeHiddenActor": {
+        "before": false,
+        "after": false,
+        "className": "UnitSpectre"
+      },
+      "rawSHA256": "8DB65CD896584FAE841C45165916FC0F37B9A929880A4370814D86125034AE1F",
+      "recipeProbeSHA256": "29D10F26CED0B329DBC361E0E0C93E17744C5565E4167A0376F09EE28544B987"
+    }
+  ],
+  "missing": [],
+  "totalIntervals": 15740,
+  "diagnosticOnly": true,
+  "performanceDeploymentAccepted": false,
+  "rawAcceptancePreserved": true,
+  "formalMods": {
+    "mods\\ModLoader\\release\\ModLoaderMod.swf": "2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2",
+    "mods\\Sandevistan\\release\\SandevistanMod.swf": "CEC6A3061CB90380579D8A95AA1254E0328BD0DAE6E239FC4CA5205D6CCCF942",
+    "mods\\Rconnect\\release\\RConnectMod.swf": "690604878BD8707007A99E3AD14F8F5F3F55CDD4948C8DEBE6CC87363AFD38C9",
+    "mods\\RealisticVision\\release\\RealisticVisionMod.swf": "AEA303149B0A5D5A3072C610B3E95F4AD78963EA22CE123C6A3414E73B9AA557",
+    "mods\\MoreSkills&Weapons\\release\\MoreSkillsWeaponsMod.swf": "526A6FD09297FB4F502236076B4252BF97BB50D2F77000B13763CF118546AB71",
+    "mods\\TDFC\\release\\TDFCMod.swf": "7ACD45193109267DBBF875240528048AD6F1D09FA3B8B36BAA6F98EBB5FDDCE5",
+    "mods\\RandomRooms\\release\\RandomRoomsMod.swf": "3F8789C62F9B2EF8EFC082597F672A2FEA230A0D7FCE3BE90C04EFD9582E5145",
+    "mods\\RModifier\\release\\LootEditorMod.swf": "4F1D6CF19979F4EA4960F8CCD8377C1D3CAC490BED9949866885357D073C8625",
+    "mods\\PermanentInjury\\release\\PermanentInjuryMod.swf": "D4F6A096EE06F8869FFFB316801C6325DF26F54260A34666AC17EC24AD8BD083",
+    "mods\\AddictionSystem\\release\\AddictionSystemMod.swf": "5A4D9A405777867826061BB50178DF931591987EA0737580BD0AA8A89458B9B3",
+    "mods\\ContinuousScene\\release\\ContinuousSceneMod.swf": "D8A68A4C128E196FD69B50D1CC7F0FFA72669751FB2FCB85D629F30FE622E677",
+    "mods\\FirearmAttachments\\release\\FirearmAttachmentsMod.swf": "B3304596EB7E08796F9DE2CF02E1E7CCCFF10E188D26FEDFA960AA6370D2A4B9",
+    "mods\\LightAndDarkness\\release\\LightAndDarknessMod.swf": "8ADBA6914DF5AADA4DF12A646B6C22DF4B95B9630A55DD05CA7F713621C7E3EF",
+    "mods\\WallBlend\\release\\WallBlendMod.swf": "FE3E7A84753F6F3614440F69F8725E6E8639AEE4755ACF878AAFCFEDB95AC2E6"
+  },
+  "currentRootHostSHA256": "9D8662F6CF80E0AD20741EC2A4E7BEAD68446269EBB0ADB641C876DB68698B1D",
+  "currentFormalModsMatch": true
+}

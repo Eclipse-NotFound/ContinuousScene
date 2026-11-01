@@ -1,0 +1,75 @@
+<report>
+  <scripts>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-object-cache-v8-20261101\CameraProbePlatform.as" mod="1793253281424" size="6153" optimizedsize="5819">
+      <def id="CameraProbePlatform" />
+      <pre id="Object" />
+      <dep id="flash.utils:getTimer" />
+      <dep id="AS3" />
+      <dep id="Error" />
+      <dep id="JSON" />
+      <dep id="Math" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-object-cache-v8-20261101\ContinuousSceneMotionMod.as" mod="1793516417887" size="10240" optimizedsize="9484">
+      <def id="ContinuousSceneMotionMod" />
+      <pre id="Object" />
+      <dep id="flash.utils:getDefinitionByName" />
+      <dep id="AS3" />
+      <dep id="flash.utils:getQualifiedClassName" />
+      <dep id="flash.media:SoundMixer" />
+      <dep id="flash.filesystem:File" />
+      <dep id="flash.media:SoundTransform" />
+      <dep id="Error" />
+      <dep id="JSON" />
+      <dep id="flash.system:System" />
+      <dep id="Math" />
+      <dep id="flash.geom:Rectangle" />
+      <dep id="flash.events:Event" />
+      <dep id="flash.utils:getTimer" />
+      <dep id="flash.display:DisplayObject" />
+      <dep id="flash.display:DisplayObjectContainer" />
+      <dep id="flash.desktop:NativeApplication" />
+      <dep id="CameraProbePlatform" />
+      <dep id="flash.filesystem:FileStream" />
+      <dep id="ObjectViewportProbe" />
+      <dep id="flash.filesystem:FileMode" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-object-cache-v8-20261101\ObjectViewportProbe.as" mod="1793516417883" size="1610" optimizedsize="1537">
+      <def id="ObjectViewportProbe" />
+      <pre id="Object" />
+      <dep id="AS3" />
+      <dep id="Error" />
+      <dep id="Math" />
+      <dep id="flash.display:Shape" />
+      <dep id="flash.geom:Rectangle" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-object-cache-v8-20261101\ProbeDoc.as" mod="1793516427301" size="278" optimizedsize="262">
+      <def id="ProbeDoc" />
+      <pre id="flash.display:Sprite" />
+      <dep id="AS3" />
+      <dep id="ContinuousSceneMotionMod" />
+    </script>
+  </scripts>
+  <external-defs>
+    <ext id="flash.display:DisplayObject" />
+    <ext id="flash.events:Event" />
+    <ext id="JSON" />
+    <ext id="flash.utils:getTimer" />
+    <ext id="flash.media:SoundTransform" />
+    <ext id="flash.system:System" />
+    <ext id="Error" />
+    <ext id="flash.display:DisplayObjectContainer" />
+    <ext id="flash.display:Sprite" />
+    <ext id="AS3" />
+    <ext id="flash.utils:getQualifiedClassName" />
+    <ext id="flash.filesystem:File" />
+    <ext id="flash.geom:Rectangle" />
+    <ext id="Math" />
+    <ext id="Object" />
+    <ext id="flash.desktop:NativeApplication" />
+    <ext id="flash.filesystem:FileStream" />
+    <ext id="flash.display:Shape" />
+    <ext id="flash.utils:getDefinitionByName" />
+    <ext id="flash.media:SoundMixer" />
+    <ext id="flash.filesystem:FileMode" />
+  </external-defs>
+</report>

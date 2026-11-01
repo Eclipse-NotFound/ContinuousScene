@@ -1,0 +1,12 @@
+{
+  "installedAt": "2026-11-01T14:58:55.725398",
+  "target": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\pfe.swf",
+  "before": "CA94AF17ED56B273138789661BF725538E5CB7C161CF282AB8C4AA582F88B9B0",
+  "after": "9D8662F6CF80E0AD20741EC2A4E7BEAD68446269EBB0ADB641C876DB68698B1D",
+  "backup": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\pfe_before_visibility_ownership_fix_20261101-145855-feabf95c.swf",
+  "validation": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\knowledge\\experiments\\evidence\\camera-object-clip-large-r1-20261101",
+  "sameValidatedBytes": true,
+  "changedMethod": "fe.graph.Grafon.sceneTick",
+  "change": "Remove unconditional sceneUnit.vis.visible override; keep A2 gutter and budget48 changes",
+  "readback": "9D8662F6CF80E0AD20741EC2A4E7BEAD68446269EBB0ADB641C876DB68698B1D"
+}
