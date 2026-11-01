@@ -1,0 +1,918 @@
+{
+  "name": "camera-near-group-cache-small-r1-20261101",
+  "ok": true,
+  "error": null,
+  "diagnosticOnly": true,
+  "policyPerformanceEligible": false,
+  "assertions": 84,
+  "failedChecks": [],
+  "runFailure": null,
+  "otherAIR": [],
+  "blocks": [
+    {
+      "settings": {
+        "mode": "full",
+        "axis": "x",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 41.10878661087866,
+        "p50": 38,
+        "p95": 62,
+        "p99": 81,
+        "max": 145,
+        "over100": 1,
+        "updateBandMean": 11.610878661087867,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "cachedVisible": 22,
+        "cacheEnabled": true,
+        "errors": 0,
+        "groups": 0,
+        "wrappedVisible": 22,
+        "moved": 1988,
+        "created": 568,
+        "cachedGroups": 59,
+        "estimatedPixels": 13473884,
+        "active": false,
+        "restored": 1988
+      }
+    },
+    {
+      "settings": {
+        "mode": "group",
+        "axis": "x",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 43.97071129707113,
+        "p50": 39,
+        "p95": 65,
+        "p99": 87,
+        "max": 168,
+        "over100": 2,
+        "updateBandMean": 11.769874476987448,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "cachedVisible": 0,
+        "cacheEnabled": false,
+        "errors": 0,
+        "groups": 58,
+        "wrappedVisible": 21,
+        "moved": 2196,
+        "created": 626,
+        "cachedGroups": 0,
+        "estimatedPixels": 0,
+        "active": true,
+        "restored": 1988
+      }
+    },
+    {
+      "settings": {
+        "mode": "fill",
+        "axis": "x",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 41.39330543933055,
+        "p50": 38,
+        "p95": 67,
+        "p99": 75,
+        "max": 168,
+        "over100": 1,
+        "updateBandMean": 11.635983263598327,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "cachedVisible": 21,
+        "cacheEnabled": true,
+        "errors": 0,
+        "groups": 58,
+        "wrappedVisible": 21,
+        "moved": 2404,
+        "created": 684,
+        "cachedGroups": 58,
+        "estimatedPixels": 15122218,
+        "active": true,
+        "restored": 2196
+      }
+    },
+    {
+      "settings": {
+        "mode": "fill",
+        "axis": "x",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 40.89539748953975,
+        "p50": 37,
+        "p95": 59,
+        "p99": 69,
+        "max": 156,
+        "over100": 2,
+        "updateBandMean": 11.94142259414226,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "cachedVisible": 21,
+        "cacheEnabled": true,
+        "errors": 0,
+        "groups": 58,
+        "wrappedVisible": 21,
+        "moved": 2404,
+        "created": 684,
+        "cachedGroups": 58,
+        "estimatedPixels": 15122218,
+        "active": true,
+        "restored": 2196
+      }
+    },
+    {
+      "settings": {
+        "mode": "group",
+        "axis": "x",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 40.66527196652719,
+        "p50": 38,
+        "p95": 57,
+        "p99": 63,
+        "max": 153,
+        "over100": 1,
+        "updateBandMean": 11.9581589958159,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "cachedVisible": 0,
+        "cacheEnabled": false,
+        "errors": 0,
+        "groups": 58,
+        "wrappedVisible": 21,
+        "moved": 2612,
+        "created": 742,
+        "cachedGroups": 0,
+        "estimatedPixels": 0,
+        "active": true,
+        "restored": 2404
+      }
+    },
+    {
+      "settings": {
+        "mode": "full",
+        "axis": "x",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 41.9163179916318,
+        "p50": 39,
+        "p95": 59,
+        "p99": 67,
+        "max": 163,
+        "over100": 2,
+        "updateBandMean": 12.271966527196653,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "cachedVisible": 0,
+        "cacheEnabled": false,
+        "errors": 0,
+        "groups": 0,
+        "wrappedVisible": 21,
+        "moved": 2612,
+        "created": 742,
+        "cachedGroups": 0,
+        "estimatedPixels": 0,
+        "active": false,
+        "restored": 2612
+      }
+    },
+    {
+      "settings": {
+        "mode": "full",
+        "axis": "y",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 44.23849372384937,
+        "p50": 40,
+        "p95": 72,
+        "p99": 90,
+        "max": 145,
+        "over100": 1,
+        "updateBandMean": 11.740585774058577,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "cachedVisible": 0,
+        "cacheEnabled": false,
+        "errors": 0,
+        "groups": 0,
+        "wrappedVisible": 21,
+        "moved": 2612,
+        "created": 742,
+        "cachedGroups": 0,
+        "estimatedPixels": 0,
+        "active": false,
+        "restored": 2612
+      }
+    },
+    {
+      "settings": {
+        "mode": "group",
+        "axis": "y",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 43.72384937238494,
+        "p50": 41,
+        "p95": 64,
+        "p99": 85,
+        "max": 138,
+        "over100": 1,
+        "updateBandMean": 11.585774058577407,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "cachedVisible": 0,
+        "cacheEnabled": false,
+        "errors": 0,
+        "groups": 58,
+        "wrappedVisible": 21,
+        "moved": 2820,
+        "created": 800,
+        "cachedGroups": 0,
+        "estimatedPixels": 0,
+        "active": true,
+        "restored": 2612
+      }
+    },
+    {
+      "settings": {
+        "mode": "fill",
+        "axis": "y",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 42.34728033472803,
+        "p50": 40,
+        "p95": 63,
+        "p99": 74,
+        "max": 136,
+        "over100": 2,
+        "updateBandMean": 11.640167364016737,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "cachedVisible": 21,
+        "cacheEnabled": true,
+        "errors": 0,
+        "groups": 58,
+        "wrappedVisible": 21,
+        "moved": 3028,
+        "created": 858,
+        "cachedGroups": 58,
+        "estimatedPixels": 15122218,
+        "active": true,
+        "restored": 2820
+      }
+    },
+    {
+      "settings": {
+        "mode": "fill",
+        "axis": "y",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 43.57322175732217,
+        "p50": 40,
+        "p95": 67,
+        "p99": 79,
+        "max": 140,
+        "over100": 1,
+        "updateBandMean": 11.389121338912133,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "cachedVisible": 21,
+        "cacheEnabled": true,
+        "errors": 0,
+        "groups": 58,
+        "wrappedVisible": 21,
+        "moved": 3028,
+        "created": 858,
+        "cachedGroups": 58,
+        "estimatedPixels": 15122218,
+        "active": true,
+        "restored": 2820
+      }
+    },
+    {
+      "settings": {
+        "mode": "group",
+        "axis": "y",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 44.87029288702929,
+        "p50": 41,
+        "p95": 73,
+        "p99": 86,
+        "max": 146,
+        "over100": 2,
+        "updateBandMean": 11.615062761506277,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "cachedVisible": 0,
+        "cacheEnabled": false,
+        "errors": 0,
+        "groups": 58,
+        "wrappedVisible": 21,
+        "moved": 3236,
+        "created": 916,
+        "cachedGroups": 0,
+        "estimatedPixels": 0,
+        "active": true,
+        "restored": 3028
+      }
+    },
+    {
+      "settings": {
+        "mode": "full",
+        "axis": "y",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 37.07531380753138,
+        "p50": 35,
+        "p95": 50,
+        "p99": 62,
+        "max": 133,
+        "over100": 1,
+        "updateBandMean": 11.472803347280335,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "cachedVisible": 0,
+        "cacheEnabled": false,
+        "errors": 0,
+        "groups": 0,
+        "wrappedVisible": 21,
+        "moved": 3236,
+        "created": 916,
+        "cachedGroups": 0,
+        "estimatedPixels": 0,
+        "active": false,
+        "restored": 3236
+      }
+    }
+  ],
+  "aggregate": {
+    "full": {
+      "n": 956,
+      "mean": 41.08472803347281,
+      "p50": 38.0,
+      "p95": 61,
+      "p99": 86,
+      "max": 163,
+      "over100": 5,
+      "updateBandMean": 11.774058577405858,
+      "tdfcMean": null,
+      "reuseMean": null
+    },
+    "group": {
+      "n": 956,
+      "mean": 43.30753138075314,
+      "p50": 40.0,
+      "p95": 64,
+      "p99": 86,
+      "max": 168,
+      "over100": 6,
+      "updateBandMean": 11.732217573221757,
+      "tdfcMean": null,
+      "reuseMean": null
+    },
+    "fill": {
+      "n": 956,
+      "mean": 42.05230125523013,
+      "p50": 39.0,
+      "p95": 65,
+      "p99": 79,
+      "max": 168,
+      "over100": 6,
+      "updateBandMean": 11.651673640167363,
+      "tdfcMean": null,
+      "reuseMean": null
+    }
+  },
+  "byAxis": {
+    "x": {
+      "full": {
+        "n": 478,
+        "mean": 41.51255230125523,
+        "p50": 38.0,
+        "p95": 60,
+        "p99": 81,
+        "max": 163,
+        "over100": 3,
+        "updateBandMean": 11.94142259414226,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "group": {
+        "n": 478,
+        "mean": 42.31799163179916,
+        "p50": 39.0,
+        "p95": 62,
+        "p99": 83,
+        "max": 168,
+        "over100": 3,
+        "updateBandMean": 11.864016736401673,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "fill": {
+        "n": 478,
+        "mean": 41.14435146443515,
+        "p50": 38.0,
+        "p95": 63,
+        "p99": 75,
+        "max": 168,
+        "over100": 3,
+        "updateBandMean": 11.788702928870293,
+        "tdfcMean": null,
+        "reuseMean": null
+      }
+    },
+    "y": {
+      "full": {
+        "n": 478,
+        "mean": 40.65690376569037,
+        "p50": 37.0,
+        "p95": 62,
+        "p99": 86,
+        "max": 145,
+        "over100": 2,
+        "updateBandMean": 11.606694560669457,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "group": {
+        "n": 478,
+        "mean": 44.29707112970711,
+        "p50": 41.0,
+        "p95": 69,
+        "p99": 86,
+        "max": 146,
+        "over100": 3,
+        "updateBandMean": 11.600418410041842,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "fill": {
+        "n": 478,
+        "mean": 42.96025104602511,
+        "p50": 40.0,
+        "p95": 66,
+        "p99": 79,
+        "max": 140,
+        "over100": 3,
+        "updateBandMean": 11.514644351464435,
+        "tdfcMean": null,
+        "reuseMean": null
+      }
+    }
+  },
+  "inputs": {
+    "storage/result.json": "91E90FD3B4FB607348E446F4E6D010FF0FC540BEB5DA027ABDF384DB3758CA3F",
+    "process-policy.json": "295D3462551A855133E5AC0CB83C9A7441B21A64F3D29C06102050A1C3F7EB5A",
+    "review-inputs.json": "10C3DEF96DDB7781FF8F00346E67C6BA123EE3DEE027C88E0E0AA1FB8B8E58A1",
+    "loader-check.json": "0D3194F96F09038BA007226E59CD38E56558CCFF20646E0B930341FDC9C6B5C1",
+    "inputs.json": "50E44010F340B3523E8E6361AFCDD6CDE27D4CBE95CD2C8E5615550F8F38A929"
+  },
+  "functionalOnly": {
+    "pixels": [
+      {
+        "offset": [
+          0,
+          0
+        ],
+        "stats": {
+          "cachedVisible": 0,
+          "cacheEnabled": false,
+          "errors": 0,
+          "groups": 58,
+          "wrappedVisible": 21,
+          "moved": 208,
+          "created": 58,
+          "cachedGroups": 0,
+          "estimatedPixels": 0,
+          "active": true,
+          "restored": 0
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        },
+        "cache": false
+      },
+      {
+        "offset": [
+          120,
+          0
+        ],
+        "stats": {
+          "cachedVisible": 0,
+          "cacheEnabled": false,
+          "errors": 0,
+          "groups": 58,
+          "wrappedVisible": 30,
+          "moved": 406,
+          "created": 116,
+          "cachedGroups": 0,
+          "estimatedPixels": 0,
+          "active": true,
+          "restored": 208
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        },
+        "cache": false
+      },
+      {
+        "offset": [
+          -160,
+          0
+        ],
+        "stats": {
+          "cachedVisible": 0,
+          "cacheEnabled": false,
+          "errors": 0,
+          "groups": 56,
+          "wrappedVisible": 17,
+          "moved": 603,
+          "created": 172,
+          "cachedGroups": 0,
+          "estimatedPixels": 0,
+          "active": true,
+          "restored": 406
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        },
+        "cache": false
+      },
+      {
+        "offset": [
+          0,
+          96
+        ],
+        "stats": {
+          "cachedVisible": 0,
+          "cacheEnabled": false,
+          "errors": 0,
+          "groups": 53,
+          "wrappedVisible": 28,
+          "moved": 794,
+          "created": 225,
+          "cachedGroups": 0,
+          "estimatedPixels": 0,
+          "active": true,
+          "restored": 603
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        },
+        "cache": false
+      },
+      {
+        "offset": [
+          0,
+          -96
+        ],
+        "stats": {
+          "cachedVisible": 0,
+          "cacheEnabled": false,
+          "errors": 0,
+          "groups": 59,
+          "wrappedVisible": 22,
+          "moved": 994,
+          "created": 284,
+          "cachedGroups": 0,
+          "estimatedPixels": 0,
+          "active": true,
+          "restored": 794
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        },
+        "cache": false
+      },
+      {
+        "offset": [
+          0,
+          0
+        ],
+        "stats": {
+          "cachedVisible": 21,
+          "cacheEnabled": true,
+          "errors": 0,
+          "groups": 58,
+          "wrappedVisible": 21,
+          "moved": 1202,
+          "created": 342,
+          "cachedGroups": 58,
+          "estimatedPixels": 15123270,
+          "active": true,
+          "restored": 994
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        },
+        "cache": true
+      },
+      {
+        "offset": [
+          120,
+          0
+        ],
+        "stats": {
+          "cachedVisible": 30,
+          "cacheEnabled": true,
+          "errors": 0,
+          "groups": 58,
+          "wrappedVisible": 30,
+          "moved": 1400,
+          "created": 400,
+          "cachedGroups": 58,
+          "estimatedPixels": 14035935,
+          "active": true,
+          "restored": 1202
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        },
+        "cache": true
+      },
+      {
+        "offset": [
+          -160,
+          0
+        ],
+        "stats": {
+          "cachedVisible": 17,
+          "cacheEnabled": true,
+          "errors": 0,
+          "groups": 56,
+          "wrappedVisible": 17,
+          "moved": 1597,
+          "created": 456,
+          "cachedGroups": 56,
+          "estimatedPixels": 14784144,
+          "active": true,
+          "restored": 1400
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        },
+        "cache": true
+      },
+      {
+        "offset": [
+          0,
+          96
+        ],
+        "stats": {
+          "cachedVisible": 28,
+          "cacheEnabled": true,
+          "errors": 0,
+          "groups": 53,
+          "wrappedVisible": 28,
+          "moved": 1788,
+          "created": 509,
+          "cachedGroups": 53,
+          "estimatedPixels": 14111908,
+          "active": true,
+          "restored": 1597
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        },
+        "cache": true
+      },
+      {
+        "offset": [
+          0,
+          -96
+        ],
+        "stats": {
+          "cachedVisible": 22,
+          "cacheEnabled": true,
+          "errors": 0,
+          "groups": 59,
+          "wrappedVisible": 22,
+          "moved": 1988,
+          "created": 568,
+          "cachedGroups": 59,
+          "estimatedPixels": 13473884,
+          "active": true,
+          "restored": 1788
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        },
+        "cache": true
+      }
+    ]
+  }
+}

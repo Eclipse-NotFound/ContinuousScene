@@ -1,0 +1,537 @@
+{
+  "name": "camera-static-group-cache-small-r1-20261101",
+  "ok": true,
+  "error": null,
+  "diagnosticOnly": true,
+  "policyPerformanceEligible": false,
+  "assertions": 50,
+  "failedChecks": [],
+  "runFailure": null,
+  "otherAIR": [],
+  "blocks": [
+    {
+      "settings": {
+        "frames": 300,
+        "mode": "full",
+        "axis": "x",
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 39.40133779264214,
+        "p50": 37,
+        "p95": 55,
+        "p99": 65,
+        "max": 144,
+        "over100": 1,
+        "updateBandMean": 10.421404682274247,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "estimatedPixels": 16699334,
+        "restored": 4135,
+        "created": 1355,
+        "active": false,
+        "groups": 0,
+        "moved": 4135,
+        "cachedGroups": 74,
+        "errors": 0
+      }
+    },
+    {
+      "settings": {
+        "frames": 300,
+        "mode": "fill",
+        "axis": "x",
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 42.01672240802676,
+        "p50": 38,
+        "p95": 59,
+        "p99": 92,
+        "max": 154,
+        "over100": 3,
+        "updateBandMean": 10.68561872909699,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "estimatedPixels": 16699334,
+        "restored": 4135,
+        "created": 1626,
+        "active": true,
+        "groups": 271,
+        "moved": 4962,
+        "cachedGroups": 74,
+        "errors": 0
+      }
+    },
+    {
+      "settings": {
+        "frames": 300,
+        "mode": "fill",
+        "axis": "x",
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 49.98996655518395,
+        "p50": 45,
+        "p95": 81,
+        "p99": 109,
+        "max": 208,
+        "over100": 5,
+        "updateBandMean": 12.160535117056856,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "estimatedPixels": 16699334,
+        "restored": 4135,
+        "created": 1626,
+        "active": true,
+        "groups": 271,
+        "moved": 4962,
+        "cachedGroups": 74,
+        "errors": 0
+      }
+    },
+    {
+      "settings": {
+        "frames": 300,
+        "mode": "full",
+        "axis": "x",
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 42.013377926421406,
+        "p50": 39,
+        "p95": 65,
+        "p99": 83,
+        "max": 144,
+        "over100": 1,
+        "updateBandMean": 10.729096989966555,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "estimatedPixels": 16699334,
+        "restored": 4962,
+        "created": 1626,
+        "active": false,
+        "groups": 0,
+        "moved": 4962,
+        "cachedGroups": 74,
+        "errors": 0
+      }
+    },
+    {
+      "settings": {
+        "frames": 300,
+        "mode": "full",
+        "axis": "y",
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 42.147157190635454,
+        "p50": 38,
+        "p95": 62,
+        "p99": 77,
+        "max": 151,
+        "over100": 2,
+        "updateBandMean": 11,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "estimatedPixels": 16699334,
+        "restored": 4962,
+        "created": 1626,
+        "active": false,
+        "groups": 0,
+        "moved": 4962,
+        "cachedGroups": 74,
+        "errors": 0
+      }
+    },
+    {
+      "settings": {
+        "frames": 300,
+        "mode": "fill",
+        "axis": "y",
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 44.74916387959866,
+        "p50": 41,
+        "p95": 66,
+        "p99": 89,
+        "max": 156,
+        "over100": 2,
+        "updateBandMean": 11.397993311036789,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "estimatedPixels": 16699334,
+        "restored": 4962,
+        "created": 1897,
+        "active": true,
+        "groups": 271,
+        "moved": 5789,
+        "cachedGroups": 74,
+        "errors": 0
+      }
+    },
+    {
+      "settings": {
+        "frames": 300,
+        "mode": "fill",
+        "axis": "y",
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 44.7056856187291,
+        "p50": 41,
+        "p95": 71,
+        "p99": 90,
+        "max": 143,
+        "over100": 2,
+        "updateBandMean": 11.37458193979933,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "estimatedPixels": 16699334,
+        "restored": 4962,
+        "created": 1897,
+        "active": true,
+        "groups": 271,
+        "moved": 5789,
+        "cachedGroups": 74,
+        "errors": 0
+      }
+    },
+    {
+      "settings": {
+        "frames": 300,
+        "mode": "full",
+        "axis": "y",
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 41.474916387959865,
+        "p50": 39,
+        "p95": 57,
+        "p99": 83,
+        "max": 211,
+        "over100": 2,
+        "updateBandMean": 11.02675585284281,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "estimatedPixels": 16699334,
+        "restored": 5789,
+        "created": 1897,
+        "active": false,
+        "groups": 0,
+        "moved": 5789,
+        "cachedGroups": 74,
+        "errors": 0
+      }
+    }
+  ],
+  "aggregate": {
+    "full": {
+      "n": 1196,
+      "mean": 41.259197324414714,
+      "p50": 38.0,
+      "p95": 60,
+      "p99": 83,
+      "max": 211,
+      "over100": 6,
+      "updateBandMean": 10.794314381270903,
+      "tdfcMean": null,
+      "reuseMean": null
+    },
+    "fill": {
+      "n": 1196,
+      "mean": 45.36538461538461,
+      "p50": 41.0,
+      "p95": 72,
+      "p99": 99,
+      "max": 208,
+      "over100": 12,
+      "updateBandMean": 11.404682274247492,
+      "tdfcMean": null,
+      "reuseMean": null
+    }
+  },
+  "byAxis": {
+    "x": {
+      "full": {
+        "n": 598,
+        "mean": 40.707357859531776,
+        "p50": 38.0,
+        "p95": 59,
+        "p99": 83,
+        "max": 144,
+        "over100": 2,
+        "updateBandMean": 10.575250836120402,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "fill": {
+        "n": 598,
+        "mean": 46.00334448160535,
+        "p50": 41.0,
+        "p95": 76,
+        "p99": 109,
+        "max": 208,
+        "over100": 8,
+        "updateBandMean": 11.423076923076923,
+        "tdfcMean": null,
+        "reuseMean": null
+      }
+    },
+    "y": {
+      "full": {
+        "n": 598,
+        "mean": 41.81103678929766,
+        "p50": 38.5,
+        "p95": 61,
+        "p99": 83,
+        "max": 211,
+        "over100": 4,
+        "updateBandMean": 11.013377926421406,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "fill": {
+        "n": 598,
+        "mean": 44.72742474916388,
+        "p50": 41.0,
+        "p95": 67,
+        "p99": 89,
+        "max": 156,
+        "over100": 4,
+        "updateBandMean": 11.38628762541806,
+        "tdfcMean": null,
+        "reuseMean": null
+      }
+    }
+  },
+  "inputs": {
+    "storage/result.json": "37F918EA81775ECEDCE15AD1C7AB08254BC8C1C4E8731E6F9F29F17D77AF4089",
+    "process-policy.json": "BB85897CED8C90F948295F1B71AAE3EC68B6808A6B632AA675F6E5E611FCB38D",
+    "review-inputs.json": "FF28524259E514DD6E80349A6FDBCDA93B5EF2828E2F445F2FA690B6AA74EB5A",
+    "loader-check.json": "A20660629DC657FEDB55753C35A6402A7E713D9589EEB7DD7C6F6082D84872A6",
+    "inputs.json": "F050637ECACA0AD3A7CCE9A5A9F5993978179D5B1B4344ECA60063C131639F06"
+  },
+  "functionalOnly": {
+    "pixels": [
+      {
+        "stats": {
+          "estimatedPixels": 16699334,
+          "restored": 0,
+          "created": 271,
+          "active": true,
+          "groups": 271,
+          "moved": 827,
+          "cachedGroups": 74,
+          "errors": 0
+        },
+        "offset": [
+          0,
+          0
+        ],
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      },
+      {
+        "stats": {
+          "estimatedPixels": 16699334,
+          "restored": 827,
+          "created": 542,
+          "active": true,
+          "groups": 271,
+          "moved": 1654,
+          "cachedGroups": 74,
+          "errors": 0
+        },
+        "offset": [
+          120,
+          0
+        ],
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      },
+      {
+        "stats": {
+          "estimatedPixels": 16699334,
+          "restored": 1654,
+          "created": 813,
+          "active": true,
+          "groups": 271,
+          "moved": 2481,
+          "cachedGroups": 74,
+          "errors": 0
+        },
+        "offset": [
+          -160,
+          0
+        ],
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      },
+      {
+        "stats": {
+          "estimatedPixels": 16699334,
+          "restored": 2481,
+          "created": 1084,
+          "active": true,
+          "groups": 271,
+          "moved": 3308,
+          "cachedGroups": 74,
+          "errors": 0
+        },
+        "offset": [
+          0,
+          96
+        ],
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      },
+      {
+        "stats": {
+          "estimatedPixels": 16699334,
+          "restored": 3308,
+          "created": 1355,
+          "active": true,
+          "groups": 271,
+          "moved": 4135,
+          "cachedGroups": 74,
+          "errors": 0
+        },
+        "offset": [
+          0,
+          -96
+        ],
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      }
+    ]
+  }
+}

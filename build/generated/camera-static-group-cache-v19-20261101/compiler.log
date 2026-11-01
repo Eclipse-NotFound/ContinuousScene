@@ -1,0 +1,7 @@
+正在加载配置文件“D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-static-group-cache-v19-20261101\compiler.xml”
+D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-static-group-cache-v19-20261101\StaticObjectGroups.as(14): 列: 18 警告: 没有为类 StaticObjectGroups 指定构造函数。
+
+    public class StaticObjectGroups {
+                 ^
+
+D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-static-group-cache-v19-20261101\ContinuousSceneMotionMod.swf（11783 字节）

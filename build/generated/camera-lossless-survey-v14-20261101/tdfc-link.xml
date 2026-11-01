@@ -1,0 +1,303 @@
+<report>
+  <scripts>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\DebugOverlay.as" mod="1792382625767" size="7843" optimizedsize="7548">
+      <def id="DebugOverlay" />
+      <pre id="Object" />
+      <dep id="AS3" />
+      <dep id="Config" />
+      <dep id="Math" />
+      <dep id="TdfcLog" />
+      <dep id="flash.events:MouseEvent" />
+      <dep id="flash.text:TextField" />
+      <dep id="flash.events:Event" />
+      <dep id="flash.geom:Point" />
+      <dep id="flash.display:BitmapData" />
+      <dep id="PngCapture" />
+      <dep id="GameBridge" />
+      <dep id="flash.filesystem:File" />
+      <dep id="Error" />
+      <dep id="flash.utils:ByteArray" />
+      <dep id="GrabDiagnostics" />
+      <dep id="flash.display:DisplayObject" />
+      <dep id="TestSave" />
+      <dep id="flash.display:DisplayObjectContainer" />
+      <dep id="modlocales.tactics:TDFCLocale" />
+      <dep id="flash.filesystem:FileStream" />
+      <dep id="flash.display:Sprite" />
+      <dep id="flash.filesystem:FileMode" />
+      <dep id="ScenarioRunner" />
+      <dep id="BrainState" />
+      <dep id="flash.text:TextFormat" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\PngCapture.as" mod="1792382626271" size="907" optimizedsize="842">
+      <def id="PngCapture" />
+      <pre id="Object" />
+      <dep id="AS3" />
+      <dep id="flash.display:BitmapData" />
+      <dep id="flash.utils:ByteArray" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\GrabDiagnostics.as" mod="1792382626031" size="3601" optimizedsize="3411">
+      <def id="GrabDiagnostics" />
+      <pre id="Object" />
+      <dep id="AS3" />
+      <dep id="GameBridge" />
+      <dep id="flash.display:Stage" />
+      <dep id="Error" />
+      <dep id="flash.events:KeyboardEvent" />
+      <dep id="JSON" />
+      <dep id="TdfcLog" />
+      <dep id="flash.events:MouseEvent" />
+      <dep id="flash.events:Event" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\TacticalMind.as" mod="1792382626627" size="3849" optimizedsize="3675">
+      <def id="TacticalMind" />
+      <pre id="Object" />
+      <dep id="AS3" />
+      <dep id="Config" />
+      <dep id="Math" />
+      <dep id="BrainState" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\modlocales\tactics\TDFCLocale.as" mod="1792382627021" size="2649" optimizedsize="2537">
+      <def id="modlocales.tactics:TDFCLocale" />
+      <pre id="Object" />
+      <dep id="flash.utils:getDefinitionByName" />
+      <dep id="AS3" />
+      <dep id="flash.utils:Dictionary" />
+      <dep id="flash.events:TimerEvent" />
+      <dep id="RegExp" />
+      <dep id="modlocales.tactics:TDFCLocaleMessages" />
+      <dep id="flash.utils:Timer" />
+      <dep id="flash.text:TextField" />
+      <dep id="flash.text:TextFormat" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\BrainState.as" mod="1792382625498" size="1206" optimizedsize="1200">
+      <def id="BrainState" />
+      <pre id="Object" />
+      <dep id="AS3" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\AimFixture.as" mod="1792382625407" size="5956" optimizedsize="5604">
+      <def id="AimFixture" />
+      <pre id="Object" />
+      <dep id="ActionExecutor" />
+      <dep id="AS3" />
+      <dep id="GameBridge" />
+      <dep id="PerceptionModel" />
+      <dep id="Error" />
+      <dep id="EnemyProfile" />
+      <dep id="flash.system:ApplicationDomain" />
+      <dep id="Math" />
+      <dep id="TacticalMind" />
+      <dep id="BrainState" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\EnemyProfile.as" mod="1792382625850" size="1714" optimizedsize="1649">
+      <def id="EnemyProfile" />
+      <pre id="Object" />
+      <dep id="AS3" />
+      <dep id="Math" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\TelekinesisFixture.as" mod="1792382626857" size="5982" optimizedsize="5743">
+      <def id="TelekinesisFixture" />
+      <pre id="Object" />
+      <dep id="ActionExecutor" />
+      <dep id="AS3" />
+      <dep id="GameBridge" />
+      <dep id="Error" />
+      <dep id="flash.events:KeyboardEvent" />
+      <dep id="flash.system:ApplicationDomain" />
+      <dep id="TdfcLog" />
+      <dep id="flash.events:MouseEvent" />
+      <dep id="GrabDiagnostics" />
+      <dep id="flash.events:Event" />
+      <dep id="flash.display:DisplayObjectContainer" />
+      <dep id="TdfcRuntime" />
+      <dep id="EnemyProfile" />
+      <dep id="flash.display:Sprite" />
+      <dep id="BrainState" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\TdfcRuntime.as" mod="1793521985017" size="8587" optimizedsize="8052">
+      <def id="TdfcRuntime" />
+      <pre id="Object" />
+      <dep id="AS3" />
+      <dep id="flash.utils:Dictionary" />
+      <dep id="Config" />
+      <dep id="DebugOverlay" />
+      <dep id="JSON" />
+      <dep id="Math" />
+      <dep id="TdfcLog" />
+      <dep id="flash.events:Event" />
+      <dep id="flash.utils:getTimer" />
+      <dep id="flash.desktop:NativeApplication" />
+      <dep id="flash.display:MovieClip" />
+      <dep id="EnemyProfile" />
+      <dep id="ActionExecutor" />
+      <dep id="GameBridge" />
+      <dep id="Error" />
+      <dep id="flash.system:ApplicationDomain" />
+      <dep id="GrabDiagnostics" />
+      <dep id="TacticalMind" />
+      <dep id="Date" />
+      <dep id="TestSave" />
+      <dep id="flash.display:DisplayObjectContainer" />
+      <dep id="PerceptionModel" />
+      <dep id="PlayerNoise" />
+      <dep id="SquadMind" />
+      <dep id="ScenarioRunner" />
+      <dep id="BrainState" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\TDFCMod.as" mod="1792382626546" size="356" optimizedsize="334">
+      <def id="TDFCMod" />
+      <pre id="flash.display:Sprite" />
+      <dep id="AS3" />
+      <dep id="TdfcRuntime" />
+      <dep id="TdfcLog" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\PlayerNoise.as" mod="1792382626195" size="814" optimizedsize="736">
+      <def id="PlayerNoise" />
+      <pre id="Object" />
+      <dep id="AS3" />
+      <dep id="GameBridge" />
+      <dep id="Config" />
+      <dep id="Error" />
+      <dep id="Math" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\TdfcLog.as" mod="1792382626698" size="1643" optimizedsize="1572">
+      <def id="TdfcLog" />
+      <pre id="Object" />
+      <dep id="flash.utils:getTimer" />
+      <dep id="AS3" />
+      <dep id="Config" />
+      <dep id="flash.filesystem:File" />
+      <dep id="Error" />
+      <dep id="flash.filesystem:FileStream" />
+      <dep id="flash.filesystem:FileMode" />
+      <dep id="Date" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\TestSave.as" mod="1792382626942" size="2034" optimizedsize="1945">
+      <def id="TestSave" />
+      <pre id="Object" />
+      <dep id="AS3" />
+      <dep id="flash.filesystem:File" />
+      <dep id="Error" />
+      <dep id="JSON" />
+      <dep id="flash.filesystem:FileStream" />
+      <dep id="flash.filesystem:FileMode" />
+      <dep id="flash.net:ObjectEncoding" />
+      <dep id="TdfcLog" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\PerceptionModel.as" mod="1792382626115" size="1834" optimizedsize="1752">
+      <def id="PerceptionModel" />
+      <pre id="Object" />
+      <dep id="AS3" />
+      <dep id="Config" />
+      <dep id="Math" />
+      <dep id="BrainState" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\ScenarioRunner.as" mod="1792382626368" size="7483" optimizedsize="6862">
+      <def id="ScenarioRunner" />
+      <pre id="Object" />
+      <dep id="AS3" />
+      <dep id="GameBridge" />
+      <dep id="Config" />
+      <dep id="flash.filesystem:File" />
+      <dep id="CoverFixture" />
+      <dep id="Error" />
+      <dep id="JSON" />
+      <dep id="flash.system:ApplicationDomain" />
+      <dep id="Math" />
+      <dep id="TdfcLog" />
+      <dep id="TelekinesisFixture" />
+      <dep id="AimFixture" />
+      <dep id="TestSave" />
+      <dep id="flash.desktop:NativeApplication" />
+      <dep id="TdfcRuntime" />
+      <dep id="flash.filesystem:FileStream" />
+      <dep id="flash.filesystem:FileMode" />
+      <dep id="BrainState" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\Config.as" mod="1792468568654" size="573" optimizedsize="567">
+      <def id="Config" />
+      <pre id="Object" />
+      <dep id="AS3" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\CoverFixture.as" mod="1792382625663" size="1326" optimizedsize="1238">
+      <def id="CoverFixture" />
+      <pre id="Object" />
+      <dep id="flash.utils:getTimer" />
+      <dep id="AS3" />
+      <dep id="GameBridge" />
+      <dep id="Error" />
+      <dep id="Math" />
+      <dep id="BrainState" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\GameBridge.as" mod="1793521985009" size="6910" optimizedsize="6711">
+      <def id="GameBridge" />
+      <pre id="Object" />
+      <dep id="AS3" />
+      <dep id="flash.utils:Dictionary" />
+      <dep id="flash.utils:getQualifiedClassName" />
+      <dep id="Config" />
+      <dep id="Error" />
+      <dep id="Math" />
+      <dep id="BrainState" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\SquadMind.as" mod="1792382626450" size="1532" optimizedsize="1467">
+      <def id="SquadMind" />
+      <pre id="Object" />
+      <dep id="AS3" />
+      <dep id="Config" />
+      <dep id="Math" />
+      <dep id="BrainState" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\modlocales\tactics\TDFCLocaleMessages.as" mod="1792382627109" size="14673" optimizedsize="14251">
+      <def id="modlocales.tactics:TDFCLocaleMessages" />
+      <pre id="Object" />
+      <dep id="AS3" />
+    </script>
+    <script name="D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-lossless-survey-v14-20261101\candidate-src\ActionExecutor.as" mod="1792382625310" size="4394" optimizedsize="4225">
+      <def id="ActionExecutor" />
+      <pre id="Object" />
+      <dep id="AS3" />
+      <dep id="GameBridge" />
+      <dep id="Config" />
+      <dep id="Error" />
+      <dep id="Math" />
+      <dep id="TdfcLog" />
+      <dep id="TacticalMind" />
+      <dep id="BrainState" />
+    </script>
+  </scripts>
+  <external-defs>
+    <ext id="flash.display:DisplayObject" />
+    <ext id="flash.events:TimerEvent" />
+    <ext id="flash.utils:ByteArray" />
+    <ext id="flash.events:Event" />
+    <ext id="RegExp" />
+    <ext id="JSON" />
+    <ext id="flash.geom:Point" />
+    <ext id="flash.utils:Timer" />
+    <ext id="flash.display:BitmapData" />
+    <ext id="flash.net:ObjectEncoding" />
+    <ext id="flash.utils:getTimer" />
+    <ext id="Error" />
+    <ext id="flash.display:DisplayObjectContainer" />
+    <ext id="flash.display:Sprite" />
+    <ext id="AS3" />
+    <ext id="flash.events:MouseEvent" />
+    <ext id="flash.display:Stage" />
+    <ext id="flash.utils:getQualifiedClassName" />
+    <ext id="flash.utils:Dictionary" />
+    <ext id="flash.filesystem:File" />
+    <ext id="flash.display:MovieClip" />
+    <ext id="Math" />
+    <ext id="flash.events:KeyboardEvent" />
+    <ext id="flash.system:ApplicationDomain" />
+    <ext id="Object" />
+    <ext id="flash.desktop:NativeApplication" />
+    <ext id="flash.filesystem:FileStream" />
+    <ext id="flash.utils:getDefinitionByName" />
+    <ext id="flash.text:TextField" />
+    <ext id="Date" />
+    <ext id="flash.filesystem:FileMode" />
+    <ext id="flash.text:TextFormat" />
+  </external-defs>
+</report>

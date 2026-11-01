@@ -1,0 +1,882 @@
+{
+  "name": "camera-group-scale-small-r1-20261101",
+  "ok": true,
+  "error": null,
+  "diagnosticOnly": true,
+  "policyPerformanceEligible": false,
+  "assertions": 74,
+  "failedChecks": [],
+  "runFailure": null,
+  "otherAIR": [],
+  "blocks": [
+    {
+      "settings": {
+        "mode": "full",
+        "axis": "x",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 40.52719665271967,
+        "p50": 37,
+        "p95": 60,
+        "p99": 76,
+        "max": 155,
+        "over100": 2,
+        "updateBandMean": 11.305439330543933,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "errors": 0,
+        "cellWidth": 3840,
+        "active": false,
+        "groups": 0,
+        "cellHeight": 2000,
+        "moved": 9210,
+        "restored": 9210,
+        "created": 1515
+      }
+    },
+    {
+      "settings": {
+        "mode": "fine",
+        "axis": "x",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 41.87866108786611,
+        "p50": 39,
+        "p95": 60,
+        "p99": 68,
+        "max": 170,
+        "over100": 2,
+        "updateBandMean": 10.485355648535565,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "errors": 0,
+        "cellWidth": 480,
+        "active": true,
+        "groups": 260,
+        "cellHeight": 250,
+        "moved": 9859,
+        "restored": 9210,
+        "created": 1775
+      }
+    },
+    {
+      "settings": {
+        "mode": "coarse",
+        "axis": "x",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 36.80334728033473,
+        "p50": 34,
+        "p95": 55,
+        "p99": 61,
+        "max": 118,
+        "over100": 2,
+        "updateBandMean": 10.322175732217573,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "errors": 0,
+        "cellWidth": 3840,
+        "active": true,
+        "groups": 43,
+        "cellHeight": 2000,
+        "moved": 11052,
+        "restored": 9859,
+        "created": 1818
+      }
+    },
+    {
+      "settings": {
+        "mode": "coarse",
+        "axis": "x",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 37.56903765690377,
+        "p50": 35,
+        "p95": 53,
+        "p99": 58,
+        "max": 131,
+        "over100": 2,
+        "updateBandMean": 10.623430962343097,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "errors": 0,
+        "cellWidth": 3840,
+        "active": true,
+        "groups": 43,
+        "cellHeight": 2000,
+        "moved": 11052,
+        "restored": 9859,
+        "created": 1818
+      }
+    },
+    {
+      "settings": {
+        "mode": "fine",
+        "axis": "x",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 39.92050209205021,
+        "p50": 37,
+        "p95": 59,
+        "p99": 69,
+        "max": 139,
+        "over100": 2,
+        "updateBandMean": 11.489539748953975,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "errors": 0,
+        "cellWidth": 480,
+        "active": true,
+        "groups": 260,
+        "cellHeight": 250,
+        "moved": 11701,
+        "restored": 11052,
+        "created": 2078
+      }
+    },
+    {
+      "settings": {
+        "mode": "full",
+        "axis": "x",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 40.14644351464435,
+        "p50": 37,
+        "p95": 59,
+        "p99": 72,
+        "max": 125,
+        "over100": 1,
+        "updateBandMean": 10.96234309623431,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "errors": 0,
+        "cellWidth": 3840,
+        "active": false,
+        "groups": 0,
+        "cellHeight": 2000,
+        "moved": 11701,
+        "restored": 11701,
+        "created": 2078
+      }
+    },
+    {
+      "settings": {
+        "mode": "full",
+        "axis": "y",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 40.65271966527197,
+        "p50": 37,
+        "p95": 57,
+        "p99": 71,
+        "max": 147,
+        "over100": 2,
+        "updateBandMean": 11.280334728033473,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "errors": 0,
+        "cellWidth": 3840,
+        "active": false,
+        "groups": 0,
+        "cellHeight": 2000,
+        "moved": 11701,
+        "restored": 11701,
+        "created": 2078
+      }
+    },
+    {
+      "settings": {
+        "mode": "fine",
+        "axis": "y",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 42.55230125523013,
+        "p50": 39,
+        "p95": 64,
+        "p99": 77,
+        "max": 151,
+        "over100": 1,
+        "updateBandMean": 11.694560669456067,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "errors": 0,
+        "cellWidth": 480,
+        "active": true,
+        "groups": 260,
+        "cellHeight": 250,
+        "moved": 12350,
+        "restored": 11701,
+        "created": 2338
+      }
+    },
+    {
+      "settings": {
+        "mode": "coarse",
+        "axis": "y",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 43.94560669456067,
+        "p50": 39,
+        "p95": 68,
+        "p99": 80,
+        "max": 146,
+        "over100": 3,
+        "updateBandMean": 11.648535564853557,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "errors": 0,
+        "cellWidth": 3840,
+        "active": true,
+        "groups": 43,
+        "cellHeight": 2000,
+        "moved": 13543,
+        "restored": 12350,
+        "created": 2381
+      }
+    },
+    {
+      "settings": {
+        "mode": "coarse",
+        "axis": "y",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 39.74476987447699,
+        "p50": 37,
+        "p95": 55,
+        "p99": 63,
+        "max": 141,
+        "over100": 1,
+        "updateBandMean": 11.384937238493723,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "errors": 0,
+        "cellWidth": 3840,
+        "active": true,
+        "groups": 43,
+        "cellHeight": 2000,
+        "moved": 13543,
+        "restored": 12350,
+        "created": 2381
+      }
+    },
+    {
+      "settings": {
+        "mode": "fine",
+        "axis": "y",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 44.10878661087866,
+        "p50": 40,
+        "p95": 68,
+        "p99": 87,
+        "max": 143,
+        "over100": 3,
+        "updateBandMean": 11.309623430962343,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "errors": 0,
+        "cellWidth": 480,
+        "active": true,
+        "groups": 260,
+        "cellHeight": 250,
+        "moved": 14192,
+        "restored": 13543,
+        "created": 2641
+      }
+    },
+    {
+      "settings": {
+        "mode": "full",
+        "axis": "y",
+        "frames": 240,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 239,
+        "mean": 40.61924686192469,
+        "p50": 37,
+        "p95": 56,
+        "p99": 68,
+        "max": 151,
+        "over100": 1,
+        "updateBandMean": 11.698744769874477,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "errors": 0,
+        "cellWidth": 3840,
+        "active": false,
+        "groups": 0,
+        "cellHeight": 2000,
+        "moved": 14192,
+        "restored": 14192,
+        "created": 2641
+      }
+    }
+  ],
+  "aggregate": {
+    "full": {
+      "n": 956,
+      "mean": 40.48640167364017,
+      "p50": 37.0,
+      "p95": 59,
+      "p99": 76,
+      "max": 155,
+      "over100": 6,
+      "updateBandMean": 11.311715481171548,
+      "tdfcMean": null,
+      "reuseMean": null
+    },
+    "fine": {
+      "n": 956,
+      "mean": 42.11506276150627,
+      "p50": 39.0,
+      "p95": 64,
+      "p99": 85,
+      "max": 170,
+      "over100": 8,
+      "updateBandMean": 11.244769874476987,
+      "tdfcMean": null,
+      "reuseMean": null
+    },
+    "coarse": {
+      "n": 956,
+      "mean": 39.51569037656904,
+      "p50": 36.0,
+      "p95": 58,
+      "p99": 78,
+      "max": 146,
+      "over100": 8,
+      "updateBandMean": 10.994769874476987,
+      "tdfcMean": null,
+      "reuseMean": null
+    }
+  },
+  "byAxis": {
+    "x": {
+      "full": {
+        "n": 478,
+        "mean": 40.33682008368201,
+        "p50": 37.0,
+        "p95": 60,
+        "p99": 76,
+        "max": 155,
+        "over100": 3,
+        "updateBandMean": 11.133891213389122,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "fine": {
+        "n": 478,
+        "mean": 40.89958158995816,
+        "p50": 38.0,
+        "p95": 59,
+        "p99": 72,
+        "max": 170,
+        "over100": 4,
+        "updateBandMean": 10.98744769874477,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "coarse": {
+        "n": 478,
+        "mean": 37.18619246861925,
+        "p50": 35.0,
+        "p95": 54,
+        "p99": 61,
+        "max": 131,
+        "over100": 4,
+        "updateBandMean": 10.472803347280335,
+        "tdfcMean": null,
+        "reuseMean": null
+      }
+    },
+    "y": {
+      "full": {
+        "n": 478,
+        "mean": 40.63598326359833,
+        "p50": 37.0,
+        "p95": 57,
+        "p99": 73,
+        "max": 151,
+        "over100": 3,
+        "updateBandMean": 11.489539748953975,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "fine": {
+        "n": 478,
+        "mean": 43.33054393305439,
+        "p50": 39.0,
+        "p95": 65,
+        "p99": 85,
+        "max": 151,
+        "over100": 4,
+        "updateBandMean": 11.502092050209205,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "coarse": {
+        "n": 478,
+        "mean": 41.84518828451883,
+        "p50": 38.0,
+        "p95": 61,
+        "p99": 78,
+        "max": 146,
+        "over100": 4,
+        "updateBandMean": 11.51673640167364,
+        "tdfcMean": null,
+        "reuseMean": null
+      }
+    }
+  },
+  "inputs": {
+    "storage/result.json": "FD8222E2A93DE6BFF15AF894FF197BEE7B7DA4F2539FE0C52D6DA2D092BE55AF",
+    "process-policy.json": "0799C229E279AD00EDAC7356A3393F9C6E97F5C8233BCFD6DEE32A3BD6636701",
+    "review-inputs.json": "C669C121A786834F4DE639C55FF2ACB07D95C566DD83149B9DB41309CFCC0ACB",
+    "loader-check.json": "14410DE8FEE3BF9EC3C3E2BEBFAA0730CC32ABFC690CBB79975C2EB82AB747AA",
+    "inputs.json": "DE9A2D534BE133ACC7C7C5676B416C7BA4C180C00FA8825FE9817C544565FF84"
+  },
+  "functionalOnly": {
+    "pixels": [
+      {
+        "size": [
+          480,
+          250
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "stats": {
+          "errors": 0,
+          "cellWidth": 480,
+          "active": true,
+          "groups": 260,
+          "cellHeight": 250,
+          "moved": 649,
+          "restored": 0,
+          "created": 260
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      },
+      {
+        "size": [
+          480,
+          250
+        ],
+        "offset": [
+          120,
+          0
+        ],
+        "stats": {
+          "errors": 0,
+          "cellWidth": 480,
+          "active": true,
+          "groups": 260,
+          "cellHeight": 250,
+          "moved": 1298,
+          "restored": 649,
+          "created": 520
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      },
+      {
+        "size": [
+          480,
+          250
+        ],
+        "offset": [
+          -160,
+          0
+        ],
+        "stats": {
+          "errors": 0,
+          "cellWidth": 480,
+          "active": true,
+          "groups": 260,
+          "cellHeight": 250,
+          "moved": 1947,
+          "restored": 1298,
+          "created": 780
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      },
+      {
+        "size": [
+          480,
+          250
+        ],
+        "offset": [
+          0,
+          96
+        ],
+        "stats": {
+          "errors": 0,
+          "cellWidth": 480,
+          "active": true,
+          "groups": 260,
+          "cellHeight": 250,
+          "moved": 2596,
+          "restored": 1947,
+          "created": 1040
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      },
+      {
+        "size": [
+          480,
+          250
+        ],
+        "offset": [
+          0,
+          -96
+        ],
+        "stats": {
+          "errors": 0,
+          "cellWidth": 480,
+          "active": true,
+          "groups": 260,
+          "cellHeight": 250,
+          "moved": 3245,
+          "restored": 2596,
+          "created": 1300
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      },
+      {
+        "size": [
+          3840,
+          2000
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "stats": {
+          "errors": 0,
+          "cellWidth": 3840,
+          "active": true,
+          "groups": 43,
+          "cellHeight": 2000,
+          "moved": 4438,
+          "restored": 3245,
+          "created": 1343
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      },
+      {
+        "size": [
+          3840,
+          2000
+        ],
+        "offset": [
+          120,
+          0
+        ],
+        "stats": {
+          "errors": 0,
+          "cellWidth": 3840,
+          "active": true,
+          "groups": 43,
+          "cellHeight": 2000,
+          "moved": 5631,
+          "restored": 4438,
+          "created": 1386
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      },
+      {
+        "size": [
+          3840,
+          2000
+        ],
+        "offset": [
+          -160,
+          0
+        ],
+        "stats": {
+          "errors": 0,
+          "cellWidth": 3840,
+          "active": true,
+          "groups": 43,
+          "cellHeight": 2000,
+          "moved": 6824,
+          "restored": 5631,
+          "created": 1429
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      },
+      {
+        "size": [
+          3840,
+          2000
+        ],
+        "offset": [
+          0,
+          96
+        ],
+        "stats": {
+          "errors": 0,
+          "cellWidth": 3840,
+          "active": true,
+          "groups": 43,
+          "cellHeight": 2000,
+          "moved": 8017,
+          "restored": 6824,
+          "created": 1472
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      },
+      {
+        "size": [
+          3840,
+          2000
+        ],
+        "offset": [
+          0,
+          -96
+        ],
+        "stats": {
+          "errors": 0,
+          "cellWidth": 3840,
+          "active": true,
+          "groups": 43,
+          "cellHeight": 2000,
+          "moved": 9210,
+          "restored": 8017,
+          "created": 1515
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      }
+    ]
+  }
+}

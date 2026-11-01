@@ -1,0 +1,1468 @@
+{
+  "diagnosticOnly": true,
+  "performanceDeploymentAccepted": false,
+  "deployment": null,
+  "formalMods": {
+    "mods\\ModLoader\\release\\ModLoaderMod.swf": "2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2",
+    "mods\\Sandevistan\\release\\SandevistanMod.swf": "CEC6A3061CB90380579D8A95AA1254E0328BD0DAE6E239FC4CA5205D6CCCF942",
+    "mods\\Rconnect\\release\\RConnectMod.swf": "690604878BD8707007A99E3AD14F8F5F3F55CDD4948C8DEBE6CC87363AFD38C9",
+    "mods\\RealisticVision\\release\\RealisticVisionMod.swf": "AEA303149B0A5D5A3072C610B3E95F4AD78963EA22CE123C6A3414E73B9AA557",
+    "mods\\MoreSkills&Weapons\\release\\MoreSkillsWeaponsMod.swf": "526A6FD09297FB4F502236076B4252BF97BB50D2F77000B13763CF118546AB71",
+    "mods\\TDFC\\release\\TDFCMod.swf": "7ACD45193109267DBBF875240528048AD6F1D09FA3B8B36BAA6F98EBB5FDDCE5",
+    "mods\\RandomRooms\\release\\RandomRoomsMod.swf": "3F8789C62F9B2EF8EFC082597F672A2FEA230A0D7FCE3BE90C04EFD9582E5145",
+    "mods\\RModifier\\release\\LootEditorMod.swf": "4F1D6CF19979F4EA4960F8CCD8377C1D3CAC490BED9949866885357D073C8625",
+    "mods\\PermanentInjury\\release\\PermanentInjuryMod.swf": "D4F6A096EE06F8869FFFB316801C6325DF26F54260A34666AC17EC24AD8BD083",
+    "mods\\AddictionSystem\\release\\AddictionSystemMod.swf": "5A4D9A405777867826061BB50178DF931591987EA0737580BD0AA8A89458B9B3",
+    "mods\\ContinuousScene\\release\\ContinuousSceneMod.swf": "D8A68A4C128E196FD69B50D1CC7F0FFA72669751FB2FCB85D629F30FE622E677",
+    "mods\\FirearmAttachments\\release\\FirearmAttachmentsMod.swf": "B3304596EB7E08796F9DE2CF02E1E7CCCFF10E188D26FEDFA960AA6370D2A4B9",
+    "mods\\LightAndDarkness\\release\\LightAndDarknessMod.swf": "8ADBA6914DF5AADA4DF12A646B6C22DF4B95B9630A55DD05CA7F713621C7E3EF",
+    "mods\\WallBlend\\release\\WallBlendMod.swf": "FE3E7A84753F6F3614440F69F8725E6E8639AEE4755ACF878AAFCFEDB95AC2E6"
+  },
+  "host": "9D8662F6CF80E0AD20741EC2A4E7BEAD68446269EBB0ADB641C876DB68698B1D",
+  "runs": [
+    {
+      "name": "camera-lossless-snapshot-small-r1-20261101",
+      "ok": false,
+      "error": "Timed out phase 10\nError: Timed out phase 10\n\tat ContinuousSceneMotionMod$/after()",
+      "assertions": 26,
+      "aggregate": {},
+      "byAxis": {},
+      "probe": "0B2DE4ABCB0336233FC776353FE53D58BAE38CAE2531B2132152C34ABF01692A",
+      "legacyHarnessPerformanceEligible": false,
+      "minimumAvailableCommit": 9228091392,
+      "entry": {
+        "units": 137,
+        "scale": 0.6583333333333333,
+        "stageWidth": 1264,
+        "stageHeight": 681
+      },
+      "rawSHA256": "2DE8842C266134A583BB4FA4909CDCC76D29E41E12F858FB50F4D58168A3B1BC"
+    },
+    {
+      "name": "camera-lossless-snapshot-small-r2-20261101",
+      "ok": true,
+      "error": null,
+      "assertions": 29,
+      "aggregate": {
+        "base": {
+          "n": 1794,
+          "mean": 43.10758082497213,
+          "p50": 40.0,
+          "p95": 66,
+          "p99": 89,
+          "max": 236,
+          "over100": 13,
+          "updateBandMean": 11.387959866220736,
+          "tdfcMean": 1.645484949832776,
+          "reuseMean": 0
+        },
+        "pool": {
+          "n": 1794,
+          "mean": 49.819397993311036,
+          "p50": 45.0,
+          "p95": 81,
+          "p99": 120,
+          "max": 225,
+          "over100": 32,
+          "updateBandMean": 11.638795986622073,
+          "tdfcMean": 1.564102564102564,
+          "reuseMean": 37.2530657748049
+        }
+      },
+      "byAxis": {
+        "static": {
+          "base": {
+            "n": 598,
+            "mean": 39.13210702341137,
+            "p50": 35.0,
+            "p95": 62,
+            "p99": 81,
+            "max": 193,
+            "over100": 3,
+            "updateBandMean": 11.734113712374581,
+            "tdfcMean": 1.6722408026755853,
+            "reuseMean": 0
+          },
+          "pool": {
+            "n": 598,
+            "mean": 50.26254180602007,
+            "p50": 43.0,
+            "p95": 94,
+            "p99": 156,
+            "max": 217,
+            "over100": 22,
+            "updateBandMean": 12.168896321070234,
+            "tdfcMean": 1.657190635451505,
+            "reuseMean": 37
+          }
+        },
+        "x": {
+          "base": {
+            "n": 598,
+            "mean": 47.33277591973244,
+            "p50": 43.0,
+            "p95": 73,
+            "p99": 104,
+            "max": 236,
+            "over100": 7,
+            "updateBandMean": 11.478260869565217,
+            "tdfcMean": 1.6354515050167224,
+            "reuseMean": 0
+          },
+          "pool": {
+            "n": 598,
+            "mean": 50.6438127090301,
+            "p50": 46.0,
+            "p95": 79,
+            "p99": 96,
+            "max": 225,
+            "over100": 5,
+            "updateBandMean": 11.339464882943144,
+            "tdfcMean": 1.5100334448160535,
+            "reuseMean": 37
+          }
+        },
+        "y": {
+          "base": {
+            "n": 598,
+            "mean": 42.857859531772576,
+            "p50": 39.0,
+            "p95": 63,
+            "p99": 79,
+            "max": 218,
+            "over100": 3,
+            "updateBandMean": 10.951505016722408,
+            "tdfcMean": 1.62876254180602,
+            "reuseMean": 0
+          },
+          "pool": {
+            "n": 598,
+            "mean": 48.551839464882946,
+            "p50": 45.0,
+            "p95": 74,
+            "p99": 94,
+            "max": 164,
+            "over100": 5,
+            "updateBandMean": 11.408026755852843,
+            "tdfcMean": 1.5250836120401339,
+            "reuseMean": 37.759197324414714
+          }
+        }
+      },
+      "probe": "0B2DE4ABCB0336233FC776353FE53D58BAE38CAE2531B2132152C34ABF01692A",
+      "legacyHarnessPerformanceEligible": false,
+      "minimumAvailableCommit": 6529810432,
+      "entry": {
+        "units": 133,
+        "scale": 0.6583333333333333,
+        "stageWidth": 1264,
+        "stageHeight": 681
+      },
+      "rawSHA256": "3ACDB8A6D68128C7EB527AEC4AF185B25D0794188BAADADD2F85E747419727CE",
+      "motionRanges": {
+        "camX": [
+          1193,
+          1513
+        ],
+        "camY": [
+          1094,
+          1286
+        ],
+        "visualX": [
+          -881,
+          -561
+        ],
+        "visualY": [
+          -845,
+          -653
+        ],
+        "playerX": [
+          2055,
+          2055
+        ],
+        "playerY": [
+          1960,
+          1960
+        ],
+        "screenPlayerX": [
+          471.875,
+          791.875
+        ],
+        "screenPlayerY": [
+          445.33333333333326,
+          637.3333333333333
+        ]
+      }
+    },
+    {
+      "name": "camera-static-groups-small-r2-20261101",
+      "ok": true,
+      "error": null,
+      "assertions": 52,
+      "aggregate": {
+        "full": {
+          "n": 1794,
+          "mean": 42.88573021181717,
+          "p50": 38.0,
+          "p95": 70,
+          "p99": 104,
+          "max": 191,
+          "over100": 22,
+          "updateBandMean": 11.633221850613156,
+          "tdfcMean": null,
+          "reuseMean": null
+        },
+        "fill": {
+          "n": 1794,
+          "mean": 42.0066889632107,
+          "p50": 38.0,
+          "p95": 66,
+          "p99": 92,
+          "max": 179,
+          "over100": 10,
+          "updateBandMean": 11.394648829431437,
+          "tdfcMean": null,
+          "reuseMean": null
+        }
+      },
+      "byAxis": {
+        "static": {
+          "full": {
+            "n": 598,
+            "mean": 38.051839464882946,
+            "p50": 34.0,
+            "p95": 60,
+            "p99": 75,
+            "max": 161,
+            "over100": 3,
+            "updateBandMean": 11.68561872909699,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fill": {
+            "n": 598,
+            "mean": 39.42140468227425,
+            "p50": 35.0,
+            "p95": 66,
+            "p99": 85,
+            "max": 153,
+            "over100": 3,
+            "updateBandMean": 11.762541806020067,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        },
+        "x": {
+          "full": {
+            "n": 598,
+            "mean": 42.54849498327759,
+            "p50": 38.0,
+            "p95": 68,
+            "p99": 96,
+            "max": 177,
+            "over100": 6,
+            "updateBandMean": 11.198996655518394,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fill": {
+            "n": 598,
+            "mean": 42.08695652173913,
+            "p50": 39.0,
+            "p95": 61,
+            "p99": 82,
+            "max": 139,
+            "over100": 3,
+            "updateBandMean": 11.095317725752508,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        },
+        "y": {
+          "full": {
+            "n": 598,
+            "mean": 48.05685618729097,
+            "p50": 42.0,
+            "p95": 80,
+            "p99": 111,
+            "max": 191,
+            "over100": 13,
+            "updateBandMean": 12.01505016722408,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fill": {
+            "n": 598,
+            "mean": 44.51170568561873,
+            "p50": 41.0,
+            "p95": 68,
+            "p99": 98,
+            "max": 179,
+            "over100": 4,
+            "updateBandMean": 11.326086956521738,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        }
+      },
+      "probe": "8E3E83C3F2D53EF470D8CC17BC5D3C593DFAC2D7880394F10950DBF83702A137",
+      "legacyHarnessPerformanceEligible": false,
+      "minimumAvailableCommit": 6708310016,
+      "entry": {
+        "units": 132,
+        "scale": 0.6583333333333333,
+        "stageWidth": 1264,
+        "stageHeight": 681
+      },
+      "rawSHA256": "50DF45A446683BAA4522493F5AB9011A90181D2AAED7B420EDBF3D4C606E0BA1",
+      "motionRanges": {
+        "camX": [
+          1193,
+          1513
+        ],
+        "camY": [
+          1094,
+          1286
+        ],
+        "visualX": [
+          -881,
+          -561
+        ],
+        "visualY": [
+          -845,
+          -653
+        ],
+        "playerX": [
+          2055,
+          2055
+        ],
+        "playerY": [
+          1960,
+          1960
+        ],
+        "screenPlayerX": [
+          471.875,
+          791.875
+        ],
+        "screenPlayerY": [
+          445.33333333333326,
+          637.3333333333333
+        ]
+      }
+    },
+    {
+      "name": "camera-static-groups-large-r1-20261101",
+      "ok": true,
+      "error": null,
+      "assertions": 46,
+      "aggregate": {
+        "full": {
+          "n": 1794,
+          "mean": 38.89966555183946,
+          "p50": 36.0,
+          "p95": 59,
+          "p99": 78,
+          "max": 170,
+          "over100": 14,
+          "updateBandMean": 10.721850613154961,
+          "tdfcMean": null,
+          "reuseMean": null
+        },
+        "fill": {
+          "n": 1794,
+          "mean": 39.588071348940915,
+          "p50": 36.0,
+          "p95": 60,
+          "p99": 76,
+          "max": 172,
+          "over100": 10,
+          "updateBandMean": 10.584726867335563,
+          "tdfcMean": null,
+          "reuseMean": null
+        }
+      },
+      "byAxis": {
+        "static": {
+          "full": {
+            "n": 598,
+            "mean": 34.94314381270903,
+            "p50": 31.0,
+            "p95": 57,
+            "p99": 74,
+            "max": 163,
+            "over100": 4,
+            "updateBandMean": 11.066889632107024,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fill": {
+            "n": 598,
+            "mean": 37.20401337792642,
+            "p50": 33.0,
+            "p95": 62,
+            "p99": 75,
+            "max": 172,
+            "over100": 3,
+            "updateBandMean": 11.27257525083612,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        },
+        "x": {
+          "full": {
+            "n": 598,
+            "mean": 40.53010033444816,
+            "p50": 37.0,
+            "p95": 59,
+            "p99": 71,
+            "max": 157,
+            "over100": 3,
+            "updateBandMean": 10.347826086956522,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fill": {
+            "n": 598,
+            "mean": 42.51505016722408,
+            "p50": 40.0,
+            "p95": 61,
+            "p99": 73,
+            "max": 166,
+            "over100": 4,
+            "updateBandMean": 10.255852842809364,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        },
+        "y": {
+          "full": {
+            "n": 598,
+            "mean": 41.225752508361204,
+            "p50": 38.0,
+            "p95": 66,
+            "p99": 105,
+            "max": 170,
+            "over100": 7,
+            "updateBandMean": 10.750836120401338,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fill": {
+            "n": 598,
+            "mean": 39.04515050167224,
+            "p50": 36.0,
+            "p95": 57,
+            "p99": 78,
+            "max": 144,
+            "over100": 3,
+            "updateBandMean": 10.225752508361204,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        }
+      },
+      "probe": "8E3E83C3F2D53EF470D8CC17BC5D3C593DFAC2D7880394F10950DBF83702A137",
+      "legacyHarnessPerformanceEligible": false,
+      "minimumAvailableCommit": 5910089728,
+      "entry": {
+        "units": 122,
+        "scale": 1,
+        "stageWidth": 1904,
+        "stageHeight": 1041
+      },
+      "rawSHA256": "9F13F760A385261B5C18AF85F2AC6155D818B72B9F3CC5A9B920CBF80A486E35",
+      "motionRanges": {
+        "camX": [
+          1895,
+          2215
+        ],
+        "camY": [
+          1764,
+          1956
+        ],
+        "visualX": [
+          -1263,
+          -943
+        ],
+        "visualY": [
+          -1335,
+          -1143
+        ],
+        "playerX": [
+          2055,
+          2055
+        ],
+        "playerY": [
+          1960,
+          1960
+        ],
+        "screenPlayerX": [
+          792,
+          1112
+        ],
+        "screenPlayerY": [
+          625,
+          817
+        ]
+      }
+    },
+    {
+      "name": "camera-runtime-sdk-small-r1-20261101",
+      "ok": true,
+      "error": null,
+      "assertions": 52,
+      "aggregate": {
+        "full": {
+          "n": 1794,
+          "mean": 39.908026755852845,
+          "p50": 35.0,
+          "p95": 67,
+          "p99": 99,
+          "max": 172,
+          "over100": 17,
+          "updateBandMean": 12.084726867335563,
+          "tdfcMean": null,
+          "reuseMean": null
+        },
+        "fill": {
+          "n": 1794,
+          "mean": 42.30490523968785,
+          "p50": 38.0,
+          "p95": 68,
+          "p99": 89,
+          "max": 186,
+          "over100": 11,
+          "updateBandMean": 12.201783723522855,
+          "tdfcMean": null,
+          "reuseMean": null
+        }
+      },
+      "byAxis": {
+        "static": {
+          "full": {
+            "n": 598,
+            "mean": 37.74247491638796,
+            "p50": 34.0,
+            "p95": 60,
+            "p99": 76,
+            "max": 172,
+            "over100": 5,
+            "updateBandMean": 12.234113712374581,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fill": {
+            "n": 598,
+            "mean": 42.14882943143812,
+            "p50": 37.5,
+            "p95": 68,
+            "p99": 97,
+            "max": 157,
+            "over100": 4,
+            "updateBandMean": 12.075250836120402,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        },
+        "x": {
+          "full": {
+            "n": 598,
+            "mean": 39.264214046822744,
+            "p50": 35.0,
+            "p95": 62,
+            "p99": 80,
+            "max": 163,
+            "over100": 4,
+            "updateBandMean": 12.331103678929766,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fill": {
+            "n": 598,
+            "mean": 40.89966555183946,
+            "p50": 37.0,
+            "p95": 65,
+            "p99": 85,
+            "max": 186,
+            "over100": 3,
+            "updateBandMean": 12.292642140468228,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        },
+        "y": {
+          "full": {
+            "n": 598,
+            "mean": 42.71739130434783,
+            "p50": 37.0,
+            "p95": 75,
+            "p99": 108,
+            "max": 171,
+            "over100": 8,
+            "updateBandMean": 11.688963210702342,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fill": {
+            "n": 598,
+            "mean": 43.86622073578595,
+            "p50": 40.0,
+            "p95": 71,
+            "p99": 82,
+            "max": 153,
+            "over100": 4,
+            "updateBandMean": 12.237458193979933,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        }
+      },
+      "probe": "8E3E83C3F2D53EF470D8CC17BC5D3C593DFAC2D7880394F10950DBF83702A137",
+      "legacyHarnessPerformanceEligible": false,
+      "minimumAvailableCommit": 6281977856,
+      "entry": {
+        "units": 142,
+        "scale": 0.6583333333333333,
+        "stageWidth": 1264,
+        "stageHeight": 681
+      },
+      "rawSHA256": "A4777F0214018528053B2A18E5E4B81E7CEC0971D9D545325E4ACAB13B17AEDD",
+      "motionRanges": {
+        "camX": [
+          1193,
+          1513
+        ],
+        "camY": [
+          1094,
+          1286
+        ],
+        "visualX": [
+          -881,
+          -561
+        ],
+        "visualY": [
+          -845,
+          -653
+        ],
+        "playerX": [
+          2055,
+          2055
+        ],
+        "playerY": [
+          1960,
+          1960
+        ],
+        "screenPlayerX": [
+          471.875,
+          791.875
+        ],
+        "screenPlayerY": [
+          445.33333333333326,
+          637.3333333333333
+        ]
+      },
+      "runtime": {
+        "dllVersion": "51.3.3.2",
+        "loadedDLL": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\airsdk\\runtimes\\air\\win64\\Adobe AIR\\Versions\\1.0\\Adobe AIR.dll",
+        "loadedSHA256": "28D221C0B37C1F984B5D28C1DE495B4D870F1486329DBC9940EAEA730D24F080"
+      }
+    },
+    {
+      "name": "camera-runtime-installed-small-r2-20261101",
+      "ok": true,
+      "error": null,
+      "assertions": 52,
+      "aggregate": {
+        "full": {
+          "n": 1794,
+          "mean": 40.6025641025641,
+          "p50": 38.0,
+          "p95": 60,
+          "p99": 79,
+          "max": 183,
+          "over100": 12,
+          "updateBandMean": 11.813823857302118,
+          "tdfcMean": null,
+          "reuseMean": null
+        },
+        "fill": {
+          "n": 1794,
+          "mean": 42.98439241917503,
+          "p50": 39.0,
+          "p95": 65,
+          "p99": 89,
+          "max": 329,
+          "over100": 14,
+          "updateBandMean": 11.81438127090301,
+          "tdfcMean": null,
+          "reuseMean": null
+        }
+      },
+      "byAxis": {
+        "static": {
+          "full": {
+            "n": 598,
+            "mean": 38.774247491638796,
+            "p50": 36.0,
+            "p95": 59,
+            "p99": 76,
+            "max": 149,
+            "over100": 3,
+            "updateBandMean": 12.028428093645484,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fill": {
+            "n": 598,
+            "mean": 41.55685618729097,
+            "p50": 38.0,
+            "p95": 65,
+            "p99": 83,
+            "max": 175,
+            "over100": 4,
+            "updateBandMean": 12.160535117056856,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        },
+        "x": {
+          "full": {
+            "n": 598,
+            "mean": 42.53344481605351,
+            "p50": 39.5,
+            "p95": 62,
+            "p99": 84,
+            "max": 183,
+            "over100": 5,
+            "updateBandMean": 11.615384615384615,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fill": {
+            "n": 598,
+            "mean": 42.6505016722408,
+            "p50": 39.0,
+            "p95": 60,
+            "p99": 84,
+            "max": 329,
+            "over100": 4,
+            "updateBandMean": 11.52675585284281,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        },
+        "y": {
+          "full": {
+            "n": 598,
+            "mean": 40.5,
+            "p50": 37.0,
+            "p95": 60,
+            "p99": 76,
+            "max": 143,
+            "over100": 4,
+            "updateBandMean": 11.797658862876254,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fill": {
+            "n": 598,
+            "mean": 44.74581939799331,
+            "p50": 41.0,
+            "p95": 69,
+            "p99": 97,
+            "max": 186,
+            "over100": 6,
+            "updateBandMean": 11.755852842809364,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        }
+      },
+      "probe": "8E3E83C3F2D53EF470D8CC17BC5D3C593DFAC2D7880394F10950DBF83702A137",
+      "legacyHarnessPerformanceEligible": false,
+      "minimumAvailableCommit": 3980300288,
+      "entry": {
+        "units": 132,
+        "scale": 0.6583333333333333,
+        "stageWidth": 1264,
+        "stageHeight": 681
+      },
+      "rawSHA256": "147574577258808CE52870F2041E63A6FA8776A3F4DAC6F1E8EC98CFCC847D6F",
+      "motionRanges": {
+        "camX": [
+          1193,
+          1513
+        ],
+        "camY": [
+          1094,
+          1286
+        ],
+        "visualX": [
+          -881,
+          -561
+        ],
+        "visualY": [
+          -845,
+          -653
+        ],
+        "playerX": [
+          2055,
+          2055
+        ],
+        "playerY": [
+          1960,
+          1960
+        ],
+        "screenPlayerX": [
+          471.875,
+          791.875
+        ],
+        "screenPlayerY": [
+          445.33333333333326,
+          637.3333333333333
+        ]
+      },
+      "runtime": {
+        "dllVersion": "51.1.3.3",
+        "loadedDLL": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\runtimes\\air\\win64\\Adobe AIR\\Versions\\1.0\\Adobe AIR.dll",
+        "loadedSHA256": "FC1586A74045DF4A31548A3CF0820E01558DB033C2237F81ABC4731BADC8AF01"
+      }
+    },
+    {
+      "name": "camera-gc-scheduling-small-r1-20261101",
+      "ok": true,
+      "error": null,
+      "assertions": 25,
+      "aggregate": {
+        "full": {
+          "n": 1912,
+          "mean": 40.62186192468619,
+          "p50": 38.0,
+          "p95": 61,
+          "p99": 80,
+          "max": 211,
+          "over100": 11,
+          "updateBandMean": 10.677301255230125,
+          "tdfcMean": null,
+          "reuseMean": null
+        },
+        "gc95": {
+          "n": 956,
+          "mean": 40.54602510460251,
+          "p50": 37.0,
+          "p95": 61,
+          "p99": 89,
+          "max": 205,
+          "over100": 7,
+          "updateBandMean": 10.689330543933055,
+          "tdfcMean": null,
+          "reuseMean": null
+        },
+        "gc75": {
+          "n": 956,
+          "mean": 40.2489539748954,
+          "p50": 37.0,
+          "p95": 60,
+          "p99": 85,
+          "max": 156,
+          "over100": 8,
+          "updateBandMean": 10.19560669456067,
+          "tdfcMean": null,
+          "reuseMean": null
+        }
+      },
+      "byAxis": {
+        "x": {
+          "full": {
+            "n": 956,
+            "mean": 40.01673640167364,
+            "p50": 37.0,
+            "p95": 60,
+            "p99": 85,
+            "max": 192,
+            "over100": 7,
+            "updateBandMean": 10.510460251046025,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "gc95": {
+            "n": 478,
+            "mean": 38.71129707112971,
+            "p50": 36.0,
+            "p95": 55,
+            "p99": 69,
+            "max": 175,
+            "over100": 2,
+            "updateBandMean": 10.456066945606695,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "gc75": {
+            "n": 478,
+            "mean": 40.99581589958159,
+            "p50": 37.0,
+            "p95": 63,
+            "p99": 85,
+            "max": 156,
+            "over100": 4,
+            "updateBandMean": 10.133891213389122,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        },
+        "y": {
+          "full": {
+            "n": 956,
+            "mean": 41.22698744769875,
+            "p50": 39.0,
+            "p95": 61,
+            "p99": 76,
+            "max": 211,
+            "over100": 4,
+            "updateBandMean": 10.844142259414227,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "gc95": {
+            "n": 478,
+            "mean": 42.38075313807531,
+            "p50": 38.0,
+            "p95": 64,
+            "p99": 92,
+            "max": 205,
+            "over100": 5,
+            "updateBandMean": 10.922594142259415,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "gc75": {
+            "n": 478,
+            "mean": 39.50209205020921,
+            "p50": 37.0,
+            "p95": 57,
+            "p99": 83,
+            "max": 153,
+            "over100": 4,
+            "updateBandMean": 10.257322175732218,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        }
+      },
+      "probe": "556274980BCCEC75CF4FA1B8FDB393819ED4339A15002E6D96DC2228BE63A7F9",
+      "legacyHarnessPerformanceEligible": false,
+      "minimumAvailableCommit": 4623609856,
+      "entry": {
+        "units": 139,
+        "scale": 0.6583333333333333,
+        "stageWidth": 1264,
+        "stageHeight": 681
+      },
+      "rawSHA256": "C204B3CDAF810B2366745C5DB43EB07271EB3651C5D07CA265F0E6A43E37EC72",
+      "motionRanges": {
+        "camX": [
+          1193,
+          1513
+        ],
+        "camY": [
+          1094,
+          1286
+        ],
+        "visualX": [
+          -881,
+          -561
+        ],
+        "visualY": [
+          -845,
+          -653
+        ],
+        "playerX": [
+          2055,
+          2055
+        ],
+        "playerY": [
+          1960,
+          1960
+        ],
+        "screenPlayerX": [
+          471.875,
+          791.875
+        ],
+        "screenPlayerY": [
+          445.33333333333326,
+          637.3333333333333
+        ]
+      }
+    },
+    {
+      "name": "camera-group-scale-small-r1-20261101",
+      "ok": true,
+      "error": null,
+      "assertions": 74,
+      "aggregate": {
+        "full": {
+          "n": 956,
+          "mean": 40.48640167364017,
+          "p50": 37.0,
+          "p95": 59,
+          "p99": 76,
+          "max": 155,
+          "over100": 6,
+          "updateBandMean": 11.311715481171548,
+          "tdfcMean": null,
+          "reuseMean": null
+        },
+        "fine": {
+          "n": 956,
+          "mean": 42.11506276150627,
+          "p50": 39.0,
+          "p95": 64,
+          "p99": 85,
+          "max": 170,
+          "over100": 8,
+          "updateBandMean": 11.244769874476987,
+          "tdfcMean": null,
+          "reuseMean": null
+        },
+        "coarse": {
+          "n": 956,
+          "mean": 39.51569037656904,
+          "p50": 36.0,
+          "p95": 58,
+          "p99": 78,
+          "max": 146,
+          "over100": 8,
+          "updateBandMean": 10.994769874476987,
+          "tdfcMean": null,
+          "reuseMean": null
+        }
+      },
+      "byAxis": {
+        "x": {
+          "full": {
+            "n": 478,
+            "mean": 40.33682008368201,
+            "p50": 37.0,
+            "p95": 60,
+            "p99": 76,
+            "max": 155,
+            "over100": 3,
+            "updateBandMean": 11.133891213389122,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fine": {
+            "n": 478,
+            "mean": 40.89958158995816,
+            "p50": 38.0,
+            "p95": 59,
+            "p99": 72,
+            "max": 170,
+            "over100": 4,
+            "updateBandMean": 10.98744769874477,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "coarse": {
+            "n": 478,
+            "mean": 37.18619246861925,
+            "p50": 35.0,
+            "p95": 54,
+            "p99": 61,
+            "max": 131,
+            "over100": 4,
+            "updateBandMean": 10.472803347280335,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        },
+        "y": {
+          "full": {
+            "n": 478,
+            "mean": 40.63598326359833,
+            "p50": 37.0,
+            "p95": 57,
+            "p99": 73,
+            "max": 151,
+            "over100": 3,
+            "updateBandMean": 11.489539748953975,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fine": {
+            "n": 478,
+            "mean": 43.33054393305439,
+            "p50": 39.0,
+            "p95": 65,
+            "p99": 85,
+            "max": 151,
+            "over100": 4,
+            "updateBandMean": 11.502092050209205,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "coarse": {
+            "n": 478,
+            "mean": 41.84518828451883,
+            "p50": 38.0,
+            "p95": 61,
+            "p99": 78,
+            "max": 146,
+            "over100": 4,
+            "updateBandMean": 11.51673640167364,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        }
+      },
+      "probe": "D6D4920BA5712B4B0F3BE0509CD225C29194F623F964AEC3AA716A3FD448F3E5",
+      "legacyHarnessPerformanceEligible": false,
+      "minimumAvailableCommit": 7311372288,
+      "entry": {
+        "units": 129,
+        "scale": 0.6583333333333333,
+        "stageWidth": 1264,
+        "stageHeight": 681
+      },
+      "rawSHA256": "FD8222E2A93DE6BFF15AF894FF197BEE7B7DA4F2539FE0C52D6DA2D092BE55AF",
+      "motionRanges": {
+        "camX": [
+          1193,
+          1513
+        ],
+        "camY": [
+          1094,
+          1286
+        ],
+        "visualX": [
+          -881,
+          -561
+        ],
+        "visualY": [
+          -845,
+          -653
+        ],
+        "playerX": [
+          2055,
+          2055
+        ],
+        "playerY": [
+          1960,
+          1960
+        ],
+        "screenPlayerX": [
+          471.875,
+          791.875
+        ],
+        "screenPlayerY": [
+          445.33333333333326,
+          637.3333333333333
+        ]
+      }
+    },
+    {
+      "name": "camera-static-group-cache-small-r1-20261101",
+      "ok": true,
+      "error": null,
+      "assertions": 50,
+      "aggregate": {
+        "full": {
+          "n": 1196,
+          "mean": 41.259197324414714,
+          "p50": 38.0,
+          "p95": 60,
+          "p99": 83,
+          "max": 211,
+          "over100": 6,
+          "updateBandMean": 10.794314381270903,
+          "tdfcMean": null,
+          "reuseMean": null
+        },
+        "fill": {
+          "n": 1196,
+          "mean": 45.36538461538461,
+          "p50": 41.0,
+          "p95": 72,
+          "p99": 99,
+          "max": 208,
+          "over100": 12,
+          "updateBandMean": 11.404682274247492,
+          "tdfcMean": null,
+          "reuseMean": null
+        }
+      },
+      "byAxis": {
+        "x": {
+          "full": {
+            "n": 598,
+            "mean": 40.707357859531776,
+            "p50": 38.0,
+            "p95": 59,
+            "p99": 83,
+            "max": 144,
+            "over100": 2,
+            "updateBandMean": 10.575250836120402,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fill": {
+            "n": 598,
+            "mean": 46.00334448160535,
+            "p50": 41.0,
+            "p95": 76,
+            "p99": 109,
+            "max": 208,
+            "over100": 8,
+            "updateBandMean": 11.423076923076923,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        },
+        "y": {
+          "full": {
+            "n": 598,
+            "mean": 41.81103678929766,
+            "p50": 38.5,
+            "p95": 61,
+            "p99": 83,
+            "max": 211,
+            "over100": 4,
+            "updateBandMean": 11.013377926421406,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fill": {
+            "n": 598,
+            "mean": 44.72742474916388,
+            "p50": 41.0,
+            "p95": 67,
+            "p99": 89,
+            "max": 156,
+            "over100": 4,
+            "updateBandMean": 11.38628762541806,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        }
+      },
+      "probe": "1B9AA1C0E7EB0A1426D2988C03433BD54B7754BA873B1CBC38248D8E89D384FD",
+      "legacyHarnessPerformanceEligible": false,
+      "minimumAvailableCommit": 6214590464,
+      "entry": {
+        "units": 127,
+        "scale": 0.6583333333333333,
+        "stageWidth": 1264,
+        "stageHeight": 681
+      },
+      "rawSHA256": "37F918EA81775ECEDCE15AD1C7AB08254BC8C1C4E8731E6F9F29F17D77AF4089",
+      "motionRanges": {
+        "camX": [
+          1193,
+          1513
+        ],
+        "camY": [
+          1094,
+          1286
+        ],
+        "visualX": [
+          -881,
+          -561
+        ],
+        "visualY": [
+          -845,
+          -653
+        ],
+        "playerX": [
+          2055,
+          2055
+        ],
+        "playerY": [
+          1960,
+          1960
+        ],
+        "screenPlayerX": [
+          471.875,
+          791.875
+        ],
+        "screenPlayerY": [
+          445.33333333333326,
+          637.3333333333333
+        ]
+      }
+    },
+    {
+      "name": "camera-near-group-cache-small-r1-20261101",
+      "ok": true,
+      "error": null,
+      "assertions": 84,
+      "aggregate": {
+        "full": {
+          "n": 956,
+          "mean": 41.08472803347281,
+          "p50": 38.0,
+          "p95": 61,
+          "p99": 86,
+          "max": 163,
+          "over100": 5,
+          "updateBandMean": 11.774058577405858,
+          "tdfcMean": null,
+          "reuseMean": null
+        },
+        "group": {
+          "n": 956,
+          "mean": 43.30753138075314,
+          "p50": 40.0,
+          "p95": 64,
+          "p99": 86,
+          "max": 168,
+          "over100": 6,
+          "updateBandMean": 11.732217573221757,
+          "tdfcMean": null,
+          "reuseMean": null
+        },
+        "fill": {
+          "n": 956,
+          "mean": 42.05230125523013,
+          "p50": 39.0,
+          "p95": 65,
+          "p99": 79,
+          "max": 168,
+          "over100": 6,
+          "updateBandMean": 11.651673640167363,
+          "tdfcMean": null,
+          "reuseMean": null
+        }
+      },
+      "byAxis": {
+        "x": {
+          "full": {
+            "n": 478,
+            "mean": 41.51255230125523,
+            "p50": 38.0,
+            "p95": 60,
+            "p99": 81,
+            "max": 163,
+            "over100": 3,
+            "updateBandMean": 11.94142259414226,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "group": {
+            "n": 478,
+            "mean": 42.31799163179916,
+            "p50": 39.0,
+            "p95": 62,
+            "p99": 83,
+            "max": 168,
+            "over100": 3,
+            "updateBandMean": 11.864016736401673,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fill": {
+            "n": 478,
+            "mean": 41.14435146443515,
+            "p50": 38.0,
+            "p95": 63,
+            "p99": 75,
+            "max": 168,
+            "over100": 3,
+            "updateBandMean": 11.788702928870293,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        },
+        "y": {
+          "full": {
+            "n": 478,
+            "mean": 40.65690376569037,
+            "p50": 37.0,
+            "p95": 62,
+            "p99": 86,
+            "max": 145,
+            "over100": 2,
+            "updateBandMean": 11.606694560669457,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "group": {
+            "n": 478,
+            "mean": 44.29707112970711,
+            "p50": 41.0,
+            "p95": 69,
+            "p99": 86,
+            "max": 146,
+            "over100": 3,
+            "updateBandMean": 11.600418410041842,
+            "tdfcMean": null,
+            "reuseMean": null
+          },
+          "fill": {
+            "n": 478,
+            "mean": 42.96025104602511,
+            "p50": 40.0,
+            "p95": 66,
+            "p99": 79,
+            "max": 140,
+            "over100": 3,
+            "updateBandMean": 11.514644351464435,
+            "tdfcMean": null,
+            "reuseMean": null
+          }
+        }
+      },
+      "probe": "B8A66647F8C464E48C9DACA87EC1D7D84FAF5D47D655A849F49B94F7228C8AA2",
+      "legacyHarnessPerformanceEligible": false,
+      "minimumAvailableCommit": 8115748864,
+      "entry": {
+        "units": 126,
+        "scale": 0.6583333333333333,
+        "stageWidth": 1264,
+        "stageHeight": 681
+      },
+      "rawSHA256": "91E90FD3B4FB607348E446F4E6D010FF0FC540BEB5DA027ABDF384DB3758CA3F",
+      "motionRanges": {
+        "camX": [
+          1193,
+          1513
+        ],
+        "camY": [
+          1094,
+          1286
+        ],
+        "visualX": [
+          -881,
+          -561
+        ],
+        "visualY": [
+          -845,
+          -653
+        ],
+        "playerX": [
+          2055,
+          2055
+        ],
+        "playerY": [
+          1960,
+          1960
+        ],
+        "screenPlayerX": [
+          471.875,
+          791.875
+        ],
+        "screenPlayerY": [
+          445.33333333333326,
+          637.3333333333333
+        ]
+      }
+    }
+  ],
+  "totalIntervals": 29892,
+  "failedAndPartialEvidencePreserved": true,
+  "notLaunched": [
+    "camera-static-groups-small-r1-20261101: registry wait timeout"
+  ],
+  "acceptanceBoundary": "No proof that every lossless implementation is exhausted; no promotion of legacy profile=false diagnostics.",
+  "formalUnchanged": true,
+  "foreignSourceUnchanged": true
+}

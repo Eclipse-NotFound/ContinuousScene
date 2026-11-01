@@ -1,5 +1,14 @@
 # ContinuousScene — 当前快照
 
+<!-- lossless-cut-survey-20261101 -->
+> 2026-11-01 无损切口普查：本轮正式文件未变，宿主仍 **9D8662F6**、CS D8A、WB FE3、RV AEA、RC6906等14模组保持；前轮显隐回归修复仍在。完成10次隔离游戏运行，含1次保留的预热超时，计时共29892有效间隔；另有一次排队超时未启动。所有自有实例/登记已结束。
+>
+> 已核对地形、物体显示树/缓存、时间轴/焦点、环境查询、AI快照与调度、其它模组分配、GC和运行库。快照复用、不同中性分组及缓存、主动GC和新版运行库未取得可部署的稳定明显收益；没有新性能产物进入正式安装。各自像素/时序边界与失败见[普查报告](../knowledge/experiments/lossless-cut-survey-20261101.md)及build/generated/lossless-cut-survey-20261101/summary.json。
+>
+> 保持原画质、原生隐藏、追击和屏外命中。普通Box本已cacheAsBitmap；桌面cacheAsBitmapMatrix不支持，不能重复包装成新切口。120fps容量/离屏像素不能冒充正式30fps/原生Stage验收。不声称已接近原版或数学意义耗尽所有无损空间；新渲染实现仍需新的整帧收益和等价证据，不能仅换参数重跑已否定实现。他人状态/源码/报告保留。
+<!-- /lossless-cut-survey-20261101 -->
+
+
 <!-- camera-optimization-20261101 -->
 > 2026-11-01 后继优化已实测：正式宿主 **9D8662F6**（14:58从CA94只撤掉sceneTick无条件单位显隐，前三层A2/预绘预算保留）；CS **D8A68A4C**、WB **FE3E7A84**、RV **AEA30314**、RC **69060487**等14模组组合保持。回执：build/generated/camera-object-clip-v7-20261101/visibility-fix-deployment.json。原生UnitSpectre隐藏复验通过。这是显隐回归修复，不是已证实性能提升；重启生效。下方旧安装表与迭代条目是历史记录，当前以本段为准。
 >

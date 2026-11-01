@@ -1,0 +1,15 @@
+[ModSettings] v0.5.0 loaded
+[ModSettings] ModLoader runtime v2.5.0 loaded; settings v0.5.0
+[ModSettings] host=published
+[ModSettings] ui=independent
+[ModSettings] tabProbe=n=25 vpipVis=false |0Shape@0,0v1 |1MovieClip@600,400v0 |2MovieClip@620,391v1 |3MovieClip@600,403v0 |4ButPage_1536@17,136v0 |5ButPage_1536@17,214v0 |6ButPage_1536@17,294v0 |7ButPage_1536@30,693v1 |8ButPage_1536@17,374v0 |9ButPage_1536@17,454v0 |10MovieClip@17,532v0 |11MovieClip@76,532v1 |12MovieClip@505,5v1 |13MovieClip@1106,136v0 |14visPipInv@165,72v0*PAGE |15visPipInv@165,72v0*PAGE |16visPipInfo@165,72v0*PAGE |17visPipInv@165,72v0*PAGE |18visPipInv@165,72v0*PAGE |19visPipInv@165,72v0*PAGE |20visPipInv@165,72v0*PAGE |21visPipInv@165,72v0*PAGE |22visPipInv@165,72v0*PAGE |23visPipHelp@168,138v0 |24visSetKey@600,400v0
+[ModSettings] frames=600
+[ModSettings] frames=1200
+[ModSettings] frames=1800
+[ModSettings] frames=2400
+[ModSettings] frames=3000
+[ModSettings] frames=3600
+[ModSettings] frames=4200
+[ModSettings] frames=4800
+[ModSettings] frames=5400
+[ModSettings] frames=6000

@@ -190,3 +190,44 @@ build/generated/camera-phase-search-v11-20261101/LocalPhaseMaskedBitmapFill.as w
 build/generated/camera-scaled-fill-v9-20261101/LocalPhaseMaskedBitmapFill.as whitespace=cr-at-eol,-blank-at-eof
 build/generated/camera-turret-guard-r2-20261101/UnitTurret-donor.as whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
 build/generated/camera-turret-guard-r2-20261101/fe.unit.UnitTurret-animate.pcode whitespace=cr-at-eol,-blank-at-eol
+
+# 2026-11-01 lossless survey: preserve exact diagnostic inputs.
+build/generated/camera-gc-scheduling-v17-20261101/** -text whitespace=cr-at-eol
+build/generated/camera-group-scale-v18-20261101/** -text whitespace=cr-at-eol
+build/generated/camera-lossless-survey-v14-20261101/** -text whitespace=cr-at-eol
+build/generated/camera-near-group-cache-v20-20261101/** -text whitespace=cr-at-eol
+build/generated/camera-runtime-survey-v16-20261101/** -text whitespace=cr-at-eol
+build/generated/camera-static-group-cache-v19-20261101/** -text whitespace=cr-at-eol
+build/generated/camera-static-groups-v15-20261101/** -text whitespace=cr-at-eol
+build/generated/lossless-cut-survey-20261101/** -text whitespace=cr-at-eol
+knowledge/experiments/evidence/camera-gc-scheduling-small-r1-20261101/** -text whitespace=cr-at-eol,-blank-at-eof
+knowledge/experiments/evidence/camera-group-scale-small-r1-20261101/** -text whitespace=cr-at-eol,-blank-at-eof
+knowledge/experiments/evidence/camera-lossless-snapshot-small-r1-20261101/** -text whitespace=cr-at-eol,-blank-at-eof
+knowledge/experiments/evidence/camera-lossless-snapshot-small-r2-20261101/** -text whitespace=cr-at-eol,-blank-at-eof
+knowledge/experiments/evidence/camera-near-group-cache-small-r1-20261101/** -text whitespace=cr-at-eol,-blank-at-eof
+knowledge/experiments/evidence/camera-runtime-installed-small-r2-20261101/** -text whitespace=cr-at-eol,-blank-at-eof
+knowledge/experiments/evidence/camera-runtime-sdk-small-r1-20261101/** -text whitespace=cr-at-eol,-blank-at-eof
+knowledge/experiments/evidence/camera-static-group-cache-small-r1-20261101/** -text whitespace=cr-at-eol,-blank-at-eof
+knowledge/experiments/evidence/camera-static-groups-large-r1-20261101/** -text whitespace=cr-at-eol,-blank-at-eof
+knowledge/experiments/evidence/camera-static-groups-small-r2-20261101/** -text whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-lossless-survey-v14-20261101/candidate-src/** whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+build/generated/camera-gc-scheduling-v17-20261101/compiler.log whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-group-scale-v18-20261101/compiler.log whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-lossless-survey-v14-20261101/compiler.log whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-near-group-cache-v20-20261101/compiler.log whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-runtime-survey-v16-20261101/compiler.log whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-static-group-cache-v19-20261101/compiler.log whitespace=cr-at-eol,-blank-at-eof
+build/generated/camera-static-groups-v15-20261101/compiler.log whitespace=cr-at-eol,-blank-at-eof
+build/generated/lossless-cut-survey-20261101/compiler.log whitespace=cr-at-eol,-blank-at-eof
+
+# Preserve native trace CR-CR-LF bytes.
+knowledge/experiments/evidence/camera-lossless-snapshot-small-r1-20261101/stderr.log whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+knowledge/experiments/evidence/camera-lossless-snapshot-small-r2-20261101/stderr.log whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+knowledge/experiments/evidence/camera-static-groups-small-r2-20261101/stderr.log whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+knowledge/experiments/evidence/camera-static-groups-large-r1-20261101/stderr.log whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+knowledge/experiments/evidence/camera-runtime-sdk-small-r1-20261101/stderr.log whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+knowledge/experiments/evidence/camera-runtime-installed-small-r2-20261101/stderr.log whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+knowledge/experiments/evidence/camera-gc-scheduling-small-r1-20261101/stderr.log whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+knowledge/experiments/evidence/camera-group-scale-small-r1-20261101/stderr.log whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+knowledge/experiments/evidence/camera-static-group-cache-small-r1-20261101/stderr.log whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol
+knowledge/experiments/evidence/camera-near-group-cache-small-r1-20261101/stderr.log whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol

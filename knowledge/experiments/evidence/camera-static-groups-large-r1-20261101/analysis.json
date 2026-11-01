@@ -1,0 +1,693 @@
+{
+  "name": "camera-static-groups-large-r1-20261101",
+  "ok": true,
+  "error": null,
+  "diagnosticOnly": true,
+  "policyPerformanceEligible": false,
+  "assertions": 46,
+  "failedChecks": [],
+  "runFailure": null,
+  "otherAIR": [],
+  "blocks": [
+    {
+      "settings": {
+        "mode": "full",
+        "axis": "static",
+        "frames": 300,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 32.719063545150505,
+        "p50": 29,
+        "p95": 54,
+        "p99": 74,
+        "max": 163,
+        "over100": 2,
+        "updateBandMean": 11.070234113712374,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "errors": 0,
+        "groups": 0,
+        "created": 1350,
+        "moved": 4170,
+        "restored": 4170,
+        "active": false
+      }
+    },
+    {
+      "settings": {
+        "mode": "fill",
+        "axis": "static",
+        "frames": 300,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 37.17391304347826,
+        "p50": 33,
+        "p95": 58,
+        "p99": 69,
+        "max": 172,
+        "over100": 2,
+        "updateBandMean": 11.74581939799331,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "errors": 0,
+        "groups": 270,
+        "created": 1620,
+        "moved": 5004,
+        "restored": 4170,
+        "active": true
+      }
+    },
+    {
+      "settings": {
+        "mode": "fill",
+        "axis": "static",
+        "frames": 300,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 37.23411371237458,
+        "p50": 32,
+        "p95": 65,
+        "p99": 75,
+        "max": 159,
+        "over100": 1,
+        "updateBandMean": 10.799331103678929,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "errors": 0,
+        "groups": 270,
+        "created": 1620,
+        "moved": 5004,
+        "restored": 4170,
+        "active": true
+      }
+    },
+    {
+      "settings": {
+        "mode": "full",
+        "axis": "static",
+        "frames": 300,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 37.16722408026756,
+        "p50": 33,
+        "p95": 58,
+        "p99": 71,
+        "max": 138,
+        "over100": 2,
+        "updateBandMean": 11.063545150501673,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "errors": 0,
+        "groups": 0,
+        "created": 1620,
+        "moved": 5004,
+        "restored": 5004,
+        "active": false
+      }
+    },
+    {
+      "settings": {
+        "mode": "full",
+        "axis": "x",
+        "frames": 300,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 40.207357859531776,
+        "p50": 37,
+        "p95": 59,
+        "p99": 70,
+        "max": 147,
+        "over100": 1,
+        "updateBandMean": 10.381270903010034,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "errors": 0,
+        "groups": 0,
+        "created": 1620,
+        "moved": 5004,
+        "restored": 5004,
+        "active": false
+      }
+    },
+    {
+      "settings": {
+        "mode": "fill",
+        "axis": "x",
+        "frames": 300,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 43.929765886287626,
+        "p50": 42,
+        "p95": 63,
+        "p99": 76,
+        "max": 166,
+        "over100": 3,
+        "updateBandMean": 10.454849498327759,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "errors": 0,
+        "groups": 270,
+        "created": 1890,
+        "moved": 5838,
+        "restored": 5004,
+        "active": true
+      }
+    },
+    {
+      "settings": {
+        "mode": "fill",
+        "axis": "x",
+        "frames": 300,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 41.10033444816054,
+        "p50": 38,
+        "p95": 61,
+        "p99": 72,
+        "max": 148,
+        "over100": 1,
+        "updateBandMean": 10.05685618729097,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "errors": 0,
+        "groups": 270,
+        "created": 1890,
+        "moved": 5838,
+        "restored": 5004,
+        "active": true
+      }
+    },
+    {
+      "settings": {
+        "mode": "full",
+        "axis": "x",
+        "frames": 300,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 40.852842809364546,
+        "p50": 38,
+        "p95": 57,
+        "p99": 71,
+        "max": 157,
+        "over100": 2,
+        "updateBandMean": 10.31438127090301,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "errors": 0,
+        "groups": 0,
+        "created": 1890,
+        "moved": 5838,
+        "restored": 5838,
+        "active": false
+      }
+    },
+    {
+      "settings": {
+        "mode": "full",
+        "axis": "y",
+        "frames": 300,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 42.474916387959865,
+        "p50": 39,
+        "p95": 68,
+        "p99": 94,
+        "max": 170,
+        "over100": 3,
+        "updateBandMean": 10.899665551839465,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "errors": 0,
+        "groups": 0,
+        "created": 1890,
+        "moved": 5838,
+        "restored": 5838,
+        "active": false
+      }
+    },
+    {
+      "settings": {
+        "mode": "fill",
+        "axis": "y",
+        "frames": 300,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 38.929765886287626,
+        "p50": 36,
+        "p95": 55,
+        "p99": 78,
+        "max": 144,
+        "over100": 2,
+        "updateBandMean": 10.2876254180602,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "errors": 0,
+        "groups": 270,
+        "created": 2160,
+        "moved": 6672,
+        "restored": 5838,
+        "active": true
+      }
+    },
+    {
+      "settings": {
+        "mode": "fill",
+        "axis": "y",
+        "frames": 300,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 39.16053511705686,
+        "p50": 37,
+        "p95": 60,
+        "p99": 78,
+        "max": 141,
+        "over100": 1,
+        "updateBandMean": 10.163879598662207,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 1,
+      "fill": {
+        "errors": 0,
+        "groups": 270,
+        "created": 2160,
+        "moved": 6672,
+        "restored": 5838,
+        "active": true
+      }
+    },
+    {
+      "settings": {
+        "mode": "full",
+        "axis": "y",
+        "frames": 300,
+        "fps": 120
+      },
+      "complete": true,
+      "delta": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "metrics": {
+        "n": 299,
+        "mean": 39.97658862876254,
+        "p50": 36,
+        "p95": 61,
+        "p99": 105,
+        "max": 169,
+        "over100": 4,
+        "updateBandMean": 10.602006688963211,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "heapDropsOver4MiB": 2,
+      "fill": {
+        "errors": 0,
+        "groups": 0,
+        "created": 2160,
+        "moved": 6672,
+        "restored": 6672,
+        "active": false
+      }
+    }
+  ],
+  "aggregate": {
+    "full": {
+      "n": 1794,
+      "mean": 38.89966555183946,
+      "p50": 36.0,
+      "p95": 59,
+      "p99": 78,
+      "max": 170,
+      "over100": 14,
+      "updateBandMean": 10.721850613154961,
+      "tdfcMean": null,
+      "reuseMean": null
+    },
+    "fill": {
+      "n": 1794,
+      "mean": 39.588071348940915,
+      "p50": 36.0,
+      "p95": 60,
+      "p99": 76,
+      "max": 172,
+      "over100": 10,
+      "updateBandMean": 10.584726867335563,
+      "tdfcMean": null,
+      "reuseMean": null
+    }
+  },
+  "byAxis": {
+    "static": {
+      "full": {
+        "n": 598,
+        "mean": 34.94314381270903,
+        "p50": 31.0,
+        "p95": 57,
+        "p99": 74,
+        "max": 163,
+        "over100": 4,
+        "updateBandMean": 11.066889632107024,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "fill": {
+        "n": 598,
+        "mean": 37.20401337792642,
+        "p50": 33.0,
+        "p95": 62,
+        "p99": 75,
+        "max": 172,
+        "over100": 3,
+        "updateBandMean": 11.27257525083612,
+        "tdfcMean": null,
+        "reuseMean": null
+      }
+    },
+    "x": {
+      "full": {
+        "n": 598,
+        "mean": 40.53010033444816,
+        "p50": 37.0,
+        "p95": 59,
+        "p99": 71,
+        "max": 157,
+        "over100": 3,
+        "updateBandMean": 10.347826086956522,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "fill": {
+        "n": 598,
+        "mean": 42.51505016722408,
+        "p50": 40.0,
+        "p95": 61,
+        "p99": 73,
+        "max": 166,
+        "over100": 4,
+        "updateBandMean": 10.255852842809364,
+        "tdfcMean": null,
+        "reuseMean": null
+      }
+    },
+    "y": {
+      "full": {
+        "n": 598,
+        "mean": 41.225752508361204,
+        "p50": 38.0,
+        "p95": 66,
+        "p99": 105,
+        "max": 170,
+        "over100": 7,
+        "updateBandMean": 10.750836120401338,
+        "tdfcMean": null,
+        "reuseMean": null
+      },
+      "fill": {
+        "n": 598,
+        "mean": 39.04515050167224,
+        "p50": 36.0,
+        "p95": 57,
+        "p99": 78,
+        "max": 144,
+        "over100": 3,
+        "updateBandMean": 10.225752508361204,
+        "tdfcMean": null,
+        "reuseMean": null
+      }
+    }
+  },
+  "inputs": {
+    "storage/result.json": "9F13F760A385261B5C18AF85F2AC6155D818B72B9F3CC5A9B920CBF80A486E35",
+    "process-policy.json": "2EDF1A25465AD872A5FE161B68211D4DFBCBE44A2F5D3ADC7A8D51CD2249DA5E",
+    "review-inputs.json": "2A593E581B6B6AF85A89E347D7A35697EEE9B13B6C59541BD7D7A78AD05E0B4E",
+    "loader-check.json": "A956DFCDD28621058DDF1E7C2C6D9DBEE969770EC3F496395822908DB76CDF1D",
+    "inputs.json": "2CB11218CD9A9A958F69611EF928EA6E8C2F38E9DFC3A51671F6801360AAFC5E"
+  },
+  "functionalOnly": {
+    "pixels": [
+      {
+        "offset": [
+          0,
+          0
+        ],
+        "stats": {
+          "errors": 0,
+          "groups": 270,
+          "created": 270,
+          "moved": 834,
+          "restored": 0,
+          "active": true
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      },
+      {
+        "offset": [
+          120,
+          0
+        ],
+        "stats": {
+          "errors": 0,
+          "groups": 270,
+          "created": 540,
+          "moved": 1668,
+          "restored": 834,
+          "active": true
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      },
+      {
+        "offset": [
+          -160,
+          0
+        ],
+        "stats": {
+          "errors": 0,
+          "groups": 270,
+          "created": 810,
+          "moved": 2502,
+          "restored": 1668,
+          "active": true
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      },
+      {
+        "offset": [
+          0,
+          96
+        ],
+        "stats": {
+          "errors": 0,
+          "groups": 270,
+          "created": 1080,
+          "moved": 3336,
+          "restored": 2502,
+          "active": true
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      },
+      {
+        "offset": [
+          0,
+          -96
+        ],
+        "stats": {
+          "errors": 0,
+          "groups": 270,
+          "created": 1350,
+          "moved": 4170,
+          "restored": 3336,
+          "active": true
+        },
+        "difference": {
+          "maxRGB": 0,
+          "maxAlpha": 0,
+          "changed": 0
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,762 @@
+{
+  "appId": "pfe-modsettings-continuous-motion-a8a20317507b47ee9d8f9c9caf6b0203",
+  "desktopPolicy": "private",
+  "performanceEligible": false,
+  "otherAirProcessIds": [],
+  "memoryBefore": {
+    "load": 69,
+    "availablePhysical": 10359345152,
+    "availableCommit": 11453693952
+  },
+  "minimumAvailableCommit": 9228091392,
+  "powerPolicy": {
+    "before": [
+      1,
+      0
+    ],
+    "applied": [
+      1,
+      0
+    ]
+  },
+  "pid": 2880,
+  "desktop": "RemainsTest-c5964cc7f0614e95aa0dea6811b5ece5",
+  "ownedProcessCpuSamples": [
+    {
+      "elapsed": 1.0,
+      "kernelMs": 187.5,
+      "userMs": 156.25
+    },
+    {
+      "elapsed": 2.031000000075437,
+      "kernelMs": 187.5,
+      "userMs": 171.875
+    },
+    {
+      "elapsed": 3.062000000034459,
+      "kernelMs": 187.5,
+      "userMs": 171.875
+    },
+    {
+      "elapsed": 4.109000000054948,
+      "kernelMs": 390.625,
+      "userMs": 687.5
+    },
+    {
+      "elapsed": 5.14000000001397,
+      "kernelMs": 421.875,
+      "userMs": 953.125
+    },
+    {
+      "elapsed": 6.187000000034459,
+      "kernelMs": 421.875,
+      "userMs": 953.125
+    },
+    {
+      "elapsed": 7.217999999993481,
+      "kernelMs": 421.875,
+      "userMs": 953.125
+    },
+    {
+      "elapsed": 8.25,
+      "kernelMs": 421.875,
+      "userMs": 968.75
+    },
+    {
+      "elapsed": 9.297000000020489,
+      "kernelMs": 812.5,
+      "userMs": 1468.75
+    },
+    {
+      "elapsed": 10.327999999979511,
+      "kernelMs": 1546.875,
+      "userMs": 1718.75
+    },
+    {
+      "elapsed": 11.359000000054948,
+      "kernelMs": 2250.0,
+      "userMs": 1984.375
+    },
+    {
+      "elapsed": 12.39000000001397,
+      "kernelMs": 2953.125,
+      "userMs": 2265.625
+    },
+    {
+      "elapsed": 13.422000000020489,
+      "kernelMs": 3203.125,
+      "userMs": 3062.5
+    },
+    {
+      "elapsed": 14.46799999999348,
+      "kernelMs": 3375.0,
+      "userMs": 3875.0
+    },
+    {
+      "elapsed": 15.5,
+      "kernelMs": 3531.25,
+      "userMs": 4375.0
+    },
+    {
+      "elapsed": 16.531000000075437,
+      "kernelMs": 3750.0,
+      "userMs": 5078.125
+    },
+    {
+      "elapsed": 17.57799999997951,
+      "kernelMs": 3765.625,
+      "userMs": 6078.125
+    },
+    {
+      "elapsed": 18.609000000054948,
+      "kernelMs": 3812.5,
+      "userMs": 6984.375
+    },
+    {
+      "elapsed": 19.64000000001397,
+      "kernelMs": 3906.25,
+      "userMs": 7843.75
+    },
+    {
+      "elapsed": 20.67200000002049,
+      "kernelMs": 4000.0,
+      "userMs": 8843.75
+    },
+    {
+      "elapsed": 21.71799999999348,
+      "kernelMs": 4109.375,
+      "userMs": 9390.625
+    },
+    {
+      "elapsed": 22.75,
+      "kernelMs": 4171.875,
+      "userMs": 10265.625
+    },
+    {
+      "elapsed": 23.781000000075437,
+      "kernelMs": 4218.75,
+      "userMs": 11093.75
+    },
+    {
+      "elapsed": 24.82799999997951,
+      "kernelMs": 4265.625,
+      "userMs": 12078.125
+    },
+    {
+      "elapsed": 25.859000000054948,
+      "kernelMs": 4312.5,
+      "userMs": 13093.75
+    },
+    {
+      "elapsed": 26.89000000001397,
+      "kernelMs": 4359.375,
+      "userMs": 14000.0
+    },
+    {
+      "elapsed": 27.93700000003446,
+      "kernelMs": 4453.125,
+      "userMs": 14875.0
+    },
+    {
+      "elapsed": 28.96799999999348,
+      "kernelMs": 4734.375,
+      "userMs": 15781.25
+    },
+    {
+      "elapsed": 30.01500000001397,
+      "kernelMs": 4859.375,
+      "userMs": 16687.5
+    },
+    {
+      "elapsed": 31.04700000002049,
+      "kernelMs": 4906.25,
+      "userMs": 17546.875
+    },
+    {
+      "elapsed": 32.07799999997951,
+      "kernelMs": 5140.625,
+      "userMs": 18468.75
+    },
+    {
+      "elapsed": 33.125,
+      "kernelMs": 5343.75,
+      "userMs": 19390.625
+    },
+    {
+      "elapsed": 34.15600000007544,
+      "kernelMs": 5375.0,
+      "userMs": 20468.75
+    },
+    {
+      "elapsed": 35.18700000003446,
+      "kernelMs": 5500.0,
+      "userMs": 21500.0
+    },
+    {
+      "elapsed": 36.23400000005495,
+      "kernelMs": 5640.625,
+      "userMs": 22890.625
+    },
+    {
+      "elapsed": 37.28100000007544,
+      "kernelMs": 5703.125,
+      "userMs": 24375.0
+    },
+    {
+      "elapsed": 38.31200000003446,
+      "kernelMs": 5796.875,
+      "userMs": 26796.875
+    },
+    {
+      "elapsed": 39.34299999999348,
+      "kernelMs": 5906.25,
+      "userMs": 28328.125
+    },
+    {
+      "elapsed": 40.375,
+      "kernelMs": 6062.5,
+      "userMs": 30031.25
+    },
+    {
+      "elapsed": 41.42200000002049,
+      "kernelMs": 6234.375,
+      "userMs": 31828.125
+    },
+    {
+      "elapsed": 42.45299999997951,
+      "kernelMs": 6312.5,
+      "userMs": 33625.0
+    },
+    {
+      "elapsed": 43.5,
+      "kernelMs": 6328.125,
+      "userMs": 35218.75
+    },
+    {
+      "elapsed": 44.53100000007544,
+      "kernelMs": 6453.125,
+      "userMs": 36937.5
+    },
+    {
+      "elapsed": 45.56200000003446,
+      "kernelMs": 6546.875,
+      "userMs": 39265.625
+    },
+    {
+      "elapsed": 46.59299999999348,
+      "kernelMs": 6609.375,
+      "userMs": 40843.75
+    },
+    {
+      "elapsed": 47.65600000007544,
+      "kernelMs": 6687.5,
+      "userMs": 42828.125
+    },
+    {
+      "elapsed": 48.70299999997951,
+      "kernelMs": 6750.0,
+      "userMs": 44265.625
+    },
+    {
+      "elapsed": 49.73400000005495,
+      "kernelMs": 6781.25,
+      "userMs": 45906.25
+    },
+    {
+      "elapsed": 50.76500000001397,
+      "kernelMs": 6875.0,
+      "userMs": 47953.125
+    },
+    {
+      "elapsed": 51.81200000003446,
+      "kernelMs": 7031.25,
+      "userMs": 49953.125
+    },
+    {
+      "elapsed": 52.84299999999348,
+      "kernelMs": 7187.5,
+      "userMs": 52031.25
+    },
+    {
+      "elapsed": 53.89000000001397,
+      "kernelMs": 7328.125,
+      "userMs": 54093.75
+    },
+    {
+      "elapsed": 54.92200000002049,
+      "kernelMs": 7406.25,
+      "userMs": 56687.5
+    },
+    {
+      "elapsed": 55.95299999997951,
+      "kernelMs": 7484.375,
+      "userMs": 58546.875
+    },
+    {
+      "elapsed": 57.0,
+      "kernelMs": 7625.0,
+      "userMs": 60203.125
+    },
+    {
+      "elapsed": 58.03100000007544,
+      "kernelMs": 7765.625,
+      "userMs": 62421.875
+    },
+    {
+      "elapsed": 59.06200000003446,
+      "kernelMs": 7781.25,
+      "userMs": 64031.25
+    },
+    {
+      "elapsed": 60.10900000005495,
+      "kernelMs": 7875.0,
+      "userMs": 65984.375
+    },
+    {
+      "elapsed": 61.14000000001397,
+      "kernelMs": 7921.875,
+      "userMs": 67984.375
+    },
+    {
+      "elapsed": 62.17200000002049,
+      "kernelMs": 8031.25,
+      "userMs": 69968.75
+    },
+    {
+      "elapsed": 63.21799999999348,
+      "kernelMs": 8156.25,
+      "userMs": 71671.875
+    },
+    {
+      "elapsed": 64.25,
+      "kernelMs": 8250.0,
+      "userMs": 73546.875
+    },
+    {
+      "elapsed": 65.28100000007544,
+      "kernelMs": 8328.125,
+      "userMs": 75671.875
+    },
+    {
+      "elapsed": 66.31200000003446,
+      "kernelMs": 8390.625,
+      "userMs": 77734.375
+    },
+    {
+      "elapsed": 67.35900000005495,
+      "kernelMs": 8515.625,
+      "userMs": 80078.125
+    },
+    {
+      "elapsed": 68.39000000001397,
+      "kernelMs": 8609.375,
+      "userMs": 82281.25
+    },
+    {
+      "elapsed": 69.42200000002049,
+      "kernelMs": 8703.125,
+      "userMs": 83828.125
+    },
+    {
+      "elapsed": 70.45299999997951,
+      "kernelMs": 8750.0,
+      "userMs": 86218.75
+    },
+    {
+      "elapsed": 71.5,
+      "kernelMs": 8828.125,
+      "userMs": 88281.25
+    },
+    {
+      "elapsed": 72.53100000007544,
+      "kernelMs": 8890.625,
+      "userMs": 90171.875
+    },
+    {
+      "elapsed": 73.57799999997951,
+      "kernelMs": 8968.75,
+      "userMs": 92125.0
+    },
+    {
+      "elapsed": 74.60900000005495,
+      "kernelMs": 9031.25,
+      "userMs": 93781.25
+    },
+    {
+      "elapsed": 75.65600000007544,
+      "kernelMs": 9062.5,
+      "userMs": 95765.625
+    },
+    {
+      "elapsed": 76.68700000003446,
+      "kernelMs": 9125.0,
+      "userMs": 98218.75
+    },
+    {
+      "elapsed": 77.73400000005495,
+      "kernelMs": 9250.0,
+      "userMs": 100203.125
+    },
+    {
+      "elapsed": 78.76500000001397,
+      "kernelMs": 9343.75,
+      "userMs": 101796.875
+    },
+    {
+      "elapsed": 79.79700000002049,
+      "kernelMs": 9390.625,
+      "userMs": 103703.125
+    },
+    {
+      "elapsed": 80.84299999999348,
+      "kernelMs": 9453.125,
+      "userMs": 105750.0
+    },
+    {
+      "elapsed": 81.875,
+      "kernelMs": 9500.0,
+      "userMs": 107515.625
+    },
+    {
+      "elapsed": 82.92200000002049,
+      "kernelMs": 9578.125,
+      "userMs": 109484.375
+    },
+    {
+      "elapsed": 83.95299999997951,
+      "kernelMs": 9703.125,
+      "userMs": 111578.125
+    },
+    {
+      "elapsed": 84.98400000005495,
+      "kernelMs": 9781.25,
+      "userMs": 113421.875
+    },
+    {
+      "elapsed": 86.03100000007544,
+      "kernelMs": 9859.375,
+      "userMs": 115046.875
+    },
+    {
+      "elapsed": 87.06200000003446,
+      "kernelMs": 9921.875,
+      "userMs": 116984.375
+    },
+    {
+      "elapsed": 88.09299999999348,
+      "kernelMs": 9984.375,
+      "userMs": 119000.0
+    },
+    {
+      "elapsed": 89.14000000001397,
+      "kernelMs": 10015.625,
+      "userMs": 120968.75
+    },
+    {
+      "elapsed": 90.18700000003446,
+      "kernelMs": 10078.125,
+      "userMs": 122781.25
+    },
+    {
+      "elapsed": 91.21799999999348,
+      "kernelMs": 10078.125,
+      "userMs": 124671.875
+    },
+    {
+      "elapsed": 92.26500000001397,
+      "kernelMs": 10109.375,
+      "userMs": 126328.125
+    },
+    {
+      "elapsed": 93.29700000002049,
+      "kernelMs": 10156.25,
+      "userMs": 128015.625
+    },
+    {
+      "elapsed": 94.32799999997951,
+      "kernelMs": 10234.375,
+      "userMs": 129921.875
+    },
+    {
+      "elapsed": 95.375,
+      "kernelMs": 10312.5,
+      "userMs": 132171.875
+    },
+    {
+      "elapsed": 96.40600000007544,
+      "kernelMs": 10437.5,
+      "userMs": 134453.125
+    },
+    {
+      "elapsed": 97.43700000003446,
+      "kernelMs": 10500.0,
+      "userMs": 136265.625
+    },
+    {
+      "elapsed": 98.48400000005495,
+      "kernelMs": 10640.625,
+      "userMs": 137921.875
+    },
+    {
+      "elapsed": 99.53100000007544,
+      "kernelMs": 10703.125,
+      "userMs": 139406.25
+    },
+    {
+      "elapsed": 100.56200000003446,
+      "kernelMs": 10734.375,
+      "userMs": 141250.0
+    },
+    {
+      "elapsed": 101.59299999999348,
+      "kernelMs": 10812.5,
+      "userMs": 142859.375
+    },
+    {
+      "elapsed": 102.64000000001397,
+      "kernelMs": 10890.625,
+      "userMs": 144531.25
+    },
+    {
+      "elapsed": 103.67200000002049,
+      "kernelMs": 11015.625,
+      "userMs": 146218.75
+    },
+    {
+      "elapsed": 104.71799999999348,
+      "kernelMs": 11078.125,
+      "userMs": 148265.625
+    },
+    {
+      "elapsed": 105.75,
+      "kernelMs": 11187.5,
+      "userMs": 150015.625
+    },
+    {
+      "elapsed": 106.78100000007544,
+      "kernelMs": 11312.5,
+      "userMs": 152031.25
+    },
+    {
+      "elapsed": 107.81200000003446,
+      "kernelMs": 11359.375,
+      "userMs": 153515.625
+    },
+    {
+      "elapsed": 108.84299999999348,
+      "kernelMs": 11468.75,
+      "userMs": 155125.0
+    },
+    {
+      "elapsed": 109.89000000001397,
+      "kernelMs": 11515.625,
+      "userMs": 156578.125
+    },
+    {
+      "elapsed": 110.93700000003446,
+      "kernelMs": 11546.875,
+      "userMs": 158484.375
+    },
+    {
+      "elapsed": 111.96799999999348,
+      "kernelMs": 11625.0,
+      "userMs": 161234.375
+    },
+    {
+      "elapsed": 113.01500000001397,
+      "kernelMs": 11671.875,
+      "userMs": 163171.875
+    },
+    {
+      "elapsed": 114.04700000002049,
+      "kernelMs": 11765.625,
+      "userMs": 165015.625
+    },
+    {
+      "elapsed": 115.09299999999348,
+      "kernelMs": 11859.375,
+      "userMs": 166796.875
+    },
+    {
+      "elapsed": 116.125,
+      "kernelMs": 11906.25,
+      "userMs": 168578.125
+    },
+    {
+      "elapsed": 117.15600000007544,
+      "kernelMs": 11984.375,
+      "userMs": 170703.125
+    },
+    {
+      "elapsed": 118.20299999997951,
+      "kernelMs": 12031.25,
+      "userMs": 173031.25
+    },
+    {
+      "elapsed": 119.23400000005495,
+      "kernelMs": 12109.375,
+      "userMs": 175203.125
+    },
+    {
+      "elapsed": 120.26500000001397,
+      "kernelMs": 12140.625,
+      "userMs": 176812.5
+    },
+    {
+      "elapsed": 121.29700000002049,
+      "kernelMs": 12218.75,
+      "userMs": 179000.0
+    },
+    {
+      "elapsed": 122.34299999999348,
+      "kernelMs": 12312.5,
+      "userMs": 181156.25
+    },
+    {
+      "elapsed": 123.375,
+      "kernelMs": 12359.375,
+      "userMs": 183250.0
+    },
+    {
+      "elapsed": 124.40600000007544,
+      "kernelMs": 12453.125,
+      "userMs": 185171.875
+    },
+    {
+      "elapsed": 125.45299999997951,
+      "kernelMs": 12546.875,
+      "userMs": 187421.875
+    },
+    {
+      "elapsed": 126.48400000005495,
+      "kernelMs": 12625.0,
+      "userMs": 189421.875
+    },
+    {
+      "elapsed": 127.51500000001397,
+      "kernelMs": 12687.5,
+      "userMs": 191281.25
+    },
+    {
+      "elapsed": 128.56200000003446,
+      "kernelMs": 12750.0,
+      "userMs": 193156.25
+    },
+    {
+      "elapsed": 129.59299999999348,
+      "kernelMs": 12796.875,
+      "userMs": 194906.25
+    },
+    {
+      "elapsed": 130.64000000001397,
+      "kernelMs": 12843.75,
+      "userMs": 196828.125
+    },
+    {
+      "elapsed": 131.6720000000205,
+      "kernelMs": 13015.625,
+      "userMs": 199421.875
+    },
+    {
+      "elapsed": 132.71799999999348,
+      "kernelMs": 13046.875,
+      "userMs": 201125.0
+    },
+    {
+      "elapsed": 133.75,
+      "kernelMs": 13125.0,
+      "userMs": 202984.375
+    },
+    {
+      "elapsed": 134.78100000007544,
+      "kernelMs": 13203.125,
+      "userMs": 205671.875
+    },
+    {
+      "elapsed": 135.8279999999795,
+      "kernelMs": 13265.625,
+      "userMs": 207765.625
+    },
+    {
+      "elapsed": 136.85900000005495,
+      "kernelMs": 13328.125,
+      "userMs": 209625.0
+    },
+    {
+      "elapsed": 137.89000000001397,
+      "kernelMs": 13406.25,
+      "userMs": 211171.875
+    },
+    {
+      "elapsed": 138.93700000003446,
+      "kernelMs": 13437.5,
+      "userMs": 213421.875
+    },
+    {
+      "elapsed": 139.96799999999348,
+      "kernelMs": 13546.875,
+      "userMs": 215359.375
+    },
+    {
+      "elapsed": 141.0,
+      "kernelMs": 13718.75,
+      "userMs": 217546.875
+    },
+    {
+      "elapsed": 142.0470000000205,
+      "kernelMs": 13937.5,
+      "userMs": 219250.0
+    },
+    {
+      "elapsed": 143.0779999999795,
+      "kernelMs": 14125.0,
+      "userMs": 221062.5
+    },
+    {
+      "elapsed": 144.26500000001397,
+      "kernelMs": 14125.0,
+      "userMs": 221125.0
+    },
+    {
+      "elapsed": 145.8279999999795,
+      "kernelMs": 14140.625,
+      "userMs": 221250.0
+    },
+    {
+      "elapsed": 147.2029999999795,
+      "kernelMs": 14156.25,
+      "userMs": 221343.75
+    },
+    {
+      "elapsed": 580.5310000000754,
+      "kernelMs": 14218.75,
+      "userMs": 222265.625
+    },
+    {
+      "elapsed": 582.9679999999935,
+      "kernelMs": 14250.0,
+      "userMs": 222578.125
+    },
+    {
+      "elapsed": 584.5929999999935,
+      "kernelMs": 14265.625,
+      "userMs": 222625.0
+    },
+    {
+      "elapsed": 585.890000000014,
+      "kernelMs": 14281.25,
+      "userMs": 222640.625
+    },
+    {
+      "elapsed": 586.9529999999795,
+      "kernelMs": 14296.875,
+      "userMs": 222640.625
+    },
+    {
+      "elapsed": 724.7029999999795,
+      "kernelMs": 14375.0,
+      "userMs": 222703.125
+    }
+  ],
+  "runFailure": "TimeoutError: Owned test timed out"
+}
