@@ -1,0 +1,25 @@
+Sun Nov 1 10:39:27 2026 UTC [TDFC] version v0.6.4-scene2 session=1793529567219
+Sun Nov 1 10:39:27 2026 UTC [TDFC] scene-compat v0.6.4-scene2 distant-enemy scheduling and cached threat classification
+Sun Nov 1 10:39:31 2026 UTC [TDFC] room reset
+Sun Nov 1 10:39:39 2026 UTC [TDFC] room reset
+Sun Nov 1 10:39:47 2026 UTC [TDFC] room reset
+Sun Nov 1 10:39:54 2026 UTC [TDFC] heartbeat tick=150 units=38 cost=2ms
+Sun Nov 1 10:40:01 2026 UTC [TDFC] heartbeat tick=300 units=36 cost=2ms
+Sun Nov 1 10:40:07 2026 UTC [TDFC] heartbeat tick=450 units=36 cost=3ms
+Sun Nov 1 10:40:13 2026 UTC [TDFC] heartbeat tick=600 units=36 cost=2ms
+Sun Nov 1 10:40:19 2026 UTC [TDFC] heartbeat tick=750 units=37 cost=2ms
+Sun Nov 1 10:40:25 2026 UTC [TDFC] heartbeat tick=900 units=37 cost=1ms
+Sun Nov 1 10:40:30 2026 UTC [TDFC] heartbeat tick=1050 units=37 cost=2ms
+Sun Nov 1 10:40:36 2026 UTC [TDFC] heartbeat tick=1200 units=36 cost=2ms
+Sun Nov 1 10:40:42 2026 UTC [TDFC] heartbeat tick=1350 units=36 cost=3ms
+Sun Nov 1 10:40:49 2026 UTC [TDFC] heartbeat tick=1500 units=36 cost=2ms
+Sun Nov 1 10:40:54 2026 UTC [TDFC] heartbeat tick=1650 units=37 cost=8ms
+Sun Nov 1 10:41:00 2026 UTC [TDFC] heartbeat tick=1800 units=37 cost=3ms
+Sun Nov 1 10:41:05 2026 UTC [TDFC] heartbeat tick=1950 units=37 cost=3ms
+Sun Nov 1 10:41:11 2026 UTC [TDFC] heartbeat tick=2100 units=36 cost=2ms
+Sun Nov 1 10:41:17 2026 UTC [TDFC] heartbeat tick=2250 units=36 cost=2ms
+Sun Nov 1 10:41:22 2026 UTC [TDFC] heartbeat tick=2400 units=36 cost=2ms
+Sun Nov 1 10:41:28 2026 UTC [TDFC] heartbeat tick=2550 units=37 cost=2ms
+Sun Nov 1 10:41:33 2026 UTC [TDFC] heartbeat tick=2700 units=37 cost=2ms
+Sun Nov 1 10:41:39 2026 UTC [TDFC] heartbeat tick=2850 units=37 cost=2ms
+Sun Nov 1 10:41:45 2026 UTC [TDFC] heartbeat tick=3000 units=36 cost=2ms

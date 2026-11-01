@@ -1,0 +1,203 @@
+Sun Nov 1 11:52:16 2026 UTC [TDFC] version v0.6.4-scene2 session=1793533936328
+Sun Nov 1 11:52:16 2026 UTC [TDFC] scene-compat v0.6.4-scene2 distant-enemy scheduling and cached threat classification
+Sun Nov 1 11:52:20 2026 UTC [TDFC] room reset
+Sun Nov 1 11:52:29 2026 UTC [TDFC] room reset
+Sun Nov 1 11:52:37 2026 UTC [TDFC] room reset
+Sun Nov 1 11:52:45 2026 UTC [TDFC] heartbeat tick=150 units=39 cost=3ms
+Sun Nov 1 11:52:47 2026 UTC [TDFC] decision #43 slaver T2 advance 奴隶贩子·机会进攻，接近有效射程
+Sun Nov 1 11:52:47 2026 UTC [TDFC] decision #52 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:52:47 2026 UTC [TDFC] decision #53 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:52:47 2026 UTC [TDFC] decision #54 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:52:47 2026 UTC [TDFC] decision #55 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:52:47 2026 UTC [TDFC] decision #56 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:52:47 2026 UTC [TDFC] decision #57 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:52:47 2026 UTC [TDFC] decision #55 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:52:48 2026 UTC [TDFC] decision #57 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:52:48 2026 UTC [TDFC] decision #52 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:52:49 2026 UTC [TDFC] decision #42 slaver T3 search 同伴报告 #43；搜索最后位置
+Sun Nov 1 11:52:49 2026 UTC [TDFC] decision #44 slaver T2 search 同伴报告 #43；搜索最后位置
+Sun Nov 1 11:52:49 2026 UTC [TDFC] decision #52 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:52:50 2026 UTC [TDFC] decision #53 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:52:50 2026 UTC [TDFC] decision #55 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:52:50 2026 UTC [TDFC] decision #56 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:52:51 2026 UTC [TDFC] decision #53 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:52:51 2026 UTC [TDFC] decision #52 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:52:51 2026 UTC [TDFC] decision #56 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:52:52 2026 UTC [TDFC] decision #56 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:52:52 2026 UTC [TDFC] decision #57 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:52:52 2026 UTC [TDFC] decision #52 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:52:52 2026 UTC [TDFC] decision #54 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:52:52 2026 UTC [TDFC] decision #55 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:52:53 2026 UTC [TDFC] decision #55 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:52:54 2026 UTC [TDFC] decision #52 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:52:54 2026 UTC [TDFC] heartbeat tick=300 units=55 cost=5ms
+Sun Nov 1 11:52:54 2026 UTC [TDFC] decision #52 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:52:55 2026 UTC [TDFC] decision #53 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:52:55 2026 UTC [TDFC] decision #43 slaver T2 search 目击；搜索最后位置
+Sun Nov 1 11:52:55 2026 UTC [TDFC] decision #55 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:52:55 2026 UTC [TDFC] decision #53 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:52:57 2026 UTC [TDFC] decision #43 slaver T2 advance 奴隶贩子·机会进攻，接近有效射程
+Sun Nov 1 11:52:57 2026 UTC [TDFC] decision #43 slaver T2 search 目击；搜索最后位置
+Sun Nov 1 11:52:57 2026 UTC [TDFC] decision #42 slaver T3 suppress 同伴换弹或负伤，需要掩护
+Sun Nov 1 11:52:59 2026 UTC [TDFC] decision #43 slaver T2 advance 奴隶贩子·机会进攻，接近有效射程
+Sun Nov 1 11:53:00 2026 UTC [TDFC] decision #53 raider T1 hold 换弹中
+Sun Nov 1 11:53:00 2026 UTC [TDFC] decision #43 slaver T2 hold 奴隶贩子·机会进攻，保持射击窗口
+Sun Nov 1 11:53:01 2026 UTC [TDFC] decision #43 slaver T2 search 目击；搜索最后位置
+Sun Nov 1 11:53:01 2026 UTC [TDFC] decision #38 slaver T3 search 同伴报告 #43；搜索最后位置
+Sun Nov 1 11:53:02 2026 UTC [TDFC] decision #22 slaver T2 search 同伴报告 #43；搜索最后位置
+Sun Nov 1 11:53:02 2026 UTC [TDFC] decision #42 slaver T3 search 同伴报告 #52；搜索最后位置
+Sun Nov 1 11:53:02 2026 UTC [TDFC] decision #53 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:03 2026 UTC [TDFC] decision #43 slaver T2 advance 奴隶贩子·机会进攻，接近有效射程
+Sun Nov 1 11:53:03 2026 UTC [TDFC] decision #54 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:03 2026 UTC [TDFC] decision #56 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:03 2026 UTC [TDFC] decision #57 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:04 2026 UTC [TDFC] decision #52 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:04 2026 UTC [TDFC] decision #55 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:05 2026 UTC [TDFC] decision #53 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:05 2026 UTC [TDFC] decision #53 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:05 2026 UTC [TDFC] heartbeat tick=450 units=65 cost=4ms
+Sun Nov 1 11:53:06 2026 UTC [TDFC] decision #43 slaver T2 hold 奴隶贩子·机会进攻，保持射击窗口
+Sun Nov 1 11:53:07 2026 UTC [TDFC] decision #53 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:07 2026 UTC [TDFC] decision #43 slaver T2 search 目击；搜索最后位置
+Sun Nov 1 11:53:07 2026 UTC [TDFC] decision #53 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:08 2026 UTC [TDFC] decision #52 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:53:08 2026 UTC [TDFC] decision #44 slaver T2 idle 没有可靠目标信息
+Sun Nov 1 11:53:09 2026 UTC [TDFC] decision #52 raider T1 hold 换弹中
+Sun Nov 1 11:53:10 2026 UTC [TDFC] decision #52 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:10 2026 UTC [TDFC] decision #55 raider T1 search 听觉区域；搜索最后位置
+Sun Nov 1 11:53:10 2026 UTC [TDFC] decision #55 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:10 2026 UTC [TDFC] decision #43 slaver T2 hold 换弹中
+Sun Nov 1 11:53:11 2026 UTC [TDFC] decision #54 raider T1 search 同伴报告 #43；搜索最后位置
+Sun Nov 1 11:53:11 2026 UTC [TDFC] decision #43 slaver T2 search 目击；搜索最后位置
+Sun Nov 1 11:53:11 2026 UTC [TDFC] decision #55 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:11 2026 UTC [TDFC] decision #42 slaver T3 idle 没有可靠目标信息
+Sun Nov 1 11:53:12 2026 UTC [TDFC] decision #56 raider T1 search 同伴报告 #52；搜索最后位置
+Sun Nov 1 11:53:12 2026 UTC [TDFC] decision #57 raider T1 search 同伴报告 #52；搜索最后位置
+Sun Nov 1 11:53:12 2026 UTC [TDFC] decision #55 raider T1 hold 换弹中
+Sun Nov 1 11:53:13 2026 UTC [TDFC] decision #55 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:53:13 2026 UTC [TDFC] decision #52 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:14 2026 UTC [TDFC] decision #20 slaver T2 search 同伴报告 #55；搜索最后位置
+Sun Nov 1 11:53:14 2026 UTC [TDFC] decision #55 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:14 2026 UTC [TDFC] decision #52 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:16 2026 UTC [TDFC] decision #52 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:16 2026 UTC [TDFC] heartbeat tick=600 units=57 cost=3ms
+Sun Nov 1 11:53:17 2026 UTC [TDFC] decision #54 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:17 2026 UTC [TDFC] decision #55 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:17 2026 UTC [TDFC] decision #56 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:18 2026 UTC [TDFC] decision #55 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:53:18 2026 UTC [TDFC] decision #56 raider T1 search 同伴报告 #52；搜索最后位置
+Sun Nov 1 11:53:19 2026 UTC [TDFC] decision #57 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:19 2026 UTC [TDFC] decision #55 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:19 2026 UTC [TDFC] decision #52 raider T1 hold 换弹中
+Sun Nov 1 11:53:19 2026 UTC [TDFC] decision #55 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:21 2026 UTC [TDFC] decision #55 raider T1 hold 换弹中
+Sun Nov 1 11:53:21 2026 UTC [TDFC] decision #20 slaver T2 idle 没有可靠目标信息
+Sun Nov 1 11:53:21 2026 UTC [TDFC] decision #22 slaver T2 idle 没有可靠目标信息
+Sun Nov 1 11:53:21 2026 UTC [TDFC] decision #52 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:23 2026 UTC [TDFC] decision #46 merc T3 search 同伴报告 #52；搜索最后位置
+Sun Nov 1 11:53:23 2026 UTC [TDFC] decision #55 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:53:23 2026 UTC [TDFC] decision #43 slaver T2 hold 奴隶贩子·机会进攻，保持射击窗口
+Sun Nov 1 11:53:23 2026 UTC [TDFC] decision #52 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:23 2026 UTC [TDFC] decision #43 slaver T2 search 目击；搜索最后位置
+Sun Nov 1 11:53:23 2026 UTC [TDFC] decision #52 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:24 2026 UTC [TDFC] decision #55 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:25 2026 UTC [TDFC] heartbeat tick=750 units=56 cost=5ms
+Sun Nov 1 11:53:25 2026 UTC [TDFC] decision #55 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:53:25 2026 UTC [TDFC] decision #55 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:53:26 2026 UTC [TDFC] decision #38 slaver T3 suppress 同伴换弹或负伤，需要掩护
+Sun Nov 1 11:53:27 2026 UTC [TDFC] decision #52 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:53:27 2026 UTC [TDFC] decision #43 slaver T2 advance 奴隶贩子·机会进攻，接近有效射程
+Sun Nov 1 11:53:27 2026 UTC [TDFC] decision #56 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:27 2026 UTC [TDFC] decision #57 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:53:27 2026 UTC [TDFC] decision #56 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:53:28 2026 UTC [TDFC] decision #52 raider T1 hold 换弹中
+Sun Nov 1 11:53:28 2026 UTC [TDFC] decision #38 slaver T3 search 同伴报告 #52；搜索最后位置
+Sun Nov 1 11:53:28 2026 UTC [TDFC] decision #55 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:53:28 2026 UTC [TDFC] decision #52 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:29 2026 UTC [TDFC] decision #56 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:29 2026 UTC [TDFC] decision #52 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:29 2026 UTC [TDFC] decision #57 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:53:29 2026 UTC [TDFC] decision #52 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:30 2026 UTC [TDFC] decision #54 raider T1 search 同伴报告 #57；搜索最后位置
+Sun Nov 1 11:53:30 2026 UTC [TDFC] decision #57 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:53:31 2026 UTC [TDFC] decision #52 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:53:32 2026 UTC [TDFC] decision #56 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:32 2026 UTC [TDFC] decision #52 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:53:33 2026 UTC [TDFC] heartbeat tick=900 units=57 cost=5ms
+Sun Nov 1 11:53:33 2026 UTC [TDFC] decision #56 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:33 2026 UTC [TDFC] decision #54 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:53:34 2026 UTC [TDFC] decision #52 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:53:35 2026 UTC [TDFC] decision #54 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:53:35 2026 UTC [TDFC] decision #52 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:53:35 2026 UTC [TDFC] decision #56 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:53:36 2026 UTC [TDFC] decision #54 raider T1 space 与同伴过近，留出射界
+Sun Nov 1 11:53:36 2026 UTC [TDFC] decision #21 slaver T2 search 同伴报告 #56；搜索最后位置
+Sun Nov 1 11:53:36 2026 UTC [TDFC] decision #54 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:36 2026 UTC [TDFC] decision #55 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:36 2026 UTC [TDFC] decision #52 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:36 2026 UTC [TDFC] decision #56 raider T1 hold 换弹中
+Sun Nov 1 11:53:36 2026 UTC [TDFC] decision #57 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:36 2026 UTC [TDFC] decision #56 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:37 2026 UTC [TDFC] decision #57 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:53:37 2026 UTC [TDFC] decision #52 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:53:38 2026 UTC [TDFC] decision #54 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:53:38 2026 UTC [TDFC] decision #55 raider T1 advance 掠夺者·猛攻，接近有效射程
+Sun Nov 1 11:53:38 2026 UTC [TDFC] decision #57 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:38 2026 UTC [TDFC] decision #52 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:39 2026 UTC [TDFC] decision #54 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:39 2026 UTC [TDFC] decision #52 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:39 2026 UTC [TDFC] decision #57 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:39 2026 UTC [TDFC] decision #55 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:39 2026 UTC [TDFC] decision #46 merc T3 idle 没有可靠目标信息
+Sun Nov 1 11:53:39 2026 UTC [TDFC] decision #54 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:40 2026 UTC [TDFC] decision #55 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:41 2026 UTC [TDFC] heartbeat tick=1050 units=59 cost=3ms
+Sun Nov 1 11:53:42 2026 UTC [TDFC] decision #53 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:43 2026 UTC [TDFC] decision #55 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:44 2026 UTC [TDFC] decision #55 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:45 2026 UTC [TDFC] decision #56 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:46 2026 UTC [TDFC] decision #22 slaver T2 search 同伴受击报告 #57；搜索最后位置
+Sun Nov 1 11:53:46 2026 UTC [TDFC] decision #52 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:46 2026 UTC [TDFC] decision #53 raider T1 search 同伴报告 #55；搜索最后位置
+Sun Nov 1 11:53:46 2026 UTC [TDFC] decision #56 raider T1 search 同伴报告 #55；搜索最后位置
+Sun Nov 1 11:53:46 2026 UTC [TDFC] decision #52 raider T1 search 同伴报告 #55；搜索最后位置
+Sun Nov 1 11:53:46 2026 UTC [TDFC] decision #21 slaver T2 suppress 同伴换弹或负伤，需要掩护
+Sun Nov 1 11:53:48 2026 UTC [TDFC] decision #56 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:49 2026 UTC [TDFC] decision #56 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:49 2026 UTC [TDFC] heartbeat tick=1200 units=52 cost=3ms
+Sun Nov 1 11:53:50 2026 UTC [TDFC] decision #53 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:50 2026 UTC [TDFC] decision #54 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:50 2026 UTC [TDFC] decision #21 slaver T2 search 同伴报告 #55；搜索最后位置
+Sun Nov 1 11:53:51 2026 UTC [TDFC] decision #54 raider T1 search 同伴报告 #56；搜索最后位置
+Sun Nov 1 11:53:51 2026 UTC [TDFC] decision #53 raider T1 search 同伴报告 #56；搜索最后位置
+Sun Nov 1 11:53:51 2026 UTC [TDFC] decision #104 merc T3 search 同伴受击报告 #57；搜索最后位置
+Sun Nov 1 11:53:51 2026 UTC [TDFC] decision #56 raider T1 hold 换弹中
+Sun Nov 1 11:53:52 2026 UTC [TDFC] decision #56 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:52 2026 UTC [TDFC] decision #22 slaver T2 idle 没有可靠目标信息
+Sun Nov 1 11:53:54 2026 UTC [TDFC] decision #56 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:54 2026 UTC [TDFC] decision #52 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:54 2026 UTC [TDFC] decision #53 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:54 2026 UTC [TDFC] decision #54 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:54 2026 UTC [TDFC] decision #55 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:54 2026 UTC [TDFC] decision #57 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:53:54 2026 UTC [TDFC] decision #104 merc T3 idle 没有可靠目标信息
+Sun Nov 1 11:53:55 2026 UTC [TDFC] decision #56 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:55 2026 UTC [TDFC] heartbeat tick=1350 units=52 cost=3ms
+Sun Nov 1 11:53:55 2026 UTC [TDFC] decision #55 raider T1 search 同伴报告 #56；搜索最后位置
+Sun Nov 1 11:53:55 2026 UTC [TDFC] decision #57 raider T1 search 同伴报告 #56；搜索最后位置
+Sun Nov 1 11:53:56 2026 UTC [TDFC] decision #22 slaver T2 search 同伴报告 #56；搜索最后位置
+Sun Nov 1 11:53:56 2026 UTC [TDFC] decision #21 slaver T2 idle 没有可靠目标信息
+Sun Nov 1 11:53:56 2026 UTC [TDFC] decision #54 raider T1 search 同伴报告 #56；搜索最后位置
+Sun Nov 1 11:53:56 2026 UTC [TDFC] decision #53 raider T1 search 同伴报告 #56；搜索最后位置
+Sun Nov 1 11:53:56 2026 UTC [TDFC] decision #21 slaver T2 search 同伴报告 #56；搜索最后位置
+Sun Nov 1 11:53:56 2026 UTC [TDFC] decision #104 merc T3 search 同伴报告 #56；搜索最后位置
+Sun Nov 1 11:53:58 2026 UTC [TDFC] decision #56 raider T1 hold 换弹中
+Sun Nov 1 11:53:59 2026 UTC [TDFC] decision #55 raider T1 hold 掠夺者·猛攻，保持射击窗口
+Sun Nov 1 11:53:59 2026 UTC [TDFC] decision #56 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:53:59 2026 UTC [TDFC] decision #55 raider T1 search 目击；搜索最后位置
+Sun Nov 1 11:54:00 2026 UTC [TDFC] decision #53 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:54:00 2026 UTC [TDFC] decision #54 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:54:00 2026 UTC [TDFC] decision #57 raider T1 idle 没有可靠目标信息
+Sun Nov 1 11:54:01 2026 UTC [TDFC] decision #57 raider T1 search 同伴报告 #56；搜索最后位置
+Sun Nov 1 11:54:01 2026 UTC [TDFC] decision #52 raider T1 search 同伴报告 #56；搜索最后位置
+Sun Nov 1 11:54:01 2026 UTC [TDFC] decision #55 raider T1 hold 掠夺者·猛攻，保持射击窗口

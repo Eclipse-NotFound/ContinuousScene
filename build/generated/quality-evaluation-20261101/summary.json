@@ -1,0 +1,3256 @@
+{
+  "diagnosticOnly": true,
+  "performanceDeploymentAccepted": false,
+  "performanceTargetAchieved": false,
+  "deployment": null,
+  "formalMods": {
+    "mods\\ModLoader\\release\\ModLoaderMod.swf": "2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2",
+    "mods\\Sandevistan\\release\\SandevistanMod.swf": "CEC6A3061CB90380579D8A95AA1254E0328BD0DAE6E239FC4CA5205D6CCCF942",
+    "mods\\Rconnect\\release\\RConnectMod.swf": "690604878BD8707007A99E3AD14F8F5F3F55CDD4948C8DEBE6CC87363AFD38C9",
+    "mods\\RealisticVision\\release\\RealisticVisionMod.swf": "AEA303149B0A5D5A3072C610B3E95F4AD78963EA22CE123C6A3414E73B9AA557",
+    "mods\\MoreSkills&Weapons\\release\\MoreSkillsWeaponsMod.swf": "526A6FD09297FB4F502236076B4252BF97BB50D2F77000B13763CF118546AB71",
+    "mods\\TDFC\\release\\TDFCMod.swf": "7ACD45193109267DBBF875240528048AD6F1D09FA3B8B36BAA6F98EBB5FDDCE5",
+    "mods\\RandomRooms\\release\\RandomRoomsMod.swf": "3F8789C62F9B2EF8EFC082597F672A2FEA230A0D7FCE3BE90C04EFD9582E5145",
+    "mods\\RModifier\\release\\LootEditorMod.swf": "4F1D6CF19979F4EA4960F8CCD8377C1D3CAC490BED9949866885357D073C8625",
+    "mods\\PermanentInjury\\release\\PermanentInjuryMod.swf": "D4F6A096EE06F8869FFFB316801C6325DF26F54260A34666AC17EC24AD8BD083",
+    "mods\\AddictionSystem\\release\\AddictionSystemMod.swf": "5A4D9A405777867826061BB50178DF931591987EA0737580BD0AA8A89458B9B3",
+    "mods\\ContinuousScene\\release\\ContinuousSceneMod.swf": "D8A68A4C128E196FD69B50D1CC7F0FFA72669751FB2FCB85D629F30FE622E677",
+    "mods\\FirearmAttachments\\release\\FirearmAttachmentsMod.swf": "B3304596EB7E08796F9DE2CF02E1E7CCCFF10E188D26FEDFA960AA6370D2A4B9",
+    "mods\\LightAndDarkness\\release\\LightAndDarknessMod.swf": "8ADBA6914DF5AADA4DF12A646B6C22DF4B95B9630A55DD05CA7F713621C7E3EF",
+    "mods\\WallBlend\\release\\WallBlendMod.swf": "FE3E7A84753F6F3614440F69F8725E6E8639AEE4755ACF878AAFCFEDB95AC2E6"
+  },
+  "host": "9D8662F6CF80E0AD20741EC2A4E7BEAD68446269EBB0ADB641C876DB68698B1D",
+  "runs": [
+    {
+      "name": "camera-soft-dense-v21-20261101-r1",
+      "ok": false,
+      "error": "native-restored-half: {\"maxRGB\":29,\"maxAlpha\":0,\"changed\":664}\nError: native-restored-half: {\"maxRGB\":29,\"maxAlpha\":0,\"changed\":664}\n\tat ContinuousSceneMotionMod$/assertThat()\n\tat ContinuousSceneMotionMod$/pixelCheck()\n\tat ContinuousSceneMotionMod$/makeSchedule()\n\tat ContinuousSceneMotionMod$/after()",
+      "assertions": 25,
+      "probe": "9FDAA123642DA6ADF89AF10F9068B2F2495713D660813DFE7DAD4FFFE986D251",
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 8173727744,
+      "rawSHA256": "B4BD25698A4F8B2EA43F5FE2D197DB8343FC807548D2422F3115CBA92A28008A",
+      "failedChecks": [
+        {
+          "ok": false,
+          "detail": {
+            "maxRGB": 29,
+            "maxAlpha": 0,
+            "changed": 664
+          },
+          "name": "native-restored-half"
+        }
+      ],
+      "entry": {
+        "units": 140,
+        "scale": 1,
+        "stageWidth": 1904,
+        "stageHeight": 1041,
+        "x": 4280,
+        "y": 2840
+      },
+      "qualityCapability": [
+        {
+          "readback": "HIGH",
+          "requested": "high"
+        },
+        {
+          "readback": "HIGH",
+          "requested": "medium"
+        },
+        {
+          "readback": "HIGH",
+          "requested": "low"
+        },
+        {
+          "readback": "BEST",
+          "requested": "best"
+        },
+        {
+          "readback": "HIGH",
+          "requested": "high"
+        }
+      ],
+      "pixels": [
+        {
+          "stats": {
+            "maxDrawMs": 35,
+            "width": 952,
+            "siblingIndex": 3,
+            "sourceVisible": false,
+            "hidden": true,
+            "height": 521,
+            "overlayVisible": true,
+            "mode": "half",
+            "restored": 0,
+            "drawMs": 35,
+            "captures": 1
+          },
+          "difference": {
+            "maxRGB": 255,
+            "maxAlpha": 184,
+            "changed": 457637
+          },
+          "mode": "half"
+        }
+      ],
+      "fixedTarget": null,
+      "fixtureActualEnd": null,
+      "visibleQualifications": []
+    },
+    {
+      "name": "camera-soft-dense-v22-20261101-r1",
+      "ok": false,
+      "error": "RuntimeError: Other AIR appeared; do not use timing",
+      "assertions": 0,
+      "probe": "139F9D461FB3ACD6A1B842D1E4AC75C387D00F917DF378D7CDAB9C3FC8473ED4",
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [
+        42952,
+        109148
+      ],
+      "minimumAvailableCommit": 7195967488,
+      "rawSHA256": null
+    },
+    {
+      "name": "camera-soft-sparse-v22-20261101-r1",
+      "ok": true,
+      "error": null,
+      "assertions": 50,
+      "probe": "139F9D461FB3ACD6A1B842D1E4AC75C387D00F917DF378D7CDAB9C3FC8473ED4",
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 7581646848,
+      "rawSHA256": "CAACA43BD9571011516644D7F24FD36B9B00D56B1E6EB187578A624BC64B0B15",
+      "failedChecks": [],
+      "entry": {
+        "units": 135,
+        "scale": 0.6583333333333333,
+        "stageWidth": 1264,
+        "stageHeight": 681,
+        "x": 2055,
+        "y": 1960
+      },
+      "qualityCapability": [
+        {
+          "readback": "HIGH",
+          "requested": "high"
+        },
+        {
+          "readback": "HIGH",
+          "requested": "medium"
+        },
+        {
+          "readback": "HIGH",
+          "requested": "low"
+        },
+        {
+          "readback": "BEST",
+          "requested": "best"
+        },
+        {
+          "readback": "HIGH",
+          "requested": "high"
+        }
+      ],
+      "pixels": [
+        {
+          "stats": {
+            "maxDrawMs": 37,
+            "width": 632,
+            "mode": "half",
+            "captures": 1,
+            "hidden": true,
+            "siblingIndex": 3,
+            "overlayVisible": true,
+            "drawMs": 37,
+            "restored": 0,
+            "sourceVisible": false,
+            "height": 341
+          },
+          "restoreDifference": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          },
+          "difference": {
+            "maxRGB": 255,
+            "maxAlpha": 252,
+            "changed": 281246
+          },
+          "mode": "half",
+          "repeatAfterRestore": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          }
+        },
+        {
+          "stats": {
+            "maxDrawMs": 37,
+            "width": 1264,
+            "mode": "edge",
+            "captures": 2,
+            "hidden": true,
+            "siblingIndex": 3,
+            "overlayVisible": true,
+            "drawMs": 64,
+            "restored": 1,
+            "sourceVisible": false,
+            "height": 681
+          },
+          "restoreDifference": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          },
+          "difference": {
+            "maxRGB": 252,
+            "maxAlpha": 255,
+            "changed": 239794
+          },
+          "mode": "edge",
+          "repeatAfterRestore": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          }
+        },
+        {
+          "stats": {
+            "maxDrawMs": 37,
+            "width": 948,
+            "mode": "soft",
+            "captures": 3,
+            "hidden": true,
+            "siblingIndex": 3,
+            "overlayVisible": true,
+            "drawMs": 91,
+            "restored": 2,
+            "sourceVisible": false,
+            "height": 511
+          },
+          "restoreDifference": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          },
+          "difference": {
+            "maxRGB": 255,
+            "maxAlpha": 255,
+            "changed": 275173
+          },
+          "mode": "soft",
+          "repeatAfterRestore": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          }
+        },
+        {
+          "stats": {
+            "maxDrawMs": 37,
+            "width": 632,
+            "mode": "half-low",
+            "captures": 4,
+            "hidden": true,
+            "siblingIndex": 3,
+            "overlayVisible": true,
+            "drawMs": 115,
+            "restored": 3,
+            "sourceVisible": false,
+            "height": 341
+          },
+          "restoreDifference": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          },
+          "difference": {
+            "maxRGB": 255,
+            "maxAlpha": 255,
+            "changed": 306966
+          },
+          "mode": "half-low",
+          "repeatAfterRestore": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          }
+        }
+      ],
+      "fixedTarget": null,
+      "fixtureActualEnd": null,
+      "visibleQualifications": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "byAxis": {
+        "static": {
+          "full": {
+            "n": 358,
+            "mean": 29.963687150837988,
+            "median": 28.0,
+            "p95": 45,
+            "p99": 70,
+            "max": 200,
+            "over50": 10,
+            "over100": 2,
+            "updateBand": 11.128491620111731,
+            "probePost": 0.019553072625698324
+          },
+          "half": {
+            "n": 358,
+            "mean": 47.74860335195531,
+            "median": 46.0,
+            "p95": 62,
+            "p99": 84,
+            "max": 144,
+            "over50": 73,
+            "over100": 2,
+            "updateBand": 10.759776536312849,
+            "probePost": 22.385474860335197
+          },
+          "edge": {
+            "n": 358,
+            "mean": 57.89664804469274,
+            "median": 54.0,
+            "p95": 84,
+            "p99": 103,
+            "max": 169,
+            "over50": 241,
+            "over100": 7,
+            "updateBand": 10.72905027932961,
+            "probePost": 29.935754189944134
+          }
+        },
+        "x": {
+          "full": {
+            "n": 358,
+            "mean": 36.00558659217877,
+            "median": 34.0,
+            "p95": 50,
+            "p99": 68,
+            "max": 152,
+            "over50": 18,
+            "over100": 2,
+            "updateBand": 11.243016759776536,
+            "probePost": 0.013966480446927373
+          },
+          "half": {
+            "n": 358,
+            "mean": 52.10614525139665,
+            "median": 49.0,
+            "p95": 76,
+            "p99": 90,
+            "max": 153,
+            "over50": 157,
+            "over100": 2,
+            "updateBand": 10.243016759776536,
+            "probePost": 24.589385474860336
+          },
+          "edge": {
+            "n": 358,
+            "mean": 55.625698324022345,
+            "median": 52.0,
+            "p95": 77,
+            "p99": 92,
+            "max": 158,
+            "over50": 224,
+            "over100": 4,
+            "updateBand": 10.899441340782124,
+            "probePost": 28.6536312849162
+          }
+        },
+        "y": {
+          "full": {
+            "n": 358,
+            "mean": 33.67039106145251,
+            "median": 32.0,
+            "p95": 43,
+            "p99": 55,
+            "max": 147,
+            "over50": 7,
+            "over100": 2,
+            "updateBand": 10.94413407821229,
+            "probePost": 0.0111731843575419
+          },
+          "half": {
+            "n": 358,
+            "mean": 52.53631284916201,
+            "median": 49.0,
+            "p95": 73,
+            "p99": 96,
+            "max": 146,
+            "over50": 159,
+            "over100": 2,
+            "updateBand": 10.988826815642458,
+            "probePost": 24.192737430167597
+          },
+          "edge": {
+            "n": 358,
+            "mean": 54.902234636871505,
+            "median": 52.5,
+            "p95": 70,
+            "p99": 100,
+            "max": 215,
+            "over50": 218,
+            "over100": 4,
+            "updateBand": 10.983240223463687,
+            "probePost": 28.75977653631285
+          }
+        }
+      },
+      "timedCounterChanges": [],
+      "combatDeltas": [],
+      "motionRanges": {
+        "camX": [
+          1193,
+          1513
+        ],
+        "camY": [
+          1094,
+          1286
+        ],
+        "visualX": [
+          -881,
+          -561
+        ],
+        "visualY": [
+          -845,
+          -653
+        ],
+        "playerX": [
+          2055,
+          2055
+        ],
+        "playerY": [
+          1960,
+          1960
+        ],
+        "screenPlayerX": [
+          471.875,
+          791.875
+        ],
+        "screenPlayerY": [
+          445.33333333333326,
+          637.3333333333333
+        ]
+      },
+      "playerRemainedOnscreen": true
+    },
+    {
+      "name": "camera-native-quality-dense-v23-20261101-r1",
+      "ok": true,
+      "error": null,
+      "assertions": 54,
+      "probe": "F2882DB8B8F5D4AD5045134202AC58021FECE5348A4FEEF959252C881849100C",
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 7430483968,
+      "rawSHA256": "5B1090299EC41282852482F098C34C85B195A22812BA773934DB6BED4CA315EA",
+      "failedChecks": [],
+      "entry": {
+        "units": 141,
+        "scale": 1,
+        "stageWidth": 1904,
+        "stageHeight": 1041,
+        "x": 4280,
+        "y": 2840
+      },
+      "qualityCapability": [
+        {
+          "readback": "HIGH",
+          "requested": "high"
+        },
+        {
+          "readback": "MEDIUM",
+          "requested": "medium"
+        },
+        {
+          "readback": "LOW",
+          "requested": "low"
+        },
+        {
+          "readback": "BEST",
+          "requested": "best"
+        },
+        {
+          "readback": "HIGH",
+          "requested": "high"
+        }
+      ],
+      "pixels": [
+        {
+          "difference": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          },
+          "mode": "high"
+        },
+        {
+          "difference": {
+            "maxRGB": 255,
+            "maxAlpha": 204,
+            "changed": 9148
+          },
+          "mode": "medium"
+        },
+        {
+          "difference": {
+            "maxRGB": 248,
+            "maxAlpha": 148,
+            "changed": 237904
+          },
+          "mode": "low"
+        },
+        {
+          "difference": {
+            "maxRGB": 63,
+            "maxAlpha": 0,
+            "changed": 608
+          },
+          "mode": "best"
+        },
+        {
+          "difference": {
+            "maxRGB": 63,
+            "maxAlpha": 0,
+            "changed": 608
+          },
+          "mode": "high"
+        }
+      ],
+      "fixedTarget": null,
+      "fixtureActualEnd": null,
+      "visibleQualifications": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "byAxis": {
+        "static": {
+          "full": {
+            "n": 358,
+            "mean": 31.8268156424581,
+            "median": 30.0,
+            "p95": 44,
+            "p99": 57,
+            "max": 156,
+            "over50": 10,
+            "over100": 2,
+            "updateBand": 10.946927374301676,
+            "probePost": 0.01675977653631285
+          },
+          "medium": {
+            "n": 358,
+            "mean": 30.899441340782122,
+            "median": 28.0,
+            "p95": 43,
+            "p99": 57,
+            "max": 184,
+            "over50": 6,
+            "over100": 3,
+            "updateBand": 11.094972067039107,
+            "probePost": 0.008379888268156424
+          },
+          "low": {
+            "n": 358,
+            "mean": 31.108938547486034,
+            "median": 30.0,
+            "p95": 41,
+            "p99": 49,
+            "max": 158,
+            "over50": 4,
+            "over100": 2,
+            "updateBand": 10.891061452513966,
+            "probePost": 0.0223463687150838
+          },
+          "late": {
+            "n": 358,
+            "mean": 57.391061452513966,
+            "median": 55.0,
+            "p95": 73,
+            "p99": 106,
+            "max": 172,
+            "over50": 268,
+            "over100": 6,
+            "updateBand": 17.849162011173185,
+            "probePost": 6.930167597765363
+          }
+        },
+        "x": {
+          "full": {
+            "n": 358,
+            "mean": 37.77653631284916,
+            "median": 36.0,
+            "p95": 51,
+            "p99": 65,
+            "max": 144,
+            "over50": 20,
+            "over100": 2,
+            "updateBand": 10.868715083798882,
+            "probePost": 0.030726256983240222
+          },
+          "medium": {
+            "n": 358,
+            "mean": 37.80446927374302,
+            "median": 35.0,
+            "p95": 54,
+            "p99": 65,
+            "max": 153,
+            "over50": 24,
+            "over100": 2,
+            "updateBand": 10.832402234636872,
+            "probePost": 0.013966480446927373
+          },
+          "low": {
+            "n": 358,
+            "mean": 36.17877094972067,
+            "median": 34.0,
+            "p95": 47,
+            "p99": 56,
+            "max": 144,
+            "over50": 11,
+            "over100": 3,
+            "updateBand": 11.259776536312849,
+            "probePost": 0.0223463687150838
+          },
+          "late": {
+            "n": 358,
+            "mean": 55.25698324022346,
+            "median": 53.0,
+            "p95": 69,
+            "p99": 85,
+            "max": 161,
+            "over50": 254,
+            "over100": 2,
+            "updateBand": 18.324022346368714,
+            "probePost": 7.053072625698324
+          }
+        },
+        "y": {
+          "full": {
+            "n": 358,
+            "mean": 41.960893854748605,
+            "median": 39.0,
+            "p95": 60,
+            "p99": 109,
+            "max": 169,
+            "over50": 39,
+            "over100": 5,
+            "updateBand": 11.539106145251397,
+            "probePost": 0.013966480446927373
+          },
+          "medium": {
+            "n": 358,
+            "mean": 43.24022346368715,
+            "median": 39.0,
+            "p95": 68,
+            "p99": 93,
+            "max": 162,
+            "over50": 54,
+            "over100": 4,
+            "updateBand": 12.03631284916201,
+            "probePost": 0.030726256983240222
+          },
+          "low": {
+            "n": 358,
+            "mean": 39.80167597765363,
+            "median": 37.0,
+            "p95": 60,
+            "p99": 85,
+            "max": 138,
+            "over50": 43,
+            "over100": 3,
+            "updateBand": 11,
+            "probePost": 0.030726256983240222
+          },
+          "late": {
+            "n": 358,
+            "mean": 60.726256983240226,
+            "median": 57.0,
+            "p95": 90,
+            "p99": 129,
+            "max": 210,
+            "over50": 281,
+            "over100": 12,
+            "updateBand": 19.20391061452514,
+            "probePost": 7.293296089385475
+          }
+        }
+      },
+      "timedCounterChanges": [],
+      "combatDeltas": [
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 745,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 693,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 626,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 537,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 559,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 541,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 599,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 453,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 647,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 623,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 401,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 462,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 466,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 573,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 517,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 766,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 586,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 634,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 269,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 429,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 629,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 810,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 819,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 646,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        }
+      ],
+      "motionRanges": {
+        "camX": [
+          4420,
+          4740
+        ],
+        "camY": [
+          2644,
+          2836
+        ],
+        "visualX": [
+          -3788,
+          -3468
+        ],
+        "visualY": [
+          -2215,
+          -2023
+        ],
+        "playerX": [
+          4280,
+          4280
+        ],
+        "playerY": [
+          2840,
+          2840
+        ],
+        "screenPlayerX": [
+          492,
+          812
+        ],
+        "screenPlayerY": [
+          625,
+          817
+        ]
+      },
+      "playerRemainedOnscreen": true
+    },
+    {
+      "name": "camera-native-gpu-v23-20261101-r1",
+      "ok": true,
+      "error": null,
+      "assertions": 55,
+      "probe": "F2882DB8B8F5D4AD5045134202AC58021FECE5348A4FEEF959252C881849100C",
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 6386851840,
+      "rawSHA256": "638FD8812C3535A26D89BF0757F44BA1BA7B8D2A32D50E4A602EBA48D75FE139",
+      "failedChecks": [],
+      "entry": {
+        "units": 145,
+        "scale": 1,
+        "stageWidth": 1904,
+        "stageHeight": 1041,
+        "x": 4280,
+        "y": 2840
+      },
+      "qualityCapability": [
+        {
+          "requested": "high",
+          "readback": "HIGH"
+        },
+        {
+          "requested": "medium",
+          "readback": "MEDIUM"
+        },
+        {
+          "requested": "low",
+          "readback": "LOW"
+        },
+        {
+          "requested": "best",
+          "readback": "BEST"
+        },
+        {
+          "requested": "high",
+          "readback": "HIGH"
+        }
+      ],
+      "pixels": [
+        {
+          "difference": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          },
+          "mode": "high"
+        },
+        {
+          "difference": {
+            "maxRGB": 255,
+            "maxAlpha": 178,
+            "changed": 11391
+          },
+          "mode": "medium"
+        },
+        {
+          "difference": {
+            "maxRGB": 255,
+            "maxAlpha": 148,
+            "changed": 240488
+          },
+          "mode": "low"
+        },
+        {
+          "difference": {
+            "maxRGB": 42,
+            "maxAlpha": 0,
+            "changed": 721
+          },
+          "mode": "best"
+        },
+        {
+          "difference": {
+            "maxRGB": 42,
+            "maxAlpha": 0,
+            "changed": 721
+          },
+          "mode": "high"
+        }
+      ],
+      "fixedTarget": null,
+      "fixtureActualEnd": null,
+      "visibleQualifications": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "byAxis": {
+        "static": {
+          "full": {
+            "n": 358,
+            "mean": 43.12011173184357,
+            "median": 38.0,
+            "p95": 72,
+            "p99": 97,
+            "max": 198,
+            "over50": 69,
+            "over100": 3,
+            "updateBand": 13.40782122905028,
+            "probePost": 0.030726256983240222
+          },
+          "medium": {
+            "n": 358,
+            "mean": 40.6536312849162,
+            "median": 36.0,
+            "p95": 68,
+            "p99": 88,
+            "max": 191,
+            "over50": 54,
+            "over100": 2,
+            "updateBand": 13.393854748603353,
+            "probePost": 0.002793296089385475
+          },
+          "low": {
+            "n": 358,
+            "mean": 39.61731843575419,
+            "median": 35.0,
+            "p95": 64,
+            "p99": 95,
+            "max": 185,
+            "over50": 37,
+            "over100": 4,
+            "updateBand": 13.888268156424582,
+            "probePost": 0.0335195530726257
+          },
+          "late": {
+            "n": 358,
+            "mean": 76.53631284916202,
+            "median": 67.5,
+            "p95": 126,
+            "p99": 181,
+            "max": 247,
+            "over50": 349,
+            "over100": 49,
+            "updateBand": 21.687150837988828,
+            "probePost": 8.85754189944134
+          }
+        },
+        "x": {
+          "full": {
+            "n": 358,
+            "mean": 48.18156424581006,
+            "median": 43.0,
+            "p95": 75,
+            "p99": 111,
+            "max": 189,
+            "over50": 110,
+            "over100": 6,
+            "updateBand": 13.03631284916201,
+            "probePost": 0.030726256983240222
+          },
+          "medium": {
+            "n": 358,
+            "mean": 43.391061452513966,
+            "median": 39.0,
+            "p95": 66,
+            "p99": 112,
+            "max": 186,
+            "over50": 49,
+            "over100": 7,
+            "updateBand": 12.773743016759777,
+            "probePost": 0.019553072625698324
+          },
+          "low": {
+            "n": 358,
+            "mean": 41.824022346368714,
+            "median": 39.0,
+            "p95": 61,
+            "p99": 85,
+            "max": 160,
+            "over50": 34,
+            "over100": 2,
+            "updateBand": 13.050279329608939,
+            "probePost": 0.04189944134078212
+          },
+          "late": {
+            "n": 358,
+            "mean": 72.28491620111731,
+            "median": 64.0,
+            "p95": 115,
+            "p99": 181,
+            "max": 194,
+            "over50": 357,
+            "over100": 30,
+            "updateBand": 22.567039106145252,
+            "probePost": 8.916201117318435
+          }
+        },
+        "y": {
+          "full": {
+            "n": 358,
+            "mean": 47.64525139664804,
+            "median": 43.0,
+            "p95": 78,
+            "p99": 102,
+            "max": 170,
+            "over50": 90,
+            "over100": 5,
+            "updateBand": 13.103351955307263,
+            "probePost": 0.019553072625698324
+          },
+          "medium": {
+            "n": 358,
+            "mean": 50.365921787709496,
+            "median": 44.0,
+            "p95": 94,
+            "p99": 133,
+            "max": 182,
+            "over50": 105,
+            "over100": 17,
+            "updateBand": 12.966480446927374,
+            "probePost": 0.019553072625698324
+          },
+          "low": {
+            "n": 358,
+            "mean": 45.52793296089386,
+            "median": 40.0,
+            "p95": 74,
+            "p99": 96,
+            "max": 187,
+            "over50": 79,
+            "over100": 3,
+            "updateBand": 13.466480446927374,
+            "probePost": 0.013966480446927373
+          },
+          "late": {
+            "n": 358,
+            "mean": 74.28491620111731,
+            "median": 65.0,
+            "p95": 125,
+            "p99": 195,
+            "max": 229,
+            "over50": 356,
+            "over100": 40,
+            "updateBand": 21.589385474860336,
+            "probePost": 8.935754189944134
+          }
+        }
+      },
+      "timedCounterChanges": [],
+      "combatDeltas": [
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 661,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 664,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 605,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 778,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 688,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 685,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 607,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 598,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 657,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 519,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 513,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 715,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 831,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 507,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 331,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 468,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 653,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 587,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 751,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 729,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 558,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 478,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 416,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 0,
+          "shots": 0,
+          "movingFrames": 666,
+          "targetFrames": 0,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        }
+      ],
+      "motionRanges": {
+        "camX": [
+          4420,
+          4740
+        ],
+        "camY": [
+          2644,
+          2836
+        ],
+        "visualX": [
+          -3788,
+          -3468
+        ],
+        "visualY": [
+          -2215,
+          -2023
+        ],
+        "playerX": [
+          4280,
+          4280
+        ],
+        "playerY": [
+          2840,
+          2840
+        ],
+        "screenPlayerX": [
+          492,
+          812
+        ],
+        "screenPlayerY": [
+          625,
+          817
+        ]
+      },
+      "playerRemainedOnscreen": true
+    },
+    {
+      "name": "camera-native-combat-v24-20261101-r1",
+      "ok": true,
+      "error": null,
+      "assertions": 62,
+      "probe": "6CA54DC754E1C365782469D0CCFBBE2619988C876BC7FBEF824A49A758506F1E",
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 7001927680,
+      "rawSHA256": "03D5D3584AC9D7752C6EB8589F1CE46583A17A3A460C15F19AAF73A93920B9BE",
+      "failedChecks": [],
+      "entry": {
+        "units": 141,
+        "scale": 1,
+        "stageWidth": 1904,
+        "stageHeight": 1041,
+        "x": 4280,
+        "y": 2840
+      },
+      "qualityCapability": [
+        {
+          "readback": "HIGH",
+          "requested": "high"
+        },
+        {
+          "readback": "MEDIUM",
+          "requested": "medium"
+        },
+        {
+          "readback": "LOW",
+          "requested": "low"
+        },
+        {
+          "readback": "BEST",
+          "requested": "best"
+        },
+        {
+          "readback": "HIGH",
+          "requested": "high"
+        }
+      ],
+      "pixels": [
+        {
+          "difference": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          },
+          "mode": "high"
+        },
+        {
+          "difference": {
+            "maxRGB": 151,
+            "maxAlpha": 60,
+            "changed": 6462
+          },
+          "mode": "medium"
+        },
+        {
+          "difference": {
+            "maxRGB": 164,
+            "maxAlpha": 60,
+            "changed": 322942
+          },
+          "mode": "low"
+        },
+        {
+          "difference": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          },
+          "mode": "best"
+        },
+        {
+          "difference": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          },
+          "mode": "high"
+        }
+      ],
+      "fixedTarget": null,
+      "fixtureActualEnd": null,
+      "visibleQualifications": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "byAxis": {
+        "static": {
+          "full": {
+            "n": 358,
+            "mean": 49.13966480446928,
+            "median": 46.0,
+            "p95": 63,
+            "p99": 76,
+            "max": 202,
+            "over50": 108,
+            "over100": 4,
+            "updateBand": 25.460893854748605,
+            "probePost": 0.025139664804469275
+          },
+          "medium": {
+            "n": 358,
+            "mean": 51.27653631284916,
+            "median": 48.0,
+            "p95": 72,
+            "p99": 84,
+            "max": 195,
+            "over50": 144,
+            "over100": 3,
+            "updateBand": 26.84078212290503,
+            "probePost": 0.04189944134078212
+          },
+          "low": {
+            "n": 358,
+            "mean": 51.625698324022345,
+            "median": 49.0,
+            "p95": 73,
+            "p99": 95,
+            "max": 190,
+            "over50": 152,
+            "over100": 4,
+            "updateBand": 25.89664804469274,
+            "probePost": 0.03910614525139665
+          }
+        },
+        "x": {
+          "full": {
+            "n": 358,
+            "mean": 58.94692737430167,
+            "median": 55.0,
+            "p95": 81,
+            "p99": 102,
+            "max": 262,
+            "over50": 263,
+            "over100": 6,
+            "updateBand": 25.092178770949722,
+            "probePost": 0.027932960893854747
+          },
+          "medium": {
+            "n": 358,
+            "mean": 64.47206703910615,
+            "median": 62.0,
+            "p95": 84,
+            "p99": 109,
+            "max": 214,
+            "over50": 336,
+            "over100": 9,
+            "updateBand": 28.365921787709496,
+            "probePost": 0.04189944134078212
+          },
+          "low": {
+            "n": 358,
+            "mean": 60.039106145251395,
+            "median": 58.0,
+            "p95": 78,
+            "p99": 86,
+            "max": 196,
+            "over50": 307,
+            "over100": 2,
+            "updateBand": 25.150837988826815,
+            "probePost": 0.027932960893854747
+          }
+        },
+        "y": {
+          "full": {
+            "n": 358,
+            "mean": 67.60614525139665,
+            "median": 64.0,
+            "p95": 94,
+            "p99": 149,
+            "max": 258,
+            "over50": 331,
+            "over100": 11,
+            "updateBand": 25.455307262569832,
+            "probePost": 0.036312849162011177
+          },
+          "medium": {
+            "n": 358,
+            "mean": 57.47206703910614,
+            "median": 54.5,
+            "p95": 79,
+            "p99": 92,
+            "max": 219,
+            "over50": 250,
+            "over100": 3,
+            "updateBand": 23.511173184357542,
+            "probePost": 0.019553072625698324
+          },
+          "low": {
+            "n": 358,
+            "mean": 58.935754189944134,
+            "median": 56.0,
+            "p95": 77,
+            "p99": 95,
+            "max": 208,
+            "over50": 285,
+            "over100": 3,
+            "updateBand": 24.407821229050278,
+            "probePost": 0.0111731843575419
+          }
+        }
+      },
+      "timedCounterChanges": [],
+      "combatDeltas": [
+        {
+          "actualShotFrames": 118,
+          "shots": 114,
+          "movingFrames": 971,
+          "targetFrames": 456,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 3
+        },
+        {
+          "actualShotFrames": 138,
+          "shots": 138,
+          "movingFrames": 936,
+          "targetFrames": 497,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 2
+        },
+        {
+          "actualShotFrames": 76,
+          "shots": 76,
+          "movingFrames": 925,
+          "targetFrames": 231,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 1
+        },
+        {
+          "actualShotFrames": 82,
+          "shots": 82,
+          "movingFrames": 899,
+          "targetFrames": 336,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 1
+        },
+        {
+          "actualShotFrames": 107,
+          "shots": 107,
+          "movingFrames": 850,
+          "targetFrames": 583,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 3
+        },
+        {
+          "actualShotFrames": 129,
+          "shots": 129,
+          "movingFrames": 837,
+          "targetFrames": 559,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 3
+        },
+        {
+          "actualShotFrames": 120,
+          "shots": 120,
+          "movingFrames": 922,
+          "targetFrames": 620,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 2
+        },
+        {
+          "actualShotFrames": 148,
+          "shots": 148,
+          "movingFrames": 798,
+          "targetFrames": 92,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 131,
+          "shots": 131,
+          "movingFrames": 837,
+          "targetFrames": 263,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 1
+        },
+        {
+          "actualShotFrames": 138,
+          "shots": 138,
+          "movingFrames": 1035,
+          "targetFrames": 443,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 3
+        },
+        {
+          "actualShotFrames": 142,
+          "shots": 142,
+          "movingFrames": 934,
+          "targetFrames": 533,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 3
+        },
+        {
+          "actualShotFrames": 128,
+          "shots": 128,
+          "movingFrames": 868,
+          "targetFrames": 469,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 3
+        },
+        {
+          "actualShotFrames": 116,
+          "shots": 116,
+          "movingFrames": 753,
+          "targetFrames": 336,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 2
+        },
+        {
+          "actualShotFrames": 119,
+          "shots": 119,
+          "movingFrames": 854,
+          "targetFrames": 375,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 1
+        },
+        {
+          "actualShotFrames": 133,
+          "shots": 133,
+          "movingFrames": 974,
+          "targetFrames": 528,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 3
+        },
+        {
+          "actualShotFrames": 131,
+          "shots": 131,
+          "movingFrames": 928,
+          "targetFrames": 447,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 1
+        },
+        {
+          "actualShotFrames": 116,
+          "shots": 116,
+          "movingFrames": 919,
+          "targetFrames": 519,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 2
+        },
+        {
+          "actualShotFrames": 121,
+          "shots": 121,
+          "movingFrames": 859,
+          "targetFrames": 481,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 2
+        }
+      ],
+      "motionRanges": {
+        "camX": [
+          4420,
+          4740
+        ],
+        "camY": [
+          2644,
+          2836
+        ],
+        "visualX": [
+          -3788,
+          -3468
+        ],
+        "visualY": [
+          -2215,
+          -2023
+        ],
+        "playerX": [
+          2618.5619163616116,
+          4215
+        ],
+        "playerY": [
+          2950.9172273332697,
+          3320
+        ],
+        "screenPlayerX": [
+          -1009.4380836383884,
+          747
+        ],
+        "screenPlayerY": [
+          831.9172273332697,
+          1297
+        ]
+      },
+      "playerRemainedOnscreen": false
+    },
+    {
+      "name": "camera-soft-terrain-v25-20261101-r1",
+      "ok": true,
+      "error": null,
+      "assertions": 44,
+      "probe": "9A539E4BF98D4EDA5AFB5A039E8A9AD8249713BA5A12843E62F85A0B1D4A3E7B",
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 6664708096,
+      "rawSHA256": "B78D6D60873D5C537DA1B72106B3888588543B1F41889058DA4E4789FF8EB4A2",
+      "failedChecks": [],
+      "entry": {
+        "units": 126,
+        "scale": 0.6583333333333333,
+        "stageWidth": 1264,
+        "stageHeight": 681,
+        "x": 2055,
+        "y": 1960
+      },
+      "qualityCapability": [
+        {
+          "requested": "high",
+          "readback": "HIGH"
+        },
+        {
+          "requested": "medium",
+          "readback": "HIGH"
+        },
+        {
+          "requested": "low",
+          "readback": "HIGH"
+        },
+        {
+          "requested": "best",
+          "readback": "BEST"
+        },
+        {
+          "requested": "high",
+          "readback": "HIGH"
+        }
+      ],
+      "pixels": [
+        {
+          "difference": {
+            "maxRGB": 153,
+            "maxAlpha": 244,
+            "changed": 258151
+          },
+          "mode": "half",
+          "repeatAfterRestore": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          },
+          "stats": {
+            "errors": 0,
+            "restored": 0,
+            "active": true,
+            "captures": 1,
+            "overlayVisible": true,
+            "mode": "half",
+            "drawMs": 75,
+            "terrain": {
+              "width": 1152,
+              "presented": true,
+              "height": 896,
+              "updates": 1,
+              "stripDraws": 0,
+              "scale": 0.32916259765625,
+              "maxUpdateMs": 75,
+              "cleanupErrors": 0,
+              "lastError": "",
+              "lastFallback": "",
+              "shifts": 0,
+              "fullDraws": 3,
+              "internalErrors": 0,
+              "updateMs": 75,
+              "matrices": [
+                {
+                  "tx": -593,
+                  "a": 1.9999982118606567,
+                  "ty": -615,
+                  "d": 1.9999982118606567
+                },
+                {
+                  "tx": -593,
+                  "a": 1.9999982118606567,
+                  "ty": -615,
+                  "d": 1.9999982118606567
+                },
+                {
+                  "tx": -593,
+                  "a": 1.9999982118606567,
+                  "ty": -615,
+                  "d": 1.9999982118606567
+                }
+              ]
+            }
+          },
+          "restoreDifference": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          }
+        },
+        {
+          "difference": {
+            "maxRGB": 153,
+            "maxAlpha": 255,
+            "changed": 256229
+          },
+          "mode": "soft",
+          "repeatAfterRestore": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          },
+          "stats": {
+            "errors": 0,
+            "restored": 1,
+            "active": true,
+            "captures": 2,
+            "overlayVisible": true,
+            "mode": "soft",
+            "drawMs": 106,
+            "terrain": {
+              "width": 1472,
+              "presented": true,
+              "height": 1024,
+              "updates": 1,
+              "stripDraws": 0,
+              "scale": 0.493743896484375,
+              "maxUpdateMs": 31,
+              "cleanupErrors": 0,
+              "lastError": "",
+              "lastFallback": "",
+              "shifts": 0,
+              "fullDraws": 3,
+              "internalErrors": 0,
+              "updateMs": 31,
+              "matrices": [
+                {
+                  "tx": -379.75,
+                  "a": 1.3333255052566528,
+                  "ty": -401.75,
+                  "d": 1.3333255052566528
+                },
+                {
+                  "tx": -379.75,
+                  "a": 1.3333255052566528,
+                  "ty": -401.75,
+                  "d": 1.3333255052566528
+                },
+                {
+                  "tx": -379.75,
+                  "a": 1.3333255052566528,
+                  "ty": -401.75,
+                  "d": 1.3333255052566528
+                }
+              ]
+            }
+          },
+          "restoreDifference": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          }
+        }
+      ],
+      "fixedTarget": null,
+      "fixtureActualEnd": null,
+      "visibleQualifications": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "byAxis": {
+        "static": {
+          "full": {
+            "n": 358,
+            "mean": 36.4804469273743,
+            "median": 34.0,
+            "p95": 54,
+            "p99": 77,
+            "max": 163,
+            "over50": 23,
+            "over100": 2,
+            "updateBand": 11.28491620111732,
+            "probePost": 0.01675977653631285
+          },
+          "half": {
+            "n": 358,
+            "mean": 37.53631284916201,
+            "median": 33.5,
+            "p95": 57,
+            "p99": 82,
+            "max": 160,
+            "over50": 35,
+            "over100": 3,
+            "updateBand": 11.614525139664805,
+            "probePost": 0.19273743016759776
+          },
+          "soft": {
+            "n": 358,
+            "mean": 35.8268156424581,
+            "median": 33.0,
+            "p95": 53,
+            "p99": 70,
+            "max": 145,
+            "over50": 21,
+            "over100": 2,
+            "updateBand": 12.067039106145252,
+            "probePost": 0.17318435754189945
+          }
+        },
+        "x": {
+          "full": {
+            "n": 358,
+            "mean": 37.99441340782123,
+            "median": 36.0,
+            "p95": 51,
+            "p99": 72,
+            "max": 155,
+            "over50": 21,
+            "over100": 2,
+            "updateBand": 11.371508379888269,
+            "probePost": 0.00558659217877095
+          },
+          "half": {
+            "n": 358,
+            "mean": 41.00558659217877,
+            "median": 36.0,
+            "p95": 72,
+            "p99": 101,
+            "max": 170,
+            "over50": 52,
+            "over100": 5,
+            "updateBand": 10.539106145251397,
+            "probePost": 0.16201117318435754
+          },
+          "soft": {
+            "n": 358,
+            "mean": 37.977653631284916,
+            "median": 36.0,
+            "p95": 50,
+            "p99": 62,
+            "max": 146,
+            "over50": 18,
+            "over100": 2,
+            "updateBand": 10.575418994413408,
+            "probePost": 0.14804469273743018
+          }
+        },
+        "y": {
+          "full": {
+            "n": 358,
+            "mean": 40.435754189944134,
+            "median": 38.0,
+            "p95": 54,
+            "p99": 64,
+            "max": 162,
+            "over50": 30,
+            "over100": 2,
+            "updateBand": 11.251396648044693,
+            "probePost": 0.008379888268156424
+          },
+          "half": {
+            "n": 358,
+            "mean": 38.865921787709496,
+            "median": 37.0,
+            "p95": 51,
+            "p99": 70,
+            "max": 140,
+            "over50": 19,
+            "over100": 4,
+            "updateBand": 10.62290502793296,
+            "probePost": 0.19553072625698323
+          },
+          "soft": {
+            "n": 358,
+            "mean": 42.83798882681564,
+            "median": 39.0,
+            "p95": 66,
+            "p99": 131,
+            "max": 188,
+            "over50": 50,
+            "over100": 6,
+            "updateBand": 10.77094972067039,
+            "probePost": 0.13687150837988826
+          }
+        }
+      },
+      "timedCounterChanges": [],
+      "combatDeltas": [],
+      "motionRanges": {
+        "camX": [
+          1193,
+          1513
+        ],
+        "camY": [
+          1094,
+          1286
+        ],
+        "visualX": [
+          -881,
+          -561
+        ],
+        "visualY": [
+          -845,
+          -653
+        ],
+        "playerX": [
+          2055,
+          2055
+        ],
+        "playerY": [
+          1960,
+          1960
+        ],
+        "screenPlayerX": [
+          471.875,
+          791.875
+        ],
+        "screenPlayerY": [
+          445.33333333333326,
+          637.3333333333333
+        ]
+      },
+      "playerRemainedOnscreen": true
+    },
+    {
+      "name": "combat-cost-visible-v27-20261101-r1",
+      "ok": false,
+      "error": "on-screen-combat-0: {\"playerOnscreen\":false,\"frames\":90,\"atLeastThreeEnemyFrames\":0}\nError: on-screen-combat-0: {\"playerOnscreen\":false,\"frames\":90,\"atLeastThreeEnemyFrames\":0}\n\tat ContinuousSceneMotionMod$/assertThat()\n\tat ContinuousSceneMotionMod$/after()",
+      "assertions": 18,
+      "probe": "D06122B1A1570AFCE67019F08F82367E4103C9207F4E2ABDF686C76EBFF02D98",
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 6742110208,
+      "rawSHA256": "0BC57326F64296EA3305A8F41F9DA04B471070681CF30EC271FF9B90E9919261",
+      "failedChecks": [
+        {
+          "detail": {
+            "playerOnscreen": false,
+            "frames": 90,
+            "atLeastThreeEnemyFrames": 0
+          },
+          "name": "on-screen-combat-0",
+          "ok": false
+        }
+      ],
+      "entry": {
+        "units": 140,
+        "scale": 1,
+        "stageWidth": 1904,
+        "stageHeight": 1041,
+        "x": 4280,
+        "y": 2840
+      },
+      "qualityCapability": null,
+      "pixels": null,
+      "fixedTarget": null,
+      "fixtureActualEnd": null,
+      "visibleQualifications": [
+        {
+          "playerOnscreen": false,
+          "frames": 90,
+          "atLeastThreeEnemyFrames": 0
+        }
+      ],
+      "allocationDiagnostic": true,
+      "frameCostWindows": 2,
+      "byAxis": {
+        "static": {
+          "full": {
+            "n": 89,
+            "mean": 47.674157303370784,
+            "median": 39,
+            "p95": 59,
+            "p99": 355,
+            "max": 450,
+            "over50": 13,
+            "over100": 2,
+            "updateBand": 23.337078651685392,
+            "probePost": 0.0449438202247191
+          }
+        }
+      },
+      "timedCounterChanges": [],
+      "combatDeltas": [
+        {
+          "actualShotFrames": 49,
+          "shots": 45,
+          "movingFrames": 478,
+          "targetFrames": 43,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 1
+        }
+      ],
+      "motionRanges": {
+        "camX": [
+          4580,
+          4580
+        ],
+        "camY": [
+          2740,
+          2740
+        ],
+        "visualX": [
+          -3628,
+          -3628
+        ],
+        "visualY": [
+          -2119,
+          -2119
+        ],
+        "playerX": [
+          3249.6666666666665,
+          3255
+        ],
+        "playerY": [
+          3636.486892340311,
+          3640
+        ],
+        "screenPlayerX": [
+          -378.3333333333335,
+          -373
+        ],
+        "screenPlayerY": [
+          1517.486892340311,
+          1521
+        ]
+      },
+      "playerRemainedOnscreen": false
+    },
+    {
+      "name": "camera-temporal-present-v28-20261101-r1",
+      "ok": false,
+      "error": "on-screen-combat-0: {\"playerOnscreen\":false,\"frames\":180,\"atLeastThreeEnemyFrames\":0}\nError: on-screen-combat-0: {\"playerOnscreen\":false,\"frames\":180,\"atLeastThreeEnemyFrames\":0}\n\tat ContinuousSceneMotionMod$/assertThat()\n\tat ContinuousSceneMotionMod$/after()",
+      "assertions": 22,
+      "probe": "2670EF1C1C32A6F187B74613CD51EE62C8941FABFA784F6AB68F0CC13FF53235",
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 7078846464,
+      "rawSHA256": "CA6836EF4C248196877FF1055A256CFF7351B1FE7EA3C3A9CC1F29FD234AF3A1",
+      "failedChecks": [
+        {
+          "detail": {
+            "playerOnscreen": false,
+            "frames": 180,
+            "atLeastThreeEnemyFrames": 0
+          },
+          "name": "on-screen-combat-0",
+          "ok": false
+        }
+      ],
+      "entry": {
+        "units": 132,
+        "scale": 1,
+        "stageWidth": 1904,
+        "stageHeight": 1041,
+        "x": 4280,
+        "y": 2840
+      },
+      "qualityCapability": null,
+      "pixels": [
+        {
+          "presenter": {
+            "maximumAge": 0,
+            "width": 1080,
+            "drawMs": 49,
+            "captures": 1,
+            "height": 649,
+            "restored": 1,
+            "overlayVisible": false,
+            "hidden": false,
+            "sourceVisible": true,
+            "age": 1,
+            "updates": 1,
+            "held": 0,
+            "mode": "half2"
+          },
+          "mode": "half2",
+          "restore": {
+            "maxAlpha": 0,
+            "changed": 0,
+            "maxRGB": 0
+          }
+        },
+        {
+          "presenter": {
+            "maximumAge": 0,
+            "width": 1080,
+            "drawMs": 86,
+            "captures": 2,
+            "height": 649,
+            "restored": 2,
+            "overlayVisible": false,
+            "hidden": false,
+            "sourceVisible": true,
+            "age": 1,
+            "updates": 2,
+            "held": 0,
+            "mode": "half3"
+          },
+          "mode": "half3",
+          "restore": {
+            "maxAlpha": 0,
+            "changed": 0,
+            "maxRGB": 0
+          }
+        }
+      ],
+      "fixedTarget": null,
+      "fixtureActualEnd": null,
+      "visibleQualifications": [
+        {
+          "playerOnscreen": false,
+          "frames": 180,
+          "atLeastThreeEnemyFrames": 0
+        }
+      ],
+      "byAxis": {
+        "static": {
+          "full": {
+            "n": 179,
+            "mean": 41.3463687150838,
+            "median": 39,
+            "p95": 57,
+            "p99": 71,
+            "max": 203,
+            "over50": 25,
+            "over100": 1,
+            "updateBand": 23.134078212290504,
+            "probePost": 0.0111731843575419
+          }
+        }
+      },
+      "timedCounterChanges": [],
+      "combatDeltas": [
+        {
+          "actualShotFrames": 146,
+          "shots": 142,
+          "movingFrames": 1045,
+          "targetFrames": 631,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        }
+      ],
+      "motionRanges": {
+        "camX": [
+          4580,
+          4580
+        ],
+        "camY": [
+          2740,
+          2740
+        ],
+        "visualX": [
+          -3628,
+          -3628
+        ],
+        "visualY": [
+          -2119,
+          -2119
+        ],
+        "playerX": [
+          1625,
+          2320.2497452121943
+        ],
+        "playerY": [
+          2960,
+          3320
+        ],
+        "screenPlayerX": [
+          -2003,
+          -1307.7502547878057
+        ],
+        "screenPlayerY": [
+          841,
+          1201
+        ]
+      },
+      "playerRemainedOnscreen": false
+    },
+    {
+      "name": "combat-cost-target-v29-20261101-r1",
+      "ok": true,
+      "error": null,
+      "assertions": 30,
+      "probe": "0DB5D89AD46B6A530C5E22156237E5D8C1FDB46A103B5FFA112CD395D16FF6E3",
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 6984433664,
+      "rawSHA256": "41EA12F645C09E09D6949FBC265BA6C986262B228848D1E8D1E6F6135759B77E",
+      "failedChecks": [],
+      "entry": {
+        "units": 131,
+        "scale": 1,
+        "stageWidth": 1904,
+        "stageHeight": 1041,
+        "x": 4280,
+        "y": 2839
+      },
+      "qualityCapability": null,
+      "pixels": null,
+      "fixedTarget": {
+        "purpose": "Stationary damageable diagnostic target; player physics excluded, not native movement acceptance",
+        "original": false,
+        "controlled": true
+      },
+      "fixtureActualEnd": {
+        "y": 2839,
+        "knocked": 1,
+        "x": 4280,
+        "fixed": true
+      },
+      "visibleQualifications": [
+        {
+          "playerOnscreen": true,
+          "frames": 90,
+          "atLeastThreeEnemyFrames": 90
+        },
+        {
+          "playerOnscreen": true,
+          "frames": 90,
+          "atLeastThreeEnemyFrames": 90
+        },
+        {
+          "playerOnscreen": true,
+          "frames": 90,
+          "atLeastThreeEnemyFrames": 90
+        },
+        {
+          "playerOnscreen": true,
+          "frames": 90,
+          "atLeastThreeEnemyFrames": 90
+        },
+        {
+          "playerOnscreen": true,
+          "frames": 90,
+          "atLeastThreeEnemyFrames": 90
+        },
+        {
+          "playerOnscreen": true,
+          "frames": 90,
+          "atLeastThreeEnemyFrames": 90
+        }
+      ],
+      "allocationDiagnostic": true,
+      "frameCostWindows": 12,
+      "byAxis": {
+        "static": {
+          "full": {
+            "n": 178,
+            "mean": 65.1685393258427,
+            "median": 53.0,
+            "p95": 78,
+            "p99": 435,
+            "max": 546,
+            "over50": 106,
+            "over100": 6,
+            "updateBand": 27.241573033707866,
+            "probePost": 0.02247191011235955
+          }
+        },
+        "x": {
+          "full": {
+            "n": 178,
+            "mean": 73.8932584269663,
+            "median": 56.5,
+            "p95": 131,
+            "p99": 397,
+            "max": 630,
+            "over50": 118,
+            "over100": 20,
+            "updateBand": 28.06741573033708,
+            "probePost": 0.016853932584269662
+          }
+        },
+        "y": {
+          "full": {
+            "n": 178,
+            "mean": 77.3932584269663,
+            "median": 57.0,
+            "p95": 131,
+            "p99": 565,
+            "max": 674,
+            "over50": 115,
+            "over100": 23,
+            "updateBand": 33.640449438202246,
+            "probePost": 0.02247191011235955
+          }
+        }
+      },
+      "timedCounterChanges": [
+        {
+          "sceneResident": 1,
+          "sceneRedraws": 1,
+          "sceneEvictions": 0,
+          "sceneDrawMs": 35,
+          "sceneWarmForced": 0,
+          "sceneWarmCount": 1,
+          "sceneMisses": 0
+        },
+        {
+          "sceneResident": 11,
+          "sceneRedraws": 14,
+          "sceneEvictions": 0,
+          "sceneDrawMs": -45,
+          "sceneWarmForced": 0,
+          "sceneWarmCount": 11,
+          "sceneMisses": 0
+        },
+        {
+          "sceneResident": 6,
+          "sceneRedraws": 6,
+          "sceneEvictions": 0,
+          "sceneDrawMs": -49,
+          "sceneWarmForced": 0,
+          "sceneWarmCount": 6,
+          "sceneMisses": 0
+        }
+      ],
+      "combatDeltas": [
+        {
+          "actualShotFrames": 103,
+          "shots": 103,
+          "movingFrames": 493,
+          "targetFrames": 253,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 2
+        },
+        {
+          "actualShotFrames": 48,
+          "shots": 48,
+          "movingFrames": 486,
+          "targetFrames": 203,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 1
+        },
+        {
+          "actualShotFrames": 35,
+          "shots": 35,
+          "movingFrames": 437,
+          "targetFrames": 90,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 1
+        },
+        {
+          "actualShotFrames": 35,
+          "shots": 35,
+          "movingFrames": 494,
+          "targetFrames": 146,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 3
+        },
+        {
+          "actualShotFrames": 43,
+          "shots": 43,
+          "movingFrames": 492,
+          "targetFrames": 328,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 3
+        },
+        {
+          "actualShotFrames": 62,
+          "shots": 62,
+          "movingFrames": 429,
+          "targetFrames": 355,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 4
+        }
+      ],
+      "motionRanges": {
+        "camX": [
+          4420,
+          4740
+        ],
+        "camY": [
+          2643,
+          2835
+        ],
+        "visualX": [
+          -3788,
+          -3468
+        ],
+        "visualY": [
+          -2214,
+          -2022
+        ],
+        "playerX": [
+          4280,
+          4280
+        ],
+        "playerY": [
+          2839,
+          2839
+        ],
+        "screenPlayerX": [
+          492,
+          812
+        ],
+        "screenPlayerY": [
+          625,
+          817
+        ]
+      },
+      "playerRemainedOnscreen": true
+    },
+    {
+      "name": "camera-temporal-target-v30-20261101-r1",
+      "ok": true,
+      "error": null,
+      "assertions": 86,
+      "probe": "288F6CD475D64C6DCFCB2EDE9FA60C056723AF76F6AA3D3B0EF6B1668E18D521",
+      "legacyHarnessPerformanceEligible": false,
+      "otherAirProcessIds": [],
+      "minimumAvailableCommit": 6952304640,
+      "rawSHA256": "CA8EF64CB822425E90E39067837313A658248CB408E97E06AF21C483D8A72357",
+      "failedChecks": [],
+      "entry": {
+        "units": 133,
+        "scale": 1,
+        "stageWidth": 1904,
+        "stageHeight": 1041,
+        "x": 4280,
+        "y": 2839
+      },
+      "qualityCapability": null,
+      "pixels": [
+        {
+          "presenter": {
+            "maximumAge": 0,
+            "width": 1080,
+            "drawMs": 45,
+            "captures": 1,
+            "height": 649,
+            "restored": 1,
+            "held": 0,
+            "updates": 1,
+            "sourceVisible": true,
+            "overlayVisible": false,
+            "age": 1,
+            "hidden": false,
+            "mode": "half2"
+          },
+          "mode": "half2",
+          "restore": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          }
+        },
+        {
+          "presenter": {
+            "maximumAge": 0,
+            "width": 1080,
+            "drawMs": 72,
+            "captures": 2,
+            "height": 649,
+            "restored": 2,
+            "held": 0,
+            "updates": 2,
+            "sourceVisible": true,
+            "overlayVisible": false,
+            "age": 1,
+            "hidden": false,
+            "mode": "half3"
+          },
+          "mode": "half3",
+          "restore": {
+            "maxRGB": 0,
+            "maxAlpha": 0,
+            "changed": 0
+          }
+        }
+      ],
+      "fixedTarget": {
+        "purpose": "Stationary damageable diagnostic target; player physics excluded, not native movement acceptance",
+        "original": false,
+        "controlled": true
+      },
+      "fixtureActualEnd": {
+        "y": 2839,
+        "knocked": 1,
+        "x": 4280,
+        "fixed": true
+      },
+      "visibleQualifications": [
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        },
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        },
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        },
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        },
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        },
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        },
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        },
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        },
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        },
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        },
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        },
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        },
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        },
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        },
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        },
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        },
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        },
+        {
+          "atLeastThreeEnemyFrames": 90,
+          "playerOnscreen": true,
+          "frames": 90
+        }
+      ],
+      "byAxis": {
+        "static": {
+          "full": {
+            "n": 178,
+            "mean": 57.52808988764045,
+            "median": 54.0,
+            "p95": 80,
+            "p99": 93,
+            "max": 189,
+            "over50": 122,
+            "over100": 2,
+            "updateBand": 24.297752808988765,
+            "probePost": 0.016853932584269662
+          },
+          "half2": {
+            "n": 178,
+            "mean": 62.45505617977528,
+            "median": 61.0,
+            "p95": 115,
+            "p99": 137,
+            "max": 225,
+            "over50": 106,
+            "over100": 15,
+            "updateBand": 20.162921348314608,
+            "probePost": 20.213483146067414
+          },
+          "half3": {
+            "n": 178,
+            "mean": 55.2247191011236,
+            "median": 43.0,
+            "p95": 107,
+            "p99": 142,
+            "max": 210,
+            "over50": 70,
+            "over100": 12,
+            "updateBand": 19.640449438202246,
+            "probePost": 14.292134831460674
+          }
+        },
+        "x": {
+          "full": {
+            "n": 178,
+            "mean": 66.92696629213484,
+            "median": 60.0,
+            "p95": 106,
+            "p99": 150,
+            "max": 171,
+            "over50": 161,
+            "over100": 14,
+            "updateBand": 20.662921348314608,
+            "probePost": 0.03932584269662921
+          },
+          "half2": {
+            "n": 178,
+            "mean": 68.91573033707866,
+            "median": 66.0,
+            "p95": 125,
+            "p99": 178,
+            "max": 199,
+            "over50": 112,
+            "over100": 26,
+            "updateBand": 21.59550561797753,
+            "probePost": 23.865168539325843
+          },
+          "half3": {
+            "n": 178,
+            "mean": 65.39887640449439,
+            "median": 51.0,
+            "p95": 160,
+            "p99": 222,
+            "max": 342,
+            "over50": 90,
+            "over100": 26,
+            "updateBand": 24.320224719101123,
+            "probePost": 18.99438202247191
+          }
+        },
+        "y": {
+          "full": {
+            "n": 178,
+            "mean": 64.86516853932584,
+            "median": 60.0,
+            "p95": 96,
+            "p99": 117,
+            "max": 135,
+            "over50": 159,
+            "over100": 6,
+            "updateBand": 21.39887640449438,
+            "probePost": 0.0056179775280898875
+          },
+          "half2": {
+            "n": 178,
+            "mean": 73.64044943820225,
+            "median": 72.0,
+            "p95": 129,
+            "p99": 144,
+            "max": 253,
+            "over50": 129,
+            "over100": 30,
+            "updateBand": 29.252808988764045,
+            "probePost": 20.707865168539325
+          },
+          "half3": {
+            "n": 178,
+            "mean": 61.60674157303371,
+            "median": 52.0,
+            "p95": 113,
+            "p99": 189,
+            "max": 196,
+            "over50": 96,
+            "over100": 13,
+            "updateBand": 24.292134831460675,
+            "probePost": 14.51123595505618
+          }
+        }
+      },
+      "timedCounterChanges": [],
+      "combatDeltas": [
+        {
+          "actualShotFrames": 83,
+          "shots": 80,
+          "movingFrames": 414,
+          "targetFrames": 192,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 2
+        },
+        {
+          "actualShotFrames": 53,
+          "shots": 53,
+          "movingFrames": 420,
+          "targetFrames": 216,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 2
+        },
+        {
+          "actualShotFrames": 53,
+          "shots": 53,
+          "movingFrames": 318,
+          "targetFrames": 366,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 4
+        },
+        {
+          "actualShotFrames": 47,
+          "shots": 47,
+          "movingFrames": 386,
+          "targetFrames": 281,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 4
+        },
+        {
+          "actualShotFrames": 60,
+          "shots": 60,
+          "movingFrames": 469,
+          "targetFrames": 325,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 2
+        },
+        {
+          "actualShotFrames": 58,
+          "shots": 58,
+          "movingFrames": 412,
+          "targetFrames": 189,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 3
+        },
+        {
+          "actualShotFrames": 73,
+          "shots": 73,
+          "movingFrames": 447,
+          "targetFrames": 241,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 5
+        },
+        {
+          "actualShotFrames": 55,
+          "shots": 55,
+          "movingFrames": 458,
+          "targetFrames": 235,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 3
+        },
+        {
+          "actualShotFrames": 71,
+          "shots": 71,
+          "movingFrames": 442,
+          "targetFrames": 244,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 3
+        },
+        {
+          "actualShotFrames": 62,
+          "shots": 62,
+          "movingFrames": 464,
+          "targetFrames": 203,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 1
+        },
+        {
+          "actualShotFrames": 53,
+          "shots": 53,
+          "movingFrames": 444,
+          "targetFrames": 219,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 2
+        },
+        {
+          "actualShotFrames": 50,
+          "shots": 50,
+          "movingFrames": 423,
+          "targetFrames": 180,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 35,
+          "shots": 35,
+          "movingFrames": 443,
+          "targetFrames": 141,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 4
+        },
+        {
+          "actualShotFrames": 51,
+          "shots": 51,
+          "movingFrames": 438,
+          "targetFrames": 149,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 0
+        },
+        {
+          "actualShotFrames": 48,
+          "shots": 48,
+          "movingFrames": 466,
+          "targetFrames": 224,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 4
+        },
+        {
+          "actualShotFrames": 35,
+          "shots": 35,
+          "movingFrames": 470,
+          "targetFrames": 192,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 2
+        },
+        {
+          "actualShotFrames": 38,
+          "shots": 38,
+          "movingFrames": 494,
+          "targetFrames": 286,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 1
+        },
+        {
+          "actualShotFrames": 25,
+          "shots": 25,
+          "movingFrames": 419,
+          "targetFrames": 148,
+          "aliveStart": 6,
+          "aliveEnd": 6,
+          "targetingEnd": 2
+        }
+      ],
+      "motionRanges": {
+        "camX": [
+          4420,
+          4740
+        ],
+        "camY": [
+          2643,
+          2835
+        ],
+        "visualX": [
+          -3788,
+          -3468
+        ],
+        "visualY": [
+          -2214,
+          -2022
+        ],
+        "playerX": [
+          4280,
+          4280
+        ],
+        "playerY": [
+          2839,
+          2839
+        ],
+        "screenPlayerX": [
+          492,
+          812
+        ],
+        "screenPlayerY": [
+          625,
+          817
+        ]
+      },
+      "playerRemainedOnscreen": true
+    }
+  ],
+  "totalIntervals": 19860,
+  "onscreenDiagnosticIntervals": 16638,
+  "failedAndPartialEvidencePreserved": true,
+  "acceptanceBoundary": "Legacy harness performanceEligible=false and 120-fps capacity diagnostics are not production acceptance.",
+  "notLaunched": [
+    "combat-cost-v26-20261101: compiler registry wait timed out; superseded by v27, no Java or AIR started"
+  ],
+  "sharedFact": {
+    "path": "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\shared-knowledge\\rendering\\facts\\desktop-stage-quality-limit.md",
+    "SHA256": "AAFFEB0BF93F0B9BA38BD6B8964D434236618CC5DBF0B74995A65221A629DA68"
+  },
+  "formalDescriptor": {
+    "SHA256": "70DD3B085E5F6C66C03693CF68CE5E93A4E4136DD745D40D1A5B2A49863BA236",
+    "allowLowQuality": false
+  },
+  "formalUnchanged": true,
+  "foreignSourceUnchanged": true
+}

@@ -1,0 +1,23 @@
+startup enter main=true stage=true -> after loadConfig enabled=true
+init ok v0.33.15-combo-v4 settings=ModSettings-v1 enabled=true
+tick 1
+ModSettings settings registered
+tick 181
+tick 361
+tick 541
+tick 721
+tick 901
+tick 1081
+tick 1261
+tick 1441
+tick 1621
+tick 1801
+tick 1981
+tick 2161
+tick 2341
+tick 2521
+tick 2701
+tick 2881
+tick 3061
+tick 3241
+tick 3421

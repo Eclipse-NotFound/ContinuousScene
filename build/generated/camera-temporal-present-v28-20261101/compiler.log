@@ -1,0 +1,7 @@
+正在加载配置文件“D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-temporal-present-v28-20261101\compiler.xml”
+D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-temporal-present-v28-20261101\ScreenPresenter.as(10): 列: 18 警告: 没有为类 ScreenPresenter 指定构造函数。
+
+    public class ScreenPresenter {
+                 ^
+
+D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\camera-temporal-present-v28-20261101\ContinuousSceneMotionMod.swf（16844 字节）

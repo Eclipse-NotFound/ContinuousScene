@@ -1,0 +1,7 @@
+正在加载配置文件“D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\combat-cost-target-v29-20261101\compiler.xml”
+D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\combat-cost-target-v29-20261101\ScreenPresenter.as(11): 列: 18 警告: 没有为类 ScreenPresenter 指定构造函数。
+
+    public class ScreenPresenter {
+                 ^
+
+D:\Program Files\Steam\steamapps\common\Remains\mods\ContinuousScene\build\generated\combat-cost-target-v29-20261101\ContinuousSceneMotionMod.swf（18764 字节）

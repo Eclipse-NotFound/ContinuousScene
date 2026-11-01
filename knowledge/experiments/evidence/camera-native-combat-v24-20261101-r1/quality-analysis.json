@@ -1,0 +1,1017 @@
+{
+  "name": "camera-native-combat-v24-20261101-r1",
+  "ok": true,
+  "error": null,
+  "rawSHA256": "03D5D3584AC9D7752C6EB8589F1CE46583A17A3A460C15F19AAF73A93920B9BE",
+  "diagnosticOnly": true,
+  "legacyPerformanceEligible": false,
+  "environment": {
+    "otherAirProcessIds": [],
+    "runFailure": null,
+    "minimumAvailableCommit": 7001927680
+  },
+  "assertions": 62,
+  "failedChecks": [],
+  "entry": {
+    "units": 141,
+    "scale": 1,
+    "stageWidth": 1904,
+    "stageHeight": 1041,
+    "x": 4280,
+    "y": 2840
+  },
+  "qualityCapability": [
+    {
+      "readback": "HIGH",
+      "requested": "high"
+    },
+    {
+      "readback": "MEDIUM",
+      "requested": "medium"
+    },
+    {
+      "readback": "LOW",
+      "requested": "low"
+    },
+    {
+      "readback": "BEST",
+      "requested": "best"
+    },
+    {
+      "readback": "HIGH",
+      "requested": "high"
+    }
+  ],
+  "qualityRestored": "HIGH",
+  "nativeRepeat": null,
+  "pixels": [
+    {
+      "difference": {
+        "maxRGB": 0,
+        "maxAlpha": 0,
+        "changed": 0
+      },
+      "mode": "high"
+    },
+    {
+      "difference": {
+        "maxRGB": 151,
+        "maxAlpha": 60,
+        "changed": 6462
+      },
+      "mode": "medium"
+    },
+    {
+      "difference": {
+        "maxRGB": 164,
+        "maxAlpha": 60,
+        "changed": 322942
+      },
+      "mode": "low"
+    },
+    {
+      "difference": {
+        "maxRGB": 0,
+        "maxAlpha": 0,
+        "changed": 0
+      },
+      "mode": "best"
+    },
+    {
+      "difference": {
+        "maxRGB": 0,
+        "maxAlpha": 0,
+        "changed": 0
+      },
+      "mode": "high"
+    }
+  ],
+  "byAxis": {
+    "static": {
+      "full": {
+        "n": 358,
+        "mean": 49.13966480446928,
+        "median": 46.0,
+        "p95": 63,
+        "p99": 76,
+        "max": 202,
+        "over50": 108,
+        "over100": 4,
+        "updateBand": 25.460893854748605,
+        "probePost": 0.025139664804469275
+      },
+      "medium": {
+        "n": 358,
+        "mean": 51.27653631284916,
+        "median": 48.0,
+        "p95": 72,
+        "p99": 84,
+        "max": 195,
+        "over50": 144,
+        "over100": 3,
+        "updateBand": 26.84078212290503,
+        "probePost": 0.04189944134078212
+      },
+      "low": {
+        "n": 358,
+        "mean": 51.625698324022345,
+        "median": 49.0,
+        "p95": 73,
+        "p99": 95,
+        "max": 190,
+        "over50": 152,
+        "over100": 4,
+        "updateBand": 25.89664804469274,
+        "probePost": 0.03910614525139665
+      }
+    },
+    "x": {
+      "full": {
+        "n": 358,
+        "mean": 58.94692737430167,
+        "median": 55.0,
+        "p95": 81,
+        "p99": 102,
+        "max": 262,
+        "over50": 263,
+        "over100": 6,
+        "updateBand": 25.092178770949722,
+        "probePost": 0.027932960893854747
+      },
+      "medium": {
+        "n": 358,
+        "mean": 64.47206703910615,
+        "median": 62.0,
+        "p95": 84,
+        "p99": 109,
+        "max": 214,
+        "over50": 336,
+        "over100": 9,
+        "updateBand": 28.365921787709496,
+        "probePost": 0.04189944134078212
+      },
+      "low": {
+        "n": 358,
+        "mean": 60.039106145251395,
+        "median": 58.0,
+        "p95": 78,
+        "p99": 86,
+        "max": 196,
+        "over50": 307,
+        "over100": 2,
+        "updateBand": 25.150837988826815,
+        "probePost": 0.027932960893854747
+      }
+    },
+    "y": {
+      "full": {
+        "n": 358,
+        "mean": 67.60614525139665,
+        "median": 64.0,
+        "p95": 94,
+        "p99": 149,
+        "max": 258,
+        "over50": 331,
+        "over100": 11,
+        "updateBand": 25.455307262569832,
+        "probePost": 0.036312849162011177
+      },
+      "medium": {
+        "n": 358,
+        "mean": 57.47206703910614,
+        "median": 54.5,
+        "p95": 79,
+        "p99": 92,
+        "max": 219,
+        "over50": 250,
+        "over100": 3,
+        "updateBand": 23.511173184357542,
+        "probePost": 0.019553072625698324
+      },
+      "low": {
+        "n": 358,
+        "mean": 58.935754189944134,
+        "median": 56.0,
+        "p95": 77,
+        "p99": 95,
+        "max": 208,
+        "over50": 285,
+        "over100": 3,
+        "updateBand": 24.407821229050278,
+        "probePost": 0.0111731843575419
+      }
+    }
+  },
+  "blocks": [
+    {
+      "settings": {
+        "mode": "full",
+        "frames": 180,
+        "axis": "static",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 49.01117318435754,
+        "median": 46,
+        "p95": 63,
+        "p99": 111,
+        "max": 202,
+        "over50": 49,
+        "over100": 3,
+        "updateBand": 25.631284916201118,
+        "probePost": 0.027932960893854747
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "HIGH",
+      "combat": {
+        "actualShotFrames": 118,
+        "shots": 114,
+        "movingFrames": 971,
+        "targetFrames": 456,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 3
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    },
+    {
+      "settings": {
+        "mode": "medium",
+        "frames": 180,
+        "axis": "static",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 55.497206703910614,
+        "median": 52,
+        "p95": 77,
+        "p99": 95,
+        "max": 195,
+        "over50": 98,
+        "over100": 2,
+        "updateBand": 30.212290502793294,
+        "probePost": 0.05027932960893855
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "MEDIUM",
+      "combat": {
+        "actualShotFrames": 138,
+        "shots": 138,
+        "movingFrames": 936,
+        "targetFrames": 497,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 2
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    },
+    {
+      "settings": {
+        "mode": "low",
+        "frames": 180,
+        "axis": "static",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 52.32960893854749,
+        "median": 49,
+        "p95": 70,
+        "p99": 106,
+        "max": 190,
+        "over50": 81,
+        "over100": 3,
+        "updateBand": 25.93854748603352,
+        "probePost": 0.05027932960893855
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "LOW",
+      "combat": {
+        "actualShotFrames": 76,
+        "shots": 76,
+        "movingFrames": 925,
+        "targetFrames": 231,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 1
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    },
+    {
+      "settings": {
+        "mode": "low",
+        "frames": 180,
+        "axis": "static",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 50.92178770949721,
+        "median": 47,
+        "p95": 75,
+        "p99": 93,
+        "max": 142,
+        "over50": 71,
+        "over100": 1,
+        "updateBand": 25.854748603351954,
+        "probePost": 0.027932960893854747
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "LOW",
+      "combat": {
+        "actualShotFrames": 82,
+        "shots": 82,
+        "movingFrames": 899,
+        "targetFrames": 336,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 1
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    },
+    {
+      "settings": {
+        "mode": "medium",
+        "frames": 180,
+        "axis": "static",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 47.055865921787706,
+        "median": 45,
+        "p95": 64,
+        "p99": 78,
+        "max": 159,
+        "over50": 46,
+        "over100": 1,
+        "updateBand": 23.46927374301676,
+        "probePost": 0.0335195530726257
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "MEDIUM",
+      "combat": {
+        "actualShotFrames": 107,
+        "shots": 107,
+        "movingFrames": 850,
+        "targetFrames": 583,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 3
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    },
+    {
+      "settings": {
+        "mode": "full",
+        "frames": 180,
+        "axis": "static",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 49.26815642458101,
+        "median": 48,
+        "p95": 62,
+        "p99": 72,
+        "max": 168,
+        "over50": 59,
+        "over100": 1,
+        "updateBand": 25.29050279329609,
+        "probePost": 0.0223463687150838
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "HIGH",
+      "combat": {
+        "actualShotFrames": 129,
+        "shots": 129,
+        "movingFrames": 837,
+        "targetFrames": 559,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 3
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    },
+    {
+      "settings": {
+        "mode": "full",
+        "frames": 180,
+        "axis": "x",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 56.273743016759774,
+        "median": 53,
+        "p95": 75,
+        "p99": 101,
+        "max": 184,
+        "over50": 119,
+        "over100": 3,
+        "updateBand": 25.134078212290504,
+        "probePost": 0.01675977653631285
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "HIGH",
+      "combat": {
+        "actualShotFrames": 120,
+        "shots": 120,
+        "movingFrames": 922,
+        "targetFrames": 620,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 2
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    },
+    {
+      "settings": {
+        "mode": "medium",
+        "frames": 180,
+        "axis": "x",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 64.0391061452514,
+        "median": 62,
+        "p95": 84,
+        "p99": 101,
+        "max": 214,
+        "over50": 164,
+        "over100": 3,
+        "updateBand": 28.65921787709497,
+        "probePost": 0.0223463687150838
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "MEDIUM",
+      "combat": {
+        "actualShotFrames": 148,
+        "shots": 148,
+        "movingFrames": 798,
+        "targetFrames": 92,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 0
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    },
+    {
+      "settings": {
+        "mode": "low",
+        "frames": 180,
+        "axis": "x",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 56.93296089385475,
+        "median": 55,
+        "p95": 74,
+        "p99": 86,
+        "max": 190,
+        "over50": 129,
+        "over100": 1,
+        "updateBand": 23.75977653631285,
+        "probePost": 0.0335195530726257
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "LOW",
+      "combat": {
+        "actualShotFrames": 131,
+        "shots": 131,
+        "movingFrames": 837,
+        "targetFrames": 263,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 1
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    },
+    {
+      "settings": {
+        "mode": "low",
+        "frames": 180,
+        "axis": "x",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 63.14525139664804,
+        "median": 61,
+        "p95": 78,
+        "p99": 84,
+        "max": 196,
+        "over50": 178,
+        "over100": 1,
+        "updateBand": 26.54189944134078,
+        "probePost": 0.0223463687150838
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "LOW",
+      "combat": {
+        "actualShotFrames": 138,
+        "shots": 138,
+        "movingFrames": 1035,
+        "targetFrames": 443,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 3
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    },
+    {
+      "settings": {
+        "mode": "medium",
+        "frames": 180,
+        "axis": "x",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 64.90502793296089,
+        "median": 62,
+        "p95": 82,
+        "p99": 109,
+        "max": 196,
+        "over50": 172,
+        "over100": 6,
+        "updateBand": 28.07262569832402,
+        "probePost": 0.061452513966480445
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "MEDIUM",
+      "combat": {
+        "actualShotFrames": 142,
+        "shots": 142,
+        "movingFrames": 934,
+        "targetFrames": 533,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 3
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    },
+    {
+      "settings": {
+        "mode": "full",
+        "frames": 180,
+        "axis": "x",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 61.62011173184357,
+        "median": 59,
+        "p95": 83,
+        "p99": 103,
+        "max": 262,
+        "over50": 144,
+        "over100": 3,
+        "updateBand": 25.050279329608937,
+        "probePost": 0.03910614525139665
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "HIGH",
+      "combat": {
+        "actualShotFrames": 128,
+        "shots": 128,
+        "movingFrames": 868,
+        "targetFrames": 469,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 3
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    },
+    {
+      "settings": {
+        "mode": "full",
+        "frames": 180,
+        "axis": "y",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 72.64804469273743,
+        "median": 67,
+        "p95": 103,
+        "p99": 185,
+        "max": 258,
+        "over50": 169,
+        "over100": 10,
+        "updateBand": 26.899441340782122,
+        "probePost": 0.03910614525139665
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "HIGH",
+      "combat": {
+        "actualShotFrames": 116,
+        "shots": 116,
+        "movingFrames": 753,
+        "targetFrames": 336,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 2
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    },
+    {
+      "settings": {
+        "mode": "medium",
+        "frames": 180,
+        "axis": "y",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 57.97206703910614,
+        "median": 55,
+        "p95": 82,
+        "p99": 92,
+        "max": 188,
+        "over50": 120,
+        "over100": 2,
+        "updateBand": 23.93854748603352,
+        "probePost": 0.0111731843575419
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "MEDIUM",
+      "combat": {
+        "actualShotFrames": 119,
+        "shots": 119,
+        "movingFrames": 854,
+        "targetFrames": 375,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 1
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    },
+    {
+      "settings": {
+        "mode": "low",
+        "frames": 180,
+        "axis": "y",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 59.26815642458101,
+        "median": 56,
+        "p95": 80,
+        "p99": 95,
+        "max": 208,
+        "over50": 147,
+        "over100": 2,
+        "updateBand": 24.05586592178771,
+        "probePost": 0.01675977653631285
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "LOW",
+      "combat": {
+        "actualShotFrames": 133,
+        "shots": 133,
+        "movingFrames": 974,
+        "targetFrames": 528,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 3
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    },
+    {
+      "settings": {
+        "mode": "low",
+        "frames": 180,
+        "axis": "y",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 58.60335195530726,
+        "median": 57,
+        "p95": 76,
+        "p99": 90,
+        "max": 172,
+        "over50": 138,
+        "over100": 1,
+        "updateBand": 24.75977653631285,
+        "probePost": 0.00558659217877095
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "LOW",
+      "combat": {
+        "actualShotFrames": 131,
+        "shots": 131,
+        "movingFrames": 928,
+        "targetFrames": 447,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 1
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    },
+    {
+      "settings": {
+        "mode": "medium",
+        "frames": 180,
+        "axis": "y",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 56.97206703910614,
+        "median": 54,
+        "p95": 73,
+        "p99": 91,
+        "max": 219,
+        "over50": 130,
+        "over100": 1,
+        "updateBand": 23.083798882681563,
+        "probePost": 0.027932960893854747
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "MEDIUM",
+      "combat": {
+        "actualShotFrames": 116,
+        "shots": 116,
+        "movingFrames": 919,
+        "targetFrames": 519,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 2
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    },
+    {
+      "settings": {
+        "mode": "full",
+        "frames": 180,
+        "axis": "y",
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 62.564245810055866,
+        "median": 61,
+        "p95": 77,
+        "p99": 84,
+        "max": 169,
+        "over50": 162,
+        "over100": 1,
+        "updateBand": 24.011173184357542,
+        "probePost": 0.0335195530726257
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "HIGH",
+      "combat": {
+        "actualShotFrames": 121,
+        "shots": 121,
+        "movingFrames": 859,
+        "targetFrames": 481,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 2
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "rawSHA256": "41EA12F645C09E09D6949FBC265BA6C986262B228848D1E8D1E6F6135759B77E",
+  "validWindows": 12,
+  "gcFrameLabels": [
+    "[mark]",
+    "[reap]",
+    "[sweep]"
+  ],
+  "totalSamples": 1157,
+  "gcSamples": 359,
+  "otherSamples": 798,
+  "gcContexts": {
+    "tdfc": 178,
+    "native-environment": 162,
+    "other": 10,
+    "turret-animation-context": 4,
+    "terrain-hit-chain": 3,
+    "rconnect": 2
+  },
+  "otherContexts": {
+    "native-render": 302,
+    "other": 151,
+    "tdfc": 78,
+    "terrain-hit-chain": 65,
+    "turret-animation-context": 45,
+    "weapon-bullet-chain": 42,
+    "native-environment": 41,
+    "native-unit-other": 36,
+    "rconnect": 21,
+    "probe": 12,
+    "addiction": 5
+  },
+  "gcStacks": [
+    [
+      "[\"[sweep]\",\"String$/_split\",\"String/http://adobe.com/AS3/2006/builtin::split\",\"GameBridge$/cls\",\"GameBridge$/snapshot\",\"TdfcRuntime$/onFrame\",\"[enterFrameEvent]\"]",
+      169
+    ],
+    [
+      "[\"[sweep]\",\"fe.graph::Grafon/sceneNativeEnvironment\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+      151
+    ],
+    [
+      "[\"[reap]\",\"fe.graph::Grafon/sceneNativeEnvironment\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+      11
+    ],
+    [
+      "[\"[reap]\"]",
+      6
+    ],
+    [
+      "[\"[reap]\",\"flash.events::EventDispatcher/addEventListener\",\"fl.managers::FocusManager/addFocusables\",\"fl.managers::FocusManager/addFocusables\",\"fl.managers::FocusManager/addedHandler\",\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+      2
+    ],
+    [
+      "[\"[reap]\",\"ActionExecutor$/apply\",\"TdfcRuntime$/onFrame\",\"[enterFrameEvent]\"]",
+      2
+    ],
+    [
+      "[\"[reap]\",\"SquadMind/context\",\"TdfcRuntime$/onFrame\",\"[enterFrameEvent]\"]",
+      2
+    ],
+    [
+      "[\"[reap]\",\"MSWSmartMotion/finish\",\"MSWSmartMotion/clear\",\"MSWSmartWeapons/detach\",\"MSWSmartWeapons/frame\",\"MoreSkillsWeaponsMod/onFrame\",\"[enterFrameEvent]\"]",
+      1
+    ],
+    [
+      "[\"[reap]\",\"[activation-object]\",\"RVKeybinds/tick\",\"RealisticVisionMod/onFrame\",\"[enterFrameEvent]\"]",
+      1
+    ],
+    [
+      "[\"[reap]\",\"[activation-object]\",\"rconnect.game::GameBridge$/probeOptional\",\"rconnect.game::GameBridge$/probe\",\"rconnect.game::GameBridge/roomKey\",\"rconnect.game::GameBridge/onVisForceFrame\"]",
+      1
+    ],
+    [
+      "[\"[reap]\",\"flash.geom::Transform/get matrix\",\"SceneEventBitmapFill/qualify\",\"SceneEventBitmapFill/update\",\"ScenePresentationCoordinator$/update\",\"ContinuousSceneMod$/onFrame\",\"[enterFrameEvent]\"]",
+      1
+    ],
+    [
+      "[\"[reap]\",\"PerceptionModel/observe\",\"TdfcRuntime$/onFrame\",\"[enterFrameEvent]\"]",
+      1
+    ],
+    [
+      "[\"[reap]\",\"Array$/_join\",\"Array/http://adobe.com/AS3/2006/builtin::join\",\"fe.graph::Grafon/sceneRegionColorKey\",\"fe.graph::Grafon/sceneApplyRegionAction\",\"fe.graph::Grafon/sceneApplyCompactDecal\",\"fe.graph::Grafon/sceneApply\",\"fe.graph::Grafon/decal\",\"fe.graph::Grafon/dyrka\",\"fe.loc::Location/hitTile\",\"fe.weapon::Bullet/run\",\"fe.weapon::Bullet/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+      1
+    ],
+    [
+      "[\"[reap]\",\"[activation-object]\",\"fe.graph::Grafon/sceneDecalPaint\",\"fe.graph::Grafon/decal\",\"Function/http://adobe.com/AS3/2006/builtin::apply\",\"fe.graph::Grafon/sceneApplyRegionAction\",\"fe.graph::Grafon/sceneApplyCompactDecal\",\"fe.graph::Grafon/sceneApply\",\"fe.graph::Grafon/decal\",\"fe.graph::Grafon/dyrka\",\"fe.loc::Location/hitTile\",\"fe.weapon::Bullet/run\",\"fe.weapon::Bullet/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+      1
+    ],
+    [
+      "[\"[reap]\",\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+      1
+    ],
+    [
+      "[\"[reap]\",\"fe.graph::Grafon/sceneEnsureUpcoming\",\"fe.graph::Grafon/sceneEnsure\",\"fe.graph::Grafon/sceneTick\",\"fe.inter::Camera/calc\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+      1
+    ],
+    [
+      "[\"[reap]\",\"GameBridge$/snapshot\",\"TdfcRuntime$/onFrame\",\"[enterFrameEvent]\"]",
+      1
+    ],
+    [
+      "[\"[reap]\",\"rconnect.game::GameBridge/roomKey\",\"rconnect.game::GameBridge/onMirrorFrame\",\"[enterFrameEvent]\"]",
+      1
+    ],
+    [
+      "[\"[reap]\",\"flash.events::EventDispatcher/addEventListener\",\"fl.managers::FocusManager/addFocusables\",\"fl.managers::FocusManager/addedHandler\",\"[execute-queued]\",\"flash.display::MovieClip/gotoAndStop\",\"fe.unit::UnitTurret/animate\",\"fe.unit::Unit/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+      1
+    ],
+    [
+      "[\"[reap]\",\"TacticalMind$/decide\",\"TdfcRuntime$/onFrame\",\"[enterFrameEvent]\"]",
+      1
+    ],
+    [
+      "[\"[reap]\",\"fe.graph::Grafon/sceneApplyRegionAction\",\"fe.graph::Grafon/sceneApplyCompactDecal\",\"fe.graph::Grafon/sceneApply\",\"fe.graph::Grafon/decal\",\"fe.graph::Grafon/dyrka\",\"fe.loc::Location/hitTile\",\"fe.weapon::Bullet/run\",\"fe.weapon::Bullet/step\",\"fe.loc::Location/step\",\"fe.loc::Land/step\",\"fe::World/step\",\"fe::MainMenu/mainStep\",\"[enterFrameEvent]\"]",
+      1
+    ],
+    [
+      "[\"[reap]\",\"TdfcRuntime$/onFrame\",\"[enterFrameEvent]\"]",
+      1
+    ],
+    [
+      "[\"[reap]\",\"String$/_split\",\"String/http://adobe.com/AS3/2006/builtin::split\",\"GameBridge$/cls\",\"GameBridge$/snapshot\",\"TdfcRuntime$/onFrame\",\"[enterFrameEvent]\"]",
+      1
+    ]
+  ],
+  "limits": "Internal allocation sampling was enabled and adds overhead. CPU sample counts are not wall-time shares. The caller triggering GC does not identify all allocation producers."
+}

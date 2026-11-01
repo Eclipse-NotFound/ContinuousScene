@@ -1,0 +1,147 @@
+{
+  "name": "camera-temporal-present-v28-20261101-r1",
+  "ok": false,
+  "error": "on-screen-combat-0: {\"playerOnscreen\":false,\"frames\":180,\"atLeastThreeEnemyFrames\":0}\nError: on-screen-combat-0: {\"playerOnscreen\":false,\"frames\":180,\"atLeastThreeEnemyFrames\":0}\n\tat ContinuousSceneMotionMod$/assertThat()\n\tat ContinuousSceneMotionMod$/after()",
+  "rawSHA256": "CA6836EF4C248196877FF1055A256CFF7351B1FE7EA3C3A9CC1F29FD234AF3A1",
+  "diagnosticOnly": true,
+  "legacyPerformanceEligible": false,
+  "environment": {
+    "otherAirProcessIds": [],
+    "runFailure": null,
+    "minimumAvailableCommit": 7078846464
+  },
+  "assertions": 22,
+  "failedChecks": [
+    {
+      "detail": {
+        "playerOnscreen": false,
+        "frames": 180,
+        "atLeastThreeEnemyFrames": 0
+      },
+      "name": "on-screen-combat-0",
+      "ok": false
+    }
+  ],
+  "entry": {
+    "units": 132,
+    "scale": 1,
+    "stageWidth": 1904,
+    "stageHeight": 1041,
+    "x": 4280,
+    "y": 2840
+  },
+  "qualityCapability": null,
+  "qualityRestored": null,
+  "nativeRepeat": null,
+  "pixels": [
+    {
+      "presenter": {
+        "maximumAge": 0,
+        "width": 1080,
+        "drawMs": 49,
+        "captures": 1,
+        "height": 649,
+        "restored": 1,
+        "overlayVisible": false,
+        "hidden": false,
+        "sourceVisible": true,
+        "age": 1,
+        "updates": 1,
+        "held": 0,
+        "mode": "half2"
+      },
+      "mode": "half2",
+      "restore": {
+        "maxAlpha": 0,
+        "changed": 0,
+        "maxRGB": 0
+      }
+    },
+    {
+      "presenter": {
+        "maximumAge": 0,
+        "width": 1080,
+        "drawMs": 86,
+        "captures": 2,
+        "height": 649,
+        "restored": 2,
+        "overlayVisible": false,
+        "hidden": false,
+        "sourceVisible": true,
+        "age": 1,
+        "updates": 2,
+        "held": 0,
+        "mode": "half3"
+      },
+      "mode": "half3",
+      "restore": {
+        "maxAlpha": 0,
+        "changed": 0,
+        "maxRGB": 0
+      }
+    }
+  ],
+  "byAxis": {
+    "static": {
+      "full": {
+        "n": 179,
+        "mean": 41.3463687150838,
+        "median": 39,
+        "p95": 57,
+        "p99": 71,
+        "max": 203,
+        "over50": 25,
+        "over100": 1,
+        "updateBand": 23.134078212290504,
+        "probePost": 0.0111731843575419
+      }
+    }
+  },
+  "blocks": [
+    {
+      "settings": {
+        "axis": "static",
+        "mode": "full",
+        "frames": 180,
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 179,
+        "mean": 41.3463687150838,
+        "median": 39,
+        "p95": 57,
+        "p99": 71,
+        "max": 203,
+        "over50": 25,
+        "over100": 1,
+        "updateBand": 23.134078212290504,
+        "probePost": 0.0111731843575419
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "HIGH",
+      "combat": {
+        "actualShotFrames": 146,
+        "shots": 142,
+        "movingFrames": 1045,
+        "targetFrames": 631,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 0
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    }
+  ]
+}

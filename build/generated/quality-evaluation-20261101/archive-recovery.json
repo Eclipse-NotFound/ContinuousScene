@@ -1,0 +1,9 @@
+{
+  "initialFinalizerFailure": "Windows CreateProcess WinError 206: command line too long while adding 422 frozen evidence files.",
+  "completedBeforeFailure": ["state/MEMORY.md own marked block", "state/journal.md own marked block", ".gitattributes exact-byte rules"],
+  "indexBeforeResume": ["state/MEMORY.md", "state/journal.md"],
+  "correction": "Pass the exact path list as NUL-separated stdin. Resume accepts only the two verified own state blobs and the exact own attribute block; pre-existing worktree changes stay untouched.",
+  "secondArchiveCheck": "git diff --check identified space-only lines in the already compiled v28/v30 frozen probe sources. Keep their exact compiler-input bytes; document whitespace exceptions for those two frozen files only. Verify all archived index blobs in a single git cat-file batch.",
+  "runtimeEvidenceChanged": false,
+  "productionFilesChanged": false
+}

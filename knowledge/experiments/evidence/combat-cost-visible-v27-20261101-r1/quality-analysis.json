@@ -1,0 +1,100 @@
+{
+  "name": "combat-cost-visible-v27-20261101-r1",
+  "ok": false,
+  "error": "on-screen-combat-0: {\"playerOnscreen\":false,\"frames\":90,\"atLeastThreeEnemyFrames\":0}\nError: on-screen-combat-0: {\"playerOnscreen\":false,\"frames\":90,\"atLeastThreeEnemyFrames\":0}\n\tat ContinuousSceneMotionMod$/assertThat()\n\tat ContinuousSceneMotionMod$/after()",
+  "rawSHA256": "0BC57326F64296EA3305A8F41F9DA04B471070681CF30EC271FF9B90E9919261",
+  "diagnosticOnly": true,
+  "legacyPerformanceEligible": false,
+  "environment": {
+    "otherAirProcessIds": [],
+    "runFailure": null,
+    "minimumAvailableCommit": 6742110208
+  },
+  "assertions": 18,
+  "failedChecks": [
+    {
+      "detail": {
+        "playerOnscreen": false,
+        "frames": 90,
+        "atLeastThreeEnemyFrames": 0
+      },
+      "name": "on-screen-combat-0",
+      "ok": false
+    }
+  ],
+  "entry": {
+    "units": 140,
+    "scale": 1,
+    "stageWidth": 1904,
+    "stageHeight": 1041,
+    "x": 4280,
+    "y": 2840
+  },
+  "qualityCapability": null,
+  "qualityRestored": null,
+  "nativeRepeat": null,
+  "pixels": null,
+  "byAxis": {
+    "static": {
+      "full": {
+        "n": 89,
+        "mean": 47.674157303370784,
+        "median": 39,
+        "p95": 59,
+        "p99": 355,
+        "max": 450,
+        "over50": 13,
+        "over100": 2,
+        "updateBand": 23.337078651685392,
+        "probePost": 0.0449438202247191
+      }
+    }
+  },
+  "blocks": [
+    {
+      "settings": {
+        "mode": "full",
+        "axis": "static",
+        "frames": 90,
+        "fps": 120
+      },
+      "complete": true,
+      "metrics": {
+        "n": 89,
+        "mean": 47.674157303370784,
+        "median": 39,
+        "p95": 59,
+        "p99": 355,
+        "max": 450,
+        "over50": 13,
+        "over100": 2,
+        "updateBand": 23.337078651685392,
+        "probePost": 0.0449438202247191
+      },
+      "counters": {
+        "sceneResident": 0,
+        "sceneRedraws": 0,
+        "sceneEvictions": 0,
+        "sceneDrawMs": 0,
+        "sceneWarmForced": 0,
+        "sceneWarmCount": 0,
+        "sceneMisses": 0
+      },
+      "quality": "HIGH",
+      "combat": {
+        "actualShotFrames": 49,
+        "shots": 45,
+        "movingFrames": 478,
+        "targetFrames": 43,
+        "aliveStart": 6,
+        "aliveEnd": 6,
+        "targetingEnd": 1
+      },
+      "presenter": {
+        "captures": 0,
+        "drawMs": 0,
+        "restored": 0
+      }
+    }
+  ]
+}
