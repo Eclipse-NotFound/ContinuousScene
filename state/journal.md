@@ -1,4 +1,36 @@
 
+## 2026-11-02 — 部署 CS 0.9.4：分帧平滑唤醒（Phase 1 削峰）
+
+- 用户按优化方案授权实施。`NativeSceneActivity.update` 拆分唤醒语义：**紧急信号（掉血/交战/弹道威胁/状态效果/非敌对/功能关闭）保持原即时唤醒**；仅预期性唤醒（邻近 1900×1300 / 视口 +600px 边界）进入每帧预算队列，**最近者优先，默认 1 个/帧**，余者保持冻结+跳过 step，后续帧再授予。镜头扫过敌群时的同帧 resume+step+gotoAndStop 风暴被摊到多帧。
+- 纯模组层改动（src 两文件：NativeSceneActivity.as、ContinuousSceneMod.as 版本 0.9.3→0.9.4），stats 增加 budget/version（"smooth-wake-1"），nativeAPI 增加 activityBudget 可调。冻结配方与 src 已核对逐字一致，`build.ps1 -DriverOnly` 重编。
+- 隔离验证（登记 game-coexist，宿主 A9B3 + 14 模组 + 探针，`smooth-wake-v094-mechanics-r1`）：**27/27 断言通过**，含 8 项调度语义（远敌休眠 124/186、邻近唤醒、追击保持、伤害/弹道即时唤醒、禁用全恢复）与门/边界/奖励池/跨房机制。无计时声明。
+- 已部署：release/ContinuousSceneMod.swf → **DF3B6812**（0.9.4），备份 `ContinuousSceneMod-0.9.3-D8A68A4C-before-smooth-wake-20261102-000448.swf`，回执 `state/smooth-wake-deployment-20261102.json`。**需重启游戏生效**；回退=备份覆盖。
+- Phase 2–4（AI 分频、动画防抖、安全屏外剔除）未实施：均需宿主方法替换，待本轮实测反馈后另行推进。旧 UnitSpectre 回归教训对 Phase 4 仍有效。
+
+
+## 2026-11-01 — 视口预过滤负结果：Location.step 修改导致全面回归
+
+- Location.step() 链表迭代中加入视口过滤（>800px Unit 跳过 step）导致**全面恶化**：战斗静止 44.5→49.2、走路左 33.8→42.3、静止后 44.5→51.9。原因可能是方法体积超出 JIT 阈值或链表检查开销。不部署；当前 A9B39CC7（空间碰撞-only）仍为最优。报告 `viewport-prefilter-negative-20261101.md`。
+
+## 2026-11-01 — 部署空间分区碰撞（战斗静止 −21.7%）
+
+- Grafon.sceneTick 每帧构建视口内（±500px）单位子列表存于 `visual.root["sceneCU"]`；Bullet.run 碰撞优先读子列表（~15 单位 vs 全量 ~130），回退安全。
+- **12 敌人战斗静止 56.8→44.5ms（−12.3ms，−21.7%）**；战斗走动 54.6→51.4ms（−5.9%）；非战斗无回归。无可见性管理（避免 UnitSpectre 问题），无视觉影响。
+- 已部署：根 pfe.swf → **A9B39CC7**，备份 `pfe_before_spatial_collision_20261101-225837.swf`，回执 `host-patch-receipt-spatial-collision-20261101.json`；冒烟 10 断言通过。报告 `spatial-collision-deploy-20261101.md`。需重启生效。
+
+## 2026-11-01 — 多敌人卡顿调查：O(n²) 子弹碰撞归因（非镜头问题）
+
+- v12 变敌数探针（0/3/12）测量：战斗走动 0敌 36.6ms → 3敌 41.6ms → 12敌 54.6ms（**每敌人 ~1.5ms，超线性至 1.96**）。战斗静止 12敌 56.8ms（超 33ms 目标 24ms）。非战斗相位不受敌数影响。
+- **根因**：`Bullet.as:503` 每颗子弹对**所有 ~130 单位**做 AABB 碰撞（无空间分区）。12敌时 ~40 发 × 130 = **~5200 检查/帧** + 命中音效/特效/伤害。这与镜头移动无关——四层镜头优化已到位，剩余卡顿来自游戏碰撞架构。
+- 修复方向：①空间分区（网格索引，最大收益）；②视口内单位预过滤（中等）；③降射速（改玩法）。报告 `multi-enemy-stutter-20261101.md`。
+
+## 2026-11-01 — 质量管理最终判定：AIR direct 渲染下不可行（负结果关闭）
+
+- 四轮尝试（宿主 visFront / mm.stage / mm+sleep / CS 模组 ENTER_FRAME）均导致回归或无效。CS 模组版本（从冻结源重建、加入 onFrame 质量管理）战斗走动 56.5ms vs 基线 42.5ms（+14ms）。
+- **v11 探针的 15~17% "改善"是伪象**：探针每帧设置 quality 属性触发显示列表失效（invalidate），LOW/HIGH 差异来自失效+重栅格化代价差，不是 LOW 质量的稳态渲染加速。在 AIR `renderMode="direct"` 下，任何触碰 stage.quality 都破坏 GPU 渲染缓存。
+- 此方向**永久关闭**。根 pfe.swf 保持 CA94AF17（四层），CS 模组保持 D8A68A4C（0.9.3 原版）。报告 `quality-final-negative-20261101.md`。
+- 注：另一会话同日迭代审查发现第四层（屏外单位显隐）在 UnitSpectre 上有 false→true 视觉影响，建议安全撤掉——见其 `camera-iteration-review-20261101.md`。
+
 <!-- quality-and-dense-20261101 -->
 ## 2026-11-01 — 画质取舍与画面内多敌人诊断；候选均未达部署门槛
 
@@ -19,7 +51,6 @@
 - 报告knowledge/experiments/lossless-cut-survey-20261101.md；冻结源、原始结果、环境和汇总位于build/generated/lossless-cut-survey-20261101及manifest列出的本轮目录。剩余限制明确保留：尚未达到近原版，未证明所有可能的无损重构均无收益。
 <!-- /lossless-cut-survey-20261101 -->
 
-
 <!-- camera-optimization-20261101 -->
 ## 2026-11-01 — 撤回单位显隐回归；九轮镜头候选复验
 
@@ -38,6 +69,67 @@
 - 35次>100ms中32次伴随明显内存回落；12/12调用栈窗口有效，炮塔重建/FocusManager链与TDFC快照列为候选，不能按分配计数直接宣称收益。276/304/537ms剩余长停顿未归因。
 - 纠正旧探针菜单显示层残留、阶段45计时像素哈希、30fps上限及缺少正式纵移测量等证据边界；失败准备原件保留。
 - 报告：knowledge/experiments/camera-iteration-review-20261101.md；配方camera-review-v4/v5/v6-20261101。技能反馈已登记全局台账。所有自有测试/登记结束；他人工作树不纳入本提交。
+
+## 2026-11-01 — 质量/休眠负结果与回退到第四层
+
+- 第五层 visFront.stage 质量：无效（visFront.stage 可能 null，3 轮 vs 基线无差异）。第六层 mm.stage 质量：**严重回归 +10ms**（可能 AIR 值规范化致每帧重设+缓存清除）。敌人 sleep：**严重回归 +15ms**（AS3 internal 跨包异常 × 139单位 × 30fps）。全部已回退。
+- 已回退到 **CA94AF17**（四层：预算48+A2 gutter+屏外隐藏）。v11 探针证实质量降级从模组 ENTER_FRAME 设置可改善 15~17%，但宿主 Grafon 路径不可靠。推荐下一步在 CS 模组层面实现质量管理（需重建 CS 模组）。报告 `quality-sleep-negative-20261101.md`。
+
+## 2026-11-01 — 部署 LOW 渲染质量（五层完成）
+
+- v11 探针同轮 A/B 显示 LOW vs HIGH 在战斗走动中改善 **15~17%**（4 项测量一致：−7.4~−8.3ms）。跨轮 A/B（3 对 pooled）无差异（噪声掩盖）。探针验证无效（beforeNative 覆盖宿主设置）。
+- 候选 `8321E4E7…`（仅 `sceneTick`：`visFront.stage.quality="low"` 当 `sceneLarge=true`，退出时恢复 `"high"`；同时保留屏外隐藏）。地形为预渲染位图不受影响；单位/特效边缘略粗糙。
+- 已部署：根 pfe.swf → 8321E4E7，备份 `pfe_before_lowquality_20261101-013945.swf`，回执 `host-patch-receipt-lowquality-20261101.json`；冒烟 10 断言通过。若视觉不可接受可回退。五层累计见 `lowquality-deploy-20261101.md`。
+
+## 2026-11-01 — 部署屏外单位可见性管理（四层完成）
+
+- v10 探针 A/B（同轮 ON/OFF）显示 13~21%；宿主干净 A/B（3 对）pooled +1.4%（0.6ms，P95 56→54），2/3 对改善。探针级数字高估（OFF 基线强制全 visible）。候选 `CA94AF17…`（仅 `sceneTick`）已部署，备份 `pfe_before_unitvis_20261101-004531.swf`，回执 `host-patch-receipt-unitvis-20261101.json`；冒烟 10 断言通过。四层累计见 `unitvis-deploy-20261101.md`；剩余瓶颈为战斗/AI（~5-8ms）与原生渲染（~20-25ms）。
+
+## 2026-10-31 — 部署预算上限 48ms（三层累计评估完成）
+
+- misses 分析：快速平移中预算始终钳制在 36（55/55 帧），misses 每 4 帧出现（跨块周期）；吞吐量需求 ~48ms/帧 > 预算 36 → 缺口由同步补绘填补。
+- 候选 `9D8662F6…`（仅 `Math.min(36→48)`，视觉零变化）：快速平移两轮 misses 17→9~10、forced→0、P95 156→122~140、max 181→161~179、空洞 0。正常速度 ±0.91ms 内无回归。
+- 已于 17:12 部署：根 pfe.swf 8EAAE4EE→9D8662F6，备份 `pfe_before_budget48_20261031-171254.swf`，回执 `host-patch-receipt-budget48-20261031.json`；安装后隔离字节探针 10 断言通过。
+- **三层累计**（vs A80 同 RV）：mean −5~9%、P95 −18~29%、max −40~46%、misses −57~61%、forced −100%、空洞始终 0。报告 `budget48-deploy-20261031.md`。
+
+## 2026-10-31 — 部署 A2 gutter 快速暖块（当前宿主 → 8EAAE4EE）
+
+- 用户允许有限视觉取舍后重评 A2：预热时跳过仅覆盖 gutter 的风格整绘。当前宿主 626DFBC8 上单方法替换 `sceneBeginWarm`，候选 `8EAAE4EE…`；仅该方法变化、1016 类布局不变。
+- v8 快速平移两轮：基线 r4 82.73/171/298、forced 4、misses 23；A2 r1 75.84/153/186、forced 0、misses 15；A2 r4 78.78/156/181、forced 1、misses 17；空洞 0。v7 正常速度各相位 ±0.7ms；front/voda 中心像素 0 差异（52+11 共同块）。
+- 已于 16:39 部署：根 pfe.swf 626DFBC8→8EAAE4EE，备份 `pfe_before_a2_gutter_20261031-163909.swf`，回执 `host-patch-receipt-a2-gutter-20261031.json`；安装后隔离字节探针 10 断言通过。代价：gutter 近似（伤害/WB 边界采样），当前 WB 关闭；若启用需重评。需重启生效。
+
+## 2026-10-31 — 性能优化切口全面搜查：转塔守卫否定，分配≠帧时间
+
+- 当前宿主 626DFBC8 重跑帧成本采样（2160 帧/48 窗，47 窗有效，1 窗 Sample count mismatch 原件保留）。画像：原生 `[render]`+`[pre-render]` 45–132 CPU 样本/8 窗（最大）；`sceneNativeEnvironment` ~14,900 分配/8 窗；`UnitTurret.animate→gotoAndStop` 链 12–17 CPU、1,050–1,920 分配，并带动 FocusManager/Sprite 子对象；`sceneEnsureUpcoming` 1,390–2,430 分配；JSON persist / NetHud 属其它模组。
+- 候选：`UnitTurret.animate` 同帧守卫（仅当 `puha.currentFrame != tr` 才 gotoAndStop），单方法替换 `1666FCB1…`；两轮配对无帧收益（static/pan/walk ±0.3~2.6ms、方向多为略差），否定。
+- 结论：分配 churn 不等于帧时间（与旧 `sceneNativeEnvironment` clamp 一致）；剩余最大 CPU 是原生渲染，需视觉门禁；已部署的预热预算仍是唯一有同日成对证据的视觉中性收益。报告 `performance-cut-survey-20261031.md`。
+
+## 2026-10-31 — 部署视觉中性预热预算补丁（A80 → 626DFBC8）
+
+- 用户批准部署。安装前目标 A80ED32B… 未变、候选 626DFBC8… 与审计产物一致；备份 `pfe_before_visualneutral_budget_20261031-121918.swf`（A80 原字节），覆盖根 `pfe.swf` 并回读 626DFBC8…。回执 `build/host-patch-receipt-visualneutral-budget-20261031.json`。
+- 安装后冒烟：部署字节复制进隔离运行时，v7 探针完整通过（ok、10 项断言、1115 帧）；该轮与 RConnect 长测试并发，相位偏慢（38–44ms）不作性能证据，性能证据用安装前同日成对轮（P95 237/238→137/180，max 332/406→221/333，forced 3→2，空洞 0）。
+- 回退：用备份覆盖根 `pfe.swf` 即可恢复 A80ED32B…；CS 模块/WB/RV/RC/配置未动（CS 模块仍 D8A68A4C…）。需重启游戏生效。
+
+## 2026-10-31 — A3 慢帧定位与视觉中性预算候选
+
+- A3 慢帧不是每帧开销：v9 计时探针手动调用 `g.sceneTick()` 三宿主均为 0.07–0.65ms；A3 正常相位落后来自偶发大帧（pan 均值 45.7ms，剔除前 8 帧后 34.1ms；出现 1817ms 单帧）。A3 因此不再推进。
+- 视觉中性候选（A80 单方法替换 `sceneEnsureUpcoming`）：预热环 ±2→±3、预算上限 24→36ms，候选 `626DFBC8…`；审计仅该方法改变、1016 类布局不变。绘制路径未动；front/voda 中心像素 0 差异（29+5 个共同块），back/back2 为动画噪声。
+- 快速平移两轮（同日基线）：P95 237/238→137/180，max 332/406→221/333，mean −4.3/−5.5ms，forced 3→2，空洞 0；>100ms r1 11→7、r2 11→11。正常速度各相位 ±0.15ms；默认窗口 1280×720 冒烟 9 项断言通过、33.27–35.52ms。代价：极端场景驻留 +14~19 块（≈36–49MB）。
+- 未部署；候选与证据保留。报告 `knowledge/experiments/visual-neutral-budget-20261031.md`；证据 `camera-baseline-1031-v8-r{1,2}`、`camera-budget-fast-1031-r{1,2}`、`camera-baseline-1031-v7-r1`、`camera-budget-normal-1031-r1`、`camera-budget-default-1031-r1`；构建 `camera-a80-budget-20261031/`；计时探针 v9 `56E82449`。
+
+## 2026-10-30 — A80 移植 A2/A3：实测未达流畅度门槛，不部署
+
+- 从 A80 自身方法布局构建 A2-A80 `7180CD1A`（仅 sceneBeginWarm）、A3-A80 `5E318EC6`（再改 sceneEnsureUpcoming）；均载入运行、探针通过。A80 反编译源 importScript 因 `findproperty` 预处理指令失败，作失败原件；改用已验证的干净 81C1 源向 A80 单方法替换。
+- v8 快速平移：基线 78.93ms/P95 204/max 343/forced 3/空洞 0；A2 71.73/179/309/3/0；A3 117.07/206/255/0/24。A3 尖峰降低但平均更差、>100ms 11→30、24/55 帧空洞。
+- v7 同会话重跑基线：A2 正常相位 ±1.6ms、跨新块 39.28→37.03；A3 无 misses/预绘/空洞仍 +3~9ms，两次复跑一致。控制实验：A80↔81C1 的 sceneEnsureUpcoming 字节相同；FFDec 重编译原方法 `changed=[]`，排除重编译副作用；A3 慢帧原因未完全定位。
+- 用户条件“空洞若实证大幅提升则接受”不满足：A3 平均更慢且正常相位回归；A2 收益小未达明显门槛。**不部署**，A80/D8A/WB/RV/RC/配置/存档未改。报告 `knowledge/experiments/a80-fastwarm-port-20261030.md`；证据 `camera-a80-*-20261030-r*`、`camera-baseline-now-20261030-r1`。
+
+## 2026-10-30 — 三项镜头实验完成：战斗走动归因、默认窗口对照、快速暖块/有界补绘候选
+
+- 第1项：固定走廊(841.8/4960) v3探针，无战斗走动 +0.5~1.2ms；6敌+玩家开火战斗静止 +5.0ms、战斗走动 +11.6/+8.4ms，与用户真实记录走动差 +11.2ms 同量级。结论：战斗/AI 是运动差主体，地形预绘次之（报告 `camera-combat-window-lead-20261029.md`，证据 `camera-combat-walk-lead-20261029-r2`）。
+- 第2项：默认窗口 1280×720（内容区1264×681、scale0.6583、呈现回退原生）静止33.36、横移33.31、回驻留走动34.18、跨新块37.34ms(22块)，与scale1几乎同速；窗口/缩放本身不解释卡顿（同报告，证据 `camera-default-window-lead-20261029-r1`）。
+- 第3项：58块归因双风格组76.2ms≈单组38.3ms的2倍，常由40px gutter触发整块重画（`chunk-cost-attribution-20261030.md`）。候选A2单改sceneBeginWarm（81C1诊断宿主 C33A2FBC，仅1方法变化）：边界块78.8→56.7ms(−28%)，front/voda中心像素0差异（基线-基线噪声对照）。候选A3再单改sceneEnsureUpcoming有界补绘（A2CB22A7）：80px/帧快速平移最大帧343→161ms、P95 204→139、forced 3→0；代价21/55帧短暂空洞，正常速度无回归（`chunk-fastwarm-candidate-20261030.md`、`chunk-forced-spike-candidate-20261030.md`）。
+- 均未部署：A2/A3为81C1血缘诊断宿主，不含A80后续补丁；部署前需A80移植、WB/空洞视觉门禁，并需用户接受"极端速度短暂空洞换300ms卡顿"取舍。A3 r1的#1010（81C1缺单位边界修复）与r2的#1069（新字段未进trait）作失败原件保留；探针v3/v7/v8、候选A/A2/A3构建与全部运行原件保留。
 
 ## 2026-10-29 — 优先修复原启动器与多会话测试路径
 

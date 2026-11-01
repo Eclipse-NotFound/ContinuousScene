@@ -14,7 +14,7 @@ package {
 
     /** Production entry only: no new game, test enemies, movement or save-slot writes. */
     public class ContinuousSceneMod {
-        public static const VERSION:String="0.9.3";
+        public static const VERSION:String="0.9.4";
         private static const LAND:String="continuous_scene";
         private static var main:*, w:*, worldClass:Class, gameData:Class;
         private static var pool:XML, definition:XML;
@@ -43,6 +43,7 @@ package {
                 takeXP:NativeSceneAdapter.takeXP,detecting:NativeSceneAdapter.detecting,
                 activity:NativeSceneActivity.update,sleeping:NativeSceneActivity.sleeping,
                 wake:NativeSceneActivity.wake,activityStats:NativeSceneActivity.stats,
+                activityBudget:NativeSceneActivity.budget,
                 alicornAllow:SceneAlicornAlerts.allow,alicornReceive:SceneAlicornAlerts.receive,
                 alicornClear:SceneAlicornAlerts.clear};
             main.addChild(carrier); log("v"+VERSION+" loaded");

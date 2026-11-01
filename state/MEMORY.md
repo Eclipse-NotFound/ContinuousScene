@@ -1,5 +1,13 @@
 # ContinuousScene — 当前快照
 
+<!-- smooth-wake-v094-20261102 -->
+> 2026-11-02 **已部署 CS 0.9.4 分帧平滑唤醒（优化方案 Phase 1）**：正式宿主 A9B39CC7 不变；CS release → **DF3B6812**（0.9.4），WB FE3、RV AEA、RC6906 等其余 13 模组不变。需重启游戏生效；回退=备份 `build/backups/ContinuousSceneMod-0.9-3-D8A68A4C-before-smooth-wake-20261102-000448.swf` 覆盖 release，回执 `state/smooth-wake-deployment-20261102.json`。
+>
+> 改动仅在模组层：`NativeSceneActivity.update` 将唤醒拆为紧急（掉血/交战/弹道威胁/状态/非敌对/功能关闭，保持即时）与预期性（邻近/视口边界）两类，后者走每帧预算（默认 1 个/帧、最近者优先、其余保持冻结跳步），摊平镜头扫过敌群时的同帧 resume+step+gotoAndStop 风暴；stats 加 budget/version，nativeAPI 加 activityBudget。隔离验证 `smooth-wake-v094-mechanics-r1`（登记 game-coexist，A9B3+14模组+探针）**27/27 断言通过**（8 项调度语义+机制/门/奖励池）。无计时声明：平滑削峰的实测收益待玩家/后续探针反馈。
+>
+> 优化方案 Phase 2（AI 索敌分频）、Phase 3（animate 防抖/GC）、Phase 4（状态保真屏外剔除）**未实施**——均需宿主方法替换与独立验证；Phase 4 必须先过 UnitSpectre 显隐回归教训（camera-iteration-review-20261101）。
+<!-- /smooth-wake-v094-20261102 -->
+
 <!-- quality-and-dense-20261101 -->
 > 2026-11-01 画质取舍及多敌人续查结束：**本轮无新部署、性能目标未达成**。正式根宿主仍9D8662F6，CS D8A、WB FE3、RV AEA、RC6906等14模组及application.xml保持。全部自有测试结束。
 >
@@ -36,7 +44,7 @@
 
 ## 1. 模组与当前任务
 
-全图碰撞、敌人、物品预生成，画面按视野准备，镜头与弹体连续跨房；远处未参战敌人可暂缓。当前CS0.9.3另含单地图编辑、天角兽局部报警/接力概率、SATS按视野截图及有条件的地形呈现复用，原版连续模式由设置开关控制。
+全图碰撞、敌人、物品预生成，画面按视野准备，镜头与弹体连续跨房；远处未参战敌人可暂缓。当前CS0.9.4（分帧平滑唤醒）另含单地图编辑、天角兽局部报警/接力概率、SATS按视野截图及有条件的地形呈现复用，原版连续模式由设置开关控制。
 
 性能任务仍未完成。用户明确优先镜头移动，并补充V开启SATS延迟；入口为普通游戏／模组启动器。SATS已修复部署；2026-10-29 02:58又部署有限镜头优化，真实产品横移约11.7%、纵移约9.7%、原生移动交战约6%平均间隔改善，但长停顿仍有，不宣称近原版或完整解决。不能用暂停世界、删敌或探针局部helper数字冒充真实产品收益。当前没有goal对象。
 
@@ -60,8 +68,8 @@
 
 | 文件 | SHA256 |
 |---|---|
-| 根pfe.swf | A80ED32BEE50C612CB46EA1E581C8CA9C81072E0B9E6EE1A51E5BACEFBDCBA19 |
-| CS0.9.3 | D8A68A4C128E196FD69B50D1CC7F0FFA72669751FB2FCB85D629F30FE622E677 |
+| 根pfe.swf | A9B39CC742078D7A7D9F289EE408EDAE11C3AAC376A43246B306B91AC7AD2D94（2026-11-01 空间分区碰撞+预算48+A2；无屏外隐藏（并行会话回退）；备份 pfe_before_spatial_collision_20261101-225837.swf → pfe_before_budget48_20261031-171254.swf → pfe_before_a2_gutter_20261031-163909.swf → pfe_before_visualneutral_budget_20261031-121918.swf） |
+| CS0.9.4 | DF3B68123ACDC539E7CC718225A13DBB5D605F15F7571C14677171D2486C8426（2026-11-02 平滑唤醒；回退备份见顶部段落；旧 0.9.3 = D8A68A4C…2E677） |
 | WB0.5.10-scene | FE3E7A84753F6F3614440F69F8725E6E8639AEE4755ACF878AAFCFEDB95AC2E6 |
 | TDFC | 7ACD45193109267DBBF875240528048AD6F1D09FA3B8B36BAA6F98EBB5FDDCE5 |
 | ModLoader2.5 | 2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2 |
@@ -72,6 +80,24 @@
 共享工具本轮更新：air_test_process 010597B0、launch_integrity 6EEBD3CD、test_registry 8E052672、mod_debugger 86AEAE63；test_resources仍86D5F280。资源只设自有子进程normal CPU、memory5、HighQoS，不能改全局或外部进程。
 
 ## 4. 最新接续：启动与测试路径已恢复，三层缩放候选仍待性能验收
+
+2026-10-30 三项镜头实验完成（本会话）：①战斗走动 +11.6ms 对应用户 +11.2ms 走动差，战斗/AI 为运动差主体；②默认窗口 1280×720（scale0.6583、回退原生）与 scale1 近同速；③块归因双风格组=2×单组，候选 A2（C33A2FBC，仅 sceneBeginWarm）边界块 78.8→56.7ms、中心像素不变；候选 A3（A2CB22A7，再改 sceneEnsureUpcoming）快速平移最大帧 343→161、forced 3→0，代价极端速度 21/55 帧空洞。均为 81C1 诊断宿主、未部署；需 A80 移植+WB/空洞门禁+用户取舍。报告 `camera-combat-window-lead-20261029.md` / `chunk-cost-attribution-20261030.md` / `chunk-fastwarm-candidate-20261030.md` / `chunk-forced-spike-candidate-20261030.md`。
+
+2026-10-30 A80 移植判定：A2-A80 `7180CD1A`（仅 sceneBeginWarm）、A3-A80 `5E318EC6`（再改 sceneEnsureUpcoming）在 A80 上单方法替换、载入运行通过；控制实验证明 A80↔81C1 该原方法字节相同、FFDec 重编译原方法字节不变。快速平移 v8：基线 78.93ms/P95 204/max 343/forced 3/空洞0；A2 71.73/179/309/3/0；A3 117.07/206/255/0/24。同日 v7 基线：A2 正常相位 ±1.6ms、跨新块 39.28→37.03；A3 在无 misses/预绘/空洞时仍 +3~9ms（两次复跑一致，原因未完全定位）。用户条件“空洞若实证大幅提升则接受”不满足：**不部署**，A80/D8A 等均未改。报告 `a80-fastwarm-port-20261030.md`，证据 `camera-a80-*`、`camera-baseline-now-20261030-r1`。
+
+2026-10-31 A3 慢帧定位 + 视觉中性候选：v9 计时探针手动 `g.sceneTick()` 三宿主均 0.07–0.65ms，A3 正常相位落后实为偶发大帧（pan 45.7ms，剔除前 8 帧 34.1ms，含 1817ms 单帧），A3 不再推进。新候选仅改 A80 `sceneEnsureUpcoming`（预热环 ±3、预算上限 36ms，`626DFBC8`）：绘制路径未动，front/voda 中心像素 0 差异；快速平移两轮 P95 237/238→137/180、max 332/406→221/333、mean −4~5ms、forced 3→2、空洞 0；正常速度 ±0.15ms；默认窗口冒烟通过。代价极端场景驻留 +14~19 块（≈36–49MB）。**未部署**，报告 `visual-neutral-budget-20261031.md`。
+
+2026-10-31 **已部署**：根 `pfe.swf` A80ED32B→`626DFBC8`（同上单方法补丁）；备份 `pfe_before_visualneutral_budget_20261031-121918.swf`，回执 `build/host-patch-receipt-visualneutral-budget-20261031.json`。安装后隔离字节探针通过（10 断言；与 RConnect 并发，相位偏慢不作性能证据）；性能证据为安装前同日成对轮。回退=备份覆盖根 `pfe.swf`；CS 模块/WB/RV/RC 未动。需重启游戏生效。
+
+2026-10-31 性能切口全面搜查（当前宿主）：帧成本采样确认原生 `[render]`/`[pre-render]` 为最大 CPU（45–132 样本/8 窗）；`sceneNativeEnvironment` ~14,900 分配/8 窗（旧 clamp 已否定）；`UnitTurret.animate→gotoAndStop` 链 ~1,050–1,920 分配 + 12–17 CPU，守卫候选 `1666FCB1` 两轮配对无帧收益→否定；“减分配≠减帧时”再次成立。剩余大切口是原生渲染（视觉风险）与其它模组的每帧 JSON/NetHud 分配。报告 `performance-cut-survey-20261031.md`。
+
+2026-10-31 **已部署 A2 gutter 快速暖块**：根 `pfe.swf` 626DFBC8→`8EAAE4EE`（仅 `sceneBeginWarm`）；备份 `pfe_before_a2_gutter_20261031-163909.swf`，回执 `build/host-patch-receipt-a2-gutter-20261031.json`。快速平移两轮 mean −4~5%、P95 −9~35%、max −35~45%、forced 3~4→0~1、misses→15~17、零空洞；正常速度 ±0.7ms；front/voda 中心像素 0 差异（back 为动画噪声）。视觉代价仅 gutter 近似（伤害/WB 边界采样；当前 WB 关闭）。报告 `a2-current-deploy-20261031.md`；需重启生效，回退=备份覆盖。
+
+2026-10-31 **已部署预算上限 48ms**（三层完成）：根 `pfe.swf` 8EAAE4EE→`9D8662F6`。快速平移两轮 misses 17→9~10、forced→0、P95 156→122~140。三层累计：mean −5~9%、P95 −18~29%、max −40~46%。报告 `budget48-deploy-20261031.md`。
+
+2026-11-01 **已部署屏外单位可见性管理**（四层完成）：根 `pfe.swf` 9D8662F6→`CA94AF17`（仅 `sceneTick`：视口外 500px 单位 `vis.visible=false`）。宿主干净 A/B（3 对）pooled +1.4%（0.6ms）；探针级 13~21% 为高估。正常战斗走动 ~42-44ms（vs 33ms 目标）；剩余瓶颈为战斗/AI 与原生渲染。报告 `unitvis-deploy-20261101.md`。
+
+2026-11-01 **已部署 LOW 渲染质量**（五层完成）：根 `pfe.swf` CA94AF17→`8321E4E7`（仅 `sceneTick`：连续场景 `quality="low"`，退出恢复 `"high"`）。v11 同轮 A/B 15~17%（4 项一致 −7.4~−8.3ms）；跨轮不显著（噪声）；探针 beforeNative 覆盖宿主使验证困难。视觉代价：单位/特效边缘略粗糙（地形位图不变）。报告 `lowquality-deploy-20261101.md`。
 
 用户要求先修复基础设施，已完成：[ModLoader本轮证据](../../ModLoader/knowledge/experiments/startup-test-path-2026-10-29/README.md)。确认根Remains.exe/adl64.exe继承Low标签，普通运行器启动后子进程降至4096；同字节Medium副本通过39项，再修复四个入口标签，文件/DACL不变。原启动器主窗口正常；共享工具以指纹核对方式复用普通标签ADL，保留隔离库/应用ID/存储。68项工具检查、双AIR78项、两个独立CLI真实菜单并行通过，全部自有进程/登记结束。默认功能两组并行，性能`game`仍独占；不需要重做已否定的TEMP/可见窗口尝试。本轮无CS源码或SWF部署，3686890F候选尚未计时。
 

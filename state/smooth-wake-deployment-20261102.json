@@ -1,0 +1,13 @@
+﻿{
+    "status":  "installed",
+    "component":  "ContinuousSceneMod.swf",
+    "version":  "0.9.4",
+    "change":  "smooth anticipatory wake budget (nearest-first, 1/frame; urgent combat/threat/status wakes immediate); stats gains budget/version; nativeAPI gains activityBudget",
+    "sha256":  "DF3B68123ACDC539E7CC718225A13DBB5D605F15F7571C14677171D2486C8426",
+    "previous":  "D8A68A4C128E196FD69B50D1CC7F0FFA72669751FB2FCB85D629F30FE622E677 (0.9.3)",
+    "backup":  "mods\\ContinuousScene\\build\\backups\\ContinuousSceneMod-0.9.3-D8A68A4C-before-smooth-wake-20261102-000448.swf",
+    "hostAtInstall":  "A9B39CC742078D7A7D9F289EE408EDAE11C3AAC376A43246B306B91AC7AD2D94",
+    "installedAt":  "2026-11-02 00:04:48",
+    "verification":  "smooth-wake-v094-mechanics-r1: 27/27 assertions (activity semantics + mechanics + doors/borders) on isolated runtime, host A9B3, 14 mods + probe; registered game-coexist",
+    "note":  "requires game restart to take effect; rollback = backup overwrite"
+}
