@@ -1,5 +1,9 @@
 # ContinuousScene — 当前快照
 
+<!-- gc-source-attribution-20261102 -->
+> 2026-11-02（四）**GC 周期回收来源已定位（v14 采样器 id 关联归因，生产栈实测）**：24 窗全有效、38.3 万新对象/15.7 万当窗死亡。**首要垃圾泵 = CS 自研宿主补丁 `Grafon.sceneNativeEnvironment`**——Location.step 每对象每帧调用（native_map_patch.py:32）拼区域键字符串，**~2,800 纯垃圾 String/帧、99.7% 即生即死、零留存**（~110–180KB/帧），量级足以主导 ~65MB 周期回收；与"隐藏世界仍 0.5MB/帧净增长"旧观察吻合。次要自研：sceneEnsureUpcoming 块键（~396/帧）、NativeSceneActivity 装箱（~530/帧，非回归）。外部泵：AddictionSystem 每单位每步 JSON/参数（~850/帧级）、RConnect NetHud（100%死）——移交各负责人。原生 [pre-render] 死亡率仅 13.3%，非周期回收主驱动。**修复方向 A–D 已列未实施**：A=sceneNativeEnvironment 单元格 int 缓存（宿主单方法替换，收益最大）、B=块键缓存、C=模组层数组复用、D=跨模组移交。报告 `gc-source-attribution-20261102.md`；证据 `gc-source-attrib-r5`（r1–r4 并行争用残迹）；探针/分析在 `camera-gc-source-v14-20261102`。本轮未部署、未改生产文件。
+<!-- /gc-source-attribution-20261102 -->
+
 <!-- turret-guard-gctail-20261102 -->
 > 2026-11-02（三）**Phase 3 终局：炮塔守卫 GC/长帧尾部配对测量为负结果，维持不部署**。v13 探针（每帧 totalMemory+dtMs）四轮配对（base/cand 交错、同布局种子、CS0.9.5 全栈、独占 game）：GC 掉落 7–9 次/轮两臂无差、单次 ~65MB 周期回收照旧、长帧 r1 更差 r2 略好无一致方向、r1 均值 +11%。叠加旧两轮共 6 轮零收益。机理修正：**炮塔同帧 gotoAndStop 不是 GC 周期的有效驱动**（休眠炮塔不调 animate；采样最大存活来源≠回收可削减来源）。该方向均值+GC/尾部均已测量关闭，GC 方向应转向周期性大回收的真实来源（原生渲染/display 基础设施）。报告 `turret-guard-gctail-20261102.md`；证据 `turret-gctail-{base,cand}-r{1,2}`；分析+探针在 `camera-lead-v13-gctail-20261102`。候选 6AC6C692 保留不部署。玩家游戏期间自动等待，未干扰。
 <!-- /turret-guard-gctail-20261102 -->

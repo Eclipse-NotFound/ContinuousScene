@@ -1,5 +1,14 @@
 
+## 2026-11-02（四）— GC 周期回收来源定位：首要泵是自研 sceneNativeEnvironment 每帧字符串
+
+- v14 探针（FrameCostProbe v2：DeleteObjectSample id 关联回出生栈 + 类型直方图 + 存活字节）在生产栈（A9B3+CS0.9.5 全栈）跑 24 个单帧采样窗全有效：382,817 新对象、157,022 当窗死亡。
+- **`Grafon.sceneNativeEnvironment < Location.step` 以 ~2,812 新对象/帧居首，99.7% 当窗死亡、零留存**——宿主补丁每对象每帧调用拼区域键（2×int→String+concat×~570对象）。估计 ~110–180KB/帧，主导 ~65MB 周期回收填充。修复方向 A（单元格 int 缓存，宿主单方法替换）已明确未实施。
+- 次要：sceneEnsureUpcoming 块键 ~396/帧（82.6%死）、NativeSceneActivity ~530/帧（与 0.9.4 前同量级）。外部：AddictionSystem 每单位每步 JSON（88.7%死）与 RConnect NetHud（100%死）移交负责人；TDFC snapshot 是留存型非泵；原生 pre-render 死亡率 13.3% 排除主驱动。
+- 运行 `gc-source-attrib-r5`（r1 被 RV 并行测试正确中止、r2 输入哈希断言中止、r3/r4 再遇争用，编排器自动重试至成功；全部登记 game）。报告 `gc-source-attribution-20261102.md`。
+
+
 ## 2026-11-02（三）— 炮塔守卫 GC/长帧尾部配对测量：负结果，Phase 3 关闭
+
 
 - v13 探针（v12+每帧 System.totalMemory 字节）四轮配对（base A9B3 / cand 6AC6C692 交错、同布局种子 4077752896、CS0.9.5 全栈、独占 game、1115 采样/轮）：**GC 掉落 7–9 次/轮两臂无差、~65MB 周期大回收照旧、长帧无一致方向（r1 18vs5 更差、r2 11vs14 略好）、r1 均值 +11%**。叠加 10-31 旧两轮共 6 轮配对零收益 → **维持否定不部署**。
 - 机理修正：休眠炮塔不调 animate，醒着炮塔不足以驱动 GC 周期；"采样最大存活来源 ≠ 回收可削减来源"。GC 方向转往周期性大回收真实来源（原生渲染/display 基础设施），炮塔守卫不再投入。
