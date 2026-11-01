@@ -14,7 +14,7 @@ package {
 
     /** Production entry only: no new game, test enemies, movement or save-slot writes. */
     public class ContinuousSceneMod {
-        public static const VERSION:String="0.9.4";
+        public static const VERSION:String="0.9.5";
         private static const LAND:String="continuous_scene";
         private static var main:*, w:*, worldClass:Class, gameData:Class;
         private static var pool:XML, definition:XML;
@@ -29,6 +29,11 @@ package {
         private static var fastTransition:Boolean=false;
         private static var authored:Boolean=false;
         private static var nextMapCheck:int=0;
+        /** Intent-preserving viewport culling; wrapper visibility only, the
+         * game keeps exclusive ownership of every object's own visible state. */
+        public static var objectCulling:SceneObjectCulling=new SceneObjectCulling();
+        public static var objectCullingEnabled:Boolean=true;
+        private static var objectCullingFailed:Boolean=false;
         public static function init(host:*):void {
             if(main) return;
             main=host;
@@ -44,6 +49,8 @@ package {
                 activity:NativeSceneActivity.update,sleeping:NativeSceneActivity.sleeping,
                 wake:NativeSceneActivity.wake,activityStats:NativeSceneActivity.stats,
                 activityBudget:NativeSceneActivity.budget,
+                objectCullingEnabled:getObjectCullingEnabled,objectCullingEnabledSet:setObjectCullingEnabled,
+                objectCullingStats:getObjectCullingStats,
                 alicornAllow:SceneAlicornAlerts.allow,alicornReceive:SceneAlicornAlerts.receive,
                 alicornClear:SceneAlicornAlerts.clear};
             main.addChild(carrier); log("v"+VERSION+" loaded");
@@ -97,6 +104,15 @@ package {
                 }
                 refresh();
                 ScenePresentationCoordinator.update(w);
+                if(!objectCullingFailed) {
+                    try {objectCulling.update(w,objectCullingEnabled && w.allStat==1 && w.t_exit==0);}
+                    catch(cullingError:Error) {
+                        // A culling fault must never take down the whole entry.
+                        objectCullingFailed=true;objectCullingEnabled=false;
+                        try {objectCulling.clear();} catch(cleanupError:Error) {}
+                        log("object culling disabled: "+cullingError.message);
+                    }
+                }
                 if(getTimer()>nextLog) {
                     nextLog=getTimer()+30000;
                     log("heartbeat land="+(w.game?w.game.curLandId:"menu"));
@@ -241,6 +257,14 @@ package {
             try {fs.open(temp,FileMode.WRITE);fs.writeUTFBytes(JSON.stringify({nativeEnabled:nativeEnabled,alicornRelayPercent:alicornRelayPercent}));fs.close();
                 temp.moveTo(File.applicationStorageDirectory.resolvePath("ContinuousScene.preferences.json"),true);}
             finally {try {fs.close();}catch(ignore:Error) {}}
+        }
+        private static function getObjectCullingEnabled():* {return objectCullingEnabled;}
+        private static function setObjectCullingEnabled(value:*):void {
+            objectCullingEnabled=Boolean(value);
+            if(!objectCullingEnabled)objectCulling.clear();
+        }
+        private static function getObjectCullingStats():* {
+            return objectCulling.stats();
         }
         private static function connectSettings():void {
             if(getTimer()<nextSettings)return;nextSettings=getTimer()+1000;

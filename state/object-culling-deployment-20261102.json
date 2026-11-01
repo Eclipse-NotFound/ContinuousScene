@@ -1,0 +1,13 @@
+﻿{
+    "status":  "installed",
+    "component":  "ContinuousSceneMod.swf",
+    "version":  "0.9.5",
+    "change":  "production intent-preserving object culling: transparent wrapper Sprites toggle viewport visibility only; game owns every object visible state; SATS capture suspend/resume; empty-bounds safety; kill-switch objectCullingEnabled + stats via nativeAPI",
+    "sha256":  "1A66B1F486BD5D8F5AA6B38A9469F1AFC40F598B6CFE9E4624620F490B251612",
+    "previous":  "DF3B68123ACDC539E7CC718225A13DBB5D605F15F7571C14677171D2486C8426 (0.9.4)",
+    "backup":  "mods\\ContinuousScene\\build\\backups\\ContinuousSceneMod-0.9.4-DF3B6812-before-culling-20261102-004010.swf",
+    "hostAtInstall":  "A9B39CC742078D7A7D9F289EE408EDAE11C3AAC376A43246B306B91AC7AD2D94",
+    "installedAt":  "2026-11-02 00:40:11",
+    "verification":  "smooth-wake-v095-mechanics-r1 27/27 + smooth-wake-v095-issues-r1 16/16 (doors/borders/fixed-visuals incl. UnitTurret) with culling active; screenshot archived, programmatic sanity check passed; registered game-coexist",
+    "note":  "requires game restart; rollback = backup overwrite; runtime kill-switch objectCullingEnabledSet(false)"
+}

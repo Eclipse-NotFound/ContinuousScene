@@ -78,7 +78,13 @@ package {
             var started:int=getTimer();
             g.visSats.visible=false;
             if(shown)actors.visible=true; // Recreate the pre-onSats actor layer for later exposures.
+            // Production object culling hides offscreen subtrees behind wrapper
+            // visibility; a capture must draw the same full resident tree the
+            // native snapshot always drew, then restore the culling state.
+            var culling:*=ContinuousSceneMod.objectCulling;
+            var cullingSuspended:Boolean=false;
             try {
+                if(culling)cullingSuspended=culling.suspendForCapture();
                 // Match the existing all-resident source tree exactly. Restrict
                 // only the destination cells; do not batch or shift raster origins.
                 for each(entry in list)for each(raster in entry.bitmaps)
@@ -101,6 +107,7 @@ package {
                     state.entries.push(entry);stats.captures++;
                 }
             } finally {
+                if(cullingSuspended)culling.resumeFromCapture();
                 if(data)data.dispose();
                 for each(raster in hidden)raster.visible=false;
                 actors.visible=actorsShown;g.visSats.visible=shown;

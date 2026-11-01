@@ -1,5 +1,15 @@
 # ContinuousScene — 当前快照
 
+<!-- object-culling-v095-20261102 -->
+> 2026-11-02（二）**已部署 CS 0.9.5 状态保真物体剔除（优化方案 Phase 4）**：正式宿主 A9B39CC7 不变；CS release → **1A66B1F4**（0.9.5 = 0.9.4 平滑唤醒 + 包装层剔除）。需重启游戏生效；回退=备份 `build/backups/ContinuousSceneMod-0.9.4-DF3B6812-before-culling-20261102-004010.swf` 覆盖 release，回执 `state/object-culling-deployment-20261102.json`；运行时开关 `nativeAPI.objectCullingEnabledSet(false)`。
+>
+> 设计：透明包装 Sprite 只切包装层 visible，**游戏独占每个对象自身 visible 语义**（UnitSpectre/隐身/剧情显隐不受影响，这是 CA94 回退教训的正解）；SATS 截取窗口挂起/恢复（SatsVisibleGuard.capture 挂接）；空边界不隐藏；剔除故障仅自禁用不打倒入口。兼容性依据：Pt.remVisual 用 `vis.parent.removeChild`（父相对删除）与包装层共存；teleObj/潜伏箱保持直挂。
+>
+> 验证（均登记 game-coexist，A9B3 宿主 + 14 模组 + 探针）：mechanics 27/27（smooth-wake-v095-mechanics-r1）、issues 16/16 含三门/边界×3缩放/Bonus·Trap·CheckPoint·UnitTurret 固定视觉（smooth-wake-v095-issues-r1）；截图存档+程序化健全性通过（本会话模型不能读图，**像素级人工复核仍开放**）。无计时声明：剔除的帧收益未测量，不引用已回退 CA94 的 0.6ms 旧值。
+>
+> **Phase 3 候选已备未部署**：UnitTurret.animate 同帧守卫在 A9B3 重建为 `6AC6C692`（`build/generated/camera-turret-animate-20261102/`，仅该方法变化，类布局不变），候选宿主冒烟 27/27 含 10 炮塔 0 错位（turret-guard-v095-mechanics-r1）。**部署仍被旧否定结论的门禁挡住**：需按 iteration-review 要求补 GC 频率/长帧尾部配对测量（camera-lead 驱动，均值收益已被 r1/r2 否定不能单独推翻）。当前宿主 A9B3 的 `sceneCU` 空间碰撞与 Bullet 过滤不受影响。
+<!-- /object-culling-v095-20261102 -->
+
 <!-- smooth-wake-v094-20261102 -->
 > 2026-11-02 **已部署 CS 0.9.4 分帧平滑唤醒（优化方案 Phase 1）**：正式宿主 A9B39CC7 不变；CS release → **DF3B6812**（0.9.4），WB FE3、RV AEA、RC6906 等其余 13 模组不变。需重启游戏生效；回退=备份 `build/backups/ContinuousSceneMod-0.9-3-D8A68A4C-before-smooth-wake-20261102-000448.swf` 覆盖 release，回执 `state/smooth-wake-deployment-20261102.json`。
 >
@@ -69,7 +79,7 @@
 | 文件 | SHA256 |
 |---|---|
 | 根pfe.swf | A9B39CC742078D7A7D9F289EE408EDAE11C3AAC376A43246B306B91AC7AD2D94（2026-11-01 空间分区碰撞+预算48+A2；无屏外隐藏（并行会话回退）；备份 pfe_before_spatial_collision_20261101-225837.swf → pfe_before_budget48_20261031-171254.swf → pfe_before_a2_gutter_20261031-163909.swf → pfe_before_visualneutral_budget_20261031-121918.swf） |
-| CS0.9.4 | DF3B68123ACDC539E7CC718225A13DBB5D605F15F7571C14677171D2486C8426（2026-11-02 平滑唤醒；回退备份见顶部段落；旧 0.9.3 = D8A68A4C…2E677） |
+| CS0.9.5 | 1A66B1F486BD5D8F5AA6B38A9469F1AFC40F598B6CFE9E4624620F490B251612（2026-11-02 平滑唤醒+包装层剔除；回退备份见顶部段落；旧 0.9.4 = DF3B6812…C8426，0.9.3 = D8A68A4C…2E677） |
 | WB0.5.10-scene | FE3E7A84753F6F3614440F69F8725E6E8639AEE4755ACF878AAFCFEDB95AC2E6 |
 | TDFC | 7ACD45193109267DBBF875240528048AD6F1D09FA3B8B36BAA6F98EBB5FDDCE5 |
 | ModLoader2.5 | 2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2 |

@@ -1,4 +1,13 @@
 
+## 2026-11-02（二）— 部署 CS 0.9.5 状态保真物体剔除（Phase 4）；Phase 3 候选备妥未部署
+
+- **Phase 4**：`SceneObjectCulling` 接入生产（透明包装 Sprite 只切包装层 visible，游戏独占对象自身 visible——UnitSpectre 正解）；SATS 截取挂起/恢复（SatsVisibleGuard.capture）；空边界安全；故障自禁用。`ContinuousSceneMod` 0.9.5：onFrame 调 update、nativeAPI 挂 objectCullingEnabled/Stats。
+- 兼容性依据：`Pt.remVisual` 为父相对删除（源码核实），包装层孤儿检测同帧清理；teleObj/潜伏(lurk)箱保持直挂。验证：mechanics 27/27 + issues 16/16（门/边界×3/Bonus·Trap·CheckPoint·**UnitTurret** 固定视觉，剔除激活态），截图存档+程序化健全性通过；像素级人工复核开放。
+- 已部署：release → **1A66B1F4**（0.9.5），备份 `ContinuousSceneMod-0.9.4-DF3B6812-before-culling-20261102-004010.swf`，回执 `state/object-culling-deployment-20261102.json`。需重启生效；运行时开关 `objectCullingEnabledSet(false)`。
+- **Phase 3**：UnitTurret.animate 同帧守卫在 A9B3 重建 `6AC6C692`（`camera-turret-animate-20261102/`，单方法、类布局不变）；候选宿主冒烟 27/27（10 炮塔 0 错位）。**不部署**：旧否定（两轮配对无均值收益）仍有效，翻案需 iteration-review 要求的 GC 频率/长帧尾部配对证据。
+- 三次隔离运行均登记 game-coexist 并结束；本会话模型不能读图，issues-entry.png 待有视觉能力时人工/模型复核。
+
+
 ## 2026-11-02 — 部署 CS 0.9.4：分帧平滑唤醒（Phase 1 削峰）
 
 - 用户按优化方案授权实施。`NativeSceneActivity.update` 拆分唤醒语义：**紧急信号（掉血/交战/弹道威胁/状态效果/非敌对/功能关闭）保持原即时唤醒**；仅预期性唤醒（邻近 1900×1300 / 视口 +600px 边界）进入每帧预算队列，**最近者优先，默认 1 个/帧**，余者保持冻结+跳过 step，后续帧再授予。镜头扫过敌群时的同帧 resume+step+gotoAndStop 风暴被摊到多帧。
