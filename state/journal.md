@@ -1,4 +1,10 @@
 
+## 2026-11-02 build 相同副本清理（ModLoader 会话统一执行，跨模组治理）
+
+- 按"只删完全相同副本"处置 build 堆积（D 盘曾剩 6.2 GB）：本模组 5,152 个文件被删（runs 等冷目录中的重复副本；generated/runtime 因 48h 内仍在写入被整体保留）；git 跟踪文件、测试登记表目录、backups 一律保留。三模组本轮合计实际释放 54.67 GiB，D 盘回到 61 GB。
+- 恢复：被删文件按 `../ModLoader/build/out/cleanup-plans/20261102-095751/receipt.json` 记录的 origin 重新复制即可；工具 `../ModLoader/tools/cleanup_test_copies.py`（plan/check 可复跑；热目录冷下来后可再回收）。
+- 根因（每试验复制一份完整游戏本体，camera-* 每个约 1 GB）与防复发（调试器 1.2.0 硬链接冻结＋自动 sweep、`/build/` 整体 gitignore、配额巡检）见 ModLoader journal 同日条目；本模组自带 runner 的输出根迁硬链接路径待后续迭代。knowledge/experiments 4.3 GB 证据未动，归档另议。
+
 ## 2026-11-02（六）— GC 组合路线终局：每窗分布量化 B/C 上限后关闭
 
 - 用户批准继续组合包后，先用已有 v14 证据做每窗分布：**A 的 env 泵窗级清零确认**；warm/块键稳态仅 ~400/帧（此前"9k/窗"为 23 窗累计误读）；剩余稳态垃圾主体为 pre-render（1.0–3.6k 波动）与 AddictionSystem（~1.2k 恒定）。
