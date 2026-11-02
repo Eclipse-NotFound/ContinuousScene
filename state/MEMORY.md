@@ -1,5 +1,25 @@
 # ContinuousScene — 当前快照
 
+<!-- regression-bisect-20261102 -->
+> 2026-11-02（十一）**用户报告镜头移动退化，三臂版本切分调查完成（深夜）**：v13b 探针 10 轮交错（v93/v94/v95/v96，同布局种子，host A9B3+当前阵容恒定），负载经相位比值+干净子集（static≤40ms）双重降噪后：**scale-1 非战斗配置下无可测退化——v96(1.425 pan比) 反而最快，v93=1.555、v94≈v93、v95=1.600（单轮干净样本，+3~6% 边缘噪声）**。平滑唤醒（v94）确认无罪。**头号未验嫌疑 = 0.9.6 拴绳的战斗中休眠/唤醒振荡**（玩家风筝时敌人跨 2200px 反复 freeze 树遍历+重唤醒——非战斗探针覆盖不到，且 0.9.6 部署时零计时验证）；战斗对照首跑因外部负载在路线预热超时，工具链就绪待低负载重跑。**未排除用户侧变量：窗口模式（探针 2048×1123 scale1 vs 默认小窗 scale⅔ 呈现/震屏路径全惰性）、战斗/探索场景、游玩时段机器负载。**用户选项 A 维持待测 / B 回退 0.9.3 / C 回退 0.9.4 / D 建 0.9.7 剔除默认关（需与未提交源码会话协调）——报告 `camera-regression-bisect-20261102.md`；证据 `csver*`、`cscombat-v93-r1`（超时残迹）。
+<!-- /regression-bisect-20261102 -->
+
+<!-- leash-v096-20261102 -->
+> 2026-11-02（十）**已部署 CS 0.9.6 脱战+威胁分级+震屏容忍（开火/多实体优化方案 Phase 1，design/combat-motion-optimization-plan.md）**：正式宿主 A9B39CC7 不变；CS release → **F16890C9**。需重启游戏生效；回退=备份 `build/backups/ContinuousSceneMod-0.9.5-1A66B1F4-before-leash-20261102-152416.swf` 覆盖 release，回执 `state/leash-v096-deployment-20261102.json`。
+>
+> 改动（全部模组层）：①`NativeSceneActivity` 脱战拴绳——`engaged` 150 帧无战斗信号且超出 2200×1600 追击半径即重置（leashed 允许受伤远处敌人重新休眠，until=0 即时生效；wake() 同步刷新期限；stats `leash-wake-2` 加 leashed 计数）；②弹道威胁双盒——命中走廊（path±explRadius+40）立即唤醒保留、400px 警戒晕圈只给 active 走 wakeBudget（实现为弹道走廊制而非方案原文视口制：threatened 只对视口外单位计算，视口制会全量非紧急并破坏既有断言）；③呈现协调器+EventBitmapFill 容忍 |quake|≤25，分数平移仅在震屏激活时接受（Camera 平移整个世界容器，节点同移，无需注入变换）。
+>
+> 验证：`leash-v096-mechanics-r2` **29/29**（旧阵容：14模组+探针shim；原27+新增 `engagement-expires-for-far-units`/`leashed-unit-reengages-on-approach`，断言用 gg 移位构造确定性远距）+ `leash-v096-issues-r1` **16/16**；正式阵容变更后补 `leash-v096-mechanics-r3` **29/29**（ConditionSystem 替换 AddictionSystem/PermanentInjury 的当前 13 模组正式组合）。均 game-coexist 登记。**无计时声明**。
+>
+> **Phase 2（弹痕剪枝）执行时撤销**：部署宿主 `sceneRestoreMarks` 已有 decal 空间剪枝（sceneDecalBounds+区域绘制；冻结源 build/generated/camera-spatial-20261101/source/fe/graph/Grafon.as 可证）；原诊断基于过时 `src/patches/GrafonChunks.as.inc`（本轮编辑已回退）。**.inc 与部署谱系分叉=源码卫生债**：未来全量构建直接用它会让宿主回退剪枝，需择机以冻结源反向同步。Phase 3（炮塔守卫 6AC6C692）已由并行会话 GC/长帧配对测量负结果关闭（见（三）turret-guard-gctail 段）。
+>
+> 测试设施教训：`build/runtime` 模组选择被并行会话改动致首轮超时（探针不在名单）；恢复=启动器 `--only` + `ContinuousSceneMotionMod` shim（清单/注册入口名必须 \*Mod）；loaded-module-hashes 源自清单而非实际加载。
+<!-- /leash-v096-20261102 -->
+
+<!-- handoff-gc-fa-20261102 -->
+> 2026-11-02（九）**FirearmAttachments 移交卡已成文**：`knowledge/handoff-gc-attribution-fa-20261102.md`。fa:: 两条每帧恒定链根因定位（源码级）：①**部署版 0.3.5 `after()` 每个原生 tick 全量 `persist()`（3×JSON.stringify 全装配库+收藏+计时器，~226/帧）——其 v0.4.0 候选源码（aecdf26）已改为 persistTimers+事件驱动，但 release SWF 构建于该提交前 85 分钟，未部署**；②`before()` 每帧对每把持有武器 `apply→numbers→clone`，`Catalog.clone=JSON.parse(JSON.stringify(o))`（~152/帧，90-100% 即死）——当前源码仍在，给了脏检查/手写浅拷贝/仅当前武器三个可选方向。合计 ~393/帧 ≈ env 泵 1/7。逐窗数据完全恒定（226+152/每窗）证明确定性每帧行为。零新增游戏运行（用 v14b 既有证据+源码 diff）。
+<!-- /handoff-gc-fa-20261102 -->
+
 <!-- gc-fixes-verification-20261102 -->
 > 2026-11-02（八）**外部修复验证通过 + 组合复测受负载污染**。阵容变更：AddictionSystem+PermanentInjury 合并为 **ConditionSystem**（v0.2.1，自测 addiction:: −94.6%）；RConnect gcfit1。我方 v14b 独立复检（24/24 窗）：**persist 408/帧→0、setParameters ~867/帧→0、NetHud 139/帧→0，三项全部确认消除**。勘误采纳：原移交 §2.3 Catalog/clone 与 Runtime/after 两条（合计 ~366/帧）实为 **FirearmAttachments（fa::）**，下一个应通知的维护者。组合配对（v13b 4 轮）：GC 一致（cand 6/6 轮 −1 掉落、体积 −10~20%），帧指标被日间负载污染（轮时长 198–297s vs 干净 137s）不可判；结合清晨 fix-A 无帧收益，**029DAF34 维持不部署**；最终帧裁定可夜间重跑（`camera-lead-v13b-gctail-20261102/orchestrate_combo.py`）。报告 `gc-fixes-verification-20261102.md`。
 <!-- /gc-fixes-verification-20261102 -->
@@ -103,7 +123,7 @@
 | 文件 | SHA256 |
 |---|---|
 | 根pfe.swf | A9B39CC742078D7A7D9F289EE408EDAE11C3AAC376A43246B306B91AC7AD2D94（2026-11-01 空间分区碰撞+预算48+A2；无屏外隐藏（并行会话回退）；备份 pfe_before_spatial_collision_20261101-225837.swf → pfe_before_budget48_20261031-171254.swf → pfe_before_a2_gutter_20261031-163909.swf → pfe_before_visualneutral_budget_20261031-121918.swf） |
-| CS0.9.5 | 1A66B1F486BD5D8F5AA6B38A9469F1AFC40F598B6CFE9E4624620F490B251612（2026-11-02 平滑唤醒+包装层剔除；回退备份见顶部段落；旧 0.9.4 = DF3B6812…C8426，0.9.3 = D8A68A4C…2E677） |
+| CS0.9.6 | F16890C959D86E305B5D3AC91CC31B8689E347179722A2F0CC07E8CB45B7E123（2026-11-02 脱战拴绳+威胁双盒+震屏容忍；回退备份见顶部段落；旧 0.9.5 = 1A66B1F4…5612，0.9.4 = DF3B6812…C8426，0.9.3 = D8A68A4C…2E677） |
 | WB0.5.10-scene | FE3E7A84753F6F3614440F69F8725E6E8639AEE4755ACF878AAFCFEDB95AC2E6 |
 | TDFC | 7ACD45193109267DBBF875240528048AD6F1D09FA3B8B36BAA6F98EBB5FDDCE5 |
 | ModLoader2.5 | 2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2 |

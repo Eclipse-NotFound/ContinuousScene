@@ -1,4 +1,22 @@
 
+## 2026-11-02（十一）— 镜头移动退化调查：三臂切分在探针配置下未见退化，战斗拴绳振荡成头号未验嫌疑
+
+- 用户报告镜头移动退化，要求对照 git 历史。部署链回溯：0.9.4/0.9.5（本会话）→ 阵容变更（ConditionSystem/gcfit1）→ **0.9.6（另一会话，未提交源码直接构建部署，仅功能断言零计时）**。宿主/入口配置核对未变。
+- v13b 探针 10 轮交错（v93/v94/v95/v96；同布局种子 4077752896；host A9B3+当前阵容恒定）。负载高（RV 全天测试），用相位比值+干净子集双重降噪：**v96 pan比 1.425 最快、v93 1.555、v94≈v93、v95 1.600（单轮干净样本，边缘噪声）——探针配置（scale1 非战斗）无可测退化**。平滑唤醒无罪。
+- **头号未验嫌疑：0.9.6 拴绳的战斗休眠/唤醒振荡**（风筝时敌人跨 2200px 反复 freeze+重唤醒）——非战斗探针覆盖不到。战斗对照首跑因负载在路线预热 2.5 分钟超时（cscombat-v93-r1 残迹保留），`orchestrate_cscombat.py` 就绪待低负载重跑。
+- 未排除用户侧变量：窗口模式（探针 scale1 vs 默认小窗 scale⅔ 呈现/震屏全惰性）、场景类型、游玩时段负载。用户选项 A/B/C/D 已列（维持待测/回退 0.9.3/回退 0.9.4/建 0.9.7 剔除默认关）。报告 `camera-regression-bisect-20261102.md`。
+
+## 2026-11-02（十）— CS 0.9.6 部署：脱战拴绳 + 弹道威胁双盒 + 震屏容忍（优化方案 Phase 1）；Phase 2 撤销（宿主已有弹痕剪枝）
+
+- **方案执行**（`design/combat-motion-optimization-plan.md`）：Phase 1 三项全部模组层实施并部署 → CS release **F16890C9**（0.9.6）。宿主 A9B39CC7 未动。备份 `build/backups/ContinuousSceneMod-0.9.5-1A66B1F4-before-leash-20261102-152416.swf`，回执 `state/leash-v096-deployment-20261102.json`。
+  - **1.1 脱战拴绳**：`NativeSceneActivity` 新增 `deadline/leashed`——150 帧无战斗信号且在 2200×1600 追击半径外，`engaged` 重置、受伤条件同受拴绳门控、until 清零即时休眠；`wake()` 刷新期限；boss/npc/剧情豁免与既有 urgent 语义不变。
+  - **1.2 威胁双盒**（实现偏离方案原文，理由记入 MEMORY）：弹道命中走廊（path±explRadius+40）= urgent 立即唤醒；400px 警戒晕圈 = active+预算唤醒。保留 on-path 语义，"projectile-path-wakes-distant-enemy" 断言原样通过。
+  - **1.3 震屏容忍**：协调器与 Fill 均容忍 |quake|≤25（World.quake 上限 20）；分数平移仅震屏激活时接受；无额外变换注入（世界容器同移）。
+- **验证**：mechanics r2 29/29（旧阵容）+ issues r1 16/16 + 正式阵容变更后补 mechanics r3 29/29（ConditionSystem 组合）；均 game-coexist。无计时声明。
+- **Phase 2 撤销**：部署宿主 `sceneRestoreMarks` 已有 decal 空间剪枝（sceneDecalBounds+sceneApplyRegionAction 区域绘制；冻结源 camera-spatial-20261101/source 可证）。原诊断读了过时 `src/patches/GrafonChunks.as.inc`——本轮对 .inc 的编辑已 git 回退；**.inc 与部署谱系分叉记为源码卫生债**（全量构建若直接用它会回退宿主剪枝）。Phase 3 炮塔守卫维持待 GC 配对测量。
+- **测试设施**：首轮超时根因=并行会话改写 `build/runtime` 模组选择（探针出局）；恢复走启动器 `--only` + `ContinuousSceneMotionMod` shim 并刷新 shim SWF 为本轮构建。入口注册行/清单入口名必须 `*Mod`（ModScanner EntryPattern）。
+- git：本轮改动 5 个 src 文件 + state/design 文档；`SceneRenderChecks.as`（他人 WIP）未触碰；未提交（留待用户/后续会话按惯例处理）。
+
 ## 2026-11-02（九）— 外部 GC 修复验证通过；组合复测帧判定受日间负载污染
 
 - 阵容变更核实：AddictionSystem+PermanentInjury → **ConditionSystem**（v0.2.1），RConnect → gcfit1（8AB94C8B）。v14b 独立归因（24/24 窗）：**persist 408/帧→0、setParameters ~867/帧→0、NetHud 139/帧→0——移交三项全部确认消除**，与对方自测（addiction:: −94.6%；fit 3,324→0）互证。
