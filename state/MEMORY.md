@@ -1,5 +1,9 @@
 # ContinuousScene — 当前快照
 
+<!-- gc-fixes-verification-20261102 -->
+> 2026-11-02（八）**外部修复验证通过 + 组合复测受负载污染**。阵容变更：AddictionSystem+PermanentInjury 合并为 **ConditionSystem**（v0.2.1，自测 addiction:: −94.6%）；RConnect gcfit1。我方 v14b 独立复检（24/24 窗）：**persist 408/帧→0、setParameters ~867/帧→0、NetHud 139/帧→0，三项全部确认消除**。勘误采纳：原移交 §2.3 Catalog/clone 与 Runtime/after 两条（合计 ~366/帧）实为 **FirearmAttachments（fa::）**，下一个应通知的维护者。组合配对（v13b 4 轮）：GC 一致（cand 6/6 轮 −1 掉落、体积 −10~20%），帧指标被日间负载污染（轮时长 198–297s vs 干净 137s）不可判；结合清晨 fix-A 无帧收益，**029DAF34 维持不部署**；最终帧裁定可夜间重跑（`camera-lead-v13b-gctail-20261102/orchestrate_combo.py`）。报告 `gc-fixes-verification-20261102.md`。
+<!-- /gc-fixes-verification-20261102 -->
+
 <!-- handoff-gc-20261102 -->
 > 2026-11-02（七）**外部移交报告已成文**：`knowledge/handoff-gc-attribution-20261102.md`——可直接交给 AddictionSystem/RConnect 维护者的自包含报告，含精确栈、每帧量级、口径限制、预期管理（自研最大单源修复未带来帧收益的前车之鉴）、证据文件指针与复现/组合复测方法（v14 探针 + v13 配对工具链路径）。未触碰他人文件。AddictionSystem 合计 ~1,400 新/帧（JSON persist 408、参数重建 867、Catalog 克隆 ~200+，54-100% 当窗死）；RConnect NetHud 139/帧 100% 死。
 <!-- /handoff-gc-20261102 -->

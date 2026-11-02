@@ -1,4 +1,11 @@
 
+## 2026-11-02（九）— 外部 GC 修复验证通过；组合复测帧判定受日间负载污染
+
+- 阵容变更核实：AddictionSystem+PermanentInjury → **ConditionSystem**（v0.2.1），RConnect → gcfit1（8AB94C8B）。v14b 独立归因（24/24 窗）：**persist 408/帧→0、setParameters ~867/帧→0、NetHud 139/帧→0——移交三项全部确认消除**，与对方自测（addiction:: −94.6%；fit 3,324→0）互证。
+- 勘误：移交报告 §2.3 两条（Catalog/clone + Runtime/after，~366/帧）经 ConditionSystem 包名核实为 **FirearmAttachments（fa::）**——下一个应通知的维护者。
+- v13b 组合配对（4 轮交错，当前阵容）：GC 指标一致（cand 6/6 轮 −1 掉落、体积 −10~20%）；**帧指标不可判**——日间机器负载污染（轮时长 198–297s vs 清晨干净 137s，两轮均值差方向相反）。029DAF34 维持不部署；夜间低负载可重跑裁定（工具链就绪）。
+- v14b 运行另见 76 长帧异常为同因（机器负载，均匀分布各阶段、仅 8 邻 GC）。报告 `gc-fixes-verification-20261102.md`；证据 `v14b-attrib-r1`、`combo-gctail-*`。
+
 ## 2026-11-02 build 相同副本清理（ModLoader 会话统一执行，跨模组治理）
 
 - 按"只删完全相同副本"处置 build 堆积（D 盘曾剩 6.2 GB）：本模组 5,152 个文件被删（runs 等冷目录中的重复副本；generated/runtime 因 48h 内仍在写入被整体保留）；git 跟踪文件、测试登记表目录、backups 一律保留。三模组本轮合计实际释放 54.67 GiB，D 盘回到 61 GB。
