@@ -1,5 +1,9 @@
 # ContinuousScene — 当前快照
 
+<!-- gc-combo-final-20261104 -->
+> **2026-11-04 GC 周期回收组合治理终局（用户指令）**：组合部署侧已由各维护者完成——ConditionSystem（408+867/帧→0）、RConnect gcfit1（139→0）、**FA 0.4.1（bb6b3ac，~393/帧→0，本轮核实 release=40235F8A）**。自研 env 泵候选 029DAF34 **干净负载四轮配对（base,cand,cand,base，02:52–03:02）：base 16 次/1057MB vs cand 15 次/1037MB，帧指标无一致方向——第四次"减分配≠减帧时"，正式关闭不部署**（累计 8 轮配对零收益）。当前栈归因（v14，23/24 窗）：env 泵仍为第一分配源（64,104 新/96.1% 即死）但消除不动 ~67–71MB 周期；UnitTurret/FocusManager 显示链 ~4.4 万新 + 最大留存增长（~3.6MB/轮）；**29 个长帧仅 9 个邻近 GC（31%）——长帧主体不是 GC**。分配削减路线在本模组内关闭；继续攻长帧需新证据/新路线（跨窗中寿命对象追踪曾被采样器 100k 上限阻止）。正式栈 A9B39CC7/447AE02B/1CEA74E2 未动。报告 `knowledge/experiments/gc-combo-current-20261104.md`；复算 `gcombo_analysis.py` / `gcattrib_analysis.py`。两次内存守卫自停系用户 Stellaris/WizTree 会话（7.9GB+1GB 提交），未动用户进程。
+<!-- /gc-combo-final-20261104 -->
+
 <!-- event-culling-deploy-20261104 -->
 > **2026-11-04 已部署 CS 0.9.7：事件驱动增量剔除（方案 Phase 1）**。正式 CS release → **447AE02B**（宿主 A9B39CC7 不动、scene.xml 1CEA74E2 不变）；需重启游戏生效。回退=备份 `build/backups/ContinuousSceneMod-0.9.6-F16890C9-before-eventculling-20261104-005240.swf` 覆盖 release + 重启；回执 `state/event-culling-deployment-20261104.json`。
 >
