@@ -1,5 +1,14 @@
 # ContinuousScene — 当前快照
 
+<!-- investigation-v2-20261104 -->
+> **2026-11-04 三项问题复核（Lead 会话，只调查未改产品）**：可执行方案 → [design/scene-combat-camera-optimization-plan-v2-20261104.md](../design/scene-combat-camera-optimization-plan-v2-20261104.md)；证据 → `knowledge/experiments/scene-combat-camera-investigation-20261104/`（探索链 / 天角兽 / 镜头视觉 / 离线微基准四份）。
+> - **下一步必须先做**：相位归因探针。模组 ENTER_FRAME 计时**不含**宿主 `Camera.calc→sceneTick` 驱动的 ensure/预热/同步/剔除，既往"CS 只占 6.4%"只是**下界**（43ms 同步补画那帧 handler 仅记 4ms）；真实游玩 38 个长帧至今无相位分解。
+> - 已确证量级：同步整块补画 **31–178ms/次**（28/29 在入口首屏）；`drawKusok` 单步峰值 **125ms**（占 ≥8ms 单步 94%，**不是**滤镜）；`resident=155`≈397MB 无逐出、每发弹扫 118 块；弹痕重放（step 24）**从未单独计时**。
+> - 天角兽：旧四条根因全部降级（`findBox` 0.05–0.6 次/秒且 ≤0.5ms；玩家被抓走 `levitFilter2→vis.osn.filters` 而非 `vis.filters`；`actPort` 每次 ≤12 次瓦片检查；alilight 约 90% 命中在 `sceneApply` 入口早退、0.4–0.5 发/秒）。**唯一有量级的链条 = 警报/目标共享拉活同房同阵营单位**（+1.5–2.0ms/帧/单位，既有实测），默认接力 0% 只断多跳、不阻止首发直接通知。
+> - 镜头/模糊：**动态模糊实测否决**（最便宜单向 BlurFilter 15.5–19.5ms、挂容器 23–59ms，预算 33.3ms）；2048×1123 时 `cam.scaleV=1` 无重采样，1264×681 时 0.6583 可开双线性（+3.9–7.2ms/帧，1:1 零成本）。0.6583 是**镜头缩放**不是 stage 缩放；int 截断不致爬行；原版已有纵向缓动。
+> - 0.9.8 新风险待验：aim pan 最多偏移 700px 且写回 `cam.vx`，快速横扫可能触发视口 miss → 同步补画；验收需覆盖"按住瞄准横扫"。
+<!-- /investigation-v2-20261104 -->
+
 <!-- aim-look-v098-20261104 -->
 > **2026-11-04 已部署 CS 0.9.8 瞄准模式（Aim-Look）**：正式 release → **285625F4**（0.9.8），宿主 **A9B39CC7** 与 scene.xml **1CEA74E2** 不动；需重启游戏生效。回退=备份 `build/backups/ContinuousSceneMod-0.9.7-447AE02B-before-aimlook-20261104-045116.swf` 覆盖 release + 重启；回执 `state/aim-look-deployment-20261104.json`。
 >
