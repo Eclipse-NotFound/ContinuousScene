@@ -28,6 +28,14 @@ package {
             w.loc.step();
             check("projectile-step-never-paused",bullet.liv<liv || !bullet.in_chain);
             if(bullet.in_chain)bullet.setNull();
+            // Leash: far engagement expires after the disengage deadline.
+            w.gg.X=d.X-4000;w.gg.Y=d.Y-4000;
+            d.celUnit=w.gg;api.activity(w.loc);d.celUnit=null;
+            for(i=0;i<170;++i)api.activity(w.loc);
+            check("engagement-expires-for-far-units",Boolean(sleep[d]),{stats:api.activityStats()});
+            w.gg.X=d.X;w.gg.Y=d.Y;api.activity(w.loc);
+            check("leashed-unit-reengages-on-approach",!sleep[d]);
+            w.gg.X=gx;w.gg.Y=gy;api.activity(w.loc);
             w.grafon.scenePauseDistant=false;api.activity(w.loc);
             var asleep:int=0;for each(u in w.loc.units)if(u && sleep[u])++asleep;
             check("scheduler-disabled-restores-all-units",asleep==0);

@@ -1,0 +1,16 @@
+{
+  "deployedAt": "2026-11-04T00:52:40+0800",
+  "product": "ContinuousSceneMod 0.9.7 (event-tracked object culling)",
+  "candidateTag": "event-v3",
+  "candidateSource": "build/generated/stutter-opt-20261103/event-v3",
+  "previousSha256": "F16890C959D86E305B5D3AC91CC31B8689E347179722A2F0CC07E8CB45B7E123",
+  "deployedSha256": "447AE02B5AC1E038E44DA2488C4BDB2D5945C1BCFBAE36C86AB9F0D6FEC0E2EF",
+  "expectedSha256": "447AE02B5AC1E038E44DA2488C4BDB2D5945C1BCFBAE36C86AB9F0D6FEC0E2EF",
+  "backup": "build\\backups\\ContinuousSceneMod-0.9.6-F16890C9-before-eventculling-20261104-005240.swf",
+  "hostUnchanged": "A9B39CC742078D7A7D9F289EE408EDAE11C3AAC376A43246B306B91AC7AD2D94",
+  "airRunningAtDeploy": [
+    46724
+  ],
+  "restartRequired": true,
+  "rollback": "copy ContinuousSceneMod-0.9.6-F16890C9-before-eventculling-20261104-005240.swf over release/ContinuousSceneMod.swf, restart game"
+}

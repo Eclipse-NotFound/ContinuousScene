@@ -1,7 +1,17 @@
 # ContinuousScene — 当前快照
 
+<!-- event-culling-deploy-20261104 -->
+> **2026-11-04 已部署 CS 0.9.7：事件驱动增量剔除（方案 Phase 1）**。正式 CS release → **447AE02B**（宿主 A9B39CC7 不动、scene.xml 1CEA74E2 不变）；需重启游戏生效。回退=备份 `build/backups/ContinuousSceneMod-0.9.6-F16890C9-before-eventculling-20261104-005240.swf` 覆盖 release + 重启；回执 `state/event-culling-deployment-20261104.json`。
+>
+> 改动仅模组层：`SceneObjectCulling` 由每帧全层 `getChildAt` 轮询改为 ADDED/REMOVED 事件队列维护根（每 120 帧审计兜底）、`SceneCullEntry` 缓存边界/变换/显隐、仅变换变化时重取边界、仅显隐翻转时写 wrapper.visible；包装层可见性职责与 SATS 暂挂/念力/潜伏/换父层语义不变。入口版本 0.9.7、暴露 `objectCullingController`。
+>
+> 验证（双进程正反序配对 + 同进程开关，全部 game 登记、独立 AIR ID/存储、静音私有桌面）：**qualification-v6 原宿主与 cleanup-v1 宿主各 14/14**——修正后的命中夹具证明**屏外命中在 A9B3 上原生正常**（无目标弹 627/509 伤害 vs 显式对照 596/624、miss=false）；sceneCU 从未生效（MainFE 密封读 #1069，Bullet 回退 loc.units），旧“镜头列表漏屏外目标”不是现行缺陷。**timing-cull 正/反序各 2350 完整间隔、23/23 剔除断言、2,202,688 像素零差异**：整帧均值 **−7.9%/−7.8%**（52.99→48.80、58.60→54.05ms）、CS 局部 **−60.5%/−62.1%**（4.58→1.81、5.01→1.90ms）、max −10.5%/−11.9%、P95 −12.5%/−6.1%、>100ms/分 −41%/−5%。左右行方向一致。**尾部指标受 RV 并行负载波动，未达方案 §5 终局目标（P95 −15~20%、长帧 −50%），低负载复测前不宣布总体解决。**
+>
+> **未完成/下一步**：①不开火对照（timing-nofire-v1）8 次尝试均被 RV 并行测试 AIR 与内存门槛（可用承诺 2.5–2.9GiB < 3GiB）干净中止，工具自保护正确，待环境静默补测；②cold-v2 探索取消链诊断未跑，它是 Phase 2（弹痕不废预绘）/Phase 3（帧余量调度）的实施资格前提；③cleanup-v1（5B409966，去掉 Grafon.sceneTick 无效列表构造与 Bullet.run 每弹 #1069 异常路径）已通过双宿主命中对照，纯清理候选**未部署**，收益待定量。
+<!-- /event-culling-deploy-20261104 -->
+
 <!-- stutter-implementation-20261103 -->
-> **2026-11-03 用户已授权按方案优化；候选已实现，尚未部署，内存不足阻止剩余验收。** 正式仍 A9B39CC7 / CS 0.9.6 F16890C9 / scene.xml 1CEA74E2。新 CS 0.9.7 候选 `event-v3` **447AE02B**：事件队列维护显示根、typed entry/向量、变换不变时跳过边界计算、显隐变化才写入；仍逐帧检查坐标，未做静态分桶。23 项生命周期、13 项夹具、同帧 2,202,688 像素零差异通过。
+> **2026-11-03 用户已授权按方案优化；候选已实现，当时未部署，内存不足阻止剩余验收**（该停点已被 2026-11-04 段落取代：447AE02B 已部署）。正式仍 A9B39CC7 / CS 0.9.6 F16890C9 / scene.xml 1CEA74E2。新 CS 0.9.7 候选 `event-v3` **447AE02B**：事件队列维护显示根、typed entry/向量、变换不变时跳过边界计算、显隐变化才写入；仍逐帧检查坐标，未做静态分桶。23 项生命周期、13 项夹具、同帧 2,202,688 像素零差异通过。
 >
 > 第一轮诊断（cull-r2）完整间隔 121.72→91.82ms、P95 244→171ms，CS 局部 15.44→4.70ms；高开销且负载很慢，**不是发布性能证据**。反序 timing-r2 遇 668s 执行间断，整轮排除。精简 timing-cull-v2 / timing-nofire-v1 已编译待两进程重复。新的真实长走廊 x6080–8920,y2960；cold-r2 被“完全空闲”准备条件卡住，不算探索；cold-v2 已修成初始视口就绪后出发，后两次因内存不足未启动。最近承诺余量约 0.8–1GiB、物理负载 91–92%，无 AIR，不降低门槛或清其它进程。
 >
@@ -143,7 +153,8 @@
 | 文件 | SHA256 |
 |---|---|
 | 根pfe.swf | A9B39CC742078D7A7D9F289EE408EDAE11C3AAC376A43246B306B91AC7AD2D94（2026-11-01 空间分区碰撞+预算48+A2；无屏外隐藏（并行会话回退）；备份 pfe_before_spatial_collision_20261101-225837.swf → pfe_before_budget48_20261031-171254.swf → pfe_before_a2_gutter_20261031-163909.swf → pfe_before_visualneutral_budget_20261031-121918.swf） |
-| CS0.9.6 | F16890C959D86E305B5D3AC91CC31B8689E347179722A2F0CC07E8CB45B7E123（2026-11-02 脱战拴绳+威胁双盒+震屏容忍；回退备份见顶部段落；旧 0.9.5 = 1A66B1F4…5612，0.9.4 = DF3B6812…C8426，0.9.3 = D8A68A4C…2E677） |
+| CS0.9.7（当前） | 447AE02B5AC1E038E44DA2488C4BDB2D5945C1BCFBAE36C86AB9F0D6FEC0E2EF（2026-11-04 事件驱动增量剔除；需重启生效；回退备份 `ContinuousSceneMod-0.9.6-F16890C9-before-eventculling-20261104-005240.swf`；回执 state/event-culling-deployment-20261104.json） |
+| CS0.9.6 | F16890C959D86E305B5D3AC91CC31B8689E347179722A2F0CC07E8CB45B7E123（2026-11-02 脱战拴绳+威胁双盒+震屏容忍；已被 0.9.7 取代；旧 0.9.5 = 1A66B1F4…5612，0.9.4 = DF3B6812…C8426，0.9.3 = D8A68A4C…2E677） |
 | WB0.5.10-scene | FE3E7A84753F6F3614440F69F8725E6E8639AEE4755ACF878AAFCFEDB95AC2E6 |
 | TDFC | 7ACD45193109267DBBF875240528048AD6F1D09FA3B8B36BAA6F98EBB5FDDCE5 |
 | ModLoader2.5 | 2050E023205E87FDFDF7FBA4B54B9BAD7769868E51767D0BFBE1742CDC7542E2 |

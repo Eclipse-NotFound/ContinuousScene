@@ -58,7 +58,13 @@ package {
             if(w.t_exit!=0 || w.allStat!=1 || w.onPause)return "world-inactive";
             if(w.sats.active || w.grafon.visSats.visible)return "sats";
             if(w.grafon.sceneWarmVerify)return "native-validation";
-            if(w.cam.scaleV!=1 || w.cam.quakeX!=0 || w.cam.quakeY!=0)return "zoom-or-shake";
+            // Firing recoil clamps |quake| to 20 (World.quake). The composited
+            // terrain stays eligible under that shake: Camera translates the
+            // whole world container, shifting native bitmaps and presentation
+            // nodes identically, and sceneViewport() carries an 80px margin.
+            // Only real zoom or heavier shake still falls back to native.
+            if(w.cam.scaleV!=1)return "zoom";
+            if(Math.abs(w.cam.quakeX)>25 || Math.abs(w.cam.quakeY)>25)return "shake-excessive";
             if(!readSwitches())return "visual-settings-unknown";
             for each(var item:Object in switches) {
                 // Getter callbacks remain owned by their modules. getPages is

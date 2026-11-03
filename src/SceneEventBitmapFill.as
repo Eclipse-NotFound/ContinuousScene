@@ -99,14 +99,25 @@ package {
             if(!w || !w.loc || !w.grafon || !w.visual || !w.cam)return "world-not-ready";
             if(!w.grafon.sceneLarge || w.grafon.sceneChunkSide!=CELL)return "not-native-320-scene";
             if(w.sats.active || w.grafon.visSats.visible)return "sats";
-            if(w.cam.scaleV!=1 || w.cam.quakeX!=0 || w.cam.quakeY!=0)return "zoom-or-shake";
+            // Tolerated firing recoil (|quake| <= 25): the world container shift
+            // applies to native bitmaps and composited nodes identically, and
+            // the viewport key carries an 80px margin over the <=20px shake.
+            var shakeOK:Boolean=Math.abs(w.cam.quakeX)<=25 && Math.abs(w.cam.quakeY)<=25;
+            if(w.cam.scaleV!=1)return "zoom";
+            if(!shakeOK)return "shake-excessive";
+            var shaking:Boolean=w.cam.quakeX!=0 || w.cam.quakeY!=0;
             var root:DisplayObject=w.visual as DisplayObject;
             if(!root || !root.stage || !root.visible || root.alpha!=1 || root.filters.length ||
                 root.mask!=null || root.scrollRect!=null || root.blendMode!="normal" || root.transform.matrix3D!=null)
                 return "world-effects-or-visibility";
             var m:Matrix=root.transform.concatenatedMatrix;
+            // Recoil adds a fractional sub-pixel offset to the world container.
+            // Accept it only while tolerated shake is actually active; a
+            // fractional translation without any shake keeps the original
+            // conservative fallback.
+            var fractional:Boolean=m.tx!=Math.floor(m.tx) || m.ty!=Math.floor(m.ty);
             if(m.a!=1 || m.b!=0 || m.c!=0 || m.d!=1 || !isFinite(m.tx) || !isFinite(m.ty) ||
-                m.tx!=Math.floor(m.tx) || m.ty!=Math.floor(m.ty))return "fractional-or-non-unit-geometry";
+                (fractional && !shaking))return "fractional-or-non-unit-geometry";
             if(!neutralColor(root.transform.concatenatedColorTransform,1))return "world-color-transform";
             var pp:Array=[w.grafon.visFront,w.grafon.visBack,w.grafon.visBack2,w.grafon.visVoda];
             for each(var parent:DisplayObjectContainer in pp) {

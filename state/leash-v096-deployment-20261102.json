@@ -1,0 +1,13 @@
+{
+    "status":  "installed",
+    "component":  "ContinuousSceneMod.swf",
+    "version":  "0.9.6",
+    "change":  "engagement leash (far units re-sleep after 150-tick disengage deadline; pursuers inside 2200x1600 never expire; wounded-and-leashed may sleep), split projectile threat into impact corridor (immediate wake) + 400px alert halo (budgeted wake), presentation tolerates |quake|<=25 with shake-scoped fractional-translation acceptance; stats version leash-wake-2 gains leashed counter; host-side mark pruning NOT needed (deployed host already prunes decals spatially - stale src/patches diagnosis, edits reverted)",
+    "sha256":  "F16890C959D86E305B5D3AC91CC31B8689E347179722A2F0CC07E8CB45B7E123",
+    "previous":  "1A66B1F486BD5D8F5AA6B38A9469F1AFC40F598B6CFE9E4624620F490B251612 (0.9.5)",
+    "backup":  "mods\\ContinuousScene\\build\\backups\\ContinuousSceneMod-0.9.5-1A66B1F4-before-leash-20261102-152416.swf",
+    "hostAtInstall":  "A9B39CC742078D7A7D9F289EE408EDAE11C3AAC376A43246B306B91AC7AD2D94",
+    "installedAt":  "2026-11-02 15:24:16",
+    "verification":  "leash-v096-mechanics-r2: 29/29 assertions (27 prior + engagement-expires-for-far-units + leashed-unit-reengages-on-approach) and leash-v096-issues-r1: 16/16 on isolated runtime, host A9B3, 15-entry launcher selection (probe via ContinuousSceneMotionMod shim); plus leash-v096-mechanics-r3: 29/29 with the current production lineup (ConditionSystem replacing AddictionSystem/PermanentInjury); registered game-coexist; no timing claims",
+    "note":  "requires game restart to take effect; rollback = backup overwrite"
+}
