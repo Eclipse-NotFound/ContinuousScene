@@ -1,0 +1,14 @@
+{
+  "deployedAt": "2026-11-04T04:51:16+0800",
+  "product": "ContinuousSceneMod 0.9.8 (aim-look camera pan)",
+  "candidateTag": "aim-look-v1",
+  "candidateSource": "build/generated/aim-look-20261104/product",
+  "previousSha256": "447AE02B5AC1E038E44DA2488C4BDB2D5945C1BCFBAE36C86AB9F0D6FEC0E2EF",
+  "deployedSha256": "285625F45B0272D3837F8FD9F554EED9EC848F7228CCE87110891B68D7178ACF",
+  "expectedSha256": "285625F45B0272D3837F8FD9F554EED9EC848F7228CCE87110891B68D7178ACF",
+  "backup": "build\\backups\\ContinuousSceneMod-0.9.7-447AE02B-before-aimlook-20261104-045116.swf",
+  "hostUnchanged": "A9B39CC742078D7A7D9F289EE408EDAE11C3AAC376A43246B306B91AC7AD2D94",
+  "airRunningAtDeploy": [],
+  "restartRequired": true,
+  "rollback": "copy ContinuousSceneMod-0.9.7-447AE02B-before-aimlook-20261104-045116.swf over release/ContinuousSceneMod.swf, restart game"
+}

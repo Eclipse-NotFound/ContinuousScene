@@ -1,3 +1,19 @@
+## 2026-11-04 — 实现并部署瞄准模式（Aim-Look）：CS 0.9.8，真实相机平移验证通过
+
+- 用户报告"视角固定居中导致大场景可视距离缩短"，初步设想按住某键 + 鼠标推移视角。机制调查：原版 `Camera.setLoc` 对单房间走 `moved=false`（镜头静止、一眼看到头），CS 大场景强制 `moved=true` 且 `vx=-X+screenX/2` 把玩家锁死屏幕中心，前方视野只剩半屏；原版 `keyLook`（分号键探头）键位反人类、无死区无平滑。设计并实现 `SceneAimController`（纯模组层，无宿主改动）：150px 死区 + ^1.4 幂律 + 横 700/纵 380px×幅度(50–150%) + 指数平滑三档 + 单帧 50px 硬限 + 世界边界钳制 + 七类互锁（SATS/覆盖层/Pip/剧情运镜/原版分号探头/控制台/失焦/非大场景）。
+- 交互调查：裸修饰键（Alt/Ctrl）不可进 Loader keybind（`normalize` 明确排除 16/17/18/91-93），内建槽位用滑块（0=左Alt 1=左Ctrl 2=关）+ 可选自定义 keybind；鼠标侧键 AIR 不派发 X1/X2 事件，已从设计移除。瞄准精度：按**实际生效**平移量预移 `cam.celX/celY`，射击/拾取映射保持像素一致。
+- **实机验证抓到真实产品缺陷**：`fe.inter.Camera.vx/vy/celX/celY` 声明为 `int`，写入分数平移被静默截断（0.4px），`visual/celX` 与 `cam.vx` 脱节（首测 402/201 帧）。修复=写后回读类型化值并以其为准；确定性假世界夹具（Number 语义）测不出，只有隔离实机暴露——已加 `tests/FakeIntCamera.as` 回归。首测的"钳制失败"反证世界边界钳制生效（工厂出生点在地图左上角）。
+- 验证：确定性 **44/44**；隔离实机 **9/9**（正式 13 模组+测试探针、私有桌面/唯一 AIR ID；进工厂大图真实按 Alt：平移 616.8px、一致性 0 违例、松开归中、applied=224）。部署 release → **285625F4**（0.9.8），备份 `ContinuousSceneMod-0.9.7-447AE02B-before-aimlook-20261104-045116.swf`，回执 `state/aim-look-deployment-20261104.json`；宿主 A9B3 与 scene.xml 1CEA74E2 不动，重启生效。
+- 过程：共享登记两条中间态记录已按协议核对恢复（首次启动前 HiddenProcess 参数错误、第二次等待期主动终止）；工具坑（HiddenProcess 需文件对象、Registration 异常留 needs-check、adl `System.exit` #2018）记入报告。未完成：玩家重启主观验收；武器倍镜联动/受击回中/边缘定位线留作后续。证据与复跑入口 `build/generated/aim-look-20261104/`、报告 `knowledge/experiments/aim-look-20261104.md`。
+
+
+- 用户报告三项核心体验缺陷：①探索新场景偶发严重卡顿；②单只天角兽交战严重卡顿；③镜头移动背景粗糙（考虑引入动态模糊）。完成系统性排查与技术评估，定稿可执行方案 `design/scene-combat-camera-optimization-plan.md`。
+- 根因定位（源码与机制级确证）：
+  1. **探索新场景卡顿**：宿主 48ms 激进预绘与单步不可中断绘制，视口 miss 触发主线程全量同步补画（`sceneRender` 20~40ms 阻塞）；新区块大批量 `BitmapData` 分配撞上 AIR 阈值触发 Mark-Sweep 全量 GC 停顿（50~100ms）；移动开火相交取消预绘风暴。
+  2. **单只天角兽交战卡顿**：`fe.unit.UnitAlicorn.findBox` 在连续大场景中对全图 1200+ 个物体线性全量遍历，并高频对候选物体执行昂贵的 DDA 穿墙射线检测（`loc.isLine`）；念力抓取给物体挂 `GlowFilter` 导致 AIR 软光栅管线每帧全向发光重绘；闪电武器 `destroy='50'` 破坏墙面频繁触发背景同步重绘（`drawKusok`）；`actPort` 20 次大跨度盲测 `collisionAll`。
+  3. **镜头移动背景粗糙与动态模糊评估**：人眼对 30fps 低采样率高对比度纹理移动产生生理频闪与锯齿阶梯感；地块位图 `smoothing=false`（近邻采样）与 `pixelSnapping=auto` 导致像素离散硬跳变；Camera 坐标强制 `int` 截断且硬跟随无阻尼。**评估彻底否定在 CPU 渲染管线下引入全屏动态模糊**（原生 `BlurFilter` 耗时 35~85ms 导致掉到 8~12fps 幻灯片，全屏残影 Buffer 耗时 10~18ms 且拖脏 UI/准星）。
+- 提出高画质极低开销方案：①自适应动态余量预绘（2~12ms）+ 非破坏性弹痕缓冲 + 地块位图池化复用；②天角兽 `findBox` 空间网格二分裁剪（1200+→<20 个）+ 念力发光改用 `colorTransform` 染色 + 闪电微损增量保护；③背景位图全面开启双线性采样（`smoothing=true`, `pixelSnapping=never`）+ Camera 解除 `int` 截断支持浮点亚像素平移 + 微阻尼跟随。
+
 ## 2026-11-04 — GC 组合治理终局：部署侧由维护者完成；env 泵候选干净负载四轮配对零收益正式关闭
 
 - 用户指令"先做 GC 周期回收的组合治理"。核实组合部署侧：FA 已自行修复部署（bb6b3ac 0.4.1，~393/帧→0），叠加 ConditionSystem 与 RConnect gcfit1，三大外部泵全消。

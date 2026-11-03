@@ -14,7 +14,7 @@ package {
 
     /** Production entry only: no new game, test enemies, movement or save-slot writes. */
     public class ContinuousSceneMod {
-        public static const VERSION:String="0.9.7";
+        public static const VERSION:String="0.9.8";
         private static const LAND:String="continuous_scene";
         private static var main:*, w:*, worldClass:Class, gameData:Class;
         private static var pool:XML, definition:XML;
@@ -34,6 +34,10 @@ package {
         public static var objectCulling:SceneObjectCulling=new SceneObjectCulling();
         public static var objectCullingEnabled:Boolean=true;
         private static var objectCullingFailed:Boolean=false;
+        /** Aim-look pan toward the mouse (continuous scenes only). Runs after
+         * the native camera recenter; guarded so a fault only disables itself. */
+        public static var aim:SceneAimController=new SceneAimController();
+        private static var aimFailed:Boolean=false;
         public static function init(host:*):void {
             if(main) return;
             main=host;
@@ -51,11 +55,13 @@ package {
                 activityBudget:NativeSceneActivity.budget,
                 objectCullingEnabled:getObjectCullingEnabled,objectCullingEnabledSet:setObjectCullingEnabled,
                 objectCullingStats:getObjectCullingStats,objectCullingController:getObjectCullingController,
+                aimStats:getAimStats,aimController:getAimController,
                 alicornAllow:SceneAlicornAlerts.allow,alicornReceive:SceneAlicornAlerts.receive,
                 alicornClear:SceneAlicornAlerts.clear};
             main.addChild(carrier); log("v"+VERSION+" loaded");
             SatsVisibleGuard.install(main);
             ScenePresentationCoordinator.install(main);
+            aim.install(main.stage);
             main.stage.addEventListener(Event.ENTER_FRAME,onFrame,false,-200,true);
         }
         private static function log(message:String):void {
@@ -104,6 +110,17 @@ package {
                 }
                 refresh();
                 ScenePresentationCoordinator.update(w);
+                // Before the culling pass: its viewport rect must follow the
+                // panned view, not the un-panned player-centered one.
+                if(!aimFailed) {
+                    try {aim.update(w,main.stage.mouseX,main.stage.mouseY);}
+                    catch(aimError:Error) {
+                        // Same containment rule as culling: a fault disables
+                        // only this feature, never the whole entry.
+                        aimFailed=true;aim.enabled=false;aim.reset("fault");
+                        log("aim look disabled: "+aimError.message);
+                    }
+                }
                 if(!objectCullingFailed) {
                     try {objectCulling.update(w,objectCullingEnabled && w.allStat==1 && w.t_exit==0);}
                     catch(cullingError:Error) {
@@ -236,9 +253,42 @@ package {
             if(!file.exists)return;
             var fs:FileStream=new FileStream();
             try {fs.open(file,FileMode.READ);var data:Object=JSON.parse(fs.readUTFBytes(fs.bytesAvailable));
-                nativeEnabled=data.nativeEnabled===true;alicornRelayPercent=normalizePercent(Number(data.alicornRelayPercent));}
+                nativeEnabled=data.nativeEnabled===true;alicornRelayPercent=normalizePercent(Number(data.alicornRelayPercent));
+                applyAimPreferences(data);}
             catch(error:Error) {nativeEnabled=false;alicornRelayPercent=0;}
             finally {try {fs.close();}catch(ignore:Error) {}}
+        }
+        /** Backward compatible: a preferences file from before 0.9.8 has no
+         * aim fields and keeps the in-code defaults. */
+        private static function applyAimPreferences(data:Object):void {
+            if(!data)return;
+            if("aimEnabled" in data)aim.enabled=data.aimEnabled===true;
+            if("aimTrigger" in data) {
+                var trigger:Number=Number(data.aimTrigger);
+                aim.triggerModifier=(trigger>=0&&trigger<=2&&trigger==int(trigger))?int(trigger):0;
+            }
+            aim.keybind=sanitizeKeybind(data.aimKeybind);
+            if("aimToggle" in data)aim.toggleMode=data.aimToggle===true;
+            if("aimDistancePercent" in data) {
+                var percent:Number=Number(data.aimDistancePercent);
+                aim.distanceScale=isFinite(percent)?Math.max(0.5,Math.min(1.5,percent/100)):1;
+            }
+            if("aimSpeed" in data) {
+                var speed:Number=Number(data.aimSpeed);
+                aim.speedIndex=(speed>=1&&speed<=3&&speed==int(speed))?int(speed):2;
+            }
+        }
+        /** Mirrors the loader's keybind normalization: plain key codes only
+         * (8..222), bare modifiers 16/17/18 and 91/92/93 rejected, code 0
+         * meaning "unbound". Anything else falls back to unbound. */
+        private static function sanitizeKeybind(value:*):Object {
+            if(value==null)return null;
+            var n:Number=Number(value.code);
+            if(!isFinite(n)||n!=int(n))return null;
+            var code:int=int(n);
+            if(code==0)return {code:0,ctrl:false,alt:false,shift:false};
+            if(code<8||code>222||code==16||code==17||code==18||code==91||code==92||code==93)return null;
+            return {code:code,ctrl:value.ctrl===true,alt:value.alt===true,shift:value.shift===true};
         }
         public static function setNativeEnabled(value:Boolean):void {
             nativeEnabled=value;
@@ -254,7 +304,10 @@ package {
         private static function writePreference():void {
             var fs:FileStream=new FileStream();
             var temp:File=File.applicationStorageDirectory.resolvePath("ContinuousScene.preferences.tmp");
-            try {fs.open(temp,FileMode.WRITE);fs.writeUTFBytes(JSON.stringify({nativeEnabled:nativeEnabled,alicornRelayPercent:alicornRelayPercent}));fs.close();
+            try {fs.open(temp,FileMode.WRITE);fs.writeUTFBytes(JSON.stringify({nativeEnabled:nativeEnabled,alicornRelayPercent:alicornRelayPercent,
+                aimEnabled:aim.enabled,aimTrigger:aim.triggerModifier,
+                aimKeybind:aim.keybind||{code:0,ctrl:false,alt:false,shift:false},
+                aimToggle:aim.toggleMode,aimDistancePercent:Math.round(aim.distanceScale*100),aimSpeed:aim.speedIndex}));fs.close();
                 temp.moveTo(File.applicationStorageDirectory.resolvePath("ContinuousScene.preferences.json"),true);}
             finally {try {fs.close();}catch(ignore:Error) {}}
         }
@@ -267,6 +320,8 @@ package {
         private static function getObjectCullingStats():* {
             return objectCulling.stats();
         }
+        private static function getAimStats():* {return aim.statsSnapshot();}
+        private static function getAimController():* {return aim;}
         private static function connectSettings():void {
             if(getTimer()<nextSettings)return;nextSettings=getTimer()+1000;
             var holder:*=main.getChildByName("ModSettingsCarrier");
@@ -280,6 +335,31 @@ package {
                 key:"alicornRelayPercent",label:"天角兽接力报警概率",kind:"slider",def:0,min:0,max:100,step:1,suffix:"%",
                 hint:"仅影响连续大场景。每次报警覆盖以发送者为中心的一间原版房间范围，可跨旧房间边界。\n0%：接报者不再转发；100%：接力不限次数，每一跳仍受范围限制。\n每只接报天角兽在本轮警戒中只判定一次，重复接报或随后看见玩家不会重抽；原版警戒结束后可重新判定。修改对下次接报生效。",
                 get:function():* {return alicornRelayPercent;},set:function(value:*):void {setAlicornRelayPercent(Number(value));}
+            },{
+                key:"aimEnabled",label:"瞄准模式（视野随准星延展）",kind:"check",def:true,
+                hint:"仅连续大场景生效。按住触发键时，镜头朝鼠标方向平滑延展视野，松开自动回中；\n用于找回单房间模式下的远距离视野。射击与拾取判定保持精确。",
+                get:function():* {return aim.enabled;},set:function(value:*):void {aim.enabled=Boolean(value);writePreference();}
+            },{
+                key:"aimTrigger",label:"内建触发键",kind:"slider",min:0,max:2,step:1,def:0,
+                hint:"0=左Alt（默认）；1=左Ctrl；2=停用内建键（仅用自定义键触发）。\nAlt/Ctrl 为裸修饰键，不占用原版任何按键绑定。",
+                get:function():* {return aim.triggerModifier;},set:function(value:*):void {aim.triggerModifier=int(Number(value));writePreference();}
+            },{
+                key:"aimKey",label:"自定义触发键（可选）",kind:"keybind",def:{code:0,ctrl:false,alt:false,shift:false},
+                hint:"额外的瞄准触发键，可与内建键并存，默认未绑定。\n鼠标侧键不受运行时支持，请选键盘键；单键会自动避开原版已占用键。",
+                get:function():* {return aim.keybind?{code:aim.keybind.code,ctrl:aim.keybind.ctrl,alt:aim.keybind.alt,shift:aim.keybind.shift}:{code:0,ctrl:false,alt:false,shift:false};},
+                set:function(value:*):void {aim.keybind=sanitizeKeybind(value);writePreference();}
+            },{
+                key:"aimToggleMode",label:"切换模式（默认长按）",kind:"check",def:false,
+                hint:"长按：按住触发看远处，松开立即回中。\n切换：按一次进入瞄准，再按一次退出；窗口失焦时自动复位。",
+                get:function():* {return aim.toggleMode;},set:function(value:*):void {aim.toggleMode=Boolean(value);writePreference();}
+            },{
+                key:"aimDistance",label:"视野延展幅度",kind:"slider",min:50,max:150,step:5,def:100,suffix:"%",
+                hint:"镜头最多偏离角色的距离比例。100%=横向约700像素、纵向约380像素（默认）。\n50%轻探视野，150%适合狙击枪远距索敌。",
+                get:function():* {return Math.round(aim.distanceScale*100);},set:function(value:*):void {aim.distanceScale=Math.max(0.5,Math.min(1.5,Number(value)/100));writePreference();}
+            },{
+                key:"aimSpeed",label:"推移速度（1慢 2中 3快）",kind:"slider",min:1,max:3,step:1,def:2,
+                hint:"视野延展与回中的响应速度，默认 2（中）。",
+                get:function():* {return aim.speedIndex;},set:function(value:*):void {aim.speedIndex=Math.max(1,Math.min(3,int(Number(value))));writePreference();}
             }],null,"连续大场景 · 当前地图保持原有模式；设置自动保存。");
             settingsAPI=api;log("settings registered continuousscene");
         }

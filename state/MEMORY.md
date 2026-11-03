@@ -1,5 +1,15 @@
 # ContinuousScene — 当前快照
 
+<!-- aim-look-v098-20261104 -->
+> **2026-11-04 已部署 CS 0.9.8 瞄准模式（Aim-Look）**：正式 release → **285625F4**（0.9.8），宿主 **A9B39CC7** 与 scene.xml **1CEA74E2** 不动；需重启游戏生效。回退=备份 `build/backups/ContinuousSceneMod-0.9.7-447AE02B-before-aimlook-20261104-045116.swf` 覆盖 release + 重启；回执 `state/aim-look-deployment-20261104.json`。
+>
+> 功能：按住左 Alt（默认；设置页可改左 Ctrl / 自定义组合键 / 长按或切换）时视角朝鼠标方向平滑延展，松开回中——恢复单房间模式的远距视野，用于远程交火与侦察。参数：150px 死区、^1.4 幂律、横 700/纵 380px（滑块 50–150%）、三档速度、单帧 50px 硬限、地图边界钳制；七类互锁（SATS/覆盖层/Pip-Buck/剧情运镜/原版分号探头/控制台/失焦/非大场景）即时复位。设置页新增 6 项，偏好写入 `ContinuousScene.preferences.json`（旧文件向后兼容）。nativeAPI 暴露 `aimStats/aimController`。
+>
+> 实现：`src/SceneAimController.as`（新增）+ 入口接线（`onFrame` ENTER_FRAME -200，原生 `Camera.calc` 之后、物体剔除**之前**注入；异常仅自禁用）。**调查新增事实：`fe.inter.Camera.vx/vy/celX/celY` 是 int，写入分数被静默截断**——控制器写后回读类型化值再同步 `visual/celX`；假世界夹具测不出，已加 `tests/FakeIntCamera.as` 回归。
+>
+> 验证：确定性 **44/44**（`tests/SceneAimChecks.as`）；隔离实机 **9/9**（正式 13 模组+探针、私有桌面、工厂大图内真实按 Alt：平移 616.8px / 一致性 0 违例 / 松开归中 / stats applied=224）。工具链 `build/generated/aim-look-20261104/`（`run_live.py` 可重跑）。**未完成**：玩家重启实机主观验收（手感/狙击/平移中无剔除空洞）；武器倍镜联动、受击回中、边缘定位线未做。设计 `design/aim-look-system.md`，报告 `knowledge/experiments/aim-look-20261104.md`。
+<!-- /aim-look-v098-20261104 -->
+
 <!-- gc-combo-final-20261104 -->
 > **2026-11-04 GC 周期回收组合治理终局（用户指令）**：组合部署侧已由各维护者完成——ConditionSystem（408+867/帧→0）、RConnect gcfit1（139→0）、**FA 0.4.1（bb6b3ac，~393/帧→0，本轮核实 release=40235F8A）**。自研 env 泵候选 029DAF34 **干净负载四轮配对（base,cand,cand,base，02:52–03:02）：base 16 次/1057MB vs cand 15 次/1037MB，帧指标无一致方向——第四次"减分配≠减帧时"，正式关闭不部署**（累计 8 轮配对零收益）。当前栈归因（v14，23/24 窗）：env 泵仍为第一分配源（64,104 新/96.1% 即死）但消除不动 ~67–71MB 周期；UnitTurret/FocusManager 显示链 ~4.4 万新 + 最大留存增长（~3.6MB/轮）；**29 个长帧仅 9 个邻近 GC（31%）——长帧主体不是 GC**。分配削减路线在本模组内关闭；继续攻长帧需新证据/新路线（跨窗中寿命对象追踪曾被采样器 100k 上限阻止）。正式栈 A9B39CC7/447AE02B/1CEA74E2 未动。报告 `knowledge/experiments/gc-combo-current-20261104.md`；复算 `gcombo_analysis.py` / `gcattrib_analysis.py`。两次内存守卫自停系用户 Stellaris/WizTree 会话（7.9GB+1GB 提交），未动用户进程。
 <!-- /gc-combo-final-20261104 -->
