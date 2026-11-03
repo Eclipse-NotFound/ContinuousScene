@@ -14,7 +14,7 @@ package {
 
     /** Production entry only: no new game, test enemies, movement or save-slot writes. */
     public class ContinuousSceneMod {
-        public static const VERSION:String="0.9.5";
+        public static const VERSION:String="0.9.7";
         private static const LAND:String="continuous_scene";
         private static var main:*, w:*, worldClass:Class, gameData:Class;
         private static var pool:XML, definition:XML;
@@ -50,7 +50,7 @@ package {
                 wake:NativeSceneActivity.wake,activityStats:NativeSceneActivity.stats,
                 activityBudget:NativeSceneActivity.budget,
                 objectCullingEnabled:getObjectCullingEnabled,objectCullingEnabledSet:setObjectCullingEnabled,
-                objectCullingStats:getObjectCullingStats,
+                objectCullingStats:getObjectCullingStats,objectCullingController:getObjectCullingController,
                 alicornAllow:SceneAlicornAlerts.allow,alicornReceive:SceneAlicornAlerts.receive,
                 alicornClear:SceneAlicornAlerts.clear};
             main.addChild(carrier); log("v"+VERSION+" loaded");
@@ -258,6 +258,7 @@ package {
                 temp.moveTo(File.applicationStorageDirectory.resolvePath("ContinuousScene.preferences.json"),true);}
             finally {try {fs.close();}catch(ignore:Error) {}}
         }
+        private static function getObjectCullingController():* {return objectCulling;}
         private static function getObjectCullingEnabled():* {return objectCullingEnabled;}
         private static function setObjectCullingEnabled(value:*):void {
             objectCullingEnabled=Boolean(value);

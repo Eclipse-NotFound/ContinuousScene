@@ -2,100 +2,160 @@ package {
     import flash.display.DisplayObject;
     import flash.display.DisplayObjectContainer;
     import flash.display.Sprite;
+    import flash.events.Event;
     import flash.geom.Rectangle;
     import flash.utils.Dictionary;
 
-    /** Viewport visibility belongs to a transparent parent, so other mods keep
-     * exclusive ownership of the actual object's alpha/visible/filter state. */
+    /** Own wrapper visibility; never overwrite native objects' own visibility. */
     public class SceneObjectCulling {
         private var entries:Dictionary=new Dictionary();
-        private var tracked:Array=[];
-        private var exclusions:Dictionary=new Dictionary(true);
-        private var location:*;
-        private var layers:*;
+        private var tracked:Vector.<SceneCullEntry>=new Vector.<SceneCullEntry>();
+        private var exclusions:Dictionary=new Dictionary(true),layerSet:Dictionary=new Dictionary();
+        private var layers:Vector.<DisplayObjectContainer>=new Vector.<DisplayObjectContainer>();
+        private var added:Array=[],removed:Array=[],queued:Dictionary=new Dictionary();
+        private var location:*,visual:*,tele:DisplayObject;
+        private var unitsMode:Boolean=false,mutating:Boolean=false,suspended:Boolean=false;
+        private var lastLeft:Number=NaN,lastTop:Number=NaN,lastRight:Number=NaN,lastBottom:Number=NaN;
+        private var visits:int=0,changes:int=0,discoveries:int=0,boundsReads:int=0,scans:int=0,age:int=0;
         public var hidden:int=0;
-        private var suspended:Boolean=false;
+
         public function update(w:*,enabled:Boolean,unitsOnly:Boolean=false):void {
             if(!enabled || !w.grafon.sceneLarge){clear();return;}
-            if(location!==w.loc || layers!==w.grafon.visObjs) {
-                clear();location=w.loc;layers=w.grafon.visObjs;
-                // Native hiding stores its chosen box in an internal field.
-                // Keep all hiding boxes at their original display-list depth.
-                for each(var box:* in w.loc.objs)if(box && "lurk" in box && box.lurk>0 && box.vis)exclusions[box.vis]=true;
+            var selected:Array=unitsOnly?[w.grafon.visObjs[2]]:w.grafon.visObjs;
+            var changed:Boolean=location!==w.loc || visual!==w.visual || unitsMode!=unitsOnly || layers.length!=selected.length;
+            var i:int;
+            if(!changed)for(i=0;i<layers.length;++i)if(layers[i]!==selected[i]){changed=true;break;}
+            if(changed)bind(w,selected,unitsOnly);
+            visits=changes=boundsReads=0;
+            var nextTele:DisplayObject=w.gg.teleObj?w.gg.teleObj.vis as DisplayObject:null;
+            if(nextTele!==tele) {
+                var oldTele:DisplayObject=tele;tele=nextTele;
+                if(tele && entries[tele])forget(entries[tele],true);
+                if(oldTele && layerSet[oldTele.parent])enqueue(oldTele);
             }
-            suspended=false;
+            // Audit unusual edits occasionally; undiscovered roots remain visible.
+            if(++age%120==0)audit();
+            flush();
+            if(suspended)resumeFromCapture();
             var cam:*=w.cam,scale:Number=cam.scaleV;
-            var view:Rectangle=new Rectangle(-cam.vx/scale-320,-cam.vy/scale-320,cam.screenX/scale+640,cam.screenY/scale+640);
-            hidden=0;
-            var selected:Array=unitsOnly?[layers[2]]:layers;
-            for each(var layer:DisplayObjectContainer in selected) {
-                var i:int=0;
-                while(i<layer.numChildren) {
-                    var child:DisplayObject=layer.getChildAt(i),e:Object=entries[child];
-                    if(e && e.child.parent!==e.wrapper) {
-                        layer.removeChild(e.wrapper);delete entries[e.wrapper];tracked.splice(tracked.indexOf(e),1);continue;
-                    }
-                    var actual:DisplayObject=e?e.child:child;
-                    if((w.gg.teleObj && actual===w.gg.teleObj.vis) || exclusions[actual]) {
-                        // Native telekinesis/hiding raises the direct child.
-                        // Keep these targets direct children while manipulated.
-                        if(e) {
-                            layer.removeChild(e.wrapper);layer.addChild(actual);
-                            delete entries[e.wrapper];tracked.splice(tracked.indexOf(e),1);continue;
-                        }
-                        ++i;continue;
-                    }
-                    if(!e) {
-                        var wrapper:Sprite=new Sprite();wrapper.mouseEnabled=false;
-                        e={child:child,wrapper:wrapper,bounds:child.getBounds(w.visual),x:child.x,y:child.y,
-                            sx:child.scaleX,sy:child.scaleY,rotation:child.rotation,hidden:false};
-                        layer.addChildAt(wrapper,i);wrapper.addChild(child);
-                        entries[wrapper]=e;tracked.push(e);
-                    }
-                    child=e.child;
-                    if(child.scaleX!=e.sx || child.scaleY!=e.sy || child.rotation!=e.rotation) {
-                        e.bounds=child.getBounds(w.visual);e.x=child.x;e.y=child.y;e.sx=child.scaleX;e.sy=child.scaleY;e.rotation=child.rotation;
-                    }
-                    var b:Rectangle=e.bounds,dx:Number=child.x-e.x,dy:Number=child.y-e.y;
-                    if(b.width<=0 && b.height<=0) {
-                        // Empty bounds (not yet measured) must never hide content.
-                        e.wrapper.visible=true;e.hidden=false;
-                    } else {
-                        // Extra room for frame-dependent animation and glows.
-                        e.hidden=!(b.right+dx+240>=view.left && b.left+dx-240<=view.right
-                            && b.bottom+dy+240>=view.top && b.top+dy-240<=view.bottom);
-                        e.wrapper.visible=!e.hidden;
-                    }
-                    if(e.hidden)++hidden;
-                    ++i;
+            var left:Number=-cam.vx/scale-320,top:Number=-cam.vy/scale-320;
+            var right:Number=left+cam.screenX/scale+640,bottom:Number=top+cam.screenY/scale+640;
+            var viewChanged:Boolean=left!=lastLeft || top!=lastTop || right!=lastRight || bottom!=lastBottom;
+            for each(var e:SceneCullEntry in tracked) {
+                ++visits;
+                var child:DisplayObject=e.child;
+                // Property changes and teleports do not emit ADDED/REMOVED.
+                var x:Number=child.x,y:Number=child.y,sx:Number=child.scaleX,sy:Number=child.scaleY,rot:Number=child.rotation;
+                var transformed:Boolean=sx!=e.sx || sy!=e.sy || rot!=e.rotation;
+                if(transformed)measure(e,x,y,sx,sy,rot);
+                if(!viewChanged && !transformed && x==e.x && y==e.y && e.checked)continue;
+                e.x=x;e.y=y;e.checked=true;
+                var hide:Boolean=!e.empty && !(e.right+x+240>=left && e.left+x-240<=right
+                    && e.bottom+y+240>=top && e.top+y-240<=bottom);
+                if(hide!=e.hidden) {
+                    e.hidden=hide;e.wrapper.visible=!hide;hidden+=hide?1:-1;++changes;
                 }
             }
+            lastLeft=left;lastTop=top;lastRight=right;lastBottom=bottom;
         }
-        /** SATS captures must draw the full resident tree. Returns true when
-         * any wrapper was hidden and the caller must resumeFromCapture. */
+        private function bind(w:*,selected:Array,unitsOnly:Boolean):void {
+            clear();location=w.loc;visual=w.visual;unitsMode=unitsOnly;
+            for each(var box:* in w.loc.objs)if(box && "lurk" in box && box.lurk>0 && box.vis)exclusions[box.vis]=true;
+            for each(var layer:DisplayObjectContainer in selected) {
+                layers.push(layer);layerSet[layer]=true;
+                layer.addEventListener(Event.ADDED,onAdded,false,0,true);
+                layer.addEventListener(Event.REMOVED,onRemoved,false,0,true);
+                scan(layer);
+            }
+        }
+        private function scan(layer:DisplayObjectContainer):void {
+            ++scans;
+            for(var i:int=0;i<layer.numChildren;++i) {
+                var child:DisplayObject=layer.getChildAt(i);
+                if(!entries[child])enqueue(child);
+            }
+        }
+        private function audit():void {
+            for each(var e:SceneCullEntry in tracked)if(!e.pending && (e.child.parent!==e.wrapper || e.wrapper.parent!==e.layer)) {
+                e.pending=true;removed.push(e);
+            }
+            for each(var layer:DisplayObjectContainer in layers)scan(layer);
+        }
+        private function enqueue(child:DisplayObject):void {
+            if(!queued[child]){queued[child]=true;added.push(child);}
+        }
+        private function onAdded(event:Event):void {
+            if(mutating)return;
+            var child:DisplayObject=event.target as DisplayObject;
+            if(child && layerSet[child.parent])enqueue(child);
+        }
+        private function onRemoved(event:Event):void {
+            if(mutating)return;
+            var e:SceneCullEntry=entries[event.target];
+            if(e && !e.pending){e.pending=true;removed.push(e);}
+        }
+        private function flush():void {
+            for each(var e:SceneCullEntry in removed) {
+                e.pending=false;
+                if(e.index>=0 && (e.child.parent!==e.wrapper || e.wrapper.parent!==e.layer))forget(e,true);
+            }
+            removed.length=0;
+            for each(var child:DisplayObject in added) {
+                delete queued[child];
+                if(entries[child] || child===tele || exclusions[child] || !layerSet[child.parent])continue;
+                var layer:DisplayObjectContainer=child.parent,wrapper:Sprite=new Sprite();wrapper.mouseEnabled=false;
+                e=new SceneCullEntry();e.child=child;e.wrapper=wrapper;e.layer=layer;e.index=tracked.length;
+                measure(e,child.x,child.y,child.scaleX,child.scaleY,child.rotation);
+                mutating=true;
+                try {var at:int=layer.getChildIndex(child);layer.addChildAt(wrapper,at);wrapper.addChild(child);}
+                finally {mutating=false;}
+                entries[child]=entries[wrapper]=e;tracked.push(e);++discoveries;
+            }
+            added.length=0;
+        }
+        private function measure(e:SceneCullEntry,x:Number,y:Number,sx:Number,sy:Number,rot:Number):void {
+            var b:Rectangle=e.child.getBounds(visual);++boundsReads;
+            e.left=b.left-x;e.right=b.right-x;e.top=b.top-y;e.bottom=b.bottom-y;
+            e.empty=b.width<=0 && b.height<=0;e.x=x;e.y=y;e.sx=sx;e.sy=sy;e.rotation=rot;
+        }
+        private function forget(e:SceneCullEntry,restore:Boolean):void {
+            if(e.index<0)return;
+            delete entries[e.child];delete entries[e.wrapper];
+            var tail:SceneCullEntry=tracked.pop();
+            if(tail!==e){tracked[e.index]=tail;tail.index=e.index;}
+            e.index=-1;
+            if(e.hidden){--hidden;e.hidden=false;e.wrapper.visible=true;}
+            if(restore && e.wrapper.parent) {
+                var parent:DisplayObjectContainer=e.wrapper.parent,at:int=parent.getChildIndex(e.wrapper);
+                mutating=true;
+                try {parent.removeChild(e.wrapper);if(e.child.parent===e.wrapper)parent.addChildAt(e.child,at);}
+                finally {mutating=false;}
+            }
+        }
         public function suspendForCapture():Boolean {
             if(suspended)return false;
-            suspended=true;
-            var had:Boolean=false;
-            for each(var e:Object in tracked)if(e.hidden){e.wrapper.visible=true;had=true;}
+            suspended=true;var had:Boolean=false;
+            for each(var e:SceneCullEntry in tracked)if(e.hidden){e.wrapper.visible=true;had=true;}
             return had;
         }
         public function resumeFromCapture():void {
-            if(!suspended)return;
-            suspended=false;
-            for each(var e:Object in tracked)if(e.hidden)e.wrapper.visible=false;
+            if(!suspended)return;suspended=false;
+            for each(var e:SceneCullEntry in tracked)if(e.hidden)e.wrapper.visible=false;
         }
-        public function stats():Object {return {tracked:tracked.length,hidden:hidden,suspended:suspended};}
+        public function stats():Object {
+            return {version:"event-tracked-1",tracked:tracked.length,hidden:hidden,suspended:suspended,
+                visits:visits,visibilityChanges:changes,discoveries:discoveries,boundsReads:boundsReads,layerScans:scans};
+        }
         public function clear():void {
-            if(!tracked.length)return;
-            for each(var e:Object in tracked) {
-                var parent:DisplayObjectContainer=e.wrapper.parent;
-                if(parent) {
-                    var at:int=parent.getChildIndex(e.wrapper);parent.removeChild(e.wrapper);
-                    if(e.child.parent===e.wrapper)parent.addChildAt(e.child,at);
-                }
+            if(!location && !layers.length && !tracked.length)return;
+            for each(var layer:DisplayObjectContainer in layers) {
+                layer.removeEventListener(Event.ADDED,onAdded);layer.removeEventListener(Event.REMOVED,onRemoved);
             }
-            tracked=[];entries=new Dictionary();exclusions=new Dictionary(true);location=null;layers=null;hidden=0;suspended=false;
+            while(tracked.length)forget(tracked[tracked.length-1],true);
+            entries=new Dictionary();exclusions=new Dictionary(true);layerSet=new Dictionary();
+            layers.length=0;added.length=0;removed.length=0;queued=new Dictionary();
+            location=null;visual=null;tele=null;hidden=0;suspended=false;age=0;
+            lastLeft=lastTop=lastRight=lastBottom=NaN;
         }
     }
 }

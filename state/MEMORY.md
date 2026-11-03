@@ -1,5 +1,15 @@
 # ContinuousScene — 当前快照
 
+<!-- stutter-implementation-20261103 -->
+> **2026-11-03 用户已授权按方案优化；候选已实现，尚未部署，内存不足阻止剩余验收。** 正式仍 A9B39CC7 / CS 0.9.6 F16890C9 / scene.xml 1CEA74E2。新 CS 0.9.7 候选 `event-v3` **447AE02B**：事件队列维护显示根、typed entry/向量、变换不变时跳过边界计算、显隐变化才写入；仍逐帧检查坐标，未做静态分桶。23 项生命周期、13 项夹具、同帧 2,202,688 像素零差异通过。
+>
+> 第一轮诊断（cull-r2）完整间隔 121.72→91.82ms、P95 244→171ms，CS 局部 15.44→4.70ms；高开销且负载很慢，**不是发布性能证据**。反序 timing-r2 遇 668s 执行间断，整轮排除。精简 timing-cull-v2 / timing-nofire-v1 已编译待两进程重复。新的真实长走廊 x6080–8920,y2960；cold-r2 被“完全空闲”准备条件卡住，不算探索；cold-v2 已修成初始视口就绪后出发，后两次因内存不足未启动。最近承诺余量约 0.8–1GiB、物理负载 91–92%，无 AIR，不降低门槛或清其它进程。
+>
+> **更正 sceneCU**：MainFE 实测封闭，读取 #1069，不能沿用此前“镜头列表有效”的推断。清理无效列表/异常路径的宿主候选 `cleanup-v1` **5B409966** 仅改 Grafon.sceneTick 与 Bullet.run，类布局/其它方法不变，未运行、不可部署。命中夹具三次失败依次是未捕获属性错误、无活跃屏外自然目标、临时目标未核对阵营/重叠；最后一项不能归因 sceneCU。源码现已补空闲位置/敌对阵营/接触对象记录，下一步构建 qualification-v6 并在原宿主/cleanup-v1 对照。
+>
+> [实施记录与接续命令](../knowledge/experiments/stutter-optimization-implementation-20261103.md)。工作根 `build/generated/stutter-opt-20261103`，正式输入/开工源码 frozen baseline 已留存；构建器 `tools/stutter_{opt,probe,host}.py`，分析器 `tools/stutter_analyze.py`。生产源码是候选；release 未替换。原六份未提交源码、其它报告和期间并发改写的方案正文保留；自有运行已结束，无后台继续承诺。弹痕保留、帧预算、历史索引尚未取得实施资格，不能当已优化。
+<!-- /stutter-implementation-20261103 -->
+
 <!-- stutter-investigation-20261103 -->
 > **2026-11-03 当前调查结论与下一步**：用户条件已明确为**马哈顿废墟、轻机枪、大窗口、RV/WB/光暗效果关闭**。本轮仅调查与制定方案，未实施性能修复或部署。正式宿主仍 **A9B39CC7**、CS 0.9.6 **F16890C9**、scene.xml **1CEA74E2**。以下旧条目的“头号嫌疑”“待选回退”和“数学上不可能优化”不是当前裁定。
 >
