@@ -7,6 +7,10 @@ package {
         public var index:int=-1;
         public var x:Number,y:Number,sx:Number,sy:Number,rotation:Number;
         public var left:Number,right:Number,top:Number,bottom:Number;
+        /** Local box at scale 1 (rotation 0). A pure scale change maps it
+         * exactly, so the per-frame bounds traversal can be skipped. */
+        public var baseLeft:Number,baseRight:Number,baseTop:Number,baseBottom:Number;
+        public var baseValid:Boolean=false;
         public var empty:Boolean=false,hidden:Boolean=false,checked:Boolean=false,pending:Boolean=false;
     }
 }

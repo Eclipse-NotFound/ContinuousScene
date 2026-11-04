@@ -1,3 +1,22 @@
+## 2026-11-04 — 剔除包围盒解析式缩放（event-tracked-2）：离线 45/45，已随瞄准 V3 合并构建上线
+
+- 用户要求按方案实施"首次接近敌人卡顿"优化。调查先把前提纠正：敌人在进图时由 `Location.setObjects → createUnit → Unit.create`（`initBlit` 取共享 SpriteSheet、`Weapon.create`、`addVisual`）全量实例化，走近不构造实体、不拆 SWF；音乐/音效在启动时 `initSnd/loadMusic` 全量预加载且只在 `bytesLoaded==bytesTotal` 时播放。实机 1300 帧证据（`knowledge/experiments/evidence/bulletgrid-gridlive-combat-n1`）：`woke` 最大 1/帧（预算生效）、`activityMs` 均值 0.538ms、`boundsReads` 25–55 无交战尖峰、15 个 ≥90ms 长帧的 `activityMs` 0–2ms。长帧仍与 >1MB 内存回落同帧（地块分配推动回收）——**"首次加载敌人"不成立**，原方案里的"唤醒强弱分级/预算收紧"因此不做（与 `alicorn4` 既有计数一致）。
+- 实际落地的是可证等价的那一项：`SceneObjectCulling` 缓存"单位缩放局部盒"，纯缩放（`rotation==0`、非零有限）时用算术映射替代每帧 `getBounds`；每帧只摊销重测 1 个条目（**不写 `e.x/e.y`**，避免同帧移动被跳过）；主循环 `for each`→下标 `for`；`stats()` 升 `event-tracked-2` 并加 `scaleSkips`/`baseRefreshes`。
+- 验证：独立 AIR（`remains.cs.cullchecks.*`，无游戏/存档）**45/45** = 既有 `SceneCullingChecks` 23/23 回归 + 新 `SceneCullingScaleChecks` 22/22 差分（oracle 每帧 `getBounds` 逐帧逐根比对，覆盖镜像/旋转回落/零轴/同帧传送/美术变化后扫刷新/空根/unitsOnly 切换）。合成场景 1897 次变换 → 920 次算术、`getBounds` 4.36/帧（旧实现 ≈21/帧），不一致 0。
+- 产物：`build/generated/cull-scale-20261104/product/ContinuousSceneMod.swf` = **`6A538E83…`**（33175 B，13 类，无 tests/Checks/Probe 泄漏，字节码含 `applyScale`/`refreshBase`/`event-tracked-2`）。归因：把并行瞄准 V3 会话的 3 个文件钉 HEAD 编控制产品 `E6567000…`，逐类导出只差 `SceneCullEntry`+`SceneObjectCulling`；本地管线对已部署 `D04CD26A` 的 7 个抽查类导出完全一致（同 32677 B）。
+- **部署结果（本轮收尾核对）**：用户选择"等瞄准 V3 收尾后合并一次部署"。并行会话 23:22 把 CS 0.9.10 部署为 **`A4F4C8ED`**（前值 `D04CD26A`，备份 `build/backups/ContinuousSceneMod-0.9.9-D04CD26A-before-aimv3-20261104-232209.swf`）。从**已部署字节**导出 `SceneObjectCulling`=`F59A2915…`、`SceneCullEntry`=`CDCB935B…`，与通过 45/45 的候选 `6A538E83…` 的两个类**逐字节相同**（0.9.9 的同两类是 `B14DDD97…`/`7B9729CB…`）→ 线上代码就是被验过的代码。源码哈希链闭合（夹具冻结副本 = 产品输入：`B62731BA…`/`ACC0753E…`）。核验回执 `state/culling-scale-verification-20261104.json`；**需重启游戏生效**。
+- **环境漂移**：共享 Flex SDK 缺 `frameworks/localFonts.ser`，编译统一加 `-theme=` + `-compiler.fonts.local-fonts-snapshot=`（同 ConditionSystem 做法），未改共享工具目录。报告 `knowledge/experiments/culling-scale-20261104.md`。
+
+## 2026-11-04 — 瞄准注视模式 V3 优化方案成文（脱离修复、连续平滑距离反馈、平行双模）
+
+- 用户实测反馈 3 项核心问题：①按 Alt 导致鼠标脱离游戏，需左键单击一次才能返回；②注视模式移动不平滑，无法建立"鼠标越靠近屏幕边缘看越远"的反馈；③要求保留 0.9.8 的"按住 Alt 注视"作为平行模式。
+- **深度调查与根因**：
+  1. **按 Alt 鼠标脱离**：Win32 窗口体系中单发 Alt（`VK_MENU`，keyCode 18）为激活系统菜单的全局快捷键（`WM_SYSCOMMAND / SC_KEYMENU`），激活后 Win32 窗口强制解除鼠标捕获（Mouse Capture Lost），进入菜单导航状态，必须点击客户区窗口才能退出并恢复焦点；`SceneAimController` 监听 `KeyboardEvent` 时**从未调用 `preventDefault()`**，导致击键原封不动透传至操作系统底层的 Win32 消息循环；原版 Remains 的 44 个键位完全规避了单发裸 Alt。
+  2. **缺少越靠边越看越远反馈与移动不平滑**：0.9.9 边缘 90px 停留 3 帧硬锚定走向极端二值化（中心 80% 区域目标恒为 0，触边 3 帧突然锁死在 700px），彻底切断了连续控制感知；0.9.8 移回视野射击回缩的本质是屏幕坐标与世界坐标的代数环；正解不是硬锁死，而是**连续平滑非线性距离映射（$S(u) = u^{1.25}$，死区 70px）+ 不对称阻尼 / 软滞后保持（Soft Retention）**，外推敏捷（$0.24\text{s}$），瞄准微调同侧高阻尼保持（$0.8\text{s}$），主动拉回中心才回弹（$0.20\text{s}$ 单调无过冲）。
+  3. **长按与切换平行模式**：长按（Hold，0.9.8 升级版）具备即时松手回弹的安全感，适合遭遇战快速索敌；切换（Toggle，0.9.9 演进版）解放左手，适合大场景长途行军；两者确立为平行模式，并扩展智能混合模式（Smart，短按切换/长按松开即回），设置项平级可选，偏好向下兼容。
+- 完全继承 0.9.9 验证通过的 `syncViewport()`（`Grafon.sceneTick`）视口同步机制（远端墙体 100% 渲染与表面可见）与 `(cursor - vx) / scale` 逐像素渲染恒等式。
+- 方案文件定稿于 `design/aim-look-v3-dual-mode-and-input-smoothness-plan.md`。
+
 ## 2026-11-04 — 交战卡顿：子弹空间分桶落地（宿主 1D2004AB → 91F8E10D）
 
 - 按方案 C1 实施：删除 `Grafon.sceneTick` 写 / `Bullet.run` 读 `World.w.visual.root["sceneCU"]` 的密封类异常通道，改为每帧整房间 512px 分桶表（存 `World.w.vgui`，`Sprite` 密封不能用），子弹按自身坐标查桶；三道回落闸（targetObj / 单位数变动 / 玩家位移 >256px）。只改 `fe.graph.Grafon::sceneTick` + `fe.weapon.Bullet::run`，类布局不变。

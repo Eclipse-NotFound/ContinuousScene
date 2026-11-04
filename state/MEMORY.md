@@ -1,5 +1,25 @@
 # ContinuousScene — 当前快照
 
+<!-- cull-scale-20261104 -->
+> **2026-11-04 剔除包围盒改为解析式缩放（`SceneObjectCulling` event-tracked-2）：已实施、离线验收 45/45，并已随瞄准 V3 的合并构建上线**。正式 `release` 现为 **`A4F4C8ED`（0.9.10 = 瞄准 V3 + 本改动）**（23:22 由并行会话部署，前值 `D04CD26A`）；宿主 `91F8E10D`、`scene.xml` `1CEA74E2` 未动；**需重启游戏生效**。报告 [knowledge/experiments/culling-scale-20261104.md](../knowledge/experiments/culling-scale-20261104.md)。
+> - **上线证据（类哈希相等，不是"应该包含"）**：从已部署 `A4F4C8ED` 导出 `SceneObjectCulling`=`F59A2915…`、`SceneCullEntry`=`CDCB935B…`，与本轮通过 45/45 的候选 `6A538E83…` 的两个导出类**逐字节相同**；而 0.9.9 `D04CD26A` 的同两类是 `B14DDD97…`/`7B9729CB…`。源码哈希链也已闭合：夹具冻结副本 = 产品构建输入（`SceneObjectCulling.as B62731BA…`、`SceneCullEntry.as ACC0753E…`）。
+> - **改了什么**（只两个类）：①`measure()` 缓存"单位缩放局部盒"，纯缩放且 `rotation==0` 时用 `base×scale` 算新盒（负缩放交换边界），**不再每帧 `getBounds`**；②每帧只重测 1 个条目（`refreshBase()`，轮转）界定陈旧，且**不写 `e.x/e.y`**（同帧移动仍会被重新判定）；③主循环 `for each`→下标 `for`；④`stats()` 升到 `event-tracked-2`，新增 `scaleSkips`/`baseRefreshes`。
+> - **证据**：独立 AIR（`remains.cs.cullchecks.*`，无游戏无存档）**45/45**——既有 `SceneCullingChecks` 23/23 回归 + 新 `SceneCullingScaleChecks` 22/22 差分（oracle 每帧重算 `getBounds` 逐帧逐根比对）。合成混合场景：1897 次变换 → 920 次走算术路径、`getBounds` 392 次 = **4.36/帧**（旧实现同场景 ≈21/帧）；不一致 0。另有镜像/旋转回落/零轴/传送同帧判定/美术变化后刷新/空根/`unitsOnly` 切换等专项断言。
+> - **归因**：把并行瞄准 V3 会话的 3 个文件钉到 HEAD 编"控制产品" `E6567000…`，与控制逐类导出比对**只有 `SceneCullEntry`+`SceneObjectCulling` 不同**；本地管线对已部署 `D04CD26A` 的 7 个抽查类导出完全一致（同 32677 B）。
+> - **不主张**：整帧收益（实机 handler 1.95ms/帧、activity 0.538ms/帧，本次省零点几毫秒；未做配对计时）；不主张解决 ≥100ms 长帧。
+> - **顺带核清**：探索"首次加载敌人"不成立——敌人进图即全量 `createUnit`+`initBlit`+`addVisual`（非走近生成），音乐/音效启动时预加载；实机 1300 帧 `woke` 最大 1/帧、`activityMs` 均值 0.538ms、`boundsReads` 25–55 无交战尖峰；长帧仍与 >1MB 内存回落同帧（地块分配推动回收）。
+> - **部署时序**：本会话原计划自行部署（候选 `6A538E83…`，脚本 `build/generated/cull-scale-20261104/deploy_cull_scale.py` 双闸门），按用户选择改为"等瞄准 V3 收尾后合并一次部署"。并行会话随瞄准 V3 一并构建部署 → 合并构建自动带上本轮 `src/` 改动，未发生两次重启或互相覆盖。校验回执 `state/culling-scale-verification-20261104.json`（只做核验，不改产品）。
+> - **环境漂移（需知悉）**：共享 Flex SDK 已缺 `frameworks/localFonts.ser`，直接 mxmlc 报"无法打开"。本轮编译统一加 `-theme=` 与 `-compiler.fonts.local-fonts-snapshot=`（与 ConditionSystem 的做法一致），未改共享工具目录。
+<!-- /cull-scale-20261104 -->
+
+<!-- aim-look-v3-plan-20261104 -->
+> **2026-11-04 瞄准注视模式 V3 优化方案成文**：方案见 [design/aim-look-v3-dual-mode-and-input-smoothness-plan.md](../design/aim-look-v3-dual-mode-and-input-smoothness-plan.md)。
+> - **问题 1（按 Alt 鼠标脱离）**：定位为 Win32 系统菜单陷阱（`SC_KEYMENU`）与 AIR 键盘事件缺失 `event.preventDefault()`。原版 44 个键位完全规避裸 Alt。方案：键盘监听显式调用 `preventDefault()` 与 `stopImmediatePropagation()` 截断系统透传，并推荐/引导使用零系统冲突的 `Left Ctrl`（原版空置）作为稳健触发键。
+> - **问题 2（不够平滑、缺失“越近边缘越看越远”反馈）**：定位为 0.9.9 边缘 90px 停留 3 帧硬锚定的极端二值化设计，切断了连续控制感知。方案：废除硬锚定，恢复由屏幕中心向边缘单调平滑递增的连续非线性距离映射（$S(u) = u^{1.25}$，死区 70px）；通过**不对称阻尼 / 软滞后保持（Soft Retention）**解决“瞄准射击时镜头回缩”的代数环难题（外推敏捷 $0.24\text{s}$、瞄准微调高阻尼保持 $0.8\text{s}$、主动回中 $0.20\text{s}$ 单调平顺）。
+> - **问题 3（保留上一版长按注视，平行模式）**：将**长按注视（Hold Mode，0.9.8 升级版）**与**切换注视（Toggle Mode，0.9.9 演进版）**确立为对等的平行模式，并扩展智能混合模式（Smart Mode，短按切换/长按松开即回），设置项平级可选，偏好存储双向兼容。
+> - 完全继承 0.9.9 已落地验证的 `syncViewport()`（`Grafon.sceneTick`）视口同步机制与渲染恒等式。
+<!-- /aim-look-v3-plan-20261104 -->
+
 <!-- bullet-grid-20261104 -->
 > **2026-11-04 已部署子弹空间分桶（宿主 `1D2004AB` → `91F8E10D`）**。CS release 未动（当时已由并行会话部署到 0.9.9 `D04CD26A`）、`scene.xml` `1CEA74E2` 未动；**需重启游戏生效**。备份 `build/backups/pfe_before_bulletgrid_20261104-185052.swf`（= 1D2004AB），回执 `build/generated/combat-collision-20261104/deploy-receipt-grid-clean.json`，报告 `knowledge/experiments/bullet-collision-20261104.md`。
 > - **改了什么**：①删掉 `Grafon.sceneTick` 往 `World.w.visual.root["sceneCU"]` 写列表、以及 `Bullet.run` 读它——`root` 是密封的 `fe.MainFE`，那两处每天都在抛了再吞（读 #1069 / 写 #1056），`_collisionUnits` 恒回退 `loc.units`；②`sceneTick` 改为每帧建**整房间 512px 分桶表**（单位 AABB 外扩 96px 登记全部覆盖格、桶数组跨帧复用），存 `World.w.vgui["__csBulletGridV1"]`；`Bullet.run` 按子弹自身坐标查桶。只改 `fe.graph.Grafon::sceneTick` + `fe.weapon.Bullet::run`，类布局不变。
