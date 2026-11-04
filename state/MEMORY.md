@@ -11,7 +11,7 @@
 > - **回退档/陷阱**：`scu-remove-clean` `BAA22A81`（只删异常通道、不带分桶）。`decal-nocancel-v2`（`BD8F90FA`，7 方法相位诊断含 `sceneEnsureUpcoming` 插桩）**两次跑挂**（10 分钟超时无 result），不可再用于配对；控制臂请用真正线上字节 `decal-nocancel-clean`。
 > - **已知交互（已实测互操作）**：CS 0.9.9 瞄准平移会在 `apply()` 后再调一次 `w.grafon.sceneTick()`，平移期间分桶表会被重复重建。已用 0.9.9 自己的 `AimProbe` 实机夹具跑**已部署字节**：**14/14 通过**（`viewportSyncs` 239/444 帧、`resident 70→110`、`world-map-exact bad 0`、`apply-consistent bad 0`）。
 > - **同毫秒去重候选已建但不部署**：`grid-probe` `1D415967`（带 skip/build 计数）、`grid-clean-guard` `6E3BC782`（纯净版）。理由：第二次 `sceneTick` 在模组 ENTER_FRAME 里、晚于游戏 step，两次调用相隔毫秒级以上，`getTimer()` 同毫秒几乎不成立 → 无可测收益，按门槛不动宿主。
-> - **证据目录损失**：`knowledge/experiments/evidence/` 曾在 19:12–21:05 之间被外部清理删除（789 个已跟踪文件），已用 `git checkout` 全量恢复（73 目录、0 删除）；本轮**未跟踪**的 `bulletgrid-*`/`installed-smoke-*` 原始 result 无法找回，汇总数字在报告 §6、整张矩阵可用 §9 命令重跑。认领锁卡死与处置阶梯见 `knowledge/discoveries/file-claim-lock-deadlock-20261104.md`。
+> - **证据目录已按存储优化归档（不是丢失）**：`knowledge/experiments/evidence/` 的 1032 个目录（28,767 文件、4.43GB）已在 2026-11-04 打包移到 `F:\RemainsTest\batches\2026-11-04-manual-archive\evidence-203804.zip`（含 manifest、`zipfile.testzip()` 校验通过），仓库内的删除已随 `EVIDENCE-ARCHIVED.md` 一起提交；要查原始证据按相对路径从 zip 取。本轮 `bulletgrid-*`/`installed-smoke-*` 已从该 zip 解回本目录（报告 §6 引用它们）。
 <!-- /bullet-grid-20261104 -->
 
 <!-- aim-look-v2-implemented-20261104 -->
