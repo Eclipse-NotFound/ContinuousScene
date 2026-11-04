@@ -5,6 +5,13 @@
 - 隔离冻结A9B39CC7，正式宿主另轮变更1D2004AB不混用；本轮未改正式核心、入口、CS release。旧失败、预热菜单、探针修正和未覆盖的全屏/新宿主均如实留存。本轮自有测试进程均结束，未动他人进程。
 - 返回报告：[run-03/REPORT.md](D:/活/AI/测试运行/remains-proof-strategy-20261104/run-03/REPORT.md)；案例：[proof-activity-live-20261104.md](../knowledge/experiments/proof-activity-live-20261104.md)。接续先核对自然q=0价值与可重复初态，再考虑既定性能矩阵；未自动发往其他对话。
 
+## 2026-11-04 — 长帧归因反转：≥100ms 帧 85~100% 与 50~165MB 内存回落同帧；新候选=逐出+缓冲复用
+
+- 用相位探针三次运行（探索/战斗/单天角兽）逐帧对照 `System.totalMemory` 与长帧：**11/13、12/13、3/3 的 ≥100ms 帧与 >1MB 回落同帧**，回落中位 50–72MB（最大 165MB），回落 >3MB 的帧平均 98–131ms；`resident` 同帧仍增长。
+- 机制：每块 4×2.56MB、约 1.8 块/秒 ≈18MB/s 分配且**从不复用**（无逐出）→ AIR 每约 80 帧回收 50–165MB，把该帧拉到 100–171ms。此前“减分配≠减帧时”削的是小垃圾，不是这个量。
+- 新候选（原 P3 换理由）：`sceneDrop` 入池(≤8 块) + `sceneBeginWarm` 从池取并清零 + `sceneTick` 按离视口最远逐出到上限 96 块（`World.w.visual.root["sceneChunkCap"]` 可运行时改）。**先验风险**：呈现层是否引用被逐缓冲、折返是否转同步补画。
+- 报告 `knowledge/experiments/long-frame-memory-20261104.md`。天角兽 v3 计数运行仍被玩家游戏（13:57 启动，窗口名 Remains）占用，未跑；未动玩家进程。
+
 ## 2026-11-04 — 天角兽只读计数探针（B-P1）：工具就绪；首轮未见“警报拉活”
 
 - 新探针 `alicorn-v3`（基于 cold-v2，原生生成一只 `UnitAlicorn("1",100,null,{tr:1})`，逐帧记 units/cel/f1/awake/asleep/leashed/filters/projectiles + 天角兽 mater/aiState/aiSpok/t_tele/teleObj）。首版因 `UnitPlayer.visBmp` #1069（密封类）丢整段计数，v3 改为逐项 try/catch。

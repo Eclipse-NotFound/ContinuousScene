@@ -4,6 +4,14 @@
 > **2026-11-04 证明策略实机接续：按需建威胁表候选保留，未部署。** 同源0.9.8最小候选真实AIR诊断28/28（含12夹具），1,075次读取边界/独立状态比较零差异；移动/开火/瞄准各450帧、38项检查通过，但q=0均0%，没有省一次建表。旧A/A初态/顺序/负载不匹配，修正对照遇其他AIR；**有效性能配对0，局部与整帧收益未判定**。本批冻结A9B39CC7、1280×800/scale2/3，不能外推新宿主或用户全屏。正式核心与CS release未改。报告 [run-03](D:/活/AI/测试运行/remains-proof-strategy-20261104/run-03/REPORT.md)；模组记录 `knowledge/experiments/proof-activity-live-20261104.md`。继续需先确认自然q=0价值及可重复原生初态，不直接加不匹配计时样本。
 <!-- /proof-activity-live-20261104 -->
 
+<!-- long-frame-memory-20261104 -->
+> **2026-11-04 长帧归因反转（重要）**：本轮相位探针三次运行逐帧对照 `System.totalMemory` 与长帧：**≥100ms 帧里 85%（11/13）、92%（12/13）、100%（3/3）与一次 >1MB 的内存回落同帧**，回落中位数 **50–72MB**（单次最大 165MB）；回落 >3MB 的帧平均 **98–131ms**。`resident` 同帧仍在增长，说明回收的不是地块缓冲而是大块临时内存。逐帧样例：`89→90` 帧 462MB→297MB、dt 143ms。
+> - **机制**：每块新地块在 `sceneBeginWarm` 分配 4×2.56MB、约 1.8 块/秒 ≈ **18MB/s 分配量**，且缓冲**从不复用**（`sceneDrop` 只在换图/verify 调用、无逐出）。AIR 的回收由分配量推动，约每 **80 帧（2.7s）**回收 50–165MB，把该帧拉到 100–171ms。→ 这解释了此前四次“减分配≠减帧时”：被削减的是小垃圾，触发回收的是**大地块分配量**。
+> - **新候选（原 P3，理由已更新）**：远处逐出 + 缓冲复用（`sceneDrop` 入池 ≤8 块、`sceneBeginWarm` 从池取并清零、`sceneTick` 按离视口最远逐出到 `sceneResident` 上限 96 块≈246MB，可用 `World.w.visual.root["sceneChunkCap"]` 运行时改）。预期把分配速率降到近 0 → 回收变稀 → 长帧按比例下降。
+> - **必须先验的风险**：全屏 `scaleV=1` 下 CS 呈现层（`SceneEventBitmapFill`）是否持有被逐块缓冲的引用；折返时是否转为同步补画（31–178ms）。验证用同一相位探针 + 回头路路线。
+> - 口径差别：v14 用插桩 GC 回调曾得“29 个长帧仅 9 个邻近 GC（31%）”；本轮用逐帧 `totalMemory` 回落（含 mark-sweep 与缓冲/显存释放），更贴近玩家感受的冻结，两者不矛盾。报告 `knowledge/experiments/long-frame-memory-20261104.md`。
+<!-- /long-frame-memory-20261104 -->
+
 <!-- alicorn-count-20261104 -->
 > **2026-11-04 天角兽只读计数探针（B-P1）：工具就绪，首轮不支持“警报拉活”假设**。探针 `build/generated/phase-20261104/alicorn-v3`（原生 `UnitAlicorn("1",100,null,{tr:1})` 生成 + 逐帧 alert/unicorn 计数）；首轮 `alicorn2-alicorn-n1`（900 帧、14 项检查通过）：均值 34.4ms、仅 3 帧 >100ms；`awake` 33→27（27–35）、`asleep`→112，**900 帧内只唤醒 11 次、交战前 30 帧 0 次**，交战后帧时无持续抬升 → **本夹具未出现成批拉活**。判别字段（cel/f1/filters）因首版 `UnitPlayer.visBmp` #1069 丢失，v3 已修但运行被并发会话占用 AIR 挡住（n1–n10 全 `Existing AIR`/`Other AIR`，未动他人进程）。报告 `knowledge/experiments/alicorn-count-probe-20261104.md`。**下一步**：等干净窗口跑 `alicorn-v3` 取 cel/awake 跳变；若无跳变则关闭 B1/B-P2 方向。
 <!-- /alicorn-count-20261104 -->
