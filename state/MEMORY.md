@@ -4,6 +4,12 @@
 > **2026-11-04 证明策略实机接续：按需建威胁表候选保留，未部署。** 同源0.9.8最小候选真实AIR诊断28/28（含12夹具），1,075次读取边界/独立状态比较零差异；移动/开火/瞄准各450帧、38项检查通过，但q=0均0%，没有省一次建表。旧A/A初态/顺序/负载不匹配，修正对照遇其他AIR；**有效性能配对0，局部与整帧收益未判定**。本批冻结A9B39CC7、1280×800/scale2/3，不能外推新宿主或用户全屏。正式核心与CS release未改。报告 [run-03](D:/活/AI/测试运行/remains-proof-strategy-20261104/run-03/REPORT.md)；模组记录 `knowledge/experiments/proof-activity-live-20261104.md`。继续需先确认自然q=0价值及可重复原生初态，不直接加不匹配计时样本。
 <!-- /proof-activity-live-20261104 -->
 
+<!-- cap-candidate-20261104 -->
+> **2026-11-04 逐出+复用候选已编码，待构建/验证（玩家在游戏中，未抢资源）**：`build/generated/opt-20261104/patch_host.py` 新增 `cap_patch`（3 个方法：`sceneDrop` 入池 ≤8 块缓冲、`sceneBeginWarm` 从池取并 `fillRect` 清零、`sceneTick` 末尾按离视口最远逐出到 `World.w.visual.root["sceneChunkCap"]`，默认 96 块≈246MB）。**dry-run 已通过**（`cap-dryrun.as`，3 方法改动、锚点唯一），FFDec 构建与实测待机器空闲。
+> - **关键前置已核对**：呈现层 `SceneEventBitmapFill` 第 64-66 行的失效条件**本来就含 `evictions != grafon.sceneEvictions`**，`refreshBindings()` 每次从 `sceneSurfaces()` 整体重建并对消失位图 `restoreRecord` → **逐出是设计时已留钩子的路径**，不是未支持路径。仍需实测：折返重预热代价、逐出瞬间 1 帧残影。
+> - **构建/验证命令**：`python build\generated\opt-20261104\patch_host.py cap cap-diag`（诊断版，带相位计时）→ `PHASE_HOST_DIR=<cap-diag> PHASE_PROBE=probe-v5 PHASE_LABEL=cap python build\generated\phase-20261104\run_phase2.py explore 14` → `analyze_phase.py cap-explore-n1`；对照基线 `phase2-explore-n1`（resident 49→181、13 帧 >100ms）。通过后再建 `cap-clean` 走部署门禁。
+<!-- /cap-candidate-20261104 -->
+
 <!-- long-frame-memory-20261104 -->
 > **2026-11-04 长帧归因反转（重要）**：本轮相位探针三次运行逐帧对照 `System.totalMemory` 与长帧：**≥100ms 帧里 85%（11/13）、92%（12/13）、100%（3/3）与一次 >1MB 的内存回落同帧**，回落中位数 **50–72MB**（单次最大 165MB）；回落 >3MB 的帧平均 **98–131ms**。`resident` 同帧仍在增长，说明回收的不是地块缓冲而是大块临时内存。逐帧样例：`89→90` 帧 462MB→297MB、dt 143ms。
 > - **机制**：每块新地块在 `sceneBeginWarm` 分配 4×2.56MB、约 1.8 块/秒 ≈ **18MB/s 分配量**，且缓冲**从不复用**（`sceneDrop` 只在换图/verify 调用、无逐出）。AIR 的回收由分配量推动，约每 **80 帧（2.7s）**回收 50–165MB，把该帧拉到 100–171ms。→ 这解释了此前四次“减分配≠减帧时”：被削减的是小垃圾，触发回收的是**大地块分配量**。

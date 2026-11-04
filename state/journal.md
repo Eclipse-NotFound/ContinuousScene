@@ -5,6 +5,12 @@
 - 隔离冻结A9B39CC7，正式宿主另轮变更1D2004AB不混用；本轮未改正式核心、入口、CS release。旧失败、预热菜单、探针修正和未覆盖的全屏/新宿主均如实留存。本轮自有测试进程均结束，未动他人进程。
 - 返回报告：[run-03/REPORT.md](D:/活/AI/测试运行/remains-proof-strategy-20261104/run-03/REPORT.md)；案例：[proof-activity-live-20261104.md](../knowledge/experiments/proof-activity-live-20261104.md)。接续先核对自然q=0价值与可重复初态，再考虑既定性能矩阵；未自动发往其他对话。
 
+## 2026-11-04 — 逐出+复用候选编码完成（dry-run 通过）；呈现层已含 evictions 钩子；玩家在游戏中未抢资源
+
+- `patch_host.py` 增 `cap_patch`：`sceneDrop` 缓冲入池(≤8 块)、`sceneBeginWarm` 取池并清零、`sceneTick` 按离视口最远逐出到 `sceneChunkCap`（默认 96 块≈246MB）。dry-run 生成 `cap-dryrun.as`，3 方法改动、锚点唯一、语法待编译验证。
+- **前置核对（重要）**：`src/SceneEventBitmapFill.as:64-66` 的失效条件本来就有 `evictions!=grafon.sceneEvictions`，`refreshBindings()` 从 `sceneSurfaces()` 整体重建并对消失位图 `restoreRecord` → 逐出是设计已留钩子的路径。
+- 玩家 13:57 起在游戏中（窗口 Remains，写到玩家真实存储），**未做 FFDec 构建、未跑测试**；候选与验证命令已写入 MEMORY。方案 v2 顶端已加实施更新表。
+
 ## 2026-11-04 — 长帧归因反转：≥100ms 帧 85~100% 与 50~165MB 内存回落同帧；新候选=逐出+缓冲复用
 
 - 用相位探针三次运行（探索/战斗/单天角兽）逐帧对照 `System.totalMemory` 与长帧：**11/13、12/13、3/3 的 ≥100ms 帧与 >1MB 回落同帧**，回落中位 50–72MB（最大 165MB），回落 >3MB 的帧平均 98–131ms；`resident` 同帧仍增长。

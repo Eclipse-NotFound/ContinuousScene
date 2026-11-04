@@ -1,5 +1,22 @@
 # ContinuousScene 三项问题：证据分级可执行优化方案（v2 · 2026-11-04）
 
+<!-- implementation-update-20261104 -->
+> **实施更新（2026-11-04 14:35）**：本方案已被执行过一轮，结论如下——仍要看细节时以各报告为准。
+>
+> | 方案条目 | 状态 | 依据 |
+> |---|---|---|
+> | P0 相位归因探针 | **已完成** | 探针在 `Camera.calc→sceneTick` 内拆相位；探索 CS 5.67ms/帧、战斗 3.00ms/帧；≥100ms 帧里 CS 只占 21%/8% |
+> | P2 弹痕不废预热 | **已实施并部署** | 宿主 `A9B39CC7 → 1D2004AB`；同调度 1300 帧 `cancelCount 10→0`、`cancelWork 302ms→0`；回执 `build/generated/opt-20261104/deploy-receipt.json` |
+> | P1 拆 `drawKusok` 子步 | **不做（实测否定）** | 三轮 `maxStepMs` 仅 20–25ms，非冷态曾见的 125ms |
+> | P3 弹痕/`sceneApply` 空间索引 | **不做（实测否定）** | `markMs` 0.03ms/帧；566 次 apply 合计 5.9 万次矩形相交 |
+> | P4 `sceneApplyCompactDecal` 分配修正 | **不做（收益<验证成本）** | 减分配≠减帧时（四次判例） |
+> | ① 地形双线性 | **作废（用户窗口）** | 用户用**大窗口/全屏**，`scaleV=1` 时无重采样；`zoom100` 用户明确否决 |
+> | **新 P3'：远处逐出 + 缓冲复用** | **本轮新增首要候选** | **长帧归因反转**：≥100ms 帧 85–100% 与一次 50–165MB 内存回落同帧；每块分配 4×2.56MB 且从不复用 ≈18MB/s → 约每 80 帧一次回收，把该帧拉到 100–171ms。见 `knowledge/experiments/long-frame-memory-20261104.md` |
+> | B-P1 天角兽计数探针 / B-P2 | 工具就绪，证据未定 | 20.9 探针 `alicorn-v3` 已可跑；首轮 900 帧未见警报拉活（awake 27–35、唤醒 11 次），但判别字段运行被玩家游戏挡住 |
+>
+> 逐条细节与复跑入口见 `knowledge/experiments/phase-attribution-implementation-20261104.md`、`long-frame-memory-20261104.md`、`alicorn-count-probe-20261104.md`。
+<!-- /implementation-update-20261104 -->
+
 > **文件标识**：`mods/ContinuousScene/design/scene-combat-camera-optimization-plan-v2-20261104.md`
 > **编制**：2026-11-04，Lead 会话（含 3 名并行调查员 + 1 项 AIR 离线微基准）
 > **基线（本轮实测核对）**：宿主 `pfe.swf` = `A9B39CC7…2D94`（未变）；CS release = **0.9.8 `285625F4…8ACF`**（2026-11-04 04:51 部署 aim-look，前一版 0.9.7 = `447AE02B…C2EF`）；`scene.xml` = `1CEA74E2…7A9E`（沿用，本轮未改）。
