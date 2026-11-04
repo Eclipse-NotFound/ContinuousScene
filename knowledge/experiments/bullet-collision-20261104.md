@@ -198,6 +198,13 @@ RESULT PASS checks=14 reason=complete
   Sprite，游戏报 `TypeError #2023: … must inherit from Sprite to link to the root`；
   入口必须是 `ProbeDoc.as`。
 
+> **证据目录损失（2026-11-04 21:05 发现）**：`knowledge/experiments/evidence/` 整个目录在
+> 19:12 之后被外部清理删除（789 个已跟踪文件 + 本轮未跟踪的 `bulletgrid-*` /
+> `installed-smoke-*` 原始 `result.json`）。已跟踪部分用 `git checkout -- knowledge/experiments/evidence`
+> 全量恢复（恢复后 73 个目录、0 个删除）；**本轮那几份未跟踪的原始运行目录无法从 git 找回**，
+> 但汇总数字已写进 §6，且全部可用 §9 的命令原样重跑（夹具、探针、运行器、分析器都在仓库里）。
+> 见 `state/bullet-grid-20261104.md` 的记录。
+
 ## 7. 部署（GOVERNANCE §6）
 
 | 项 | 值 |
