@@ -4,7 +4,7 @@ package tests {
     import flash.geom.Rectangle;
 
     /** Differential gate for the analytic bounds cache in SceneObjectCulling
-     * (event-tracked-2). The oracle recomputes getBounds for every root on
+     * (event-tracked-3). The oracle recomputes getBounds for every root on
      * every frame and applies the identical hide formula, so a wrong cached
      * box, a wrong mirror, a stale cache reused after a rotation, or a skipped
      * re-decide after a translation shows up as a visibility mismatch instead
@@ -16,17 +16,16 @@ package tests {
                 rows.push({name:name,ok:ok,detail:detail});
                 if(!ok)throw new Error("CullingScale: "+name+" "+JSON.stringify(detail));
             }
+            var f:int,i:int;
 
             // ------------------------------------------------------------ A
-            // Randomised mixed scene: roots flip, pulse and translate every
-            // frame while the camera also moves. Production must agree with the
-            // oracle on every root of every frame.
+            // Randomised mixed scene: roots flip, pulse, rotate and translate
+            // (including move+scale in the same frame) while the camera moves.
             var world:Object=makeWorld(type);
             var cut:*=world.cut,visual:Sprite=world.visual,roots:Array=world.roots;
             var rng:Object=seedRng(0x5EED1234);
             var mismatches:Array=[],frames:int=0,hiddenFrames:int=0;
             var transformed:int=0,totalBounds:int=0,totalSkips:int=0,maxBounds:int=0;
-            var f:int,i:int;
             for(f=0;f<90;++f) {
                 transformed+=mutate(roots,rng);
                 if(f%7==0)moveCamera(world,rng);
@@ -38,46 +37,58 @@ package tests {
                     var root:DisplayObject=roots[i];
                     if(root.parent==null)continue;
                     var expected:Boolean=!oracleHidden(root,visual,world.w.cam);
-                    if(root.parent.visible!=expected) {
+                    if(root.parent.visible!=expected && mismatches.length==0) {
                         mismatches.push({frame:f,index:i,x:root.x,y:root.y,
                             sx:root.scaleX,sy:root.scaleY,rot:root.rotation,
                             got:root.parent.visible,expected:expected});
-                        if(mismatches.length>6)break;
                     }
                 }
                 ++frames;
                 if(stats.hidden>0)++hiddenFrames;
-                if(mismatches.length)break;
+                if(mismatches.length)break;                  // stop at the first divergence
             }
+            // Report the divergence first: a frame-count complaint would hide it.
+            check("mixed-scene-oracle-agrees",mismatches.length==0,{mismatch:mismatches[0]});
             check("mixed-scene-frame-count",frames==90,{frames:frames});
-            check("mixed-scene-oracle-agrees",mismatches.length==0,{mismatches:mismatches});
             check("mixed-scene-culls-something",hiddenFrames>0,{hiddenFrames:hiddenFrames});
-            check("mixed-scene-fast-path-dominant",totalSkips>transformed*0.25,
+            check("mixed-scene-fast-path-dominant",totalSkips>transformed*0.40,
                 {skips:totalSkips,transformed:transformed});
-            check("mixed-scene-bounds-reads-bounded",totalBounds<=frames*8,
+            check("mixed-scene-bounds-reads-bounded",totalBounds<=frames*6,
                 {totalBounds:totalBounds,perFrame:totalBounds/frames,maxPerFrame:maxBounds});
             var surface:Object=cut.stats();
-            check("mixed-scene-stats-surface",surface.version=="event-tracked-2" &&
-                int(surface.baseRefreshes)>=1 && int(surface.visits)>0,
-                {version:surface.version,baseRefreshes:surface.baseRefreshes,visits:surface.visits});
+            check("mixed-scene-stats-surface",surface.version=="event-tracked-3" &&
+                int(surface.baseRefreshes)>=1 && int(surface.visits)>0 && surface.fastPath===true,
+                {version:surface.version,baseRefreshes:surface.baseRefreshes,visits:surface.visits,
+                 fastPath:surface.fastPath});
             cut.clear();
 
             // ------------------------------------------------------------ M
-            // Asymmetric art: a mirror is not a rescaled symmetric box, so a
-            // wrong edge swap changes the cull decision. Sign flips only.
+            // Mirror discrimination: asymmetric art far to the LEFT of the root.
+            // At scaleX=+1 the box sits at x -1500..-1420 (outside the padded
+            // viewport, so culled); at scaleX=-1 it mirrors to 1420..1500, which
+            // is inside the right pad. An implementation that scales the box but
+            // forgets to swap the edges gets one of the two orientations wrong.
             var mirror:Object=makeWorld(type,1);
-            var mcut:*=mirror.cut,mroot:DisplayObject=mirror.roots[0];
-            mroot.x=0;mroot.y=0;mroot.scaleX=1;mroot.scaleY=1;mroot.rotation=0;
+            var mcut:*=mirror.cut,mroot:Sprite=mirror.roots[0] as Sprite;
+            mroot.x=0;mroot.y=0;mroot.scaleY=1;mroot.rotation=0;
+            drawArt(mroot,-1500,6,80,40);
+            mroot.scaleX=1;
             mcut.update(mirror.w,true);
-            var mirrorBad:Array=[],mirrorSkips:int=0;
+            var culledAtPlus:Boolean=!mroot.parent.visible;
+            var mirrorBad:Array=[],mirrorToggles:int=0,mirrorSkips:int=0;
+            var prevVisible:Boolean=mroot.parent.visible;
             for(f=0;f<8;++f) {
                 mroot.scaleX=(f%2==0)?-1:1;
                 mcut.update(mirror.w,true);
                 mirrorSkips+=mcut.stats().scaleSkips;
                 var mExpected:Boolean=!oracleHidden(mroot,mirror.visual,mirror.w.cam);
-                if(mroot.parent.visible!=mExpected)mirrorBad.push({frame:f,expected:mExpected});
+                if(mroot.parent.visible!=mExpected)mirrorBad.push({frame:f,scaleX:mroot.scaleX,
+                    got:mroot.parent.visible,expected:mExpected});
+                if(mroot.parent.visible!=prevVisible){++mirrorToggles;prevVisible=mroot.parent.visible;}
             }
-            check("mirror-matches-oracle",mirrorBad.length==0,{bad:mirrorBad});
+            check("mirror-scenario-culls-one-side",culledAtPlus,{culledAtPlus:culledAtPlus});
+            check("mirror-matches-oracle",mirrorBad.length==0,{bad:mirrorBad[0]});
+            check("mirror-decision-actually-flips",mirrorToggles>=6,{toggles:mirrorToggles});
             check("mirror-uses-arithmetic",mirrorSkips>=7,{skips:mirrorSkips});
             mcut.clear();
 
@@ -104,17 +115,17 @@ package tests {
             rcut.clear();
 
             // ------------------------------------------------------------ Z
-            // A zero axis collapses the box; the cache must drop out instead of
-            // dividing by zero, and recover once the axis returns.
+            // Degenerate axes must fall back instead of dividing by ~0.
             var zeroWorld:Object=makeWorld(type,1);
             var zcut:*=zeroWorld.cut,zroot:Sprite=zeroWorld.roots[0] as Sprite;
             zcut.update(zeroWorld.w,true);
-            var zeroBad:Array=[],scales:Array=[0,0.001,1,-1,0,2];
+            var zeroBad:Array=[],scales:Array=[0,0.001,1,-1,0,2,0.0005,NaN];
             for(f=0;f<scales.length;++f) {
                 zroot.scaleX=scales[f];
                 zcut.update(zeroWorld.w,true);
                 var zExpected:Boolean=!oracleHidden(zroot,zeroWorld.visual,zeroWorld.w.cam);
-                if(zroot.parent.visible!=zExpected)zeroBad.push({frame:f,scaleX:scales[f],expected:zExpected});
+                if(zroot.parent.visible!=zExpected)zeroBad.push({frame:f,scaleX:String(scales[f]),
+                    got:zroot.parent.visible,expected:zExpected});
             }
             check("zero-axis-oracle-agrees",zeroBad.length==0,{bad:zeroBad});
             zcut.clear();
@@ -137,9 +148,9 @@ package tests {
             tcut.clear();
 
             // ------------------------------------------------------------ S
-            // Art changed under a static root transform: the amortised sweep must
-            // refresh the cached box, so a later scale change decides with the
-            // new extent (here it flips the object from culled to visible).
+            // Art change under a static root transform and a static camera: the
+            // amortised refresh must both refresh the base and re-decide the
+            // SAME frame (no transform change is performed here on purpose).
             var artWorld:Object=makeWorld(type,1);
             var acut:*=artWorld.cut,aroot:Sprite=artWorld.roots[0] as Sprite;
             aroot.x=1650;aroot.y=0;aroot.scaleX=1;aroot.scaleY=1;aroot.rotation=0;
@@ -147,15 +158,41 @@ package tests {
             acut.update(artWorld.w,true);
             var hiddenBefore:Boolean=!aroot.parent.visible;
             drawArt(aroot,-200,6,80,40);     // art now reaches back into the viewport
-            for(f=0;f<8;++f)acut.update(artWorld.w,true);   // one full sweep of 3 entries
-            aroot.scaleX=1.3;                // force the arithmetic path with the refreshed base
-            acut.update(artWorld.w,true);
-            var artExpected:Boolean=!oracleHidden(aroot,artWorld.visual,artWorld.w.cam);
+            var decidedAfterRefresh:Boolean=false;
+            for(f=0;f<8;++f) {
+                acut.update(artWorld.w,true);          // static camera, static transform
+                var aExpected:Boolean=!oracleHidden(aroot,artWorld.visual,artWorld.w.cam);
+                if(aroot.parent.visible!=aExpected)
+                    throw new Error("CullingScale: art-change-not-redecided frame="+f);
+                if(aroot.parent.visible)decidedAfterRefresh=true;
+            }
             check("art-change-was-culled-before",hiddenBefore,{hiddenBefore:hiddenBefore});
-            check("sweep-refreshes-stale-art",aroot.parent.visible==artExpected,
-                {got:aroot.parent.visible,expected:artExpected});
-            check("sweep-flipped-to-visible",artExpected && aroot.parent.visible);
+            check("refresh-rededicates-same-frame",decidedAfterRefresh,{decided:decidedAfterRefresh});
             acut.clear();
+
+            // ------------------------------------------------------------ P
+            // Layer guard: a translated layer breaks the analytic assumption, so
+            // the fast path must switch itself off (checked at bind, where the
+            // production code looks) and every decision must still match the
+            // oracle — it degrades to measuring, never to guessing.
+            var guardWorld:Object=makeWorld(type,0,true);
+            var gcut:*=guardWorld.cut,guardBad:Array=[],guardSkips:int=0;
+            var grng:Object=seedRng(0x1234ABCD);
+            for(f=0;f<40;++f) {
+                mutate(guardWorld.roots,grng);
+                gcut.update(guardWorld.w,true);
+                guardSkips+=gcut.stats().scaleSkips;
+                if(gcut.stats().fastPath!==false)guardBad.push({frame:f,reason:"fast-path-guard"});
+                for(i=0;i<guardWorld.roots.length;++i) {
+                    var gr:DisplayObject=guardWorld.roots[i];
+                    if(gr.parent==null)continue;
+                    if(gr.parent.visible!=(!oracleHidden(gr,guardWorld.visual,guardWorld.w.cam)))
+                        guardBad.push({frame:f,index:i});
+                }
+            }
+            check("layer-guard-disables-fast-path",guardBad.length==0,{bad:guardBad[0]});
+            check("layer-guard-falls-back-to-measuring",guardSkips==0,{skips:guardSkips});
+            gcut.clear();
 
             // ------------------------------------------------------------ E
             // Empty roots stay visible no matter how far away they are.
@@ -182,8 +219,8 @@ package tests {
             for(i=0;i<unitWorld.roots.length;++i) {
                 var rr:DisplayObject=unitWorld.roots[i];
                 if(rr.parent==null)continue;
-                var rExp:Boolean=!oracleHidden(rr,unitWorld.visual,unitWorld.w.cam);
-                if(rr.parent.visible!=rExp)restoreBad.push({index:i});
+                if(rr.parent.visible!=(!oracleHidden(rr,unitWorld.visual,unitWorld.w.cam)))
+                    restoreBad.push({index:i});
             }
             check("layer-set-switch-oracle-agrees",restoreBad.length==0,{bad:restoreBad});
             ucut.clear();
@@ -200,10 +237,11 @@ package tests {
             return !(b.right+240>=left && b.left-240<=right && b.bottom+240>=top && b.top-240<=bottom);
         }
 
-        private static function makeWorld(type:Class,small:int=0):Object {
+        private static function makeWorld(type:Class,small:int=0,layerOffset:Boolean=false):Object {
             var visual:Sprite=new Sprite();
             var layers:Array=[new Sprite(),new Sprite(),new Sprite()];
             for(var l:int=0;l<layers.length;++l)visual.addChild(layers[l]);
+            if(layerOffset) {layers[1].x=137;layers[1].y=-41;}
             var roots:Array=[],empty:Array=[],rng:Object=seedRng(0xC0FFEE);
             var count:int=small>0?1:24;
             for(var i:int=0;i<count;++i) {
@@ -242,11 +280,16 @@ package tests {
                 var root:Sprite=roots[i] as Sprite;
                 if(!root || root.numChildren==0)continue;   // empty roots keep their place
                 var roll:Number=nextRandom(rng);
-                if(roll<0.34){root.scaleX=root.scaleX>0?-1:1;++changed;}                 // turn: pure mirror
-                else if(roll<0.46){root.scaleX=(nextRandom(rng)<0.5?-1:1)*randomIn(rng,0.4,2.2);++changed;}
-                else if(roll<0.54){root.scaleY=(nextRandom(rng)<0.5?-1:1)*randomIn(rng,0.4,2.2);++changed;}
-                else if(roll<0.60){root.rotation=(nextRandom(rng)<0.3)?45:0;++changed;}
-                else if(roll<0.88){root.x=randomIn(rng,-1400,1400);root.y=randomIn(rng,-900,900);++changed;}
+                if(roll<0.24){root.scaleX=root.scaleX>0?-1:1;++changed;}                  // turn: pure mirror
+                else if(roll<0.34){root.scaleX=(nextRandom(rng)<0.5?-1:1)*randomIn(rng,0.4,2.2);++changed;}
+                else if(roll<0.42){root.scaleY=(nextRandom(rng)<0.5?-1:1)*randomIn(rng,0.4,2.2);++changed;}
+                else if(roll<0.48){root.rotation=(nextRandom(rng)<0.3)?45:0;++changed;}
+                else if(roll<0.62){root.x=randomIn(rng,-1400,1400);root.y=randomIn(rng,-900,900);++changed;}
+                else if(roll<0.74){                                                      // move AND scale, same frame
+                    root.x=randomIn(rng,-1400,1400);root.y=randomIn(rng,-900,900);
+                    root.scaleX=(nextRandom(rng)<0.5?-1:1)*randomIn(rng,0.4,2.2);
+                    ++changed;
+                }
                 // else: untouched this frame
             }
             return changed;

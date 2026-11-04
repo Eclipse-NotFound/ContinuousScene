@@ -3,18 +3,21 @@ package {
     import flash.display.DisplayObjectContainer;
     import flash.display.Sprite;
     import flash.events.Event;
+    import flash.geom.Matrix;
     import flash.geom.Rectangle;
     import flash.utils.Dictionary;
 
     /** Own wrapper visibility; never overwrite native objects' own visibility. */
     public class SceneObjectCulling {
+        /** Below this the unit-scale base box would divide by ~0; measure instead. */
+        private static const MIN_SCALE:Number=1e-3;
         private var entries:Dictionary=new Dictionary();
         private var tracked:Vector.<SceneCullEntry>=new Vector.<SceneCullEntry>();
         private var exclusions:Dictionary=new Dictionary(true),layerSet:Dictionary=new Dictionary();
         private var layers:Vector.<DisplayObjectContainer>=new Vector.<DisplayObjectContainer>();
         private var added:Array=[],removed:Array=[],queued:Dictionary=new Dictionary();
         private var location:*,visual:*,tele:DisplayObject;
-        private var unitsMode:Boolean=false,mutating:Boolean=false,suspended:Boolean=false;
+        private var unitsMode:Boolean=false,mutating:Boolean=false,suspended:Boolean=false,fastPath:Boolean=true;
         private var lastLeft:Number=NaN,lastTop:Number=NaN,lastRight:Number=NaN,lastBottom:Number=NaN;
         private var visits:int=0,changes:int=0,discoveries:int=0,boundsReads:int=0,scans:int=0,age:int=0;
         private var scaleSkips:int=0,baseRefreshes:int=0,refreshCursor:int=0;
@@ -27,7 +30,7 @@ package {
             var i:int;
             if(!changed)for(i=0;i<layers.length;++i)if(layers[i]!==selected[i]){changed=true;break;}
             if(changed)bind(w,selected,unitsOnly);
-            visits=changes=boundsReads=0;scaleSkips=0;
+            visits=changes=boundsReads=0;scaleSkips=0;baseRefreshes=0;
             var nextTele:DisplayObject=w.gg.teleObj?w.gg.teleObj.vis as DisplayObject:null;
             if(nextTele!==tele) {
                 var oldTele:DisplayObject=tele;tele=nextTele;
@@ -52,11 +55,11 @@ package {
                 x=child.x;y=child.y;sx=child.scaleX;sy=child.scaleY;rot=child.rotation;
                 transformed=sx!=e.sx || sy!=e.sy || rot!=e.rotation;
                 if(transformed) {
-                    // Rotation keeps the display transform off-axis and a zero
-                    // axis collapses the box, so both still measure. A pure
-                    // non-zero scale change is an exact map of the cached
-                    // unit-scale box: arithmetic instead of a bounds traversal.
-                    if(rot==0 && e.rotation==0 && sx!=0 && sy!=0 && e.baseValid && isFinite(sx) && isFinite(sy))
+                    // A pure non-zero scale change at rotation 0 is an exact map
+                    // of the cached unit-scale box: arithmetic instead of a
+                    // bounds traversal. Rotation (own or on the layer chain)
+                    // keeps the transform off-axis, so those still measure.
+                    if(fastPath && e.rotation==0 && canFastScale(rot,sx,sy) && e.baseValid)
                         applyScale(e,sx,sy);
                     else measure(e,x,y,sx,sy,rot);
                 }
@@ -73,12 +76,24 @@ package {
         private function bind(w:*,selected:Array,unitsOnly:Boolean):void {
             clear();location=w.loc;visual=w.visual;unitsMode=unitsOnly;
             for each(var box:* in w.loc.objs)if(box && "lurk" in box && box.lurk>0 && box.vis)exclusions[box.vis]=true;
+            fastPath=true;
             for each(var layer:DisplayObjectContainer in selected) {
                 layers.push(layer);layerSet[layer]=true;
                 layer.addEventListener(Event.ADDED,onAdded,false,0,true);
                 layer.addEventListener(Event.REMOVED,onRemoved,false,0,true);
                 scan(layer);
+                // The cached unit-scale box is only frame-independent while the
+                // layer chain applies no translation, rotation or skew (uniform
+                // scale is absorbed by the base). Guard once per bind instead of
+                // trusting the caller: any violation falls back to measuring.
+                var m:Matrix=layer.transform.matrix;
+                if(layer.parent!==visual || m.b!=0 || m.c!=0 || m.tx!=0 || m.ty!=0 || m.a==0 || m.d==0)
+                    fastPath=false;
             }
+        }
+        private static function canFastScale(rot:Number,sx:Number,sy:Number):Boolean {
+            return rot==0 && sx!=0 && sy!=0 && Math.abs(sx)>=MIN_SCALE && Math.abs(sy)>=MIN_SCALE
+                && isFinite(sx) && isFinite(sy);
         }
         private function scan(layer:DisplayObjectContainer):void {
             ++scans;
@@ -127,12 +142,19 @@ package {
         }
         private function measure(e:SceneCullEntry,x:Number,y:Number,sx:Number,sy:Number,rot:Number):void {
             var b:Rectangle=e.child.getBounds(visual);++boundsReads;
+            storeMeasured(e,b,x,y,sx,sy,rot);
+            e.x=x;e.y=y;e.sx=sx;e.sy=sy;e.rotation=rot;
+        }
+        /** Single place that turns measured bounds into the cached unit-scale
+         * box. Descendants' own scaling or rotation is part of the measured box
+         * and does not matter; what matters is the root's rotation (which makes
+         * the mapping off-axis) and a degenerate axis (which makes dividing by
+         * the scale meaningless). */
+        private function storeMeasured(e:SceneCullEntry,b:Rectangle,x:Number,y:Number,
+                                       sx:Number,sy:Number,rot:Number):void {
             e.left=b.left-x;e.right=b.right-x;e.top=b.top-y;e.bottom=b.bottom-y;
-            e.empty=b.width<=0 && b.height<=0;e.x=x;e.y=y;e.sx=sx;e.sy=sy;e.rotation=rot;
-            // Cache the exact unit-scale box so later pure scale changes are
-            // arithmetic. Descendants under a rotation cannot be mapped this
-            // way, and a zero axis makes the division meaningless.
-            if(rot==0 && sx!=0 && sy!=0 && isFinite(sx) && isFinite(sy)) {
+            e.empty=b.width<=0 && b.height<=0;
+            if(canFastScale(rot,sx,sy)) {
                 storeBase(e,e.left/sx,e.right/sx,e.top/sy,e.bottom/sy);
                 e.baseValid=true;
             } else e.baseValid=false;
@@ -155,20 +177,22 @@ package {
         /** Amortised cache refresh: one tracked child per frame re-reads its
          * exact box, so animation inside a child (which changes its extent
          * without touching the root transform) cannot leave the cache stale
-         * for longer than one full sweep. Root x/y stay owned by the main loop
-         * so a translated object is still re-decided in this same frame. */
+         * for longer than one full sweep. Two invariants:
+         *  - it never writes e.x/e.y/e.sx/e.sy/e.rotation, because the main loop
+         *    owns those and uses "position changed" to decide whether to
+         *    re-evaluate; adopting them here would swallow a same-frame move;
+         *  - it clears e.checked so the refreshed box is used in this same
+         *    frame instead of waiting for the next camera or transform change. */
         private function refreshBase():void {
             var count:int=tracked.length;
             if(!count)return;
             if(++refreshCursor>=count)refreshCursor=0;
             var e:SceneCullEntry=tracked[refreshCursor],child:DisplayObject=e.child;
-            var sx:Number=child.scaleX,sy:Number=child.scaleY;
-            if(child.rotation!=0 || sx==0 || sy==0 || !isFinite(sx) || !isFinite(sy)) {e.baseValid=false;return;}
+            var sx:Number=child.scaleX,sy:Number=child.scaleY,rot:Number=child.rotation;
+            if(!canFastScale(rot,sx,sy)) {e.baseValid=false;e.checked=false;return;}
             var b:Rectangle=child.getBounds(visual);++boundsReads;++baseRefreshes;
-            e.left=b.left-child.x;e.right=b.right-child.x;e.top=b.top-child.y;e.bottom=b.bottom-child.y;
-            e.empty=b.width<=0 && b.height<=0;
-            storeBase(e,e.left/sx,e.right/sx,e.top/sy,e.bottom/sy);
-            e.baseValid=true;
+            storeMeasured(e,b,child.x,child.y,sx,sy,rot);
+            e.checked=false;
         }
         private function forget(e:SceneCullEntry,restore:Boolean):void {
             if(e.index<0)return;
@@ -195,9 +219,9 @@ package {
             for each(var e:SceneCullEntry in tracked)if(e.hidden)e.wrapper.visible=false;
         }
         public function stats():Object {
-            return {version:"event-tracked-2",tracked:tracked.length,hidden:hidden,suspended:suspended,
+            return {version:"event-tracked-3",tracked:tracked.length,hidden:hidden,suspended:suspended,
                 visits:visits,visibilityChanges:changes,discoveries:discoveries,boundsReads:boundsReads,
-                layerScans:scans,scaleSkips:scaleSkips,baseRefreshes:baseRefreshes};
+                layerScans:scans,scaleSkips:scaleSkips,baseRefreshes:baseRefreshes,fastPath:fastPath};
         }
         public function clear():void {
             if(!location && !layers.length && !tracked.length)return;
@@ -207,7 +231,7 @@ package {
             while(tracked.length)forget(tracked[tracked.length-1],true);
             entries=new Dictionary();exclusions=new Dictionary(true);layerSet=new Dictionary();
             layers.length=0;added.length=0;removed.length=0;queued=new Dictionary();
-            location=null;visual=null;tele=null;hidden=0;suspended=false;age=0;
+            location=null;visual=null;tele=null;hidden=0;suspended=false;age=0;fastPath=true;
             scaleSkips=0;baseRefreshes=0;refreshCursor=0;
             lastLeft=lastTop=lastRight=lastBottom=NaN;
         }

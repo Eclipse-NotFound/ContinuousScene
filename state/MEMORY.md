@@ -1,15 +1,14 @@
 # ContinuousScene — 当前快照
 
 <!-- cull-scale-20261104 -->
-> **2026-11-04 剔除包围盒改为解析式缩放（`SceneObjectCulling` event-tracked-2）：已实施、离线验收 45/45，并已随瞄准 V3 的合并构建上线**。正式 `release` 现为 **`A4F4C8ED`（0.9.10 = 瞄准 V3 + 本改动）**（23:22 由并行会话部署，前值 `D04CD26A`）；宿主 `91F8E10D`、`scene.xml` `1CEA74E2` 未动；**需重启游戏生效**。报告 [knowledge/experiments/culling-scale-20261104.md](../knowledge/experiments/culling-scale-20261104.md)。
-> - **上线证据（类哈希相等，不是"应该包含"）**：从已部署 `A4F4C8ED` 导出 `SceneObjectCulling`=`F59A2915…`、`SceneCullEntry`=`CDCB935B…`，与本轮通过 45/45 的候选 `6A538E83…` 的两个导出类**逐字节相同**；而 0.9.9 `D04CD26A` 的同两类是 `B14DDD97…`/`7B9729CB…`。源码哈希链也已闭合：夹具冻结副本 = 产品构建输入（`SceneObjectCulling.as B62731BA…`、`SceneCullEntry.as ACC0753E…`）。
-> - **改了什么**（只两个类）：①`measure()` 缓存"单位缩放局部盒"，纯缩放且 `rotation==0` 时用 `base×scale` 算新盒（负缩放交换边界），**不再每帧 `getBounds`**；②每帧只重测 1 个条目（`refreshBase()`，轮转）界定陈旧，且**不写 `e.x/e.y`**（同帧移动仍会被重新判定）；③主循环 `for each`→下标 `for`；④`stats()` 升到 `event-tracked-2`，新增 `scaleSkips`/`baseRefreshes`。
-> - **证据**：独立 AIR（`remains.cs.cullchecks.*`，无游戏无存档）**45/45**——既有 `SceneCullingChecks` 23/23 回归 + 新 `SceneCullingScaleChecks` 22/22 差分（oracle 每帧重算 `getBounds` 逐帧逐根比对）。合成混合场景：1897 次变换 → 920 次走算术路径、`getBounds` 392 次 = **4.36/帧**（旧实现同场景 ≈21/帧）；不一致 0。另有镜像/旋转回落/零轴/传送同帧判定/美术变化后刷新/空根/`unitsOnly` 切换等专项断言。
-> - **归因**：把并行瞄准 V3 会话的 3 个文件钉到 HEAD 编"控制产品" `E6567000…`，与控制逐类导出比对**只有 `SceneCullEntry`+`SceneObjectCulling` 不同**；本地管线对已部署 `D04CD26A` 的 7 个抽查类导出完全一致（同 32677 B）。
+> **2026-11-04 剔除包围盒改为解析式缩放（`SceneObjectCulling`）：第一版已随瞄准 V3 上线，加固版（v3）在树内待一次单类升级部署**。线上 `release` = **`A4F4C8ED`（0.9.10 = 瞄准 V3 + 剔除 v2）**；宿主 `91F8E10D`、`scene.xml` `1CEA74E2` 未动。报告 [knowledge/experiments/culling-scale-20261104.md](../knowledge/experiments/culling-scale-20261104.md)，核验回执 `state/culling-scale-verification-20261104.json`。
+> - **改了什么**（只两个类）：①`measure()` 缓存"单位缩放局部盒"，纯缩放且 `rotation==0` 时用 `base×scale` 算新盒（负缩放交换边界），**不再每帧 `getBounds`**；②`bind()` 父链守卫（层须是 `visual` 直接子节点且无平移/旋转/斜切，否则整体退回测量）；③每帧只重测 1 个条目（`refreshBase()`，轮转）界定陈旧，**不写 `e.x/e.y`** 且**清 `checked`**（当帧重判）；④主循环 `for each`→下标 `for`；⑤`stats()` 升到 `event-tracked-3`，加 `scaleSkips`/`baseRefreshes`/`fastPath`。
+> - **证据**：独立 AIR（`remains.cs.cullchecks.*`，无游戏无存档）**48/48** = 既有 `SceneCullingChecks` 23/23 回归 + 新 `SceneCullingScaleChecks` 25/25 差分（oracle 每帧重算 `getBounds` 逐帧逐根比对）。混合场景 ≈1900 次变换 → ≈49% 走算术、`getBounds` ≈4.4/帧（旧实现同场景 ≈21/帧），不一致 0。**变异测试**（`build/culling-scale-mutations.py`）4 种注入缺陷（不换边/刷新不重判/去掉零轴守卫/去掉父链守卫）**全部被指定断言抓住**，证明不是空转。
+> - **v2 上线证明（类哈希相等）**：从已部署 `A4F4C8ED` 导出 `SceneObjectCulling`=`F59A2915…`、`SceneCullEntry`=`CDCB935B…`，与通过 45/45 的第一版候选 `6A538E83…` 两类的导出**逐字节相同**；0.9.9 `D04CD26A` 的同两类是 `B14DDD97…`/`7B9729CB…`。
+> - **v3 待部署**：合并构建 `build/generated/cull-scale-20261104/product-merged/ContinuousSceneMod.swf` = **`41D61E59…`**（34796 B），与线上 `A4F4C8ED` 逐类比对**只有 `SceneObjectCulling` 一个类不同**（其余含瞄准 V3 两类完全一致）→ 单类升级。部署：`python build/generated/cull-scale-20261104/deploy_merged.py --expect-release A4F4C8ED4C3158B2721EAC8086A266AA1A43312DB3F53B19C275B91857B2CA3B`（重编+重跑夹具+字节码标记+备份+回读，任一步不符即拒绝），**需重启游戏**。
 > - **不主张**：整帧收益（实机 handler 1.95ms/帧、activity 0.538ms/帧，本次省零点几毫秒；未做配对计时）；不主张解决 ≥100ms 长帧。
 > - **顺带核清**：探索"首次加载敌人"不成立——敌人进图即全量 `createUnit`+`initBlit`+`addVisual`（非走近生成），音乐/音效启动时预加载；实机 1300 帧 `woke` 最大 1/帧、`activityMs` 均值 0.538ms、`boundsReads` 25–55 无交战尖峰；长帧仍与 >1MB 内存回落同帧（地块分配推动回收）。
-> - **部署时序**：本会话原计划自行部署（候选 `6A538E83…`，脚本 `build/generated/cull-scale-20261104/deploy_cull_scale.py` 双闸门），按用户选择改为"等瞄准 V3 收尾后合并一次部署"。并行会话随瞄准 V3 一并构建部署 → 合并构建自动带上本轮 `src/` 改动，未发生两次重启或互相覆盖。校验回执 `state/culling-scale-verification-20261104.json`（只做核验，不改产品）。
-> - **环境漂移（需知悉）**：共享 Flex SDK 已缺 `frameworks/localFonts.ser`，直接 mxmlc 报"无法打开"。本轮编译统一加 `-theme=` 与 `-compiler.fonts.local-fonts-snapshot=`（与 ConditionSystem 的做法一致），未改共享工具目录。
+> - **环境漂移（需知悉）**：共享 Flex SDK 缺 `frameworks/localFonts.ser`（另一会话已从 `mods/ModLoader/build/` 复制补齐）。本会话编译统一用 `-theme=` + `-compiler.fonts.local-fonts-snapshot=` 规避，不改共享工具目录。
 <!-- /cull-scale-20261104 -->
 
 <!-- aim-look-v3-plan-20261104 -->
