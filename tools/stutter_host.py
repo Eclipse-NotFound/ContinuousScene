@@ -65,6 +65,85 @@ def diagnostic(text):
         text=text.replace(method(text,name),new)
     return text,list(changes)
 
+CARRIER='''         var diagCarrier:* = World.w.visual.root.getChildByName("ContinuousSceneCarrier");
+         var diag:* = diagCarrier ? diagCarrier["nativeAPI"]["chunkDiagnostics"] : null;
+'''
+
+def phase(text):
+    """diagnostic() + sceneTick phase totals + mark replay timing.
+
+    Answers the one question the earlier runs could not: how much of a long
+    frame is the CS pipeline (ensure/warm/sync/cull) versus everything else.
+    Diagnostic only; never deployable."""
+    text,names=diagnostic(text)
+    name='sceneTick';old=method(text,name)
+    new=once(old,'''         camera = World.w.cam;
+         scale = Number(camera.scaleV > 0 ? camera.scaleV : 1);''',
+'''         camera = World.w.cam;
+         scale = Number(camera.scaleV > 0 ? camera.scaleV : 1);
+'''+CARRIER+'''         var tickAt:int = getTimer();''')
+    new=once(new,'''         this.sceneCullSurfaces();''',
+'''         var ensureAt:int = getTimer();
+         this.sceneCullSurfaces();
+         if(diag)
+         {
+            var cullAt:int = getTimer();
+            diag.tickMs += cullAt - tickAt;
+            diag.ensureMs += ensureAt - tickAt;
+            diag.cullMs += cullAt - ensureAt;
+            ++diag.tickCount;
+         }''')
+    text=text.replace(old,new);names.append(name)
+    name='sceneRestoreMarks';old=method(text,name)
+    new=once(old,'         try\n         {','         var markAt:int = getTimer();\n         try\n         {')
+    new=once(new,'               this.sceneApplyRegionAction(String(item[0]),item[1],item.length > 3 ? item[3] as Rectangle : null);',
+'''               if(diag)++diag.markReplayed;
+               this.sceneApplyRegionAction(String(item[0]),item[1],item.length > 3 ? item[3] as Rectangle : null);''')
+    new=once(new,'            this.sceneStamp = null;\n         }',
+             '            this.sceneStamp = null;\n            if(diag)diag.markMs += getTimer() - markAt;\n         }')
+    text=text.replace(old,new);names.append(name)
+    name='sceneEnsureUpcoming';old=method(text,name)
+    new=once(old,'      private function sceneEnsureUpcoming(left:Number, top:Number, width:Number, height:Number) : void\n      {\n',
+             '      private function sceneEnsureUpcoming(left:Number, top:Number, width:Number, height:Number) : void\n      {\n'+CARRIER)
+    new=once(new,'''         if(!this.sceneUpcomingReady)
+         {
+            this.sceneUpcomingReady = true;
+            if(this.sceneRegionData[this.loc] != null)
+            {
+               this.sceneFirstWindow(minX,minY,maxX,maxY);
+            }
+         }''','''         if(!this.sceneUpcomingReady)
+         {
+            var firstWindowAt:int = getTimer();
+            this.sceneUpcomingReady = true;
+            if(this.sceneRegionData[this.loc] != null)
+            {
+               this.sceneFirstWindow(minX,minY,maxX,maxY);
+            }
+            if(diag)diag.firstWindowMs += getTimer() - firstWindowAt;
+         }''')
+    new=once(new,'''         var x:int = minX;
+         while(x <= maxX)''','''         var missAt:int = getTimer();
+         var x:int = minX;
+         while(x <= maxX)''')
+    new=once(new,'''         if(World.w.t_exit != 0)''','''         if(diag)diag.missLoopMs += getTimer() - missAt;
+         if(World.w.t_exit != 0)''')
+    new=once(new,'''            if(this.sceneAsyncWarm)
+            {
+               this.sceneBeginWarm(bestX,bestY);
+               this.sceneAdvanceWarm();
+               return;
+            }''','''            if(this.sceneAsyncWarm)
+            {
+               var beginWarmAt:int = getTimer();
+               this.sceneBeginWarm(bestX,bestY);
+               if(diag)diag.beginWarmMs += getTimer() - beginWarmAt;
+               this.sceneAdvanceWarm();
+               return;
+            }''')
+    text=text.replace(old,new);names.append(name)
+    return text,names
+
 def build(tag,kind,base_tag=None):
     out=opt.WORK/tag;out.mkdir(exist_ok=False)
     baseline=opt.read(opt.WORK/'baseline.json')
@@ -75,6 +154,9 @@ def build(tag,kind,base_tag=None):
     if kind=='diagnostic':
         cls='fe.graph.Grafon';source=opt.MOD/'build/generated/envkey-cache-20261102/host-export/scripts/fe/graph/Grafon.as'
         content,names=diagnostic(source.read_text(encoding='utf-8-sig'))
+    elif kind=='phase':
+        cls='fe.graph.Grafon';source=opt.MOD/'build/generated/envkey-cache-20261102/host-export/scripts/fe/graph/Grafon.as'
+        content,names=phase(source.read_text(encoding='utf-8-sig'))
     elif kind=='collision':
         cls='fe.weapon.Bullet';source=opt.MOD/'build/generated/camera-spatial-20261101/bullet-src/fe/weapon/Bullet.as'
         content=source.read_text(encoding='utf-8-sig');start=content.index('         var _collisionUnits:Array = loc.units;')

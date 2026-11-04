@@ -1,3 +1,13 @@
+## 2026-11-04 — 相位归因实测：CS 管线仅占长帧 1/5~1/3；部署「弹痕不再取消预热」（宿主 A9B3→1D2004AB）
+
+- 用户指令"按方案进行优化"。先补上方案 P0 的测量盲区：把相位计时打进宿主补丁的 `Camera.calc→sceneTick` 内部（诊断宿主 `phase-v3`，7 个 Grafon 方法，类布局不变，不部署），探针逐帧取 `tick/ensure/warm/sync/cull/mark/beginWarm/missLoop/step` 快照，运行器手写隔离 manifest（启动器保存被沙箱命名互斥体拒绝）。
+- **关键结果**：探索 1149 帧 CS 管线 **5.67ms/帧**（预热 4.97 为主），其它 36.2ms/帧；**≥100ms 帧 13 个里 CS 只占 20.6%，2/13 帧 CS 为零**。战斗 1299 帧 CS 3.00ms/帧，**≥100ms 帧 CS 仅 7.8%**。→ 长帧主体（≥2/3）在原生 step/渲染/调度，不在 CS；CS 的稳态成本是每帧 3~6ms 的预热税。
+- **据实测否定的候选**（写进 MEMORY 防重提）：拆 `drawKusok`（`maxStepMs` 20–25ms，不是冷态曾见的 125ms）、弹痕空间索引（0.03ms/帧）、`sceneApply` 空间索引（5.9 万次相交）、`sceneApplyCompactDecal` 分配修正、压预热预算（实测自适应 2–25ms）。
+- **已部署（P2）**：`Grafon.sceneApply` 对 `decal` 不再 `sceneCancelWarm`——新弹痕在取消前已入 `sceneMarks`，预热最后一步 `sceneRestoreMarks` 会重放。同调度 1300 帧：`cancelCount 10→0`、`cancelWork 302ms→0`、每块预热工时 45.6→43.3ms；清洁候选冒烟 1300 样本/13 项通过。宿主 **A9B39CC7 → 1D2004AB**，备份 `build/backups/pfe_before_decal_nocancel_20261104-133604.swf`，回执 `build/generated/opt-20261104/deploy-receipt.json`，**需重启**。
+- **仍成立但未做**：驻留块无逐出（探索 38s `resident 47→181`≈+343MB，全图上限 ≈1.2GB）——要做就是"远处逐出+缓冲复用"，须用同一探针验证回头路不造同步风暴。天角兽 B-P2 仍缺只读计数证据；地形双线性只在 `scaleV≠1` 有意义，本轮窗口 `scaleV=1`。
+- **过程失误（如实记录）**：手写 manifest 时误用了根目录真实 `application.xml`（`<id>pfe</id>`），导致一次运行写入玩家真实存储（模组日志与 `MSWConfig.sol`/`ModLoader.sol` 被重写；**存档与 `config.sol` 未动**）；已改为改写模板为 `pfe-modsettings-continuous-scene` 后重跑。另清理了本会话因低完整性启动被拒留下的一次 `needs-check` 租约。
+- 报告 `knowledge/experiments/phase-attribution-implementation-20261104.md`；工具 `tools/stutter_host.py`(phase)、`build/generated/phase-20261104/{probe-v5,run_phase2.py,analyze_phase.py}`、`build/generated/opt-20261104/`。
+
 ## 2026-11-04 — 三项问题复核：三份只读深度调查 + 动态模糊离线微基准；v2 证据分级方案成文（旧方案多条断言被证伪）
 
 - 用户委托"详细调查 + 可执行优化方案"（探索卡顿 / 单只天角兽交战卡顿 / 背景粗糙与动态模糊）。本轮**只调查与成文**：未改宿主、未改 release、未运行游戏；唯一新产物是离线微基准 SWF（`build/generated/filter-cost-20261104/`，不参与加载）。

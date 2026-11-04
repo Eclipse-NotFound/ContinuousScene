@@ -1,5 +1,14 @@
 # ContinuousScene — 当前快照
 
+<!-- phase-attribution-deploy-20261104 -->
+> **2026-11-04 相位归因实测完成，并部署首个据证据实施的优化**：宿主 `pfe.swf` **A9B39CC7 → 1D2004AB**（只改 `fe.graph.Grafon.sceneApply`：`decal` 不再 `sceneCancelWarm`；`classesUnchanged`）；CS 仍 0.9.8、`scene.xml` 不变；**需重启生效**。备份 `build/backups/pfe_before_decal_nocancel_20261104-133604.swf`，回执 `build/generated/opt-20261104/deploy-receipt.json`，报告 `knowledge/experiments/phase-attribution-implementation-20261104.md`。
+> - **测量（本轮最要紧的结论）**：探针在 `Camera.calc→sceneTick` 内部拆相位。探索 1149 帧：CS 管线 **5.67ms/帧**（预热 4.97、同步 0.07、剔除 0.06、弹痕 0.03、块启动 0.48/峰值 80ms），**其它 36.2ms/帧**；**≥100ms 帧 13 个里 CS 只占 20.6%，2/13 帧 CS 为零**。战斗 1299 帧：CS 3.00ms/帧，**≥100ms 帧 CS 仅 7.8%**。→ **长帧主体不在 CS**。
+> - **已装补丁的机制量**：同调度 1300 帧，`cancelCount 10→0`、`cancelWork 302ms→0`，每块预热工时 45.6→43.3ms；清洁候选冒烟 1300 样本/13 项检查通过。**跨轮整帧均值不可比，未主张帧时收益。**
+> - **据实测否定的候选**：拆 `drawKusok`（`maxStepMs` 仅 20–25ms，非 125ms）、弹痕空间索引（`markMs` 0.03ms/帧）、`sceneApply` 空间索引（566 次 apply 共 5.9 万次相交）、`sceneApplyCompactDecal` 分配修正（减分配≠减帧时）、压预热预算（实测自适应 2–25ms）。**不要再按旧方案重提。**
+> - **仍成立但未做**：驻留块无逐出，探索 38s 内 `resident 47→181`（+343MB），全图上限 ≈1.2GB；若做需“远处逐出+缓冲复用”，并用同一探针验证回头路不造同步风暴。天角兽 B-P2 仍缺只读计数证据。
+> - 工具：诊断宿主编译器 `tools/stutter_host.py` 的 `phase` 种类；探针 `build/generated/phase-20261104/probe-v5`；运行器 `run_phase2.py`（手写隔离 manifest，因启动器保存被沙箱拒绝）；分析器 `analyze_phase.py`。**首次失误**：手写 manifest 时误拷贝根 `application.xml`（`<id>pfe</id>`），一次运行写入玩家真实存储（日志与 `MSWConfig.sol`/`ModLoader.sol` 被重写；**存档 `PFEgame0.sol` 与 `config.sol` 未动**），已改为改写模板并重跑。
+<!-- /phase-attribution-deploy-20261104 -->
+
 <!-- investigation-v2-20261104 -->
 > **2026-11-04 三项问题复核（Lead 会话，只调查未改产品）**：可执行方案 → [design/scene-combat-camera-optimization-plan-v2-20261104.md](../design/scene-combat-camera-optimization-plan-v2-20261104.md)；证据 → `knowledge/experiments/scene-combat-camera-investigation-20261104/`（探索链 / 天角兽 / 镜头视觉 / 离线微基准四份）。
 > - **下一步必须先做**：相位归因探针。模组 ENTER_FRAME 计时**不含**宿主 `Camera.calc→sceneTick` 驱动的 ensure/预热/同步/剔除，既往"CS 只占 6.4%"只是**下界**（43ms 同步补画那帧 handler 仅记 4ms）；真实游玩 38 个长帧至今无相位分解。
@@ -179,7 +188,7 @@
 
 | 文件 | SHA256 |
 |---|---|
-| 根pfe.swf | A9B39CC742078D7A7D9F289EE408EDAE11C3AAC376A43246B306B91AC7AD2D94（2026-11-01 空间分区碰撞+预算48+A2；无屏外隐藏（并行会话回退）；备份 pfe_before_spatial_collision_20261101-225837.swf → pfe_before_budget48_20261031-171254.swf → pfe_before_a2_gutter_20261031-163909.swf → pfe_before_visualneutral_budget_20261031-121918.swf） |
+| 根pfe.swf | **1D2004AB4C972F199FDD6BCA708C8F483C8314FED77AEA477FB9544F33AB02F3（2026-11-04 13:36 弹痕不废预热；需重启；回退备份 build/backups/pfe_before_decal_nocancel_20261104-133604.swf）**；前值 A9B39CC742078D7A7D9F289EE408EDAE11C3AAC376A43246B306B91AC7AD2D94（2026-11-01 空间分区碰撞+预算48+A2；无屏外隐藏（并行会话回退）；备份 pfe_before_spatial_collision_20261101-225837.swf → pfe_before_budget48_20261031-171254.swf → pfe_before_a2_gutter_20261031-163909.swf → pfe_before_visualneutral_budget_20261031-121918.swf） |
 | CS0.9.7（当前） | 447AE02B5AC1E038E44DA2488C4BDB2D5945C1BCFBAE36C86AB9F0D6FEC0E2EF（2026-11-04 事件驱动增量剔除；需重启生效；回退备份 `ContinuousSceneMod-0.9.6-F16890C9-before-eventculling-20261104-005240.swf`；回执 state/event-culling-deployment-20261104.json） |
 | CS0.9.6 | F16890C959D86E305B5D3AC91CC31B8689E347179722A2F0CC07E8CB45B7E123（2026-11-02 脱战拴绳+威胁双盒+震屏容忍；已被 0.9.7 取代；旧 0.9.5 = 1A66B1F4…5612，0.9.4 = DF3B6812…C8426，0.9.3 = D8A68A4C…2E677） |
 | WB0.5.10-scene | FE3E7A84753F6F3614440F69F8725E6E8639AEE4755ACF878AAFCFEDB95AC2E6 |
