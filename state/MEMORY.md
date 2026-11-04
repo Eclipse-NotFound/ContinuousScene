@@ -4,6 +4,13 @@
 > **2026-11-04 证明策略实机接续：按需建威胁表候选保留，未部署。** 同源0.9.8最小候选真实AIR诊断28/28（含12夹具），1,075次读取边界/独立状态比较零差异；移动/开火/瞄准各450帧、38项检查通过，但q=0均0%，没有省一次建表。旧A/A初态/顺序/负载不匹配，修正对照遇其他AIR；**有效性能配对0，局部与整帧收益未判定**。本批冻结A9B39CC7、1280×800/scale2/3，不能外推新宿主或用户全屏。正式核心与CS release未改。报告 [run-03](D:/活/AI/测试运行/remains-proof-strategy-20261104/run-03/REPORT.md)；模组记录 `knowledge/experiments/proof-activity-live-20261104.md`。继续需先确认自然q=0价值及可重复原生初态，不直接加不匹配计时样本。
 <!-- /proof-activity-live-20261104 -->
 
+<!-- round3-verdicts-20261104 -->
+> **2026-11-04 两项裁决（本轮实测）：逐出+复用 = 负结果不部署；B-P2 = 不实施**。
+> - **逐出+复用（cap=96）负结果**：同探索线路 1149 帧，均值 41.8→39.9、P95 65→62，但**最大帧 171→568ms**、同步补画 22 次/1044ms → **30 次/1997ms**。失败机制已定位：**相机跳变（换窗口/传送）那一帧要同步补画所有被逐缺口**（`dt=568` 出现在 phase 45 换窗口 age=0，`syncCount` 跳 25）。→ **不部署**；要根治需“异步补块+占位呈现”，另立项。更保守的上限（160 块）按峰值 181 只省 ~12% 分配，收益/风险不成比例，也不做。候选产物 `build/generated/opt-20261104/cap-diag-v2`（9 方法）保留，**未部署**；正式宿主仍是 **1D2004AB**。
+> - **B-P2 不实施**：`alicorn4-alicorn-n1`（900 帧、14/14）实测：地图 faction-1 单位 50 只；一次交战把带目标单位 **1→最多 9**（age≈100 起），但**唤醒按每帧 1 只的预算节奏**、`awake` 只在 28–43、整场帧时无抬升（前/后 100 帧 34.5/34.9ms）；仅“高活跃帧”慢 **+4.9ms**（≈0.7–1ms/额外活跃单位）。现状 `wakeBudget=1`+2200×1600 leash 已把这条链压到 +5ms 量级，再改要冒把交战单位误判为弱信号的风险 → **不做**。夹具内 `visBmp.filters` 全程 0（无念力持握相位）。
+> - 报告：`knowledge/experiments/alicorn-count-probe-20261104.md` §6、`knowledge/experiments/long-frame-memory-20261104.md` §6-§7。
+<!-- /round3-verdicts-20261104 -->
+
 <!-- cap-candidate-20261104 -->
 > **2026-11-04 逐出+复用候选已编码，待构建/验证（玩家在游戏中，未抢资源）**：`build/generated/opt-20261104/patch_host.py` 新增 `cap_patch`（3 个方法：`sceneDrop` 入池 ≤8 块缓冲、`sceneBeginWarm` 从池取并 `fillRect` 清零、`sceneTick` 末尾按离视口最远逐出到 `World.w.visual.root["sceneChunkCap"]`，默认 96 块≈246MB）。**dry-run 已通过**（`cap-dryrun.as`，3 方法改动、锚点唯一），FFDec 构建与实测待机器空闲。
 > - **关键前置已核对**：呈现层 `SceneEventBitmapFill` 第 64-66 行的失效条件**本来就含 `evictions != grafon.sceneEvictions`**，`refreshBindings()` 每次从 `sceneSurfaces()` 整体重建并对消失位图 `restoreRecord` → **逐出是设计时已留钩子的路径**，不是未支持路径。仍需实测：折返重预热代价、逐出瞬间 1 帧残影。

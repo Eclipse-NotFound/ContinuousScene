@@ -40,3 +40,31 @@
    - `awake` 在交战开始后跳升 3 只以上且帧时同步抬升 → B1 成立 → 做 B-P2（弱信号走 `wakeBudget`）；
    - `awake` 不跳、`cel` 只 +0~1 → B1 不成立，关闭该方向，天角兽问题按“非 CS”处理。
 3. 若要与真实游玩对齐，需要第二个变体：`tr=2`（会 `actPort` 的型号）+ 同阵营单位密度更高的位置。
+
+## 6. v3 判别运行（`alicorn4-alicorn-n1`，900 帧，14/14 检查）——B1 裁决
+
+| 指标 | 结果 |
+|---|---|
+| 地图阵营 1 单位 | `f1 = 50`（固定） |
+| 拥有目标（`celUnit != null`）的单位 | **1 → 最高 9**（age≈100 起开始上升，均值 4.1） |
+| 活跃单位 `awake` | 28–43（均值 35.3） |
+| 唤醒事件 | 逐帧 1 只（如 age 157/161/176/414），符合 `wakeBudget=1` |
+| 帧时 | 均值 38.1ms、P95 59、最大 172、>100ms 9 帧；前 100 帧 34.5 vs 后 100 帧 34.9 |
+| 高活跃组 vs 低活跃组 | `awake>35` 的帧 **40.7ms**（426 帧）vs `awake≤35` 的 **35.8ms**（474 帧）→ **+4.9ms** |
+| 滤镜（`visBmp.filters`） | 全程 0（本夹具没有念力持握/`mater=false` 相位） |
+
+**结论**：
+1. **警报/目标共享确实会传播**：一次交战把带目标的单位从 1 拉到最多 9，与 `SceneAlicornAlerts.as.inc` 的范围限制行为一致。
+2. **但没有出现“成批拉活导致持续卡顿”**：唤醒是每帧 1 只的预算节奏，`awake` 只在 28–43 波动，整场帧时没有抬升（前/后 100 帧 34.5/34.9ms）。
+3. 高活跃帧确实慢 **+4.9ms**（约 0.7–1ms/额外活跃单位），但这是**已被现有预算摊平后的残余**，不是 100ms 级长帧的来源。
+
+→ **B-P2（弱信号走唤醒预算）不实施**：现状 `wakeBudget=1` + 2200×1600 leash 已经把这条链控制在 +5ms 量级；再改要冒“把正在交战的单位误判为弱信号”的行为风险，收益不成比例。`cel` 上升这条链保留为“已量化但已够用”的记录。
+
+## 7. 复跑
+
+```powershell
+$py = "C:\Users\hello\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe"
+$env:PHASE_PROBE="alicorn-v3"; $env:PHASE_HOST="phase-v3"; $env:PHASE_LABEL="alicorn4"
+& $py build\generated\phase-20261104\run_phase2.py alicorn 14
+# 结果读 knowledge/experiments/evidence/alicorn4-alicorn-n1/storage/result.json
+```
