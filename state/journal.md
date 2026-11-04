@@ -1,3 +1,10 @@
+## 2026-11-04 — 天角兽只读计数探针（B-P1）：工具就绪；首轮未见“警报拉活”
+
+- 新探针 `alicorn-v3`（基于 cold-v2，原生生成一只 `UnitAlicorn("1",100,null,{tr:1})`，逐帧记 units/cel/f1/awake/asleep/leashed/filters/projectiles + 天角兽 mater/aiState/aiSpok/t_tele/teleObj）。首版因 `UnitPlayer.visBmp` #1069（密封类）丢整段计数，v3 改为逐项 try/catch。
+- `alicorn2-alicorn-n1`（900 帧、14/14 检查）：均值 34.4ms、>100ms 仅 3 帧；`awake` 27–35、`asleep`→112，**900 帧唤醒 11 次、交战前 30 帧 0 次**，交战后帧时无持续抬升 → 本夹具**不支持** B1（成批拉活）。
+- 未完成：v3 的 cel/awake 判别运行被另一会话持续占用 AIR 挡住（n1–n10 全失败），已停止重试、未动他人进程；真实对齐还需 `tr=2`（会 actPort）与更密的同阵营分布。
+- 报告 `knowledge/experiments/alicorn-count-probe-20261104.md`。
+
 ## 2026-11-04 — 帧三分：CS 只占 7~15%，主项是渲染/调度窗口与游戏逻辑；用户三项决定落档
 
 - 在相位探针数据上再拆一层：`dt` = CS 管线 + （501 处理器→下一帧 -1000 的窗口，记 R）+ 其余游戏逻辑。探索 1149 帧（mean 41.8ms）：**CS 5.67 / R 21.78 / 逻辑 14.37**；≥100ms 帧 13 个里 **CS 21% / R 61% / 逻辑 19%**。战斗 1299 帧（mean 41.4ms）：**CS 3.00 / R 20.53 / 逻辑 17.89**；≥100ms 帧里 **CS 8% / R 53% / 逻辑 39%**。

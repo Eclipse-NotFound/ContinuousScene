@@ -1,5 +1,9 @@
 # ContinuousScene — 当前快照
 
+<!-- alicorn-count-20261104 -->
+> **2026-11-04 天角兽只读计数探针（B-P1）：工具就绪，首轮不支持“警报拉活”假设**。探针 `build/generated/phase-20261104/alicorn-v3`（原生 `UnitAlicorn("1",100,null,{tr:1})` 生成 + 逐帧 alert/unicorn 计数）；首轮 `alicorn2-alicorn-n1`（900 帧、14 项检查通过）：均值 34.4ms、仅 3 帧 >100ms；`awake` 33→27（27–35）、`asleep`→112，**900 帧内只唤醒 11 次、交战前 30 帧 0 次**，交战后帧时无持续抬升 → **本夹具未出现成批拉活**。判别字段（cel/f1/filters）因首版 `UnitPlayer.visBmp` #1069 丢失，v3 已修但运行被并发会话占用 AIR 挡住（n1–n10 全 `Existing AIR`/`Other AIR`，未动他人进程）。报告 `knowledge/experiments/alicorn-count-probe-20261104.md`。**下一步**：等干净窗口跑 `alicorn-v3` 取 cel/awake 跳变；若无跳变则关闭 B1/B-P2 方向。
+<!-- /alicorn-count-20261104 -->
+
 <!-- phase-decompose-20261104 -->
 > **2026-11-04 补充：帧三分与用户三项决定**。在相位探针数据上再拆一层（`dt` = CS 管线 + 从 501 处理器到下一帧 -1000 的窗口（渲染/调度，记作 R）+ 其余游戏逻辑）：
 > - 探索 1149 帧（均值 41.8ms）：**CS 5.67 / R 21.78 / 逻辑 14.37 ms**；≥100ms 帧 13 个里 **CS 21% / R 61% / 逻辑 19%**。
