@@ -1,5 +1,12 @@
 # ContinuousScene — 当前快照
 
+<!-- exploration-and-combat-plan-20261104 -->
+> **2026-11-04 深入探索与全敌人交战卡顿调查及方案文件成文**：方案见 [design/exploration-and-combat-stutter-optimization-plan-20261104.md](../design/exploration-and-combat-stutter-optimization-plan-20261104.md)。
+> - **深入探索**：日常预热占 5.67ms (13.6%)，偶发长帧中 R 桶占 61%；长帧直接诱因为视口 miss 触发的强制同步补画（`sceneRender` 31–178ms，均值 68ms）与 `drawKusok` 掩码大单步（峰值 125ms）；地块常驻膨胀至 181 块(+343MB)抬升系统 GC 压力。方案 E1 动态视口前馈缓冲消除 miss，E2 增量分步拆分 `drawKusok`。
+> - **全敌人交战**：确证宿主 `sceneCU` 因 `fe.MainFE` 密封属性而引发 `#1069` 运行时异常，每发子弹每帧抛异常 + 回退全量 130+ 单位遍历，造成 O(n²) 碰撞检测风暴（30~60 子弹 × 130 单位 = 3900~7800 次 AABB/帧，每敌人贡献 +1.5~2.0ms）；`NativeSceneActivity` 的警报与索敌锁死使被共享目标的敌人被判定为 `combatSignal` 与 `urgent` 绕过预算并发唤醒；缺少脱战迟滞。方案 C1 修复子弹空间分桶索引彻底根除异常并降为 O(1)，C2 唤醒信号强弱分级，C3 双阈值脱战防抖。
+> - 正式栈保持 1D2004AB / CS 0.9.8 `285625F4` / scene.xml 1CEA74E2，本轮只调查与成文。
+<!-- /exploration-and-combat-plan-20261104 -->
+
 <!-- proof-activity-live-20261104 -->
 > **2026-11-04 证明策略实机接续：按需建威胁表候选保留，未部署。** 同源0.9.8最小候选真实AIR诊断28/28（含12夹具），1,075次读取边界/独立状态比较零差异；移动/开火/瞄准各450帧、38项检查通过，但q=0均0%，没有省一次建表。旧A/A初态/顺序/负载不匹配，修正对照遇其他AIR；**有效性能配对0，局部与整帧收益未判定**。本批冻结A9B39CC7、1280×800/scale2/3，不能外推新宿主或用户全屏。正式核心与CS release未改。报告 [run-03](D:/活/AI/测试运行/remains-proof-strategy-20261104/run-03/REPORT.md)；模组记录 `knowledge/experiments/proof-activity-live-20261104.md`。继续需先确认自然q=0价值及可重复原生初态，不直接加不匹配计时样本。
 <!-- /proof-activity-live-20261104 -->
