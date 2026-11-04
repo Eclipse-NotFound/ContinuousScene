@@ -1,5 +1,19 @@
 # ContinuousScene — 当前快照
 
+<!-- aim-look-v3-implemented-20261104 -->
+> **2026-11-04 已部署 CS 0.9.10：连续距离杠杆 + 瞄准时冻结 + 长按/切换/混合三模 + Alt 防脱离**。正式 CS release 0.9.9 `D04CD26A` → **`A4F4C8ED`**（0.9.10）；宿主 `pfe.swf` **`91F8E10D`**（子弹分桶版）与 `scene.xml` `1CEA74E2` 均未动；**需重启游戏生效**。回退=备份 `build/backups/ContinuousSceneMod-0.9.9-D04CD26A-before-aimv3-20261104-232209.swf` 覆盖 release + 重启；回执 `state/aim-look-v3-deployment-20261104.json`；工作根 `build/generated/aimv3-20261104/`。
+> - **按 Alt 鼠标脱离（根因）**：Windows 单发 `Alt`（keyCode 18）是窗口菜单手势（`WM_SYSCOMMAND/SC_KEYMENU`），窗口被系统菜单接管后解除鼠标捕获，必须点击客户区一次才恢复。修法：键盘监听（优先级 500）对触发键调 `event.preventDefault()`，裸修饰键再加 `stopImmediatePropagation()`（原版 44 个绑定与 `Ctr.permissKey` 都不用裸 Alt/Ctrl，安全）；第二道防线：`DEACTIVATE` 若发生在触发键 400ms 内则记 `focusLostAt`，入口下一帧 `nativeWindow.activate()` 夺回窗口（真 Alt+Tab 不满足时限，不抢焦点）。设置文案推荐 `1=左Ctrl`。
+> - **“越靠边看得越远”缺失（根因）**：0.9.9 边缘 90px 停留 3 帧硬锚定把控制二值化（中间 80% 屏幕恒 0、触边 3 帧后突跳 700px）。0.9.10 改连续杠杆：`u=(d−dead)/(rectR−dead)`、`want=u^1.25`，`rectR` 为**准星方向的矩形边界半径**，故推到任意一条边都恰好 100%；`dead=半对角线×0.09`（1920×1000→97px，1280×800→68px）。实机 1280×800：0.35→137px、0.75→464px、1.00→699px。
+> - **瞄准时不动（原需求保留）**：延展只允许向外抬升；`pushRun<ARM_FRAMES(3)` 内仍跟随回缩（“一帧扫到边缘又扫回来”会自动回退）；之后冻结。**刻意不做“准星回中心收回”**：延展 700px 时屏幕中心是世界 +700 处（新露出地面中部），瞄准那里会掉视野=0.9.8 代数环再现。收回只走触发键（长按松开/切换再点），另有 `holdDecay`（默认 0）可选缓慢回中。方向仅在 `want ≥ depth−0.18`（准星处于当前延展的边缘环带）时按 6°/帧缓转，环带内深处一律认作瞄准、方向冻结。
+> - **三模并行**：`aimMode` 0=长按（**默认，用户要求恢复的 0.9.8 式**）1=切换 2=混合（短按<250ms 翻转、长按为临时）。偏好文件 `aimVersion != VERSION` 时一次性迁回长按；设置项由 `aimToggleMode` 复选框改为 `aimMode` 滑块。
+> - **继承 0.9.9 未改**：平移后 `w.grafon.sceneTick()` 重确保+重裁剪（远端墙体）、`w.celX=(celX−nativeVx)/scale` 渲染恒等式、int 字段回读、同帧二次 update 基准保护。
+> - **验证**：确定性夹具重写 **82/82**（含 `isDefaultPrevented()` 回归：Alt 按下/抬起被取消且仍送达控制器；未绑定键与停用态不被吞；`cursorOverride` 转交后一帧恢复真实光标）；隔离实机 **24/24**（私有桌面、独立 AIR id `pfe-cs-aim3-…`、正式 13 模组栈+探针、宿主 `pfe.swf` 原样）：`lever-is-monotone` 137/464/699、`edge-reaches-max` 699 vs 700、`aim-keeps-view` 准星拉回 0.30 仍 699、`viewport-resynced` 210、`panned-view-resident` 常驻 70→115、`apply-consistent`/`world-map-exact` 各 0、切换模式松键保持 699.97、`cursor-restored` celX=真实光标。
+> - **构建内含并行会话的剔除改动**：本产品从 `src/` 整编，`A4F4C8ED` **包含** `session-e8fd621d` 的 `SceneObjectCulling`/`SceneCullEntry` 解析式缩放改动（其离线 45/45、候选 `6A538E83`；本机隔离实机也带着它跑完 24/24 无错）。选择“部署=被测字节”而非回钉 HEAD；若出现物体边缘闪烁，先怀疑该项，回退到 `D04CD26A` 会一并撤掉。**注意**：其 `deploy_cull_scale.py` 的“release 仍 = D04CD26A”闸门现在会拒绝执行，需按其自身证据重出候选。
+> - **工具链环境**：共享 Flex SDK 缺 `frameworks/localFonts.ser` 时 mxmlc 直接静默失败；本轮把 `mods/ModLoader/build/localFonts.ser` 复制到 `mods/Sandevistan/build/tools/flexsdk/frameworks/` 后 `mxmlc.bat`（需 `JAVA_HOME=C:\Users\hello\Documents\_sandevistan_dev\jdk-11.0.32.1+1-jre`、`FLEX_HOME=<flexsdk>`）正常。该文件是编译期字体快照缓存，与产物无关。
+> - **未做**：真人键盘验证（`preventDefault` 属运行时行为，夹具只能证明事件被取消）；手感常数定标（死区比例/环带阈/3 帧窗口/三档平滑时间）；武器倍镜联动、受击强制回中、边缘引导线。
+> - 设计依据与差异说明：[design/aim-look-v3-dual-mode-and-input-smoothness-plan.md](../design/aim-look-v3-dual-mode-and-input-smoothness-plan.md) §八。
+<!-- /aim-look-v3-implemented-20261104 -->
+
 <!-- cull-scale-20261104 -->
 > **2026-11-04 剔除包围盒改为解析式缩放（`SceneObjectCulling`）：第一版已随瞄准 V3 上线，加固版（v3）在树内待一次单类升级部署**。线上 `release` = **`A4F4C8ED`（0.9.10 = 瞄准 V3 + 剔除 v2）**；宿主 `91F8E10D`、`scene.xml` `1CEA74E2` 未动。报告 [knowledge/experiments/culling-scale-20261104.md](../knowledge/experiments/culling-scale-20261104.md)，核验回执 `state/culling-scale-verification-20261104.json`。
 > - **改了什么**（只两个类）：①`measure()` 缓存"单位缩放局部盒"，纯缩放且 `rotation==0` 时用 `base×scale` 算新盒（负缩放交换边界），**不再每帧 `getBounds`**；②`bind()` 父链守卫（层须是 `visual` 直接子节点且无平移/旋转/斜切，否则整体退回测量）；③每帧只重测 1 个条目（`refreshBase()`，轮转）界定陈旧，**不写 `e.x/e.y`** 且**清 `checked`**（当帧重判）；④主循环 `for each`→下标 `for`；⑤`stats()` 升到 `event-tracked-3`，加 `scaleSkips`/`baseRefreshes`/`fastPath`。
