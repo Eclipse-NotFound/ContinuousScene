@@ -1,6 +1,6 @@
 {
   "deployedAt": "2026-11-04T18:50:52+0800",
-  "product": "host pfe.swf: sceneTick bullet bucket table + Bullet.run bucket query (sceneCU/#1069 channel removed); CS 0.9.8 and scene.xml unchanged",
+  "product": "host pfe.swf: Grafon.sceneTick bullet bucket table + Bullet.run bucket query (sceneCU/#1069 channel removed); CS release and scene.xml untouched",
   "previousSha256": "1D2004AB4C972F199FDD6BCA708C8F483C8314FED77AEA477FB9544F33AB02F3",
   "deployedSha256": "91F8E10DFB36A2024EAB140FC4BD67719330BF67310BA5CAB5CDAE8DEDF3CB45",
   "backup": "mods\\ContinuousScene\\build\\backups\\pfe_before_bulletgrid_20261104-185052.swf",
@@ -16,5 +16,7 @@
   },
   "expectedEffect": "Removes one sealed-class exception per bullet per frame and replaces the full per-bullet unit scan with a bucket of the units overlapping the bullet cell. Offline synthetic cost for 40 bullets x 130 units: 1.20 -> 0.42 ms per frame.",
   "restartRequired": true,
-  "rollback": "copy mods\\ContinuousScene\\build\\backups\\pfe_before_bulletgrid_20261104-185052.swf over pfe.swf and restart the game"
+  "rollback": "copy mods\\ContinuousScene\\build\\backups\\pfe_before_bulletgrid_20261104-185052.swf over pfe.swf and restart the game",
+  "coexistence": "CS release was D04CD26A (0.9.9), deployed by a sibling session at 18:35 the same evening; this receipt only records the host change 1D2004AB -> 91F8E10D.",
+  "postDeploySmoke": "knowledge/experiments/evidence/installed-smoke-pfe-bulletgrid-smoke-20261104191330/InstalledSmoke.json: installed bytes boot, 13/13 loader ok, CS v0.9.9 loaded, no uncaught Error #; 5/5 checks passed"
 }

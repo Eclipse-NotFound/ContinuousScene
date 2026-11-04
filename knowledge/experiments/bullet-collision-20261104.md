@@ -7,7 +7,9 @@
 
 本文只覆盖**方案支柱 C 的 C1（子弹碰撞）**：其余条目按本仓已有实测证据**不实施**，理由见 §8，避免把已证伪的路线重跑一遍。
 
-基线：根宿主 `pfe.swf` = **1D2004AB**（2026-11-04 13:36「弹痕不取消预热」），CS 0.9.8 `285625F4`，`scene.xml` `1CEA74E2`。
+基线：根宿主 `pfe.swf` = **1D2004AB**（2026-11-04 13:36「弹痕不取消预热」），`scene.xml` `1CEA74E2`。
+CS release 在 18:35 由并行会话部署到 **0.9.9 `D04CD26A`**；本轮三次游戏内运行都用这个 0.9.9，
+所以 A/B 两臂之间只差宿主。
 
 ---
 
@@ -178,7 +180,12 @@ P95 73→65、max 225→152、>100ms 16→12——但那一臂探针自身更重
 | 读回 | `pfe.swf` SHA = `91F8E10D…` ✔ |
 | 回滚 | 用备份覆盖根 `pfe.swf` 并重启游戏 |
 | 生效 | **需重启游戏** |
-| 未动 | CS 0.9.8 `285625F4`、`scene.xml` `1CEA74E2`、其它模组 |
+| 未动 | CS 0.9.9 `D04CD26A`、`scene.xml` `1CEA74E2`、其它模组 |
+
+**装后冒烟（装的字节本身）**：`knowledge/experiments/evidence/installed-smoke-pfe-bulletgrid-smoke-20261104191330/InstalledSmoke.json`
+——独立 app id、隐藏窗口、真 `pfe.swf` + 真 13 模组清单：`startup-heartbeat-and-loader-ok`、
+`no-loader-errors`、`scene-loaded-and-heartbeat`（日志 `v0.9.9 loaded`）、`process-alive`、
+`no-uncaught-error` **5/5 通过**，`errorLines` 为空。
 
 ## 8. 按既有证据不实施的方案条目
 

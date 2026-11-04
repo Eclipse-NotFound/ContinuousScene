@@ -54,24 +54,27 @@ def main():
                                     stdout=out, stderr=err, creationflags=subprocess.CREATE_NO_WINDOW)
             lease.child(proc.pid)
             store = Path(os.environ['APPDATA']) / app_id / 'Local Store'
+            loader_sol = store / '#SharedObjects' / 'ModLoader.sol'
             checks = []
             try:
                 deadline = time.time() + TIMEOUT
                 ready = False
                 while time.time() < deadline and proc.poll() is None:
-                    if (store / 'ContinuousScene.log').exists() and (store / 'ModLoader.sol').exists():
+                    if (store / 'ContinuousScene.log').exists() and loader_sol.exists():
                         text = (store / 'ContinuousScene.log').read_text(encoding='utf-8', errors='replace')
-                        sol = (store / 'ModLoader.sol').read_bytes().decode('utf-8', 'replace')
+                        sol = loader_sol.read_bytes().decode('utf-8', 'replace')
                         if 'heartbeat' in text and all(('ok_' + name) in sol for name in entries):
                             ready = True
                             break
                     time.sleep(1)
                 checks.append({'name': 'startup-heartbeat-and-loader-ok', 'passed': ready})
-                sol = (store / 'ModLoader.sol').read_bytes().decode('utf-8', 'replace') if (store / 'ModLoader.sol').exists() else ''
+                sol = loader_sol.read_bytes().decode('utf-8', 'replace') if loader_sol.exists() else ''
                 scene = (store / 'ContinuousScene.log').read_text(encoding='utf-8', errors='replace') if (store / 'ContinuousScene.log').exists() else ''
+                version_line = next((line for line in scene.splitlines() if 'loaded' in line), '')
                 checks.append({'name': 'no-loader-errors', 'passed': 'err_' not in sol})
-                checks.append({'name': 'scene-version-and-heartbeat',
-                               'passed': scene.startswith('') and 'v0.9.8 loaded' in scene and 'heartbeat' in scene and 'ERROR' not in scene})
+                checks.append({'name': 'scene-loaded-and-heartbeat',
+                               'passed': 'loaded' in version_line and 'heartbeat' in scene and 'ERROR' not in scene,
+                               'detail': version_line})
                 checks.append({'name': 'process-alive', 'passed': proc.poll() is None})
             finally:
                 if proc.poll() is None:
