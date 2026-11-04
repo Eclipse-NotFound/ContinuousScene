@@ -3,6 +3,11 @@
 状态：已实现（源码 `src/SceneAimController.as` + `src/ContinuousSceneMod.as` 接入，2026-11-04）。
 本文是设计与执行依据；参数为默认值，均可在模组设置页调节。
 
+> **已被 CS 0.9.9 取代（2026-11-04）**：交互模型改为「边缘锚定 + 平滑锁定」，动力学改为临界阻尼，
+> 并补上平移后的视口重确保（修远端墙体不加载）。现行依据见
+> [aim-look-and-offscreen-combat-optimization-plan.md](aim-look-and-offscreen-combat-optimization-plan.md) §六；
+> 本文保留为 0.9.8 的历史设计记录。
+
 ## 1. 问题与根因（调查结论）
 
 - 原版单房间 48×25 格（1920×1000px）接近屏幕尺寸，`fe.inter.Camera.setLoc` 走

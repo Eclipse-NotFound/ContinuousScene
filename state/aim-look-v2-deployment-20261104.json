@@ -1,0 +1,20 @@
+{
+  "liveSmoke": "aimv2-20261104 live: 14/14, resident 70->109 on the panned band",
+  "deployedAt": "2026-11-04T18:45:30+0800",
+  "product": "ContinuousSceneMod 0.9.9 (aim-look v2: edge-anchored look, damped pan, viewport re-ensure)",
+  "candidateTag": "aim-look-v2",
+  "candidateSource": "build/generated/aimv2-20261104/product",
+  "previousSha256": "285625F45B0272D3837F8FD9F554EED9EC848F7228CCE87110891B68D7178ACF",
+  "deployedSha256": "D04CD26AA674238BBB2F43A2CA49C57811301E9B9B614352A099F8190D9E0193",
+  "expectedSha256": "D04CD26AA674238BBB2F43A2CA49C57811301E9B9B614352A099F8190D9E0193",
+  "backup": "build\\backups\\ContinuousSceneMod-0.9.8-285625F4-before-aimv2-20261104-184530.swf",
+  "hostUnchanged": "1D2004AB4C972F199FDD6BCA708C8F483C8314FED77AEA477FB9544F33AB02F3",
+  "sceneXml": "1CEA74E218A55894D432E12CDFC544952D37CFFF5FF55B256B1B970573EB7A9E",
+  "airRunningAtDeploy": [
+    43500,
+    47692
+  ],
+  "restartRequired": true,
+  "deterministicChecks": "tests/SceneAimChecks 61/61",
+  "rollback": "copy ContinuousSceneMod-0.9.8-285625F4-before-aimv2-20261104-184530.swf over release/ContinuousSceneMod.swf, restart game"
+}
