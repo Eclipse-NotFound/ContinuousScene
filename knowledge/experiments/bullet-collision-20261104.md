@@ -159,7 +159,36 @@ P95 73→65、max 225→152、>100ms 16→12——但那一臂探针自身更重
 但机器负载波动大于该差值的可分辨范围，**只主张「没有退化」与机制量，不主张整帧收益**。
 三次运行 `projectileMax` 9–17，说明碰撞路径确实被真实弹道走到。
 
-### 6.4 过程中的两个坑（都已排除，记录备查）
+### 6.4 与 CS 0.9.9 瞄准平移路径的互操作（部署后验证）
+
+0.9.9 的 `apply()` 在平移后会**再调一次** `w.grafon.sceneTick()`，也就是说平移期间分桶表每帧会被重建两次。
+用 0.9.9 自己的实机夹具 `build/generated/aimv2-20261104/driver`（`AimProbe`，会真的按 Alt 平移并断言）
+对**已部署的字节**（`91F8E10D`）跑一遍（`build/generated/combat-collision-20261104/run_live_grid.py`，
+输入换成部署字节、CS 仍是 0.9.9 `D04CD26A`）：
+
+```
+CHECK viewport-resynced ok=1 syncs 208
+CHECK panned-view-resident ok=1 resident 110 before 70
+CHECK world-map-exact ok=1 bad 0
+CHECK apply-consistent ok=1 bad 0
+CHECK pan-engaged ok=1 maxPan 616.8 reason aiming
+CHECK release-zero ok=1 off 0,0
+CHECK stats-applied ok=1 applied 239
+RESULT PASS checks=14 reason=complete
+```
+
+即：**平移路径 14/14 通过**，444 帧里 239 次额外 `sceneTick` 都正常重算（`resident 70→110`、
+世界映射与渲染恒等式零违例），分桶表在第二次调用里重建不影响任何已断言行为。
+
+### 6.5 同毫秒去重（已建候选，**不部署**）
+
+一度想加"同一毫秒内不重复建表"的闸（`getTimer()` 相等就跳过），以减少平移期间的第二次建表。
+两个候选已构建：`grid-probe` `1D415967`（带 skip/build 计数）、`grid-clean-guard` `6E3BC782`（纯净版）。
+**判定不部署**：0.9.9 的第二次 `sceneTick` 发生在模组 ENTER_FRAME 里，而模组帧代码**永远晚于游戏 step**
+（`shared-knowledge/.../modding-interop.md`），两次调用的间隔是毫秒级到几十毫秒，`getTimer()` 同毫秒几乎不成立；
+改动换来的是"绝大多数情况下不生效"，不满足本仓"可测收益才动宿主"的门槛。两个候选保留、`deployed=false`。
+
+### 6.6 过程中的两个坑（都已排除，记录备查）
 
 - `decal-nocancel-v2`（`BD8F90FA`，7 方法相位诊断构建，连 `sceneEnsureUpcoming` 都插桩）
   **两次跑挂**（10 分钟超时、无 result.json），而同一探针在 clean 宿主上 3 次全过。

@@ -45,6 +45,8 @@ def summarize(name):
     buckets = [g.get('bucket') for g in active if isinstance(g.get('bucket'), int)]
     units = [g.get('units') for g in active if isinstance(g.get('units'), int)]
     dense = [g.get('dense') for g in active if isinstance(g.get('dense'), int) and g.get('dense')]
+    skips = [g.get('skip') for g in active if isinstance(g.get('skip'), int)]
+    builds = [g.get('builds') for g in active if isinstance(g.get('builds'), int)]
     summary = {
         'name': name,
         'samples': len(samples),
@@ -58,6 +60,8 @@ def summarize(name):
         'gridBucketP95': pct(buckets, 0.95) if buckets else None,
         'gridBucketMax': max(buckets) if buckets else None,
         'gridDenseMean': round(sum(dense) / len(dense), 1) if dense else None,
+        'gridGuardSkips': (skips[-1] - skips[0]) if len(skips) > 1 else None,
+        'gridBuilds': (builds[-1] - builds[0]) if len(builds) > 1 else None,
         'gridError': next((g.get('error') for g in grid if g.get('error')), None),
     }
     if rows:

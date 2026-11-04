@@ -17,7 +17,8 @@
 > - **游戏内**（3 次隔离运行，均 1300 样本 / 13 项检查通过 / 无错误）：`bulletgrid-gridlive-combat-n1`（probe-v6）**`grid.active` 1300/1300 帧、`grid.error=null`**、`loc.units` 均值 **122**、视口处一格候选 **2.71（P95 5、最大 5）** → 每发子弹要查的单位从 ~122 降到 ~3（约 45×）。clean↔clean 同探针对照（各 1299 间隔）：均值 49.89→49.29（−0.60ms/−1.2%，且候选臂在飞弹更多）；第三轮候选臂 46.93（−2.96ms）。**只主张“没有退化”+机制量，不主张整帧收益**。装后冒烟（装的字节本身）5/5 通过，CS `v0.9.9 loaded`、无未捕获 `Error #`。
 > - **未做（有证据）**：C2 唤醒强弱分级 / C3 拴绳迟滞（`alicorn4` 计数显示唤醒已按每帧 1 只预算、整场帧时不抬升）；E1 视口前馈（长帧 85–100% 与 >1MB 内存回落同帧，回收由大地块分配推动，加前馈反向）；E2 `drawKusok` 切分（`maxStepMs` 仅 20–25ms）；E3 远处逐出（已实测最大帧 171→568ms）。
 > - **回退档/陷阱**：`scu-remove-clean` `BAA22A81`（只删异常通道、不带分桶）。`decal-nocancel-v2`（`BD8F90FA`，7 方法相位诊断含 `sceneEnsureUpcoming` 插桩）**两次跑挂**（10 分钟超时无 result），不可再用于配对；控制臂请用真正线上字节 `decal-nocancel-clean`。
-> - **已知交互（未改）**：CS 0.9.9 瞄准平移会在 `apply()` 后再调一次 `w.grafon.sceneTick()`，平移期间可能每帧建两次分桶表（多约 0.3ms/帧）；查询侧省 0.5–1.3ms/帧，净收益仍为正。要抹平可在建表前用 `getTimer()` 判同毫秒跳过。
+> - **已知交互（已实测互操作）**：CS 0.9.9 瞄准平移会在 `apply()` 后再调一次 `w.grafon.sceneTick()`，平移期间分桶表会被重复重建。已用 0.9.9 自己的 `AimProbe` 实机夹具跑**已部署字节**：**14/14 通过**（`viewportSyncs` 239/444 帧、`resident 70→110`、`world-map-exact bad 0`、`apply-consistent bad 0`），说明这次额外的重建不影响任何已断言行为。
+> - **同毫秒去重候选已建但不部署**：`grid-probe` `1D415967`（带 skip/build 计数）、`grid-clean-guard` `6E3BC782`（纯净版）。理由：第二次 `sceneTick` 在模组 ENTER_FRAME 里、晚于游戏 step，两次调用相隔毫秒级以上，`getTimer()` 同毫秒几乎不成立 → 无可测收益，按门槛不动宿主。
 <!-- /bullet-grid-20261104 -->
 ```
 

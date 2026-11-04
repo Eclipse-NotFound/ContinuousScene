@@ -19,6 +19,11 @@ Candidates (method-only pcode replacement, class layout unchanged):
                `dynamic` class, unlike `Sprite` / `MainFE` / `Grafon`).
                Verified offline: `Sprite` rejects the write with `#1056`,
                `MovieClip` accepts it (see src/SpriteDynamicProbe.as).
+               Kinds `grid-probe` / `grid-clean-guard` additionally carry the
+               same-millisecond rebuild guard (with / without counters); both
+               were built and deliberately NOT deployed: the second `sceneTick`
+               per pan frame comes from the mod's ENTER_FRAME, which runs after
+               the game step, so a `getTimer()` equality test almost never holds.
 
 Only `fe.graph.Grafon::sceneTick` and `fe.weapon.Bullet::run` change.
 """
@@ -85,7 +90,7 @@ LIST_NEW = '''            var grid:* = World.w.vgui["__csBulletGridV1"];
             if(grid == null || grid.loc !== this.loc)
             {
                grid = {"loc":this.loc,"cell":512,"buckets":[],"gx":0,"gy":0,"empty":[],"stamp":0,
-                  "units":-1,"ggX":0,"ggY":0};
+                  "units":-1,"ggX":0,"ggY":0,"at":-1,"build":0,"skip":0};
                World.w.vgui["__csBulletGridV1"] = grid;
             }
             var gridCell:Number = grid.cell;
@@ -104,7 +109,11 @@ LIST_NEW = '''            var grid:* = World.w.vgui["__csBulletGridV1"];
                grid.gx = gridCountX;
                grid.gy = gridCountY;
                grid.buckets = [];
+               grid.at = -1;
             }
+            var gridNow:int = getTimer();
+            if(grid.at != gridNow)
+            {
             var gridBuckets:Array = grid.buckets;
             var gridSlot:int = 0;
             while(gridSlot < gridBuckets.length)
@@ -162,12 +171,15 @@ LIST_NEW = '''            var grid:* = World.w.vgui["__csBulletGridV1"];
                }
             }
             ++grid.stamp;
+            grid.at = gridNow;
             grid.units = this.loc.units.length;
             if(World.w.gg != null)
             {
                grid.ggX = World.w.gg.X;
                grid.ggY = World.w.gg.Y;
-            }'''
+            }
+            }
+            GRID_GUARD_METRICS'''
 
 SCU_BLOCK = '''         var _collisionUnits:Array = loc.units;
          try {
@@ -213,7 +225,7 @@ def decal(text):
     return text.replace(old, new)
 
 
-def grafon_source(diagnostic):
+def grafon_source(diagnostic, metrics=False):
     text = GRAFON.read_text(encoding='utf-8-sig')
     names = []
     if diagnostic:
@@ -224,6 +236,13 @@ def grafon_source(diagnostic):
     tick = sh.once(tick, 'if(this.loc.units != null && World.w.gg != null)',
                    'if(this.loc.units != null && World.w.gg != null && World.w.vgui != null)')
     tick = sh.once(tick, LIST_OLD, LIST_NEW)
+    if metrics:
+        tick = sh.once(tick, '            grid.at = gridNow;',
+                       '            grid.at = gridNow;\n            ++grid.build;')
+        tick = sh.once(tick, '            GRID_GUARD_METRICS',
+                       '            else\n            {\n               ++grid.skip;\n            }')
+    else:
+        tick = sh.once(tick, '\n            GRID_GUARD_METRICS', '')
     text = text.replace(sh.method(text, 'sceneTick'), tick)
     return text, list(dict.fromkeys(names + ['sceneTick']))
 
@@ -238,14 +257,15 @@ def bullet_source(grid):
 
 
 def build(tag, kind):
-    """kind: scu-remove | grid | scu-remove-diag | grid-diag"""
+    """kind: scu-remove-clean | grid-clean | grid-probe | grid-diag"""
     out = HERE / tag
     out.mkdir(exist_ok=False)
     assert sha(BASE_HOST) == BASE_SHA, 'formal host changed'
     diagnostic = kind.endswith('-diag')
+    metrics = 'probe' in kind
     grid = kind.startswith('grid')
     files, names = {}, {}
-    files[GRAFON_CLASS], names[GRAFON_CLASS] = grafon_source(diagnostic)
+    files[GRAFON_CLASS], names[GRAFON_CLASS] = grafon_source(diagnostic, metrics)
     files[BULLET_CLASS], names[BULLET_CLASS] = bullet_source(grid)
     for cls, text in files.items():
         target = out / 'source' / Path(*cls.split('.')).with_suffix('.as')
