@@ -1,10 +1,19 @@
 {
-  "receipt": "culling analytic-box verification (no deploy performed by this session)",
-  "verifiedAt": "2026-11-04T23:35+08:00",
+  "receipt": "culling analytic-box change: verification and final deployment",
+  "verifiedAt": "2026-11-04T23:40+08:00",
   "change": "SceneObjectCulling event-tracked-3: analytic unit-scale box for pure scale changes, layer-chain guard, one-entry-per-frame base refresh that re-decides in the same frame, indexed loop",
   "deterministicChecks": {
     "harness": "mods/ContinuousScene/build/generated/cull-scale-20261104/checks (standalone AIR, visible=false, no game, no save)",
     "result": "48/48 (SceneCullingChecks 23/23 regression + SceneCullingScaleChecks 25/25 differential against a fresh-getBounds oracle)",
+    "mixedSceneMeasurements": {
+      "frames": 90,
+      "transforms": 1602,
+      "arithmeticPath": 879,
+      "arithmeticShare": 0.549,
+      "getBoundsPerFrame": 4.51,
+      "oldImplementationPerFrame": 18.1,
+      "visibilityMismatches": 0
+    },
     "sourceHashes": {
       "SceneObjectCulling.as": "9057F86006E5FAAD03BC2A021BDF177B4537FF810F45638BB009C46C76F081E6",
       "SceneCullEntry.as": "ACC0753E3B4FA4A0A5B5C9098851169F40B823680862861C5DF210D70E9E1B54"
@@ -25,55 +34,43 @@
        "caughtBy": "layer-guard-disables-fast-path"}
     ]
   },
-  "candidates": {
-    "v2": {
-      "path": "build/generated/cull-scale-20261104/product/ContinuousSceneMod.swf",
-      "sha256": "6A538E83CF4BA778BC2899B1D30B4C345FAE776C5540CADDC6B7254002BE425C",
-      "size": 33175,
-      "note": "first version, 45/45 at the time; the shipped bytes are this version"
+  "deployments": [
+    {
+      "what": "culling v2 (event-tracked-2)",
+      "deployedBy": "parallel DSH session together with aim-look-v3",
+      "release": "A4F4C8ED4C3158B2721EAC8086A266AA1A43312DB3F53B19C275B91857B2CA3B",
+      "previous": "D04CD26AA674238BBB2F43A2CA49C57811301E9B9B614352A099F8190D9E0193",
+      "proof": "exported SceneObjectCulling F59A2915EE0DCE5 / SceneCullEntry CDCB935B52D6257F are byte-identical to the 45/45-verified candidate 6A538E83, while 0.9.9 has B14DDD9730EEF747 / 7B9729CB8DB7D521"
     },
-    "v3": {
-      "path": "build/generated/cull-scale-20261104/product-merged/ContinuousSceneMod.swf",
-      "sha256": "41D61E59AC7207B8ECAA0D6B0ABB028C26B628066D3D6096B4BDE7305697D4F6",
-      "size": 34796,
-      "note": "hardened version; built from the working tree (aim-v3 + culling v3), not deployed"
+    {
+      "what": "culling v3 (event-tracked-3) hardening",
+      "deployedBy": "this session (build/generated/cull-scale-20261104/deploy_merged.py)",
+      "deployedAt": "2026-11-04T23:38:26+08:00",
+      "release": "DFF285256806A79988EC5F2FE76B6EBC64596E959DDFD8AACBEFCF56D449B4AB",
+      "size": 34798,
+      "previous": "A4F4C8ED4C3158B2721EAC8086A266AA1A43312DB3F53B19C275B91857B2CA3B",
+      "backup": "build/backups/ContinuousSceneMod-before-cullscale-merged-20261104-233826.swf",
+      "gates": [
+        "merged build must leave ContinuousSceneMod / SceneAimController / NativeSceneActivity / ScenePresentationCoordinator / SingleSceneDocument byte-identical to the live build (they are: 33B23D09D2B612EE / 08AC2DB45A5A8C6C / ...)",
+        "48/48 standalone AIR assertions on the merged sources",
+        "no tests/Checks/Probe/fe classes linked",
+        "bytecode markers applyScale / refreshBase / canFastScale / event-tracked-3 present",
+        "host and scene.xml hashes unchanged"
+      ],
+      "deployedClassHashes": {
+        "SceneObjectCulling": "72E5DF9A2C01ACDF",
+        "SceneCullEntry": "CDCB935B52D6257F",
+        "ContinuousSceneMod": "33B23D09D2B612EE",
+        "SceneAimController": "08AC2DB45A5A8C6C"
+      },
+      "noAirRunningAtDeploy": true,
+      "takesEffect": "next game launch (no running AIR to restart)"
     }
-  },
-  "attribution": {
-    "controlBuildSha256": "E656700086362B5BA196EE7872D5CB7D3A095D81C53B26C8D0AE58CE30A24B35",
-    "classesThatDifferControlVsV2Candidate": ["SceneCullEntry", "SceneObjectCulling"],
-    "classesThatDifferDeployedVsV3Candidate": ["SceneObjectCulling"],
-    "deployedAimClassesIdenticalInV3Candidate": true
-  },
-  "deployment": {
-    "deployedBy": "parallel DSH session (aim-v3 feature deploy)",
-    "releaseBefore": "D04CD26AA674238BBB2F43A2CA49C57811301E9B9B614352A099F8190D9E0193",
-    "releaseAfter": "A4F4C8ED4C3158B2721EAC8086A266AA1A43312DB3F53B19C275B91857B2CA3B",
-    "releaseSize": 34681,
-    "backup": "build/backups/ContinuousSceneMod-0.9.9-D04CD26A-before-aimv3-20261104-232209.swf",
-    "classHashesFromDeployedBytes": {
-      "SceneObjectCulling": "F59A29159EE0DCE5",
-      "SceneCullEntry": "CDCB935B52D6257F"
-    },
-    "classHashesFromVerifiedV2Candidate": {
-      "SceneObjectCulling": "F59A29159EE0DCE5",
-      "SceneCullEntry": "CDCB935B52D6257F"
-    },
-    "shippedCodeEqualsVerifiedCode": true,
-    "previousBuildClassHashes": {
-      "SceneObjectCulling": "B14DDD9730EEF747",
-      "SceneCullEntry": "7B9729CB8DB7D521"
-    }
-  },
+  ],
   "hostUnchanged": "91F8E10DFB36A2024EAB140FC4BD67719330BF67310BA5CAB5CDAE8DEDF3CB45",
   "sceneXmlUnchanged": "1CEA74E218A55894D432E12CDFC544952D37CFFF5FF55B256B1B970573EB7A9E",
-  "restartRequired": true,
-  "pendingV3Deploy": {
-    "command": "python build/generated/cull-scale-20261104/deploy_merged.py --expect-release A4F4C8ED4C3158B2721EAC8086A266AA1A43312DB3F53B19C275B91857B2CA3B",
-    "whyDeferred": "the parallel aim-v3 session was still active and the workspace claim lock was held (see lockNote); the delta against the live build is one class, so it is a one-class upgrade needing a restart",
-    "lockNote": "release_files/pending_apply timed out: .dsh-file-claim.lock held by the shared DSH process during the parallel session's MEMORY pending write; claims on state/MEMORY.md, state/journal.md and the four source files therefore remain until they go stale"
-  },
-  "performanceClaim": "none: getBounds calls reduced (~4.4/frame vs ~21/frame in the synthetic mix); frame time not paired",
-  "remainingGate": "in-game confirmation of the deployed bytes on the next play session (wrapper visibility only; decision logic covered by the offline oracle plus the mutation tests)",
-  "rollback": "rebuild without src/SceneObjectCulling.as + src/SceneCullEntry.as changes, or restore the pre-aimv3 backup and restart"
+  "performanceClaim": "none: getBounds traversals dropped from ~18/frame to ~4.5/frame in the synthetic mix; frame time was not paired",
+  "remainingGate": "in-game confirmation on the next play session (wrapper visibility only; the decision logic is covered by the offline oracle plus the four mutation cases)",
+  "noteOnContainerHashes": "mxmlc output is not byte-reproducible (same classes, different container bytes: 41D61E59 dry run vs DFF28525 deploy, same size class). Class-level export hashes are the identity used here.",
+  "rollback": "copy build/backups/ContinuousSceneMod-before-cullscale-merged-20261104-233826.swf over release/ContinuousSceneMod.swf (returns the live aim-v3 + culling v2 build)"
 }

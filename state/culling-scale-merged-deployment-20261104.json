@@ -1,0 +1,40 @@
+{
+  "builtAt": "2026-11-04T23:38:26+0800",
+  "candidate": "DFF285256806A79988EC5F2FE76B6EBC64596E959DDFD8AACBEFCF56D449B4AB",
+  "size": 34798,
+  "classes": [
+    "ContinuousSceneDoc",
+    "ContinuousSceneMod",
+    "NativeSceneActivity",
+    "NativeSceneAdapter",
+    "NativeSceneWalls",
+    "SatsVisibleGuard",
+    "SceneAimController",
+    "SceneAlicornAlerts",
+    "SceneCullEntry",
+    "SceneEventBitmapFill",
+    "SceneObjectCulling",
+    "ScenePresentationCoordinator",
+    "SingleSceneDocument"
+  ],
+  "previousRelease": "A4F4C8ED4C3158B2721EAC8086A266AA1A43312DB3F53B19C275B91857B2CA3B",
+  "suite": {
+    "pass": 48,
+    "fail": 0,
+    "sources": {
+      "SceneObjectCulling.as": "9057F86006E5FAAD03BC2A021BDF177B4537FF810F45638BB009C46C76F081E6",
+      "SceneCullEntry.as": "ACC0753E3B4FA4A0A5B5C9098851169F40B823680862861C5DF210D70E9E1B54",
+      "tests/SceneCullingChecks.as": "0E4D4A6A5E11779483109845419FCE535678FEED99670D9F134853C22A0B422F",
+      "tests/SceneCullingScaleChecks.as": "CEE3C8C0C0BDE810374ADBF5A0216C1AAC1F469F8680B4CB3D0E6C63B56A2366",
+      "tests/CullingChecksApp.as": "27957611F8436C42BF940B248BA305B39BB69787FC3560927789679437773865"
+    }
+  },
+  "note": "culling event-tracked-3 hardening; aim-v3 classes preserved byte-identically",
+  "deployed": true,
+  "backup": "build\\backups\\ContinuousSceneMod-before-cullscale-merged-20261104-233826.swf",
+  "hostUnchanged": "91F8E10DFB36A2024EAB140FC4BD67719330BF67310BA5CAB5CDAE8DEDF3CB45",
+  "sceneXml": "1CEA74E218A55894D432E12CDFC544952D37CFFF5FF55B256B1B970573EB7A9E",
+  "airRunningAtDeploy": [],
+  "restartRequired": true,
+  "rollback": "copy ContinuousSceneMod-before-cullscale-merged-20261104-233826.swf over release/ContinuousSceneMod.swf, restart game"
+}

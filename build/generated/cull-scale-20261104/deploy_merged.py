@@ -30,6 +30,10 @@ OUT = BASE / 'product-merged'
 RELEASE = MOD / 'release/ContinuousSceneMod.swf'
 BASELINE_RELEASE = 'D04CD26AA674238BBB2F43A2CA49C57811301E9B9B614352A099F8190D9E0193'
 CULLING_CLASSES = ('SceneObjectCulling', 'SceneCullEntry')
+# Classes that must stay byte-identical to whatever is live: the merged build is
+# only allowed to differ by the culling change.
+CLASSES_TO_PRESERVE = ('ContinuousSceneMod', 'SceneAimController', 'NativeSceneActivity',
+                       'ScenePresentationCoordinator', 'SingleSceneDocument')
 
 
 def sha(path):
@@ -38,7 +42,23 @@ def sha(path):
 
 def run(command, **kwargs):
     return subprocess.run(command, check=False, capture_output=True, text=True,
+                          encoding='utf-8', errors='replace',
                           creationflags=subprocess.CREATE_NO_WINDOW, **kwargs)
+
+
+def exported_class_hashes(swf, classes, tag):
+    out = BASE / 'audit' / tag
+    if out.exists():
+        shutil.rmtree(out)
+    run([str(JAVA), '-Xmx512m', '-jar', str(FFDEC), '-selectclass', ','.join(classes),
+         '-export', 'script', str(out), str(swf)])
+    return {path.stem: sha(path) for path in out.rglob('*.as')}
+
+
+def classes_differ(candidate_swf, reference_swf, classes):
+    after = exported_class_hashes(candidate_swf, classes, 'gate-candidate')
+    before = exported_class_hashes(reference_swf, classes, 'gate-reference')
+    return sorted(name for name in classes if before.get(name) != after.get(name))
 
 
 def build_product(source_dir=None):
@@ -80,7 +100,7 @@ def build_product(source_dir=None):
     if len(owners) != 1:
         sys.exit('could not export SceneObjectCulling from the merged product')
     emitted = owners[0].read_text(encoding='utf-8', errors='replace')
-    for needle in ('applyScale', 'refreshBase', 'baseLeft', 'event-tracked-2'):
+    for needle in ('applyScale', 'refreshBase', 'baseLeft', 'event-tracked-3'):
         if needle not in emitted:
             sys.exit('culling optimisation missing from merged bytecode: ' + needle)
     return output, definitions
@@ -100,6 +120,12 @@ def main():
                  '; pass --expect-release if the other session already deployed')
     output, definitions = build_product(args.source_dir)
     candidate = sha(output)
+    # Refuse if the aim-v3 classes moved since the live deploy: the merged build
+    # must be "live bytes + the culling change", not someone's in-flight work.
+    aim_changed = classes_differ(output, RELEASE, CLASSES_TO_PRESERVE)
+    if aim_changed:
+        sys.exit('merged build changes non-culling classes ' + repr(aim_changed) +
+                 '; the parallel session is mid-edit - refusing')
     checks = run([sys.executable, str(MOD / 'build/culling-scale-checks.py')], cwd=MOD)
     (OUT / 'checks-run.log').write_text((checks.stdout or '') + (checks.stderr or ''), encoding='utf-8')
     if checks.returncode != 0:
