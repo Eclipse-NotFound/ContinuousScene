@@ -9,8 +9,8 @@
 
 > **实施状态（2026-11-04 晚补记）**：本轮按本方案实施 **C1（子弹碰撞）** 一项，其余条目按本仓既有实测证据判为不实施，逐条理由与证据指针见
 > [knowledge/experiments/bullet-collision-20261104.md](../knowledge/experiments/bullet-collision-20261104.md) §7。
-> - **C1 已实现并验证**：宿主 `Grafon.sceneTick` 改为每帧建整房间 512px 分桶表（存 `World.w.visual["csBulletGrid"]`，`Sprite` 是 dynamic 类，避开密封类 `#1069`），`Bullet.run` 去掉 `sceneCU` 反射通道并按子弹坐标查桶；带三道回落闸（targetObj / 单位数变动 / 玩家位移 >256px）。候选 `grid-clean` `C259A678…`（类布局不变，仅 `fe.graph.Grafon::sceneTick` + `fe.weapon.Bullet::run`）。
-> - **C1 证据**：离线等价 16,009 个探针点 0 不一致（含跨格、超大/退化盒、一帧陈旧 ±96px、建表后新生成单位）；离线成本（40 弹 × 130 单位、900 帧）从「全量扫描 + 每弹异常」1.34ms/帧 降到「建表 + 查桶」0.47ms/帧（−65%），其中异常本身占 0.43–0.92ms/帧。
+> - **C1 已实现并部署**：宿主 `Grafon.sceneTick` 改为每帧建整房间 512px 分桶表（存 `World.w.vgui["__csBulletGridV1"]`；`Sprite` 是密封类、`MovieClip` 才是 dynamic，这一条由无头探针实测挡下一次 `#1056` 事故），`Bullet.run` 去掉 `sceneCU` 反射通道并按子弹坐标查桶；带三道回落闸（targetObj / 单位数变动 / 玩家位移 >256px）。产物 `grid-clean` **`91F8E10D…`**（类布局不变，仅 `fe.graph.Grafon::sceneTick` + `fe.weapon.Bullet::run`），已装根 `pfe.swf`（前值 `1D2004AB`，需重启）。
+> - **C1 证据**：离线等价 16,009 个探针点 0 不一致（含跨格、超大/退化盒、一帧陈旧 ±96px、建表后新生成单位）；离线成本（40 弹 × 130 单位、900 帧）从「全量扫描 + 每弹异常」1.34ms/帧 降到「建表 + 查桶」0.47ms/帧（−65%），其中异常本身占 0.43–0.92ms/帧；游戏内 3 次 1300 样本/13 检查全过，分桶 1300/1300 帧生效、单位 122 → 候选 2.7，clean↔clean 对照均值 −0.60ms（不主张整帧收益）。
 > - **不实施**：C2/C3 由 `alicorn4-alicorn-n1` 计数证据关闭（唤醒已按每帧 1 只预算、整场帧时无抬升）；E1 与「长帧 85–100% 与 >1MB 内存回落同帧、回收由大地块分配推动」的方向相反；E2 由 `maxStepMs` 仅 20–25ms 的实测关闭；E3 已实测负结果（最大帧 171→568ms）。
 
 ---
