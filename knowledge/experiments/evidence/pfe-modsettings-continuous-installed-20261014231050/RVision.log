@@ -1,9 +1,0 @@
-startup enter main=true stage=true -> after loadConfig enabled=true
-init ok v0.30.4-scene settings=ModSettings-v1 enabled=true
-tick 1
-ModSettings settings registered
-tick 181
-tick 361
-tick 541
-tick 721
-tick 901

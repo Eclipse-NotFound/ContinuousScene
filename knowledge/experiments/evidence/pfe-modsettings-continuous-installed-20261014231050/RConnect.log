@@ -1,5 +1,0 @@
-RConnectMod: main class=MainFE
-RConnectMod: game version=1.02 bd=0.2 instMatch=true world=true
-RConnectMod: v0.2.22-dev initialized
-RConnectDbg: tick 200 mode=offline world=null tileV=-999 grid=? ghostPose=none localPose=no-gg t_exit=0 comLoad=-1 clickReq=0 verror=false mm.active=true ng_wait=0 allStat=0 onPause=false pipA=false satsA=null standA=null guiPause=null
-RConnectDbg: tick 400 mode=offline world=null tileV=-999 grid=? ghostPose=none localPose=no-gg t_exit=0 comLoad=-1 clickReq=0 verror=false mm.active=true ng_wait=0 allStat=0 onPause=false pipA=false satsA=null standA=null guiPause=null
