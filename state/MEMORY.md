@@ -1,5 +1,9 @@
 # ContinuousScene — 当前快照
 
+<!-- proof-activity-live-20261104 -->
+> **2026-11-04 证明策略实机接续：按需建威胁表候选保留，未部署。** 同源0.9.8最小候选真实AIR诊断28/28（含12夹具），1,075次读取边界/独立状态比较零差异；移动/开火/瞄准各450帧、38项检查通过，但q=0均0%，没有省一次建表。旧A/A初态/顺序/负载不匹配，修正对照遇其他AIR；**有效性能配对0，局部与整帧收益未判定**。本批冻结A9B39CC7、1280×800/scale2/3，不能外推新宿主或用户全屏。正式核心与CS release未改。报告 [run-03](D:/活/AI/测试运行/remains-proof-strategy-20261104/run-03/REPORT.md)；模组记录 `knowledge/experiments/proof-activity-live-20261104.md`。继续需先确认自然q=0价值及可重复原生初态，不直接加不匹配计时样本。
+<!-- /proof-activity-live-20261104 -->
+
 <!-- alicorn-count-20261104 -->
 > **2026-11-04 天角兽只读计数探针（B-P1）：工具就绪，首轮不支持“警报拉活”假设**。探针 `build/generated/phase-20261104/alicorn-v3`（原生 `UnitAlicorn("1",100,null,{tr:1})` 生成 + 逐帧 alert/unicorn 计数）；首轮 `alicorn2-alicorn-n1`（900 帧、14 项检查通过）：均值 34.4ms、仅 3 帧 >100ms；`awake` 33→27（27–35）、`asleep`→112，**900 帧内只唤醒 11 次、交战前 30 帧 0 次**，交战后帧时无持续抬升 → **本夹具未出现成批拉活**。判别字段（cel/f1/filters）因首版 `UnitPlayer.visBmp` #1069 丢失，v3 已修但运行被并发会话占用 AIR 挡住（n1–n10 全 `Existing AIR`/`Other AIR`，未动他人进程）。报告 `knowledge/experiments/alicorn-count-probe-20261104.md`。**下一步**：等干净窗口跑 `alicorn-v3` 取 cel/awake 跳变；若无跳变则关闭 B1/B-P2 方向。
 <!-- /alicorn-count-20261104 -->

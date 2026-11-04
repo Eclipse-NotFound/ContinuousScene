@@ -1,3 +1,10 @@
+## 2026-11-04 — 证明策略实机接续：按需建表行为检查通过，收益未判定、不部署
+
+- 同一0.9.8源闭包构建A/B最小候选，104项生成源核对；真实AIR原生大地图修正诊断28/28（含12夹具），1,075次读取边界/独立状态比较零差异。三动作各450帧，38项功能检查通过；q=0均0%，每帧仍建表。
+- 有效性能配对0：旧同A字节对照初态/异步顺序/T负载/菜单显示条件不合格；修正对照启动前见其他AIR；共存三动作只作功能/分布观察。局部与整帧均未判定，不把操作计数当毫秒，不部署。
+- 隔离冻结A9B39CC7，正式宿主另轮变更1D2004AB不混用；本轮未改正式核心、入口、CS release。旧失败、预热菜单、探针修正和未覆盖的全屏/新宿主均如实留存。本轮自有测试进程均结束，未动他人进程。
+- 返回报告：[run-03/REPORT.md](D:/活/AI/测试运行/remains-proof-strategy-20261104/run-03/REPORT.md)；案例：[proof-activity-live-20261104.md](../knowledge/experiments/proof-activity-live-20261104.md)。接续先核对自然q=0价值与可重复初态，再考虑既定性能矩阵；未自动发往其他对话。
+
 ## 2026-11-04 — 天角兽只读计数探针（B-P1）：工具就绪；首轮未见“警报拉活”
 
 - 新探针 `alicorn-v3`（基于 cold-v2，原生生成一只 `UnitAlicorn("1",100,null,{tr:1})`，逐帧记 units/cel/f1/awake/asleep/leashed/filters/projectiles + 天角兽 mater/aiState/aiSpok/t_tele/teleObj）。首版因 `UnitPlayer.visBmp` #1069（密封类）丢整段计数，v3 改为逐项 try/catch。
