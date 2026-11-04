@@ -11,8 +11,8 @@
 > | P3 弹痕/`sceneApply` 空间索引 | **不做（实测否定）** | `markMs` 0.03ms/帧；566 次 apply 合计 5.9 万次矩形相交 |
 > | P4 `sceneApplyCompactDecal` 分配修正 | **不做（收益<验证成本）** | 减分配≠减帧时（四次判例） |
 > | ① 地形双线性 | **作废（用户窗口）** | 用户用**大窗口/全屏**，`scaleV=1` 时无重采样；`zoom100` 用户明确否决 |
-> | **新 P3'：远处逐出 + 缓冲复用** | **本轮新增首要候选** | **长帧归因反转**：≥100ms 帧 85–100% 与一次 50–165MB 内存回落同帧；每块分配 4×2.56MB 且从不复用 ≈18MB/s → 约每 80 帧一次回收，把该帧拉到 100–171ms。见 `knowledge/experiments/long-frame-memory-20261104.md` |
-> | B-P1 天角兽计数探针 / B-P2 | 工具就绪，证据未定 | 20.9 探针 `alicorn-v3` 已可跑；首轮 900 帧未见警报拉活（awake 27–35、唤醒 11 次），但判别字段运行被玩家游戏挡住 |
+> | **新 P3'：远处逐出 + 缓冲复用** | **已实测 → 负结果，不部署** | 逐出(cap=96)+复用：均值 41.8→39.9、P95 65→62，但**最大帧 171→568ms**、同步补画 22 次/1044ms→**30 次/1997ms**；失败机制=**相机跳变那帧要同步补画被逐缺口**。见 `knowledge/experiments/long-frame-memory-20261104.md` §6 |
+> | B-P1 天角兽计数探针 / B-P2 | **B-P1 完成；B-P2 不实施** | `alicorn4-alicorn-n1` 900 帧/14/14：faction-1 单位 50、带目标单位 1→最多 9（age≈100 起），但唤醒按每帧 1 只、`awake` 28–43、整场帧时不抬升（前/后 100 帧 34.5/34.9ms），仅高活跃帧 +4.9ms → 现状 `wakeBudget=1`+leash 已够用 |
 >
 > 逐条细节与复跑入口见 `knowledge/experiments/phase-attribution-implementation-20261104.md`、`long-frame-memory-20261104.md`、`alicorn-count-probe-20261104.md`。
 <!-- /implementation-update-20261104 -->
