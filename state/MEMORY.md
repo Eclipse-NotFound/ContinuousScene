@@ -1,5 +1,40 @@
 # ContinuousScene — 当前快照
 
+<!-- bullet-grid-20261104 -->
+> **2026-11-04 已部署子弹空间分桶（宿主 `1D2004AB` → `91F8E10D`）**。CS release 未动（当时已由并行会话部署到 0.9.9 `D04CD26A`）、`scene.xml` `1CEA74E2` 未动；**需重启游戏生效**。备份 `build/backups/pfe_before_bulletgrid_20261104-185052.swf`（= 1D2004AB），回执 `build/generated/combat-collision-20261104/deploy-receipt-grid-clean.json`，报告 `knowledge/experiments/bullet-collision-20261104.md`。
+> - **改了什么**：①删掉 `Grafon.sceneTick` 往 `World.w.visual.root["sceneCU"]` 写列表、以及 `Bullet.run` 读它——`root` 是密封的 `fe.MainFE`，那两处每天都在抛了再吞（读 #1069 / 写 #1056），`_collisionUnits` 恒回退 `loc.units`；②`sceneTick` 改为每帧建**整房间 512px 分桶表**（单位 AABB 外扩 96px 登记全部覆盖格、桶数组跨帧复用），存 `World.w.vgui["__csBulletGridV1"]`；`Bullet.run` 按子弹自身坐标查桶。只改 `fe.graph.Grafon::sceneTick` + `fe.weapon.Bullet::run`，类布局不变。
+> - **为什么存 vgui**：离线无头探针实测 **`Sprite` 是密封类**（写动态属性抛 `Error #1056`），`MovieClip` 才是 dynamic。最初版本挂 `World.w.visual`（`new Sprite()`）会**每帧在 ensure/cull 之后抛 #1056**，整条预热/剔除链死掉——部署前被 `src/SpriteDynamicProbe.as` 挡下。该结论已回写 shared-knowledge `knowledge-validation/facts/modding-interop.md`。
+> - **等价性（离线、可复算）**：16,009 个探针点（静态 6000 / 一帧陈旧 ±96px 6000 / 对抗几何 4000+9）**0 不一致**，口径是"首个命中单位下标"；另断言"建表后新生成单位"必须靠 `units` 计数闸回落（不带闸会漏）。
+> - **成本（离线 40 弹 × 130 单位 × 900 帧）**：全量扫描 + 每弹异常 **1.34ms/帧 → 分桶建表+查 0.47ms/帧（−65%）**；异常本身占 0.43–0.92ms/帧。真实单位每轮读 9 个属性，全量一侧更贵，真实差距只会更大【推断】。
+> - **游戏内**（3 次隔离运行，均 1300 样本 / 13 项检查通过 / 无错误）：`bulletgrid-gridlive-combat-n1`（probe-v6）**`grid.active` 1300/1300 帧、`grid.error=null`**、`loc.units` 均值 **122**、视口处一格候选 **2.71（P95 5、最大 5）** → 每发子弹要查的单位从 ~122 降到 ~3（约 45×）。clean↔clean 同探针对照（各 1299 间隔）：均值 49.89→49.29（−0.60ms/−1.2%，且候选臂在飞弹更多）；第三轮候选臂 46.93（−2.96ms）。**只主张"没有退化"+机制量，不主张整帧收益**。装后冒烟（装的字节本身）5/5 通过，CS `v0.9.9 loaded`、无未捕获 `Error #`。
+> - **未做（有证据）**：C2 唤醒强弱分级 / C3 拴绳迟滞（`alicorn4` 计数显示唤醒已按每帧 1 只预算、整场帧时不抬升）；E1 视口前馈（长帧 85–100% 与 >1MB 内存回落同帧，回收由大地块分配推动，加前馈反向）；E2 `drawKusok` 切分（`maxStepMs` 仅 20–25ms）；E3 远处逐出（已实测最大帧 171→568ms）。
+> - **回退档/陷阱**：`scu-remove-clean` `BAA22A81`（只删异常通道、不带分桶）。`decal-nocancel-v2`（`BD8F90FA`，7 方法相位诊断含 `sceneEnsureUpcoming` 插桩）**两次跑挂**（10 分钟超时无 result），不可再用于配对；控制臂请用真正线上字节 `decal-nocancel-clean`。
+> - **已知交互（已实测互操作）**：CS 0.9.9 瞄准平移会在 `apply()` 后再调一次 `w.grafon.sceneTick()`，平移期间分桶表会被重复重建。已用 0.9.9 自己的 `AimProbe` 实机夹具跑**已部署字节**：**14/14 通过**（`viewportSyncs` 239/444 帧、`resident 70→110`、`world-map-exact bad 0`、`apply-consistent bad 0`）。
+> - **同毫秒去重候选已建但不部署**：`grid-probe` `1D415967`（带 skip/build 计数）、`grid-clean-guard` `6E3BC782`（纯净版）。理由：第二次 `sceneTick` 在模组 ENTER_FRAME 里、晚于游戏 step，两次调用相隔毫秒级以上，`getTimer()` 同毫秒几乎不成立 → 无可测收益，按门槛不动宿主。
+> - **证据目录损失**：`knowledge/experiments/evidence/` 曾在 19:12–21:05 之间被外部清理删除（789 个已跟踪文件），已用 `git checkout` 全量恢复（73 目录、0 删除）；本轮**未跟踪**的 `bulletgrid-*`/`installed-smoke-*` 原始 result 无法找回，汇总数字在报告 §6、整张矩阵可用 §9 命令重跑。认领锁卡死与处置阶梯见 `knowledge/discoveries/file-claim-lock-deadlock-20261104.md`。
+<!-- /bullet-grid-20261104 -->
+
+<!-- aim-look-v2-implemented-20261104 -->
+> **2026-11-04 已部署 CS 0.9.9：边缘锚定瞄准 + 临界阻尼平移 + 平移视口重确保**。正式 CS release → **D04CD26A**（0.9.9）；宿主 **1D2004AB** 与 scene.xml **1CEA74E2** 不动；**需重启游戏生效**。回退=备份 `build/backups/ContinuousSceneMod-0.9.8-285625F4-before-aimv2-20261104-184530.swf` 覆盖 release + 重启；回执 `state/aim-look-v2-deployment-20261104.json`。
+> - **远端墙体不加载（根因与修复）**：宿主 `Camera.calc` 每帧先按玩家坐标算 `cam.vx` 并调 `Grafon.sceneTick`（ensure + cull），模组在 ENTER_FRAME -200 才叠加最多 700px 偏移，**从不重跑 ensure/cull**；下一帧原生又把 `vx` 覆写回玩家中心。结果：平移后露出的地块既可能从未渲染，也一定被 `sceneCullSurfaces` 判为出屏而隐藏。0.9.9 在 `apply()` 后调 public 的 `w.grafon.sceneTick()`，用**平移后**的 `cam.vx` 重 ensure + 重 cull（`sceneEnsure`/`sceneCullSurfaces` 是 private，不能直调）。实机证据：平移后 `sceneResident 70 → 109`，`panned-view-resident` 通过。
+> - **镜头急促（根因与修复）**：旧一阶 lerp 首帧误差全量兑现（700×0.22 ≈ 154px），随后被 `MAX_STEP=50` 切成匀速硬冲。0.9.9 改为按帧固定 `dt=1/30` 的**临界阻尼积分**（平滑时间 0.40/0.26/0.17 推进、0.30/0.20/0.13 回中，速度上限 700/1000/1400 px/s，`MAX_STEP=90` 仅作安全网）。实测首帧 ≈20px、峰值 ≈49px、零过冲。
+> - **注视与移动/射击解耦**：旧模型 pan 大小 = 准星离屏幕中心的距离，准星一移回视野看敌人镜头就缩回。0.9.9 改为**边缘锚定**：准星在屏幕边缘带（90px）停留 3 帧即锁定方向与距离，之后准星在延展视野内任意位置瞄准射击都不缩回；压另一条边缘才重锚；停留计时跨"视野内移动"累计（只有回中或换边复位），因此探针自备光标与入口自身调用不会互相清零。默认改为**切换模式**（按一次进入、再按一次退出），左手解放给 WASD/跳跃/换弹；旧偏好文件无 `aimVersion` 字段时迁移到新默认一次。
+> - **顺带修正**：①`cam.celX` 预移正确但 0.9.8 又用**已平移的** `vx` 算本帧 `w.celX`，等于算两遍 pan；0.9.9 统一为 `w.celX=(cam.celX-nativeVx)/scale`，与渲染恒等式 `(cursor-vx)/scale` 逐像素一致（`world-map-exact` 实机 0 违例）。②同帧二次 `update()` 会叠加平移，已加"识别自己上一笔写入"的基准保护。
+> - **验证**：确定性夹具重写后 **61/61**（独立 AIR `remains.cs.aimchecks`，覆盖视野内不转向/停留 3 帧锚定/锚定后不缩回/重锚/首帧步长/逐帧上限/零过冲/回中单调/边界钳制/七类互锁/切换与长按/自定义键/震屏透传/缩放映射/幅度与速度档/int 字段写回/视口同步开关/双调用不叠加/渲染与原生双恒等式）；隔离实机（私有桌面、独立 AIR id、正式 13 模组 + 探针、候选 CS + 候选宿主）**14/14**。
+> - **宿主候选未部署**：`build/generated/aimv2-20261104/noscenecu/candidate.swf` = **9FAB2AEF**，删除 `Grafon.sceneTick` 的 `sceneCU` 建表与 `Bullet.run` 的读取（每发子弹每次 `run()` 都会因 MainFE 密封抛 `#1069` 再回退全量遍历；且该视口过滤一旦生效会静默杀死屏外命中）。谱系对照：只带 decal 免取消的 `control` 构建**逐字节复现 1D2004AB**，故候选确只改 `sceneApply`/`sceneTick`/`Bullet.run` 三方法、类布局不变。**未部署原因**：同一时间另一会话（`combat-collision-20261104`）在建 `scu-remove-clean` 与子弹空间网格，覆盖同一宿主改动；避免两边同时替换 `pfe.swf` 互相回退。部署命令 `python build/generated/aimv2-20261104/deploy_host_noscenecu.py`（双哈希校验+备份+原子替换+回读）。
+> - **未完成**：玩家主观手感验收（边缘停留帧数/边缘带宽度/三档速度体感）；武器倍镜联动与受击回中未做。
+> - 设计依据与差异说明：[design/aim-look-and-offscreen-combat-optimization-plan.md](../design/aim-look-and-offscreen-combat-optimization-plan.md) §六。
+<!-- /aim-look-v2-implemented-20261104 -->
+
+<!-- aim-look-offscreen-plan-20261104 -->
+> **2026-11-04 瞄准远端墙体加载、镜头动力学、移动射击解耦与屏外命中优化方案成文**：方案见 [design/aim-look-and-offscreen-combat-optimization-plan-20261104.md](../design/aim-look-and-offscreen-combat-optimization-plan-20261104.md)。
+> - **远端墙体不加载**：定位调用链时序错位。原生 `Camera.calc` 依玩家坐标计算 `cam.vx` 后即调用 `Grafon.sceneTick`（内部执行 `sceneEnsure` 加载与 `sceneCullSurfaces` 表面剔除）；模组 `aim.update` 在 ENTER_FRAME -200 随后才叠加最多 700px 偏移且未触发视口确保。下一帧 `Camera.calc` 重新覆写 `cam.vx`，导致远端 Chunk 永远处于玩家视口外被剔除或未渲染。方案：`apply()` 尾部主动调用 `sceneEnsure` 与 `sceneCullSurfaces`，并预留 320px 缓冲带彻底根除空洞。
+> - **镜头移动急促顿挫**：一阶线性 lerp（`k=0.22`）造成首帧初速度无限大阶跃（峰值 154px/frame），被 `MAX_STEP=50` 硬切角造成 1500px/s 冲击感。方案：升级为物理级 `SmoothDamp`（临界阻尼）模型，提供有限加速度与平滑加减速 S 曲线，消除阶跃。
+> - **注视远处与移动射击冲突**：鼠标既控镜头偏移又控准星，移向敌人时距离屏幕中心变小导致镜头骤然回缩。方案：朝向向量锁定（Directional Look Anchor）解耦注视与准星，鼠标在半球视野内自由精确瞄准开火镜头不缩回；WASD 移动平滑跟随；支持切换（Toggle）模式解放左手。
+> - **屏幕外命中支持**：澄清原生 `Bullet.run` 全量遍历天然支持屏外命中，但历史补丁试图用 `sceneCU` 视口过滤带来严重破坏（因 MainFE #1069 侥幸回退但每发抛异常）。方案：彻底清理宿主非法视口过滤与异常路径，确认 `NativeSceneActivity` 弹道走廊（Threat Corridor）穿透唤醒，保障超视距狙击与盲射。
+> - 正式栈保持 1D2004AB / CS 0.9.8 `285625F4` / scene.xml 1CEA74E2，本轮完成深入代码调查与方案成文，未修改产品文件。
+<!-- /aim-look-offscreen-plan-20261104 -->
+
 <!-- exploration-and-combat-plan-20261104 -->
 > **2026-11-04 深入探索与全敌人交战卡顿调查及方案文件成文**：方案见 [design/exploration-and-combat-stutter-optimization-plan-20261104.md](../design/exploration-and-combat-stutter-optimization-plan-20261104.md)。
 > - **深入探索**：日常预热占 5.67ms (13.6%)，偶发长帧中 R 桶占 61%；长帧直接诱因为视口 miss 触发的强制同步补画（`sceneRender` 31–178ms，均值 68ms）与 `drawKusok` 掩码大单步（峰值 125ms）；地块常驻膨胀至 181 块(+343MB)抬升系统 GC 压力。方案 E1 动态视口前馈缓冲消除 miss，E2 增量分步拆分 `drawKusok`。
@@ -234,7 +269,9 @@
 
 | 文件 | SHA256 |
 |---|---|
-| 根pfe.swf | **1D2004AB4C972F199FDD6BCA708C8F483C8314FED77AEA477FB9544F33AB02F3（2026-11-04 13:36 弹痕不废预热；需重启；回退备份 build/backups/pfe_before_decal_nocancel_20261104-133604.swf）**；前值 A9B39CC742078D7A7D9F289EE408EDAE11C3AAC376A43246B306B91AC7AD2D94（2026-11-01 空间分区碰撞+预算48+A2；无屏外隐藏（并行会话回退）；备份 pfe_before_spatial_collision_20261101-225837.swf → pfe_before_budget48_20261031-171254.swf → pfe_before_a2_gutter_20261031-163909.swf → pfe_before_visualneutral_budget_20261031-121918.swf） |
+| 根pfe.swf | **91F8E10DFB36A2024EAB140FC4BD67719330BF67310BA5CAB5CDAE8DEDF3CB45（2026-11-04 18:50 子弹空间分桶；需重启；回退备份 build/backups/pfe_before_bulletgrid_20261104-185052.swf）**；前值 1D2004AB4C972F199FDD6BCA708C8F483C8314FED77AEA477FB9544F33AB02F3（2026-11-04 13:36 弹痕不废预热；备份 pfe_before_decal_nocancel_20261104-133604.swf）→ A9B39CC742078D7A7D9F289EE408EDAE11C3AAC376A43246B306B91AC7AD2D94（2026-11-01 空间分区碰撞+预算48+A2；无屏外隐藏（并行会话回退）；备份 pfe_before_spatial_collision_20261101-225837.swf → pfe_before_budget48_20261031-171254.swf → pfe_before_a2_gutter_20261031-163909.swf → pfe_before_visualneutral_budget_20261031-121918.swf） |
+| CS0.9.9（当前） | D04CD26AA674238BBB2F43A2CA49C57811301E9B9B614352A099F8190D9E0193（2026-11-04 18:35 边缘锚定瞄准 + 临界阻尼平移 + 平移视口重确保，由并行会话部署；回退备份 `ContinuousSceneMod-0.9.8-285625F4-before-aimv2-20261104-184530.swf`；回执 state/aim-look-v2-deployment-20261104.json） |
+| CS0.9.8 | 285625F45B0272D3837F8FD9F554EED9EC848F7228CCE87110891B68D7178ACF（瞄准模式 Aim-Look；已被 0.9.9 取代） |
 | CS0.9.7（当前） | 447AE02B5AC1E038E44DA2488C4BDB2D5945C1BCFBAE36C86AB9F0D6FEC0E2EF（2026-11-04 事件驱动增量剔除；需重启生效；回退备份 `ContinuousSceneMod-0.9.6-F16890C9-before-eventculling-20261104-005240.swf`；回执 state/event-culling-deployment-20261104.json） |
 | CS0.9.6 | F16890C959D86E305B5D3AC91CC31B8689E347179722A2F0CC07E8CB45B7E123（2026-11-02 脱战拴绳+威胁双盒+震屏容忍；已被 0.9.7 取代；旧 0.9.5 = 1A66B1F4…5612，0.9.4 = DF3B6812…C8426，0.9.3 = D8A68A4C…2E677） |
 | WB0.5.10-scene | FE3E7A84753F6F3614440F69F8725E6E8639AEE4755ACF878AAFCFEDB95AC2E6 |

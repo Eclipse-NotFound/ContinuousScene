@@ -1,3 +1,40 @@
+## 2026-11-04 — 交战卡顿：子弹空间分桶落地（宿主 1D2004AB → 91F8E10D）
+
+- 按方案 C1 实施：删除 `Grafon.sceneTick` 写 / `Bullet.run` 读 `World.w.visual.root["sceneCU"]` 的密封类异常通道，改为每帧整房间 512px 分桶表（存 `World.w.vgui`，`Sprite` 密封不能用），子弹按自身坐标查桶；三道回落闸（targetObj / 单位数变动 / 玩家位移 >256px）。只改 `fe.graph.Grafon::sceneTick` + `fe.weapon.Bullet::run`，类布局不变。
+- 离线：16,009 探针点 0 不一致（含一帧陈旧与建表后新增单位）；成本 1.34 → 0.47 ms/帧（40 弹×130 单位）。
+- 游戏内 3 次 1300 样本 / 13 检查全通过：分桶 1300/1300 帧生效，单位 122 → 候选 2.7；clean↔clean 对照均值 −0.60ms（候选臂在飞弹更多），第三轮 −2.96ms；**不主张整帧收益**。
+- 部署 `pfe.swf` → `91F8E10D`，备份 `build/backups/pfe_before_bulletgrid_20261104-185052.swf`，回执 `build/generated/combat-collision-20261104/deploy-receipt-grid-clean.json`，装后冒烟 5/5。
+- 部署后用 0.9.9 自己的 `AimProbe` 实机夹具验证平移互操作：**14/14 通过**（`viewportSyncs` 239/444、`resident 70→110`、`world-map-exact bad 0`、`apply-consistent bad 0`）。同毫秒去重候选 `grid-probe`/`grid-clean-guard` 已建**不部署**（第二次 `sceneTick` 在模组 ENTER_FRAME、晚于游戏 step，`getTimer()` 同毫秒几乎不成立）。
+- 按既有证据不做 C2/C3/E1/E2/E3（理由见报告 §8）。陷阱：`decal-nocancel-v2` 诊断宿主两次跑挂；`Sprite` 密封（`#1056`）差点让 `sceneTick` 每帧抛错，被离线探针挡下。
+- 过程：`knowledge/experiments/evidence/` 曾被外部清理删除 789 个已跟踪文件，已 `git checkout` 全量恢复；本轮未跟踪的原始 result 目录无法找回（数字在报告、矩阵可重跑）。认领锁被"活着但空闲"的会话钉死，处置阶梯记在 `knowledge/discoveries/file-claim-lock-deadlock-20261104.md`。
+- 报告 `knowledge/experiments/bullet-collision-20261104.md`；方案实施状态见 `design/exploration-and-combat-stutter-optimization-plan-20261104.md`。
+
+## 2026-11-04 — 已部署 CS 0.9.9：边缘锚定瞄准、临界阻尼平移、平移视口重确保
+
+- 按 `design/aim-look-and-offscreen-combat-optimization-plan.md` 实施并部署。正式 CS release **285625F4（0.9.8）→ D04CD26A（0.9.9）**；宿主 `1D2004AB`、`scene.xml` `1CEA74E2` 未动；需重启游戏生效。回退=备份 `build/backups/ContinuousSceneMod-0.9.8-285625F4-before-aimv2-20261104-184530.swf`；回执 `state/aim-look-v2-deployment-20261104.json`。工作根 `build/generated/aimv2-20261104/`。
+- **远端墙体不加载**：确认是"平移后没有重跑视口确保/裁剪"。宿主 `Camera.calc` 用**未平移**的 `cam.vx` 调 `sceneTick`（ensure+cull），模组随后才平移，且从不补跑；下一帧原生又把 `vx` 写回玩家中心。修法：`apply()` 末尾调 public 的 `w.grafon.sceneTick()`，让它用平移后的 `cam.vx` 重新 ensure + cull（private 的 `sceneEnsure`/`sceneCullSurfaces` 不能直调）。复核部署版 `sceneEnsureUpcoming` 后确认它**没有逐出逻辑**，因此不存在"模组补画后被原生逐出"的抖动，问题只是视口用错。实机证据：平移后 `sceneResident 70 → 109`，`panned-view-resident` 通过。
+- **镜头急促**：旧一阶 lerp 首帧兑现全部误差（≈154px），再被 `MAX_STEP=50` 切成匀速硬冲。改为按帧固定 `dt=1/30` 的临界阻尼积分（推进 0.40/0.26/0.17、回中 0.30/0.20/0.13，速度上限 700/1000/1400 px/s，`MAX_STEP=90` 仅安全网）。实测首帧 ≈20px、峰值 ≈49px、零过冲、回中单调。
+- **注视与移动/射击解耦**：旧模型 pan 随准星到屏幕中心的距离变化，准星移回视野打敌人时镜头必然缩回。改为**边缘锚定**：准星压住屏幕边缘带（90px）停留 3 帧即锁定方向与距离，之后准星在延展视野内任意位置瞄准射击都不缩回；压另一条边缘重锚。停留计时**跨"视野内移动"累计**，只有回中或换边才复位——这同时让隔离探针（自备光标）与入口自身调用（真实光标）不会互相清零。默认改为**切换模式**（按一次进、再按一次退），左手解放；旧偏好文件无 `aimVersion` 时迁移一次到新默认。
+- **顺带修正两处既有缺陷**：①`cam.celX` 预移（供下帧原生 `(celX-vx)/scale`）本身正确，但 0.9.8 又用**已平移**的 `vx` 算本帧 `w.celX`，等于把 pan 算两遍；统一为 `w.celX=(cam.celX-nativeVx)/scale`，与渲染恒等式 `(cursor-vx)/scale` 一致（实机 `world-map-exact` 0 违例）。②同帧二次 `update()` 会叠加平移，加"识别自己上一笔写入"的基准保护。
+- **验证**：确定性夹具 `src/tests/SceneAimChecks.as` 重写后 **61/61**（独立 AIR `remains.cs.aimchecks`，无游戏无存档）；隔离实机（私有桌面、独立 AIR id、正式 13 模组 + 探针、候选 CS + 候选宿主）**14/14**。实机私有桌面把真实光标固定在 (0,0)（左边缘带），因此走"被动驱动"腿；主动重锚腿只在自备光标模式跑，重锚本身由确定性夹具覆盖。
+- **宿主候选已备未部署**：`noscenecu/candidate.swf` = **9FAB2AEF**（删 `Grafon.sceneTick` 的 `sceneCU` 建表 + `Bullet.run` 的读取）。先建 `control`（仅 decal 免取消）**逐字节复现 1D2004AB**，证明谱系与"只改 3 个方法、类布局不变"。**未部署**：另一会话（`combat-collision-20261104`）同时在造 `scu-remove-clean` 与子弹空间网格，覆盖同一宿主改动；避免同时替换 `pfe.swf` 互相回退。部署命令见 `deploy_host_noscenecu.py`。
+- **未完成**：玩家主观手感验收；武器倍镜联动、受击回中。
+
+## 2026-11-04 — 瞄准远端墙体加载、镜头动力学、移动射击解耦与屏外命中优化方案成文
+
+- 完成针对瞄准模式（Aim-Look）远端墙体加载、镜头移动平滑度、移动射击解耦交互及屏幕外命中保障的全面系统性调查，定稿优化设计文件：`design/aim-look-and-offscreen-combat-optimization-plan.md`。
+- **调查关键发现与根因确证**：
+  1. **远端墙体不加载**：时序倒置缺陷。宿主在每帧原生主循环 `Camera.calc` 中以未偏移的玩家中心坐标调用 `Grafon.sceneTick`（触发 `sceneEnsure` 与 `sceneCullSurfaces`）；模组 `SceneAimController` 在其后的 ENTER_FRAME -200 注入最多 700px 镜头平移但未更新宿主视口，下一帧又被原生覆写。远端区块因此未加载，或被表面裁剪判定出屏设为不可见，造成空洞。
+  2. **镜头移动急促顿挫**：动力学物理缺陷。一阶线性 lerp（`k=0.22`）使第 1 帧瞬时速度达峰值 154px/frame（加速度无限大），被 `MAX_STEP=50` 截断产生 1500px/s 匀速冲击，缺少加减速 S 曲线与速度连续性。
+  3. **注视远处与射击移动冲突**：输入绑定死锁。镜头偏移量被绑定为鼠标距屏幕中心的绝对距离；玩家为了开火将鼠标移向敌人时，鼠标靠近中心导致镜头骤然回缩丢失目标；移动时鼠标晃荡拉扯视野；长按 Alt 占用拇指受制于系统键。
+  4. **屏幕外命中支持机制**：原版 `Bullet.run` 天然支持屏外 AABB 碰撞；历史补丁试图按相机视口筛选单位（`sceneCU`）严重破坏了屏外命中，虽因 MainFE #1069 侥幸回退但留下每发异常；实体调度休眠需要与弹道走廊（Threat Corridor）协同穿透。
+- **方案架构**：
+  - 视口确保：`SceneAimController.apply` 写入位移后主动驱动 `sceneEnsure` 与 `sceneCullSurfaces`，配置 320px 缓冲带杜绝黑边。
+  - 动力学重构：升级为 `SmoothDamp` 临界阻尼平滑模型，实现有限加速度与自然 Ease-In-Out，单帧位移软约束。
+  - 解耦交互：视线朝向向量锁定（Directional Look Anchor），鼠标在半球视野内作为自由准星射击不缩回；WASD 移动平滑跟随；支持切换（Toggle）模式。
+  - 屏外战斗：彻底解耦子弹碰撞与摄像机视口，清理 #1069 异常路径，维护弹道威胁走廊即时受击唤醒。
+- 正式基线仍为宿主 1D2004AB、CS 0.9.8 `285625F4`、scene.xml 1CEA74E2，本轮只调查与成文，未改动生产产物。
+
 ## 2026-11-04 — 深入探索与全敌人交战卡顿深度调查与方案文件成文
 
 - 完成针对深入探索与全敌人交战（各敌人类型通用）偶发卡顿的系统性调查，定稿优化方案：`design/exploration-and-combat-stutter-optimization-plan-20261104.md`。
