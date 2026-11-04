@@ -1,0 +1,23 @@
+{
+  "kind": "probe-v6",
+  "source": "220D66B6BE0F6916E2E043E58B8A5219B816BBCCB45142C321239CE9A5702C71",
+  "parent": "A7E4368D45920B5C2ED8F8F1A837C3ACE23AA86002DAA30EF6F6CCCE9F0B7EBF",
+  "command": [
+    "D:\\Program Files\\Adobe Animate 2024\\jre\\bin\\java.exe",
+    "-Xmx512m",
+    "-Dfile.encoding=UTF-8",
+    "-jar",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\flexsdk\\lib\\mxmlc.jar",
+    "+flexlib=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\Sandevistan\\build\\tools\\flexsdk\\frameworks",
+    "-load-config=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-collision-20261104\\probe-v6\\compiler.xml",
+    "-swf-version=32",
+    "-use-network=false",
+    "-static-link-runtime-shared-libraries=true",
+    "-link-report=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-collision-20261104\\probe-v6\\link.xml",
+    "-output=D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-collision-20261104\\probe-v6\\ContinuousSceneMotionMod.swf",
+    "D:\\Program Files\\Steam\\steamapps\\common\\Remains\\mods\\ContinuousScene\\build\\generated\\combat-collision-20261104\\probe-v6\\probe-src\\ProbeDoc.as"
+  ],
+  "compiled": true,
+  "deployed": false,
+  "output": "81E7738F689E155DA8A3DA4062D027CF2495CA1B192DCECF4743CA7107E5AA8B"
+}

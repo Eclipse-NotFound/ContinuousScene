@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application xmlns="http://ns.adobe.com/air/application/32.0">
+    <id>remains.bench.spritedynamic</id>
+    <versionNumber>1.0.0</versionNumber>
+    <filename>BulletGridBench</filename>
+    <name>BulletGridBench</name>
+    <description>Offline equivalence and cost harness for the bullet spatial bucket candidate</description>
+    <initialWindow>
+        <content>SpriteDynamicProbe.swf</content>
+        <systemChrome>none</systemChrome>
+        <transparent>false</transparent>
+        <visible>false</visible>
+        <width>640</width>
+        <height>480</height>
+    </initialWindow>
+    <supportedProfiles>desktop extendedDesktop</supportedProfiles>
+</application>

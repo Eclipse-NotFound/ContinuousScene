@@ -1,0 +1,20 @@
+{
+  "deployedAt": "2026-11-04T18:50:52+0800",
+  "product": "host pfe.swf: sceneTick bullet bucket table + Bullet.run bucket query (sceneCU/#1069 channel removed); CS 0.9.8 and scene.xml unchanged",
+  "previousSha256": "1D2004AB4C972F199FDD6BCA708C8F483C8314FED77AEA477FB9544F33AB02F3",
+  "deployedSha256": "91F8E10DFB36A2024EAB140FC4BD67719330BF67310BA5CAB5CDAE8DEDF3CB45",
+  "backup": "mods\\ContinuousScene\\build\\backups\\pfe_before_bulletgrid_20261104-185052.swf",
+  "candidateTag": "grid-clean",
+  "changedMethods": [
+    "fe.graph.Grafon::0:1:sceneTick",
+    "fe.weapon.Bullet::0:1:run"
+  ],
+  "classesUnchanged": true,
+  "parameters": {
+    "cell": 512,
+    "margin": 96
+  },
+  "expectedEffect": "Removes one sealed-class exception per bullet per frame and replaces the full per-bullet unit scan with a bucket of the units overlapping the bullet cell. Offline synthetic cost for 40 bullets x 130 units: 1.20 -> 0.42 ms per frame.",
+  "restartRequired": true,
+  "rollback": "copy mods\\ContinuousScene\\build\\backups\\pfe_before_bulletgrid_20261104-185052.swf over pfe.swf and restart the game"
+}

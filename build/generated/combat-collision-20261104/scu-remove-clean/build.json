@@ -1,0 +1,23 @@
+{
+  "kind": "scu-remove-clean",
+  "host": "A9B39CC742078D7A7D9F289EE408EDAE11C3AAC376A43246B306B91AC7AD2D94",
+  "baseTag": "decal-nocancel-clean",
+  "cell": 512,
+  "margin": 96,
+  "methods": {
+    "fe.graph.Grafon": [
+      "sceneTick"
+    ],
+    "fe.weapon.Bullet": [
+      "run"
+    ]
+  },
+  "compiled": true,
+  "deployed": false,
+  "output": "BAA22A818D865086C11D4C093BB5076A72A901D4C100684D6C609B8F4C1CC564",
+  "changedMethods": [
+    "fe.graph.Grafon::0:1:sceneTick",
+    "fe.weapon.Bullet::0:1:run"
+  ],
+  "classesUnchanged": true
+}

@@ -1,0 +1,23 @@
+{
+  "kind": "grid-clean",
+  "host": "A9B39CC742078D7A7D9F289EE408EDAE11C3AAC376A43246B306B91AC7AD2D94",
+  "baseTag": "decal-nocancel-clean",
+  "cell": 512,
+  "margin": 96,
+  "methods": {
+    "fe.graph.Grafon": [
+      "sceneTick"
+    ],
+    "fe.weapon.Bullet": [
+      "run"
+    ]
+  },
+  "compiled": true,
+  "deployed": true,
+  "output": "91F8E10DFB36A2024EAB140FC4BD67719330BF67310BA5CAB5CDAE8DEDF3CB45",
+  "changedMethods": [
+    "fe.graph.Grafon::0:1:sceneTick",
+    "fe.weapon.Bullet::0:1:run"
+  ],
+  "classesUnchanged": true
+}
