@@ -1,120 +1,178 @@
 package {
+    import flash.desktop.NativeApplication;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
+    import flash.utils.getTimer;
 
-    /** Aim-look camera pan for continuous scenes (v2, CS 0.9.9).
+    /** Aim-look camera pan for continuous scenes (v3, CS 0.9.10).
      *
      * The production entry calls update() from ENTER_FRAME priority -200, i.e.
-     * after the native Camera.calc has re-centred the view on the player. The
-     * pan is a transient per-frame view shift; world state, sound focus and the
-     * native camera logic stay intact.
+     * after the native Camera.calc has re-centred the view on the player, and
+     * again from this class's own post-apply viewport sync. The pan is a
+     * transient per-frame view shift; world state, sound focus and the native
+     * camera logic stay intact.
      *
-     * What changed against aim-look-1 and why:
+     * What changed against aim-look-2 (0.9.9) and why:
      *
-     *  1. The pan no longer follows the cursor distance. The player steers it by
-     *     holding the cursor against a screen edge; the direction and distance
-     *     are latched and persist. aim-look-1 made the offset proportional to
-     *     the cursor's distance from the screen centre, so moving the cursor
-     *     back into the view to aim at the enemy the pan had just revealed
-     *     collapsed the pan and lost the target. Now the cursor is a free
-     *     crosshair anywhere inside the widened view while the camera keeps
-     *     looking where it was told to.
+     *  1. The trigger no longer reaches the operating system. A bare Alt press
+     *     is the Win32 "activate the window menu" gesture (WM_SYSCOMMAND /
+     *     SC_KEYMENU): the window drops its mouse capture and the app stops
+     *     seeing the mouse until the player clicks inside it, which is exactly
+     *     the "the mouse leaves the game until I click" report. Key events are
+     *     now cancelled with preventDefault() (plus stopImmediatePropagation
+     *     for the bare modifier, which the game itself never binds) before the
+     *     runtime hands them to the OS.
      *
-     *  2. The offset is integrated with a critically damped spring instead of a
-     *     first-order lerp plus a 50px hard clamp. The old model reached its
-     *     highest speed on the very first frame (700*0.22 = 154px) and then
-     *     stalled at a constant 50px/frame, which read as a snap.
+     *  2. The pan is a continuous function of how far the cursor is pushed out,
+     *     not a three-frame latch that jumps from nothing to full extension.
+     *     depth = ((d - deadzone) / (edge radius - deadzone)) ^ 1.25, where the
+     *     edge radius is the screen rectangle boundary in the cursor's own
+     *     direction: reaching the edge *anywhere* is exactly 100% extension, so
+     *     "the closer to the edge, the further I look" holds everywhere between
+     *     the centre and the rim instead of only inside a 90px band.
      *
-     *  3. After the pan is written the controller asks the scene graph to
-     *     re-ensure and re-cull with the *panned* viewport. The host's
-     *     Camera.calc -> Grafon.sceneTick ran earlier in the frame with the
-     *     un-panned player-centred rect, so chunks in the newly exposed band
-     *     were either never rendered or already culled to visible=false; the
-     *     walls in the distance stayed black however far the camera moved.
+     *  3. Extension is sticky exactly while the player is aiming, and not
+     *     before. The aim gesture is exactly "pull the crosshair in", so a
+     *     naive distance mapping would collapse the view the moment the player
+     *     aims at what it revealed (the 0.9.8 runaway: cursor in -> camera
+     *     back -> target leaves the screen -> cursor follows -> ...). The depth
+     *     therefore only follows the cursor inwards for the first ARM_FRAMES
+     *     after the cursor stopped pushing out. A stray one-frame sweep to the
+     *     rim therefore unwinds by itself; a deliberate push parks the look.
+     *     There is deliberately NO "cursor at the screen centre" release: with
+     *     the view extended, the middle of the screen is the middle of the
+     *     newly exposed ground, so aiming there would drop the view exactly
+     *     like 0.9.8 did. The look comes down only through the trigger
+     *     (release in hold mode, tap again in toggle/smart mode) or through the
+     *     optional holdDecay creep.
      *
-     *  4. Camera.celX is pre-shifted by the pan so the native next-frame
-     *     assignment w.celX=(celX-vx)/scale still resolves to the world point
-     *     actually under the cursor, and w.celX is written from the same
-     *     identity in this frame so consumers on either side of the handler
-     *     agree to the pixel. aim-look-1 double-counted the shift when writing
-     *     w.celX, so the in-frame value was one pan width off.
+     *  4. The screen edge latch, the "depth into the band", the per-frame edge
+     *     dwell and the toggle default are gone. Hold (0.9.8 behaviour) is the
+     *     default again; toggle and a tap/hold hybrid are selectable and behave
+     *     as peers.
+     *
+     *  5. Unchanged and still required: after the pan is written the controller
+     *     asks the scene graph to re-ensure and re-cull with the *panned*
+     *     viewport (the host ran Camera.calc -> Grafon.sceneTick with the
+     *     un-panned player rect earlier in the frame), Camera.celX is pre-shifted
+     *     so the native next-frame assignment still resolves the world point
+     *     under the cursor, and w.celX is written from that same identity.
      */
     public class SceneAimController {
-        public static const VERSION:String="aim-look-2";
-        /** Cursor radius around the screen centre that never steers. */
-        public static const DEADZONE:Number=150;
-        /** Cursor distance to the nearest screen edge that steers the look. */
-        public static const EDGE_BAND:Number=90;
-        /** Frames the cursor must rest in the band before the look latches, so
-         * a fast sweep across the screen to shoot does not swing the camera. */
-        public static const EDGE_FRAMES:int=3;
+        public static const VERSION:String="aim-look-3";
+        /** 0=hold the trigger (0.9.8 feel, default), 1=tap to latch,
+         *  2=tap latches / holding stays temporary. */
+        public static const MODE_HOLD:int=0;
+        public static const MODE_TOGGLE:int=1;
+        public static const MODE_SMART:int=2;
+        /** Cursor radius, as a fraction of the screen half-diagonal, that never
+         * steers. Small enough that a near target is still aimable. */
+        public static const DEADZONE_FRAC:Number=0.09;
+        /** Cursor radius fraction above which the look direction may follow the
+         * cursor. Inside it the direction is frozen so micro-aim cannot swing
+         * an extended view. */
+        public static const STEER_FRAC:Number=0.42;
+        /** Extension gap (in depth units) below the current extension within
+         * which the cursor is treated as pointing rather than aiming, so the
+         * direction may follow it. Pushing to the rim in another direction
+         * re-aims the look; aiming at anything inside the view does not. */
+        public static const RESTEER_GAP:Number=0.18;
+        /** Exponent of the screen-radius -> extension curve: slightly convex so
+         * the first part of the push is gentle and the last part is decisive. */
+        public static const DEPTH_EXP:Number=1.25;
+        /** Frames after the last outward push during which pulling the cursor
+         * back in still retracts. Distinguishes a stray flick from a look. */
+        public static const ARM_FRAMES:int=3;
+        /** Longest direction change per frame, degrees. */
+        public static const SLEW_DEG:Number=6;
+        /** A press shorter than this latches in smart mode (ms). */
+        public static const SMART_TAP_MS:Number=250;
         public static const MAX_OFFSET_X:Number=700;
         public static const MAX_OFFSET_Y:Number=380;
         /** Absolute safety cap on one frame's pan delta (the spring peaks at
-         * roughly 43px/frame at the fastest setting). */
+         * roughly 45px/frame at the default speed). */
         public static const MAX_STEP:Number=90;
-        /** Fixed integration step: the game loop is 30fps and a fixed step
-         * keeps the deterministic checks comparable frame by frame. */
+        /** Fixed integration step: the game loop is 30fps and a fixed step keeps
+         * the deterministic checks comparable frame by frame. */
         public static const FRAME_DT:Number=1/30;
-        /** Critically damped settle times per speed index (seconds). */
-        private static const SMOOTH_IN:Array=[0.40,0.26,0.17];
-        private static const SMOOTH_OUT:Array=[0.30,0.20,0.13];
+        /** Critically damped settle times per speed index (seconds): extended
+         * look, and return. */
+        private static const SMOOTH_IN:Array=[0.60,0.42,0.30];
+        private static const SMOOTH_OUT:Array=[0.36,0.24,0.16];
         /** Velocity ceiling per speed index (px/s). */
-        private static const MAX_SPEED:Array=[700,1000,1400];
+        private static const MAX_SPEED:Array=[1200,1700,2300];
 
         public var enabled:Boolean=true;
         /** 0=left Alt, 1=left Ctrl, 2=none (custom keybind only). */
         public var triggerModifier:int=0;
         /** Optional normalized binding {code,ctrl,alt,shift}; code 0 = unbound. */
         public var keybind:Object=null;
-        /** CS 0.9.9 default: a tap enters the look, another tap leaves it, so
-         * the left hand keeps WASD/jump/reload while the look is held. */
-        public var toggleMode:Boolean=true;
+        /** MODE_HOLD (default) / MODE_TOGGLE / MODE_SMART. */
+        public var aimMode:int=MODE_HOLD;
         /** 0.5 .. 1.5 */
         public var distanceScale:Number=1;
         /** 1=slow 2=normal 3=fast */
         public var speedIndex:int=2;
-        /** Re-ensure/re-cull the scene graph for the panned viewport. Only the
-         * continuous large scene has anything to do; a fault or an older host
-         * simply leaves the flag alone. */
+        /** Re-ensure/re-cull the scene graph for the panned viewport. */
         public var viewportSync:Boolean=true;
+        /** Extra depth lost per second once the cursor stops pushing out. Zero
+         * keeps the view exactly where the player put it; the explicit gestures
+         * (cursor home, trigger release, toggle off) are the fast way down. */
+        public var holdDecay:Number=0;
+        /** Try to take the window back after the OS stole it, instead of making
+         * the player click inside the game to continue. */
+        public var recoverFocus:Boolean=true;
+        /** Test seam: when set ({x,y}) update() ignores its cursor arguments so
+         * an out-of-process driver can steer deterministically while the entry
+         * keeps calling update() with the real cursor. */
+        public var cursorOverride:Object=null;
+        /** Test seam: replaces getTimer() so smart-mode taps are deterministic. */
+        public var clock:Function=null;
 
         private var stage:*;
         private var altHeld:Boolean=false;
         private var ctrlHeld:Boolean=false;
         private var customHeld:Boolean=false;
         private var triggerLatch:Boolean=false;
-        private var toggledOn:Boolean=false;
+        private var latched:Boolean=false;
+        private var pressAt:Number=0;
+        private var lastPressAt:Number=-1e9;
+        private var focusLostAt:Number=-1e9;
+        /** Look direction (unit vector) and its current extension 0..1. */
+        private var holdX:Number=0;
+        private var holdY:Number=0;
+        private var holdDir:Boolean=false;
+        private var depth:Number=0;
         private var offX:Number=0;
         private var offY:Number=0;
         private var velX:Number=0;
         private var velY:Number=0;
-        /** Latched look direction (unit vector) and distance factor. */
-        private var lookX:Number=0;
-        private var lookY:Number=0;
-        private var lookScale:Number=1;
-        private var anchored:Boolean=false;
-        private var edgeFrames:int=0;
-        private var dwellBand:int=-1;
-        private var appliedLast:Boolean=false;
-        private var baseVx:Number=0;
+        private var pushRun:int=0;
+        private var appliedLast:Boolean=false;        private var baseVx:Number=0;
         private var baseVy:Number=0;
         private var wroteVx:Number=NaN;
         private var wroteVy:Number=NaN;
         private var mouseNowX:Number=0;
         private var mouseNowY:Number=0;
+        private var overrideUsed:Boolean=false;
         private var lastReason:String="idle";
-        private var stats:Object={frames:0,aiming:0,applied:0,resets:0,toggles:0,
-            edgeClamped:0,latches:0,viewportSyncs:0,maxOffsetSeen:0,maxStep:0};
+        private var stats:Object={frames:0,aiming:0,applied:0,resets:0,presses:0,
+            toggles:0,pushes:0,releases:0,edgeClamped:0,viewportSyncs:0,
+            focusLosses:0,maxOffsetSeen:0,maxStep:0,maxDepth:0};
 
         public function SceneAimController() {}
 
         public function install(stageRef:*):void {
             if(stage || !stageRef)return;
             stage=stageRef;
+            // Priority 500: run before the game's own handlers so the trigger
+            // key is cancelled before anything can forward it to the OS.
             stage.addEventListener(KeyboardEvent.KEY_DOWN,onKeyDown,false,500,true);
             stage.addEventListener(KeyboardEvent.KEY_UP,onKeyUp,false,500,true);
             stage.addEventListener(Event.DEACTIVATE,onDeactivate,false,500,true);
+            try {
+                NativeApplication.nativeApplication.addEventListener(Event.DEACTIVATE,onDeactivate,false,500,true);
+            } catch(desktopError:Error) {}
         }
 
         // Input entry points. Public and synthetic-event free so checks can
@@ -131,54 +189,106 @@ package {
             if(keybind && int(keybind.code)==keyCode)customHeld=false;
             afterKeyEvent();
         }
+        /** Window/app deactivation. The look is dropped rather than left armed:
+         * a missed KEY_UP would otherwise hold the view (and, in hold mode, the
+         * trigger) for as long as the player is away. */
         public function deactivate():void {
             altHeld=false;ctrlHeld=false;customHeld=false;
-            triggerLatch=false;toggledOn=false;
+            triggerLatch=false;latched=false;
+            if(nowMs()-lastPressAt<400) {
+                focusLostAt=nowMs();
+                ++stats.focusLosses;
+            }
         }
         private function afterKeyEvent():void {
-            // KEY_DOWN auto-repeat must not flip the toggle again: only a
-            // fresh press edge (released since the last down) counts.
             var now:Boolean=triggerHeld();
-            if(now && !triggerLatch && toggleMode) {
-                toggledOn=!toggledOn;
-                ++stats.toggles;
+            if(now&&!triggerLatch) {
+                // KEY_DOWN auto-repeat must not count as another press edge.
+                pressAt=nowMs();lastPressAt=pressAt;++stats.presses;
+                if(aimMode==MODE_TOGGLE) {
+                    latched=!latched;
+                    ++stats.toggles;
+                }
+            } else if(!now&&triggerLatch) {
+                ++stats.releases;
+                if(aimMode==MODE_SMART && nowMs()-pressAt<SMART_TAP_MS) {
+                    latched=!latched;
+                    ++stats.toggles;
+                }
             }
             triggerLatch=now;
         }
         private function onKeyDown(event:KeyboardEvent):void {
+            // Cancelling the event is what keeps a bare Alt from reaching the
+            // Win32 window menu. Only the trigger itself is consumed, so game
+            // combos (and Alt+F4) are untouched.
+            if(isTriggerEvent(event)) {
+                event.preventDefault();
+                if(event.keyCode==18||event.keyCode==17) event.stopImmediatePropagation();
+            }
             keyDown(event.keyCode,event.ctrlKey,event.altKey,event.shiftKey);
         }
-        private function onKeyUp(event:KeyboardEvent):void {keyUp(event.keyCode);}
+        private function onKeyUp(event:KeyboardEvent):void {
+            if(isTriggerEvent(event)) {
+                event.preventDefault();
+                if(event.keyCode==18||event.keyCode==17) event.stopImmediatePropagation();
+            }
+            keyUp(event.keyCode);
+        }
         private function onDeactivate(event:Event):void {deactivate();}
+        /** True for the events whose default action must not happen: the bare
+         * built-in modifier this controller listens to, or the custom binding. */
+        public function isTriggerEvent(event:KeyboardEvent):Boolean {
+            if(!enabled)return false;
+            if(triggerModifier==0&&event.keyCode==18)return true;
+            if(triggerModifier==1&&event.keyCode==17)return true;
+            return bindingMatches(event.keyCode,event.ctrlKey,event.altKey,event.shiftKey);
+        }
+        /** One-shot: the window was probably stolen by the menu gesture rather
+         * than by a real app switch. The entry re-activates it when this is
+         * true, then calls focusRecovered(). */
+        public function needsFocusRecovery():Boolean {
+            return recoverFocus&&focusLostAt>-1e8&&nowMs()-focusLostAt<250;
+        }
+        public function focusRecovered():void {focusLostAt=-1e9;}
 
         public function triggerHeld():Boolean {
             return (triggerModifier==0&&altHeld)||(triggerModifier==1&&ctrlHeld)||customHeld;
         }
-        public function aimActive():Boolean {return toggleMode?toggledOn:triggerHeld();}
+        public function aimActive():Boolean {
+            if(aimMode==MODE_TOGGLE)return latched;
+            if(aimMode==MODE_SMART)return latched||triggerHeld();
+            return triggerHeld();
+        }
+        /** Backwards compatible view of the mode (0.9.9 stored a boolean). */
+        public function get toggleMode():Boolean {return aimMode!=MODE_HOLD;}
+        public function set toggleMode(value:Boolean):void {aimMode=value?MODE_TOGGLE:MODE_HOLD;}
         public function get offsetX():Number {return offX;}
         public function get offsetY():Number {return offY;}
         public function get reason():String {return lastReason;}
-        public function get lookAnchored():Boolean {return anchored;}
-        public function get lookDirectionX():Number {return lookX;}
-        public function get lookDirectionY():Number {return lookY;}
+        public function get lookAnchored():Boolean {return holdDir;}
+        public function get lookDirectionX():Number {return holdX;}
+        public function get lookDirectionY():Number {return holdY;}
+        public function get lookDepth():Number {return depth;}
 
         public function reset(reason:String):void {
-            offX=0;offY=0;velX=0;velY=0;lookX=0;lookY=0;lookScale=1;
-            anchored=false;edgeFrames=0;dwellBand=-1;toggledOn=false;lastReason=reason;
-            appliedLast=false;
+            offX=0;offY=0;velX=0;velY=0;
+            clearLook();latched=false;
+            lastReason=reason;appliedLast=false;
         }
         public function statsSnapshot():Object {
             return {version:VERSION,enabled:enabled,triggerModifier:triggerModifier,
-                keybind:keybind?int(keybind.code):0,toggleMode:toggleMode,
+                keybind:keybind?int(keybind.code):0,aimMode:aimMode,toggleMode:aimMode!=MODE_HOLD,
                 distanceScale:distanceScale,speedIndex:speedIndex,
-                viewportSync:viewportSync,anchored:anchored,
-                lookX:lookX,lookY:lookY,lookScale:lookScale,
+                viewportSync:viewportSync,holdDecay:holdDecay,
+                anchored:holdDir,lookX:holdX,lookY:holdY,depth:depth,
                 offsetX:offX,offsetY:offY,reason:lastReason,
                 frames:stats.frames,aiming:stats.aiming,applied:stats.applied,
-                resets:stats.resets,toggles:stats.toggles,
-                latches:stats.latches,viewportSyncs:stats.viewportSyncs,
-                edgeClamped:stats.edgeClamped,maxOffsetSeen:stats.maxOffsetSeen,
-                maxStep:stats.maxStep};
+                resets:stats.resets,presses:stats.presses,toggles:stats.toggles,
+                pushes:stats.pushes,latches:stats.pushes,releases:stats.releases,
+                viewportSyncs:stats.viewportSyncs,edgeClamped:stats.edgeClamped,
+                focusLosses:stats.focusLosses,maxOffsetSeen:stats.maxOffsetSeen,
+                maxStep:stats.maxStep,maxDepth:stats.maxDepth};
         }
 
         /** One frame. mouseX/mouseY are stage coordinates (same space as
@@ -187,6 +297,18 @@ package {
             ++stats.frames;
             if(!w || !w.cam)return false;
             var cam:*=w.cam;
+            var over:Object=cursorOverride;
+            if(over!=null) {
+                mouseX=Number(over.x);mouseY=Number(over.y);
+                overrideUsed=true;
+            } else if(overrideUsed) {
+                // The test seam just let go of the cursor: hand the real one
+                // back so the native aim identity is exact again even if the
+                // pointer never moved (a hidden desktop pins it).
+                overrideUsed=false;
+                cam.celX=mouseX;cam.celY=mouseY;
+                appliedLast=false;wroteVx=NaN;wroteVy=NaN;
+            }
             mouseNowX=mouseX;mouseNowY=mouseY;
             var gate:String=eligibility(w,cam);
             if(gate!="") {release(gate);return false;}
@@ -194,19 +316,18 @@ package {
             if(aimOn) {
                 ++stats.aiming;
                 steer(cam,mouseX,mouseY);
+                lastReason=holdDir?"aiming":"aim-near-center";
             } else {
-                // Release clears the latch here; the offset then decays to zero
-                // through the same spring, so the return is smooth.
-                anchored=false;edgeFrames=0;dwellBand=-1;
+                clearLook();
             }
             var tx:Number=0;
             var ty:Number=0;
-            if(anchored) {
-                tx=lookX*MAX_OFFSET_X*distanceScale*lookScale;
-                ty=lookY*MAX_OFFSET_Y*distanceScale*lookScale;
+            if(holdDir) {
+                tx=holdX*MAX_OFFSET_X*distanceScale*depth;
+                ty=holdY*MAX_OFFSET_Y*distanceScale*depth;
             }
             var idx:int=speedIndex<1?1:(speedIndex>3?3:int(speedIndex));
-            var settle:Number=anchored?Number(SMOOTH_IN[idx-1]):Number(SMOOTH_OUT[idx-1]);
+            var settle:Number=aimOn?Number(SMOOTH_IN[idx-1]):Number(SMOOTH_OUT[idx-1]);
             var ceiling:Number=Number(MAX_SPEED[idx-1]);
             var sx:Object=spring(offX,tx,velX,settle,ceiling);
             offX=stepClamp(Number(sx.pos),offX);
@@ -221,71 +342,118 @@ package {
             var mag:Number=Math.sqrt(offX*offX+offY*offY);
             if(mag>Number(stats.maxOffsetSeen))stats.maxOffsetSeen=mag;
             if(offX==0&&offY==0) {
-                lastReason=aimOn?"aim-near-center":"idle";
+                if(!aimOn)lastReason="idle";
                 restoreCursor(cam);
                 return false;
             }
             apply(w,cam,mouseX,mouseY);
-            lastReason=aimOn?"aiming":"returning";
-            return true;        }
+            if(!aimOn)lastReason="returning";
+            return true;
+        }
 
-        /** Edge-anchored steering: the cursor only *chooses* a look direction.
-         * Once the cursor has rested against an edge for EDGE_FRAMES the
-         * direction and distance are latched and the camera keeps that look
-         * while the cursor freely aims anywhere inside the widened view. A
-         * later rest against another edge re-latches. */
+        /** Continuous steering: the cursor's distance from the screen centre is
+         * the extension lever, its direction is the look direction, and the
+         * extension only sticks once the player has actually held the push (see
+         * the class comment). */
         private function steer(cam:*,mouseX:Number,mouseY:Number):void {
-            var screenW:Number=Number(cam.screenX);
-            var screenH:Number=Number(cam.screenY);
-            var dx:Number=mouseX-screenW*0.5;
-            var dy:Number=mouseY-screenH*0.5;
+            var cx:Number=Number(cam.screenX)*0.5;
+            var cy:Number=Number(cam.screenY)*0.5;
+            var maxD:Number=Math.sqrt(cx*cx+cy*cy);
+            if(!(maxD>1))maxD=1;
+            var dead:Number=maxD*DEADZONE_FRAC;
+            var dx:Number=mouseX-cx;
+            var dy:Number=mouseY-cy;
             var d:Number=Math.sqrt(dx*dx+dy*dy);
-            if(d<=DEADZONE) {
-                // Centred cursor: idle, and it re-arms the latch.
-                edgeFrames=0;dwellBand=-1;
+            if(d<=dead) {
+                // Cursor parked in the middle: nothing to steer with, and the
+                // look keeps whatever extension it has. Releasing is the
+                // trigger's job - a cursor-home release would drop the view the
+                // moment the player aimed at the middle of it, which is the
+                // 0.9.8 runaway this feature exists to avoid.
                 return;
             }
-            var left:Number=mouseX;
-            var leftEdge:Number=left;
-            var rightEdge:Number=screenW-1-mouseX;
-            var topEdge:Number=mouseY;
-            var bottomEdge:Number=screenH-1-mouseY;
-            var band:int=-1;
-            var edge:Number=EDGE_BAND+1;
-            if(leftEdge<=EDGE_BAND&&leftEdge<edge) {band=0;edge=leftEdge;}
-            if(rightEdge<=EDGE_BAND&&rightEdge<edge) {band=1;edge=rightEdge;}
-            if(topEdge<=EDGE_BAND&&topEdge<edge) {band=2;edge=topEdge;}
-            if(bottomEdge<=EDGE_BAND&&bottomEdge<edge) {band=3;edge=bottomEdge;}
-            if(band<0) {
-                // Cursor inside the view: hold everything. The dwell is not
-                // cleared here, so a crosshair that strays out of the band for
-                // a frame (or a caller that supplies its own cursor position,
-                // as the isolated probe does) cannot restart the rest timer.
+            var ux:Number=dx/d;
+            var uy:Number=dy/d;
+            // Screen-rectangle boundary radius in the cursor's own direction:
+            // touching the edge anywhere is exactly full extension, so the lever
+            // reads the same on a wide and on a tall push.
+            var rectR:Number=maxD;
+            var ax:Number=Math.abs(ux);
+            var ay:Number=Math.abs(uy);
+            if(ax>0.0001) {
+                var rx:Number=cx/ax;
+                if(rx<rectR)rectR=rx;
+            }
+            if(ay>0.0001) {
+                var ry:Number=cy/ay;
+                if(ry<rectR)rectR=ry;
+            }
+            var span:Number=rectR-dead;
+            var u:Number=span>1?((d-dead)/span):1;
+            if(u<0)u=0; else if(u>1)u=1;
+            var want:Number=Math.pow(u,DEPTH_EXP);
+            if(!holdDir) {
+                if(want<=0.0005)return;
+                holdX=ux;holdY=uy;holdDir=true;depth=want;pushRun=0;
+                ++stats.pushes;
+                trackDepth();
                 return;
             }
-            if(band!=dwellBand) {
-                dwellBand=band;
-                edgeFrames=1;
-                return;
+            // Aiming is a positional gesture, so the direction follows the
+            // cursor only while the cursor sits at (or beyond) the rim implied
+            // by the current extension. Anywhere deeper inside the view the
+            // cursor is aiming at a target and the view must not move.
+            var pointing:Boolean=want>=depth-RESTEER_GAP;
+            if(pointing&&d>=maxD*STEER_FRAC)slew(ux,uy);
+            if(want>=depth) {
+                depth=want;
+                ++pushRun;
+                trackDepth();
+            } else if(pushRun<ARM_FRAMES) {
+                // The cursor already turned back: follow it, so a one-frame
+                // sweep to the rim cannot park the camera there.
+                depth=want;pushRun=0;
+            } else {
+                applyDecay();
             }
-            ++edgeFrames;
-            if(edgeFrames!=EDGE_FRAMES)return;
-            // Depth into the band sets the distance: a light touch at the band
-            // start is a short look, pressing into the very edge is full.
-            var depth:Number=1-Math.max(0,Math.min(edge/EDGE_BAND,1));
-            lookX=dx/d;
-            lookY=dy/d;
-            lookScale=0.4+0.6*depth;
-            anchored=true;
-            ++stats.latches;
+        }
+
+        private function trackDepth():void {
+            if(depth>Number(stats.maxDepth))stats.maxDepth=depth;
+        }
+
+        /** Rotate the look direction toward the cursor, at most SLEW_DEG per
+         * frame, so a flick cannot whip an extended view around. */
+        private function slew(ux:Number,uy:Number):void {
+            var current:Number=Math.atan2(holdY,holdX);
+            var next:Number=Math.atan2(uy,ux);
+            var delta:Number=next-current;
+            while(delta>Math.PI)delta-=Math.PI*2;
+            while(delta<-Math.PI)delta+=Math.PI*2;
+            var limit:Number=SLEW_DEG*Math.PI/180;
+            if(delta>limit)delta=limit;
+            else if(delta<-limit)delta=-limit;
+            var angle:Number=current+delta;
+            holdX=Math.cos(angle);
+            holdY=Math.sin(angle);
+        }
+
+        private function applyDecay():void {
+            if(holdDecay<=0)return;
+            depth-=holdDecay*FRAME_DT;
+            if(depth<=0)clearLook();
+        }
+
+        private function clearLook():void {
+            holdDir=false;depth=0;holdX=0;holdY=0;pushRun=0;
         }
 
         private function release(reason:String):void {
-            if(offX!=0||offY!=0||velX!=0||velY!=0||anchored||toggledOn) {
-                offX=0;offY=0;velX=0;velY=0;anchored=false;toggledOn=false;
+            if(offX!=0||offY!=0||velX!=0||velY!=0||holdDir||latched) {
+                offX=0;offY=0;velX=0;velY=0;
+                clearLook();latched=false;
                 ++stats.resets;
             }
-            edgeFrames=0;dwellBand=-1;
             lastReason=reason;
             restoreCursor(null);
         }
@@ -316,8 +484,8 @@ package {
             var vx:Number=nativeVx-offX;
             var vy:Number=nativeVy-offY;
             var clamped:Boolean=false;
-            // World clamp: never reveal the void past map bounds. An axis
-            // whose map is smaller than the screen has no valid pan range.
+            // World clamp: never reveal the void past map bounds. An axis whose
+            // map is smaller than the screen has no valid pan range.
             if(cam.maxvx>=0) {
                 if(vx>0){vx=0;clamped=true;}
                 else if(vx<-cam.maxvx){vx=-cam.maxvx;clamped=true;}
@@ -329,9 +497,9 @@ package {
             if(clamped)++stats.edgeClamped;
             cam.vx=vx;cam.vy=vy;
             // The native Camera declares vx/vy/celX/celY as int: writing a
-            // fractional value is silently truncated. Re-read the stored
-            // values so the rendered view, the cursor mapping and the
-            // crosshair all agree to the pixel.
+            // fractional value is silently truncated. Re-read the stored values
+            // so the rendered view, the cursor mapping and the crosshair all
+            // agree to the pixel.
             var ax:Number=cam.vx;
             var ay:Number=cam.vy;
             w.visual.x=ax+cam.quakeX;
@@ -419,6 +587,10 @@ package {
             if(code<=0)return false;
             return keyCode==code && Boolean(keybind.ctrl)==ctrlKey &&
                 Boolean(keybind.alt)==altKey && Boolean(keybind.shift)==shiftKey;
+        }
+
+        private function nowMs():Number {
+            return clock!=null?Number(clock()):Number(getTimer());
         }
     }
 }
