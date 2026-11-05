@@ -1,0 +1,62 @@
+{
+  "feature": "aim-look-3 (CS 0.9.10)",
+  "deployedAt": "2026-11-04T23:22:09+08:00",
+  "summary": "continuous distance lever, sticky-while-aiming extension, hold/toggle/smart modes, Alt key cancellation + focus recovery",
+  "files": [
+    {
+      "path": "mods/ContinuousScene/release/ContinuousSceneMod.swf",
+      "before": "D04CD26AA674238BBB2F43A2CA49C57811301E9B9B614352A099F8190D9E0193",
+      "after": "A4F4C8ED4C3158B2721EAC8086A266AA1A43312DB3F53B19C275B91857B2CA3B",
+      "backup": "mods/ContinuousScene/build/backups/ContinuousSceneMod-0.9.9-D04CD26A-before-aimv3-20261104-232209.swf"
+    }
+  ],
+  "untouched": {
+    "pfe.swf": "91F8E10D",
+    "mods/ContinuousScene/release/scene.xml": "1CEA74E2",
+    "mods/loader-manifest.txt": "unchanged (no new mod folder)"
+  },
+  "restartRequired": true,
+  "rollback": "copy the backup over mods/ContinuousScene/release/ContinuousSceneMod.swf and restart the game",
+  "verification": {
+    "deterministic": {
+      "harness": "mods/ContinuousScene/build/generated/aimv3-20261104/checks (standalone AIR app remains.cs.aimchecks)",
+      "result": "82/82 pass",
+      "covers": [
+        "alt keydown/keyup cancelled (preventDefault) and still reaching the controller",
+        "unbound keys and a disabled controller are not cancelled",
+        "continuous lever monotone 150..959px and matching the published curve within 3px",
+        "edge of any direction is exactly full extension; axis ratio kept on diagonals",
+        "critically damped curve: small first step, accelerating, no overshoot, <= 90px/frame",
+        "aiming at the centre / inside / across the view keeps the extension",
+        "rim push re-steers the direction, slewed at <= 6 deg/frame",
+        "one-frame rim sweep unwinds; deliberate push parks",
+        "hold / toggle / smart trigger lifecycles, auto-repeat safety, custom binding, modifier slots",
+        "nine interlocks, world clamps, int-typed camera truncation, viewport sync on/off",
+        "cursorOverride seam: steers, is applied, and hands the real cursor back on release"
+      ]
+    },
+    "live": {
+      "runner": "mods/ContinuousScene/build/generated/aimv3-20261104/run_live_0100.py",
+      "result": "24/24 pass, exit 0",
+      "app": "pfe-cs-aim3-18f21f05eb-host (private desktop, unique AIR id, formal 13-mod stack + probe)",
+      "evidence": "live/probe-storage/ContinuousSceneAimProbe.{json,log}",
+      "measurements": {
+        "screen": "1280x800",
+        "lever": "0.35 -> 137.0px, 0.75 -> 464.0px, 1.00 -> 699.0px (max 700)",
+        "aimHold": "pulling the crosshair in to 0.30 kept the pan at 699.0",
+        "viewportSyncs": 210,
+        "resident": "70 -> 115 while panned",
+        "applyConsistentBad": 0,
+        "worldMapBad": 0,
+        "toggle": "held 699.97 after keyup, returned to 0 on the second tap",
+        "cursorRestored": "celX 0 = mouse 0"
+      }
+    }
+  },
+  "notes": [
+    "The host SWF already contains the parallel session's bullet grid (91F8E10D); this deploy does not touch it.",
+    "Game must be restarted: the running process loaded the previous mod SWF.",
+    "The product was compiled from the whole src/ tree, so A4F4C8ED also contains session-e8fd621d's SceneObjectCulling/SceneCullEntry analytic-scale change (their offline 45/45 candidate 6A538E83). Deployed == live-tested bytes; if objects flicker at the viewport edge, suspect that change, and the D04CD26A rollback removes both.",
+    "state/journal.md could not be written: session-e8fd621d holds an active claim and the .dsh-file-claim.lock is pinned by a live-but-idle harness process (pid 49728). The journal entry text is identical to the state/MEMORY.md entry queued in the pending area (pending apply mods/ContinuousScene/state/MEMORY.md after that session releases)."
+  ]
+}
