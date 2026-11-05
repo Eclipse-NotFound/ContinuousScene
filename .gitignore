@@ -31,3 +31,7 @@ build/copychannel-lab/*
 # files there need an explicit exception (`!path`) or `git add -f`.
 # Test isolation copies must not be committed - use the cleanup tool instead.
 /build/
+
+# Compiled SWFs are build products: src/ holds the sources (ContinuousSceneDoc.as),
+# release/ holds the deployed SWF, which is rebuilt rather than tracked.
+src/*.swf
