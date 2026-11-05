@@ -4,6 +4,11 @@
 > 日期：2026-11-04（方案）/ 2026-11-04（实施记录见 §六）  
 > 状态：**已实施 CS 0.9.9 + 宿主候选**（确定性 61/61、隔离实机 13/13）  
 > 涉及模块：`SceneAimController.as`、`ContinuousSceneMod.as`、`NativeSceneActivity.as`、宿主 `Grafon.as`、宿主 `Camera.as`、`Bullet.as`
+>
+> **已被 CS 0.9.10 部分取代（2026-11-04）**：实机反馈“按 Alt 鼠标脱离游戏 / 注视不够平滑且没有‘越靠边越远’反馈 / 要回长按模式”，
+> 交互层重做为「连续距离杠杆 + 瞄准时冻结 + 长按/切换/混合三模 + Alt 事件取消」，并修掉“准星回中心收回”的代数环残留。
+> 本文的**视口重确保（`sceneTick`）、临界阻尼、渲染恒等式三部分仍为现行依据**，其余交互描述以
+> [aim-look-v3-dual-mode-and-input-smoothness-plan.md](aim-look-v3-dual-mode-and-input-smoothness-plan.md) §八 为准。
 
 ---
 

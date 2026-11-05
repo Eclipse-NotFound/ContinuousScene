@@ -7,6 +7,10 @@
 > 并补上平移后的视口重确保（修远端墙体不加载）。现行依据见
 > [aim-look-and-offscreen-combat-optimization-plan.md](aim-look-and-offscreen-combat-optimization-plan.md) §六；
 > 本文保留为 0.9.8 的历史设计记录。
+>
+> **进一步已被 CS 0.9.10 取代（2026-11-04）**：边缘锚定又改回「连续距离杠杆 + 瞄准时冻结」，
+> 并恢复长按为默认（与切换/混合三模并行）、给 Alt 加了系统菜单事件取消。
+> 现行依据见 [aim-look-v3-dual-mode-and-input-smoothness-plan.md](aim-look-v3-dual-mode-and-input-smoothness-plan.md) §八。
 
 ## 1. 问题与根因（调查结论）
 
