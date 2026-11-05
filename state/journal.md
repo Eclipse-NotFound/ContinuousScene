@@ -1,3 +1,11 @@
+## 2026-11-05 GitHub 开源同步
+
+- 仓库公开：https://github.com/Eclipse-NotFound/ContinuousScene（默认分支 `master`，MIT 许可证）
+- 发布：tag `v0.9.10`，Release 资产 `ContinuousScene_v0.9.10.zip`（正式版）
+- 同步内容：本地提交（源码/设计/知识/状态）+ MIT `LICENSE` + README 下载链接与版本号更新
+- 验证边界：未运行游戏、未改 `release/` 下已部署 SWF；资产回读改用 GitHub 服务端 asset digest 校验（下载域名被网络策略拒绝）
+- 残留：本条目写入时 tag 可能早于后续文档提交；各模组记忆由负责人在后续会话继续维护
+
 ## 2026-11-04 — 剔除包围盒解析式缩放（event-tracked-3）：离线 48/48 + 变异 4/4，已部署 `DFF28525`
 
 - 用户要求按方案实施"首次接近敌人卡顿"优化。调查先把前提纠正：敌人在进图时由 `Location.setObjects → createUnit → Unit.create`（`initBlit` 取共享 SpriteSheet、`Weapon.create`、`addVisual`）全量实例化，走近不构造实体、不拆 SWF；音乐/音效在启动时 `initSnd/loadMusic` 全量预加载且只在 `bytesLoaded==bytesTotal` 时播放。实机 1300 帧证据（`knowledge/experiments/evidence/bulletgrid-gridlive-combat-n1`）：`woke` 最大 1/帧（预算生效）、`activityMs` 均值 0.538ms、`boundsReads` 25–55 无交战尖峰、15 个 ≥90ms 长帧的 `activityMs` 0–2ms。长帧仍与 >1MB 内存回落同帧（地块分配推动回收）——**"首次加载敌人"不成立**，原方案里的"唤醒强弱分级/预算收紧"因此不做（与 `alicorn4` 既有计数一致）。

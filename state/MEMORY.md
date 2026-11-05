@@ -1,5 +1,7 @@
 # ContinuousScene — 当前快照
 
+> **2026-11-05 GitHub 公开**：本仓库已开源到 https://github.com/Eclipse-NotFound/ContinuousScene（默认分支 `master`，MIT 许可证），发布 tag `v0.9.10` 与 Release 资产 `ContinuousScene_v0.9.10.zip`（正式版）。由同步会话执行；未运行游戏、未改 `release/` 下已部署产物。
+
 <!-- aim-look-v3-implemented-20261104 -->
 > **2026-11-04 已部署 CS 0.9.10：连续距离杠杆 + 瞄准时冻结 + 长按/切换/混合三模 + Alt 防脱离**。正式 CS release 0.9.9 `D04CD26A` → **`A4F4C8ED`**（0.9.10）；宿主 `pfe.swf` **`91F8E10D`**（子弹分桶版）与 `scene.xml` `1CEA74E2` 均未动；**需重启游戏生效**。回退=备份 `build/backups/ContinuousSceneMod-0.9.9-D04CD26A-before-aimv3-20261104-232209.swf` 覆盖 release + 重启；回执 `state/aim-look-v3-deployment-20261104.json`；工作根 `build/generated/aimv3-20261104/`。
 > - **按 Alt 鼠标脱离（根因）**：Windows 单发 `Alt`（keyCode 18）是窗口菜单手势（`WM_SYSCOMMAND/SC_KEYMENU`），窗口被系统菜单接管后解除鼠标捕获，必须点击客户区一次才恢复。修法：键盘监听（优先级 500）对触发键调 `event.preventDefault()`，裸修饰键再加 `stopImmediatePropagation()`（原版 44 个绑定与 `Ctr.permissKey` 都不用裸 Alt/Ctrl，安全）；第二道防线：`DEACTIVATE` 若发生在触发键 400ms 内则记 `focusLostAt`，入口下一帧 `nativeWindow.activate()` 夺回窗口（真 Alt+Tab 不满足时限，不抢焦点）。设置文案推荐 `1=左Ctrl`。
