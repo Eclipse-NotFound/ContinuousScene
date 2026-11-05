@@ -1,4 +1,8 @@
-# ContinuousScene：连续大场景与单一地图编辑 0.9.0
+# ContinuousScene：连续大场景与单一地图编辑 0.9.10
+
+> **下载 / Download**：[ContinuousScene_v0.9.10.zip](https://github.com/Eclipse-NotFound/ContinuousScene/releases/download/v0.9.10/ContinuousScene_v0.9.10.zip)（安装步骤见包内 `先读我-安装说明.txt`；**不要**下载 Source code）。需要 Windows / Remains 1.02 与 [ModLoader 首次安装](https://github.com/Eclipse-NotFound/ModLoader/blob/master/docs/INSTALL.zh-CN.md)。升级只替换 `ContinuousSceneMod.swf`，自己改过的 `scene.xml` 保留。
+
+2026-11-04：**0.9.10 瞄准视角 V3 已安装**——延展由"边缘停留 3 帧硬锚定"改为连续距离杠杆（`u^1.25`、按准星方向的矩形边界半径定标，推到任意一条边都恰好 100%），瞄准期间冻结，长按/切换/混合三种触发方式并列，并修掉裸 Alt 被 Windows 当作系统菜单手势而丢失鼠标捕获的问题；同时含 `SceneObjectCulling` 解析式缩放包围盒（event-tracked-3）。确定性夹具 82/82、隔离实机 24/24；**未做真人键盘与手感定标**，整体帧时目标尚未达到。详见[设计方案](design/aim-look-v3-dual-mode-and-input-smoothness-plan.md)、[剔除实测](knowledge/experiments/culling-scale-20261104.md)，回执见 [state/aim-look-v3-deployment-20261104.json](state/aim-look-v3-deployment-20261104.json)。
 
 2026-10-23：已安装配套 RConnect 0.2.24-offline1，减少单人游玩时无用的弹道与特效记录。关闭灯光、视野及墙面融合的同路线真实战斗对照中，平均每帧耗时 **69.6→58.9毫秒，约下降15%**；首次联机78项及安装后双实例复验通过。仍有偶发长帧，尚未达到整体原版流畅度。下次正常启动生效，详见[战斗性能实测与交付记录](knowledge/experiments/combat-stable-driver-20261022.md)。
 
